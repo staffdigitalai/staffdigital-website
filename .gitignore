@@ -1,24 +1,12 @@
-# build output
-dist/
+# v0 runtime files (should only exist in preview, not in git)
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts
+instrumentation-client.js
+instrumentation-client.ts
 
-# generated types
-.astro/
-
-# dependencies
+# Common ignores
 node_modules/
-
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# environment variables
-.env
-.env.production
-
-# macOS-specific files
+.next/
+.env*.local
 .DS_Store
-
-# Local Netlify folder
-.netlify

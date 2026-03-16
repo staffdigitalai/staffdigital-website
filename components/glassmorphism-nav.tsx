@@ -1,10 +1,17 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Menu, X, ArrowRight, ChevronDown, Stethoscope, Scissors, UtensilsCrossed, Car, ShoppingBag, Building2, Warehouse, Wrench, BriefcaseMedical, Globe } from "lucide-react"
+import { Menu, X, ArrowRight, ChevronDown, Stethoscope, Scissors, UtensilsCrossed, Car, ShoppingBag, Building2, Warehouse, Wrench, BriefcaseMedical, Globe, MessageSquare, Layers, Shield, Home } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { StaffDigitalLogo } from "@/components/staffdigital-logo"
+
+const services = [
+  { name: "IA Conversacional", href: "/soluciones/ia-conversacional", icon: MessageSquare, description: "Chatbots, agentes de voz y cualificacion de leads" },
+  { name: "Automatizacion Omnicanal", href: "/soluciones/automatizacion-omnicanal", icon: Layers, description: "Bandeja unificada, CRM y workflows" },
+  { name: "Seguridad IA", href: "/soluciones/seguridad-ia", icon: Shield, description: "Videovigilancia inteligente y alertas" },
+  { name: "Home Staging IA", href: "/soluciones/home-staging-ia", icon: Home, description: "Marketing inmobiliario con IA" },
+]
 
 const sectors = [
   { name: "Concesionarios", href: "/sectores/concesionarios", icon: Car, description: "Venta y posventa de vehiculos" },
@@ -28,21 +35,24 @@ const languages = [
 const navItems = [
   { label: "Inicio", href: "#inicio" },
   { label: "Sobre", href: "#sobre" },
-  { label: "Servicos", href: "#servicos" },
-  { label: "Sectores", href: "#", dropdown: true },
+  { label: "Soluciones", href: "#", dropdown: "services" },
+  { label: "Sectores", href: "#", dropdown: "sectors" },
   { label: "Testemunhos", href: "#testemunhos" },
 ]
 
 export function GlassmorphismNav() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isServicesOpen, setIsServicesOpen] = useState(false)
   const [isSectorsOpen, setIsSectorsOpen] = useState(false)
   const [isLangOpen, setIsLangOpen] = useState(false)
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
   const [isMobileSectorsOpen, setIsMobileSectorsOpen] = useState(false)
   const [isMobileLangOpen, setIsMobileLangOpen] = useState(false)
   const [currentLang, setCurrentLang] = useState("pt")
   const [isVisible, setIsVisible] = useState(true)
   const [hasLoaded, setHasLoaded] = useState(false)
   const lastScrollY = useRef(0)
+  const servicesTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const sectorsTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const langTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const pathname = usePathname()
@@ -58,6 +68,7 @@ export function GlassmorphismNav() {
         if (currentScrollY > 50) {
           if (currentScrollY > lastScrollY.current && currentScrollY - lastScrollY.current > 5) {
             setIsVisible(false)
+            setIsServicesOpen(false)
             setIsSectorsOpen(false)
             setIsLangOpen(false)
           } else if (lastScrollY.current - currentScrollY > 5) {
@@ -81,8 +92,20 @@ export function GlassmorphismNav() {
     return () => clearTimeout(timer)
   }, [])
 
+  const handleServicesEnter = () => {
+    if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current)
+    setIsSectorsOpen(false)
+    setIsLangOpen(false)
+    setIsServicesOpen(true)
+  }
+
+  const handleServicesLeave = () => {
+    servicesTimeoutRef.current = setTimeout(() => setIsServicesOpen(false), 200)
+  }
+
   const handleSectorsEnter = () => {
     if (sectorsTimeoutRef.current) clearTimeout(sectorsTimeoutRef.current)
+    setIsServicesOpen(false)
     setIsLangOpen(false)
     setIsSectorsOpen(true)
   }
@@ -93,6 +116,7 @@ export function GlassmorphismNav() {
 
   const handleLangEnter = () => {
     if (langTimeoutRef.current) clearTimeout(langTimeoutRef.current)
+    setIsServicesOpen(false)
     setIsSectorsOpen(false)
     setIsLangOpen(true)
   }
@@ -119,6 +143,7 @@ export function GlassmorphismNav() {
       window.scrollTo({ top: targetPosition, behavior: "smooth" })
     }
     setIsOpen(false)
+    setIsServicesOpen(false)
     setIsSectorsOpen(false)
     setIsLangOpen(false)
   }
@@ -149,7 +174,66 @@ export function GlassmorphismNav() {
               {/* Desktop Navigation */}
               <div className="hidden md:flex items-center gap-1">
                 {navItems.map((item) => {
-                  if (item.dropdown) {
+                  if (item.dropdown === "services") {
+                    return (
+                      <div
+                        key={item.label}
+                        className="relative"
+                        onMouseEnter={handleServicesEnter}
+                        onMouseLeave={handleServicesLeave}
+                      >
+                        <button
+                          className="flex items-center gap-1 text-white/70 hover:text-white transition-all duration-200 text-sm font-medium cursor-pointer px-3 py-2 rounded-full hover:bg-white/5"
+                          onClick={() => setIsServicesOpen(!isServicesOpen)}
+                        >
+                          {item.label}
+                          <ChevronDown
+                            size={13}
+                            className={`transition-transform duration-200 ${isServicesOpen ? "rotate-180" : ""}`}
+                          />
+                        </button>
+
+                        {/* Services Dropdown */}
+                        <div
+                          className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-200 ${
+                            isServicesOpen
+                              ? "opacity-100 translate-y-0 pointer-events-auto"
+                              : "opacity-0 -translate-y-2 pointer-events-none"
+                          }`}
+                        >
+                          <div className="bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-2xl p-3 shadow-2xl w-[340px]">
+                            <div className="space-y-0.5">
+                              {services.map((service) => {
+                                const Icon = service.icon
+                                return (
+                                  <Link
+                                    key={service.name}
+                                    href={service.href}
+                                    className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/10 transition-all duration-200 group"
+                                    onClick={() => setIsServicesOpen(false)}
+                                  >
+                                    <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/20 transition-all duration-200 flex-shrink-0">
+                                      <Icon size={16} className="text-white/60 group-hover:text-white transition-colors" />
+                                    </div>
+                                    <div className="min-w-0">
+                                      <p className="text-sm font-medium text-white/90 group-hover:text-white transition-colors truncate">
+                                        {service.name}
+                                      </p>
+                                      <p className="text-[11px] text-white/35 group-hover:text-white/55 transition-colors truncate">
+                                        {service.description}
+                                      </p>
+                                    </div>
+                                  </Link>
+                                )
+                              })}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  }
+
+                  if (item.dropdown === "sectors") {
                     return (
                       <div
                         key={item.label}
@@ -286,6 +370,7 @@ export function GlassmorphismNav() {
                 onClick={() => {
                   setIsOpen(!isOpen)
                   if (isOpen) {
+                    setIsMobileServicesOpen(false)
                     setIsMobileSectorsOpen(false)
                     setIsMobileLangOpen(false)
                   }
@@ -319,6 +404,7 @@ export function GlassmorphismNav() {
             }`}
             onClick={() => {
               setIsOpen(false)
+              setIsMobileServicesOpen(false)
               setIsMobileSectorsOpen(false)
               setIsMobileLangOpen(false)
             }}
@@ -333,7 +419,52 @@ export function GlassmorphismNav() {
             <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-2xl max-h-[75vh] overflow-y-auto">
               <div className="flex flex-col space-y-0.5">
                 {navItems.map((item) => {
-                  if (item.dropdown) {
+                  if (item.dropdown === "services") {
+                    return (
+                      <div key={item.label}>
+                        <button
+                          onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                          className="w-full flex items-center justify-between text-white/80 hover:text-white hover:bg-white/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer"
+                        >
+                          <span>{item.label}</span>
+                          <ChevronDown
+                            size={16}
+                            className={`transition-transform duration-300 ${isMobileServicesOpen ? "rotate-180" : ""}`}
+                          />
+                        </button>
+
+                        <div
+                          className={`overflow-hidden transition-all duration-300 ${
+                            isMobileServicesOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                          }`}
+                        >
+                          <div className="pl-2 space-y-0.5 pb-2">
+                            {services.map((service) => {
+                              const Icon = service.icon
+                              return (
+                                <Link
+                                  key={service.name}
+                                  href={service.href}
+                                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/10 transition-all duration-200 group"
+                                  onClick={() => {
+                                    setIsOpen(false)
+                                    setIsMobileServicesOpen(false)
+                                  }}
+                                >
+                                  <Icon size={16} className="text-white/50 group-hover:text-white/80 transition-colors flex-shrink-0" />
+                                  <span className="text-sm text-white/70 group-hover:text-white transition-colors">
+                                    {service.name}
+                                  </span>
+                                </Link>
+                              )
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  }
+
+                  if (item.dropdown === "sectors") {
                     return (
                       <div key={item.label}>
                         <button

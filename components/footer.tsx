@@ -3,11 +3,18 @@
 import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon, MapPin } from "lucide-react"
 import { StaffDigitalLogoDark } from "@/components/staffdigital-logo"
 
+const solucionesLinks = [
+  { title: "IA Conversacional", href: "/soluciones/ia-conversacional" },
+  { title: "Automatizacion Omnicanal", href: "/soluciones/automatizacion-omnicanal" },
+  { title: "Seguridad IA", href: "/soluciones/seguridad-ia" },
+  { title: "Home Staging IA", href: "/soluciones/home-staging-ia" },
+]
+
 const productLinks = [
-  { title: "Funcionalidades", href: "/#funcionalidades" },
-  { title: "Equipo IA", href: "/#equipo-ia" },
-  { title: "Calculadora ROI", href: "/#calculadora" },
-  { title: "Integracion", href: "/#integracion" },
+  { title: "Funcionalidades", href: "/#servicos" },
+  { title: "Equipo IA", href: "/#servicos" },
+  { title: "Calculadora ROI", href: "/#testemunhos" },
+  { title: "Sectores", href: "/#sectores" },
 ]
 
 const empresaLinks = [
@@ -35,10 +42,10 @@ export function Footer() {
   return (
     <footer className="relative w-full border-t border-white/10 bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/8%),transparent)]">
       <div className="max-w-6xl mx-auto px-6 sm:px-8 py-16 lg:py-20">
-        {/* 4 Column Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
+        {/* 5 Column Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 mb-12">
           {/* Column 1: Logo + Slogan + Addresses + Social Icons */}
-          <div className="space-y-5">
+          <div className="space-y-5 lg:col-span-1">
             <StaffDigitalLogoDark variant="full" size="md" />
             <p className="text-white/50 text-sm leading-relaxed">
               Automatizacion IA para empresas. Chat inteligente, flujos de trabajo y automatizaciones.
@@ -74,7 +81,24 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Producto */}
+          {/* Column 2: Soluciones */}
+          <div>
+            <h3 className="text-sm font-medium text-white/80 mb-4">Soluciones</h3>
+            <ul className="space-y-3">
+              {solucionesLinks.map((link) => (
+                <li key={link.title}>
+                  <a
+                    href={link.href}
+                    className="text-white/50 hover:text-white text-sm transition-colors duration-200"
+                  >
+                    {link.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Producto */}
           <div>
             <h3 className="text-sm font-medium text-white/80 mb-4">Producto</h3>
             <ul className="space-y-3">
@@ -91,7 +115,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Empresa */}
+          {/* Column 4: Empresa */}
           <div>
             <h3 className="text-sm font-medium text-white/80 mb-4">Empresa</h3>
             <ul className="space-y-3">
@@ -108,7 +132,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Recursos */}
+          {/* Column 5: Recursos */}
           <div>
             <h3 className="text-sm font-medium text-white/80 mb-4">Recursos</h3>
             <ul className="space-y-3">

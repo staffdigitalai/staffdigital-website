@@ -53,6 +53,7 @@ export function GlassmorphismNav() {
   const [currentLang, setCurrentLang] = useState("pt")
   const [isVisible, setIsVisible] = useState(true)
   const [hasLoaded, setHasLoaded] = useState(false)
+  const [activeSection, setActiveSection] = useState<string>("#inicio")
   const lastScrollY = useRef(0)
   const servicesTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const sectorsTimeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -93,6 +94,36 @@ export function GlassmorphismNav() {
 
     return () => clearTimeout(timer)
   }, [])
+
+  // Track active section on homepage using IntersectionObserver
+  useEffect(() => {
+    if (pathname !== "/") return
+
+    const sectionIds = ["inicio", "sobre", "soluciones", "sectores", "servicos", "testemunhos"]
+    const observers: IntersectionObserver[] = []
+
+    sectionIds.forEach((id) => {
+      const element = document.getElementById(id)
+      if (element) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                setActiveSection(`#${id}`)
+              }
+            })
+          },
+          { rootMargin: "-20% 0px -60% 0px", threshold: 0 }
+        )
+        observer.observe(element)
+        observers.push(observer)
+      }
+    })
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect())
+    }
+  }, [pathname])
 
   const handleServicesEnter = () => {
     if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current)
@@ -152,6 +183,22 @@ export function GlassmorphismNav() {
 
   const selectedLang = languages.find((l) => l.code === currentLang)
 
+  // Check if nav item is active
+  const isNavItemActive = (item: { label: string; href: string; dropdown?: string }) => {
+    // On subpages, check if we're on a solutions or sectors page
+    if (pathname.startsWith("/soluciones") && item.dropdown === "services") return true
+    if (pathname.startsWith("/sectores") && item.dropdown === "sectors") return true
+    
+    // On homepage, check active section
+    if (pathname === "/") {
+      if (item.dropdown === "services" && activeSection === "#soluciones") return true
+      if (item.dropdown === "sectors" && activeSection === "#sectores") return true
+      if (item.href === activeSection) return true
+    }
+    
+    return false
+  }
+
   return (
     <>
       <nav
@@ -177,6 +224,7 @@ export function GlassmorphismNav() {
               <div className="hidden md:flex items-center gap-1">
                 {navItems.map((item) => {
                   if (item.dropdown === "services") {
+                    const isActive = isNavItemActive(item)
                     return (
                       <div
                         key={item.label}
@@ -185,7 +233,11 @@ export function GlassmorphismNav() {
                         onMouseLeave={handleServicesLeave}
                       >
                         <button
-                          className="flex items-center gap-1 text-white/70 hover:text-white transition-all duration-200 text-sm font-medium cursor-pointer px-3 py-2 rounded-full hover:bg-white/5"
+                          className={`flex items-center gap-1 transition-all duration-200 text-sm font-medium cursor-pointer px-3 py-2 rounded-full ${
+                            isActive 
+                              ? "text-white bg-white/10" 
+                              : "text-white/70 hover:text-white hover:bg-white/5"
+                          }`}
                           onClick={() => setIsServicesOpen(!isServicesOpen)}
                         >
                           {item.label}
@@ -236,6 +288,7 @@ export function GlassmorphismNav() {
                   }
 
                   if (item.dropdown === "sectors") {
+                    const isActive = isNavItemActive(item)
                     return (
                       <div
                         key={item.label}
@@ -244,7 +297,11 @@ export function GlassmorphismNav() {
                         onMouseLeave={handleSectorsLeave}
                       >
                         <button
-                          className="flex items-center gap-1 text-white/70 hover:text-white transition-all duration-200 text-sm font-medium cursor-pointer px-3 py-2 rounded-full hover:bg-white/5"
+                          className={`flex items-center gap-1 transition-all duration-200 text-sm font-medium cursor-pointer px-3 py-2 rounded-full ${
+                            isActive 
+                              ? "text-white bg-white/10" 
+                              : "text-white/70 hover:text-white hover:bg-white/5"
+                          }`}
                           onClick={() => setIsSectorsOpen(!isSectorsOpen)}
                         >
                           {item.label}
@@ -294,11 +351,16 @@ export function GlassmorphismNav() {
                     )
                   }
 
+                  const isActive = isNavItemActive(item)
                   return (
                     <button
                       key={item.label}
                       onClick={() => scrollToSection(item.href)}
-                      className="text-white/70 hover:text-white transition-all duration-200 text-sm font-medium cursor-pointer px-3 py-2 rounded-full hover:bg-white/5"
+                      className={`transition-all duration-200 text-sm font-medium cursor-pointer px-3 py-2 rounded-full ${
+                        isActive 
+                          ? "text-white bg-white/10" 
+                          : "text-white/70 hover:text-white hover:bg-white/5"
+                      }`}
                     >
                       {item.label}
                     </button>
@@ -422,11 +484,16 @@ export function GlassmorphismNav() {
               <div className="flex flex-col space-y-0.5">
                 {navItems.map((item) => {
                   if (item.dropdown === "services") {
+                    const isActive = isNavItemActive(item)
                     return (
                       <div key={item.label}>
                         <button
                           onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                          className="w-full flex items-center justify-between text-white/80 hover:text-white hover:bg-white/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer"
+                          className={`w-full flex items-center justify-between rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer ${
+                            isActive 
+                              ? "text-white bg-white/10" 
+                              : "text-white/80 hover:text-white hover:bg-white/10"
+                          }`}
                         >
                           <span>{item.label}</span>
                           <ChevronDown
@@ -467,11 +534,16 @@ export function GlassmorphismNav() {
                   }
 
                   if (item.dropdown === "sectors") {
+                    const isActive = isNavItemActive(item)
                     return (
                       <div key={item.label}>
                         <button
                           onClick={() => setIsMobileSectorsOpen(!isMobileSectorsOpen)}
-                          className="w-full flex items-center justify-between text-white/80 hover:text-white hover:bg-white/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer"
+                          className={`w-full flex items-center justify-between rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer ${
+                            isActive 
+                              ? "text-white bg-white/10" 
+                              : "text-white/80 hover:text-white hover:bg-white/10"
+                          }`}
                         >
                           <span>{item.label}</span>
                           <ChevronDown
@@ -511,11 +583,16 @@ export function GlassmorphismNav() {
                     )
                   }
 
+                  const isActive = isNavItemActive(item)
                   return (
                     <button
                       key={item.label}
                       onClick={() => scrollToSection(item.href)}
-                      className="text-white/80 hover:text-white hover:bg-white/10 rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer"
+                      className={`rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer ${
+                        isActive 
+                          ? "text-white bg-white/10" 
+                          : "text-white/80 hover:text-white hover:bg-white/10"
+                      }`}
                     >
                       {item.label}
                     </button>

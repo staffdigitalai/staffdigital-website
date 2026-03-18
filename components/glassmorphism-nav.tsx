@@ -28,18 +28,17 @@ const sectors = [
 ]
 
 const languages = [
-  { code: "pt", label: "Portugues" },
   { code: "es", label: "Espanol" },
   { code: "en", label: "English" },
-  { code: "fr", label: "Francais" },
+  { code: "pt", label: "Portugues" },
 ]
 
 const navItems = [
   { label: "Inicio", href: "#inicio" },
-  { label: "Sobre", href: "#sobre" },
+  { label: "Nosotros", href: "#sobre" },
   { label: "Soluciones", href: "#", dropdown: "services" },
   { label: "Sectores", href: "#", dropdown: "sectors" },
-  { label: "Testemunhos", href: "#testemunhos" },
+  { label: "Testimonios", href: "#testemunhos" },
 ]
 
 export function GlassmorphismNav() {
@@ -50,7 +49,7 @@ export function GlassmorphismNav() {
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
   const [isMobileSectorsOpen, setIsMobileSectorsOpen] = useState(false)
   const [isMobileLangOpen, setIsMobileLangOpen] = useState(false)
-  const [currentLang, setCurrentLang] = useState("pt")
+  const [currentLang, setCurrentLang] = useState("es")
   const [isVisible, setIsVisible] = useState(true)
   const [hasLoaded, setHasLoaded] = useState(false)
   const [activeSection, setActiveSection] = useState<string>("#inicio")

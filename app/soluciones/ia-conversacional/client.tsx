@@ -230,8 +230,9 @@ export function ConversationalAIClient() {
         </div>
         <div className="relative z-10">
           <GlassmorphismNav />
-          <ServicePageTemplate data={data} />
-          <LeadsProblemSection />
+          <ServicePageTemplate data={data}>
+            <LeadsProblemSection />
+          </ServicePageTemplate>
           <FeaturesSection />
           <Footer />
         </div>

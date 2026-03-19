@@ -111,7 +111,7 @@ const colorVariants = {
   },
 }
 
-export function ServicePageTemplate({ data }: { data: ServicePageData }) {
+export function ServicePageTemplate({ data, children }: { data: ServicePageData; children?: React.ReactNode }) {
   const overviewRef = useRef<HTMLElement>(null)
   const servicesRef = useRef<HTMLElement>(null)
   const benefitsRef = useRef<HTMLElement>(null)
@@ -196,6 +196,9 @@ export function ServicePageTemplate({ data }: { data: ServicePageData }) {
           </div>
         </div>
       </section>
+
+      {/* Optional content after hero */}
+      {children}
 
       {/* Overview Section */}
       <section ref={overviewRef} className="py-20 md:py-32 px-4">

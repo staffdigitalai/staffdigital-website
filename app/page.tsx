@@ -1,5 +1,6 @@
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { HeroSection } from "@/components/hero-section"
+import { WhyDifferentSection } from "@/components/why-different-section"
 import { ProblemSolutionSection } from "@/components/problem-solution-section"
 import Aurora from "@/components/Aurora"
 import { ServicesPillarsSection } from "@/components/services-pillars-section"
@@ -21,6 +22,7 @@ export default function HomePage() {
           <div id="inicio">
             <HeroSection />
           </div>
+          <WhyDifferentSection />
           <div id="soluciones">
             <ServicesPillarsSection />
           </div>

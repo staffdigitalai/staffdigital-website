@@ -4,6 +4,7 @@ import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import Aurora from "@/components/Aurora"
 import { Footer } from "@/components/footer"
 import { ServicePageTemplate } from "@/components/service-page-template"
+import { FeaturesSection } from "@/components/features-section"
 import type { ServicePageData } from "@/components/service-page-template"
 import { 
   MessageSquare, 
@@ -229,6 +230,7 @@ export function ConversationalAIClient() {
         <div className="relative z-10">
           <GlassmorphismNav />
           <ServicePageTemplate data={data} />
+          <FeaturesSection />
           <Footer />
         </div>
       </main>

@@ -98,7 +98,7 @@ export function GlassmorphismNav() {
   useEffect(() => {
     if (pathname !== "/") return
 
-    const sectionIds = ["inicio", "sobre", "soluciones", "sectores", "servicos", "testemunhos"]
+    const sectionIds = ["inicio", "sobre", "soluciones", "sectores", "testemunhos"]
     const observers: IntersectionObserver[] = []
 
     sectionIds.forEach((id) => {

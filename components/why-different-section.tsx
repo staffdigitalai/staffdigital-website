@@ -71,7 +71,7 @@ export function WhyDifferentSection() {
         >
           {/* Others Card - Red */}
           <div className="group">
-            <div className="bg-white/5 backdrop-blur-md border border-red-500/20 rounded-2xl p-6 sm:p-8 h-full hover:bg-red-500/5 transition-all duration-500">
+            <div className="bg-gradient-to-br from-red-950/30 to-red-900/10 backdrop-blur-md border border-red-500/30 rounded-2xl p-6 sm:p-8 h-full hover:bg-red-500/10 transition-all duration-500">
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-2 rounded-lg bg-red-500/20">
                   <X className="h-6 w-6 text-red-400" />
@@ -97,9 +97,9 @@ export function WhyDifferentSection() {
 
           {/* StaffDigital Card - Green */}
           <div className="group">
-            <div className="bg-white/5 backdrop-blur-md border border-green-500/20 rounded-2xl p-6 sm:p-8 h-full hover:bg-green-500/5 transition-all duration-500 relative overflow-hidden">
+            <div className="bg-gradient-to-br from-green-950/30 to-emerald-900/10 backdrop-blur-md border border-green-500/30 rounded-2xl p-6 sm:p-8 h-full hover:bg-green-500/10 transition-all duration-500 relative overflow-hidden">
               {/* Subtle glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent pointer-events-none"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent pointer-events-none"></div>
               
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-6">
@@ -137,7 +137,7 @@ export function WhyDifferentSection() {
             <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">
               Transforma tu Negocio con IA
             </h3>
-            <p className="text-white/60 text-base sm:text-lg max-w-2xl mx-auto mb-6">
+            <p className="text-white/70 text-base sm:text-lg max-w-2xl mx-auto mb-6">
               Descubre como podemos ayudarte a captar mas clientes, automatizar procesos y hacer crecer tu empresa.
             </p>
             <Button

@@ -14,7 +14,7 @@ const pillars = [
     href: "/soluciones/ia-conversacional",
     gradient: "from-orange-500 to-amber-500",
     bgGradient: "from-orange-500/20 to-amber-500/20",
-    borderColor: "border-orange-500/20",
+    borderColor: "border-orange-500/30",
   },
   {
     id: "omnichannel",
@@ -23,9 +23,9 @@ const pillars = [
     description: "Bandeja unificada, respuestas automaticas, automatizacion de email, CRM y flujos de trabajo integrados.",
     features: ["Bandeja Unificada", "Email Automatico", "CRM Integrado", "Workflows"],
     href: "/soluciones/automatizacion-omnicanal",
-    gradient: "from-blue-500 to-cyan-500",
-    bgGradient: "from-blue-500/20 to-cyan-500/20",
-    borderColor: "border-blue-500/20",
+    gradient: "from-violet-500 to-purple-500",
+    bgGradient: "from-violet-500/20 to-purple-500/20",
+    borderColor: "border-violet-500/30",
   },
   {
     id: "security",
@@ -34,9 +34,9 @@ const pillars = [
     description: "Monitorizacion inteligente, deteccion de personas y vehiculos, alertas automaticas e integracion con alarmas.",
     features: ["Deteccion IA", "Alertas Automaticas", "Integracion Alarmas", "Dashboard Remoto"],
     href: "/soluciones/seguridad-ia",
-    gradient: "from-emerald-500 to-teal-500",
-    bgGradient: "from-emerald-500/20 to-teal-500/20",
-    borderColor: "border-emerald-500/20",
+    gradient: "from-cyan-500 to-blue-500",
+    bgGradient: "from-cyan-500/20 to-blue-500/20",
+    borderColor: "border-cyan-500/30",
   },
   {
     id: "home-staging",
@@ -45,9 +45,9 @@ const pillars = [
     description: "Solucion completa para inmobiliarias: limpieza, reparaciones, fotografia profesional, landing pages y agentes IA.",
     features: ["Preparacion Integral", "Landing Pages", "Chat IA Compradores", "Reserva Visitas"],
     href: "/soluciones/home-staging-ia",
-    gradient: "from-purple-500 to-pink-500",
-    bgGradient: "from-purple-500/20 to-pink-500/20",
-    borderColor: "border-purple-500/20",
+    gradient: "from-fuchsia-500 to-violet-500",
+    bgGradient: "from-fuchsia-500/20 to-violet-500/20",
+    borderColor: "border-fuchsia-500/30",
   },
 ]
 
@@ -98,7 +98,7 @@ export function ServicesPillarsSection() {
               Transformacion IA
             </span>
           </h2>
-          <p className="text-lg md:text-xl text-white/60 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
             Soluciones completas de inteligencia artificial disenadas para impulsar la eficiencia 
             y el crecimiento de PYMEs en Espana y Portugal.
           </p>
@@ -133,7 +133,7 @@ export function ServicesPillarsSection() {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-white/60 leading-relaxed mb-6">
+                  <p className="text-white/70 leading-relaxed mb-6">
                     {pillar.description}
                   </p>
 
@@ -166,7 +166,7 @@ export function ServicesPillarsSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <p className="text-white/50 text-sm mb-4">
+          <p className="text-white/60 text-sm mb-4">
             No sabes cual es la mejor solucion para tu negocio?
           </p>
           <Link

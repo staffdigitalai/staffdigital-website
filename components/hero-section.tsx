@@ -83,35 +83,71 @@ export function HeroSection() {
           </Button>
         </div>
 
-        {/* Trust Indicators */}
+        {/* Technology Partners */}
         <div className="text-center px-4 hidden sm:block overflow-hidden animate-fade-in-trust">
-          <p className="text-sm text-white mb-6">Empresas innovadoras de todo el mundo confian en nosotros</p>
-          <div className="relative overflow-hidden w-full max-w-4xl mx-auto">
-            <div className="flex items-center gap-8 opacity-60 hover:opacity-80 transition-all duration-500 animate-slide-left">
-              <div className="flex items-center gap-8 whitespace-nowrap">
-                <div className="text-base sm:text-lg font-semibold">TechCorp</div>
-                <div className="text-base sm:text-lg font-semibold">InnovateLab</div>
-                <div className="text-base sm:text-lg font-semibold">FutureScale</div>
-                <div className="text-base sm:text-lg font-semibold">AutoFlow</div>
-                <div className="text-base sm:text-lg font-semibold">eScale</div>
-                <div className="text-base sm:text-lg font-semibold">DataFlow</div>
+          <p className="text-sm text-white/70 mb-6">Nuestros Socios Tecnologicos</p>
+          <div className="relative overflow-hidden w-full max-w-5xl mx-auto">
+            {/* Left blur fade */}
+            <div className="absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
+            {/* Right blur fade */}
+            <div className="absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
+            <div className="flex items-center gap-10 opacity-60 hover:opacity-80 transition-all duration-500 animate-slide-left">
+              <div className="flex items-center gap-10 whitespace-nowrap">
+                <div className="text-sm font-medium">Ringover</div>
+                <div className="text-sm font-medium">Aircall</div>
+                <div className="text-sm font-medium">Twilio</div>
+                <div className="text-sm font-medium">Telnyx</div>
+                <div className="text-sm font-medium">DIDWW</div>
+                <div className="text-sm font-medium">ChatGPT</div>
+                <div className="text-sm font-medium">Claude</div>
+                <div className="text-sm font-medium">Notion AI</div>
+                <div className="text-sm font-medium">Asana</div>
+                <div className="text-sm font-medium">Airtable</div>
+                <div className="text-sm font-medium">ClickUp</div>
+                <div className="text-sm font-medium">Trello</div>
+                <div className="text-sm font-medium">Monday.com</div>
+                <div className="text-sm font-medium">Google Workspace</div>
+                <div className="text-sm font-medium">Microsoft 365</div>
+                <div className="text-sm font-medium">Zapier</div>
+                <div className="text-sm font-medium">Typeform</div>
+                <div className="text-sm font-medium">WordPress</div>
+                <div className="text-sm font-medium">Elementor AI</div>
+                <div className="text-sm font-medium">Webflow</div>
+                <div className="text-sm font-medium">Framer</div>
+                <div className="text-sm font-medium">Wix Studio</div>
               </div>
               {/* Duplicate for seamless loop */}
-              <div className="flex items-center gap-8 whitespace-nowrap">
-                <div className="text-base sm:text-lg font-semibold">TechCorp</div>
-                <div className="text-base sm:text-lg font-semibold">InnovateLab</div>
-                <div className="text-base sm:text-lg font-semibold">FutureScale</div>
-                <div className="text-base sm:text-lg font-semibold">AutoFlow</div>
-                <div className="text-base sm:text-lg font-semibold">eScale</div>
-                <div className="text-base sm:text-lg font-semibold">DataFlow</div>
+              <div className="flex items-center gap-10 whitespace-nowrap">
+                <div className="text-sm font-medium">Ringover</div>
+                <div className="text-sm font-medium">Aircall</div>
+                <div className="text-sm font-medium">Twilio</div>
+                <div className="text-sm font-medium">Telnyx</div>
+                <div className="text-sm font-medium">DIDWW</div>
+                <div className="text-sm font-medium">ChatGPT</div>
+                <div className="text-sm font-medium">Claude</div>
+                <div className="text-sm font-medium">Notion AI</div>
+                <div className="text-sm font-medium">Asana</div>
+                <div className="text-sm font-medium">Airtable</div>
+                <div className="text-sm font-medium">ClickUp</div>
+                <div className="text-sm font-medium">Trello</div>
+                <div className="text-sm font-medium">Monday.com</div>
+                <div className="text-sm font-medium">Google Workspace</div>
+                <div className="text-sm font-medium">Microsoft 365</div>
+                <div className="text-sm font-medium">Zapier</div>
+                <div className="text-sm font-medium">Typeform</div>
+                <div className="text-sm font-medium">WordPress</div>
+                <div className="text-sm font-medium">Elementor AI</div>
+                <div className="text-sm font-medium">Webflow</div>
+                <div className="text-sm font-medium">Framer</div>
+                <div className="text-sm font-medium">Wix Studio</div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Mobile Trust Indicators */}
+        {/* Mobile Technology Partners */}
         <div className="text-center px-4 mb-8 sm:hidden overflow-hidden animate-fade-in-trust">
-          <p className="text-sm text-white mb-6">Empresas innovadoras de todo el mundo confian en nosotros</p>
+          <p className="text-sm text-white/70 mb-6">Nuestros Socios Tecnologicos</p>
           <div className="relative overflow-hidden w-full max-w-sm mx-auto">
             {/* Left blur fade */}
             <div className="absolute left-0 top-0 w-8 h-full bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
@@ -119,21 +155,33 @@ export function HeroSection() {
             <div className="absolute right-0 top-0 w-8 h-full bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
             <div className="flex items-center gap-6 opacity-60 animate-slide-left-mobile">
               <div className="flex items-center gap-6 whitespace-nowrap">
-                <div className="text-sm font-semibold">TechCorp</div>
-                <div className="text-sm font-semibold">InnovateLab</div>
-                <div className="text-sm font-semibold">FutureScale</div>
-                <div className="text-sm font-semibold">AutoFlow</div>
-                <div className="text-sm font-semibold">eScale</div>
-                <div className="text-sm font-semibold">DataFlow</div>
+                <div className="text-xs font-medium">Ringover</div>
+                <div className="text-xs font-medium">Aircall</div>
+                <div className="text-xs font-medium">Twilio</div>
+                <div className="text-xs font-medium">ChatGPT</div>
+                <div className="text-xs font-medium">Claude</div>
+                <div className="text-xs font-medium">Zapier</div>
+                <div className="text-xs font-medium">Airtable</div>
+                <div className="text-xs font-medium">Notion AI</div>
+                <div className="text-xs font-medium">Google Workspace</div>
+                <div className="text-xs font-medium">Microsoft 365</div>
+                <div className="text-xs font-medium">WordPress</div>
+                <div className="text-xs font-medium">Webflow</div>
               </div>
               {/* Duplicate for seamless loop */}
               <div className="flex items-center gap-6 whitespace-nowrap">
-                <div className="text-sm font-semibold">TechCorp</div>
-                <div className="text-sm font-semibold">InnovateLab</div>
-                <div className="text-sm font-semibold">FutureScale</div>
-                <div className="text-sm font-semibold">AutoFlow</div>
-                <div className="text-sm font-semibold">eScale</div>
-                <div className="text-sm font-semibold">DataFlow</div>
+                <div className="text-xs font-medium">Ringover</div>
+                <div className="text-xs font-medium">Aircall</div>
+                <div className="text-xs font-medium">Twilio</div>
+                <div className="text-xs font-medium">ChatGPT</div>
+                <div className="text-xs font-medium">Claude</div>
+                <div className="text-xs font-medium">Zapier</div>
+                <div className="text-xs font-medium">Airtable</div>
+                <div className="text-xs font-medium">Notion AI</div>
+                <div className="text-xs font-medium">Google Workspace</div>
+                <div className="text-xs font-medium">Microsoft 365</div>
+                <div className="text-xs font-medium">WordPress</div>
+                <div className="text-xs font-medium">Webflow</div>
               </div>
             </div>
           </div>

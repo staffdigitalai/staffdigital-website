@@ -101,31 +101,25 @@ export function CasesContent({ initialSectors }: CasesContentProps) {
 
       const apiUrl = "https://cms.staffdigital.ai/wp-json/wp/v2"
       const url = `${apiUrl}/case-studies?${params.toString()}`
-      console.log("[v0] Fetching cases from:", url)
       
       const response = await fetch(url)
-      console.log("[v0] Response status:", response.status)
       
       if (response.ok) {
         const data = await response.json()
-        console.log("[v0] Cases received:", data.length, data)
         if (data.length > 0) {
           setCases(data)
           setTotalPages(parseInt(response.headers.get("X-WP-TotalPages") || "1", 10))
           setUsingSampleData(false)
         } else {
-          console.log("[v0] No cases from API, using sample data")
           setCases(sampleCases)
           setUsingSampleData(true)
         }
       } else {
-        const errorText = await response.text()
-        console.log("[v0] API error response:", errorText)
         setCases(sampleCases)
         setUsingSampleData(true)
       }
     } catch (error) {
-      console.error("[v0] Error fetching cases:", error)
+      console.error("Error fetching cases:", error)
       setCases(sampleCases)
       setUsingSampleData(true)
     } finally {
@@ -139,11 +133,14 @@ export function CasesContent({ initialSectors }: CasesContentProps) {
 
   // Filter cases by sector (client-side for sample data)
   const filteredCases = selectedSector
-    ? cases.filter((c) => c.acf?.sector?.toLowerCase() === selectedSector.toLowerCase())
+    ? cases.filter((c) => {
+        const caseSector = c.acf?.sector?.toLowerCase()
+        return caseSector === selectedSector.toLowerCase() || caseSector === selectedSector
+      })
     : cases
 
-  const handleSectorChange = (sectorSlug: string | undefined) => {
-    setSelectedSector(sectorSlug)
+  const handleSectorChange = (sectorName: string | undefined) => {
+    setSelectedSector(sectorName)
   }
 
   return (
@@ -161,9 +158,9 @@ export function CasesContent({ initialSectors }: CasesContentProps) {
         {sectors.map((sector) => (
           <Button
             key={sector.id}
-            variant={selectedSector === sector.slug ? "default" : "outline"}
+            variant={selectedSector === sector.name ? "default" : "outline"}
             size="sm"
-            onClick={() => handleSectorChange(sector.slug)}
+            onClick={() => handleSectorChange(sector.name)}
             className="rounded-full"
           >
             {sector.name}

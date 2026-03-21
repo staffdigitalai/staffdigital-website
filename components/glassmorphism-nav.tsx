@@ -356,6 +356,25 @@ export function GlassmorphismNav() {
                   }
 
                   const isActive = isNavItemActive(item)
+                  // Check if it's an internal page link (starts with /) vs anchor link (starts with #)
+                  const isPageLink = item.href.startsWith("/")
+                  
+                  if (isPageLink) {
+                    return (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        className={`transition-all duration-200 text-sm font-medium cursor-pointer px-3 py-2 rounded-full ${
+                          isActive 
+                            ? "text-white bg-white/10" 
+                            : "text-white/70 hover:text-white hover:bg-white/5"
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    )
+                  }
+                  
                   return (
                     <button
                       key={item.label}
@@ -588,6 +607,26 @@ export function GlassmorphismNav() {
                   }
 
                   const isActive = isNavItemActive(item)
+                  // Check if it's an internal page link (starts with /) vs anchor link (starts with #)
+                  const isPageLink = item.href.startsWith("/")
+                  
+                  if (isPageLink) {
+                    return (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        onClick={() => setIsOpen(false)}
+                        className={`rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer block ${
+                          isActive 
+                            ? "text-white bg-white/10" 
+                            : "text-white/80 hover:text-white hover:bg-white/10"
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    )
+                  }
+                  
                   return (
                     <button
                       key={item.label}

@@ -1,0 +1,93 @@
+"use client"
+
+import { useEffect } from "react"
+
+declare global {
+  interface Window {
+    chatwootSDK: {
+      run: (config: { websiteToken: string; baseUrl: string }) => void
+    }
+    $chatwoot: {
+      toggle: (state?: "open" | "close") => void
+      setUser: (identifier: string, user: Record<string, string>) => void
+      setCustomAttributes: (attributes: Record<string, string>) => void
+      deleteCustomAttribute: (key: string) => void
+      setLocale: (locale: string) => void
+      reset: () => void
+    }
+  }
+}
+
+export function ChatwootWidget() {
+  useEffect(() => {
+    // Check if script is already loaded
+    if (document.getElementById("chatwoot-sdk")) return
+
+    const BASE_URL = "https://chat.staffdigital.eu"
+
+    const script = document.createElement("script")
+    script.id = "chatwoot-sdk"
+    script.src = `${BASE_URL}/packs/js/sdk.js`
+    script.async = true
+    script.defer = true
+
+    script.onload = () => {
+      if (window.chatwootSDK) {
+        window.chatwootSDK.run({
+          websiteToken: "wWcdMuPDEZea3tJYNcWkKa2c",
+          baseUrl: BASE_URL,
+        })
+      }
+    }
+
+    document.body.appendChild(script)
+
+    return () => {
+      // Cleanup on unmount
+      const existingScript = document.getElementById("chatwoot-sdk")
+      if (existingScript) {
+        existingScript.remove()
+      }
+    }
+  }, [])
+
+  return null
+}
+
+// Helper functions to interact with Chatwoot
+export const chatwootHelpers = {
+  // Open or close the chat widget
+  toggle: (state?: "open" | "close") => {
+    if (typeof window !== "undefined" && window.$chatwoot) {
+      window.$chatwoot.toggle(state)
+    }
+  },
+
+  // Set user information
+  setUser: (identifier: string, user: { name?: string; email?: string; phone?: string }) => {
+    if (typeof window !== "undefined" && window.$chatwoot) {
+      window.$chatwoot.setUser(identifier, user as Record<string, string>)
+    }
+  },
+
+  // Set custom attributes
+  setCustomAttributes: (attributes: Record<string, string>) => {
+    if (typeof window !== "undefined" && window.$chatwoot) {
+      window.$chatwoot.setCustomAttributes(attributes)
+    }
+  },
+
+  // Set locale
+  setLocale: (locale: string) => {
+    if (typeof window !== "undefined" && window.$chatwoot) {
+      window.$chatwoot.setLocale(locale)
+    }
+  },
+
+  // Reset session
+  reset: () => {
+    if (typeof window !== "undefined" && window.$chatwoot) {
+      window.$chatwoot.reset()
+    }
+  },
+}

@@ -1,13 +1,178 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { notFound } from "next/navigation"
 import { ArrowLeft, Building2, TrendingUp, Quote, CheckCircle, ArrowRight } from "lucide-react"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { getCaseStudy, getFeaturedImageUrl, stripHtml } from "@/lib/wordpress"
+import type { WPCaseStudy } from "@/lib/wordpress"
+
+// Sample case studies data (same as cases-content.tsx)
+const sampleCases: WPCaseStudy[] = [
+  {
+    id: 1,
+    slug: "automatizacion-retail",
+    title: { rendered: "Automatizacion de Atencion al Cliente para Retail" },
+    content: { rendered: `
+      <p>RetailMax, una cadena de tiendas con mas de 50 sucursales, enfrentaba el desafio de gestionar miles de consultas diarias de clientes sobre disponibilidad de productos, horarios y promociones.</p>
+      
+      <h2>El Desafio</h2>
+      <p>El equipo de atencion al cliente estaba sobrecargado, con tiempos de respuesta que superaban las 4 horas en promedio. Esto generaba frustracion en los clientes y perdida de ventas potenciales.</p>
+      
+      <h2>La Solucion</h2>
+      <p>Implementamos un asistente virtual inteligente capaz de:</p>
+      <ul>
+        <li>Responder consultas sobre disponibilidad de productos en tiempo real</li>
+        <li>Proporcionar informacion de horarios y ubicaciones</li>
+        <li>Gestionar quejas y redirigir casos complejos a agentes humanos</li>
+        <li>Ofrecer recomendaciones personalizadas basadas en el historial de compras</li>
+      </ul>
+      
+      <h2>Resultados</h2>
+      <p>En solo 3 meses de implementacion, los resultados superaron las expectativas. El tiempo de respuesta se redujo drasticamente y la satisfaccion del cliente mejoro significativamente.</p>
+    ` },
+    excerpt: { rendered: "Reduccion del 70% en tiempos de respuesta." },
+    date: new Date().toISOString(),
+    featured_media: 0,
+    acf: {
+      cliente: "RetailMax",
+      sector: "Retail",
+      resultado: "70% reduccion en tiempos de respuesta, 45% ahorro en costes operativos",
+      testimonio: "La solucion de StaffDigital transformo completamente nuestra atencion al cliente. Ahora podemos atender a mas clientes con mejor calidad."
+    }
+  },
+  {
+    id: 2,
+    slug: "clinica-dental-automation",
+    title: { rendered: "Gestion Inteligente de Citas para Clinica Dental" },
+    content: { rendered: `
+      <p>DentalCare Plus, una red de clinicas dentales, necesitaba optimizar su proceso de gestion de citas que consumia gran parte del tiempo del personal administrativo.</p>
+      
+      <h2>El Desafio</h2>
+      <p>La clinica recibia cientos de llamadas diarias para agendar, modificar o cancelar citas. El proceso manual generaba errores, citas duplicadas y un alto indice de no-shows.</p>
+      
+      <h2>La Solucion</h2>
+      <p>Desarrollamos un sistema de reservas automatizado que incluye:</p>
+      <ul>
+        <li>Chatbot para agendar citas 24/7 via WhatsApp y web</li>
+        <li>Sistema de recordatorios automaticos via SMS y email</li>
+        <li>Gestion inteligente de lista de espera</li>
+        <li>Dashboard de analitica para optimizar horarios</li>
+      </ul>
+      
+      <h2>Resultados</h2>
+      <p>La implementacion permitio al personal enfocarse en tareas de mayor valor mientras el sistema manejaba la programacion de manera eficiente.</p>
+    ` },
+    excerpt: { rendered: "Aumento del 50% en eficiencia de agenda." },
+    date: new Date().toISOString(),
+    featured_media: 0,
+    acf: {
+      cliente: "DentalCare Plus",
+      sector: "Salud",
+      resultado: "50% mas eficiencia en gestion de citas, 30% reduccion de no-shows",
+      testimonio: "Ahora nuestro equipo puede enfocarse en lo que realmente importa: los pacientes. El sistema de citas funciona perfectamente."
+    }
+  },
+  {
+    id: 3,
+    slug: "logistica-predictiva",
+    title: { rendered: "Optimizacion Logistica con IA Predictiva" },
+    content: { rendered: `
+      <p>LogiTech Solutions, empresa de distribucion con operaciones en 5 paises, enfrentaba desafios significativos en la prediccion de demanda y gestion de inventario.</p>
+      
+      <h2>El Desafio</h2>
+      <p>La falta de precision en las predicciones generaba exceso de inventario en algunos productos y escasez en otros, impactando tanto los costes como la satisfaccion del cliente.</p>
+      
+      <h2>La Solucion</h2>
+      <p>Implementamos un sistema de IA predictiva que:</p>
+      <ul>
+        <li>Analiza datos historicos y tendencias del mercado</li>
+        <li>Predice demanda con alta precision por producto y region</li>
+        <li>Optimiza automaticamente los niveles de inventario</li>
+        <li>Genera alertas proactivas para reabastecimiento</li>
+      </ul>
+      
+      <h2>Resultados</h2>
+      <p>La precision en la prediccion de demanda mejoro drasticamente, reduciendo tanto el exceso de inventario como las situaciones de falta de stock.</p>
+    ` },
+    excerpt: { rendered: "35% mejora en precision de inventario." },
+    date: new Date().toISOString(),
+    featured_media: 0,
+    acf: {
+      cliente: "LogiTech Solutions",
+      sector: "Logistica",
+      resultado: "35% mejora en precision de inventario, 20% reduccion de costes de almacen",
+      testimonio: "La IA nos permite anticipar la demanda con una precision que nunca imaginamos. Ha transformado completamente nuestra operacion."
+    }
+  },
+  {
+    id: 4,
+    slug: "finanzas-automatizadas",
+    title: { rendered: "Automatizacion de Procesos Financieros" },
+    content: { rendered: `
+      <p>FinanceGroup, firma de servicios financieros, necesitaba modernizar sus procesos de conciliacion y facturacion que consumian cientos de horas mensuales.</p>
+      
+      <h2>El Desafio</h2>
+      <p>Los procesos manuales de conciliacion bancaria y facturacion generaban errores frecuentes, retrasos en los cierres mensuales y alto consumo de recursos humanos.</p>
+      
+      <h2>La Solucion</h2>
+      <p>Desarrollamos una plataforma de automatizacion financiera que incluye:</p>
+      <ul>
+        <li>Conciliacion bancaria automatica con deteccion de discrepancias</li>
+        <li>Generacion y envio automatico de facturas</li>
+        <li>Clasificacion inteligente de gastos</li>
+        <li>Reportes financieros automatizados</li>
+      </ul>
+      
+      <h2>Resultados</h2>
+      <p>El cierre mensual que antes tomaba una semana ahora se completa en menos de dos dias, con una reduccion dramatica en errores.</p>
+    ` },
+    excerpt: { rendered: "80% reduccion en errores de facturacion." },
+    date: new Date().toISOString(),
+    featured_media: 0,
+    acf: {
+      cliente: "FinanceGroup",
+      sector: "Finanzas",
+      resultado: "80% reduccion en errores, 60% ahorro de tiempo en conciliaciones",
+      testimonio: "El ROI fue evidente desde el primer mes de implementacion. Nuestro equipo financiero ahora se enfoca en analisis estrategico."
+    }
+  }
+]
+
+// Helper to strip HTML from excerpt
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, "").trim()
+}
+
+// Helper to get featured image URL
+function getFeaturedImageUrl(caseStudy: WPCaseStudy, size: "medium" | "large" | "full" = "large"): string | null {
+  const media = caseStudy._embedded?.["wp:featuredmedia"]?.[0]
+  if (!media) return null
+  return media.source_url
+}
+
+async function getCaseData(slug: string): Promise<WPCaseStudy | null> {
+  // First try to get from WordPress API
+  try {
+    const apiUrl = "https://cms.staffdigital.ai/wp-json/wp/v2"
+    const response = await fetch(`${apiUrl}/case-studies?slug=${slug}&_embed=1`, {
+      next: { revalidate: 300 }
+    })
+    
+    if (response.ok) {
+      const cases = await response.json()
+      if (cases.length > 0) {
+        return cases[0]
+      }
+    }
+  } catch (error) {
+    console.error("Error fetching case study from API:", error)
+  }
+  
+  // Fallback to sample data
+  return sampleCases.find(c => c.slug === slug) || null
+}
 
 interface CaseStudyPageProps {
   params: Promise<{ slug: string }>
@@ -15,7 +180,7 @@ interface CaseStudyPageProps {
 
 export async function generateMetadata({ params }: CaseStudyPageProps): Promise<Metadata> {
   const { slug } = await params
-  const caseStudy = await getCaseStudy(slug)
+  const caseStudy = await getCaseData(slug)
 
   if (!caseStudy) {
     return {
@@ -31,10 +196,24 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const { slug } = await params
-  const caseStudy = await getCaseStudy(slug)
+  const caseStudy = await getCaseData(slug)
 
   if (!caseStudy) {
-    notFound()
+    return (
+      <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
+        <GlassmorphismNav />
+        <div className="relative z-10 pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-3xl font-bold text-foreground mb-4">Caso no encontrado</h1>
+            <p className="text-muted-foreground mb-8">El caso de exito que buscas no existe o ha sido eliminado.</p>
+            <Button asChild>
+              <Link href="/casos">Volver a casos de exito</Link>
+            </Button>
+          </div>
+        </div>
+        <Footer />
+      </main>
+    )
   }
 
   const imageUrl = getFeaturedImageUrl(caseStudy, "full")

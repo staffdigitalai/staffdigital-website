@@ -109,27 +109,33 @@ export function BlogContent({ initialCategories }: BlogContentProps) {
       params.append("_embed", "1")
       if (debouncedSearch) params.append("search", debouncedSearch)
 
-      const apiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://cms.staffdigital.ai/wp-json/wp/v2"
-      const response = await fetch(`${apiUrl}/posts?${params.toString()}`, {
-        next: { revalidate: 60 }
-      })
+      const apiUrl = "https://cms.staffdigital.ai/wp-json/wp/v2"
+      const url = `${apiUrl}/posts?${params.toString()}`
+      console.log("[v0] Fetching posts from:", url)
+      
+      const response = await fetch(url)
+      console.log("[v0] Response status:", response.status)
       
       if (response.ok) {
         const data = await response.json()
+        console.log("[v0] Posts received:", data.length, data)
         if (data.length > 0) {
           setPosts(data)
           setTotalPages(parseInt(response.headers.get("X-WP-TotalPages") || "1", 10))
           setUsingSampleData(false)
         } else {
+          console.log("[v0] No posts from API, using sample data")
           setPosts(samplePosts)
           setUsingSampleData(true)
         }
       } else {
+        const errorText = await response.text()
+        console.log("[v0] API error response:", errorText)
         setPosts(samplePosts)
         setUsingSampleData(true)
       }
     } catch (error) {
-      console.error("Error fetching posts:", error)
+      console.error("[v0] Error fetching posts:", error)
       setPosts(samplePosts)
       setUsingSampleData(true)
     } finally {

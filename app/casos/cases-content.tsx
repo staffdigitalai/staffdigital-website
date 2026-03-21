@@ -99,30 +99,33 @@ export function CasesContent({ initialSectors }: CasesContentProps) {
       params.append("per_page", "6")
       params.append("_embed", "1")
 
-      const apiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://cms.staffdigital.ai/wp-json/wp/v2"
-      const response = await fetch(`${apiUrl}/case-studies?${params.toString()}`, {
-        next: { revalidate: 60 }
-      })
+      const apiUrl = "https://cms.staffdigital.ai/wp-json/wp/v2"
+      const url = `${apiUrl}/case-studies?${params.toString()}`
+      console.log("[v0] Fetching cases from:", url)
+      
+      const response = await fetch(url)
+      console.log("[v0] Response status:", response.status)
       
       if (response.ok) {
         const data = await response.json()
+        console.log("[v0] Cases received:", data.length, data)
         if (data.length > 0) {
           setCases(data)
           setTotalPages(parseInt(response.headers.get("X-WP-TotalPages") || "1", 10))
           setUsingSampleData(false)
         } else {
-          // No data from API, use sample
+          console.log("[v0] No cases from API, using sample data")
           setCases(sampleCases)
           setUsingSampleData(true)
         }
       } else {
-        // API error, use sample data
+        const errorText = await response.text()
+        console.log("[v0] API error response:", errorText)
         setCases(sampleCases)
         setUsingSampleData(true)
       }
     } catch (error) {
-      console.error("Error fetching cases:", error)
-      // On error, use sample data
+      console.error("[v0] Error fetching cases:", error)
       setCases(sampleCases)
       setUsingSampleData(true)
     } finally {

@@ -10,13 +10,14 @@ export const metadata: Metadata = {
   description: "Articulos, noticias y recursos sobre automatizacion con IA para empresas.",
 }
 
-export default async function BlogPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
-}) {
-  const params = await searchParams
-  const categories = await getCategories("es")
+export default async function BlogPage() {
+  let categories: Awaited<ReturnType<typeof getCategories>> = []
+  
+  try {
+    categories = await getCategories("es")
+  } catch (error) {
+    console.error("Error fetching categories:", error)
+  }
 
   return (
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -56,10 +57,7 @@ export default async function BlogPage({
               </div>
             }
           >
-            <BlogContent
-              initialCategories={categories}
-              searchParams={params}
-            />
+            <BlogContent initialCategories={categories} />
           </Suspense>
         </div>
       </div>

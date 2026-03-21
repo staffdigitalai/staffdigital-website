@@ -10,12 +10,7 @@ export const metadata: Metadata = {
   description: "Descubre como hemos ayudado a empresas a transformar sus operaciones con automatizacion IA.",
 }
 
-export default async function CasosPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
-}) {
-  const params = await searchParams
+export default async function CasosPage() {
   let sectors: Awaited<ReturnType<typeof getSectors>> = []
   
   try {
@@ -62,10 +57,7 @@ export default async function CasosPage({
               </div>
             }
           >
-            <CasesContent
-              initialSectors={sectors}
-              searchParams={params}
-            />
+            <CasesContent initialSectors={sectors} />
           </Suspense>
         </div>
       </div>

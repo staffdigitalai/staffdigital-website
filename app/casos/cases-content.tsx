@@ -3,133 +3,169 @@
 import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { useRouter } from "next/navigation"
-import { ArrowRight, ChevronLeft, ChevronRight, Building2, TrendingUp, Quote, Globe } from "lucide-react"
+import { ArrowRight, ChevronLeft, ChevronRight, Building2, TrendingUp, Quote } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import type { WPCaseStudy, WPSector, SupportedLang } from "@/lib/wordpress"
-import { getFeaturedImageUrl, stripHtml } from "@/lib/wordpress"
+import type { WPCaseStudy, WPSector } from "@/lib/wordpress"
+import { getFeaturedImageUrl } from "@/lib/wordpress"
 
 interface CasesContentProps {
   initialSectors: WPSector[]
-  searchParams: { [key: string]: string | string[] | undefined }
 }
 
-const languages: { code: SupportedLang; label: string }[] = [
-  { code: "es", label: "Espanol" },
-  { code: "pt-pt", label: "Portugues" },
-  { code: "en", label: "English" },
+// Sample data for when WordPress is not configured
+const sampleCases: WPCaseStudy[] = [
+  {
+    id: 1,
+    slug: "automatizacion-retail",
+    title: { rendered: "Automatizacion de Atencion al Cliente para Retail" },
+    content: { rendered: "<p>Caso de estudio detallado sobre como implementamos automatizacion IA.</p>" },
+    excerpt: { rendered: "Reduccion del 70% en tiempos de respuesta." },
+    date: new Date().toISOString(),
+    acf: {
+      cliente: "RetailMax",
+      sector: "Retail",
+      resultado: "70% reduccion en tiempos de respuesta, 45% ahorro en costes operativos",
+      testimonio: "La solucion de StaffDigital transformo completamente nuestra atencion al cliente."
+    }
+  },
+  {
+    id: 2,
+    slug: "clinica-dental-automation",
+    title: { rendered: "Gestion Inteligente de Citas para Clinica Dental" },
+    content: { rendered: "<p>Implementacion de sistema de reservas automatizado.</p>" },
+    excerpt: { rendered: "Aumento del 50% en eficiencia de agenda." },
+    date: new Date().toISOString(),
+    acf: {
+      cliente: "DentalCare Plus",
+      sector: "Salud",
+      resultado: "50% mas eficiencia en gestion de citas, 30% reduccion de no-shows",
+      testimonio: "Ahora nuestro equipo puede enfocarse en lo que realmente importa: los pacientes."
+    }
+  },
+  {
+    id: 3,
+    slug: "logistica-predictiva",
+    title: { rendered: "Optimizacion Logistica con IA Predictiva" },
+    content: { rendered: "<p>Sistema de prediccion de demanda para cadena de suministro.</p>" },
+    excerpt: { rendered: "35% mejora en precision de inventario." },
+    date: new Date().toISOString(),
+    acf: {
+      cliente: "LogiTech Solutions",
+      sector: "Logistica",
+      resultado: "35% mejora en precision de inventario, 20% reduccion de costes de almacen",
+      testimonio: "La IA nos permite anticipar la demanda con una precision que nunca imaginamos."
+    }
+  },
+  {
+    id: 4,
+    slug: "finanzas-automatizadas",
+    title: { rendered: "Automatizacion de Procesos Financieros" },
+    content: { rendered: "<p>Transformacion digital del departamento financiero.</p>" },
+    excerpt: { rendered: "80% reduccion en errores de facturacion." },
+    date: new Date().toISOString(),
+    acf: {
+      cliente: "FinanceGroup",
+      sector: "Finanzas",
+      resultado: "80% reduccion en errores, 60% ahorro de tiempo en conciliaciones",
+      testimonio: "El ROI fue evidente desde el primer mes de implementacion."
+    }
+  }
 ]
 
-export function CasesContent({ initialSectors, searchParams }: CasesContentProps) {
-  const router = useRouter()
+const sampleSectors = [
+  { id: 1, name: "Retail", slug: "retail" },
+  { id: 2, name: "Salud", slug: "salud" },
+  { id: 3, name: "Logistica", slug: "logistica" },
+  { id: 4, name: "Finanzas", slug: "finanzas" },
+]
 
-  const initialLang = (searchParams.lang as SupportedLang) || "es"
-  const initialSector = searchParams.sector ? parseInt(searchParams.sector as string, 10) : undefined
-  const initialPage = searchParams.page ? parseInt(searchParams.page as string, 10) : 1
-
+export function CasesContent({ initialSectors }: CasesContentProps) {
   const [cases, setCases] = useState<WPCaseStudy[]>([])
   const [loading, setLoading] = useState(true)
   const [totalPages, setTotalPages] = useState(1)
-  const [currentPage, setCurrentPage] = useState(initialPage)
-  const [selectedLang, setSelectedLang] = useState<SupportedLang>(initialLang)
-  const [selectedSector, setSelectedSector] = useState<number | undefined>(initialSector)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [selectedSector, setSelectedSector] = useState<string | undefined>(undefined)
+  const [usingSampleData, setUsingSampleData] = useState(false)
 
-  // Fetch cases
+  const sectors = initialSectors.length > 0 ? initialSectors : sampleSectors
+
+  // Fetch cases from WordPress or use sample data
   const fetchCases = useCallback(async () => {
     setLoading(true)
     try {
       const params = new URLSearchParams()
-      params.append("lang", selectedLang)
       params.append("page", String(currentPage))
       params.append("per_page", "6")
       params.append("_embed", "1")
-      if (selectedSector) params.append("sector", String(selectedSector))
 
       const apiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://cms.staffdigital.ai/wp-json/wp/v2"
-      const response = await fetch(`${apiUrl}/case-studies?${params.toString()}`)
+      const response = await fetch(`${apiUrl}/case-studies?${params.toString()}`, {
+        next: { revalidate: 60 }
+      })
       
       if (response.ok) {
         const data = await response.json()
-        setCases(data)
-        setTotalPages(parseInt(response.headers.get("X-WP-TotalPages") || "1", 10))
+        if (data.length > 0) {
+          setCases(data)
+          setTotalPages(parseInt(response.headers.get("X-WP-TotalPages") || "1", 10))
+          setUsingSampleData(false)
+        } else {
+          // No data from API, use sample
+          setCases(sampleCases)
+          setUsingSampleData(true)
+        }
+      } else {
+        // API error, use sample data
+        setCases(sampleCases)
+        setUsingSampleData(true)
       }
     } catch (error) {
       console.error("Error fetching cases:", error)
+      // On error, use sample data
+      setCases(sampleCases)
+      setUsingSampleData(true)
     } finally {
       setLoading(false)
     }
-  }, [selectedLang, selectedSector, currentPage])
+  }, [currentPage])
 
   useEffect(() => {
     fetchCases()
   }, [fetchCases])
 
-  // Update URL params
-  useEffect(() => {
-    const params = new URLSearchParams()
-    if (selectedLang !== "es") params.set("lang", selectedLang)
-    if (selectedSector) params.set("sector", String(selectedSector))
-    if (currentPage > 1) params.set("page", String(currentPage))
+  // Filter cases by sector (client-side for sample data)
+  const filteredCases = selectedSector
+    ? cases.filter((c) => c.acf?.sector?.toLowerCase() === selectedSector.toLowerCase())
+    : cases
 
-    const newUrl = params.toString() ? `/casos?${params.toString()}` : "/casos"
-    router.replace(newUrl, { scroll: false })
-  }, [selectedLang, selectedSector, currentPage, router])
-
-  const handleSectorChange = (sectorId: number | undefined) => {
-    setSelectedSector(sectorId)
-    setCurrentPage(1)
-  }
-
-  const handleLangChange = (lang: SupportedLang) => {
-    setSelectedLang(lang)
-    setCurrentPage(1)
+  const handleSectorChange = (sectorSlug: string | undefined) => {
+    setSelectedSector(sectorSlug)
   }
 
   return (
     <div className="space-y-8">
-      {/* Filters */}
-      <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between p-4 rounded-2xl border border-border bg-card/50 backdrop-blur-sm">
-        {/* Sectors */}
-        <div className="flex flex-wrap gap-2">
+      {/* Sector Filter */}
+      <div className="flex flex-wrap gap-2 p-4 rounded-2xl border border-border bg-card/50 backdrop-blur-sm">
+        <Button
+          variant={!selectedSector ? "default" : "outline"}
+          size="sm"
+          onClick={() => handleSectorChange(undefined)}
+          className="rounded-full"
+        >
+          Todos
+        </Button>
+        {sectors.map((sector) => (
           <Button
-            variant={!selectedSector ? "default" : "outline"}
+            key={sector.id}
+            variant={selectedSector === sector.slug ? "default" : "outline"}
             size="sm"
-            onClick={() => handleSectorChange(undefined)}
+            onClick={() => handleSectorChange(sector.slug)}
             className="rounded-full"
           >
-            Todos
+            {sector.name}
           </Button>
-          {initialSectors.map((sector) => (
-            <Button
-              key={sector.id}
-              variant={selectedSector === sector.id ? "default" : "outline"}
-              size="sm"
-              onClick={() => handleSectorChange(sector.id)}
-              className="rounded-full"
-            >
-              {sector.name}
-            </Button>
-          ))}
-        </div>
-
-        {/* Language Selector */}
-        <div className="flex items-center gap-2">
-          <Globe className="h-4 w-4 text-muted-foreground" />
-          <div className="flex gap-1">
-            {languages.map((lang) => (
-              <Button
-                key={lang.code}
-                variant={selectedLang === lang.code ? "default" : "ghost"}
-                size="sm"
-                onClick={() => handleLangChange(lang.code)}
-                className="rounded-full px-3"
-              >
-                {lang.code.toUpperCase()}
-              </Button>
-            ))}
-          </div>
-        </div>
+        ))}
       </div>
 
       {/* Cases Grid */}
@@ -139,25 +175,25 @@ export function CasesContent({ initialSectors, searchParams }: CasesContentProps
             <div key={i} className="rounded-2xl border border-border bg-card animate-pulse h-[300px]" />
           ))}
         </div>
-      ) : cases.length === 0 ? (
+      ) : filteredCases.length === 0 ? (
         <div className="text-center py-20">
           <p className="text-muted-foreground text-lg">No se encontraron casos de estudio.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {cases.map((caseStudy) => {
+          {filteredCases.map((caseStudy) => {
             const imageUrl = getFeaturedImageUrl(caseStudy, "large")
 
             return (
               <Link
                 key={caseStudy.id}
-                href={`/casos/${caseStudy.slug}`}
+                href={usingSampleData ? "#" : `/casos/${caseStudy.slug}`}
                 className="group"
               >
                 <article className="h-full rounded-2xl border border-border bg-card overflow-hidden hover:border-primary/30 hover:bg-card/80 transition-all duration-300">
                   <div className="flex flex-col lg:flex-row h-full">
                     {/* Image */}
-                    <div className="relative w-full lg:w-2/5 h-48 lg:h-auto bg-muted overflow-hidden flex-shrink-0">
+                    <div className="relative w-full lg:w-2/5 h-48 lg:h-auto min-h-[200px] bg-muted overflow-hidden flex-shrink-0">
                       {imageUrl ? (
                         <Image
                           src={imageUrl}
@@ -232,7 +268,7 @@ export function CasesContent({ initialSectors, searchParams }: CasesContentProps
       )}
 
       {/* Pagination */}
-      {totalPages > 1 && (
+      {totalPages > 1 && !usingSampleData && (
         <div className="flex items-center justify-center gap-2 pt-8">
           <Button
             variant="outline"

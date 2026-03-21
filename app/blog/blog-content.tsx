@@ -3,43 +3,93 @@
 import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { useRouter, useSearchParams } from "next/navigation"
-import { Calendar, ArrowRight, ChevronLeft, ChevronRight, Search, Globe } from "lucide-react"
+import { Calendar, ArrowRight, ChevronLeft, ChevronRight, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import type { WPPost, WPCategory, SupportedLang } from "@/lib/wordpress"
+import type { WPPost, WPCategory } from "@/lib/wordpress"
 import { formatDate, stripHtml, getFeaturedImageUrl } from "@/lib/wordpress"
 
 interface BlogContentProps {
   initialCategories: WPCategory[]
-  searchParams: { [key: string]: string | string[] | undefined }
 }
 
-const languages: { code: SupportedLang; label: string }[] = [
-  { code: "es", label: "Espanol" },
-  { code: "pt-pt", label: "Portugues" },
-  { code: "en", label: "English" },
+// Sample blog posts for when WordPress is not configured
+const samplePosts: WPPost[] = [
+  {
+    id: 1,
+    slug: "como-implementar-ia-en-tu-empresa",
+    title: { rendered: "Como Implementar IA en tu Empresa: Guia Completa 2024" },
+    content: { rendered: "<p>Guia detallada sobre implementacion de inteligencia artificial.</p>" },
+    excerpt: { rendered: "Descubre los pasos esenciales para integrar soluciones de IA en tu negocio y maximizar el retorno de inversion." },
+    date: new Date().toISOString(),
+    _embedded: { "wp:term": [[{ name: "Tecnologia" }]] }
+  },
+  {
+    id: 2,
+    slug: "automatizacion-atencion-cliente",
+    title: { rendered: "5 Beneficios de Automatizar tu Atencion al Cliente" },
+    content: { rendered: "<p>Los beneficios de la automatizacion en servicio al cliente.</p>" },
+    excerpt: { rendered: "La automatizacion del servicio al cliente puede transformar completamente la experiencia de tus usuarios." },
+    date: new Date(Date.now() - 86400000).toISOString(),
+    _embedded: { "wp:term": [[{ name: "Automatizacion" }]] }
+  },
+  {
+    id: 3,
+    slug: "chatbots-inteligentes-2024",
+    title: { rendered: "Chatbots Inteligentes: El Futuro de la Comunicacion Empresarial" },
+    content: { rendered: "<p>Como los chatbots estan revolucionando la comunicacion.</p>" },
+    excerpt: { rendered: "Los chatbots con IA estan redefiniendo como las empresas se comunican con sus clientes." },
+    date: new Date(Date.now() - 172800000).toISOString(),
+    _embedded: { "wp:term": [[{ name: "Chatbots" }]] }
+  },
+  {
+    id: 4,
+    slug: "roi-automatizacion-procesos",
+    title: { rendered: "Calculando el ROI de la Automatizacion de Procesos" },
+    content: { rendered: "<p>Metodologia para calcular el retorno de inversion.</p>" },
+    excerpt: { rendered: "Aprende a medir el impacto financiero real de las soluciones de automatizacion en tu empresa." },
+    date: new Date(Date.now() - 259200000).toISOString(),
+    _embedded: { "wp:term": [[{ name: "Negocios" }]] }
+  },
+  {
+    id: 5,
+    slug: "tendencias-ia-2024",
+    title: { rendered: "Las 10 Tendencias de IA que Dominaran 2024" },
+    content: { rendered: "<p>Principales tendencias en inteligencia artificial.</p>" },
+    excerpt: { rendered: "Mantente actualizado con las ultimas innovaciones en inteligencia artificial y machine learning." },
+    date: new Date(Date.now() - 345600000).toISOString(),
+    _embedded: { "wp:term": [[{ name: "Tendencias" }]] }
+  },
+  {
+    id: 6,
+    slug: "integracion-crm-ia",
+    title: { rendered: "Integrando IA con tu CRM: Mejores Practicas" },
+    content: { rendered: "<p>Como integrar inteligencia artificial con sistemas CRM.</p>" },
+    excerpt: { rendered: "Descubre como potenciar tu CRM existente con capacidades de inteligencia artificial." },
+    date: new Date(Date.now() - 432000000).toISOString(),
+    _embedded: { "wp:term": [[{ name: "CRM" }]] }
+  }
 ]
 
-export function BlogContent({ initialCategories, searchParams }: BlogContentProps) {
-  const router = useRouter()
-  const urlSearchParams = useSearchParams()
+const sampleCategories: WPCategory[] = [
+  { id: 1, name: "Tecnologia", slug: "tecnologia" },
+  { id: 2, name: "Automatizacion", slug: "automatizacion" },
+  { id: 3, name: "Negocios", slug: "negocios" },
+  { id: 4, name: "Tendencias", slug: "tendencias" },
+]
 
-  const initialLang = (searchParams.lang as SupportedLang) || "es"
-  const initialCategory = searchParams.category ? parseInt(searchParams.category as string, 10) : undefined
-  const initialPage = searchParams.page ? parseInt(searchParams.page as string, 10) : 1
-  const initialSearch = (searchParams.search as string) || ""
-
+export function BlogContent({ initialCategories }: BlogContentProps) {
   const [posts, setPosts] = useState<WPPost[]>([])
-  const [categories, setCategories] = useState<WPCategory[]>(initialCategories)
   const [loading, setLoading] = useState(true)
   const [totalPages, setTotalPages] = useState(1)
-  const [currentPage, setCurrentPage] = useState(initialPage)
-  const [selectedLang, setSelectedLang] = useState<SupportedLang>(initialLang)
-  const [selectedCategory, setSelectedCategory] = useState<number | undefined>(initialCategory)
-  const [searchQuery, setSearchQuery] = useState(initialSearch)
-  const [debouncedSearch, setDebouncedSearch] = useState(initialSearch)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined)
+  const [searchQuery, setSearchQuery] = useState("")
+  const [debouncedSearch, setDebouncedSearch] = useState("")
+  const [usingSampleData, setUsingSampleData] = useState(false)
+
+  const categories = initialCategories.length > 0 ? initialCategories : sampleCategories
 
   // Debounce search
   useEffect(() => {
@@ -49,76 +99,58 @@ export function BlogContent({ initialCategories, searchParams }: BlogContentProp
     return () => clearTimeout(timer)
   }, [searchQuery])
 
-  // Fetch posts
+  // Fetch posts from WordPress or use sample data
   const fetchPosts = useCallback(async () => {
     setLoading(true)
     try {
       const params = new URLSearchParams()
-      params.append("lang", selectedLang)
       params.append("page", String(currentPage))
       params.append("per_page", "9")
       params.append("_embed", "1")
-      if (selectedCategory) params.append("categories", String(selectedCategory))
       if (debouncedSearch) params.append("search", debouncedSearch)
 
       const apiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://cms.staffdigital.ai/wp-json/wp/v2"
-      const response = await fetch(`${apiUrl}/posts?${params.toString()}`)
+      const response = await fetch(`${apiUrl}/posts?${params.toString()}`, {
+        next: { revalidate: 60 }
+      })
       
       if (response.ok) {
         const data = await response.json()
-        setPosts(data)
-        setTotalPages(parseInt(response.headers.get("X-WP-TotalPages") || "1", 10))
+        if (data.length > 0) {
+          setPosts(data)
+          setTotalPages(parseInt(response.headers.get("X-WP-TotalPages") || "1", 10))
+          setUsingSampleData(false)
+        } else {
+          setPosts(samplePosts)
+          setUsingSampleData(true)
+        }
+      } else {
+        setPosts(samplePosts)
+        setUsingSampleData(true)
       }
     } catch (error) {
       console.error("Error fetching posts:", error)
+      setPosts(samplePosts)
+      setUsingSampleData(true)
     } finally {
       setLoading(false)
     }
-  }, [selectedLang, selectedCategory, currentPage, debouncedSearch])
-
-  // Fetch categories when language changes
-  const fetchCategories = useCallback(async () => {
-    try {
-      const apiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://cms.staffdigital.ai/wp-json/wp/v2"
-      const response = await fetch(`${apiUrl}/categories?lang=${selectedLang}&per_page=100&hide_empty=1`)
-      if (response.ok) {
-        const data = await response.json()
-        setCategories(data)
-      }
-    } catch (error) {
-      console.error("Error fetching categories:", error)
-    }
-  }, [selectedLang])
+  }, [currentPage, debouncedSearch])
 
   useEffect(() => {
     fetchPosts()
   }, [fetchPosts])
 
-  useEffect(() => {
-    fetchCategories()
-  }, [fetchCategories])
+  // Filter posts (client-side for sample data)
+  const filteredPosts = selectedCategory
+    ? posts.filter((p) => {
+        const categoryNames = p._embedded?.["wp:term"]?.[0]?.map((t) => t.name.toLowerCase()) || []
+        return categoryNames.includes(selectedCategory.toLowerCase())
+      })
+    : posts
 
-  // Update URL params
-  useEffect(() => {
-    const params = new URLSearchParams()
-    if (selectedLang !== "es") params.set("lang", selectedLang)
-    if (selectedCategory) params.set("category", String(selectedCategory))
-    if (currentPage > 1) params.set("page", String(currentPage))
-    if (debouncedSearch) params.set("search", debouncedSearch)
-
-    const newUrl = params.toString() ? `/blog?${params.toString()}` : "/blog"
-    router.replace(newUrl, { scroll: false })
-  }, [selectedLang, selectedCategory, currentPage, debouncedSearch, router])
-
-  const handleCategoryChange = (categoryId: number | undefined) => {
-    setSelectedCategory(categoryId)
-    setCurrentPage(1)
-  }
-
-  const handleLangChange = (lang: SupportedLang) => {
-    setSelectedLang(lang)
-    setCurrentPage(1)
-    setSelectedCategory(undefined)
+  const handleCategoryChange = (categorySlug: string | undefined) => {
+    setSelectedCategory(categorySlug)
   }
 
   return (
@@ -153,32 +185,14 @@ export function BlogContent({ initialCategories, searchParams }: BlogContentProp
           {categories.map((category) => (
             <Button
               key={category.id}
-              variant={selectedCategory === category.id ? "default" : "outline"}
+              variant={selectedCategory === category.name ? "default" : "outline"}
               size="sm"
-              onClick={() => handleCategoryChange(category.id)}
+              onClick={() => handleCategoryChange(category.name)}
               className="rounded-full"
             >
               {category.name}
             </Button>
           ))}
-        </div>
-
-        {/* Language Selector */}
-        <div className="flex items-center gap-2">
-          <Globe className="h-4 w-4 text-muted-foreground" />
-          <div className="flex gap-1">
-            {languages.map((lang) => (
-              <Button
-                key={lang.code}
-                variant={selectedLang === lang.code ? "default" : "ghost"}
-                size="sm"
-                onClick={() => handleLangChange(lang.code)}
-                className="rounded-full px-3"
-              >
-                {lang.code.toUpperCase()}
-              </Button>
-            ))}
-          </div>
         </div>
       </div>
 
@@ -189,20 +203,20 @@ export function BlogContent({ initialCategories, searchParams }: BlogContentProp
             <div key={i} className="rounded-2xl border border-border bg-card animate-pulse h-[400px]" />
           ))}
         </div>
-      ) : posts.length === 0 ? (
+      ) : filteredPosts.length === 0 ? (
         <div className="text-center py-20">
           <p className="text-muted-foreground text-lg">No se encontraron articulos.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post) => {
+          {filteredPosts.map((post) => {
             const imageUrl = getFeaturedImageUrl(post, "large")
             const categoryNames = post._embedded?.["wp:term"]?.[0]?.map((t) => t.name) || []
 
             return (
               <Link
                 key={post.id}
-                href={`/blog/${post.slug}`}
+                href={usingSampleData ? "#" : `/blog/${post.slug}`}
                 className="group"
               >
                 <article className="h-full rounded-2xl border border-border bg-card overflow-hidden hover:border-primary/30 hover:bg-card/80 transition-all duration-300">
@@ -265,7 +279,7 @@ export function BlogContent({ initialCategories, searchParams }: BlogContentProp
       )}
 
       {/* Pagination */}
-      {totalPages > 1 && (
+      {totalPages > 1 && !usingSampleData && (
         <div className="flex items-center justify-center gap-2 pt-8">
           <Button
             variant="outline"

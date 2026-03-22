@@ -31,7 +31,7 @@ export function ChatwootWidget() {
       style.id = "chatwoot-styles"
       style.textContent = `
         .woot-widget-bubble {
-          animation: staffdigital-breathe 3s ease-in-out infinite !important;
+          animation: staffdigital-breathe 2.5s ease-in-out infinite !important;
         }
         .woot-widget-bubble::before {
           content: '' !important;
@@ -55,14 +55,14 @@ export function ChatwootWidget() {
           width: 100% !important;
           height: 100% !important;
           border-radius: 50% !important;
-          border: 2px solid #10B981 !important;
-          animation: staffdigital-ring-ping 3s ease-out infinite !important;
+          border: 3px solid rgba(255, 255, 255, 0.8) !important;
+          animation: staffdigital-ring-ping 2.5s ease-out infinite !important;
           pointer-events: none !important;
         }
         .woot-widget-bubble:hover {
           animation: none !important;
-          transform: scale(1.1) !important;
-          box-shadow: 0 0 25px rgba(27, 130, 242, 0.6) !important;
+          transform: scale(1.15) !important;
+          box-shadow: 0 0 30px 10px rgba(139, 92, 246, 0.7), 0 0 60px 20px rgba(255, 255, 255, 0.2) !important;
           transition: all 0.3s ease !important;
         }
         .woot-widget-bubble:hover::before {
@@ -73,19 +73,18 @@ export function ChatwootWidget() {
           opacity: 0 !important;
         }
         @keyframes staffdigital-breathe {
-          0%   { box-shadow: 0 0 0 0 rgba(27, 130, 242, 0.6); background-color: #1B82F2; }
-          33%  { box-shadow: 0 0 20px 8px rgba(16, 185, 129, 0.4); background-color: #0EA572; }
-          66%  { box-shadow: 0 0 20px 8px rgba(27, 130, 242, 0.4); background-color: #1B82F2; }
-          100% { box-shadow: 0 0 0 0 rgba(27, 130, 242, 0.6); background-color: #1B82F2; }
+          0%   { box-shadow: 0 0 8px 4px rgba(255, 255, 255, 0.5), 0 0 20px 8px rgba(139, 92, 246, 0.3); }
+          50%  { box-shadow: 0 0 20px 12px rgba(255, 255, 255, 0.7), 0 0 40px 20px rgba(139, 92, 246, 0.5); }
+          100% { box-shadow: 0 0 8px 4px rgba(255, 255, 255, 0.5), 0 0 20px 8px rgba(139, 92, 246, 0.3); }
         }
         @keyframes staffdigital-badge-pulse {
           0%, 100% { transform: scale(1); opacity: 1; }
-          50%      { transform: scale(1.2); opacity: 0.8; }
+          50%      { transform: scale(1.3); opacity: 0.9; }
         }
         @keyframes staffdigital-ring-ping {
-          0%   { transform: translate(-50%, -50%) scale(1); opacity: 0.6; border-color: #10B981; }
-          80%  { transform: translate(-50%, -50%) scale(1.8); opacity: 0; border-color: #10B981; }
-          100% { transform: translate(-50%, -50%) scale(1.8); opacity: 0; }
+          0%   { transform: translate(-50%, -50%) scale(1); opacity: 0.8; border-color: rgba(255, 255, 255, 0.8); }
+          70%  { transform: translate(-50%, -50%) scale(2); opacity: 0; border-color: rgba(139, 92, 246, 0.4); }
+          100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
         }
       `
       document.head.appendChild(style)

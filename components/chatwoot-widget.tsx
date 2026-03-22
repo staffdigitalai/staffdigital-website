@@ -36,10 +36,8 @@ export function ChatwootWidget() {
         .woot-widget-bubble::before {
           content: '' !important;
           position: absolute !important;
-          bottom: 2px !important;
-          right: 2px !important;
-          top: auto !important;
-          left: auto !important;
+          top: -2px !important;
+          right: -2px !important;
           width: 16px !important;
           height: 16px !important;
           background: #22C55E !important;

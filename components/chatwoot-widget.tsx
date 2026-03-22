@@ -56,6 +56,21 @@ export function ChatwootWidget() {
         websiteToken: "wWcdMuPDEZea3tJYNcWkKa2c",
         baseUrl: BASE_URL,
       })
+
+      // Override branding link to point to our site
+      const observer = new MutationObserver(() => {
+        const brandingLink = document.querySelector<HTMLAnchorElement>(
+          '.branding--link, a[href*="chatwoot.com"]'
+        )
+        if (brandingLink) {
+          brandingLink.href = "https://www.staffdigital.ai"
+          brandingLink.title = "StaffDigital AI"
+          observer.disconnect()
+        }
+      })
+      observer.observe(document.body, { childList: true, subtree: true })
+      // Stop observing after 15s to avoid leaks
+      setTimeout(() => observer.disconnect(), 15000)
     }
 
     document.head.appendChild(script)

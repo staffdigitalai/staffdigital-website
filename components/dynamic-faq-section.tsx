@@ -24,6 +24,90 @@ const languages: { code: SupportedLang; label: string }[] = [
   { code: "en", label: "EN" },
 ]
 
+// Fallback FAQs when WordPress is unavailable
+const fallbackFaqs: WPFaq[] = [
+  {
+    id: 1,
+    slug: "que-es-staffdigital-ai",
+    title: { rendered: "Que es StaffDigital AI?" },
+    acf: {
+      pregunta: "Que es StaffDigital AI y como puede ayudar a mi negocio?",
+      respuesta: "StaffDigital AI es una plataforma de inteligencia artificial que automatiza procesos clave de tu negocio, incluyendo atencion telefonica, chatbots, gestion de citas y mas. Ayudamos a empresas a reducir costes, mejorar la atencion al cliente y escalar sus operaciones sin aumentar personal.",
+      sector: "General",
+    },
+  },
+  {
+    id: 2,
+    slug: "cuanto-cuesta",
+    title: { rendered: "Cuanto cuesta implementar IA?" },
+    acf: {
+      pregunta: "Cuanto cuesta implementar soluciones de IA en mi empresa?",
+      respuesta: "Ofrecemos diferentes planes adaptados a cada necesidad, desde pequenas empresas hasta grandes corporaciones. Los precios varian segun las funcionalidades requeridas y el volumen de uso. Contactanos para recibir una propuesta personalizada sin compromiso.",
+      sector: "General",
+    },
+  },
+  {
+    id: 3,
+    slug: "tiempo-implementacion",
+    title: { rendered: "Tiempo de implementacion" },
+    acf: {
+      pregunta: "Cuanto tiempo tarda en implementarse una solucion de IA?",
+      respuesta: "La implementacion tipica tarda entre 2 y 4 semanas, dependiendo de la complejidad del proyecto y las integraciones necesarias. Proyectos mas simples como chatbots basicos pueden estar operativos en pocos dias.",
+      sector: "General",
+    },
+  },
+  {
+    id: 4,
+    slug: "integraciones-crm",
+    title: { rendered: "Integraciones con CRM" },
+    acf: {
+      pregunta: "Se integra con mi CRM y otros sistemas existentes?",
+      respuesta: "Si, nuestras soluciones se integran con los principales CRMs del mercado (Salesforce, HubSpot, Pipedrive, etc.) y con multiples herramientas de gestion. Tambien ofrecemos API abierta para integraciones personalizadas.",
+      sector: "Tecnologia",
+    },
+  },
+  {
+    id: 5,
+    slug: "soporte-disponible",
+    title: { rendered: "Soporte y asistencia" },
+    acf: {
+      pregunta: "Que tipo de soporte ofreceis?",
+      respuesta: "Ofrecemos soporte tecnico 24/7 para todos nuestros clientes, con tiempos de respuesta garantizados. Ademas, cada cliente tiene asignado un gestor de cuenta dedicado para resolver cualquier duda o necesidad.",
+      sector: "General",
+    },
+  },
+  {
+    id: 6,
+    slug: "idiomas-soportados",
+    title: { rendered: "Idiomas soportados" },
+    acf: {
+      pregunta: "En que idiomas funcionan las soluciones de IA?",
+      respuesta: "Nuestras soluciones soportan mas de 50 idiomas, incluyendo espanol, portugues, ingles, catalan, frances, aleman e italiano. El sistema detecta automaticamente el idioma del usuario y responde en consecuencia.",
+      sector: "General",
+    },
+  },
+  {
+    id: 7,
+    slug: "seguridad-datos",
+    title: { rendered: "Seguridad de datos" },
+    acf: {
+      pregunta: "Como protegeis los datos de mis clientes?",
+      respuesta: "Cumplimos con RGPD y las normativas de proteccion de datos mas estrictas. Todos los datos se almacenan de forma encriptada en servidores europeos certificados. Realizamos auditorias de seguridad periodicas y contamos con certificacion ISO 27001.",
+      sector: "Seguridad",
+    },
+  },
+  {
+    id: 8,
+    slug: "escalabilidad",
+    title: { rendered: "Escalabilidad" },
+    acf: {
+      pregunta: "Puede la solucion crecer con mi negocio?",
+      respuesta: "Absolutamente. Nuestras soluciones estan disenadas para escalar automaticamente segun tus necesidades. Puedes empezar con funcionalidades basicas e ir anadiendo modulos a medida que crece tu negocio, sin interrupciones en el servicio.",
+      sector: "General",
+    },
+  },
+]
+
 export function DynamicFaqSection({
   initialLang = "es",
   showLanguageSelector = true,
@@ -36,33 +120,55 @@ export function DynamicFaqSection({
   const [selectedLang, setSelectedLang] = useState<SupportedLang>(initialLang)
   const [selectedSector, setSelectedSector] = useState<string>("all")
 
+  const groupFaqsBySector = useCallback((faqList: WPFaq[]) => {
+    const grouped = new Map<string, WPFaq[]>()
+    faqList.forEach((faq) => {
+      const sector = faq.acf?.sector || "General"
+      if (!grouped.has(sector)) {
+        grouped.set(sector, [])
+      }
+      grouped.get(sector)!.push(faq)
+    })
+    // Sort FAQs by orden field if available
+    grouped.forEach((faqList, sector) => {
+      faqList.sort((a, b) => (a.acf?.orden || 0) - (b.acf?.orden || 0))
+    })
+    return grouped
+  }, [])
+
   const fetchFaqs = useCallback(async () => {
     setLoading(true)
     try {
       const apiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://cms.staffdigital.ai/wp-json/wp/v2"
-      const response = await fetch(`${apiUrl}/faqs?lang=${selectedLang}&per_page=100`)
+      
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 8000)
+      
+      const response = await fetch(`${apiUrl}/faqs?lang=${selectedLang}&per_page=100`, {
+        signal: controller.signal,
+      })
+      clearTimeout(timeoutId)
       
       if (response.ok) {
         const data: WPFaq[] = await response.json()
-        setFaqs(data)
-
-        // Group by sector
-        const grouped = new Map<string, WPFaq[]>()
-        data.forEach((faq) => {
-          const sector = faq.acf?.sector || "General"
-          if (!grouped.has(sector)) {
-            grouped.set(sector, [])
-          }
-          grouped.get(sector)!.push(faq)
-        })
-        setGroupedFaqs(grouped)
+        if (data.length > 0) {
+          setFaqs(data)
+          setGroupedFaqs(groupFaqsBySector(data))
+          return
+        }
       }
+      // Fallback to sample data
+      setFaqs(fallbackFaqs)
+      setGroupedFaqs(groupFaqsBySector(fallbackFaqs))
     } catch (error) {
       console.error("Error fetching FAQs:", error)
+      // Use fallback data on error
+      setFaqs(fallbackFaqs)
+      setGroupedFaqs(groupFaqsBySector(fallbackFaqs))
     } finally {
       setLoading(false)
     }
-  }, [selectedLang])
+  }, [selectedLang, groupFaqsBySector])
 
   useEffect(() => {
     fetchFaqs()

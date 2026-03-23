@@ -2,27 +2,21 @@ import type { Metadata } from "next"
 import { Suspense } from "react"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
-import { BlogContent } from "./blog-content"
-import { getCategories, getContentTypes } from "@/lib/wordpress"
+import { CasesContent } from "./cases-content"
+import { getSectors } from "@/lib/wordpress"
 
 export const metadata: Metadata = {
-  title: "Blog - StaffDigital AI",
-  description: "Articulos, guias, comparativas y recursos sobre automatizacion con IA para empresas.",
+  title: "Casos de Exito - StaffDigital AI",
+  description: "Descubre como hemos ayudado a empresas a transformar sus operaciones con automatizacion IA.",
 }
 
-export default async function BlogPage() {
-  let categories: Awaited<ReturnType<typeof getCategories>> = []
-  let contentTypes: Awaited<ReturnType<typeof getContentTypes>> = []
+export default async function CasosPage() {
+  let sectors: Awaited<ReturnType<typeof getSectors>> = []
   
   try {
-    const [cats, types] = await Promise.all([
-      getCategories("es"),
-      getContentTypes("es"),
-    ])
-    categories = cats
-    contentTypes = types
+    sectors = await getSectors()
   } catch (error) {
-    console.error("Error fetching categories/content types:", error)
+    console.error("Error fetching sectors:", error)
   }
 
   return (
@@ -40,30 +34,30 @@ export default async function BlogPage() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-foreground text-sm font-medium mb-6 animate-fade-in-badge">
               <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse" />
-              Blog
+              Casos de Exito
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground leading-tight text-balance mb-6 animate-fade-in-heading">
-              Noticias y{" "}
-              <span className="bg-gradient-to-r from-primary via-primary to-primary/80 bg-clip-text text-transparent">
-                Recursos
+              Historias de{" "}
+              <span className="bg-gradient-to-r from-orange-400 via-amber-300 to-orange-400 bg-clip-text text-transparent">
+                Transformacion
               </span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-fade-in-subheading">
-              Mantente al dia con las ultimas tendencias en automatizacion e inteligencia artificial para empresas.
+              Descubre como empresas reales han revolucionado sus operaciones con nuestras soluciones de IA.
             </p>
           </div>
 
-          {/* Blog Content with Filters */}
+          {/* Cases Content with Filters */}
           <Suspense
             fallback={
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[...Array(6)].map((_, i) => (
-                  <div key={i} className="rounded-2xl border border-border bg-card animate-pulse h-[400px]" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {[...Array(4)].map((_, i) => (
+                  <div key={i} className="rounded-2xl border border-border bg-card animate-pulse h-[300px]" />
                 ))}
               </div>
             }
           >
-            <BlogContent initialCategories={categories} initialContentTypes={contentTypes} />
+            <CasesContent initialSectors={sectors} />
           </Suspense>
         </div>
       </div>

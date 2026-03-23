@@ -3,15 +3,24 @@
 import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Calendar, ArrowRight, ChevronLeft, ChevronRight, Search } from "lucide-react"
+import { Calendar, ArrowRight, ChevronLeft, ChevronRight, Search, BookOpen, Scale, HelpCircle, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import type { WPPost, WPCategory } from "@/lib/wordpress"
+import type { WPPost, WPCategory, WPContentType } from "@/lib/wordpress"
 import { formatDate, stripHtml, getFeaturedImageUrl } from "@/lib/wordpress"
 
 interface BlogContentProps {
   initialCategories: WPCategory[]
+  initialContentTypes?: WPContentType[]
+}
+
+// Content type display configuration
+const contentTypeConfig: Record<string, { label: string; icon: React.ComponentType<{ className?: string }>; color: string }> = {
+  guia: { label: "Guias", icon: BookOpen, color: "bg-blue-500/20 text-blue-400 border-blue-500/30" },
+  comparativa: { label: "Comparativas", icon: Scale, color: "bg-purple-500/20 text-purple-400 border-purple-500/30" },
+  "pregunta-seo": { label: "Preguntas SEO", icon: HelpCircle, color: "bg-green-500/20 text-green-400 border-green-500/30" },
+  articulo: { label: "Articulos", icon: FileText, color: "bg-orange-500/20 text-orange-400 border-orange-500/30" },
 }
 
 // Sample blog posts for when WordPress is not configured
@@ -79,17 +88,26 @@ const sampleCategories: WPCategory[] = [
   { id: 4, name: "Tendencias", slug: "tendencias" },
 ]
 
-export function BlogContent({ initialCategories }: BlogContentProps) {
+// Sample content types
+const sampleContentTypes: WPContentType[] = [
+  { id: 1, name: "Guias", slug: "guia", count: 10 },
+  { id: 2, name: "Comparativas", slug: "comparativa", count: 5 },
+  { id: 3, name: "Preguntas SEO", slug: "pregunta-seo", count: 20 },
+]
+
+export function BlogContent({ initialCategories, initialContentTypes = [] }: BlogContentProps) {
   const [posts, setPosts] = useState<WPPost[]>([])
   const [loading, setLoading] = useState(true)
   const [totalPages, setTotalPages] = useState(1)
   const [currentPage, setCurrentPage] = useState(1)
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined)
+  const [selectedContentType, setSelectedContentType] = useState<string | undefined>(undefined)
   const [searchQuery, setSearchQuery] = useState("")
   const [debouncedSearch, setDebouncedSearch] = useState("")
   const [usingSampleData, setUsingSampleData] = useState(false)
 
   const categories = initialCategories.length > 0 ? initialCategories : sampleCategories
+  const contentTypes = initialContentTypes.length > 0 ? initialContentTypes : sampleContentTypes
 
   // Debounce search
   useEffect(() => {
@@ -108,6 +126,14 @@ export function BlogContent({ initialCategories }: BlogContentProps) {
       params.append("per_page", "9")
       params.append("_embed", "1")
       if (debouncedSearch) params.append("search", debouncedSearch)
+      
+      // Add content type filter if selected
+      if (selectedContentType) {
+        const contentType = contentTypes.find(ct => ct.slug === selectedContentType)
+        if (contentType) {
+          params.append("content-types", String(contentType.id))
+        }
+      }
 
       const apiUrl = "https://cms.staffdigital.ai/wp-json/wp/v2"
       const url = `${apiUrl}/posts?${params.toString()}`
@@ -136,7 +162,7 @@ export function BlogContent({ initialCategories }: BlogContentProps) {
     } finally {
       setLoading(false)
     }
-  }, [currentPage, debouncedSearch])
+  }, [currentPage, debouncedSearch, selectedContentType, contentTypes])
 
   useEffect(() => {
     fetchPosts()
@@ -152,10 +178,48 @@ export function BlogContent({ initialCategories }: BlogContentProps) {
 
   const handleCategoryChange = (categorySlug: string | undefined) => {
     setSelectedCategory(categorySlug)
+    setCurrentPage(1)
+  }
+
+  const handleContentTypeChange = (typeSlug: string | undefined) => {
+    setSelectedContentType(typeSlug)
+    setCurrentPage(1)
   }
 
   return (
     <div className="space-y-8">
+      {/* Content Type Tabs */}
+      <div className="flex flex-wrap justify-center gap-2 p-4 rounded-2xl border border-border bg-card/50 backdrop-blur-sm">
+        <Button
+          variant={!selectedContentType ? "default" : "outline"}
+          size="sm"
+          onClick={() => handleContentTypeChange(undefined)}
+          className="rounded-full gap-2"
+        >
+          <FileText className="h-4 w-4" />
+          Todos
+        </Button>
+        {contentTypes.map((type) => {
+          const config = contentTypeConfig[type.slug] || { label: type.name, icon: FileText, color: "" }
+          const Icon = config.icon
+          return (
+            <Button
+              key={type.id}
+              variant={selectedContentType === type.slug ? "default" : "outline"}
+              size="sm"
+              onClick={() => handleContentTypeChange(type.slug)}
+              className={`rounded-full gap-2 ${selectedContentType === type.slug ? "" : config.color}`}
+            >
+              <Icon className="h-4 w-4" />
+              {config.label}
+              {type.count > 0 && (
+                <span className="ml-1 text-xs opacity-60">({type.count})</span>
+              )}
+            </Button>
+          )
+        })}
+      </div>
+
       {/* Filters */}
       <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between p-4 rounded-2xl border border-border bg-card/50 backdrop-blur-sm">
         {/* Search */}
@@ -181,7 +245,7 @@ export function BlogContent({ initialCategories }: BlogContentProps) {
             onClick={() => handleCategoryChange(undefined)}
             className="rounded-full"
           >
-            Todos
+            Todas las categorias
           </Button>
           {categories.map((category) => (
             <Button

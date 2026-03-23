@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from "next/server"
+import { Resend } from "resend"
 
 const CHATWOOT_URL = "https://chat.staffdigital.eu"
 const ACCOUNT_ID = "2"
 const INBOX_ID = "2"
 const API_TOKEN = process.env.CHATWOOT_API_TOKEN
+const NOTIFICATION_EMAIL = "info@staffdigital.ai"
+
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 interface ContactPayload {
   name: string
@@ -79,6 +83,50 @@ async function addLabels(conversationId: number, labels: string[]) {
   }
 
   return response.json()
+}
+
+// Send email notification
+async function sendEmailNotification(formType: string, formData: Record<string, string>, messageContent: string) {
+  if (!process.env.RESEND_API_KEY) {
+    console.warn("RESEND_API_KEY not set — skipping email notification")
+    return
+  }
+
+  const subjectMap: Record<string, string> = {
+    consulta: `Nueva consulta de ${formData.nombre || formData.name || "Web"}`,
+    presupuesto: `Solicitud de presupuesto de ${formData.nombre || formData.name || "Web"}`,
+    demo: `Solicitud de demo de ${formData.nombre || formData.name || "Web"}`,
+  }
+
+  const subject = subjectMap[formType] || `Nuevo formulario web de ${formData.nombre || "Web"}`
+
+  try {
+    await resend.emails.send({
+      from: "StaffDigital AI <notificaciones@staffdigital.ai>",
+      to: [NOTIFICATION_EMAIL],
+      subject,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <div style="background: linear-gradient(135deg, #1B82F2, #0EA572); padding: 20px; border-radius: 12px 12px 0 0;">
+            <h1 style="color: white; margin: 0; font-size: 20px;">StaffDigital AI</h1>
+            <p style="color: rgba(255,255,255,0.8); margin: 4px 0 0;">Nuevo ${formType} desde la web</p>
+          </div>
+          <div style="background: #f8f9fa; padding: 24px; border: 1px solid #e9ecef; border-radius: 0 0 12px 12px;">
+            <pre style="white-space: pre-wrap; font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #333;">${messageContent}</pre>
+            <hr style="border: none; border-top: 1px solid #dee2e6; margin: 20px 0;" />
+            <p style="font-size: 12px; color: #6c757d; margin: 0;">
+              Responde directamente a ${formData.email || "N/A"} o desde
+              <a href="https://chat.staffdigital.eu" style="color: #1B82F2;">Chatwoot</a>.
+            </p>
+          </div>
+        </div>
+      `,
+      replyTo: formData.email || undefined,
+    })
+  } catch (emailError) {
+    // Log but don't fail the request — Chatwoot is the primary destination
+    console.error("Email notification failed:", emailError)
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -185,6 +233,9 @@ ${JSON.stringify(formData, null, 2)}`
     if (conversationResponse.id) {
       await addLabels(conversationResponse.id, labels)
     }
+
+    // 4. Send email notification (non-blocking — don't await)
+    sendEmailNotification(formType, formData, messageContent)
 
     return NextResponse.json({
       success: true,

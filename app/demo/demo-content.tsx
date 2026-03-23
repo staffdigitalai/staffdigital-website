@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { useChatwoot } from "@/lib/use-chatwoot"
 import type { WPPage } from "@/lib/wordpress"
 
 interface DemoContentProps {
@@ -45,18 +46,25 @@ const queIncluye = [
 ]
 
 export function DemoContent({ page }: DemoContentProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const { submit, isLoading, error } = useChatwoot()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setIsSubmitting(true)
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+    const form = new FormData(e.currentTarget)
+
+    await submit("demo", {
+      nombre: `${form.get("nombre")} ${form.get("apellidos")}`,
+      email: form.get("email") as string,
+      telefono: form.get("telefono") as string,
+      empresa: form.get("empresa") as string,
+      producto: form.get("sector") as string || "No especificado",
+      fecha: "A coordinar",
+    })
+
+    if (!error) {
+      setIsSubmitted(true)
+    }
   }
 
   if (isSubmitted) {
@@ -145,8 +153,8 @@ export function DemoContent({ page }: DemoContentProps) {
               />
             </div>
             
-            <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
-              {isSubmitting ? (
+            <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
+              {isLoading ? (
                 "Enviando..."
               ) : (
                 <>
@@ -156,6 +164,11 @@ export function DemoContent({ page }: DemoContentProps) {
               )}
             </Button>
             
+            {error && (
+              <p className="text-sm text-red-500 text-center">
+                Error al enviar: {error}. Intenta de nuevo o contactanos por chat.
+              </p>
+            )}
             <p className="text-xs text-muted-foreground text-center">
               Al enviar este formulario, aceptas nuestra{" "}
               <Link href="/privacidad" className="underline hover:text-foreground">

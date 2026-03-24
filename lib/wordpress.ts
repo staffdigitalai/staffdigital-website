@@ -251,43 +251,82 @@ function buildQueryString(params: Record<string, string | number | undefined>): 
   return searchParams.toString();
 }
 
-// Fetch wrapper with error handling
+// Fetch wrapper with error handling, timeout, and retry
 async function wpFetch<T>(endpoint: string, params: Record<string, string | number | undefined> = {}): Promise<T> {
   const queryString = buildQueryString(params);
   const url = `${WP_API_URL}${endpoint}${queryString ? `?${queryString}` : ''}`;
-  
-  const response = await fetch(url, {
-    next: { revalidate: 300 }, // Cache for 5 minutes
-  });
 
-  if (!response.ok) {
-    throw new Error(`WordPress API error: ${response.status} ${response.statusText}`);
+  const maxRetries = 2;
+  let lastError: Error | null = null;
+
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
+
+      const response = await fetch(url, {
+        next: { revalidate: 300 }, // ISR: cache for 5 minutes
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        throw new Error(`WordPress API error: ${response.status} ${response.statusText} for ${url}`);
+      }
+
+      return response.json();
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error));
+      if (attempt < maxRetries) {
+        // Wait 1s before retry
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+    }
   }
 
-  return response.json();
+  throw lastError!;
 }
 
-// Get total pages from response headers
+// Get total pages from response headers (with retry)
 async function wpFetchWithPagination<T>(
-  endpoint: string, 
+  endpoint: string,
   params: Record<string, string | number | undefined> = {}
 ): Promise<{ data: T; totalPages: number; total: number }> {
   const queryString = buildQueryString(params);
   const url = `${WP_API_URL}${endpoint}${queryString ? `?${queryString}` : ''}`;
-  
-  const response = await fetch(url, {
-    next: { revalidate: 300 },
-  });
 
-  if (!response.ok) {
-    throw new Error(`WordPress API error: ${response.status} ${response.statusText}`);
+  const maxRetries = 2;
+  let lastError: Error | null = null;
+
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
+
+      const response = await fetch(url, {
+        next: { revalidate: 300 },
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        throw new Error(`WordPress API error: ${response.status} ${response.statusText} for ${url}`);
+      }
+
+      const data = await response.json();
+      const totalPages = parseInt(response.headers.get('X-WP-TotalPages') || '1', 10);
+      const total = parseInt(response.headers.get('X-WP-Total') || '0', 10);
+
+      return { data, totalPages, total };
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error));
+      if (attempt < maxRetries) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+    }
   }
 
-  const data = await response.json();
-  const totalPages = parseInt(response.headers.get('X-WP-TotalPages') || '1', 10);
-  const total = parseInt(response.headers.get('X-WP-Total') || '0', 10);
-
-  return { data, totalPages, total };
+  throw lastError!;
 }
 
 // Posts

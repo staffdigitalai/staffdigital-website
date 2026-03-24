@@ -153,8 +153,24 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Legal Links */}
+        <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-4">
+          <a href="/privacidad" className="text-white/40 hover:text-white/70 text-xs transition-colors">
+            Política de Privacidad
+          </a>
+          <a href="/aviso-legal" className="text-white/40 hover:text-white/70 text-xs transition-colors">
+            Aviso Legal
+          </a>
+          <a href="/cookies" className="text-white/40 hover:text-white/70 text-xs transition-colors">
+            Política de Cookies
+          </a>
+          <a href="/terminos" className="text-white/40 hover:text-white/70 text-xs transition-colors">
+            Términos y Condiciones
+          </a>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/40 text-sm">
             &copy; {new Date().getFullYear()} StaffDigital AI. Todos los derechos reservados.
           </p>

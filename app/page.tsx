@@ -1,15 +1,20 @@
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
-import { HeroSection } from "@/components/hero-section"
-import { WhyDifferentSection } from "@/components/why-different-section"
-import { ProblemSolutionSection } from "@/components/problem-solution-section"
 import Aurora from "@/components/Aurora"
-import { ServicesPillarsSection } from "@/components/services-pillars-section"
-import { WhatsAppHighlightSection } from "@/components/whatsapp-highlight-section"
-import { SectorsGridSection } from "@/components/sectors-grid-section"
-import { TestimonialsSection } from "@/components/testimonials-section"
-import { ROICalculatorSection } from "@/components/roi-calculator-section"
-import { CTASection } from "@/components/cta-section"
 import { Footer } from "@/components/footer"
+
+// Homepage blocks (11 blocos)
+import { HeroBlock } from "@/components/homepage/hero-block"
+import { DoneForYouBlock } from "@/components/homepage/done-for-you-block"
+import { ServicesBlock } from "@/components/homepage/services-block"
+import { OmnichannelBlock } from "@/components/homepage/omnichannel-block"
+import { SectorsBlock } from "@/components/homepage/sectors-block"
+import { LeadGenBlock } from "@/components/homepage/leadgen-block"
+import { CRMBlock } from "@/components/homepage/crm-block"
+import { MethodologyBlock } from "@/components/homepage/methodology-block"
+import { ComparisonBlock } from "@/components/homepage/comparison-block"
+import { SocialProofBlock } from "@/components/homepage/social-proof-block"
+import { FAQBlock } from "@/components/homepage/faq-block"
+import { FinalCTABlock } from "@/components/homepage/final-cta-block"
 
 export default function HomePage() {
   return (
@@ -20,25 +25,49 @@ export default function HomePage() {
         </div>
         <div className="relative z-10">
           <GlassmorphismNav />
+
+          {/* Bloco 1 — Hero */}
           <div id="inicio">
-            <HeroSection />
+            <HeroBlock />
           </div>
-          <WhyDifferentSection />
+
+          {/* Bloco 2 — Nós Fazemos Tudo */}
+          <DoneForYouBlock />
+
+          {/* Bloco 3 — Serviços */}
           <div id="soluciones">
-            <ServicesPillarsSection />
+            <ServicesBlock />
           </div>
-          <WhatsAppHighlightSection />
-          <div id="sobre">
-            <ProblemSolutionSection />
-          </div>
+
+          {/* Bloco 4 — Omnichannel */}
+          <OmnichannelBlock />
+
+          {/* Bloco 5 — Sectores */}
           <div id="sectores">
-            <SectorsGridSection />
+            <SectorsBlock />
           </div>
-          <div id="testemunhos">
-            <TestimonialsSection />
-            <ROICalculatorSection />
-          </div>
-          <CTASection />
+
+          {/* Bloco 6 — LeadGen IA */}
+          <LeadGenBlock />
+
+          {/* Bloco 7 — CRM Automation */}
+          <CRMBlock />
+
+          {/* Bloco 8 — Metodologia */}
+          <MethodologyBlock />
+
+          {/* Bloco 9 — Comparativo */}
+          <ComparisonBlock />
+
+          {/* Bloco 10 — Prova Social */}
+          <SocialProofBlock />
+
+          {/* Bloco 11 — FAQ */}
+          <FAQBlock />
+
+          {/* CTA Final */}
+          <FinalCTABlock />
+
           <Footer />
         </div>
       </main>

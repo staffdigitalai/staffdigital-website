@@ -308,19 +308,19 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
 
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href="/soluciones/ia-conversacional"
+              href="/soluciones/agente-chat-web-ia"
               className="px-6 py-3 rounded-full border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 hover:border-white/20 hover:text-white transition-all"
             >
               IA Conversacional
             </Link>
             <Link
-              href="/soluciones/automatización-omnicanal"
+              href="/soluciones/ia-omnicanal"
               className="px-6 py-3 rounded-full border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 hover:border-white/20 hover:text-white transition-all"
             >
               Automatización Omnicanal
             </Link>
             <Link
-              href="/soluciones/seguridad-ia"
+              href="/seguridad-compliance"
               className="px-6 py-3 rounded-full border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 hover:border-white/20 hover:text-white transition-all"
             >
               Seguridad IA

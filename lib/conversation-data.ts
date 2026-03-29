@@ -414,8 +414,8 @@ export const serviceConversations: Record<string, ConversationSimulation[]> = {
     },
   ],
 
-  // IA CONVERSACIONAL
-  "ia-conversacional": [
+  // AGENTE CHAT WEB IA
+  "agente-chat-web-ia": [
     {
       id: "conversacional-chat",
       type: "chat",
@@ -440,7 +440,7 @@ export const serviceConversations: Record<string, ConversationSimulation[]> = {
   ],
 
   // AUTOMATIZACION OMNICANAL
-  "automatización-omnicanal": [
+  "ia-omnicanal": [
     {
       id: "omnicanal-whatsapp",
       type: "whatsapp",
@@ -504,8 +504,8 @@ export const serviceConversations: Record<string, ConversationSimulation[]> = {
     },
   ],
 
-  // SEGURIDAD IA
-  "seguridad-ia": [
+  // SEGURIDAD Y COMPLIANCE
+  "seguridad-compliance": [
     {
       id: "seguridad-phone",
       type: "phone",

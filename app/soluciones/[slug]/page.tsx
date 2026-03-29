@@ -7,11 +7,8 @@ interface Props {
   params: Promise<{ slug: string }>
 }
 
-// Static slugs that have their own dedicated pages (keep backwards compatibility)
+// Static slugs that have their own dedicated pages
 const STATIC_SERVICE_SLUGS = [
-  "ia-conversacional",
-  "automatización-omnicanal",
-  "seguridad-ia",
   "home-staging-ia",
 ]
 

@@ -38,7 +38,7 @@ const fallbackServices: WPService[] = [
   {
     id: 2,
     date: new Date().toISOString(),
-    slug: "ia-conversacional",
+    slug: "agente-chat-web-ia",
     title: { rendered: "IA Conversacional" },
     excerpt: {
       rendered:
@@ -51,13 +51,13 @@ const fallbackServices: WPService[] = [
       icono: "MessageSquare",
       subtitulo: "Agentes IA y asistentes virtuales",
       cta_texto: "Ver Mas",
-      cta_link: "/soluciones/ia-conversacional",
+      cta_link: "/soluciones/agente-chat-web-ia",
     },
   },
   {
     id: 3,
     date: new Date().toISOString(),
-    slug: "automatización-omnicanal",
+    slug: "ia-omnicanal",
     title: { rendered: "IA Conversacional Omnicanal" },
     excerpt: {
       rendered:
@@ -70,13 +70,13 @@ const fallbackServices: WPService[] = [
       icono: "Globe",
       subtitulo: "Todos tus canales en uno",
       cta_texto: "Ver Mas",
-      cta_link: "/soluciones/automatización-omnicanal",
+      cta_link: "/soluciones/ia-omnicanal",
     },
   },
   {
     id: 4,
     date: new Date().toISOString(),
-    slug: "seguridad-ia",
+    slug: "seguridad-compliance",
     title: { rendered: "Seguridad IA" },
     excerpt: {
       rendered:
@@ -89,7 +89,7 @@ const fallbackServices: WPService[] = [
       icono: "Shield",
       subtitulo: "Proteccion inteligente 24/7",
       cta_texto: "Ver Mas",
-      cta_link: "/soluciones/seguridad-ia",
+      cta_link: "/seguridad-compliance",
     },
   },
   {

@@ -4,18 +4,18 @@ import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon, MapPin } from "
 import { StaffDigitalLogoDark } from "@/components/staffdigital-logo"
 
 const solucionesLinks = [
+  { title: "Atención Telefónica IA", href: "/soluciones/atencion-telefonica-ia" },
   { title: "WhatsApp IA Empresas", href: "/soluciones/whatsapp-ia-empresas" },
-  { title: "IA Conversacional", href: "/soluciones/ia-conversacional" },
-  { title: "IA Conversacional Omnicanal", href: "/soluciones/automatización-omnicanal" },
-  { title: "Seguridad IA", href: "/soluciones/seguridad-ia" },
-  { title: "Home Staging IA", href: "/soluciones/home-staging-ia" },
+  { title: "Agente Chat Web IA", href: "/soluciones/agente-chat-web-ia" },
+  { title: "IA Omnicanal", href: "/soluciones/ia-omnicanal" },
+  { title: "Agente de Ventas IA", href: "/soluciones/agente-ventas-ia" },
   { title: "Ver todas las soluciones", href: "/soluciones" },
 ]
 
 const productLinks = [
   { title: "Precios", href: "/precios" },
   { title: "Tecnología", href: "/tecnologia" },
-  { title: "Integraciónes", href: "/integraciones" },
+  { title: "Integraciones", href: "/integraciones" },
   { title: "Seguridad", href: "/seguridad-compliance" },
   { title: "Sectores", href: "/sectores" },
 ]

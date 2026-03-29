@@ -200,17 +200,17 @@ const data: ServicePageData = {
     { 
       title: "IA Conversacional", 
       description: "Agentes IA con voz humana para atencion 24/7.",
-      href: "/soluciones/ia-conversacional"
+      href: "/soluciones/agente-chat-web-ia"
     },
     { 
       title: "IA Conversacional Omnicanal",
       description: "Unifica todos tus canales en una bandeja inteligente.",
-      href: "/soluciones/automatización-omnicanal"
+      href: "/soluciones/ia-omnicanal"
     },
     { 
       title: "Seguridad IA", 
       description: "Monitorizacion inteligente y alertas automaticas.",
-      href: "/soluciones/seguridad-ia"
+      href: "/seguridad-compliance"
     },
   ],
 

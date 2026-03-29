@@ -374,10 +374,12 @@ function BudgetFormModal({
                 className="w-full h-9 rounded-md border border-white/20 bg-white/5 px-3 text-white text-sm focus:border-white/40 outline-none"
               >
                 <option value="" className="bg-slate-900">Selecciona un servicio</option>
-                <option value="ia-conversacional" className="bg-slate-900">IA Conversacional</option>
-                <option value="automatización-omnicanal" className="bg-slate-900">Automatización Omnicanal</option>
-                <option value="seguridad-ia" className="bg-slate-900">Seguridad IA</option>
-                <option value="home-staging-ia" className="bg-slate-900">Home Staging IA</option>
+                <option value="atencion-telefonica-ia" className="bg-slate-900">Atención Telefónica IA</option>
+                <option value="agente-chat-web-ia" className="bg-slate-900">Agente Chat Web IA</option>
+                <option value="whatsapp-ia-empresas" className="bg-slate-900">WhatsApp IA</option>
+                <option value="agente-ventas-ia" className="bg-slate-900">Agente de Ventas IA</option>
+                <option value="ia-omnicanal" className="bg-slate-900">IA Omnicanal</option>
+                <option value="ia-call-center" className="bg-slate-900">IA Call Center</option>
                 <option value="otro" className="bg-slate-900">Otro</option>
               </select>
             </div>

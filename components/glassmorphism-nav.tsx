@@ -9,11 +9,11 @@ import { StaffDigitalLogo } from "@/components/staffdigital-logo"
 const services = [
   { name: "Atención Telefónica IA", href: "/soluciones/atencion-telefonica-ia", icon: MessageSquare, description: "Agentes de voz inteligentes 24/7", featured: true },
   { name: "WhatsApp IA Empresas", href: "/soluciones/whatsapp-ia-empresas", icon: MessageSquare, description: "Automatiza WhatsApp Business", featured: true },
-  { name: "IA Conversacional", href: "/soluciones/ia-conversacional", icon: MessageSquare, description: "Agentes IA y cualificacion de leads" },
-  { name: "IA Conversacional Omnicanal", href: "/soluciones/automatización-omnicanal", icon: Layers, description: "Bandeja unificada y workflows" },
+  { name: "Agente Chat Web IA", href: "/soluciones/agente-chat-web-ia", icon: MessageSquare, description: "Agentes IA para tu sitio web" },
+  { name: "IA Omnicanal", href: "/soluciones/ia-omnicanal", icon: Layers, description: "Bandeja unificada y workflows" },
   { name: "Gestión de Citas IA", href: "/soluciones/gestion-citas-ia", icon: GraduationCap, description: "Reservas automatizadas" },
   { name: "Cualificacion de Leads", href: "/soluciones/cualificacion-leads", icon: BriefcaseMedical, description: "Scoring y nurturing automatico" },
-  { name: "Seguridad IA", href: "/soluciones/seguridad-ia", icon: Shield, description: "Videovigilancia inteligente" },
+  { name: "Seguridad IA", href: "/seguridad-compliance", icon: Shield, description: "Videovigilancia inteligente" },
   { name: "Home Staging IA", href: "/soluciones/home-staging-ia", icon: Home, description: "Marketing inmobiliario con IA" },
   { name: "Analisis Documental IA", href: "/soluciones/analisis-documental-ia", icon: Layers, description: "Procesamiento de documentos" },
 ]

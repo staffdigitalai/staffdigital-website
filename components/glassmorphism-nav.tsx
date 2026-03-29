@@ -14,7 +14,7 @@ const services = [
   { name: "Agente de Ventas IA", href: "/soluciones/agente-ventas-ia", icon: BriefcaseMedical, description: "Cualificación y cierre automatizado" },
   { name: "Agente de Soporte IA", href: "/soluciones/agente-soporte-ia", icon: Headphones, description: "Resuelve incidencias 24/7" },
   { name: "Agendamientos IA", href: "/soluciones/agente-agendamientos-ia", icon: GraduationCap, description: "Citas y reservas en piloto automático" },
-  { name: "Lead Generation IA", href: "/soluciones/lead-generation-ia", icon: Layers, description: "De Google Maps a leads cualificados" },
+  { name: "Lead Generation IA", href: "/soluciones/lead-generation-ia", icon: Layers, description: "Prospección automática de empresas" },
   { name: "IA Omnicanal", href: "/soluciones/ia-omnicanal", icon: Layers, description: "Bandeja unificada y workflows" },
 ]
 

@@ -10,7 +10,7 @@ const services = [
   { icon: ShoppingCart, title: "Agente de Ventas IA", description: "Cualifica, recomienda y cierra ventas.", href: "/soluciones/agente-ventas-ia", color: "text-amber-400" },
   { icon: Headphones, title: "Agente de Soporte IA", description: "Posventa, tickets y resolución de problemas.", href: "/soluciones/agente-soporte-ia", color: "text-red-400" },
   { icon: Calendar, title: "Agente de Citas IA", description: "Agenda consultas, visitas y reservas.", href: "/soluciones/agente-agendamientos-ia", color: "text-cyan-400" },
-  { icon: Target, title: "LeadGen IA", description: "Captura leads de Google Maps. Listos para contactar.", href: "/soluciones/lead-generation-ia", color: "text-orange-400" },
+  { icon: Target, title: "LeadGen IA", description: "Prospección automática de empresas. Listos para contactar.", href: "/soluciones/lead-generation-ia", color: "text-orange-400" },
   { icon: Link2, title: "CRM Automation IA", description: "Sincroniza agentes con tu CRM. Pipelines al día.", href: "/soluciones/crm-automation-ia", color: "text-pink-400" },
 ]
 

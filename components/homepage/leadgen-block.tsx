@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
 const steps = [
-  { icon: MapPin, step: "1", title: "Scraping de Google Maps", description: "Identificamos empresas de tu sector objetivo" },
+  { icon: MapPin, step: "1", title: "Prospección inteligente", description: "Identificamos empresas de tu sector en tu zona objetivo" },
   { icon: Users, step: "2", title: "Enriquecimiento de datos", description: "Nombre, teléfono, email, web, responsable" },
   { icon: BarChart3, step: "3", title: "Cualificación por IA", description: "Evaluaciones, relevancia, potencial" },
   { icon: Mail, step: "4", title: "Entrega en CRM", description: "Lista lista para contactar o integrar" },

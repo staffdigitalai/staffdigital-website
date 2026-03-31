@@ -7,7 +7,7 @@ const INBOX_ID = "2"
 const API_TOKEN = process.env.CHATWOOT_API_TOKEN
 const NOTIFICATION_EMAIL = "info@staffdigital.ai"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 
 interface ContactPayload {
   name: string
@@ -140,7 +140,7 @@ async function sendEmailNotification(formType: string, formData: Record<string, 
   const subject = subjectMap[formType] || `Nuevo formulario web de ${formData.nombre || "Web"}`
 
   try {
-    await resend.emails.send({
+    await resend?.emails.send({
       from: "StaffDigital AI <notificaciones@staffdigital.ai>",
       to: [NOTIFICATION_EMAIL],
       subject,

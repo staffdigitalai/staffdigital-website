@@ -2,8 +2,10 @@
 
 import { useState, useEffect, useRef } from "react"
 import { Menu, X, ArrowRight, ChevronDown, Stethoscope, Scissors, UtensilsCrossed, Car, ShoppingBag, Building2, Warehouse, Wrench, BriefcaseMedical, Globe, MessageSquare, Layers, Shield, Home, GraduationCap, Dumbbell, Headphones } from "lucide-react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import NextLink from "next/link"
+import { usePathname as useNextPathname } from "next/navigation"
+import { useRouter as useIntlRouter, usePathname as useIntlPathname } from "@/i18n/routing"
+import { useLocale } from "next-intl"
 import { StaffDigitalLogo } from "@/components/staffdigital-logo"
 
 const services = [
@@ -59,7 +61,10 @@ export function GlassmorphismNav() {
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
   const [isMobileSectorsOpen, setIsMobileSectorsOpen] = useState(false)
   const [isMobileLangOpen, setIsMobileLangOpen] = useState(false)
-  const [currentLang, setCurrentLang] = useState("es")
+  const activeLocale = useLocale()
+  const intlRouter = useIntlRouter()
+  const intlPathname = useIntlPathname()
+  const [currentLang, setCurrentLang] = useState(activeLocale)
   const [isVisible, setIsVisible] = useState(true)
   const [hasLoaded, setHasLoaded] = useState(false)
   const [activeSection, setActiveSection] = useState<string>("#inicio")
@@ -67,7 +72,7 @@ export function GlassmorphismNav() {
   const servicesTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const sectorsTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const langTimeoutRef = useRef<NodeJS.Timeout | null>(null)
-  const pathname = usePathname()
+  const pathname = useNextPathname()
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -474,6 +479,7 @@ export function GlassmorphismNav() {
                         <button
                           key={lang.code}
                           onClick={() => {
+                            intlRouter.replace(intlPathname, { locale: lang.code as "es" | "pt" | "en" })
                             setCurrentLang(lang.code)
                             setIsLangOpen(false)
                           }}

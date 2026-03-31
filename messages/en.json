@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "title": "StaffDigital AI - AI Agents with Human Voice",
+    "description": "We don't sell software. We are your digital team. AI agents with human voice for phone calls, WhatsApp and web chat 24/7."
+  },
+  "nav": {
+    "solutions": "Solutions",
+    "sectors": "Industries",
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "demo": "Demo",
+    "contact": "Contact",
+    "about": "About"
+  },
+  "hero": {
+    "badge": "Full-service solution — not DIY software",
+    "h1_line1": "We don't sell software.",
+    "h1_line2": "We are your digital team.",
+    "tagline": "The AI Company Builder",
+    "attend_prefix": "We handle",
+    "attend_suffix": "with AI",
+    "attend_words": ["phone calls", "WhatsApp", "your website", "appointments", "leads"],
+    "subtitle": "We sell, book, qualify and support 24/7 with real human voice. You just close deals.",
+    "inbox": "All your channels and CRMs in one smart inbox.",
+    "cta_expert": "Talk to an expert",
+    "cta_voice": "Try the AI voice now"
+  },
+  "done_for_you": {
+    "title_1": "We do everything.",
+    "title_2": "You just grow.",
+    "items": [
+      "We configure the AI agents",
+      "We train them with your business",
+      "We unify WhatsApp, phone and chat",
+      "We capture leads for you (LeadGen AI)",
+      "We integrate with your CRM",
+      "We manage the infrastructure",
+      "We ensure security and privacy",
+      "We automate your CRM"
+    ]
+  },
+  "services": {
+    "title": "Meet our AI agents",
+    "subtitle": "Specialized by function. Trained for your business. Ready 24/7.",
+    "view_all": "View all solutions",
+    "learn_more": "Learn more"
+  },
+  "omnichannel": {
+    "title_1": "One agent.",
+    "title_2": "Every channel.",
+    "subtitle": "The same AI agent serves your customers wherever they are — with full history and real-time context.",
+    "context_note": "Customer switches channel? The agent keeps context. No repetition. No frustration."
+  },
+  "sectors": {
+    "title": "AI agents for your industry",
+    "subtitle": "Specialized agents that understand your business needs.",
+    "view_all": "View all industries"
+  },
+  "methodology": {
+    "title_1": "We do everything.",
+    "title_2": "In 6 steps.",
+    "subtitle": "You just give us access. We take care of the rest."
+  },
+  "comparison": {
+    "title": "Why choose StaffDigital AI",
+    "competitor": "SaaS Tools",
+    "us": "StaffDigital AI"
+  },
+  "faq": {
+    "title": "Questions? We answer.",
+    "view_all": "View all questions"
+  },
+  "cta": {
+    "title_1": "Ready for your",
+    "title_2": "digital team",
+    "subtitle": "Personalized demo. No commitment. In 30 minutes see how your AI agents would serve your customers.",
+    "demo": "Request free demo",
+    "contact": "Contact us"
+  },
+  "footer": {
+    "slogan": "AI Agents with Human Voice for businesses",
+    "rights": "All rights reserved."
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "title": "StaffDigital AI - Agentes IA com Voz Humana",
+    "description": "Não vendemos software. Somos a sua equipa digital. Agentes IA com voz humana para atender chamadas, WhatsApp e chat web 24/7."
+  },
+  "nav": {
+    "solutions": "Soluções",
+    "sectors": "Setores",
+    "pricing": "Preços",
+    "blog": "Blog",
+    "demo": "Demo",
+    "contact": "Contacto",
+    "about": "Sobre Nós"
+  },
+  "hero": {
+    "badge": "Solução completa — não é software DIY",
+    "h1_line1": "Não vendemos software.",
+    "h1_line2": "Somos a sua equipa digital.",
+    "tagline": "The AI Company Builder",
+    "attend_prefix": "Atendemos",
+    "attend_suffix": "com IA",
+    "attend_words": ["chamadas", "WhatsApp", "o seu site", "marcações", "leads"],
+    "subtitle": "Vendemos, agendamos, qualificamos e damos suporte 24/7 com voz humana real. Só precisa de fechar vendas.",
+    "inbox": "Todos os seus canais e CRMs numa só caixa de entrada inteligente.",
+    "cta_expert": "Fale com um especialista",
+    "cta_voice": "Teste a voz IA agora"
+  },
+  "done_for_you": {
+    "title_1": "Nós fazemos tudo.",
+    "title_2": "O seu negócio só precisa de crescer.",
+    "items": [
+      "Configuramos os agentes IA",
+      "Treinamos com o seu negócio",
+      "Unificamos WhatsApp, telefone e chat",
+      "Capturamos leads para si (LeadGen IA)",
+      "Integramos com o seu CRM",
+      "Gerimos a infraestrutura",
+      "Garantimos segurança e privacidade",
+      "Automatizamos o seu CRM"
+    ]
+  },
+  "services": {
+    "title": "Conheça os nossos agentes IA",
+    "subtitle": "Especializados por função. Treinados para o seu negócio. Prontos 24/7.",
+    "view_all": "Ver todas as soluções",
+    "learn_more": "Saber mais"
+  },
+  "omnichannel": {
+    "title_1": "Um só agente.",
+    "title_2": "Todos os canais.",
+    "subtitle": "O mesmo agente IA atende onde o seu cliente estiver — com histórico completo e contexto em tempo real.",
+    "context_note": "O cliente muda de canal? O agente mantém o contexto. Sem repetições. Sem frustrações."
+  },
+  "sectors": {
+    "title": "Agentes IA para o seu setor",
+    "subtitle": "Agentes especializados que entendem as necessidades do seu negócio.",
+    "view_all": "Ver todos os setores"
+  },
+  "methodology": {
+    "title_1": "Nós fazemos tudo.",
+    "title_2": "Em 6 passos.",
+    "subtitle": "Só precisa de nos dar acesso. Nós tratamos do resto."
+  },
+  "comparison": {
+    "title": "Porquê escolher a StaffDigital AI",
+    "competitor": "Ferramentas SaaS",
+    "us": "StaffDigital AI"
+  },
+  "faq": {
+    "title": "Dúvidas? Respondemos.",
+    "view_all": "Ver todas as perguntas"
+  },
+  "cta": {
+    "title_1": "Pronto para ter a sua",
+    "title_2": "equipa digital",
+    "subtitle": "Demo personalizada. Sem compromisso. Em 30 minutos vê como os seus agentes IA atenderiam os seus clientes.",
+    "demo": "Solicitar demo gratuita",
+    "contact": "Contactar"
+  },
+  "footer": {
+    "slogan": "Agentes IA com Voz Humana para empresas",
+    "rights": "Todos os direitos reservados."
+  }
+}

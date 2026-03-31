@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next"
+import { locales, defaultLocale } from "@/i18n/config"
 
 const BASE_URL = "https://www.staffdigital.ai"
 const WP_API = "https://cms.staffdigital.ai/wp-json/wp/v2"
 
-// All static pages with their priority and change frequency
 const staticPages: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [
   { path: "/", priority: 1.0, changeFrequency: "weekly" },
   { path: "/blog", priority: 0.9, changeFrequency: "daily" },
@@ -19,7 +19,6 @@ const staticPages: { path: string; priority: number; changeFrequency: MetadataRo
   { path: "/contacto", priority: 0.8, changeFrequency: "monthly" },
   { path: "/partners", priority: 0.6, changeFrequency: "monthly" },
   { path: "/demo-voice", priority: 0.8, changeFrequency: "monthly" },
-  // Soluciones
   { path: "/soluciones", priority: 0.8, changeFrequency: "monthly" },
   { path: "/soluciones/whatsapp-ia-empresas", priority: 0.8, changeFrequency: "monthly" },
   { path: "/soluciones/agentes-ia-voz-humana", priority: 1.0, changeFrequency: "weekly" },
@@ -35,7 +34,6 @@ const staticPages: { path: string; priority: number; changeFrequency: MetadataRo
   { path: "/soluciones/lead-generation-ia", priority: 0.8, changeFrequency: "monthly" },
   { path: "/soluciones/onboarding-automatico", priority: 0.7, changeFrequency: "monthly" },
   { path: "/soluciones/home-staging-ia", priority: 0.7, changeFrequency: "monthly" },
-  // Sectores
   { path: "/sectores", priority: 0.7, changeFrequency: "monthly" },
   { path: "/sectores/concesionarios", priority: 0.7, changeFrequency: "monthly" },
   { path: "/sectores/restaurantes", priority: 0.7, changeFrequency: "monthly" },
@@ -58,6 +56,16 @@ const staticPages: { path: string; priority: number; changeFrequency: MetadataRo
   { path: "/sectores/crm-automation", priority: 0.7, changeFrequency: "monthly" },
 ]
 
+function buildAlternates(path: string): Record<string, string> {
+  const alternates: Record<string, string> = {}
+  for (const locale of locales) {
+    const prefix = locale === defaultLocale ? "" : `/${locale}`
+    alternates[locale] = `${BASE_URL}${prefix}${path}`
+  }
+  alternates["x-default"] = `${BASE_URL}${path}`
+  return alternates
+}
+
 async function fetchWPSlugs(type: "posts" | "cases"): Promise<{ slug: string; modified: string }[]> {
   try {
     const endpoint = type === "posts" ? "posts" : "cases"
@@ -76,32 +84,34 @@ async function fetchWPSlugs(type: "posts" | "cases"): Promise<{ slug: string; mo
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Fetch dynamic content from WordPress
   const [posts, cases] = await Promise.all([
     fetchWPSlugs("posts"),
     fetchWPSlugs("cases"),
   ])
 
-  const staticEntries: MetadataRoute.Sitemap = staticPages.map((page) => ({
-    url: `${BASE_URL}${page.path}`,
-    lastModified: new Date(),
-    changeFrequency: page.changeFrequency,
-    priority: page.priority,
-  }))
+  const allPaths = [
+    ...staticPages.map((p) => ({ path: p.path, lastmod: new Date(), freq: p.changeFrequency, prio: p.priority })),
+    ...posts.map((p) => ({ path: `/blog/${p.slug}`, lastmod: new Date(p.modified), freq: "weekly" as const, prio: 0.6 })),
+    ...cases.map((c) => ({ path: `/casos/${c.slug}`, lastmod: new Date(c.modified), freq: "monthly" as const, prio: 0.6 })),
+  ]
 
-  const blogEntries: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${BASE_URL}/blog/${post.slug}`,
-    lastModified: new Date(post.modified),
-    changeFrequency: "weekly" as const,
-    priority: 0.6,
-  }))
+  // Generate entries for each locale
+  const entries: MetadataRoute.Sitemap = []
 
-  const caseEntries: MetadataRoute.Sitemap = cases.map((c) => ({
-    url: `${BASE_URL}/casos/${c.slug}`,
-    lastModified: new Date(c.modified),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }))
+  for (const item of allPaths) {
+    for (const locale of locales) {
+      const prefix = locale === defaultLocale ? "" : `/${locale}`
+      entries.push({
+        url: `${BASE_URL}${prefix}${item.path}`,
+        lastModified: item.lastmod,
+        changeFrequency: item.freq,
+        priority: item.prio,
+        alternates: {
+          languages: buildAlternates(item.path),
+        },
+      })
+    }
+  }
 
-  return [...staticEntries, ...blogEntries, ...caseEntries]
+  return entries
 }

@@ -1,5 +1,4 @@
 import type React from "react"
-import type { Metadata } from "next"
 import { Suspense } from "react"
 import "./globals.css"
 import { PageTransition } from "@/components/page-transition"
@@ -21,61 +20,13 @@ const caveat = Caveat({
   display: "swap",
 })
 
-export const metadata: Metadata = {
-  title: {
-    default: "StaffDigital AI - Agentes IA con Voz Humana",
-    template: "%s | StaffDigital AI",
-  },
-  description:
-    "Agentes IA con voz humana para atender llamadas, WhatsApp y chat web. Tus clientes reciben trato humano 24/7. Solicita demo.",
-  metadataBase: new URL("https://www.staffdigital.ai"),
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "website",
-    locale: "es_ES",
-    url: "https://www.staffdigital.ai",
-    siteName: "StaffDigital AI",
-    title: "StaffDigital AI - Agentes IA con Voz Humana para Empresas",
-    description:
-      "Agentes IA con voz humana para llamadas, WhatsApp y chat web. Atención personalizada 24/7 para tu empresa.",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "StaffDigital AI - Agentes IA con Voz Humana",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "StaffDigital AI - Agentes IA con Voz Humana",
-    description:
-      "Agentes IA con voz humana para llamadas, WhatsApp y chat web. Atención personalizada 24/7.",
-    images: ["/og-image.jpg"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-}
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className="dark">
+    <html className="dark" suppressHydrationWarning>
       <head>
         {/* Google Search Console verification */}
         <meta name="google-site-verification" content="Uw0vYKoZylDM8S2GioiNZbwGdoWYgeywihU5jNrgnvc" />
@@ -120,7 +71,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               url: "https://www.staffdigital.ai",
               logo: "https://www.staffdigital.ai/logo.png",
               description:
-                "Agentes IA con voz humana para empresas. Atencion telefonica, WhatsApp, chat web y consultoria de seguridad IA.",
+                "Agentes IA con voz humana para empresas. Atención telefónica, WhatsApp, chat web y consultoría de seguridad IA.",
               address: [
                 {
                   "@type": "PostalAddress",

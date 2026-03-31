@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "StaffDigital AI - Agentes IA con Voz Humana",
-    "description": "No vendemos software. Somos tu equipo digital. Agentes IA con voz humana para atender llamadas, WhatsApp y chat web 24/7."
+    "title": "Agentes IA para atención al cliente, WhatsApp y llamadas | Equipo Digital",
+    "description": "Agentes IA para atención al cliente, ventas y citas 24/7 en WhatsApp, teléfono y chat web. Con voz humana, integración con CRM y agenda, y solución gestionada de extremo a extremo."
   },
   "nav": {
     "solutions": "Soluciones",
@@ -13,17 +13,16 @@
     "about": "Nosotros"
   },
   "hero": {
-    "badge": "Solución completa — no software DIY",
-    "h1_line1": "No vendemos software.",
-    "h1_line2": "Somos tu equipo digital.",
-    "tagline": "The AI Company Builder",
-    "attend_prefix": "Atendemos",
-    "attend_suffix": "con IA",
-    "attend_words": ["llamadas", "WhatsApp", "tu web", "citas", "leads"],
-    "subtitle": "Vendemos, agendamos, cualificamos y damos soporte 24/7 con voz humana real. Tú solo cierras ventas.",
-    "inbox": "Todos tus canales y CRMs en una sola bandeja de entrada inteligente.",
-    "cta_expert": "Habla con un experto",
-    "cta_voice": "Prueba la voz IA ahora"
+    "badge": "Tu Equipo Digital de Agentes IA",
+    "h1_line1": "Agentes IA para atención al cliente,",
+    "h1_line2": "WhatsApp, llamadas y citas 24/7",
+    "reinforcement": "Nos encargamos de todo: estrategia, implementación, integración y gestión.",
+    "h2": "WhatsApp, teléfono y chat web con IA y voz humana. Integramos canales, CRM y agenda en una solución gestionada.",
+    "rotate_prefix": "Agente IA para",
+    "rotate_words": ["ventas", "soporte", "citas", "WhatsApp", "llamadas"],
+    "cta_primary": "Solicitar implementación",
+    "cta_secondary": "Escucha la voz IA",
+    "microproofs": ["Implementación guiada", "Integración con CRM", "Transferencia a humano", "Disponible 24/7"]
   },
   "done_for_you": {
     "title_1": "Nosotros hacemos todo.",

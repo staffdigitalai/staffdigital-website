@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "StaffDigital AI - AI Agents with Human Voice",
-    "description": "We don't sell software. We are your digital team. AI agents with human voice for phone calls, WhatsApp and web chat 24/7."
+    "title": "AI Agents for Customer Service, WhatsApp & Phone Calls | Staff Digital",
+    "description": "AI agents for customer service, sales and appointments 24/7 on WhatsApp, phone and web chat. With human voice, CRM integration and fully managed end-to-end."
   },
   "nav": {
     "solutions": "Solutions",
@@ -13,17 +13,16 @@
     "about": "About"
   },
   "hero": {
-    "badge": "Full-service solution — not DIY software",
-    "h1_line1": "We don't sell software.",
-    "h1_line2": "We are your digital team.",
-    "tagline": "The AI Company Builder",
-    "attend_prefix": "We handle",
-    "attend_suffix": "with AI",
-    "attend_words": ["phone calls", "WhatsApp", "your website", "appointments", "leads"],
-    "subtitle": "We sell, book, qualify and support 24/7 with real human voice. You just close deals.",
-    "inbox": "All your channels and CRMs in one smart inbox.",
-    "cta_expert": "Talk to an expert",
-    "cta_voice": "Try the AI voice now"
+    "badge": "Your Staff Digital AI Team",
+    "h1_line1": "AI Agents for Customer Service,",
+    "h1_line2": "WhatsApp, Phone Calls & Appointments 24/7",
+    "reinforcement": "We handle everything: strategy, implementation, integration and management.",
+    "h2": "WhatsApp, phone and web chat with AI and human voice. We integrate channels, CRM and calendar into a fully managed solution.",
+    "rotate_prefix": "AI Agent for",
+    "rotate_words": ["sales", "support", "booking", "WhatsApp", "phone calls"],
+    "cta_primary": "Request implementation",
+    "cta_secondary": "Hear the AI voice",
+    "microproofs": ["Guided implementation", "CRM integration", "Human handover", "Available 24/7"]
   },
   "done_for_you": {
     "title_1": "We do everything.",

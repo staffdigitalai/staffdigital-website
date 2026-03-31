@@ -2,9 +2,16 @@
 
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Phone } from "lucide-react"
+import { ArrowRight, Phone, Check } from "lucide-react"
 import { useFormModals } from "@/components/contact-form-modals"
 import RotatingText from "@/components/RotatingText"
+
+const microproofs = [
+  "Implementación guiada",
+  "Integración con CRM",
+  "Transferencia a humano",
+  "Disponible 24/7",
+]
 
 export function HeroBlock() {
   const { openContactForm } = useFormModals()
@@ -15,29 +22,34 @@ export function HeroBlock() {
         {/* Badge */}
         <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium mb-8 mt-12 animate-fade-in-badge">
           <span className="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse" />
-          Solución completa — no software DIY
+          Tu Equipo Digital de Agentes IA
         </div>
 
-        {/* H1 */}
-        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-balance mb-2 animate-fade-in-heading">
-          <span className="text-foreground">No vendemos software.</span>
+        {/* H1 — SEO + commercial intent */}
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-balance mb-4 animate-fade-in-heading leading-tight">
+          <span className="text-foreground">Agentes IA para atención al cliente,</span>
           <br />
-          <span className="bg-gradient-to-r from-white via-blue-200 to-white bg-clip-text text-transparent mt-2 inline-block">
-            Somos tu equipo digital.
+          <span className="bg-gradient-to-r from-white via-blue-200 to-white bg-clip-text text-transparent inline-block">
+            WhatsApp, llamadas y citas 24/7
           </span>
         </h1>
 
-        {/* Tagline */}
-        <p className="text-sm sm:text-base text-white/40 mb-6 animate-fade-in-heading tracking-widest uppercase font-light">
-          The AI Company Builder
+        {/* Reinforcement line */}
+        <p className="text-base sm:text-lg md:text-xl text-white/60 mb-4 animate-fade-in-heading font-light">
+          Nos encargamos de todo: estrategia, implementación, integración y gestión.
         </p>
 
-        {/* Rotating context */}
-        <div className="flex items-center justify-center gap-2 mb-6 animate-fade-in-heading">
-          <span className="text-lg sm:text-xl md:text-2xl text-white/70 font-light">Atendemos</span>
+        {/* H2 — channels + value prop */}
+        <h2 className="text-sm sm:text-base md:text-lg text-white/50 text-balance max-w-2xl mx-auto mb-6 leading-relaxed px-4 sm:px-0 animate-fade-in-subheading font-light">
+          WhatsApp, teléfono y chat web con IA y voz humana. Integramos canales, CRM y agenda en una solución gestionada.
+        </h2>
+
+        {/* Rotating context — visual dynamism */}
+        <div className="flex items-center justify-center gap-2 mb-8 animate-fade-in-subheading">
+          <span className="text-lg sm:text-xl text-white/60 font-light">Agente IA para</span>
           <RotatingText
-            texts={["llamadas", "WhatsApp", "tu web", "citas", "leads"]}
-            mainClassName="px-2 sm:px-3 bg-white text-black overflow-hidden py-1 sm:py-2 justify-center rounded-lg shadow-lg text-lg sm:text-xl md:text-2xl font-semibold"
+            texts={["ventas", "soporte", "citas", "WhatsApp", "llamadas"]}
+            mainClassName="px-2 sm:px-3 bg-white text-black overflow-hidden py-1 sm:py-2 justify-center rounded-lg shadow-lg text-lg sm:text-xl font-semibold"
             staggerFrom="last"
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
@@ -47,27 +59,16 @@ export function HeroBlock() {
             transition={{ type: "spring", damping: 30, stiffness: 400 }}
             rotationInterval={2500}
           />
-          <span className="text-lg sm:text-xl md:text-2xl text-white/70 font-light">con IA</span>
         </div>
 
-        {/* Subtitle */}
-        <p className="text-base sm:text-xl md:text-2xl text-white/80 text-balance max-w-2xl mx-auto mb-3 leading-relaxed px-4 sm:px-0 animate-fade-in-subheading font-light">
-          Vendemos, agendamos, cualificamos y damos soporte 24/7 con voz humana real. Tú solo cierras ventas.
-        </p>
-
-        {/* Unified inbox */}
-        <p className="text-sm sm:text-base text-white/50 mb-8 sm:mb-12 animate-fade-in-subheading">
-          Todos tus canales y CRMs en una sola bandeja de entrada inteligente.
-        </p>
-
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 sm:mb-16 animate-fade-in-buttons">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6 animate-fade-in-buttons">
           <Button
             size="lg"
             onClick={openContactForm}
             className="bg-white text-black rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-gray-50 hover:scale-105 hover:shadow-lg group cursor-pointer"
           >
-            Habla con un experto
+            Solicitar implementación
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Button>
           <Button
@@ -78,16 +79,26 @@ export function HeroBlock() {
           >
             <a href="tel:+34931229129">
               <Phone className="mr-2 h-5 w-5" />
-              Prueba la voz IA ahora
+              Escucha la voz IA
             </a>
           </Button>
+        </div>
+
+        {/* Micro-proofs near CTA */}
+        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mb-10 animate-fade-in-buttons">
+          {microproofs.map((proof) => (
+            <span key={proof} className="flex items-center gap-1.5 text-xs sm:text-sm text-white/40">
+              <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+              {proof}
+            </span>
+          ))}
         </div>
 
         {/* Hero visual — dashboard mockup */}
         <div className="max-w-3xl mx-auto animate-fade-in-buttons">
           <Image
             src="/images/homepage/hero-dashboard.jpg"
-            alt="Panel de control StaffDigital AI mostrando bandeja de entrada unificada con WhatsApp, llamadas y chat web"
+            alt="Panel de control StaffDigital AI con bandeja de entrada unificada: WhatsApp, llamadas, chat web y CRM integrado"
             width={1200}
             height={686}
             priority

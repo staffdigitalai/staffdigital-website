@@ -168,11 +168,6 @@ export default async function DynamicSectorPage({ params }: Props) {
     console.error("Error fetching sector from WordPress:", error)
   }
 
-  // Try fallback if WordPress fails
-  if (!sector) {
-    sector = generateFallbackSector(slug)
-  }
-
   if (!sector) {
     notFound()
   }

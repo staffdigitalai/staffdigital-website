@@ -7,19 +7,7 @@ import { NavigationTransition } from "@/components/navigation-transition"
 import { ChatwootWidget } from "@/components/chatwoot-widget"
 import { FormModalProvider } from "@/components/contact-form-modals"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Dancing_Script, Caveat } from "next/font/google"
-
-const dancingScript = Dancing_Script({
-  subsets: ["latin"],
-  variable: "--font-dancing-script",
-  display: "swap",
-})
-
-const caveat = Caveat({
-  subsets: ["latin"],
-  variable: "--font-caveat",
-  display: "swap",
-})
+// Removed unused Dancing_Script and Caveat fonts to reduce JS/font payload
 
 export default async function RootLayout({
   children,
@@ -35,26 +23,22 @@ export default async function RootLayout({
         <meta name="google-site-verification" content="Uw0vYKoZylDM8S2GioiNZbwGdoWYgeywihU5jNrgnvc" />
         {/* Cookiebot domain verification */}
         <meta name="cookiebot-domain-verify" content="53835036-9914-4249-a422-05644e8eb2c8" />
-        {/* Cookiebot CMP — must load BEFORE any tracking scripts */}
+        {/* Cookiebot CMP — deferred, loads after initial paint */}
         <script
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
           data-cbid="53835036-9914-4249-a422-05644e8eb2c8"
           data-blockingmode="auto"
-          type="text/javascript"
+          defer
         />
-        {/* Google Tag Manager */}
+        {/* GTM — deferred until after first paint for better LCP */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MDB34SRP');`,
+            __html: `window.addEventListener('load',function(){setTimeout(function(){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MDB34SRP');},1500)});`,
           }}
         />
       </head>
-      <body className={`font-sans antialiased ${dancingScript.variable} ${caveat.variable}`}>
+      <body className="font-sans antialiased">
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe

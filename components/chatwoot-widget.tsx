@@ -25,6 +25,19 @@ export function ChatwootWidget() {
     // Already loaded — nothing to do (persists across navigations)
     if (document.getElementById("chatwoot-sdk")) return
 
+    // Delay Chatwoot load by 3s to prioritize LCP
+    const delayTimer = setTimeout(() => {
+      loadChatwoot()
+    }, 3000)
+
+    return () => clearTimeout(delayTimer)
+  }, [])
+
+  return null
+}
+
+function loadChatwoot() {
+
     // Inject pulse animation styles once
     if (!document.getElementById("chatwoot-styles")) {
       const style = document.createElement("style")
@@ -126,11 +139,6 @@ export function ChatwootWidget() {
     }
 
     document.head.appendChild(script)
-
-    // No cleanup — Chatwoot must persist across client-side navigations
-  }, [])
-
-  return null
 }
 
 // Helper functions to interact with Chatwoot

@@ -86,6 +86,28 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const imageUrl = getFeaturedImageUrl(post, "full")
   const categoryNames = post._embedded?.["wp:term"]?.[0]?.map((t) => t.name) || []
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: stripHtml(post.title.rendered),
+    datePublished: post.date,
+    dateModified: post.modified || post.date,
+    author: {
+      "@type": "Organization",
+      name: "StaffDigital AI",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "StaffDigital AI",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.staffdigital.ai/logo.png",
+      },
+    },
+    ...(imageUrl ? { image: imageUrl } : {}),
+    description: stripHtml(post.excerpt.rendered).slice(0, 160),
+  }
+
   return (
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
@@ -187,6 +209,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </div>
       </article>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
 
       <Footer />
     </main>

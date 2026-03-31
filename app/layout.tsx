@@ -75,11 +75,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               logo: "https://www.staffdigital.ai/logo.png",
               description:
                 "Agentes IA con voz humana para empresas. Atención telefónica, WhatsApp, chat web y consultoría de seguridad IA.",
+              telephone: "+34931229129",
+              email: "info@staffdigital.ai",
+              foundingDate: "2024",
+              numberOfEmployees: {
+                "@type": "QuantitativeValue",
+                minValue: 10,
+                maxValue: 50,
+              },
               address: [
                 {
                   "@type": "PostalAddress",
                   streetAddress: "Carrer d'Aragó, 308, 1o 2a",
                   addressLocality: "Barcelona",
+                  addressRegion: "Catalonia",
                   postalCode: "08009",
                   addressCountry: "ES",
                 },
@@ -99,6 +108,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               ],
               contactPoint: {
                 "@type": "ContactPoint",
+                telephone: "+34931229129",
+                email: "info@staffdigital.ai",
                 contactType: "sales",
                 availableLanguage: ["Spanish", "Portuguese", "English"],
               },

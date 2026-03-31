@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation"
-import { getService, type WPService } from "@/lib/wordpress"
+import { getService, stripHtml, type WPService } from "@/lib/wordpress"
 import { DynamicServiceClient } from "./dynamic-service-client"
 
 interface Props {
@@ -30,5 +30,25 @@ export default async function DynamicServicePage({ params }: Props) {
     notFound()
   }
 
-  return <DynamicServiceClient service={service} />
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: stripHtml(service.title.rendered),
+    description: stripHtml(service.excerpt.rendered).slice(0, 160),
+    provider: {
+      "@type": "Organization",
+      name: "StaffDigital AI",
+    },
+    areaServed: ["ES", "PT"],
+  }
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <DynamicServiceClient service={service} />
+    </>
+  )
 }

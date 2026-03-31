@@ -5,6 +5,7 @@ const WP_API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || 'https://cms.sta
 export interface WPPost {
   id: number;
   date: string;
+  modified?: string;
   slug: string;
   title: { rendered: string };
   excerpt: { rendered: string };

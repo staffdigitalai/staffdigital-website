@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { Check } from "lucide-react"
 
 const leftItems = [
@@ -27,6 +28,17 @@ export function DoneForYouBlock() {
               Tú solo creces.
             </span>
           </h2>
+        </div>
+
+        <div className="max-w-xl mx-auto mb-8">
+          <Image
+            src="/images/homepage/done-for-you.jpg"
+            alt="StaffDigital AI gestiona toda la complejidad técnica — configuración, integración y mantenimiento — para que tu empresa solo se enfoque en crecer"
+            width={1200}
+            height={686}
+            loading="lazy"
+            className="rounded-2xl border border-white/10"
+          />
         </div>
 
         <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">

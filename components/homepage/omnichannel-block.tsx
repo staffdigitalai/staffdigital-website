@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { MessageSquare, Phone, Globe, Mail, Share2 } from "lucide-react"
 
 const channels = [
@@ -40,7 +41,18 @@ export function OmnichannelBlock() {
           ))}
         </div>
 
-        <p className="text-center text-white/50 mt-8 text-sm italic">
+        <div className="mt-8 max-w-2xl mx-auto">
+          <Image
+            src="/images/homepage/omnichannel.jpg"
+            alt="Canales WhatsApp, teléfono, chat web, email y redes sociales conectados a un hub central de IA"
+            width={1200}
+            height={686}
+            loading="lazy"
+            className="rounded-2xl border border-white/10 opacity-80"
+          />
+        </div>
+
+        <p className="text-center text-white/50 mt-6 text-sm italic">
           ¿El cliente cambia de canal? El agente mantiene el contexto. Sin repeticiones. Sin frustraciones.
         </p>
       </div>

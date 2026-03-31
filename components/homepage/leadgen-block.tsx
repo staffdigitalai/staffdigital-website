@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { Target, ArrowRight, MapPin, Users, Mail, BarChart3 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -39,6 +40,17 @@ export function LeadGenBlock() {
               <p className="text-xs text-white/50">{s.description}</p>
             </div>
           ))}
+        </div>
+
+        <div className="max-w-2xl mx-auto mb-8">
+          <Image
+            src="/images/homepage/leadgen.jpg"
+            alt="Embudo de generación de leads con IA: prospección, enriquecimiento, cualificación y entrega al CRM"
+            width={1200}
+            height={686}
+            loading="lazy"
+            className="rounded-2xl border border-orange-500/10 opacity-80"
+          />
         </div>
 
         <div className="text-center">

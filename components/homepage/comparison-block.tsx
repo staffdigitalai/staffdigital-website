@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { X, Check } from "lucide-react"
 
 const rows = [
@@ -17,9 +18,19 @@ export function ComparisonBlock() {
     <section className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
             Por qué elegir StaffDigital AI
           </h2>
+          <div className="max-w-xl mx-auto">
+            <Image
+              src="/images/homepage/comparison.jpg"
+              alt="Comparación entre herramientas SaaS DIY y la solución gestionada de StaffDigital AI"
+              width={1200}
+              height={686}
+              loading="lazy"
+              className="rounded-2xl border border-white/10 opacity-70"
+            />
+          </div>
         </div>
 
         {/* Desktop table */}

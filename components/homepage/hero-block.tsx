@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Phone } from "lucide-react"
 import { useFormModals } from "@/components/contact-form-modals"
@@ -80,6 +81,18 @@ export function HeroBlock() {
               Prueba la voz IA ahora
             </a>
           </Button>
+        </div>
+
+        {/* Hero visual — dashboard mockup */}
+        <div className="max-w-3xl mx-auto animate-fade-in-buttons">
+          <Image
+            src="/images/homepage/hero-dashboard.jpg"
+            alt="Panel de control StaffDigital AI mostrando bandeja de entrada unificada con WhatsApp, llamadas y chat web"
+            width={1200}
+            height={686}
+            priority
+            className="rounded-2xl border border-white/10 shadow-2xl"
+          />
         </div>
       </div>
     </section>

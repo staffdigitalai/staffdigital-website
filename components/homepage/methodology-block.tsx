@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { Search, Settings, Brain, TestTube, GraduationCap, Rocket } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -42,7 +43,18 @@ export function MethodologyBlock() {
           ))}
         </div>
 
-        <div className="text-center mt-8">
+        <div className="max-w-2xl mx-auto mt-8 mb-6">
+          <Image
+            src="/images/homepage/methodology.jpg"
+            alt="Línea temporal de implementación de agentes IA en 6 fases: descubrimiento, configuración, entrenamiento, tests, formación y lanzamiento"
+            width={1200}
+            height={686}
+            loading="lazy"
+            className="rounded-2xl border border-white/10 opacity-70"
+          />
+        </div>
+
+        <div className="text-center">
           <Button asChild variant="outline" className="rounded-full px-6">
             <Link href="/contacto">
               Agendar reunión de descubrimiento

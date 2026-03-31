@@ -279,10 +279,13 @@ export default async function DynamicServicePage({ params }: Props) {
     notFound()
   }
 
-  try {
-    return <DynamicServiceClient service={service} />
-  } catch (error) {
-    console.error("[DynamicServicePage] Render error for slug:", slug, error)
-    notFound()
-  }
+  return (
+    <div className="min-h-screen bg-black text-white p-20">
+      <h1 className="text-3xl font-bold mb-4">DEBUG: {service.title.rendered}</h1>
+      <p>Slug: {service.slug}</p>
+      <p>ID: {service.id}</p>
+      <p>Has content: {service.content.rendered.length > 0 ? 'yes' : 'no'}</p>
+      <p>Has ACF: {JSON.stringify(Object.keys(service.acf || {}))}</p>
+    </div>
+  )
 }

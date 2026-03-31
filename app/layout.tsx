@@ -1,5 +1,6 @@
 import type React from "react"
 import { Suspense } from "react"
+import { getLocale } from "next-intl/server"
 import "./globals.css"
 import { PageTransition } from "@/components/page-transition"
 import { NavigationTransition } from "@/components/navigation-transition"
@@ -20,13 +21,15 @@ const caveat = Caveat({
   display: "swap",
 })
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const locale = await getLocale()
+
   return (
-    <html className="dark" suppressHydrationWarning>
+    <html lang={locale} className="dark" suppressHydrationWarning>
       <head>
         {/* Google Search Console verification */}
         <meta name="google-site-verification" content="Uw0vYKoZylDM8S2GioiNZbwGdoWYgeywihU5jNrgnvc" />

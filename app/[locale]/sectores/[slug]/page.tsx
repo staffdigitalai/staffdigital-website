@@ -4,7 +4,7 @@ import { getSectorPage, getSectorPages, stripHtml, WPSectorPage } from "@/lib/wo
 import { DynamicSectorClient } from "./dynamic-sector-client"
 
 interface Props {
-  params: Promise<{ slug: string }>
+  params: Promise<{ locale: string; slug: string }>
 }
 
 // Static slugs that have their own dedicated pages (keep backwards compatibility)

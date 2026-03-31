@@ -41,7 +41,7 @@ const pageMetadata: Record<string, { title: string; description: string }> = {
 }
 
 interface PageProps {
-  params: Promise<{ slug: string }>
+  params: Promise<{ locale: string; slug: string }>
 }
 
 export async function generateStaticParams() {

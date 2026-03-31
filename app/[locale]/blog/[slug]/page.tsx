@@ -23,7 +23,7 @@ export async function generateStaticParams() {
 }
 
 interface BlogPostPageProps {
-  params: Promise<{ slug: string }>
+  params: Promise<{ locale: string; slug: string }>
 }
 
 async function getPostData(slug: string): Promise<WPPost | null> {

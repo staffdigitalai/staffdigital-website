@@ -30,7 +30,7 @@ const RESERVED_SLUGS = [
 ]
 
 interface PageProps {
-  params: Promise<{ slug: string }>
+  params: Promise<{ locale: string; slug: string }>
 }
 
 export async function generateStaticParams() {

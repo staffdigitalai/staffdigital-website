@@ -4,7 +4,7 @@ import { getCaseStudy, getCaseStudies, stripHtml, WPCaseStudy } from "@/lib/word
 import { CaseStudyClient } from "./case-study-client"
 
 interface Props {
-  params: Promise<{ slug: string }>
+  params: Promise<{ locale: string; slug: string }>
 }
 
 export async function generateStaticParams() {

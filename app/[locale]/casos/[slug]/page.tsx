@@ -175,7 +175,7 @@ async function getCaseData(slug: string): Promise<WPCaseStudy | null> {
 }
 
 interface CaseStudyPageProps {
-  params: Promise<{ slug: string }>
+  params: Promise<{ locale: string; slug: string }>
 }
 
 export async function generateMetadata({ params }: CaseStudyPageProps): Promise<Metadata> {

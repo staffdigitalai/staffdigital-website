@@ -4,7 +4,7 @@ import { getService, getServices, stripHtml, WPService } from "@/lib/wordpress"
 import { DynamicServiceClient } from "./dynamic-service-client"
 
 interface Props {
-  params: Promise<{ slug: string }>
+  params: Promise<{ locale: string; slug: string }>
 }
 
 // Static slugs that have their own dedicated pages
@@ -253,7 +253,8 @@ function generateFallbackService(slug: string): WPService | null {
 export const revalidate = 300
 
 export default async function DynamicServicePage({ params }: Props) {
-  const { slug } = await params
+  const resolvedParams = await params
+  const slug = resolvedParams.slug
 
   // Skip dynamic rendering for static pages
   if (STATIC_SERVICE_SLUGS.includes(slug)) {
@@ -265,7 +266,7 @@ export default async function DynamicServicePage({ params }: Props) {
   try {
     service = await getService(slug)
   } catch (error) {
-    console.error("Error fetching service from WordPress:", error)
+    console.error("[DynamicServicePage] WP fetch error for slug:", slug, error)
   }
 
   // Try fallback if WordPress fails
@@ -274,8 +275,14 @@ export default async function DynamicServicePage({ params }: Props) {
   }
 
   if (!service) {
+    console.error("[DynamicServicePage] No service found for slug:", slug)
     notFound()
   }
 
-  return <DynamicServiceClient service={service} />
+  try {
+    return <DynamicServiceClient service={service} />
+  } catch (error) {
+    console.error("[DynamicServicePage] Render error for slug:", slug, error)
+    notFound()
+  }
 }

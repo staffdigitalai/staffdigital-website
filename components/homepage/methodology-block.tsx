@@ -14,15 +14,34 @@ const steps = [
   { icon: Rocket, num: "6", title: "Lanzamiento", description: "Producción + acompañamiento y soporte continuo" },
 ]
 
+const howToJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "Cómo implementar agentes IA en tu empresa",
+  description: "Proceso de implementación de agentes IA con voz humana para atención al cliente, ventas y citas en 6 pasos.",
+  totalTime: "P6W",
+  step: steps.map((s, i) => ({
+    "@type": "HowToStep",
+    position: i + 1,
+    name: s.title,
+    text: s.description,
+  })),
+}
+
 export function MethodologyBlock() {
   return (
     <section className="py-20 px-4">
+      {/* HowTo structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+      />
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Nosotros hacemos todo.{" "}
+            Cómo implementamos{" "}
             <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
-              En 6 pasos.
+              agentes IA en tu empresa
             </span>
           </h2>
           <p className="text-lg text-white/60 max-w-xl mx-auto">

@@ -13,8 +13,8 @@ export function SocialProofBlock() {
     <section className="py-16 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Confía en nosotros</h2>
-          <p className="text-white/50 text-sm">Resultados reales para empresas reales.</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Infraestructura IA segura y gestionada</h2>
+          <p className="text-white/50 text-sm">Servidores en la UE, soporte humano y disponibilidad continua.</p>
         </div>
 
         <div className="grid sm:grid-cols-3 gap-4">

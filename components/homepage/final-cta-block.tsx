@@ -9,11 +9,11 @@ export function FinalCTABlock() {
     <section className="py-20 px-4">
       <div className="max-w-3xl mx-auto text-center space-y-8">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-          ¿Listo para tener tu{" "}
+          Solicita tu{" "}
           <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">
-            equipo digital
+            demo de agentes IA
           </span>
-          ?
+          {" "}gratuita
         </h2>
         <p className="text-lg text-white/60 max-w-xl mx-auto">
           Demo personalizada. Sin compromiso. En 30 minutos ves cómo tus agentes IA atenderían a tus clientes.

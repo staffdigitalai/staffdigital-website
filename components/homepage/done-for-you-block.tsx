@@ -23,9 +23,9 @@ export function DoneForYouBlock() {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Nosotros hacemos todo.{" "}
+            Implementación y gestión completa{" "}
             <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">
-              Tú solo creces.
+              de tus agentes IA
             </span>
           </h2>
         </div>

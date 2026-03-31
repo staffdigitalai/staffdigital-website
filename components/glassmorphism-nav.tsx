@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { Menu, X, ArrowRight, ChevronDown, Stethoscope, Scissors, UtensilsCrossed, Car, ShoppingBag, Building2, Warehouse, Wrench, BriefcaseMedical, Globe, MessageSquare, Layers, Shield, Home, GraduationCap, Dumbbell, Headphones } from "lucide-react"
-import NextLink from "next/link"
+import Link from "next/link"
 import { usePathname as useNextPathname } from "next/navigation"
 import { useRouter as useIntlRouter, usePathname as useIntlPathname } from "@/i18n/routing"
 import { useLocale } from "next-intl"

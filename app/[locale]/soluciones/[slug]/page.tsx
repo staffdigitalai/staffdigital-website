@@ -250,6 +250,8 @@ function generateFallbackService(slug: string): WPService | null {
   } as WPService
 }
 
+export const revalidate = 300
+
 export default async function DynamicServicePage({ params }: Props) {
   const { slug } = await params
 

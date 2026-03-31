@@ -150,6 +150,8 @@ function generateFallbackSector(slug: string): WPSectorPage | null {
   } as WPSectorPage
 }
 
+export const revalidate = 300
+
 export default async function DynamicSectorPage({ params }: Props) {
   const { slug } = await params
 

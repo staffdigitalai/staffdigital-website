@@ -16,6 +16,7 @@ interface DynamicFaqSectionProps {
   showLanguageSelector?: boolean
   maxItems?: number
   className?: string
+  headingAs?: "h1" | "h2"
 }
 
 const languages: { code: SupportedLang; label: string }[] = [
@@ -113,6 +114,7 @@ export function DynamicFaqSection({
   showLanguageSelector = true,
   maxItems,
   className = "",
+  headingAs = "h2",
 }: DynamicFaqSectionProps) {
   const [faqs, setFaqs] = useState<WPFaq[]>([])
   const [groupedFaqs, setGroupedFaqs] = useState<Map<string, WPFaq[]>>(new Map())
@@ -209,12 +211,21 @@ export function DynamicFaqSection({
             <HelpCircle className="w-4 h-4 mr-2" />
             FAQ
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight text-balance mb-4">
-            Preguntas{" "}
-            <span className="bg-gradient-to-r from-primary via-primary to-primary/80 bg-clip-text text-transparent">
-              Frecuentes
-            </span>
-          </h2>
+          {headingAs === "h1" ? (
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight text-balance mb-4">
+              Preguntas{" "}
+              <span className="bg-gradient-to-r from-primary via-primary to-primary/80 bg-clip-text text-transparent">
+                Frecuentes
+              </span>
+            </h1>
+          ) : (
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight text-balance mb-4">
+              Preguntas{" "}
+              <span className="bg-gradient-to-r from-primary via-primary to-primary/80 bg-clip-text text-transparent">
+                Frecuentes
+              </span>
+            </h2>
+          )}
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Encuentra respuestas a las preguntasmás comunes sobre nuestras soluciones de IA.
           </p>

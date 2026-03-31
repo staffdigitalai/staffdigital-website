@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 
 const othersProblems = [
   "Implementan herramientas aisladas sin una estrategia global",
-  "Se centran solo en agentes IA basicos o automatizaciónes simples",
+  "Se centran solo en agentes IA basicos o automatizaciones simples",
   "No integran atencion, automatización, seguridad y presentacion visual",
   "Requierenmás gestion interna por parte de tu equipo",
 ]

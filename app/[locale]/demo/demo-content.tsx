@@ -73,7 +73,7 @@ export function DemoContent({ page }: DemoContentProps) {
         <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto">
           <Check className="h-8 w-8 text-primary" />
         </div>
-        <h1 className="text-3xl font-bold">Solicitud enviada</h1>
+        <h2 className="text-3xl font-bold">Solicitud enviada</h2>
         <p className="text-lg text-muted-foreground">
           Gracias por tu interes. Nuestro equipo se pondra en contacto contigo en menos de 24 horas
           para agendar tu demo personalizada.

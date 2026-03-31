@@ -19,7 +19,7 @@ export default function FaqPage() {
       <GlassmorphismNav />
 
       <div className="relative z-10 pt-24">
-        <DynamicFaqSection showLanguageSelector={true} />
+        <DynamicFaqSection showLanguageSelector={true} headingAs="h1" />
       </div>
 
       <Footer />

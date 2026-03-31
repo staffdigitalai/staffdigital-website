@@ -7,7 +7,7 @@ const WP_API = "https://cms.staffdigital.ai/wp-json/wp/v2"
 const staticPages: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [
   { path: "/", priority: 1.0, changeFrequency: "weekly" },
   { path: "/blog", priority: 0.9, changeFrequency: "daily" },
-  { path: "/casos", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/casos-exito", priority: 0.9, changeFrequency: "weekly" },
   { path: "/precios", priority: 0.9, changeFrequency: "monthly" },
   { path: "/demo", priority: 0.9, changeFrequency: "monthly" },
   { path: "/nosotros", priority: 0.7, changeFrequency: "monthly" },

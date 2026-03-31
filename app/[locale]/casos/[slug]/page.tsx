@@ -207,7 +207,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             <h1 className="text-3xl font-bold text-foreground mb-4">Caso no encontrado</h1>
             <p className="text-muted-foreground mb-8">El caso de exito que buscas no existe o ha sido eliminado.</p>
             <Button asChild>
-              <Link href="/casos">Volver a casos de exito</Link>
+              <Link href="/casos-exito">Volver a casos de exito</Link>
             </Button>
           </div>
         </div>
@@ -230,7 +230,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
       <article className="relative z-10 pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Back button */}
-          <Link href="/casos" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 group">
+          <Link href="/casos-exito" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8 group">
             <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
             Volver a casos de exito
           </Link>
@@ -358,7 +358,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-full">
-                <Link href="/casos">
+                <Link href="/casos-exito">
                   Vermás casos
                 </Link>
               </Button>

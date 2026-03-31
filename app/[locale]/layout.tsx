@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
+import { headers } from "next/headers"
 import { NextIntlClientProvider, hasLocale } from "next-intl"
 import { getMessages, setRequestLocale } from "next-intl/server"
 import { locales, type Locale } from "@/i18n/config"
@@ -28,6 +29,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   const prefix = locale === "es" ? "" : `/${locale}`
 
+  // Build self-referential canonical from the request path
+  const headersList = await headers()
+  const pathname = headersList.get("x-pathname") || `/${locale}`
+  // Remove leading locale segment if present (e.g. /es/blog -> /blog, /pt/blog -> /blog)
+  const localePattern = new RegExp(`^/(${locales.join("|")})(/|$)`)
+  const pagePath = pathname.replace(localePattern, "$2") || "/"
+  const canonicalPath = pagePath === "/" ? `${prefix}/` : `${prefix}${pagePath.startsWith("/") ? pagePath : `/${pagePath}`}`
+
   return {
     title: {
       default: messages.meta.title,
@@ -36,18 +45,18 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: messages.meta.description,
     metadataBase: new URL(BASE_URL),
     alternates: {
-      canonical: `${prefix}/`,
+      canonical: canonicalPath,
       languages: {
-        es: "/",
-        pt: "/pt/",
-        en: "/en/",
-        "x-default": "/",
+        es: pagePath === "/" ? "/" : pagePath,
+        pt: `/pt${pagePath === "/" ? "/" : pagePath}`,
+        en: `/en${pagePath === "/" ? "/" : pagePath}`,
+        "x-default": pagePath === "/" ? "/" : pagePath,
       },
     },
     openGraph: {
       type: "website",
       locale: ogLocaleMap[locale as Locale] || "es_ES",
-      url: `${BASE_URL}${prefix}/`,
+      url: `${BASE_URL}${canonicalPath}`,
       siteName: "StaffDigital AI",
       title: messages.meta.title,
       description: messages.meta.description,

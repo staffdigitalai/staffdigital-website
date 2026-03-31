@@ -30,7 +30,7 @@ const empresaLinks = [
 
 const recursosLinks = [
   { title: "Blog", href: "/blog" },
-  { title: "Casos de Éxito", href: "/casos" },
+  { title: "Casos de Éxito", href: "/casos-exito" },
   { title: "Demo Voz Humana", href: "/demo-voice" },
   { title: "Solicitar Demo", href: "/demo" },
   { title: "Sectores", href: "/sectores" },
@@ -53,7 +53,7 @@ export function Footer() {
           <div className="space-y-5 lg:col-span-1">
             <StaffDigitalLogoDark variant="full" size="md" />
             <p className="text-white/50 text-sm leading-relaxed">
-              Agentes IA con Voz Humana para empresas. Chat inteligente, flujos de trabajo y automatizaciónes.
+              Agentes IA con Voz Humana para empresas. Chat inteligente, flujos de trabajo y automatizaciones.
             </p>
             <div className="space-y-3">
               <div className="flex items-start gap-2">

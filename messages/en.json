@@ -4,80 +4,157 @@
     "description": "Omnichannel platform with AI agents for customer service, sales and appointments 24/7. CRM, calendar and channels integrated. Fully managed."
   },
   "nav": {
+    "home": "Home",
+    "about": "About",
     "solutions": "Solutions",
     "sectors": "Industries",
     "pricing": "Pricing",
     "blog": "Blog",
+    "cases": "Case Studies",
     "demo": "Demo",
     "contact": "Contact",
-    "about": "About"
+    "faq": "FAQ",
+    "cta": "Request implementation"
   },
   "hero": {
-    "badge": "Your Staff Digital AI Team",
-    "h1_line1": "AI Agents for Customer Service,",
-    "h1_line2": "WhatsApp, Phone Calls & Appointments 24/7",
-    "reinforcement": "We handle everything: strategy, implementation, integration and management.",
-    "h2": "WhatsApp, phone and web chat with AI and human voice. We integrate channels, CRM and calendar into a fully managed solution.",
-    "rotate_prefix": "AI Agent for",
-    "rotate_words": ["sales", "support", "booking", "WhatsApp", "phone calls"],
+    "badge_voice": "Human Voice HD",
+    "badge_platform": "Managed Omnichannel Platform",
+    "h1_line1": "Automated customer service on",
+    "h1_line2": "WhatsApp, phone and web chat with AI",
+    "reinforcement": "AI agents that listen, respond and act in your CRM. We implement, integrate and manage everything.",
+    "rotate_prefix": "AI for",
+    "rotate_words": ["call center", "WhatsApp Business", "appointments", "pre-sales", "after-sales"],
     "cta_primary": "Request implementation",
     "cta_secondary": "Hear the AI voice",
-    "microproofs": ["Guided implementation", "CRM integration", "Human handover", "Available 24/7"]
+    "microproofs": ["Unified omnichannel inbox", "Automatic scheduling", "CRM integrated", "Human handover"]
   },
   "done_for_you": {
-    "title_1": "We do everything.",
-    "title_2": "You just grow.",
+    "title_1": "Complete platform,",
+    "title_2": "fully managed",
+    "subtitle": "We integrate channels, CRM, calendar and AI agents into one platform. You just receive the results.",
+    "stack": [
+      {"category": "Channels", "label": "Chatwoot CE", "description": "Unified omnichannel inbox"},
+      {"category": "AI", "label": "OpenClaw", "description": "Autonomous agent orchestration"},
+      {"category": "Booking", "label": "Cal.com", "description": "Automatic scheduling"},
+      {"category": "Data", "label": "Twenty CRM", "description": "Open source CRM integrated"}
+    ],
     "items": [
-      "We configure the AI agents",
-      "We train them with your business",
-      "We unify WhatsApp, phone and chat",
-      "We capture leads for you (LeadGen AI)",
-      "We integrate with your CRM",
-      "We manage the infrastructure",
-      "We ensure security and privacy",
-      "We automate your CRM"
+      "We configure AI agents for your business",
+      "We integrate WhatsApp, phone, web chat and email",
+      "We connect with your CRM and calendar",
+      "We train the AI with your knowledge base",
+      "We manage the infrastructure 24/7",
+      "We ensure security and privacy (EU)"
     ]
   },
   "services": {
-    "title": "Meet our AI agents",
-    "subtitle": "Specialized by function. Trained for your business. Ready 24/7.",
+    "title": "AI solutions by use case",
+    "subtitle": "Each agent solves a specific problem. All connected in one platform.",
     "view_all": "View all solutions",
-    "learn_more": "Learn more"
+    "learn_more": "View solution",
+    "items": [
+      {"title": "AI Call Center", "description": "Automated call answering with realistic voice. No queues, no IVR menus."},
+      {"title": "WhatsApp AI Service", "description": "Virtual agent on WhatsApp Business. Responds, qualifies and books automatically."},
+      {"title": "Smart Web Chat", "description": "Instant attention on your website. Qualifies visitors and captures leads 24/7."},
+      {"title": "Automated Sales with AI", "description": "Qualifies leads, recommends products and books closing meetings."},
+      {"title": "AI Customer Support", "description": "Incident resolution, ticket creation, intelligent escalation."},
+      {"title": "Automatic Scheduling", "description": "Books, confirms and reschedules appointments via WhatsApp, phone or web."},
+      {"title": "Automatic Prospecting", "description": "Finds companies in your sector, enriches data and generates qualified leads."},
+      {"title": "CRM Automation", "description": "Syncs conversations, leads and pipeline. No manual data entry."}
+    ]
   },
   "omnichannel": {
-    "title_1": "One agent.",
-    "title_2": "Every channel.",
-    "subtitle": "The same AI agent serves your customers wherever they are — with full history and real-time context.",
-    "context_note": "Customer switches channel? The agent keeps context. No repetition. No frustration."
+    "title_1": "Unified inbox:",
+    "title_2": "all channels in one place",
+    "subtitle": "Chatwoot CE unifies WhatsApp, phone, web chat, email and social media. One AI agent, all channels, complete history.",
+    "channels": [
+      {"name": "Phone", "line1": "Smart IVR with AI", "line2": "No menus, natural conversation"},
+      {"name": "WhatsApp", "line1": "Virtual agent 24/7", "line2": "Voice and text automated"},
+      {"name": "Web Chat", "line1": "Instant attention", "line2": "Lead qualification"},
+      {"name": "Email", "line1": "Automatic responses", "line2": "Synced with CRM"},
+      {"name": "Social", "line1": "Instagram, Facebook", "line2": "Automated DMs"}
+    ],
+    "context_note": "Customer switches channel, but the agent keeps context. No repetition. No frustration."
   },
   "sectors": {
-    "title": "AI agents for your industry",
-    "subtitle": "Specialized agents that understand your business needs.",
-    "view_all": "View all industries"
+    "title": "AI agents specialized by industry",
+    "subtitle": "Trained with the specific needs of your industry.",
+    "view_all": "View all industries",
+    "items": [
+      {"name": "Car Dealers", "useCase": "Test drives, qualification, after-sales"},
+      {"name": "Clinics & Healthcare", "useCase": "Appointments, reminders, first contact"},
+      {"name": "Real Estate", "useCase": "Viewings, qualification, follow-up"},
+      {"name": "Restaurants", "useCase": "Reservations, takeaway, confirmations"},
+      {"name": "E-commerce", "useCase": "Abandoned cart, recommendations"},
+      {"name": "Tourism & Hotels", "useCase": "Bookings, upsell, 24/7 support"},
+      {"name": "Education", "useCase": "Enrollment, information, reminders"},
+      {"name": "Local Services", "useCase": "LeadGen AI, appointments, follow-up"}
+    ]
   },
   "methodology": {
-    "title_1": "We do everything.",
-    "title_2": "In 6 steps.",
-    "subtitle": "You just give us access. We take care of the rest."
+    "title_1": "How we implement",
+    "title_2": "AI agents in your company",
+    "subtitle": "You just give us access. We take care of the rest.",
+    "cta": "Book a discovery meeting",
+    "steps": [
+      {"title": "Discovery", "description": "We understand your business, channels and goals"},
+      {"title": "Configuration", "description": "We create agents and integrate your CRM"},
+      {"title": "Training", "description": "We feed them with your knowledge: products, FAQ, tone"},
+      {"title": "Testing", "description": "We validate every interaction and adjust flows"},
+      {"title": "Team Training", "description": "We train your team to manage exceptions"},
+      {"title": "Launch", "description": "Production + ongoing support and monitoring"}
+    ]
   },
   "comparison": {
-    "title": "Why choose StaffDigital AI",
-    "competitor": "SaaS Tools",
-    "us": "StaffDigital AI"
+    "title": "Managed platform vs DIY tools",
+    "competitor_label": "Bland, Vapi, Synthflow...",
+    "us_label": "StaffDigital AI",
+    "rows": [
+      {"feature": "What is it?", "competitor": "Tool the customer configures alone", "us": "Managed platform with implementation included"},
+      {"feature": "Channels", "competitor": "Usually only chat or only voice", "us": "WhatsApp + phone + web chat + email unified"},
+      {"feature": "CRM", "competitor": "Basic or no integration", "us": "Twenty CRM built-in"},
+      {"feature": "Scheduling", "competitor": "Not included, must contract separately", "us": "Cal.com integrated: automatic bookings"},
+      {"feature": "Orchestration", "competitor": "Simple flows without autonomy", "us": "OpenClaw: autonomous agents that decide and act"},
+      {"feature": "Voice", "competitor": "Robotic or no voice channel", "us": "Human voice HD, indistinguishable from a person"},
+      {"feature": "Support", "competitor": "Documentation + chat", "us": "Dedicated implementation and management team"}
+    ]
+  },
+  "social_proof": {
+    "title": "Secure and managed AI infrastructure",
+    "subtitle": "EU servers, human support and continuous availability.",
+    "items": [
+      {"label": "100% European infrastructure", "sublabel": "Data protected under GDPR"},
+      {"label": "Availability 24/7/365", "sublabel": "No interruptions"},
+      {"label": "Human support", "sublabel": "Not just technology — real service"}
+    ]
   },
   "faq": {
-    "title": "Questions? We answer.",
-    "view_all": "View all questions"
+    "title": "Frequently asked questions about AI agents",
+    "view_all": "View all questions",
+    "items": [
+      {"q": "Does the AI agent really sound human?", "a": "Yes. We use proprietary human voice technology with voices indistinguishable from real people. Your customers don't know they're talking to AI."},
+      {"q": "How long does implementation take?", "a": "Between 2 and 6 weeks, depending on complexity. We handle everything — you just give us access."},
+      {"q": "What do I need to provide?", "a": "Access to your CRM (if any), information about your products/services and access to channels (WhatsApp, etc.). We do the rest."},
+      {"q": "What if the agent can't answer?", "a": "It transfers the conversation to a human on your team with full interaction context. No information is ever lost."},
+      {"q": "How does data privacy work?", "a": "Own infrastructure in the EU, designed to facilitate GDPR compliance. The data is yours."},
+      {"q": "Do I need a technical team?", "a": "No. We configure, manage and maintain everything. Your business just needs to use the service."}
+    ]
   },
   "cta": {
-    "title_1": "Ready for your",
-    "title_2": "digital team",
+    "title_1": "Request your",
+    "title_2": "AI agents demo",
+    "title_3": "for free",
     "subtitle": "Personalized demo. No commitment. In 30 minutes see how your AI agents would serve your customers.",
     "demo": "Request free demo",
     "contact": "Contact us"
   },
   "footer": {
-    "slogan": "AI Agents with Human Voice for businesses",
-    "rights": "All rights reserved."
+    "slogan": "Managed omnichannel platform with AI agents for businesses.",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "legal": "Legal Notice",
+    "cookies": "Cookie Policy",
+    "terms": "Terms & Conditions",
+    "dev_by": "Web Development by"
   }
 }

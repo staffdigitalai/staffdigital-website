@@ -5,7 +5,7 @@ import { Menu, X, ArrowRight, ChevronDown, Stethoscope, Scissors, UtensilsCrosse
 import Link from "next/link"
 import { usePathname as useNextPathname } from "next/navigation"
 import { useRouter as useIntlRouter, usePathname as useIntlPathname } from "@/i18n/routing"
-import { useLocale } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { StaffDigitalLogo } from "@/components/staffdigital-logo"
 
 const services = [
@@ -43,17 +43,18 @@ const languages = [
   { code: "pt", label: "Portugues" },
 ]
 
-const navItems = [
-  { label: "Inicio", href: "/" },
-  { label: "Nosotros", href: "/nosotros" },
-  { label: "Soluciones", href: "/soluciones", dropdown: "services" },
-  { label: "Sectores", href: "/sectores", dropdown: "sectors" },
-  { label: "Precios", href: "/precios" },
-  { label: "Blog", href: "/blog" },
-  { label: "Casos", href: "/casos-exito" },
+const navItemsDef = [
+  { key: "home", href: "/" },
+  { key: "about", href: "/nosotros" },
+  { key: "solutions", href: "/soluciones", dropdown: "services" },
+  { key: "sectors", href: "/sectores", dropdown: "sectors" },
+  { key: "pricing", href: "/precios" },
+  { key: "blog", href: "/blog" },
+  { key: "cases", href: "/casos-exito" },
 ]
 
 export function GlassmorphismNav() {
+  const t = useTranslations("nav")
   const [isOpen, setIsOpen] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
   const [isSectorsOpen, setIsSectorsOpen] = useState(false)
@@ -65,6 +66,7 @@ export function GlassmorphismNav() {
   const intlRouter = useIntlRouter()
   const intlPathname = useIntlPathname()
   const [currentLang, setCurrentLang] = useState(activeLocale)
+  const navItems = navItemsDef.map((item) => ({ ...item, label: t(item.key) }))
   const [isVisible, setIsVisible] = useState(true)
   const [hasLoaded, setHasLoaded] = useState(false)
   const [activeSection, setActiveSection] = useState<string>("#inicio")
@@ -504,7 +506,7 @@ export function GlassmorphismNav() {
                   className="relative bg-white hover:bg-gray-50 text-black font-medium px-5 py-1.5 rounded-full flex items-center transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer group text-sm"
                   onClick={() => scrollToSection("#contact")}
                 >
-                  <span className="mr-1.5">Empezar</span>
+                  <span className="mr-1.5">{t("cta")}</span>
                   <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
                 </button>
               </div>

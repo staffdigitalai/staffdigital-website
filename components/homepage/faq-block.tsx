@@ -3,49 +3,26 @@
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
 import Link from "next/link"
-
-const faqs = [
-  {
-    q: "¿El agente IA parece realmente humano?",
-    a: "Sí. Utilizamos tecnología de voz humana propietaria con voces indistinguibles de personas reales. Tus clientes no saben que hablan con IA.",
-  },
-  {
-    q: "¿Cuánto tarda la implementación?",
-    a: "Entre 2 y 6 semanas, dependiendo de la complejidad. Nosotros nos encargamos de todo — tú solo nos das acceso.",
-  },
-  {
-    q: "¿Qué necesito proporcionar?",
-    a: "Acceso a tu CRM (si existe), información sobre productos/servicios y acceso a los canales (WhatsApp, etc.). Nosotros hacemos el resto.",
-  },
-  {
-    q: "¿Y si el agente no sabe responder?",
-    a: "Transfiere la conversación a un humano de tu equipo con todo el contexto de la interacción. Nunca se pierde información.",
-  },
-  {
-    q: "¿Cómo funciona la privacidad de datos?",
-    a: "Infraestructura propia en la UE, diseñada para facilitar el cumplimiento del GDPR. Los datos son tuyos.",
-  },
-  {
-    q: "¿Necesito equipo técnico?",
-    a: "No. Nosotros configuramos, gestionamos y mantenemos todo. Tu negocio solo necesita usar el servicio.",
-  },
-]
-
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.q,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: faq.a,
-    },
-  })),
-}
+import { useTranslations } from "next-intl"
 
 export function FAQBlock() {
   const [open, setOpen] = useState<number | null>(null)
+  const t = useTranslations("faq")
+
+  const faqs = t.raw("items") as { q: string; a: string }[]
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  }
 
   return (
     <section className="py-20 px-4">
@@ -56,7 +33,7 @@ export function FAQBlock() {
       />
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Preguntas frecuentes sobre agentes IA</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("title")}</h2>
         </div>
 
         <div className="space-y-2">
@@ -80,7 +57,7 @@ export function FAQBlock() {
 
         <div className="text-center mt-8">
           <Link href="/faq" className="text-sm text-white/50 hover:text-white/80 underline underline-offset-4 transition-colors">
-            Ver todas las preguntas →
+            {t("view_all")} →
           </Link>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon, MapPin } from "lucide-react"
 import { StaffDigitalLogoDark } from "@/components/staffdigital-logo"
+import { useTranslations } from "next-intl"
 
 const solucionesLinks = [
   { title: "Agentes IA con Voz Humana ★", href: "/soluciones/agentes-ia-voz-humana" },
@@ -44,6 +45,8 @@ const socialLinks = [
 ]
 
 export function Footer() {
+  const t = useTranslations("footer")
+
   return (
     <footer className="relative w-full border-t border-white/10 bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/8%),transparent)]">
       <div className="max-w-6xl mx-auto px-6 sm:px-8 py-16 lg:py-20">
@@ -53,7 +56,7 @@ export function Footer() {
           <div className="space-y-5 lg:col-span-1">
             <StaffDigitalLogoDark variant="full" size="md" />
             <p className="text-white/50 text-sm leading-relaxed">
-              Agentes IA con Voz Humana para empresas. Chat inteligente, flujos de trabajo y automatizaciones.
+              {t("slogan")}
             </p>
             <div className="space-y-3">
               <div className="flex items-start gap-2">
@@ -158,26 +161,26 @@ export function Footer() {
         {/* Legal Links */}
         <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-4">
           <a href="/privacidad" className="text-white/40 hover:text-white/70 text-xs transition-colors">
-            Política de Privacidad
+            {t("privacy")}
           </a>
           <a href="/aviso-legal" className="text-white/40 hover:text-white/70 text-xs transition-colors">
-            Aviso Legal
+            {t("legal")}
           </a>
           <a href="/cookies" className="text-white/40 hover:text-white/70 text-xs transition-colors">
-            Política de Cookies
+            {t("cookies")}
           </a>
           <a href="/terminos" className="text-white/40 hover:text-white/70 text-xs transition-colors">
-            Términos y Condiciones
+            {t("terms")}
           </a>
         </div>
 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/40 text-sm">
-            &copy; {new Date().getFullYear()} StaffDigital AI. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} StaffDigital AI. {t("rights")}
           </p>
           <p className="text-white/40 text-sm">
-            Desarrollo Web por{" "}
+            {t("dev_by")}{" "}
             <a
               href="https://www.webdesignvip.pt"
               target="_blank"

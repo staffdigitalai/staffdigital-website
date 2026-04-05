@@ -1,20 +1,26 @@
 "use client"
 
 import { Shield, Clock, Headphones } from "lucide-react"
+import { useTranslations } from "next-intl"
 
-const stats = [
-  { icon: Shield, label: "Infraestructura 100% europea", sublabel: "Datos protegidos bajo GDPR" },
-  { icon: Clock, label: "Disponibilidad 24/7/365", sublabel: "Sin interrupciones" },
-  { icon: Headphones, label: "Acompañamiento humano", sublabel: "No solo tecnología — servicio real" },
-]
+const statIcons = [Shield, Clock, Headphones]
 
 export function SocialProofBlock() {
+  const t = useTranslations("social_proof")
+
+  const translatedItems = t.raw("items") as { label: string; sublabel: string }[]
+
+  const stats = translatedItems.map((item, i) => ({
+    ...item,
+    icon: statIcons[i],
+  }))
+
   return (
     <section className="py-16 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Infraestructura IA segura y gestionada</h2>
-          <p className="text-white/50 text-sm">Servidores en la UE, soporte humano y disponibilidad continua.</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">{t("title")}</h2>
+          <p className="text-white/50 text-sm">{t("subtitle")}</p>
         </div>
 
         <div className="grid sm:grid-cols-3 gap-4">

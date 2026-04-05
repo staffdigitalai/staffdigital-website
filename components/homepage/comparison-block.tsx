@@ -2,24 +2,19 @@
 
 import Image from "next/image"
 import { X, Check } from "lucide-react"
-
-const rows = [
-  { feature: "¿Qué es?", competitor: "Herramienta que el cliente configura solo", us: "Plataforma gestionada con implementación incluida" },
-  { feature: "Canales", competitor: "Normalmente solo chat o solo voz", us: "WhatsApp + teléfono + chat web + email unificados" },
-  { feature: "CRM", competitor: "Integración básica o inexistente", us: "Twenty CRM integrado de fábrica" },
-  { feature: "Agendamiento", competitor: "No incluido, hay que contratar aparte", us: "Cal.com integrado: reservas automáticas" },
-  { feature: "Orquestación", competitor: "Flujos simples sin autonomía", us: "OpenClaw: agentes autónomos que deciden y actúan" },
-  { feature: "Voz", competitor: "Robótica o sin canal de voz", us: "Voz humana HD, indistinguible de una persona" },
-  { feature: "Soporte", competitor: "Documentación + chat", us: "Equipo dedicado de implementación y gestión" },
-]
+import { useTranslations } from "next-intl"
 
 export function ComparisonBlock() {
+  const t = useTranslations("comparison")
+
+  const rows = t.raw("rows") as { feature: string; competitor: string; us: string }[]
+
   return (
     <section className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Plataforma gestionada vs herramientas DIY
+            {t("title")}
           </h2>
           <div className="max-w-xl mx-auto">
             <Image
@@ -37,8 +32,8 @@ export function ComparisonBlock() {
         <div className="hidden md:block rounded-2xl border border-white/10 overflow-hidden">
           <div className="grid grid-cols-3 bg-white/5">
             <div className="p-4 text-sm font-bold text-white/70 border-r border-white/10" />
-            <div className="p-4 text-sm font-bold text-red-400 text-center border-r border-white/10">Bland, Vapi, Synthflow...</div>
-            <div className="p-4 text-sm font-bold text-emerald-400 text-center">StaffDigital AI</div>
+            <div className="p-4 text-sm font-bold text-red-400 text-center border-r border-white/10">{t("competitor_label")}</div>
+            <div className="p-4 text-sm font-bold text-emerald-400 text-center">{t("us_label")}</div>
           </div>
           {rows.map((row, i) => (
             <div key={i} className="grid grid-cols-3 border-t border-white/10">

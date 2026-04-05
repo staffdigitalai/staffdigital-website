@@ -4,31 +4,35 @@ import Image from "next/image"
 import { Search, Settings, Brain, TestTube, GraduationCap, Rocket } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 
-const steps = [
-  { icon: Search, num: "1", title: "Descubrimiento", description: "Entendemos tu negocio, canales y objetivos" },
-  { icon: Settings, num: "2", title: "Configuración", description: "Creamos los agentes e integramos tu CRM" },
-  { icon: Brain, num: "3", title: "Entrenamiento", description: "Los alimentamos con tu conocimiento: productos, FAQ, tono" },
-  { icon: TestTube, num: "4", title: "Tests", description: "Validamos cada interacción y ajustamos flujos" },
-  { icon: GraduationCap, num: "5", title: "Formación", description: "Entrenamos a tu equipo para gestionar excepciones" },
-  { icon: Rocket, num: "6", title: "Lanzamiento", description: "Producción + acompañamiento y soporte continuo" },
-]
-
-const howToJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  name: "Cómo implementar agentes IA en tu empresa",
-  description: "Proceso de implementación de agentes IA con voz humana para atención al cliente, ventas y citas en 6 pasos.",
-  totalTime: "P6W",
-  step: steps.map((s, i) => ({
-    "@type": "HowToStep",
-    position: i + 1,
-    name: s.title,
-    text: s.description,
-  })),
-}
+const stepIcons = [Search, Settings, Brain, TestTube, GraduationCap, Rocket]
 
 export function MethodologyBlock() {
+  const t = useTranslations("methodology")
+
+  const translatedSteps = t.raw("steps") as { title: string; description: string }[]
+
+  const steps = translatedSteps.map((step, i) => ({
+    ...step,
+    icon: stepIcons[i],
+    num: String(i + 1),
+  }))
+
+  const howToJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: `${t("title_1")} ${t("title_2")}`,
+    description: t("subtitle"),
+    totalTime: "P6W",
+    step: steps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.title,
+      text: s.description,
+    })),
+  }
+
   return (
     <section className="py-20 px-4">
       {/* HowTo structured data */}
@@ -39,13 +43,13 @@ export function MethodologyBlock() {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Cómo implementamos{" "}
+            {t("title_1")}{" "}
             <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
-              agentes IA en tu empresa
+              {t("title_2")}
             </span>
           </h2>
           <p className="text-lg text-white/60 max-w-xl mx-auto">
-            Tú solo nos das acceso. Nosotros nos encargamos del resto.
+            {t("subtitle")}
           </p>
         </div>
 
@@ -76,7 +80,7 @@ export function MethodologyBlock() {
         <div className="text-center">
           <Button asChild variant="outline" className="rounded-full px-6">
             <Link href="/contacto">
-              Agendar reunión de descubrimiento
+              {t("cta")}
             </Link>
           </Button>
         </div>

@@ -3,28 +3,39 @@
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 
-const services = [
-  { title: "IA para Call Center", description: "Atendimiento automático de llamadas con voz realista. Sin colas, sin menús IVR.", href: "/soluciones/atencion-telefonica-ia", image: "/images/agents/phone-agent.jpg", alt: "Central de atendimiento IA para call center con voz realista" },
-  { title: "Atendimiento WhatsApp IA", description: "Agente virtual en WhatsApp Business. Responde, cualifica y agenda automáticamente.", href: "/soluciones/whatsapp-ia-empresas", image: "/images/agents/whatsapp-agent.jpg", alt: "Agente virtual WhatsApp con IA para atendimiento automático" },
-  { title: "Chat Web Inteligente", description: "Atención instantánea en tu web. Cualifica visitantes y captura leads 24/7.", href: "/soluciones/agente-chat-web-ia", image: "/images/agents/web-chat-agent.jpg", alt: "Chat web inteligente con IA para cualificación de leads" },
-  { title: "Vendas Automáticas con IA", description: "Cualifica leads, recomienda productos y agenda reuniones de cierre.", href: "/soluciones/agente-ventas-ia", image: "/images/agents/sales-agent.jpg", alt: "IA para ventas automáticas: cualificación y cierre de leads" },
-  { title: "Soporte al Cliente con IA", description: "Resolución de incidencias, apertura de tickets, escalado inteligente.", href: "/soluciones/agente-soporte-ia", image: "/images/agents/support-agent.jpg", alt: "Soporte al cliente automatizado con agentes IA" },
-  { title: "Agendamiento Automático", description: "Reserva, confirma y reprograma citas por WhatsApp, teléfono o web.", href: "/soluciones/agente-agendamientos-ia", image: "/images/agents/booking-agent.jpg", alt: "Agendamiento automático de citas con IA por WhatsApp y teléfono" },
-  { title: "Prospección Automática", description: "Encuentra empresas de tu sector, enriquece datos y genera leads cualificados.", href: "/soluciones/lead-generation-ia", image: "/images/agents/leadgen-agent.jpg", alt: "Prospección automática de empresas y generación de leads con IA" },
-  { title: "Automatización de CRM", description: "Sincroniza conversaciones, leads y pipeline. Sin entrada manual de datos.", href: "/soluciones/crm-automation-ia", image: "/images/agents/crm-agent.jpg", alt: "Automatización de CRM con agentes IA para gestión de pipeline" },
+const servicesMeta = [
+  { href: "/soluciones/atencion-telefonica-ia", image: "/images/agents/phone-agent.jpg", alt: "Central de atendimiento IA para call center con voz realista" },
+  { href: "/soluciones/whatsapp-ia-empresas", image: "/images/agents/whatsapp-agent.jpg", alt: "Agente virtual WhatsApp con IA para atendimiento automático" },
+  { href: "/soluciones/agente-chat-web-ia", image: "/images/agents/web-chat-agent.jpg", alt: "Chat web inteligente con IA para cualificación de leads" },
+  { href: "/soluciones/agente-ventas-ia", image: "/images/agents/sales-agent.jpg", alt: "IA para ventas automáticas: cualificación y cierre de leads" },
+  { href: "/soluciones/agente-soporte-ia", image: "/images/agents/support-agent.jpg", alt: "Soporte al cliente automatizado con agentes IA" },
+  { href: "/soluciones/agente-agendamientos-ia", image: "/images/agents/booking-agent.jpg", alt: "Agendamiento automático de citas con IA por WhatsApp y teléfono" },
+  { href: "/soluciones/lead-generation-ia", image: "/images/agents/leadgen-agent.jpg", alt: "Prospección automática de empresas y generación de leads con IA" },
+  { href: "/soluciones/crm-automation-ia", image: "/images/agents/crm-agent.jpg", alt: "Automatización de CRM con agentes IA para gestión de pipeline" },
 ]
 
 export function ServicesBlock() {
+  const t = useTranslations("services")
+
+  const translatedItems = t.raw("items") as { title: string; description: string }[]
+
+  const services = servicesMeta.map((meta, i) => ({
+    ...meta,
+    title: translatedItems[i].title,
+    description: translatedItems[i].description,
+  }))
+
   return (
     <section className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Soluciones IA por caso de uso
+            {t("title")}
           </h2>
           <p className="text-lg text-white/60 max-w-2xl mx-auto">
-            Cada agente resuelve un problema concreto. Todos conectados en una sola plataforma.
+            {t("subtitle")}
           </p>
         </div>
 
@@ -49,7 +60,7 @@ export function ServicesBlock() {
                 <h3 className="font-bold text-white group-hover:text-white/90">{s.title}</h3>
                 <p className="text-sm text-white/50">{s.description}</p>
                 <span className="text-sm text-white/40 group-hover:text-white/70 flex items-center gap-1 transition-colors">
-                  Ver solución <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  {t("learn_more")} <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </span>
               </div>
             </Link>
@@ -58,7 +69,7 @@ export function ServicesBlock() {
 
         <div className="text-center mt-8">
           <Link href="/soluciones" className="text-sm text-white/50 hover:text-white/80 underline underline-offset-4 transition-colors">
-            Ver todas las soluciones →
+            {t("view_all")} →
           </Link>
         </div>
       </div>

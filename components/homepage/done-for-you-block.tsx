@@ -2,36 +2,32 @@
 
 import Image from "next/image"
 import { Check, MessageSquare, Calendar, Database, Cpu } from "lucide-react"
+import { useTranslations } from "next-intl"
 
-const stackItems = [
-  { icon: MessageSquare, label: "Chatwoot CE", description: "Bandeja omnicanal unificada", category: "Canales" },
-  { icon: Cpu, label: "OpenClaw", description: "Orquestación de agentes autónomos", category: "IA" },
-  { icon: Calendar, label: "Cal.com", description: "Agendamiento automático", category: "Citas" },
-  { icon: Database, label: "Twenty CRM", description: "CRM open source integrado", category: "Datos" },
-]
-
-const weDoItems = [
-  "Configuramos los agentes IA para tu negocio",
-  "Integramos WhatsApp, teléfono, chat web y email",
-  "Conectamos con tu CRM y calendario",
-  "Entrenamos la IA con tu base de conocimiento",
-  "Gestionamos la infraestructura 24/7",
-  "Garantizamos seguridad y privacidad (UE)",
-]
+const stackIcons = [MessageSquare, Cpu, Calendar, Database]
 
 export function DoneForYouBlock() {
+  const t = useTranslations("done_for_you")
+
+  const stackItems = (t.raw("stack") as { category: string; label: string; description: string }[]).map((item, i) => ({
+    ...item,
+    icon: stackIcons[i],
+  }))
+
+  const weDoItems = t.raw("items") as string[]
+
   return (
     <section className="py-20 px-4">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Plataforma completa,{" "}
+            {t("title_1")}{" "}
             <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">
-              totalmente gestionada
+              {t("title_2")}
             </span>
           </h2>
           <p className="text-lg text-white/60 max-w-2xl mx-auto">
-            Integramos canales, CRM, agenda y agentes IA en una sola plataforma. Tú solo recibes los resultados.
+            {t("subtitle")}
           </p>
         </div>
 

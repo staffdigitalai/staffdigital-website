@@ -4,13 +4,13 @@ import Image from "next/image"
 import { X, Check } from "lucide-react"
 
 const rows = [
-  { feature: "¿Qué vendes?", competitor: "Una herramienta para que el cliente configure", us: "Solución completa, configurada y gestionada" },
-  { feature: "¿Necesita equipo técnico?", competitor: "Sí, el cliente monta todo", us: "No, nosotros hacemos todo" },
-  { feature: "Agentes IA", competitor: "Genéricos, sin personalización", us: "Especializados y entrenados para tu negocio" },
-  { feature: "Datos", competitor: "En la cloud del proveedor", us: "Infraestructura propia, datos en la UE" },
-  { feature: "Precio", competitor: "Por contacto / por minuto", us: "Paquete mensual predecible" },
-  { feature: "Soporte", competitor: "Chat / email / documentación", us: "Acompañamiento personalizado con humanos" },
-  { feature: "Alcance", competitor: "Solo atención al cliente", us: "Atención + LeadGen + CRM Automation" },
+  { feature: "¿Qué es?", competitor: "Herramienta que el cliente configura solo", us: "Plataforma gestionada con implementación incluida" },
+  { feature: "Canales", competitor: "Normalmente solo chat o solo voz", us: "WhatsApp + teléfono + chat web + email unificados" },
+  { feature: "CRM", competitor: "Integración básica o inexistente", us: "Twenty CRM integrado de fábrica" },
+  { feature: "Agendamiento", competitor: "No incluido, hay que contratar aparte", us: "Cal.com integrado: reservas automáticas" },
+  { feature: "Orquestación", competitor: "Flujos simples sin autonomía", us: "OpenClaw: agentes autónomos que deciden y actúan" },
+  { feature: "Voz", competitor: "Robótica o sin canal de voz", us: "Voz humana HD, indistinguible de una persona" },
+  { feature: "Soporte", competitor: "Documentación + chat", us: "Equipo dedicado de implementación y gestión" },
 ]
 
 export function ComparisonBlock() {
@@ -19,12 +19,12 @@ export function ComparisonBlock() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Por qué elegir StaffDigital AI
+            Plataforma gestionada vs herramientas DIY
           </h2>
           <div className="max-w-xl mx-auto">
             <Image
               src="/images/homepage/comparison.jpg"
-              alt="Comparación entre herramientas SaaS DIY y la solución gestionada de StaffDigital AI"
+              alt="Comparación entre herramientas SaaS DIY y la plataforma gestionada StaffDigital AI"
               width={1200}
               height={686}
               loading="lazy"
@@ -35,13 +35,11 @@ export function ComparisonBlock() {
 
         {/* Desktop table */}
         <div className="hidden md:block rounded-2xl border border-white/10 overflow-hidden">
-          {/* Header */}
           <div className="grid grid-cols-3 bg-white/5">
             <div className="p-4 text-sm font-bold text-white/70 border-r border-white/10" />
-            <div className="p-4 text-sm font-bold text-red-400 text-center border-r border-white/10">Herramientas SaaS</div>
+            <div className="p-4 text-sm font-bold text-red-400 text-center border-r border-white/10">Bland, Vapi, Synthflow...</div>
             <div className="p-4 text-sm font-bold text-emerald-400 text-center">StaffDigital AI</div>
           </div>
-          {/* Rows */}
           {rows.map((row, i) => (
             <div key={i} className="grid grid-cols-3 border-t border-white/10">
               <div className="p-4 text-sm font-medium text-white/80 border-r border-white/10">{row.feature}</div>

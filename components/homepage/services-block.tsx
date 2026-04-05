@@ -5,14 +5,14 @@ import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 
 const services = [
-  { title: "Agente Telefónico IA", description: "Atiende llamadas con voz humana. Sin menús, sin esperas.", href: "/soluciones/atencion-telefonica-ia", image: "/images/agents/phone-agent.jpg", alt: "Agente IA telefónico con voz humana para atención de llamadas 24/7" },
-  { title: "Agente WhatsApp IA", description: "Voz y texto por WhatsApp. Conversaciones naturales.", href: "/soluciones/whatsapp-ia-empresas", image: "/images/agents/whatsapp-agent.jpg", alt: "Agente IA para WhatsApp Business con conversaciones inteligentes" },
-  { title: "Agente Chat Web IA", description: "Atención en tu web. Cualifica leads 24/7.", href: "/soluciones/agente-chat-web-ia", image: "/images/agents/web-chat-agent.jpg", alt: "Agente IA de chat web para cualificación de leads automatizada" },
-  { title: "Agente de Ventas IA", description: "Cualifica, recomienda y cierra ventas.", href: "/soluciones/agente-ventas-ia", image: "/images/agents/sales-agent.jpg", alt: "Agente IA de ventas para cualificación y cierre automatizado" },
-  { title: "Agente de Soporte IA", description: "Posventa, tickets y resolución de problemas.", href: "/soluciones/agente-soporte-ia", image: "/images/agents/support-agent.jpg", alt: "Agente IA de soporte técnico para resolución de incidencias" },
-  { title: "Agente de Citas IA", description: "Agenda consultas, visitas y reservas.", href: "/soluciones/agente-agendamientos-ia", image: "/images/agents/booking-agent.jpg", alt: "Agente IA para gestión automática de citas y reservas" },
-  { title: "LeadGen IA", description: "Prospección automática de empresas. Listos para contactar.", href: "/soluciones/lead-generation-ia", image: "/images/agents/leadgen-agent.jpg", alt: "Sistema de generación de leads con prospección automática por IA" },
-  { title: "CRM Automation IA", description: "Sincroniza agentes con tu CRM. Pipelines al día.", href: "/soluciones/crm-automation-ia", image: "/images/agents/crm-agent.jpg", alt: "Automatización de CRM con agentes IA para pipelines actualizados" },
+  { title: "IA para Call Center", description: "Atendimiento automático de llamadas con voz realista. Sin colas, sin menús IVR.", href: "/soluciones/atencion-telefonica-ia", image: "/images/agents/phone-agent.jpg", alt: "Central de atendimiento IA para call center con voz realista" },
+  { title: "Atendimiento WhatsApp IA", description: "Agente virtual en WhatsApp Business. Responde, cualifica y agenda automáticamente.", href: "/soluciones/whatsapp-ia-empresas", image: "/images/agents/whatsapp-agent.jpg", alt: "Agente virtual WhatsApp con IA para atendimiento automático" },
+  { title: "Chat Web Inteligente", description: "Atención instantánea en tu web. Cualifica visitantes y captura leads 24/7.", href: "/soluciones/agente-chat-web-ia", image: "/images/agents/web-chat-agent.jpg", alt: "Chat web inteligente con IA para cualificación de leads" },
+  { title: "Vendas Automáticas con IA", description: "Cualifica leads, recomienda productos y agenda reuniones de cierre.", href: "/soluciones/agente-ventas-ia", image: "/images/agents/sales-agent.jpg", alt: "IA para ventas automáticas: cualificación y cierre de leads" },
+  { title: "Soporte al Cliente con IA", description: "Resolución de incidencias, apertura de tickets, escalado inteligente.", href: "/soluciones/agente-soporte-ia", image: "/images/agents/support-agent.jpg", alt: "Soporte al cliente automatizado con agentes IA" },
+  { title: "Agendamiento Automático", description: "Reserva, confirma y reprograma citas por WhatsApp, teléfono o web.", href: "/soluciones/agente-agendamientos-ia", image: "/images/agents/booking-agent.jpg", alt: "Agendamiento automático de citas con IA por WhatsApp y teléfono" },
+  { title: "Prospección Automática", description: "Encuentra empresas de tu sector, enriquece datos y genera leads cualificados.", href: "/soluciones/lead-generation-ia", image: "/images/agents/leadgen-agent.jpg", alt: "Prospección automática de empresas y generación de leads con IA" },
+  { title: "Automatización de CRM", description: "Sincroniza conversaciones, leads y pipeline. Sin entrada manual de datos.", href: "/soluciones/crm-automation-ia", image: "/images/agents/crm-agent.jpg", alt: "Automatización de CRM con agentes IA para gestión de pipeline" },
 ]
 
 export function ServicesBlock() {
@@ -21,10 +21,10 @@ export function ServicesBlock() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Conoce nuestros agentes IA
+            Soluciones IA por caso de uso
           </h2>
           <p className="text-lg text-white/60 max-w-2xl mx-auto">
-            Especializados por función. Entrenados para tu negocio. Listos 24/7.
+            Cada agente resuelve un problema concreto. Todos conectados en una sola plataforma.
           </p>
         </div>
 
@@ -49,7 +49,7 @@ export function ServicesBlock() {
                 <h3 className="font-bold text-white group-hover:text-white/90">{s.title}</h3>
                 <p className="text-sm text-white/50">{s.description}</p>
                 <span className="text-sm text-white/40 group-hover:text-white/70 flex items-center gap-1 transition-colors">
-                  Saber más <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  Ver solución <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </span>
               </div>
             </Link>

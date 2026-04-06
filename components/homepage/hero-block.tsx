@@ -38,13 +38,13 @@ export function HeroBlock() {
         </h1>
 
         {/* Reinforcement — managed solution */}
-        <p className="text-base sm:text-lg md:text-xl text-white/60 mb-4 animate-fade-in-heading font-light">
+        <p className="text-base sm:text-lg md:text-xl text-foreground/60 mb-4 animate-fade-in-heading font-light">
           {t("reinforcement")}
         </p>
 
         {/* Rotating — real search terms the buyer uses */}
         <div className="flex items-center justify-center gap-2 mb-8 animate-fade-in-subheading">
-          <span className="text-lg sm:text-xl text-white/50 font-light">{t("rotate_prefix")}</span>
+          <span className="text-lg sm:text-xl text-foreground/50 font-light">{t("rotate_prefix")}</span>
           <RotatingText
             texts={rotateWords}
             mainClassName="px-2 sm:px-3 bg-white text-black overflow-hidden py-1 sm:py-2 justify-center rounded-lg shadow-lg text-lg sm:text-xl font-semibold"

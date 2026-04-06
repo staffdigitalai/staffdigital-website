@@ -32,19 +32,19 @@ export function CRMBlock() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             CRM Automation IA
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto">
+          <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
             Tus agentes IA y tu CRM trabajando juntos. Sin entrada manual de datos.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-8">
           {/* What we sync */}
-          <div className="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4">
-            <h3 className="font-bold text-lg">Qué sincronizamos</h3>
+          <div className="p-6 rounded-2xl border border-foreground/10 bg-foreground/5 space-y-4">
+            <h3 className="font-bold text-lg text-foreground">Qué sincronizamos</h3>
             <ul className="space-y-3">
               {syncItems.map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-sm text-white/70">
-                  <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                <li key={i} className="flex items-center gap-3 text-sm text-foreground/70">
+                  <Check className="w-4 h-4 text-[var(--lime-green)] shrink-0" />
                   {item}
                 </li>
               ))}
@@ -52,13 +52,13 @@ export function CRMBlock() {
           </div>
 
           {/* Compatible CRMs */}
-          <div className="p-6 rounded-2xl border border-white/10 bg-white/5 space-y-4">
-            <h3 className="font-bold text-lg">CRMs compatibles</h3>
+          <div className="p-6 rounded-2xl border border-foreground/10 bg-foreground/5 space-y-4">
+            <h3 className="font-bold text-lg text-foreground">CRMs compatibles</h3>
             <div className="space-y-3">
               {crms.map((crm) => (
                 <div key={crm.name} className="flex items-center gap-3 text-sm">
-                  <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span className="text-white/70">{crm.name}</span>
+                  <Check className="w-4 h-4 text-[var(--lime-green)] shrink-0" />
+                  <span className="text-foreground/70">{crm.name}</span>
                   {crm.note && (
                     <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                       {crm.note}

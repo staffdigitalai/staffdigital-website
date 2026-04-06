@@ -20,15 +20,15 @@ export function SocialProofBlock() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-10">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">{t("title")}</h2>
-          <p className="text-white/50 text-sm">{t("subtitle")}</p>
+          <p className="text-foreground/50 text-sm">{t("subtitle")}</p>
         </div>
 
         <div className="grid sm:grid-cols-3 gap-4">
           {stats.map((s) => (
-            <div key={s.label} className="p-5 rounded-2xl border border-white/10 bg-white/5 text-center space-y-3">
-              <s.icon className="w-8 h-8 text-emerald-400 mx-auto" />
-              <div className="font-bold text-white text-sm">{s.label}</div>
-              <div className="text-xs text-white/40">{s.sublabel}</div>
+            <div key={s.label} className="p-5 rounded-2xl border border-foreground/10 bg-foreground/5 text-center space-y-3">
+              <s.icon className="w-8 h-8 text-[var(--neon-blue)] mx-auto" />
+              <div className="font-bold text-foreground text-sm">{s.label}</div>
+              <div className="text-xs text-foreground/40">{s.sublabel}</div>
             </div>
           ))}
         </div>

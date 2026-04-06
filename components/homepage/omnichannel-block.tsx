@@ -26,7 +26,7 @@ export function OmnichannelBlock() {
               {t("title_2")}
             </span>
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto">
+          <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
             {t("subtitle")}
           </p>
         </div>
@@ -35,12 +35,12 @@ export function OmnichannelBlock() {
           {channels.map((ch) => (
             <div
               key={ch.name}
-              className="p-5 rounded-2xl border border-white/10 bg-white/5 text-center space-y-3 hover:bg-white/10 transition-colors"
+              className="p-5 rounded-2xl border border-foreground/10 bg-foreground/5 text-center space-y-3 hover:bg-foreground/10 transition-colors"
             >
-              <ch.icon className="w-8 h-8 text-white/80 mx-auto" />
-              <h3 className="font-bold text-sm">{ch.name}</h3>
-              <p className="text-xs text-white/50">{ch.line1}</p>
-              <p className="text-xs text-white/40">{ch.line2}</p>
+              <ch.icon className="w-8 h-8 text-foreground/80 mx-auto" />
+              <h3 className="font-bold text-sm text-foreground">{ch.name}</h3>
+              <p className="text-xs text-foreground/50">{ch.line1}</p>
+              <p className="text-xs text-foreground/40">{ch.line2}</p>
             </div>
           ))}
         </div>
@@ -52,11 +52,11 @@ export function OmnichannelBlock() {
             width={1200}
             height={686}
             loading="lazy"
-            className="rounded-2xl border border-white/10 opacity-80"
+            className="rounded-2xl border border-foreground/10 opacity-80"
           />
         </div>
 
-        <p className="text-center text-white/50 mt-6 text-sm italic">
+        <p className="text-center text-foreground/50 mt-6 text-sm italic">
           {t("context_note")}
         </p>
       </div>

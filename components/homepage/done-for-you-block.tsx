@@ -26,7 +26,7 @@ export function DoneForYouBlock() {
               {t("title_2")}
             </span>
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto">
+          <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
             {t("subtitle")}
           </p>
         </div>
@@ -34,11 +34,11 @@ export function DoneForYouBlock() {
         {/* Stack cards — show what powers the platform */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
           {stackItems.map((item) => (
-            <div key={item.label} className="p-4 rounded-xl border border-white/10 bg-white/5 text-center space-y-2 hover:bg-white/10 transition-colors">
-              <item.icon className="w-6 h-6 text-white/60 mx-auto" />
-              <div className="text-xs text-emerald-400 font-medium">{item.category}</div>
-              <div className="font-bold text-sm text-white">{item.label}</div>
-              <p className="text-xs text-white/40">{item.description}</p>
+            <div key={item.label} className="p-4 rounded-xl border border-foreground/10 bg-foreground/5 text-center space-y-2 hover:bg-foreground/10 transition-colors">
+              <item.icon className="w-6 h-6 text-foreground/60 mx-auto" />
+              <div className="text-xs text-[var(--neon-blue)] font-medium">{item.category}</div>
+              <div className="font-bold text-sm text-foreground">{item.label}</div>
+              <p className="text-xs text-foreground/40">{item.description}</p>
             </div>
           ))}
         </div>
@@ -48,12 +48,12 @@ export function DoneForYouBlock() {
           {weDoItems.map((item, i) => (
             <div
               key={i}
-              className="flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors"
+              className="flex items-center gap-3 p-4 rounded-xl border border-foreground/10 bg-foreground/5 hover:bg-foreground/10 transition-colors"
             >
-              <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
-                <Check className="w-4 h-4 text-emerald-400" />
+              <div className="w-6 h-6 rounded-full bg-[var(--lime-green)]/20 flex items-center justify-center shrink-0">
+                <Check className="w-4 h-4 text-[var(--lime-green)]" />
               </div>
-              <span className="text-white/80 text-sm font-medium">{item}</span>
+              <span className="text-foreground/80 text-sm font-medium">{item}</span>
             </div>
           ))}
         </div>
@@ -65,7 +65,7 @@ export function DoneForYouBlock() {
             width={1200}
             height={686}
             loading="lazy"
-            className="rounded-2xl border border-white/10"
+            className="rounded-2xl border border-foreground/10"
           />
         </div>
       </div>

@@ -18,17 +18,17 @@ export function FinalCTABlock() {
           </span>
           {" "}{t("title_3")}
         </h2>
-        <p className="text-lg text-white/60 max-w-xl mx-auto">
+        <p className="text-lg text-foreground/60 max-w-xl mx-auto">
           {t("subtitle")}
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button asChild size="lg" className="bg-white text-black rounded-full px-8 py-4 text-lg font-medium hover:bg-gray-50 hover:scale-105 transition-all group">
+          <Button asChild size="lg" className="bg-[var(--neon-blue)] text-black rounded-full px-8 py-4 text-lg font-medium hover:scale-105 transition-all group animate-neon-pulse">
             <Link href="/demo">
               {t("demo")}
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>
-          <Button asChild variant="outline" size="lg" className="rounded-full px-8 py-4 text-lg border-white/20 hover:bg-white/10">
+          <Button asChild variant="outline" size="lg" className="rounded-full px-8 py-4 text-lg border-foreground/20 hover:bg-foreground/10 text-foreground">
             <Link href="/contacto">
               {t("contact")}
             </Link>

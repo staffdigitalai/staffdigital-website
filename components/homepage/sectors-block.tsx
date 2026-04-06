@@ -34,7 +34,7 @@ export function SectorsBlock() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             {t("title")}
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto">
+          <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
             {t("subtitle")}
           </p>
         </div>
@@ -44,7 +44,7 @@ export function SectorsBlock() {
             <Link
               key={s.href}
               href={s.href}
-              className="group rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all hover:scale-[1.02] overflow-hidden"
+              className="group rounded-2xl border border-foreground/10 bg-foreground/5 hover:bg-foreground/10 hover:border-foreground/20 transition-all hover:scale-[1.02] overflow-hidden"
             >
               <div className="relative w-full h-28">
                 <Image
@@ -57,8 +57,8 @@ export function SectorsBlock() {
                 />
               </div>
               <div className="p-4 space-y-1">
-                <h3 className="font-bold text-white">{s.name}</h3>
-                <p className="text-sm text-white/50">{s.useCase}</p>
+                <h3 className="font-bold text-foreground">{s.name}</h3>
+                <p className="text-sm text-foreground/50">{s.useCase}</p>
               </div>
             </Link>
           ))}
@@ -67,7 +67,7 @@ export function SectorsBlock() {
         <div className="text-center mt-8">
           <Link
             href="/sectores"
-            className="inline-flex items-center gap-1 text-sm text-white/50 hover:text-white/80 underline underline-offset-4 transition-colors"
+            className="inline-flex items-center gap-1 text-sm text-foreground/50 hover:text-foreground/80 underline underline-offset-4 transition-colors"
           >
             {t("view_all")} <ArrowRight className="w-3 h-3" />
           </Link>

@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { useTranslations } from "next-intl"
 
 // ============================================
 // ANIMATED DEMO COMPONENTS
@@ -306,43 +307,13 @@ const AnimatedIntegrationsDemo = ({ isActive }: { isActive: boolean }) => {
 // FEATURES DATA
 // ============================================
 
-const features = [
-  { 
-    title: "24/7 AI Chat Support", 
-    description: "Intelligent chatbots that handle customer inquiries, answer questions, and capture leads across your website and social channels.", 
-    demo: AnimatedChatDemo, 
-    size: "large" 
-  },
-  { 
-    title: "AI Phone Receptionist", 
-    description: "Professional AI voice assistant that answers calls, takes messages, and books appointments when you're busy or closed.", 
-    demo: AnimatedPhoneDemo, 
-    size: "medium" 
-  },
-  { 
-    title: "Smart Appointment Booking", 
-    description: "Automated scheduling system that checks availability, books appointments, and sends confirmations without human intervention.", 
-    demo: AnimatedCalendarDemo, 
-    size: "medium" 
-  },
-  { 
-    title: "Email Response Automation", 
-    description: "AI-powered email assistant that responds to inquiries, provides information, and forwards complex queries to your team.", 
-    demo: AnimatedEmailDemo, 
-    size: "large" 
-  },
-  { 
-    title: "Lead Qualification & Handoff", 
-    description: "Intelligent system that qualifies prospects, gathers key information, and seamlessly hands off hot leads to your sales team.", 
-    demo: AnimatedLeadsDemo, 
-    size: "medium" 
-  },
-  { 
-    title: "Multi-Platform Integration", 
-    description: "Connect with your existing tools including CRM, calendar, WhatsApp, SMS, and more for a unified customer experience.", 
-    demo: AnimatedIntegrationsDemo, 
-    size: "medium" 
-  },
+const featuresConfig = [
+  { key: "chat", demo: AnimatedChatDemo, size: "large" },
+  { key: "phone", demo: AnimatedPhoneDemo, size: "medium" },
+  { key: "calendar", demo: AnimatedCalendarDemo, size: "medium" },
+  { key: "email", demo: AnimatedEmailDemo, size: "large" },
+  { key: "leads", demo: AnimatedLeadsDemo, size: "medium" },
+  { key: "integrations", demo: AnimatedIntegrationsDemo, size: "medium" },
 ]
 
 // ============================================
@@ -350,6 +321,7 @@ const features = [
 // ============================================
 
 export function AIWorking247Block() {
+  const t = useTranslations("ai_working_247")
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const [activeDemo, setActiveDemo] = useState<number | null>(null)
@@ -401,24 +373,24 @@ export function AIWorking247Block() {
           {/* Header */}
           <div className={`text-center mb-12 sm:mb-20 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-sm font-medium mb-6">
-              AI Working 24/7 - Never Miss a Lead
+              {t("badge")}
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 text-balance mb-4 sm:mb-6">
-              Your AI Team{" "}
+              {t("title_1")}{" "}
               <span className="bg-gradient-to-r from-slate-600 to-slate-400 bg-clip-text text-transparent">
-                Never Sleeps
+                {t("title_2")}
               </span>
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto font-light leading-relaxed">
-              Watch our AI handle real customer interactions around the clock, automatically qualifying leads and booking appointments while you focus on growing your business.
+              {t("subtitle")}
             </p>
           </div>
           
           {/* Feature Cards Grid */}
           <div className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
-            {features.map((feature, index) => (
+            {featuresConfig.map((feature, index) => (
               <div 
-                key={index} 
+                key={feature.key} 
                 className={`group transition-all duration-1000 ${feature.size === "large" ? "md:col-span-2" : ""}`} 
                 style={{ transitionDelay: isVisible ? `${300 + index * 100}ms` : "0ms" }} 
                 onMouseEnter={() => setActiveDemo(index)} 
@@ -429,10 +401,10 @@ export function AIWorking247Block() {
                     <feature.demo isActive={activeDemo === index || isVisible} />
                   </div>
                   <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-4 group-hover:text-slate-700 transition-colors duration-300">
-                    {feature.title}
+                    {t(`features.${feature.key}.title`)}
                   </h3>
                   <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                    {feature.description}
+                    {t(`features.${feature.key}.description`)}
                   </p>
                 </div>
               </div>

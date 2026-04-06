@@ -36,16 +36,16 @@ export default function HomePage() {
             <HeroBlock />
           </div>
 
-          {/* Bloco 2 — Nós Fazemos Tudo */}
+          {/* Bloco 2 — AI Working 24/7 Features */}
+          <AIWorking247Block />
+
+          {/* Bloco 3 — Nós Fazemos Tudo */}
           <DoneForYouBlock />
 
-          {/* Bloco 3 — Serviços */}
+          {/* Bloco 4 — Serviços */}
           <div id="soluciones">
             <ServicesBlock />
           </div>
-
-          {/* Bloco 4 — AI Working 24/7 Features */}
-          <AIWorking247Block />
 
           {/* Bloco 5 — Omnichannel */}
           <OmnichannelBlock />

@@ -27,6 +27,16 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/sectores/almacenes',
+        destination: '/sectores/logistica',
+        permanent: true,
+      },
+      {
+        source: '/sectores/dentistas',
+        destination: '/sectores/clinicas',
+        permanent: true,
+      },
+      {
         source: '/car-dealerships',
         destination: '/sectores/concesionarios',
         permanent: true,

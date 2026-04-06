@@ -6,11 +6,8 @@ interface Props {
   params: Promise<{ locale: string; slug: string }>
 }
 
-const STATIC_SECTOR_SLUGS = [
-  "clinicas", "dentistas", "peluquerias", "restaurantes",
-  "concesionarios", "retail", "oficinas", "almacenes",
-  "servicios-tecnicos", "educacion", "gimnasios", "inmobiliarias",
-]
+// All sectors are now served dynamically from WordPress
+const STATIC_SECTOR_SLUGS: string[] = []
 
 export const revalidate = 300
 export const dynamicParams = true

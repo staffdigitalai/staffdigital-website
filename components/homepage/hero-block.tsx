@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Phone, Check, Headphones } from "lucide-react"
 import { useFormModals } from "@/components/contact-form-modals"
@@ -93,21 +92,6 @@ export function HeroBlock() {
           ))}
         </div>
 
-        {/* Hero visual with neon border glow */}
-        <div className="max-w-3xl mx-auto animate-fade-in-buttons">
-          <div className="relative rounded-2xl overflow-hidden">
-            {/* Gradient border effect */}
-            <div className="absolute -inset-[1px] bg-gradient-to-r from-[var(--neon-blue)]/30 via-[var(--purple-dark)]/30 to-[var(--neon-blue)]/30 rounded-2xl" />
-            <Image
-              src="/images/homepage/hero-dashboard.jpg"
-              alt="Plataforma omnicanal StaffDigital AI: bandeja unificada con WhatsApp, llamadas, chat web y CRM integrado"
-              width={1200}
-              height={686}
-              priority
-              className="relative rounded-2xl shadow-2xl"
-            />
-          </div>
-        </div>
       </div>
     </section>
   )

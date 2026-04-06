@@ -22,6 +22,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/sectores/peluquerias',
+        destination: '/sectores/centros-belleza',
+        permanent: true,
+      },
+      {
         source: '/car-dealerships',
         destination: '/sectores/concesionarios',
         permanent: true,

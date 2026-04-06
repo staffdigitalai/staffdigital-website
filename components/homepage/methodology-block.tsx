@@ -48,20 +48,20 @@ export function MethodologyBlock() {
               {t("title_2")}
             </span>
           </h2>
-          <p className="text-lg text-white/60 max-w-xl mx-auto">
+          <p className="text-lg text-foreground/60 max-w-xl mx-auto">
             {t("subtitle")}
           </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {steps.map((s) => (
-            <div key={s.num} className="p-5 rounded-2xl border border-white/10 bg-white/5 space-y-3 hover:bg-white/10 transition-colors">
+            <div key={s.num} className="p-5 rounded-2xl border border-foreground/10 bg-foreground/5 space-y-3 hover:bg-foreground/10 transition-colors">
               <div className="flex items-center gap-3">
-                <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/70 text-sm font-bold">{s.num}</span>
-                <s.icon className="w-5 h-5 text-white/50" />
+                <span className="w-8 h-8 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/70 text-sm font-bold">{s.num}</span>
+                <s.icon className="w-5 h-5 text-foreground/50" />
               </div>
-              <h3 className="font-bold text-white">{s.title}</h3>
-              <p className="text-sm text-white/50">{s.description}</p>
+              <h3 className="font-bold text-foreground">{s.title}</h3>
+              <p className="text-sm text-foreground/50">{s.description}</p>
             </div>
           ))}
         </div>
@@ -73,7 +73,7 @@ export function MethodologyBlock() {
             width={1200}
             height={686}
             loading="lazy"
-            className="rounded-2xl border border-white/10 opacity-70"
+            className="rounded-2xl border border-foreground/10 opacity-70"
           />
         </div>
 

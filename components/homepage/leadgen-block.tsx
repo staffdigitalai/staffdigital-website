@@ -24,7 +24,7 @@ export function LeadGenBlock() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             LeadGen IA — Captura clientes automáticamente
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto">
+          <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
             ROI visible en días. Alimenta tu pipeline de ventas sin esfuerzo.
           </p>
         </div>
@@ -36,8 +36,8 @@ export function LeadGenBlock() {
                 <span className="w-7 h-7 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-400 text-sm font-bold">{s.step}</span>
                 <s.icon className="w-5 h-5 text-orange-400/60" />
               </div>
-              <h3 className="font-bold text-sm text-white">{s.title}</h3>
-              <p className="text-xs text-white/50">{s.description}</p>
+              <h3 className="font-bold text-sm text-foreground">{s.title}</h3>
+              <p className="text-xs text-foreground/50">{s.description}</p>
             </div>
           ))}
         </div>

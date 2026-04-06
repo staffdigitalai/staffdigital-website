@@ -7,6 +7,7 @@ import { usePathname as useNextPathname } from "next/navigation"
 import { useRouter as useIntlRouter, usePathname as useIntlPathname } from "@/i18n/routing"
 import { useLocale, useTranslations } from "next-intl"
 import { StaffDigitalLogo } from "@/components/staffdigital-logo"
+import { ThemeSwitcher } from "@/components/theme-switcher"
 
 const services = [
   { name: "Agentes IA con Voz Humana", href: "/soluciones/agentes-ia-voz-humana", icon: MessageSquare, description: "Voces indistinguibles de personas reales", featured: true },
@@ -446,8 +447,11 @@ export function GlassmorphismNav() {
                 })}
               </div>
 
-              {/* Right side: Language + CTA */}
+              {/* Right side: Theme + Language + CTA */}
               <div className="hidden md:flex items-center gap-2 flex-shrink-0">
+                {/* Theme Switcher */}
+                <ThemeSwitcher />
+                
                 {/* Language Selector */}
                 <div
                   className="relative"
@@ -698,6 +702,13 @@ export function GlassmorphismNav() {
                   )
                 })}
 
+                {/* Mobile Theme Switcher */}
+                <div className="h-px bg-white/10 my-1" />
+                <div className="flex items-center justify-between px-3 py-2">
+                  <span className="text-sm text-foreground/60">Theme</span>
+                  <ThemeSwitcher variant="minimal" />
+                </div>
+                
                 {/* Mobile Language Selector */}
                 <div className="h-px bg-white/10 my-1" />
                 <button

@@ -2,7 +2,21 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ============================================
+   STAFFDIGITAL PREMIUM DESIGN SYSTEM
+   Neon Palette + Light/Dark Theme Support
+   ============================================ */
+
 :root {
+  /* === Neon Palette === */
+  --neon-blue: #00D4FF;
+  --neon-blue-rgb: 0, 212, 255;
+  --purple-dark: #8B5CF6;
+  --purple-dark-rgb: 139, 92, 246;
+  --lime-green: #BFFF00;
+  --lime-green-rgb: 191, 255, 0;
+  
+  /* === Dark Theme (Default) === */
   --background: oklch(0.05 0 0);
   --foreground: oklch(0.98 0 0);
   --card: oklch(0.08 0 0);
@@ -36,8 +50,58 @@
   --sidebar-accent-foreground: oklch(0.98 0 0);
   --sidebar-border: oklch(0.2 0 0);
   --sidebar-ring: oklch(0.7 0.15 142);
+  
+  /* === Neon Glow Effects (Dark) === */
+  --glow-neon-blue: 0 0 20px rgba(var(--neon-blue-rgb), 0.5), 0 0 40px rgba(var(--neon-blue-rgb), 0.3);
+  --glow-purple: 0 0 20px rgba(var(--purple-dark-rgb), 0.5), 0 0 40px rgba(var(--purple-dark-rgb), 0.3);
+  --glow-lime: 0 0 20px rgba(var(--lime-green-rgb), 0.5), 0 0 40px rgba(var(--lime-green-rgb), 0.3);
 }
 
+/* === Light Theme === */
+.light {
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.1 0 0);
+  --card: oklch(0.96 0 0);
+  --card-foreground: oklch(0.1 0 0);
+  --popover: oklch(0.98 0 0);
+  --popover-foreground: oklch(0.1 0 0);
+  --primary: oklch(0.55 0.15 142);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.92 0 0);
+  --secondary-foreground: oklch(0.1 0 0);
+  --muted: oklch(0.92 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  --accent: oklch(0.92 0 0);
+  --accent-foreground: oklch(0.1 0 0);
+  --destructive: oklch(0.5 0.2 27);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.88 0 0);
+  --input: oklch(0.92 0 0);
+  --ring: oklch(0.55 0.15 142);
+  --sidebar: oklch(0.96 0 0);
+  --sidebar-foreground: oklch(0.1 0 0);
+  --sidebar-primary: oklch(0.55 0.15 142);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.92 0 0);
+  --sidebar-accent-foreground: oklch(0.1 0 0);
+  --sidebar-border: oklch(0.88 0 0);
+  --sidebar-ring: oklch(0.55 0.15 142);
+  
+  /* === Neon Palette (Light - slightly adjusted for contrast) === */
+  --neon-blue: #0099CC;
+  --neon-blue-rgb: 0, 153, 204;
+  --purple-dark: #7C3AED;
+  --purple-dark-rgb: 124, 58, 237;
+  --lime-green: #84CC16;
+  --lime-green-rgb: 132, 204, 22;
+  
+  /* === Neon Glow Effects (Light - subtle) === */
+  --glow-neon-blue: 0 0 15px rgba(var(--neon-blue-rgb), 0.3), 0 0 30px rgba(var(--neon-blue-rgb), 0.15);
+  --glow-purple: 0 0 15px rgba(var(--purple-dark-rgb), 0.3), 0 0 30px rgba(var(--purple-dark-rgb), 0.15);
+  --glow-lime: 0 0 15px rgba(var(--lime-green-rgb), 0.3), 0 0 30px rgba(var(--lime-green-rgb), 0.15);
+}
+
+/* === Dark Theme (Explicit) === */
 .dark {
   --background: oklch(0.05 0 0);
   --foreground: oklch(0.98 0 0);
@@ -71,6 +135,19 @@
   --sidebar-accent-foreground: oklch(0.98 0 0);
   --sidebar-border: oklch(0.2 0 0);
   --sidebar-ring: oklch(0.7 0.15 142);
+  
+  /* === Neon Palette (Dark) === */
+  --neon-blue: #00D4FF;
+  --neon-blue-rgb: 0, 212, 255;
+  --purple-dark: #8B5CF6;
+  --purple-dark-rgb: 139, 92, 246;
+  --lime-green: #BFFF00;
+  --lime-green-rgb: 191, 255, 0;
+  
+  /* === Neon Glow Effects (Dark) === */
+  --glow-neon-blue: 0 0 20px rgba(var(--neon-blue-rgb), 0.5), 0 0 40px rgba(var(--neon-blue-rgb), 0.3);
+  --glow-purple: 0 0 20px rgba(var(--purple-dark-rgb), 0.5), 0 0 40px rgba(var(--purple-dark-rgb), 0.3);
+  --glow-lime: 0 0 20px rgba(var(--lime-green-rgb), 0.5), 0 0 40px rgba(var(--lime-green-rgb), 0.3);
 }
 
 @theme inline {
@@ -910,4 +987,129 @@
   box-shadow: 0 0 20px 8px rgba(27, 130, 242, 0.3) !important;
   transform: scale(1.08) !important;
   transition: all 0.3s ease !important;
+}
+
+/* ============================================
+   NEON PREMIUM ANIMATIONS
+   ============================================ */
+
+/* Gradient shift animation for hero text */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* Border glow animation for badges */
+@keyframes border-glow {
+  0%, 100% {
+    border-color: rgba(var(--neon-blue-rgb), 0.5);
+    box-shadow: 0 0 10px rgba(var(--neon-blue-rgb), 0.3);
+  }
+  50% {
+    border-color: rgba(var(--purple-dark-rgb), 0.5);
+    box-shadow: 0 0 20px rgba(var(--purple-dark-rgb), 0.4);
+  }
+}
+
+.animate-border-glow {
+  animation: border-glow 3s ease-in-out infinite;
+}
+
+/* Floating orb animation for background effects */
+@keyframes float-orb {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.4;
+  }
+  25% {
+    transform: translate(10px, -20px) scale(1.05);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-5px, -40px) scale(1);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translate(-15px, -20px) scale(0.95);
+    opacity: 0.7;
+  }
+}
+
+.animate-float-orb {
+  animation: float-orb 8s ease-in-out infinite;
+}
+
+.animate-float-orb-delayed {
+  animation: float-orb 10s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.animate-float-orb-slow {
+  animation: float-orb 12s ease-in-out infinite;
+  animation-delay: 4s;
+}
+
+/* Neon pulse for CTA buttons */
+@keyframes neon-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(var(--neon-blue-rgb), 0.5),
+                0 0 10px rgba(var(--neon-blue-rgb), 0.3),
+                0 0 15px rgba(var(--neon-blue-rgb), 0.2);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(var(--neon-blue-rgb), 0.7),
+                0 0 20px rgba(var(--neon-blue-rgb), 0.5),
+                0 0 30px rgba(var(--neon-blue-rgb), 0.3);
+  }
+}
+
+.animate-neon-pulse {
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+
+/* Text shimmer effect */
+@keyframes text-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-text-shimmer {
+  background-size: 200% auto;
+  animation: text-shimmer 3s linear infinite;
+}
+
+/* Theme transition for smooth light/dark switching */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.light body {
+  @apply bg-background text-foreground;
+}
+
+/* Grid pattern for background */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(rgba(var(--neon-blue-rgb), 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--neon-blue-rgb), 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.light .bg-grid-pattern {
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
 }

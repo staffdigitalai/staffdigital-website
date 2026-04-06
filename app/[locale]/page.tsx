@@ -16,6 +16,7 @@ import { ComparisonBlock } from "@/components/homepage/comparison-block"
 import { SocialProofBlock } from "@/components/homepage/social-proof-block"
 import { FAQBlock } from "@/components/homepage/faq-block"
 import { OmnicanalShowcaseBlock } from "@/components/homepage/omnicanal-showcase-block"
+import { AIWorking247Block } from "@/components/homepage/ai-working-247-block"
 import { FinalCTABlock } from "@/components/homepage/final-cta-block"
 
 export default function HomePage() {
@@ -74,6 +75,9 @@ export default function HomePage() {
 
           {/* Bloco 12 — Omnicanal Showcase (IA 24/7) */}
           <OmnicanalShowcaseBlock />
+
+          {/* Bloco 13 — AI Working 24/7 Channels */}
+          <AIWorking247Block />
 
           {/* CTA Final */}
           <FinalCTABlock />

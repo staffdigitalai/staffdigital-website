@@ -19,9 +19,9 @@
   "hero": {
     "badge_voice": "Voz Humana HD",
     "badge_platform": "Plataforma Omnicanal Gerida",
-    "h1_line1": "Atendimento automático em",
-    "h1_line2": "WhatsApp, telefone e chat web com IA",
-    "reinforcement": "Agentes IA que ouvem, respondem e atuam no seu CRM. Nós implementamos, integramos e gerimos tudo.",
+    "h1_line1": "Omnicanal com",
+    "h1_line2": "Orquestração IA",
+    "reinforcement": "Não vendemos software. Criamos agentes IA especializados para Atendimento ao Cliente.",
     "rotate_prefix": "IA para",
     "rotate_words": ["call center", "WhatsApp Business", "marcações", "pré-venda", "pós-venda"],
     "cta_primary": "Solicitar implementação",

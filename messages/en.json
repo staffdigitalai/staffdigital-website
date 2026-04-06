@@ -19,9 +19,9 @@
   "hero": {
     "badge_voice": "Human Voice HD",
     "badge_platform": "Managed Omnichannel Platform",
-    "h1_line1": "Automated customer service on",
-    "h1_line2": "WhatsApp, phone and web chat with AI",
-    "reinforcement": "AI agents that listen, respond and act in your CRM. We implement, integrate and manage everything.",
+    "h1_line1": "Omnichannel with",
+    "h1_line2": "AI Orchestration",
+    "reinforcement": "We don't sell software. We create specialized AI agents for Customer Service.",
     "rotate_prefix": "AI for",
     "rotate_words": ["call center", "WhatsApp Business", "appointments", "pre-sales", "after-sales"],
     "cta_primary": "Request implementation",

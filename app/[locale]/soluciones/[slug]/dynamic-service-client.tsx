@@ -297,6 +297,47 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
         </section>
       )}
 
+      {/* Technology Partners */}
+      <section className="px-4 py-16">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-center text-white/40 text-sm mb-8">Tecnología que impulsa nuestros agentes</p>
+          <div className="flex flex-wrap items-center justify-center gap-8 opacity-60">
+            {[
+              { src: "/images/partners/openai.svg", alt: "OpenAI" },
+              { src: "/images/partners/anthropic.svg", alt: "Anthropic" },
+              { src: "/images/partners/google-cloud.svg", alt: "Google Cloud" },
+              { src: "/images/partners/twilio.svg", alt: "Twilio" },
+              { src: "/images/partners/salesforce.svg", alt: "Salesforce" },
+              { src: "/images/partners/openclaw.svg", alt: "OpenClaw" },
+            ].map((logo) => (
+              <img
+                key={logo.alt}
+                src={logo.src}
+                alt={logo.alt}
+                className="h-6 sm:h-8 w-auto grayscale brightness-200 hover:grayscale-0 hover:brightness-100 transition-all duration-300"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Client Logos Placeholder */}
+      <section className="px-4 py-16">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-center text-white/40 text-sm mb-8">Empresas que confían en nosotros</p>
+          <div className="flex flex-wrap items-center justify-center gap-10 opacity-40">
+            {["Cliente 1", "Cliente 2", "Cliente 3", "Cliente 4", "Cliente 5"].map((name) => (
+              <div
+                key={name}
+                className="w-24 h-10 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center text-white/30 text-xs"
+              >
+                {name}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Related Services */}
       <section className="px-4 py-20 md:py-32">
         <div className="max-w-6xl mx-auto">

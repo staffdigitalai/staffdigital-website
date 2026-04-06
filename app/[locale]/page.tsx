@@ -1,6 +1,7 @@
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import Aurora from "@/components/Aurora"
 import { Footer } from "@/components/footer"
+import { BackgroundEffects } from "@/components/background-effects"
 
 // Homepage blocks (11 blocos)
 import { HeroBlock } from "@/components/homepage/hero-block"
@@ -18,11 +19,16 @@ import { FinalCTABlock } from "@/components/homepage/final-cta-block"
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-black overflow-hidden">
+    <div className="min-h-screen bg-background overflow-hidden transition-colors duration-300">
       <main className="min-h-screen relative overflow-hidden">
-        <div className="fixed inset-0 w-full h-full">
+        {/* Aurora background */}
+        <div className="fixed inset-0 w-full h-full dark:opacity-100 opacity-30 transition-opacity duration-500">
           <Aurora colorStops={["#475569", "#64748b", "#475569"]} amplitude={1.2} blend={0.6} speed={0.8} />
         </div>
+        
+        {/* Neon background effects (grid + floating orbs) */}
+        <BackgroundEffects intensity="medium" />
+        
         <div className="relative z-10">
           <GlassmorphismNav />
 

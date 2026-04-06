@@ -61,13 +61,23 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
   const subtitle = sector.acf?.subtitulo || ""
   const excerpt = stripHtml(sector.excerpt.rendered)
   const MainIcon = iconMap[sector.acf?.icono || "Building2"] || Building2
-  const problemas = sector.acf?.problemas_sector || []
-  const soluciones = sector.acf?.soluciones || []
-  const metricas = sector.acf?.metricas || []
+  const problemas = Array.isArray(sector.acf?.problemas_sector) ? sector.acf.problemas_sector : []
+  const soluciones = Array.isArray(sector.acf?.soluciones) ? sector.acf.soluciones : []
+
+  // Metricas can be string or array — handle both
+  const rawMetricas = sector.acf?.metricas
+  const metricas: Array<{valor: string; etiqueta: string}> = Array.isArray(rawMetricas)
+    ? rawMetricas
+    : typeof rawMetricas === "string" && rawMetricas.length > 0
+      ? rawMetricas.split("|").map((m: string) => {
+          const parts = m.trim().split(" ")
+          return { valor: parts[0] || "", etiqueta: parts.slice(1).join(" ") || "" }
+        })
+      : []
 
   // Get first metric value for animated counter
-  const firstMetricNum = metricas[0]?.valor 
-    ? parseInt(metricas[0].valor.replace(/[^0-9]/g, ''), 10) || 0 
+  const firstMetricNum = metricas[0]?.valor
+    ? parseInt(metricas[0].valor.replace(/[^0-9]/g, ''), 10) || 0
     : 0
 
   useEffect(() => {
@@ -158,16 +168,19 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
               onClick={openContactForm}
               className="bg-white text-black rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-gray-50 hover:scale-105 hover:shadow-lg group cursor-pointer w-full sm:w-auto"
             >
-              Pide tu Demo
+              Solicitar implementación
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              onClick={openBudgetForm}
+              asChild
               className="bg-transparent text-white border-2 border-white/30 rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-white/10 hover:border-white/50 hover:scale-105 cursor-pointer backdrop-blur-sm w-full sm:w-auto"
             >
-              Pedir Presupuesto
+              <a href="tel:+34931229129">
+                <Phone className="mr-2 h-5 w-5" />
+                Escucha la voz IA
+              </a>
             </Button>
           </div>
         </div>
@@ -298,6 +311,47 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
         </section>
       )}
 
+      {/* Technology Partners */}
+      <section className="px-4 py-16">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-center text-white/40 text-sm mb-8">Tecnología que impulsa nuestros agentes</p>
+          <div className="flex flex-wrap items-center justify-center gap-8 opacity-60">
+            {[
+              { src: "/images/partners/openai.svg", alt: "OpenAI" },
+              { src: "/images/partners/anthropic.svg", alt: "Anthropic" },
+              { src: "/images/partners/google-cloud.svg", alt: "Google Cloud" },
+              { src: "/images/partners/twilio.svg", alt: "Twilio" },
+              { src: "/images/partners/salesforce.svg", alt: "Salesforce" },
+              { src: "/images/partners/openclaw.svg", alt: "OpenClaw" },
+            ].map((logo) => (
+              <img
+                key={logo.alt}
+                src={logo.src}
+                alt={logo.alt}
+                className="h-6 sm:h-8 w-auto grayscale brightness-200 hover:grayscale-0 hover:brightness-100 transition-all duration-300"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Client Logos Placeholder */}
+      <section className="px-4 py-16">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-center text-white/40 text-sm mb-8">Empresas que confían en nosotros</p>
+          <div className="flex flex-wrap items-center justify-center gap-10 opacity-40">
+            {["Cliente 1", "Cliente 2", "Cliente 3", "Cliente 4", "Cliente 5"].map((name) => (
+              <div
+                key={name}
+                className="w-24 h-10 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center text-white/30 text-xs"
+              >
+                {name}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Related Sectors */}
       <section className="px-4 py-20 md:py-32">
         <div className="max-w-6xl mx-auto">
@@ -306,41 +360,32 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
               Otros Sectores
             </h2>
             <p className="text-white/60">
-              Descubre como ayudamos a otras industrias
+              Descubre cómo ayudamos a otras industrias
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/sectores/clinicas"
-              className="px-6 py-3 rounded-full border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 hover:border-white/20 hover:text-white transition-all"
-            >
-              Clinicas
-            </Link>
-            <Link
-              href="/sectores/restaurantes"
-              className="px-6 py-3 rounded-full border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 hover:border-white/20 hover:text-white transition-all"
-            >
-              Restaurantes
-            </Link>
-            <Link
-              href="/sectores/inmobiliarias"
-              className="px-6 py-3 rounded-full border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 hover:border-white/20 hover:text-white transition-all"
-            >
-              Inmobiliarias
-            </Link>
-            <Link
-              href="/sectores/retail"
-              className="px-6 py-3 rounded-full border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 hover:border-white/20 hover:text-white transition-all"
-            >
-              Retail
-            </Link>
-            <Link
-              href="/sectores/gimnasios"
-              className="px-6 py-3 rounded-full border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 hover:border-white/20 hover:text-white transition-all"
-            >
-              Gimnasios
-            </Link>
+          <div className="flex flex-wrap justify-center gap-3">
+            {[
+              { label: "Concesionarios", href: "/sectores/concesionarios" },
+              { label: "Clínicas", href: "/sectores/clinicas" },
+              { label: "Restaurantes", href: "/sectores/restaurantes" },
+              { label: "Inmobiliarias", href: "/sectores/inmobiliarias" },
+              { label: "E-commerce", href: "/sectores/ecommerce" },
+              { label: "Turismo", href: "/sectores/turismo-hoteleria" },
+              { label: "Educación", href: "/sectores/educacion" },
+              { label: "Servicios Técnicos", href: "/sectores/servicios-tecnicos" },
+            ]
+              .filter((s) => s.href !== `/sectores/${sector.slug}`)
+              .slice(0, 6)
+              .map((s) => (
+                <Link
+                  key={s.href}
+                  href={s.href}
+                  className="px-5 py-2.5 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm hover:bg-white/10 hover:border-white/20 hover:text-white transition-all"
+                >
+                  {s.label}
+                </Link>
+              ))}
           </div>
         </div>
       </section>

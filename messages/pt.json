@@ -164,6 +164,38 @@
     "other_sectors_subtitle": "Descubra como ajudamos outras indústrias",
     "featured": "Solução em Destaque"
   },
+  "ai_working_247": {
+    "badge": "IA a Trabalhar 24/7 — Nunca Perca um Lead",
+    "title_1": "A Sua Equipa IA",
+    "title_2": "Nunca Dorme",
+    "subtitle": "Veja como a nossa IA gere interações reais com clientes 24 horas por dia, qualificando leads automaticamente e agendando marcações enquanto se foca em fazer crescer o seu negócio.",
+    "features": {
+      "chat": {
+        "title": "Suporte Chat IA 24/7",
+        "description": "Chatbots inteligentes que gerem consultas de clientes, respondem a perguntas e capturam leads no seu site e canais sociais."
+      },
+      "phone": {
+        "title": "Rececionista Telefónico IA",
+        "description": "Assistente de voz IA profissional que atende chamadas, regista mensagens e agenda marcações quando está ocupado ou fechado."
+      },
+      "calendar": {
+        "title": "Agendamento Inteligente",
+        "description": "Sistema de agendamento automatizado que verifica disponibilidade, reserva marcações e envia confirmações sem intervenção humana."
+      },
+      "email": {
+        "title": "Automatização de Email",
+        "description": "Assistente de email com IA que responde a consultas, fornece informação e encaminha questões complexas para a sua equipa."
+      },
+      "leads": {
+        "title": "Qualificação e Entrega de Leads",
+        "description": "Sistema inteligente que qualifica potenciais clientes, recolhe informação chave e entrega leads quentes à sua equipa de vendas."
+      },
+      "integrations": {
+        "title": "Integração Multi-Plataforma",
+        "description": "Conecte com as suas ferramentas existentes incluindo CRM, calendário, WhatsApp, SMS e mais para uma experiência unificada."
+      }
+    }
+  },
   "footer": {
     "slogan": "Plataforma omnicanal com agentes IA gerida para empresas.",
     "rights": "Todos os direitos reservados.",

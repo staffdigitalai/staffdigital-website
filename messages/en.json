@@ -164,6 +164,38 @@
     "other_sectors_subtitle": "Discover how we help other industries",
     "featured": "Featured Solution"
   },
+  "ai_working_247": {
+    "badge": "AI Working 24/7 — Never Miss a Lead",
+    "title_1": "Your AI Team",
+    "title_2": "Never Sleeps",
+    "subtitle": "Watch our AI handle real customer interactions around the clock, automatically qualifying leads and booking appointments while you focus on growing your business.",
+    "features": {
+      "chat": {
+        "title": "24/7 AI Chat Support",
+        "description": "Intelligent chatbots that handle customer inquiries, answer questions, and capture leads across your website and social channels."
+      },
+      "phone": {
+        "title": "AI Phone Receptionist",
+        "description": "Professional AI voice assistant that answers calls, takes messages, and books appointments when you're busy or closed."
+      },
+      "calendar": {
+        "title": "Smart Appointment Booking",
+        "description": "Automated scheduling system that checks availability, books appointments, and sends confirmations without human intervention."
+      },
+      "email": {
+        "title": "Email Response Automation",
+        "description": "AI-powered email assistant that responds to inquiries, provides information, and forwards complex queries to your team."
+      },
+      "leads": {
+        "title": "Lead Qualification & Handoff",
+        "description": "Intelligent system that qualifies prospects, gathers key information, and seamlessly hands off hot leads to your sales team."
+      },
+      "integrations": {
+        "title": "Multi-Platform Integration",
+        "description": "Connect with your existing tools including CRM, calendar, WhatsApp, SMS, and more for a unified customer experience."
+      }
+    }
+  },
   "footer": {
     "slogan": "Managed omnichannel platform with AI agents for businesses.",
     "rights": "All rights reserved.",

@@ -9,9 +9,7 @@ import { DoneForYouBlock } from "@/components/homepage/done-for-you-block"
 import { ServicesBlock } from "@/components/homepage/services-block"
 import { OmnichannelBlock } from "@/components/homepage/omnichannel-block"
 import { SectorsBlock } from "@/components/homepage/sectors-block"
-import { LeadGenBlock } from "@/components/homepage/leadgen-block"
 import { CRMBlock } from "@/components/homepage/crm-block"
-import { MethodologyBlock } from "@/components/homepage/methodology-block"
 import { ComparisonBlock } from "@/components/homepage/comparison-block"
 import { SocialProofBlock } from "@/components/homepage/social-proof-block"
 import { FAQBlock } from "@/components/homepage/faq-block"
@@ -46,34 +44,28 @@ export default function HomePage() {
             <ServicesBlock />
           </div>
 
-          {/* Bloco 4 — Omnichannel */}
+          {/* Bloco 4 — AI Working 24/7 Features */}
+          <AIWorking247Block />
+
+          {/* Bloco 5 — Omnichannel */}
           <OmnichannelBlock />
 
-          {/* Bloco 5 — Sectores */}
+          {/* Bloco 6 — Sectores */}
           <div id="sectores">
             <SectorsBlock />
           </div>
 
-          {/* Bloco 6 — LeadGen IA */}
-          <LeadGenBlock />
-
           {/* Bloco 7 — CRM Automation */}
           <CRMBlock />
 
-          {/* Bloco 8 — Metodologia */}
-          <MethodologyBlock />
-
-          {/* Bloco 9 — Comparativo */}
+          {/* Bloco 8 — Comparativo */}
           <ComparisonBlock />
 
-          {/* Bloco 10 — Prova Social */}
+          {/* Bloco 9 — Prova Social */}
           <SocialProofBlock />
 
-          {/* Bloco 11 — FAQ */}
+          {/* Bloco 10 — FAQ */}
           <FAQBlock />
-
-          {/* Bloco 12 — AI Working 24/7 Features */}
-          <AIWorking247Block />
 
           {/* CTA Final */}
           <FinalCTABlock />

@@ -148,6 +148,22 @@
     "demo": "Request free demo",
     "contact": "Contact us"
   },
+  "templates": {
+    "cta_primary": "Request implementation",
+    "cta_secondary": "Hear the AI voice",
+    "benefits_title": "Benefits",
+    "benefits_subtitle": "How this solution can transform your business",
+    "features_title": "Key Features",
+    "problems_title": "Problems we solve",
+    "problems_subtitle": "The daily challenges holding your business back",
+    "tech_partners": "Technology powering our agents",
+    "client_logos": "Companies that trust us",
+    "other_solutions": "Other Solutions",
+    "other_solutions_subtitle": "Discover more ways to transform your business with AI",
+    "other_sectors": "Other Industries",
+    "other_sectors_subtitle": "Discover how we help other industries",
+    "featured": "Featured Solution"
+  },
   "footer": {
     "slogan": "Managed omnichannel platform with AI agents for businesses.",
     "rights": "All rights reserved.",

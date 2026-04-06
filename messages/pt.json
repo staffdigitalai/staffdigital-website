@@ -148,6 +148,22 @@
     "demo": "Solicitar demo gratuita",
     "contact": "Contactar"
   },
+  "templates": {
+    "cta_primary": "Solicitar implementação",
+    "cta_secondary": "Ouvir a voz IA",
+    "benefits_title": "Benefícios",
+    "benefits_subtitle": "Como esta solução pode transformar o seu negócio",
+    "features_title": "Características Principais",
+    "problems_title": "Problemas que resolvemos",
+    "problems_subtitle": "Os desafios diários que travam o seu negócio",
+    "tech_partners": "Tecnologia que impulsiona os nossos agentes",
+    "client_logos": "Empresas que confiam em nós",
+    "other_solutions": "Outras Soluções",
+    "other_solutions_subtitle": "Descubra mais formas de transformar o seu negócio com IA",
+    "other_sectors": "Outros Setores",
+    "other_sectors_subtitle": "Descubra como ajudamos outras indústrias",
+    "featured": "Solução em Destaque"
+  },
   "footer": {
     "slogan": "Plataforma omnicanal com agentes IA gerida para empresas.",
     "rights": "Todos os direitos reservados.",

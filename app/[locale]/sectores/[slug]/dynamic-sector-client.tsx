@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { PageWrapper } from "@/components/page-wrapper"
 import { CTASection } from "@/components/cta-section"
 import { useFormModals } from "@/components/contact-form-modals"
+import { useTranslations } from "next-intl"
 import type { WPSectorPage } from "@/lib/wordpress"
 import { stripHtml } from "@/lib/wordpress"
 
@@ -52,6 +53,7 @@ interface DynamicSectorClientProps {
 
 export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
   const { openContactForm, openBudgetForm } = useFormModals()
+  const t = useTranslations("templates")
   const [counter, setCounter] = useState(0)
   const problemsRef = useRef<HTMLElement>(null)
   const solutionsRef = useRef<HTMLElement>(null)
@@ -138,19 +140,16 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium mb-8 animate-fade-in-badge">
             <span className="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse" />
-            StaffDigital AI para {title}
+            StaffDigital AI · {title.replace(/^Agentes IA para /i, "")}
           </div>
 
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-teal-500/10 border border-emerald-500/20 mb-8 animate-fade-in-badge">
             <MainIcon size={40} className="text-emerald-400" />
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight text-balance mb-4 animate-fade-in-heading">
-            IA para{" "}
-            <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">
-              {title}
-            </span>
-          </h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight text-balance mb-4 animate-fade-in-heading"
+            dangerouslySetInnerHTML={{ __html: title }}
+          />
 
           {subtitle && (
             <p className="text-xl md:text-2xl text-emerald-400/80 font-medium mb-6 animate-fade-in-subheading">
@@ -168,7 +167,7 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
               onClick={openContactForm}
               className="bg-white text-black rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-gray-50 hover:scale-105 hover:shadow-lg group cursor-pointer w-full sm:w-auto"
             >
-              Solicitar implementación
+              {t("cta_primary")}
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
@@ -179,7 +178,7 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
             >
               <a href="tel:+34931229129">
                 <Phone className="mr-2 h-5 w-5" />
-                Escucha la voz IA
+                {t("cta_secondary")}
               </a>
             </Button>
           </div>
@@ -192,13 +191,13 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-balance fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
-                Problemas que resolvemos en{" "}
+                {t("problems_title")} —{" "}
                 <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
                   {title}
                 </span>
               </h2>
               <p className="text-white/60 text-lg max-w-2xl mx-auto fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
-                Los desafios diarios que frenan tu negocio
+                {t("problems_subtitle")}
               </p>
             </div>
 
@@ -314,7 +313,7 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
       {/* Technology Partners */}
       <section className="px-4 py-16">
         <div className="max-w-4xl mx-auto">
-          <p className="text-center text-white/40 text-sm mb-8">Tecnología que impulsa nuestros agentes</p>
+          <p className="text-center text-white/40 text-sm mb-8">{t("tech_partners")}</p>
           <div className="flex flex-wrap items-center justify-center gap-8 opacity-60">
             {[
               { src: "/images/partners/openai.svg", alt: "OpenAI" },
@@ -338,7 +337,7 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
       {/* Client Logos Placeholder */}
       <section className="px-4 py-16">
         <div className="max-w-4xl mx-auto">
-          <p className="text-center text-white/40 text-sm mb-8">Empresas que confían en nosotros</p>
+          <p className="text-center text-white/40 text-sm mb-8">{t("client_logos")}</p>
           <div className="flex flex-wrap items-center justify-center gap-10 opacity-40">
             {["Cliente 1", "Cliente 2", "Cliente 3", "Cliente 4", "Cliente 5"].map((name) => (
               <div
@@ -357,10 +356,10 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              Otros Sectores
+              {t("other_sectors")}
             </h2>
             <p className="text-white/60">
-              Descubre cómo ayudamos a otras industrias
+              {t("other_sectors_subtitle")}
             </p>
           </div>
 

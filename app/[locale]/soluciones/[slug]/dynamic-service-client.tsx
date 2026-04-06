@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { PageWrapper } from "@/components/page-wrapper"
 import { CTASection } from "@/components/cta-section"
 import { useFormModals } from "@/components/contact-form-modals"
+import { useTranslations } from "next-intl"
 import type { WPService } from "@/lib/wordpress"
 import { stripHtml } from "@/lib/wordpress"
 
@@ -51,6 +52,7 @@ interface DynamicServiceClientProps {
 
 export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
   const { openContactForm, openBudgetForm } = useFormModals()
+  const t = useTranslations("templates")
   const benefitsRef = useRef<HTMLElement>(null)
   const featuresRef = useRef<HTMLElement>(null)
   const statsRef = useRef<HTMLElement>(null)
@@ -102,7 +104,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
           {isFeatured && (
             <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-orange-500/20 border border-orange-500/30 text-orange-400 text-sm font-medium mb-6 animate-fade-in-badge">
               <Star size={14} fill="currentColor" />
-              Solución Destacada
+              {t("featured")}
             </div>
           )}
 
@@ -130,7 +132,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
               onClick={openContactForm}
               className="bg-white text-black rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-gray-50 hover:scale-105 hover:shadow-lg group cursor-pointer w-full sm:w-auto"
             >
-              Solicitar implementación
+              {t("cta_primary")}
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
@@ -141,7 +143,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
             >
               <a href="tel:+34931229129">
                 <Phone className="mr-2 h-5 w-5" />
-                Escucha la voz IA
+                {t("cta_secondary")}
               </a>
             </Button>
           </div>
@@ -183,13 +185,13 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-balance fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
-                Beneficios de{" "}
+                {t("benefits_title")} —{" "}
                 <span className="bg-gradient-to-r from-orange-400 via-amber-300 to-orange-400 bg-clip-text text-transparent">
                   {title}
                 </span>
               </h2>
               <p className="text-white/60 text-lg max-w-2xl mx-auto fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
-                Cómo esta solución puede transformar tu negocio
+                {t("benefits_subtitle")}
               </p>
             </div>
 
@@ -226,7 +228,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-balance fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
-                Características Principales
+                {t("features_title")}
               </h2>
             </div>
 
@@ -300,7 +302,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
       {/* Technology Partners */}
       <section className="px-4 py-16">
         <div className="max-w-4xl mx-auto">
-          <p className="text-center text-white/40 text-sm mb-8">Tecnología que impulsa nuestros agentes</p>
+          <p className="text-center text-white/40 text-sm mb-8">{t("tech_partners")}</p>
           <div className="flex flex-wrap items-center justify-center gap-8 opacity-60">
             {[
               { src: "/images/partners/openai.svg", alt: "OpenAI" },
@@ -324,7 +326,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
       {/* Client Logos Placeholder */}
       <section className="px-4 py-16">
         <div className="max-w-4xl mx-auto">
-          <p className="text-center text-white/40 text-sm mb-8">Empresas que confían en nosotros</p>
+          <p className="text-center text-white/40 text-sm mb-8">{t("client_logos")}</p>
           <div className="flex flex-wrap items-center justify-center gap-10 opacity-40">
             {["Cliente 1", "Cliente 2", "Cliente 3", "Cliente 4", "Cliente 5"].map((name) => (
               <div
@@ -343,10 +345,10 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              Otras Soluciones
+              {t("other_solutions")}
             </h2>
             <p className="text-white/60">
-              Descubre más formas de transformar tu negocio con IA
+              {t("other_solutions_subtitle")}
             </p>
           </div>
 

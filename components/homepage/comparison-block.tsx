@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { X, Check } from "lucide-react"
 import { useTranslations } from "next-intl"
 
@@ -16,16 +15,6 @@ export function ComparisonBlock() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
             {t("title")}
           </h2>
-          <div className="max-w-xl mx-auto">
-            <Image
-              src="/images/homepage/comparison.jpg"
-              alt="Comparación entre herramientas SaaS DIY y la plataforma gestionada StaffDigital AI"
-              width={1200}
-              height={686}
-              loading="lazy"
-              className="rounded-2xl border border-foreground/10 opacity-70"
-            />
-          </div>
         </div>
 
         {/* Desktop table */}

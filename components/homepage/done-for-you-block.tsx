@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { Check, MessageSquare, Calendar, Database, Cpu } from "lucide-react"
 import { useTranslations } from "next-intl"
 
@@ -58,16 +57,6 @@ export function DoneForYouBlock() {
           ))}
         </div>
 
-        <div className="max-w-xl mx-auto">
-          <Image
-            src="/images/homepage/done-for-you.jpg"
-            alt="Plataforma gestionada StaffDigital AI: integración de Chatwoot, OpenClaw, Cal.com y Twenty CRM"
-            width={1200}
-            height={686}
-            loading="lazy"
-            className="rounded-2xl border border-foreground/10"
-          />
-        </div>
       </div>
     </section>
   )

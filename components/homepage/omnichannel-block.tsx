@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { MessageSquare, Phone, Globe, Mail, Share2 } from "lucide-react"
 import { useTranslations } from "next-intl"
 
@@ -45,18 +44,7 @@ export function OmnichannelBlock() {
           ))}
         </div>
 
-        <div className="mt-8 max-w-2xl mx-auto">
-          <Image
-            src="/images/homepage/omnichannel.jpg"
-            alt="Bandeja única Chatwoot: WhatsApp, teléfono, chat web, email y redes sociales conectados a agentes IA"
-            width={1200}
-            height={686}
-            loading="lazy"
-            className="rounded-2xl border border-foreground/10 opacity-80"
-          />
-        </div>
-
-        <p className="text-center text-foreground/50 mt-6 text-sm italic">
+        <p className="text-center text-foreground/50 mt-8 text-sm italic">
           {t("context_note")}
         </p>
       </div>

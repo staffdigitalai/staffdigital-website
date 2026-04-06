@@ -33,10 +33,10 @@
     "title_2": "totalmente gestionada",
     "subtitle": "Integramos canales, CRM, agenda y agentes IA en una sola plataforma. Tú solo recibes los resultados.",
     "stack": [
-      {"category": "Canales", "label": "Chatwoot CE", "description": "Bandeja omnicanal unificada"},
-      {"category": "IA", "label": "OpenClaw", "description": "Orquestación de agentes autónomos"},
-      {"category": "Citas", "label": "Cal.com", "description": "Agendamiento automático"},
-      {"category": "Datos", "label": "Twenty CRM", "description": "CRM open source integrado"}
+      {"category": "Canales", "label": "Bandeja Omnicanal", "description": "Bandeja omnicanal unificada"},
+      {"category": "IA", "label": "Agentes IA Autónomos", "description": "Orquestación de agentes autónomos"},
+      {"category": "Citas", "label": "Gestión de Agenda", "description": "Agendamiento automático"},
+      {"category": "Datos", "label": "CRM Integrado", "description": "CRM inteligente integrado"}
     ],
     "items": [
       "Configuramos los agentes IA para tu negocio",

@@ -33,10 +33,10 @@
     "title_2": "fully managed",
     "subtitle": "We integrate channels, CRM, calendar and AI agents into one platform. You just receive the results.",
     "stack": [
-      {"category": "Channels", "label": "Chatwoot CE", "description": "Unified omnichannel inbox"},
-      {"category": "AI", "label": "OpenClaw", "description": "Autonomous agent orchestration"},
-      {"category": "Booking", "label": "Cal.com", "description": "Automatic scheduling"},
-      {"category": "Data", "label": "Twenty CRM", "description": "Open source CRM integrated"}
+      {"category": "Channels", "label": "Omnichannel Inbox", "description": "Unified omnichannel inbox"},
+      {"category": "AI", "label": "Autonomous AI Agents", "description": "Autonomous agent orchestration"},
+      {"category": "Booking", "label": "Calendar Management", "description": "Automatic scheduling"},
+      {"category": "Data", "label": "Integrated CRM", "description": "Smart CRM integrated"}
     ],
     "items": [
       "We configure AI agents for your business",

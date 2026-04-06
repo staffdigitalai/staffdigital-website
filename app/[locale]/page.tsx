@@ -15,7 +15,6 @@ import { MethodologyBlock } from "@/components/homepage/methodology-block"
 import { ComparisonBlock } from "@/components/homepage/comparison-block"
 import { SocialProofBlock } from "@/components/homepage/social-proof-block"
 import { FAQBlock } from "@/components/homepage/faq-block"
-import { OmnicanalShowcaseBlock } from "@/components/homepage/omnicanal-showcase-block"
 import { AIWorking247Block } from "@/components/homepage/ai-working-247-block"
 import { FinalCTABlock } from "@/components/homepage/final-cta-block"
 
@@ -73,10 +72,7 @@ export default function HomePage() {
           {/* Bloco 11 — FAQ */}
           <FAQBlock />
 
-          {/* Bloco 12 — Omnicanal Showcase (IA 24/7) */}
-          <OmnicanalShowcaseBlock />
-
-          {/* Bloco 13 — AI Working 24/7 Channels */}
+          {/* Bloco 12 — AI Working 24/7 Features */}
           <AIWorking247Block />
 
           {/* CTA Final */}

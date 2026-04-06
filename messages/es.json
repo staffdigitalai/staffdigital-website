@@ -14,7 +14,7 @@
     "demo": "Demo",
     "contact": "Contacto",
     "faq": "FAQ",
-    "cta": "Solicitar implementación"
+    "cta": "Pedir Demo"
   },
   "hero": {
     "badge_voice": "Voz Humana HD",
@@ -24,7 +24,7 @@
     "reinforcement": "Agentes IA para WhatsApp, teléfono y chat web que escuchan, responden y actúan como humanos en tus canales, CRM o página web.",
     "rotate_prefix": "IA para",
     "rotate_words": ["call center", "WhatsApp Business", "agendamientos", "pré-venta", "posventa"],
-    "cta_primary": "Solicitar implementación",
+    "cta_primary": "Pedir Demo",
     "cta_secondary": "Escucha la voz IA",
     "microproofs": ["Bandeja única omnicanal", "Agendamiento automático", "CRM integrado", "Transferencia a humano"]
   },
@@ -149,7 +149,7 @@
     "contact": "Contactar"
   },
   "templates": {
-    "cta_primary": "Solicitar implementación",
+    "cta_primary": "Pedir Demo",
     "cta_secondary": "Escucha la voz IA",
     "benefits_title": "Beneficios",
     "benefits_subtitle": "Cómo esta solución puede transformar tu negocio",

@@ -27,7 +27,7 @@ function LogoIcon({ size = 36, className }: { size?: number; className?: string 
       {/* Outer hexagonal frame */}
       <path
         d="M24 2L43.0526 12.5V33.5L24 44L4.94744 33.5V12.5L24 2Z"
-        stroke="white"
+        stroke="currentColor"
         strokeWidth="1.5"
         strokeLinejoin="round"
         opacity="0.3"
@@ -36,23 +36,23 @@ function LogoIcon({ size = 36, className }: { size?: number; className?: string 
       {/* Inner S-shaped neural pathway */}
       <path
         d="M16 16C16 16 20 13 26 13C32 13 34 16 34 19C34 22 30 24 24 24C18 24 14 26 14 29C14 32 16 35 22 35C28 35 32 32 32 32"
-        stroke="white"
+        stroke="currentColor"
         strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
 
       {/* Neural nodes */}
-      <circle cx="26" cy="13" r="2.5" fill="white" />
-      <circle cx="24" cy="24" r="2.5" fill="white" />
-      <circle cx="22" cy="35" r="2.5" fill="white" />
+      <circle cx="26" cy="13" r="2.5" fill="currentColor" />
+      <circle cx="24" cy="24" r="2.5" fill="currentColor" />
+      <circle cx="22" cy="35" r="2.5" fill="currentColor" />
 
       {/* Connection dots - outer ring */}
-      <circle cx="34" cy="19" r="1.5" fill="white" opacity="0.6" />
-      <circle cx="14" cy="29" r="1.5" fill="white" opacity="0.6" />
+      <circle cx="34" cy="19" r="1.5" fill="currentColor" opacity="0.6" />
+      <circle cx="14" cy="29" r="1.5" fill="currentColor" opacity="0.6" />
 
       {/* Pulse ring on center node */}
-      <circle cx="24" cy="24" r="5" stroke="white" strokeWidth="0.75" opacity="0.2">
+      <circle cx="24" cy="24" r="5" stroke="currentColor" strokeWidth="0.75" opacity="0.2">
         <animate
           attributeName="r"
           values="3;7;3"
@@ -76,8 +76,8 @@ function LogoText({ fontSize = 24, className }: { fontSize?: number; className?:
       className={`font-sans font-extrabold tracking-tight leading-none ${className ?? ""}`}
       style={{ fontSize, letterSpacing: "-0.02em" }}
     >
-      <span className="text-white">Staff</span>
-      <span className="text-white/80">Digital</span>
+      <span className="text-foreground">Staff</span>
+      <span className="text-foreground/80">Digital</span>
       <span
         className="font-black"
         style={{
@@ -105,7 +105,7 @@ export function StaffDigitalLogo({
   }
 
   return (
-    <div className={`flex items-center ${className ?? ""}`} style={{ gap: s.gap }}>
+    <div className={`flex items-center text-foreground ${className ?? ""}`} style={{ gap: s.gap }}>
       <LogoIcon size={s.icon} />
       <LogoText fontSize={s.text} />
     </div>

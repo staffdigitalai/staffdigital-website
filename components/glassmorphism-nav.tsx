@@ -226,7 +226,7 @@ export function GlassmorphismNav() {
         }}
       >
         <div className="w-[92vw] max-w-xs md:max-w-5xl mx-auto">
-          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-3 md:px-5 md:py-2">
+          <div className="bg-foreground/10 backdrop-blur-md border border-foreground/20 rounded-full px-4 py-3 md:px-5 md:py-2">
             <div className="flex items-center justify-between">
               {/* Logo */}
               <Link
@@ -251,8 +251,8 @@ export function GlassmorphismNav() {
                         <button
                           className={`flex items-center gap-1 transition-all duration-200 text-sm font-medium cursor-pointer px-3 py-2 rounded-full ${
                             isActive 
-                              ? "text-white bg-white/10" 
-                              : "text-white/70 hover:text-white hover:bg-white/5"
+                              ? "text-foreground bg-foreground/10" 
+                              : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
                           }`}
                           onClick={() => setIsServicesOpen(!isServicesOpen)}
                         >
@@ -353,8 +353,8 @@ export function GlassmorphismNav() {
                         <button
                           className={`flex items-center gap-1 transition-all duration-200 text-sm font-medium cursor-pointer px-3 py-2 rounded-full ${
                             isActive 
-                              ? "text-white bg-white/10" 
-                              : "text-white/70 hover:text-white hover:bg-white/5"
+                              ? "text-foreground bg-foreground/10" 
+                              : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
                           }`}
                           onClick={() => setIsSectorsOpen(!isSectorsOpen)}
                         >
@@ -422,8 +422,8 @@ export function GlassmorphismNav() {
                         href={item.href}
                         className={`transition-all duration-200 text-sm font-medium cursor-pointer px-3 py-2 rounded-full ${
                           isActive 
-                            ? "text-white bg-white/10" 
-                            : "text-white/70 hover:text-white hover:bg-white/5"
+                            ? "text-foreground bg-foreground/10" 
+                            : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
                         }`}
                       >
                         {item.label}
@@ -437,8 +437,8 @@ export function GlassmorphismNav() {
                       onClick={() => scrollToSection(item.href)}
                       className={`transition-all duration-200 text-sm font-medium cursor-pointer px-3 py-2 rounded-full ${
                         isActive 
-                          ? "text-white bg-white/10" 
-                          : "text-white/70 hover:text-white hover:bg-white/5"
+                          ? "text-foreground bg-foreground/10" 
+                          : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
                       }`}
                     >
                       {item.label}
@@ -459,7 +459,7 @@ export function GlassmorphismNav() {
                   onMouseLeave={handleLangLeave}
                 >
                   <button
-                    className="flex items-center gap-1.5 text-white/60 hover:text-white transition-all duration-200 text-sm cursor-pointer px-2.5 py-2 rounded-full hover:bg-white/5"
+                    className="flex items-center gap-1.5 text-foreground/60 hover:text-foreground transition-all duration-200 text-sm cursor-pointer px-2.5 py-2 rounded-full hover:bg-foreground/5"
                     onClick={() => setIsLangOpen(!isLangOpen)}
                   >
                     <Globe size={14} className="flex-shrink-0" />
@@ -504,7 +504,7 @@ export function GlassmorphismNav() {
 
                 {/* CTA */}
                 <button
-                  className="relative bg-white hover:bg-gray-50 text-black font-medium px-5 py-1.5 rounded-full flex items-center transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer group text-sm"
+                  className="relative bg-[var(--neon-blue)] hover:bg-[var(--neon-blue)]/90 text-black font-medium px-5 py-1.5 rounded-full flex items-center transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer group text-sm"
                   onClick={() => scrollToSection("#contact")}
                 >
                   <span className="mr-1.5">{t("cta")}</span>
@@ -522,7 +522,7 @@ export function GlassmorphismNav() {
                     setIsMobileLangOpen(false)
                   }
                 }}
-                className="md:hidden text-white hover:scale-110 transition-transform duration-200 cursor-pointer"
+                className="md:hidden text-foreground hover:scale-110 transition-transform duration-200 cursor-pointer"
               >
                 <div className="relative w-6 h-6">
                   <Menu
@@ -563,7 +563,7 @@ export function GlassmorphismNav() {
               isOpen ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-8 scale-95 pointer-events-none"
             }`}
           >
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-2xl max-h-[75vh] overflow-y-auto">
+            <div className="bg-foreground/10 backdrop-blur-md border border-foreground/20 rounded-2xl p-4 shadow-2xl max-h-[75vh] overflow-y-auto">
               <div className="flex flex-col space-y-0.5">
                 {navItems.map((item) => {
                   if (item.dropdown === "services") {
@@ -574,8 +574,8 @@ export function GlassmorphismNav() {
                           onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
                           className={`w-full flex items-center justify-between rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer ${
                             isActive 
-                              ? "text-white bg-white/10" 
-                              : "text-white/80 hover:text-white hover:bg-white/10"
+                              ? "text-foreground bg-foreground/10" 
+                              : "text-foreground/80 hover:text-foreground hover:bg-foreground/10"
                           }`}
                         >
                           <span>{item.label}</span>
@@ -597,14 +597,14 @@ export function GlassmorphismNav() {
                                 <Link
                                   key={service.name}
                                   href={service.href}
-                                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/10 transition-all duration-200 group"
+                                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-foreground/10 transition-all duration-200 group"
                                   onClick={() => {
                                     setIsOpen(false)
                                     setIsMobileServicesOpen(false)
                                   }}
                                 >
-                                  <Icon size={16} className="text-white/50 group-hover:text-white/80 transition-colors flex-shrink-0" />
-                                  <span className="text-sm text-white/70 group-hover:text-white transition-colors">
+                                  <Icon size={16} className="text-foreground/50 group-hover:text-foreground/80 transition-colors flex-shrink-0" />
+                                  <span className="text-sm text-foreground/70 group-hover:text-foreground transition-colors">
                                     {service.name}
                                   </span>
                                 </Link>
@@ -624,8 +624,8 @@ export function GlassmorphismNav() {
                           onClick={() => setIsMobileSectorsOpen(!isMobileSectorsOpen)}
                           className={`w-full flex items-center justify-between rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer ${
                             isActive 
-                              ? "text-white bg-white/10" 
-                              : "text-white/80 hover:text-white hover:bg-white/10"
+                              ? "text-foreground bg-foreground/10" 
+                              : "text-foreground/80 hover:text-foreground hover:bg-foreground/10"
                           }`}
                         >
                           <span>{item.label}</span>
@@ -647,14 +647,14 @@ export function GlassmorphismNav() {
                                 <Link
                                   key={sector.name}
                                   href={sector.href}
-                                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/10 transition-all duration-200 group"
+                                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-foreground/10 transition-all duration-200 group"
                                   onClick={() => {
                                     setIsOpen(false)
                                     setIsMobileSectorsOpen(false)
                                   }}
                                 >
-                                  <Icon size={16} className="text-white/50 group-hover:text-white/80 transition-colors flex-shrink-0" />
-                                  <span className="text-sm text-white/70 group-hover:text-white transition-colors">
+                                  <Icon size={16} className="text-foreground/50 group-hover:text-foreground/80 transition-colors flex-shrink-0" />
+                                  <span className="text-sm text-foreground/70 group-hover:text-foreground transition-colors">
                                     {sector.name}
                                   </span>
                                 </Link>
@@ -678,8 +678,8 @@ export function GlassmorphismNav() {
                         onClick={() => setIsOpen(false)}
                         className={`rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer block ${
                           isActive 
-                            ? "text-white bg-white/10" 
-                            : "text-white/80 hover:text-white hover:bg-white/10"
+                            ? "text-foreground bg-foreground/10" 
+                            : "text-foreground/80 hover:text-foreground hover:bg-foreground/10"
                         }`}
                       >
                         {item.label}
@@ -693,8 +693,8 @@ export function GlassmorphismNav() {
                       onClick={() => scrollToSection(item.href)}
                       className={`rounded-lg px-3 py-3 text-left transition-all duration-300 font-medium cursor-pointer ${
                         isActive 
-                          ? "text-white bg-white/10" 
-                          : "text-white/80 hover:text-white hover:bg-white/10"
+                          ? "text-foreground bg-foreground/10" 
+                          : "text-foreground/80 hover:text-foreground hover:bg-foreground/10"
                       }`}
                     >
                       {item.label}
@@ -703,17 +703,17 @@ export function GlassmorphismNav() {
                 })}
 
                 {/* Mobile Theme Switcher */}
-                <div className="h-px bg-white/10 my-1" />
+                <div className="h-px bg-foreground/10 my-1" />
                 <div className="flex items-center justify-between px-3 py-2">
                   <span className="text-sm text-foreground/60">Theme</span>
                   <ThemeSwitcher variant="minimal" />
                 </div>
                 
                 {/* Mobile Language Selector */}
-                <div className="h-px bg-white/10 my-1" />
+                <div className="h-px bg-foreground/10 my-1" />
                 <button
                   onClick={() => setIsMobileLangOpen(!isMobileLangOpen)}
-                  className="w-full flex items-center justify-between text-white/60 hover:text-white hover:bg-white/10 rounded-lg px-3 py-3 text-left transition-all duration-300 cursor-pointer"
+                  className="w-full flex items-center justify-between text-foreground/60 hover:text-foreground hover:bg-foreground/10 rounded-lg px-3 py-3 text-left transition-all duration-300 cursor-pointer"
                 >
                   <span className="flex items-center gap-2">
                     <Globe size={15} />
@@ -740,22 +740,22 @@ export function GlassmorphismNav() {
                         }}
                         className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-all duration-200 cursor-pointer flex items-center justify-between ${
                           currentLang === lang.code
-                            ? "bg-white/10 text-white font-medium"
-                            : "text-white/60 hover:text-white hover:bg-white/5"
+                            ? "bg-foreground/10 text-foreground font-medium"
+                            : "text-foreground/60 hover:text-foreground hover:bg-foreground/5"
                         }`}
                       >
                         <span>{lang.label}</span>
                         {currentLang === lang.code && (
-                          <div className="w-1.5 h-1.5 rounded-full bg-white" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-foreground" />
                         )}
                       </button>
                     ))}
                   </div>
                 </div>
 
-                <div className="h-px bg-white/10 my-1" />
+                <div className="h-px bg-foreground/10 my-1" />
                 <button
-                  className="relative bg-white hover:bg-gray-50 text-black font-medium px-6 py-3 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer group"
+                  className="relative bg-[var(--neon-blue)] hover:bg-[var(--neon-blue)]/90 text-black font-medium px-6 py-3 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer group"
                   onClick={() => scrollToSection("#contact")}
                 >
                   <span className="mr-2">Empezar</span>

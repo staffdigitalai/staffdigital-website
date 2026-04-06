@@ -45,12 +45,9 @@ const languages = [
 
 const navItemsDef = [
   { key: "home", href: "/" },
-  { key: "about", href: "/nosotros" },
   { key: "solutions", href: "/soluciones", dropdown: "services" },
   { key: "sectors", href: "/sectores", dropdown: "sectors" },
   { key: "pricing", href: "/precios" },
-  { key: "blog", href: "/blog" },
-  { key: "cases", href: "/casos-exito" },
 ]
 
 export function GlassmorphismNav() {

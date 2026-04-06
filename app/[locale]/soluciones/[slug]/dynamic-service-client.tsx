@@ -102,7 +102,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
           {isFeatured && (
             <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-orange-500/20 border border-orange-500/30 text-orange-400 text-sm font-medium mb-6 animate-fade-in-badge">
               <Star size={14} fill="currentColor" />
-              Solucion Destacada
+              Solución Destacada
             </div>
           )}
 
@@ -130,16 +130,19 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
               onClick={openContactForm}
               className="bg-white text-black rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-gray-50 hover:scale-105 hover:shadow-lg group cursor-pointer w-full sm:w-auto"
             >
-              Pide tu Demo
+              Solicitar implementación
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              onClick={openBudgetForm}
+              asChild
               className="bg-transparent text-white border-2 border-white/30 rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-white/10 hover:border-white/50 hover:scale-105 cursor-pointer backdrop-blur-sm w-full sm:w-auto"
             >
-              Pedir Presupuesto
+              <a href="tel:+34931229129">
+                <Phone className="mr-2 h-5 w-5" />
+                Escucha la voz IA
+              </a>
             </Button>
           </div>
 
@@ -186,7 +189,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
                 </span>
               </h2>
               <p className="text-white/60 text-lg max-w-2xl mx-auto fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
-                Como esta solucion puede transformar tu negocio
+                Cómo esta solución puede transformar tu negocio
               </p>
             </div>
 
@@ -223,7 +226,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-balance fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
-                Caracteristicas Principales
+                Características Principales
               </h2>
             </div>
 
@@ -302,35 +305,32 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
               Otras Soluciones
             </h2>
             <p className="text-white/60">
-              Descubremás formas de transformar tu negocio con IA
+              Descubre más formas de transformar tu negocio con IA
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/soluciones/agente-chat-web-ia"
-              className="px-6 py-3 rounded-full border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 hover:border-white/20 hover:text-white transition-all"
-            >
-              IA Conversacional
-            </Link>
-            <Link
-              href="/soluciones/ia-omnicanal"
-              className="px-6 py-3 rounded-full border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 hover:border-white/20 hover:text-white transition-all"
-            >
-              Automatización Omnicanal
-            </Link>
-            <Link
-              href="/seguridad-compliance"
-              className="px-6 py-3 rounded-full border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 hover:border-white/20 hover:text-white transition-all"
-            >
-              Seguridad IA
-            </Link>
-            <Link
-              href="/soluciones/home-staging-ia"
-              className="px-6 py-3 rounded-full border border-white/10 bg-white/5 text-white/80 hover:bg-white/10 hover:border-white/20 hover:text-white transition-all"
-            >
-              Home Staging IA
-            </Link>
+          <div className="flex flex-wrap justify-center gap-3">
+            {[
+              { label: "IA para Call Center", href: "/soluciones/atencion-telefonica-ia" },
+              { label: "WhatsApp IA", href: "/soluciones/whatsapp-ia-empresas" },
+              { label: "Chat Web IA", href: "/soluciones/agente-chat-web-ia" },
+              { label: "Ventas con IA", href: "/soluciones/agente-ventas-ia" },
+              { label: "Soporte IA", href: "/soluciones/agente-soporte-ia" },
+              { label: "Agendamiento IA", href: "/soluciones/agente-agendamientos-ia" },
+              { label: "LeadGen IA", href: "/soluciones/lead-generation-ia" },
+              { label: "CRM Automation", href: "/soluciones/crm-automation-ia" },
+            ]
+              .filter((s) => s.href !== `/soluciones/${service.slug}`)
+              .slice(0, 6)
+              .map((s) => (
+                <Link
+                  key={s.href}
+                  href={s.href}
+                  className="px-5 py-2.5 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm hover:bg-white/10 hover:border-white/20 hover:text-white transition-all"
+                >
+                  {s.label}
+                </Link>
+              ))}
           </div>
         </div>
       </section>

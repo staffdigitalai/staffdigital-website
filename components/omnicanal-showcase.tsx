@@ -70,17 +70,17 @@ function TypingIndicator() {
   return (
     <div className="flex items-center gap-1 px-4 py-3">
       <motion.span
-        className="w-2 h-2 rounded-full bg-foreground/40"
+        className="w-2 h-2 rounded-full bg-gray-400 dark:bg-foreground/40"
         animate={{ opacity: [0.4, 1, 0.4] }}
         transition={{ duration: 1, repeat: Infinity, delay: 0 }}
       />
       <motion.span
-        className="w-2 h-2 rounded-full bg-foreground/40"
+        className="w-2 h-2 rounded-full bg-gray-400 dark:bg-foreground/40"
         animate={{ opacity: [0.4, 1, 0.4] }}
         transition={{ duration: 1, repeat: Infinity, delay: 0.2 }}
       />
       <motion.span
-        className="w-2 h-2 rounded-full bg-foreground/40"
+        className="w-2 h-2 rounded-full bg-gray-400 dark:bg-foreground/40"
         animate={{ opacity: [0.4, 1, 0.4] }}
         transition={{ duration: 1, repeat: Infinity, delay: 0.4 }}
       />
@@ -107,12 +107,12 @@ function ChatMessage({
     >
       <div className={`max-w-[80%] ${isAgent ? 'order-2' : 'order-1'}`}>
         {isAgent && (
-          <span className="text-xs text-foreground/50 mb-1 block">{agentName}</span>
+          <span className="text-xs text-gray-500 dark:text-foreground/50 mb-1 block">{agentName}</span>
         )}
         <div
           className={`px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
             isAgent
-              ? 'bg-foreground/10 text-foreground rounded-tl-sm'
+              ? 'bg-white dark:bg-foreground/10 text-gray-800 dark:text-foreground rounded-tl-sm shadow-sm'
               : 'bg-[var(--neon-blue)] text-black rounded-tr-sm'
           }`}
         >
@@ -174,9 +174,9 @@ export function OmnicanalShowcase({
   }, [visibleMessages, conversation.length])
 
   return (
-    <section className="py-20 px-4 bg-background relative overflow-hidden">
+    <section className="py-20 px-4 relative overflow-hidden bg-white dark:bg-foreground/5">
       {/* Subtle grid background */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-30" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-20 dark:opacity-30" />
       
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
@@ -192,12 +192,12 @@ export function OmnicanalShowcase({
             <span className="text-[var(--neon-blue)]">{badge}</span>
           </div>
           
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900 dark:text-foreground">
             {title}{" "}
             <span className="text-[var(--neon-blue)]">{titleHighlight}</span>
           </h2>
           
-          <p className="text-lg text-foreground/60 max-w-2xl mx-auto whitespace-pre-line">
+          <p className="text-lg text-gray-600 dark:text-foreground/60 max-w-2xl mx-auto whitespace-pre-line">
             {subtitle}
           </p>
         </motion.div>
@@ -212,7 +212,7 @@ export function OmnicanalShowcase({
             transition={{ duration: 0.5, delay: 0.2 }}
             className="space-y-6"
           >
-            <p className="text-foreground/70 leading-relaxed text-lg">
+            <p className="text-gray-700 dark:text-foreground/70 leading-relaxed text-lg">
               {description}
             </p>
 
@@ -230,10 +230,10 @@ export function OmnicanalShowcase({
             )}
 
             {/* Testimonial */}
-            <div className="relative p-6 rounded-2xl bg-foreground/5 border border-foreground/10">
+            <div className="relative p-6 rounded-2xl bg-gray-100 dark:bg-foreground/5 border border-gray-200 dark:border-foreground/10">
               <Quote className="w-8 h-8 text-[var(--neon-blue)]/30 absolute top-4 left-4" />
               <blockquote className="pl-8 pt-4">
-                <p className="text-foreground/80 italic leading-relaxed mb-4">
+                <p className="text-gray-700 dark:text-foreground/80 italic leading-relaxed mb-4">
                   &ldquo;{testimonial.quote}&rdquo;
                 </p>
                 <footer className="flex items-center gap-3">
@@ -241,8 +241,8 @@ export function OmnicanalShowcase({
                     {testimonial.author.charAt(0)}
                   </div>
                   <div>
-                    <div className="font-medium text-foreground">{testimonial.author}</div>
-                    <div className="text-sm text-foreground/50">
+                    <div className="font-medium text-gray-900 dark:text-foreground">{testimonial.author}</div>
+                    <div className="text-sm text-gray-500 dark:text-foreground/50">
                       {testimonial.role}, {testimonial.company}
                     </div>
                   </div>
@@ -260,9 +260,9 @@ export function OmnicanalShowcase({
             className="relative"
           >
             {/* Chat widget with glassmorphism */}
-            <div className="relative rounded-2xl overflow-hidden backdrop-blur-xl bg-background/80 border border-[var(--neon-blue)]/30 shadow-[0_0_30px_rgba(var(--neon-blue-rgb),0.15)]">
+            <div className="relative rounded-2xl overflow-hidden backdrop-blur-xl bg-white dark:bg-background/80 border border-[var(--neon-blue)]/30 shadow-[0_0_30px_rgba(var(--neon-blue-rgb),0.15)]">
               {/* Chat header */}
-              <div className="px-4 py-3 border-b border-foreground/10 flex items-center justify-between bg-foreground/5">
+              <div className="px-4 py-3 border-b border-gray-200 dark:border-foreground/10 flex items-center justify-between bg-gray-50 dark:bg-foreground/5">
                 <div className="flex items-center gap-3">
                   <div className="relative">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--neon-blue)] to-[var(--purple-dark)] flex items-center justify-center">
@@ -272,8 +272,8 @@ export function OmnicanalShowcase({
                     <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-[#00FF94] rounded-full border-2 border-background" />
                   </div>
                   <div>
-                    <div className="font-medium text-foreground text-sm">{chatHeader}</div>
-                    <div className="text-xs text-foreground/50 flex items-center gap-1.5">
+                    <div className="font-medium text-gray-900 dark:text-foreground text-sm">{chatHeader}</div>
+                    <div className="text-xs text-gray-500 dark:text-foreground/50 flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#00FF94]" />
                       Online
                     </div>
@@ -286,10 +286,10 @@ export function OmnicanalShowcase({
               </div>
 
               {/* Chat messages area */}
-              <div className="h-[320px] overflow-y-auto p-4 space-y-3">
+              <div className="h-[320px] overflow-y-auto p-4 space-y-3 bg-gray-50 dark:bg-transparent">
                 {/* Agent info */}
                 <div className="text-center py-2">
-                  <span className="text-xs text-foreground/40 bg-foreground/5 px-3 py-1 rounded-full">
+                  <span className="text-xs text-gray-500 dark:text-foreground/40 bg-gray-200 dark:bg-foreground/5 px-3 py-1 rounded-full">
                     {agentRole}
                   </span>
                 </div>
@@ -317,7 +317,7 @@ export function OmnicanalShowcase({
                     <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[var(--neon-blue)] to-[var(--purple-dark)] flex items-center justify-center">
                       <Bot className="w-3 h-3 text-white" />
                     </div>
-                    <div className="bg-foreground/10 rounded-2xl rounded-tl-sm">
+                    <div className="bg-white dark:bg-foreground/10 rounded-2xl rounded-tl-sm shadow-sm">
                       <TypingIndicator />
                     </div>
                   </motion.div>
@@ -325,15 +325,15 @@ export function OmnicanalShowcase({
               </div>
 
               {/* Chat footer: Active channels */}
-              <div className="px-4 py-3 border-t border-foreground/10 bg-foreground/5">
+              <div className="px-4 py-3 border-t border-gray-200 dark:border-foreground/10 bg-gray-50 dark:bg-foreground/5">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-xs text-foreground/50 mr-1">Canales activos:</span>
+                  <span className="text-xs text-gray-500 dark:text-foreground/50 mr-1">Canales activos:</span>
                   {activeChannels.map((channel) => {
                     const Icon = channelIcons[channel]
                     return (
                       <div
                         key={channel}
-                        className="flex items-center gap-1 px-2 py-1 rounded-full bg-foreground/10 text-xs text-foreground/70"
+                        className="flex items-center gap-1 px-2 py-1 rounded-full bg-gray-200 dark:bg-foreground/10 text-xs text-gray-600 dark:text-foreground/70"
                       >
                         <Icon className="w-3 h-3" />
                         <span>{channelLabels[channel]}</span>

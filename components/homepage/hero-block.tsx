@@ -59,12 +59,13 @@ export function HeroBlock() {
           />
         </div>
 
-        {/* CTA Buttons with neon glow effects */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-5 animate-fade-in-buttons">
+        {/* CTA Buttons with premium neon glow and gradient effects */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6 animate-fade-in-buttons">
           <Button
             size="lg"
             onClick={openContactForm}
-            className="relative bg-[var(--neon-blue)] text-black rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:scale-105 group cursor-pointer animate-neon-pulse hover:shadow-[0_0_30px_rgba(var(--neon-blue-rgb),0.5)]"
+            className="relative bg-gradient-to-r from-[var(--neon-blue)] via-[var(--purple-dark)] to-[var(--neon-blue)] text-white rounded-full px-10 py-5 text-lg font-semibold transition-all duration-300 hover:scale-105 group cursor-pointer shadow-[0_0_20px_rgba(var(--neon-blue-rgb),0.4),0_0_40px_rgba(var(--purple-dark-rgb),0.2)] hover:shadow-[0_0_30px_rgba(var(--neon-blue-rgb),0.6),0_0_60px_rgba(var(--purple-dark-rgb),0.4)] animate-gradient-shift"
+            style={{ backgroundSize: "200% auto" }}
           >
             {t("cta_primary")}
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -73,7 +74,7 @@ export function HeroBlock() {
             asChild
             variant="outline"
             size="lg"
-            className="rounded-full px-8 py-4 text-lg font-medium border-[var(--purple-dark)]/40 text-foreground hover:bg-[var(--purple-dark)]/10 hover:border-[var(--purple-dark)]/60 transition-all duration-300 hover:scale-105 group bg-transparent cursor-pointer hover:shadow-[0_0_20px_rgba(var(--purple-dark-rgb),0.3)]"
+            className="rounded-full px-8 py-5 text-lg font-medium border-[var(--purple-dark)]/50 text-foreground hover:bg-[var(--purple-dark)]/10 hover:border-[var(--purple-dark)]/70 transition-all duration-300 hover:scale-105 group bg-transparent cursor-pointer hover:shadow-[0_0_25px_rgba(var(--purple-dark-rgb),0.4)]"
           >
             <a href="tel:+34931229129">
               <Phone className="mr-2 h-5 w-5" />
@@ -82,11 +83,11 @@ export function HeroBlock() {
           </Button>
         </div>
 
-        {/* Micro-proofs with lime green accents */}
-        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mb-10 animate-fade-in-buttons">
+        {/* Micro-proofs - larger text with lime green accents */}
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mb-10 animate-fade-in-buttons">
           {microproofs.map((proof) => (
-            <span key={proof} className="flex items-center gap-1.5 text-xs sm:text-sm text-foreground/40">
-              <Check className="w-3.5 h-3.5 text-[var(--lime-green)] shrink-0" />
+            <span key={proof} className="flex items-center gap-2 text-sm sm:text-base text-foreground/60 font-medium">
+              <Check className="w-4 h-4 text-[var(--lime-green)] shrink-0" />
               {proof}
             </span>
           ))}

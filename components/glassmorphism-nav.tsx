@@ -21,20 +21,20 @@ const services = [
 ]
 
 const sectors = [
-  { name: "Concesionarios", href: "/sectores/concesionarios", icon: Car, description: "Venta y posventa de vehiculos" },
-  { name: "Clinicas", href: "/sectores/clinicas", icon: BriefcaseMedical, description: "Clinicas y centros medicos" },
-  { name: "Hospitales", href: "/sectores/hospitales", icon: Stethoscope, description: "Centros hospitalarios" },
-  { name: "Veterinarias", href: "/sectores/veterinarias", icon: BriefcaseMedical, description: "Clinicas veterinarias" },
-  { name: "Centros de Belleza", href: "/sectores/peluquerias", icon: Scissors, description: "Belleza y estetica" },
-  { name: "Restaurantes", href: "/sectores/restaurantes", icon: UtensilsCrossed, description: "Hosteleria y restauracion" },
-  { name: "Turismo", href: "/sectores/turismo", icon: Globe, description: "Hoteles y agencias de viajes" },
-  { name: "Retail", href: "/sectores/retail", icon: ShoppingBag, description: "Comercio minorista" },
-  { name: "Oficinas", href: "/sectores/oficinas", icon: Building2, description: "Espacios corporativos" },
-  { name: "Logistica", href: "/sectores/almacenes", icon: Warehouse, description: "Almacenes y distribucion" },
-  { name: "Servicios Tecnicos", href: "/sectores/servicios-tecnicos", icon: Wrench, description: "Asistencia tecnica y SAT" },
+  { name: "Concesionarios", href: "/sectores/concesionarios", icon: Car, description: "Venta y posventa de vehículos" },
+  { name: "Clínicas y Salud", href: "/sectores/clinicas", icon: BriefcaseMedical, description: "Clínicas y centros médicos" },
+  { name: "Restaurantes", href: "/sectores/restaurantes", icon: UtensilsCrossed, description: "Hostelería y restauración" },
   { name: "Inmobiliarias", href: "/sectores/inmobiliarias", icon: Home, description: "Agencias inmobiliarias" },
-  { name: "Educacion", href: "/sectores/educacion", icon: GraduationCap, description: "Colegios y academias" },
-  { name: "Gimnasios", href: "/sectores/gimnasios", icon: Dumbbell, description: "Centros deportivos" },
+  { name: "E-commerce", href: "/sectores/ecommerce", icon: ShoppingBag, description: "Tiendas online y marketplaces" },
+  { name: "Turismo y Hotelería", href: "/sectores/turismo-hoteleria", icon: Globe, description: "Hoteles y agencias de viajes" },
+  { name: "Centros de Belleza", href: "/sectores/centros-belleza", icon: Scissors, description: "Belleza y estética" },
+  { name: "Retail", href: "/sectores/retail", icon: ShoppingBag, description: "Comercio minorista" },
+  { name: "Despachos de Abogados", href: "/sectores/despachos-abogados", icon: Building2, description: "Bufetes y asesorías jurídicas" },
+  { name: "Clubs Deportivos", href: "/sectores/clubs-deportivos", icon: Dumbbell, description: "Socios, captación y gestión" },
+  { name: "Oficinas", href: "/sectores/oficinas", icon: Building2, description: "Despachos profesionales" },
+  { name: "Logística", href: "/sectores/logistica", icon: Warehouse, description: "Transporte y distribución" },
+  { name: "Servicios Técnicos", href: "/sectores/servicios-tecnicos", icon: Wrench, description: "Asistencia técnica y SAT" },
+  { name: "Educación", href: "/sectores/educacion", icon: GraduationCap, description: "Colegios y academias" },
 ]
 
 const languages = [

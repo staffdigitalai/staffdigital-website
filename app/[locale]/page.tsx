@@ -7,7 +7,6 @@ import { BackgroundEffects } from "@/components/background-effects"
 import { HeroBlock } from "@/components/homepage/hero-block"
 import { DoneForYouBlock } from "@/components/homepage/done-for-you-block"
 import { ServicesBlock } from "@/components/homepage/services-block"
-import { OmnichannelBlock } from "@/components/homepage/omnichannel-block"
 import { SectorsBlock } from "@/components/homepage/sectors-block"
 import { CRMBlock } from "@/components/homepage/crm-block"
 import { ComparisonBlock } from "@/components/homepage/comparison-block"
@@ -47,10 +46,7 @@ export default function HomePage() {
             <ServicesBlock />
           </div>
 
-          {/* Bloco 5 — Omnichannel */}
-          <OmnichannelBlock />
-
-          {/* Bloco 6 — Sectores */}
+          {/* Bloco 5 — Sectores */}
           <div id="sectores">
             <SectorsBlock />
           </div>

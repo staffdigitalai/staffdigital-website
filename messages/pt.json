@@ -33,18 +33,10 @@
     "title_2": "totalmente gerida",
     "subtitle": "Integramos canais, CRM, agenda e agentes IA numa só plataforma. Só recebe os resultados.",
     "stack": [
-      {"category": "Canais", "label": "Caixa de Entrada Omnicanal", "description": "Caixa de entrada omnicanal unificada"},
-      {"category": "IA", "label": "Agentes IA Autónomos", "description": "Orquestração de agentes autónomos"},
-      {"category": "Marcações", "label": "Gestão de Agenda", "description": "Agendamento automático"},
-      {"category": "Dados", "label": "CRM Integrado", "description": "CRM inteligente integrado"}
-    ],
-    "items": [
-      "Configuramos os agentes IA para o seu negócio",
-      "Integramos WhatsApp, telefone, chat web e email",
-      "Conectamos com o seu CRM e calendário",
-      "Treinamos a IA com a sua base de conhecimento",
-      "Gerimos a infraestrutura 24/7",
-      "Garantimos segurança e privacidade (UE)"
+      {"category": "Canais", "label": "Caixa de Entrada Omnicanal", "description": "WhatsApp, telefone, chat web e email integrados"},
+      {"category": "IA", "label": "Agentes IA Autónomos", "description": "Configurados e treinados com a sua base de conhecimento"},
+      {"category": "Marcações", "label": "Gestão de Agenda", "description": "Conectado com o seu CRM e calendário"},
+      {"category": "Dados", "label": "CRM Integrado", "description": "Infraestrutura 24/7, segurança e privacidade UE"}
     ]
   },
   "services": {

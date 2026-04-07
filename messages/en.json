@@ -33,18 +33,10 @@
     "title_2": "fully managed",
     "subtitle": "We integrate channels, CRM, calendar and AI agents into one platform. You just receive the results.",
     "stack": [
-      {"category": "Channels", "label": "Omnichannel Inbox", "description": "Unified omnichannel inbox"},
-      {"category": "AI", "label": "Autonomous AI Agents", "description": "Autonomous agent orchestration"},
-      {"category": "Booking", "label": "Calendar Management", "description": "Automatic scheduling"},
-      {"category": "Data", "label": "Integrated CRM", "description": "Smart CRM integrated"}
-    ],
-    "items": [
-      "We configure AI agents for your business",
-      "We integrate WhatsApp, phone, web chat and email",
-      "We connect with your CRM and calendar",
-      "We train the AI with your knowledge base",
-      "We manage the infrastructure 24/7",
-      "We ensure security and privacy (EU)"
+      {"category": "Channels", "label": "Omnichannel Inbox", "description": "WhatsApp, phone, web chat and email integrated"},
+      {"category": "AI", "label": "Autonomous AI Agents", "description": "Configured and trained with your knowledge base"},
+      {"category": "Booking", "label": "Calendar Management", "description": "Connected with your CRM and calendar"},
+      {"category": "Data", "label": "Integrated CRM", "description": "24/7 infrastructure, EU security and privacy"}
     ]
   },
   "services": {

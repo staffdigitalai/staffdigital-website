@@ -33,18 +33,10 @@
     "title_2": "totalmente gestionada",
     "subtitle": "Integramos canales, CRM, agenda y agentes IA en una sola plataforma. Tú solo recibes los resultados.",
     "stack": [
-      {"category": "Canales", "label": "Bandeja Omnicanal", "description": "Bandeja omnicanal unificada"},
-      {"category": "IA", "label": "Agentes IA Autónomos", "description": "Orquestación de agentes autónomos"},
-      {"category": "Citas", "label": "Gestión de Agenda", "description": "Agendamiento automático"},
-      {"category": "Datos", "label": "CRM Integrado", "description": "CRM inteligente integrado"}
-    ],
-    "items": [
-      "Configuramos los agentes IA para tu negocio",
-      "Integramos WhatsApp, teléfono, chat web y email",
-      "Conectamos con tu CRM y calendario",
-      "Entrenamos la IA con tu base de conocimiento",
-      "Gestionamos la infraestructura 24/7",
-      "Garantizamos seguridad y privacidad (UE)"
+      {"category": "Canales", "label": "Bandeja Omnicanal", "description": "WhatsApp, teléfono, chat web y email integrados"},
+      {"category": "IA", "label": "Agentes IA Autónomos", "description": "Configurados y entrenados con tu base de conocimiento"},
+      {"category": "Citas", "label": "Gestión de Agenda", "description": "Conectado con tu CRM y calendario"},
+      {"category": "Datos", "label": "CRM Integrado", "description": "Infraestructura 24/7, seguridad y privacidad UE"}
     ]
   },
   "services": {

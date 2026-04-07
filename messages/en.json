@@ -69,18 +69,18 @@
     "context_note": "Customer switches channel, but the agent keeps context. No repetition. No frustration."
   },
   "sectors": {
-    "title": "AI agents specialized by industry",
-    "subtitle": "Trained with the specific needs of your industry.",
+    "title": "AI Agents for your industry",
+    "subtitle": "AI trained with your industry knowledge. Ready to serve from day one.",
     "view_all": "View all industries",
     "items": [
-      {"name": "Car Dealers", "useCase": "Test drives, qualification, after-sales"},
-      {"name": "Clinics & Healthcare", "useCase": "Appointments, reminders, first contact"},
-      {"name": "Real Estate", "useCase": "Viewings, qualification, follow-up"},
-      {"name": "Restaurants", "useCase": "Reservations, takeaway, confirmations"},
-      {"name": "E-commerce", "useCase": "Abandoned cart, recommendations"},
-      {"name": "Tourism & Hotels", "useCase": "Bookings, upsell, 24/7 support"},
-      {"name": "Education", "useCase": "Enrollment, information, reminders"},
-      {"name": "Local Services", "useCase": "LeadGen AI, appointments, follow-up"}
+      {"name": "Car Dealers", "useCase": "AI Agent that schedules test drives, qualifies buyers and automates after-sales follow-up"},
+      {"name": "Clinics & Healthcare", "useCase": "AI Agent that manages medical appointments, sends reminders and serves patients 24/7"},
+      {"name": "Real Estate", "useCase": "AI Agent that schedules viewings, qualifies buyers and automates follow-up"},
+      {"name": "Restaurants", "useCase": "AI Agent that manages reservations, takeaway orders and confirmations without missing a call"},
+      {"name": "E-commerce", "useCase": "AI Agent that recovers abandoned carts, recommends products and answers inquiries instantly"},
+      {"name": "Tourism & Hotels", "useCase": "AI Agent that automates bookings, drives upselling and provides multilingual 24/7 support"},
+      {"name": "Education", "useCase": "AI Agent that manages enrollment, answers parent inquiries and sends automatic reminders"},
+      {"name": "Local Services", "useCase": "AI Agent that captures new clients, schedules appointments and automates sales follow-up"}
     ]
   },
   "methodology": {

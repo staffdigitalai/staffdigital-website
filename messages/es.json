@@ -68,19 +68,19 @@
     ],
     "context_note": "El cliente cambia de canal, pero el agente mantiene el contexto. Sin repeticiones. Sin frustraciones."
   },
-  "sectors": {
-    "title": "Agentes IA especializados por sector",
-    "subtitle": "Entrenados con las necesidades específicas de tu industria.",
-    "view_all": "Ver todos los sectores",
+"sectors": {
+  "title": "Agentes IA para tu sector",
+  "subtitle": "IA entrenada con el conocimiento de tu industria. Lista para atender desde el primer día.",
+  "view_all": "Ver todos los sectores",
     "items": [
-      {"name": "Concesionarios", "useCase": "Test drives, cualificación, posventa"},
-      {"name": "Clínicas y Salud", "useCase": "Citas, recordatorios, primer contacto"},
-      {"name": "Inmobiliario", "useCase": "Visitas, cualificación, follow-up"},
-      {"name": "Restaurantes", "useCase": "Reservas, takeaway, confirmaciones"},
-      {"name": "E-commerce", "useCase": "Carrito abandonado, recomendaciones"},
-      {"name": "Turismo y Hotelería", "useCase": "Reservas, upsell, soporte 24/7"},
-      {"name": "Educación", "useCase": "Matrículas, información, recordatorios"},
-      {"name": "Servicios Locales", "useCase": "LeadGen IA, citas, follow-up"}
+      {"name": "Concesionarios", "useCase": "Agente IA que agenda test drives, cualifica compradores y automatiza el seguimiento posventa"},
+      {"name": "Clínicas y Salud", "useCase": "Agente IA que gestiona citas médicas, envía recordatorios y atiende pacientes 24/7"},
+      {"name": "Inmobiliario", "useCase": "Agente IA que programa visitas, cualifica compradores y hace follow-up automático"},
+      {"name": "Restaurantes", "useCase": "Agente IA que gestiona reservas, pedidos takeaway y confirmaciones sin perder una llamada"},
+      {"name": "E-commerce", "useCase": "Agente IA que recupera carritos abandonados, recomienda productos y atiende consultas al instante"},
+      {"name": "Turismo y Hotelería", "useCase": "Agente IA que automatiza reservas, impulsa upselling y da soporte multiidioma 24/7"},
+      {"name": "Educación", "useCase": "Agente IA que gestiona matrículas, responde consultas de padres y envía recordatorios automáticos"},
+      {"name": "Servicios Locales", "useCase": "Agente IA que capta nuevos clientes, agenda citas y automatiza el seguimiento comercial"}
     ]
   },
   "methodology": {

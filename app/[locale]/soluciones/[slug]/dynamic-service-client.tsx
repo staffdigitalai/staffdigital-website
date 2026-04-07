@@ -99,6 +99,49 @@ const getSectorImage = (slug: string): { image: string; alt: string } | null => 
   return sectorImageMap[slug] || null
 }
 
+// Solution image mapping (for cards in Section 9) - covers all slug variations
+const solutionImageMap: Record<string, { image: string; alt: string }> = {
+  // Call Center / Voz
+  "atencion-telefonica-ia": { image: "/images/solutions/call-center-ia.jpg", alt: "IA para Call Center y atención telefónica" },
+  "agentes-ia-voz-humana": { image: "/images/solutions/call-center-ia.jpg", alt: "Agentes IA con voz humana" },
+  "ia-call-center": { image: "/images/solutions/call-center-ia.jpg", alt: "IA para Call Center" },
+  "call-center-ia": { image: "/images/solutions/call-center-ia.jpg", alt: "IA para Call Center" },
+  "voz-ia": { image: "/images/solutions/call-center-ia.jpg", alt: "Voz con IA" },
+  // WhatsApp
+  "whatsapp-ia-empresas": { image: "/images/solutions/whatsapp-ia.jpg", alt: "WhatsApp Business con IA" },
+  "whatsapp-ia": { image: "/images/solutions/whatsapp-ia.jpg", alt: "WhatsApp con IA" },
+  "agente-whatsapp-ia": { image: "/images/solutions/whatsapp-ia.jpg", alt: "Agente WhatsApp con IA" },
+  // Chat Web
+  "agente-chat-web-ia": { image: "/images/solutions/chat-web-ia.jpg", alt: "Chat inteligente para web" },
+  "chat-web-ia": { image: "/images/solutions/chat-web-ia.jpg", alt: "Chat web con IA" },
+  "chat-inteligente-web": { image: "/images/solutions/chat-web-ia.jpg", alt: "Chat inteligente para web" },
+  // Ventas
+  "agente-ventas-ia": { image: "/images/solutions/ventas-ia.jpg", alt: "Agente de ventas con IA" },
+  "ventas-ia": { image: "/images/solutions/ventas-ia.jpg", alt: "Ventas con IA" },
+  "agente-de-ventas-ia": { image: "/images/solutions/ventas-ia.jpg", alt: "Agente de ventas con IA" },
+  // Soporte
+  "agente-soporte-ia": { image: "/images/solutions/soporte-ia.jpg", alt: "Agente de soporte con IA" },
+  "soporte-ia": { image: "/images/solutions/soporte-ia.jpg", alt: "Soporte con IA" },
+  "agente-de-soporte-ia": { image: "/images/solutions/soporte-ia.jpg", alt: "Agente de soporte con IA" },
+  // Agendamiento
+  "agente-agendamientos-ia": { image: "/images/solutions/agendamiento-ia.jpg", alt: "Agente de agendamientos con IA" },
+  "agendamiento-ia": { image: "/images/solutions/agendamiento-ia.jpg", alt: "Agendamiento con IA" },
+  "agente-de-agendamientos-ia": { image: "/images/solutions/agendamiento-ia.jpg", alt: "Agente de agendamientos con IA" },
+  // Atención telefónica
+  "atencion-telefonica": { image: "/images/solutions/atencion-telefonica-ia.jpg", alt: "Atención telefónica con IA" },
+  // Lead Generation
+  "lead-generation-ia": { image: "/images/solutions/lead-generation-ia.jpg", alt: "Lead generation con IA" },
+  "generacion-leads-ia": { image: "/images/solutions/lead-generation-ia.jpg", alt: "Generación de leads con IA" },
+  // CRM
+  "crm-automation-ia": { image: "/images/solutions/ventas-ia.jpg", alt: "Automatización CRM con IA" },
+  "automatizacion-crm-ia": { image: "/images/solutions/ventas-ia.jpg", alt: "Automatización CRM con IA" },
+}
+
+// Helper to get solution image
+const getSolutionImage = (slug: string): { image: string; alt: string } | null => {
+  return solutionImageMap[slug] || null
+}
+
 // Other solutions for cross-linking (hardcoded fallback)
 const allSolutions = [
   { label: "IA para Call Center", description: "Automatiza llamadas entrantes y salientes", href: "/soluciones/atencion-telefonica-ia", slug: "atencion-telefonica-ia", icon: "phone" },
@@ -550,21 +593,25 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {solucionesContextuales.map((sol) => {
-                // Find matching icon from allSolutions array (fallback only)
+                // Get local image first, then WP image, then icon fallback
+                const localImg = getSolutionImage(sol.solucion_slug)
                 const matchingSol = allSolutions.find(s => s.slug === sol.solucion_slug)
                 const Icon = matchingSol ? getIcon(matchingSol.icon) : Sparkles
+                const imageUrl = localImg?.image || sol.solucion_imagen
+                const imageAlt = localImg?.alt || sol.solucion_nombre
+                
                 return (
                   <Link
                     key={sol.solucion_slug}
                     href={`/soluciones/${sol.solucion_slug}`}
                     className="card-elevated group rounded-2xl hover:border-foreground/25 transition-all hover:scale-[1.02] overflow-hidden hover:shadow-lg hover:shadow-[var(--neon-blue)]/10"
                   >
-                    {/* Image area - real image from WP or fallback */}
+                    {/* Image area - local image, WP image, or icon fallback */}
                     <div className="relative w-full h-32 overflow-hidden">
-                      {sol.solucion_imagen ? (
+                      {imageUrl ? (
                         <Image
-                          src={sol.solucion_imagen}
-                          alt={sol.solucion_nombre}
+                          src={imageUrl}
+                          alt={imageAlt}
                           fill
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                           loading="lazy"

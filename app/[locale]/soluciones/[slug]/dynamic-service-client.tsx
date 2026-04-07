@@ -99,6 +99,24 @@ const getSectorImage = (slug: string): { image: string; alt: string } | null => 
   return sectorImageMap[slug] || null
 }
 
+// Solution image mapping (for cards in Section 9)
+const solutionImageMap: Record<string, { image: string; alt: string }> = {
+  "atencion-telefonica-ia": { image: "/images/solutions/call-center-ia.jpg", alt: "IA para Call Center y atención telefónica" },
+  "agentes-ia-voz-humana": { image: "/images/solutions/call-center-ia.jpg", alt: "Agentes IA con voz humana" },
+  "whatsapp-ia-empresas": { image: "/images/solutions/whatsapp-ia.jpg", alt: "WhatsApp Business con IA" },
+  "agente-chat-web-ia": { image: "/images/solutions/chat-web-ia.jpg", alt: "Chat inteligente para web" },
+  "agente-ventas-ia": { image: "/images/solutions/ventas-ia.jpg", alt: "Agente de ventas con IA" },
+  "agente-soporte-ia": { image: "/images/solutions/soporte-ia.jpg", alt: "Agente de soporte con IA" },
+  "agente-agendamientos-ia": { image: "/images/solutions/agendamiento-ia.jpg", alt: "Agente de agendamientos con IA" },
+  "lead-generation-ia": { image: "/images/solutions/lead-generation-ia.jpg", alt: "Lead generation con IA" },
+  "crm-automation-ia": { image: "/images/solutions/ventas-ia.jpg", alt: "Automatización CRM con IA" },
+}
+
+// Helper to get solution image
+const getSolutionImage = (slug: string): { image: string; alt: string } | null => {
+  return solutionImageMap[slug] || null
+}
+
 // Other solutions for cross-linking (hardcoded fallback)
 const allSolutions = [
   { label: "IA para Call Center", description: "Automatiza llamadas entrantes y salientes", href: "/soluciones/atencion-telefonica-ia", slug: "atencion-telefonica-ia", icon: "phone" },
@@ -550,21 +568,25 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {solucionesContextuales.map((sol) => {
-                // Find matching icon from allSolutions array (fallback only)
+                // Get local image first, then WP image, then icon fallback
+                const localImg = getSolutionImage(sol.solucion_slug)
                 const matchingSol = allSolutions.find(s => s.slug === sol.solucion_slug)
                 const Icon = matchingSol ? getIcon(matchingSol.icon) : Sparkles
+                const imageUrl = localImg?.image || sol.solucion_imagen
+                const imageAlt = localImg?.alt || sol.solucion_nombre
+                
                 return (
                   <Link
                     key={sol.solucion_slug}
                     href={`/soluciones/${sol.solucion_slug}`}
                     className="card-elevated group rounded-2xl hover:border-foreground/25 transition-all hover:scale-[1.02] overflow-hidden hover:shadow-lg hover:shadow-[var(--neon-blue)]/10"
                   >
-                    {/* Image area - real image from WP or fallback */}
+                    {/* Image area - local image, WP image, or icon fallback */}
                     <div className="relative w-full h-32 overflow-hidden">
-                      {sol.solucion_imagen ? (
+                      {imageUrl ? (
                         <Image
-                          src={sol.solucion_imagen}
-                          alt={sol.solucion_nombre}
+                          src={imageUrl}
+                          alt={imageAlt}
                           fill
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                           loading="lazy"

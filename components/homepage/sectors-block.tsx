@@ -44,7 +44,7 @@ export function SectorsBlock() {
             <Link
               key={s.href}
               href={s.href}
-              className="group rounded-2xl border border-foreground/10 bg-foreground/5 hover:bg-foreground/10 hover:border-foreground/20 transition-all hover:scale-[1.02] overflow-hidden"
+              className="card-elevated group rounded-2xl hover:border-gray-300 dark:hover:border-foreground/20 transition-all hover:scale-[1.02] overflow-hidden"
             >
               <div className="relative w-full h-28">
                 <Image
@@ -53,12 +53,17 @@ export function SectorsBlock() {
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   loading="lazy"
-                  className="object-cover opacity-75 group-hover:opacity-100 transition-opacity"
+                  className="object-cover"
+                />
+                {/* Brand overlay */}
+                <div 
+                  className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-50"
+                  style={{ background: "linear-gradient(135deg, rgba(0, 120, 170, 0.06), rgba(124, 58, 237, 0.10))" }}
                 />
               </div>
               <div className="p-4 space-y-1">
                 <h3 className="font-bold text-foreground">{s.name}</h3>
-                <p className="text-sm text-foreground/50">{s.useCase}</p>
+                <p className="text-sm text-gray-600 dark:text-foreground/60">{s.useCase}</p>
               </div>
             </Link>
           ))}

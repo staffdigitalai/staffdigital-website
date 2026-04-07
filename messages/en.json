@@ -58,7 +58,7 @@
   "omnichannel": {
     "title_1": "Unified inbox:",
     "title_2": "all channels in one place",
-    "subtitle": "Chatwoot CE unifies WhatsApp, phone, web chat, email and social media. One AI agent, all channels, complete history.",
+    "subtitle": "StaffDigital AI unifies WhatsApp, phone, web chat, email and social media in a single inbox. One AI agent, all channels, complete history.",
     "channels": [
       {"name": "Phone", "line1": "Smart IVR with AI", "line2": "No menus, natural conversation"},
       {"name": "WhatsApp", "line1": "Virtual agent 24/7", "line2": "Voice and text automated"},
@@ -69,18 +69,18 @@
     "context_note": "Customer switches channel, but the agent keeps context. No repetition. No frustration."
   },
   "sectors": {
-    "title": "AI agents specialized by industry",
-    "subtitle": "Trained with the specific needs of your industry.",
+    "title": "AI Agents for your industry",
+    "subtitle": "AI trained with your industry knowledge. Ready to serve from day one.",
     "view_all": "View all industries",
     "items": [
-      {"name": "Car Dealers", "useCase": "Test drives, qualification, after-sales"},
-      {"name": "Clinics & Healthcare", "useCase": "Appointments, reminders, first contact"},
-      {"name": "Real Estate", "useCase": "Viewings, qualification, follow-up"},
-      {"name": "Restaurants", "useCase": "Reservations, takeaway, confirmations"},
-      {"name": "E-commerce", "useCase": "Abandoned cart, recommendations"},
-      {"name": "Tourism & Hotels", "useCase": "Bookings, upsell, 24/7 support"},
-      {"name": "Education", "useCase": "Enrollment, information, reminders"},
-      {"name": "Local Services", "useCase": "LeadGen AI, appointments, follow-up"}
+      {"name": "AI for Car Dealers", "useCase": "Schedules test drives, qualifies buyers and automates after-sales follow-up"},
+      {"name": "AI for Healthcare", "useCase": "Manages medical appointments, sends reminders and serves patients 24/7"},
+      {"name": "AI for Real Estate", "useCase": "Schedules viewings, qualifies buyers and automates follow-up"},
+      {"name": "AI for Restaurants", "useCase": "Manages reservations, takeaway orders and confirmations without missing a call"},
+      {"name": "AI for E-commerce", "useCase": "Recovers abandoned carts, recommends products and answers inquiries instantly"},
+      {"name": "AI for Hotels", "useCase": "Automates bookings, drives upselling and provides multilingual 24/7 support"},
+      {"name": "AI for Education", "useCase": "Manages enrollment, answers parent inquiries and sends automatic reminders"},
+      {"name": "AI for Local Services", "useCase": "Captures new clients, schedules appointments and automates sales follow-up"}
     ]
   },
   "methodology": {

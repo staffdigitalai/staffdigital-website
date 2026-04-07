@@ -21,7 +21,7 @@ export function ComparisonBlock() {
 
         {/* Desktop table */}
         <div 
-          className="hidden md:block rounded-2xl border border-gray-200 dark:border-foreground/15 overflow-hidden bg-white dark:bg-foreground/5"
+          className="card-elevated hidden md:block rounded-2xl overflow-hidden"
           style={{ boxShadow: "0 8px 30px rgba(0, 0, 0, 0.1)" }}
         >
           <div className="grid grid-cols-3 bg-gray-50 dark:bg-foreground/5">
@@ -72,8 +72,7 @@ export function ComparisonBlock() {
             return (
               <div 
                 key={i} 
-                className="rounded-xl border border-gray-200 dark:border-foreground/15 bg-white dark:bg-foreground/5 p-4 space-y-3"
-                style={{ boxShadow: "0 4px 15px rgba(0, 0, 0, 0.08)" }}
+                className="card-elevated rounded-xl p-4 space-y-3"
               >
                 <div className="font-bold text-sm text-foreground flex items-center gap-2">
                   <Icon className="w-4 h-4 text-muted-foreground shrink-0" />

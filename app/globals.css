@@ -101,6 +101,18 @@
   --glow-lime: 0 0 20px rgba(var(--lime-green-rgb), 0.5), 0 0 40px rgba(var(--lime-green-rgb), 0.3);
 }
 
+/* === Global Card Elevated Style === */
+.card-elevated {
+  background-color: rgb(255, 255, 255) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgb(229, 231, 235) !important;
+}
+
+.dark .card-elevated {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);

@@ -58,7 +58,7 @@
   "omnichannel": {
     "title_1": "Caixa de entrada única:",
     "title_2": "todos os canais num só lugar",
-    "subtitle": "O Chatwoot CE unifica WhatsApp, telefone, chat web, email e redes sociais. Um agente IA, todos os canais, histórico completo.",
+    "subtitle": "StaffDigital AI unifica WhatsApp, telefone, chat web, email e redes sociais numa única caixa de entrada. Um agente IA, todos os canais, histórico completo.",
     "channels": [
       {"name": "Telefone", "line1": "URA inteligente com IA", "line2": "Sem menus, conversa natural"},
       {"name": "WhatsApp", "line1": "Agente virtual 24/7", "line2": "Voz e texto automáticos"},
@@ -69,18 +69,18 @@
     "context_note": "O cliente muda de canal, mas o agente mantém o contexto. Sem repetições. Sem frustrações."
   },
   "sectors": {
-    "title": "Agentes IA especializados por setor",
-    "subtitle": "Treinados com as necessidades específicas da sua indústria.",
+    "title": "Agentes IA para o seu setor",
+    "subtitle": "IA treinada com o conhecimento da sua indústria. Pronta para atender desde o primeiro dia.",
     "view_all": "Ver todos os setores",
     "items": [
-      {"name": "Concessionários", "useCase": "Test drives, qualificação, pós-venda"},
-      {"name": "Clínicas e Saúde", "useCase": "Consultas, lembretes, primeiro contacto"},
-      {"name": "Imobiliário", "useCase": "Visitas, qualificação, follow-up"},
-      {"name": "Restaurantes", "useCase": "Reservas, takeaway, confirmações"},
-      {"name": "E-commerce", "useCase": "Carrinho abandonado, recomendações"},
-      {"name": "Turismo e Hotelaria", "useCase": "Reservas, upsell, suporte 24/7"},
-      {"name": "Educação", "useCase": "Matrículas, informação, lembretes"},
-      {"name": "Serviços Locais", "useCase": "LeadGen IA, marcações, follow-up"}
+      {"name": "IA para Concessionários", "useCase": "Agenda test drives, qualifica compradores e automatiza o seguimento pós-venda"},
+      {"name": "IA para Clínicas e Saúde", "useCase": "Gere consultas médicas, envia lembretes e atende pacientes 24/7"},
+      {"name": "IA para Imobiliárias", "useCase": "Programa visitas, qualifica compradores e faz follow-up automático"},
+      {"name": "IA para Restaurantes", "useCase": "Gere reservas, pedidos takeaway e confirmações sem perder uma chamada"},
+      {"name": "IA para E-commerce", "useCase": "Recupera carrinhos abandonados, recomenda produtos e atende consultas instantaneamente"},
+      {"name": "IA para Turismo e Hotelaria", "useCase": "Automatiza reservas, impulsiona upselling e dá suporte multilingue 24/7"},
+      {"name": "IA para Educação", "useCase": "Gere matrículas, responde a consultas de pais e envia lembretes automáticos"},
+      {"name": "IA para Serviços Locais", "useCase": "Capta novos clientes, agenda marcações e automatiza o seguimento comercial"}
     ]
   },
   "methodology": {

@@ -1,19 +1,19 @@
 "use client"
 
-import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
+import { serviceMockups } from "./service-mockups"
 
 const servicesMeta = [
-  { href: "/soluciones/atencion-telefonica-ia", image: "/images/agents/phone-agent.jpg", alt: "Central de atendimiento IA para call center con voz realista" },
-  { href: "/soluciones/whatsapp-ia-empresas", image: "/images/agents/whatsapp-agent.jpg", alt: "Agente virtual WhatsApp con IA para atendimiento automático" },
-  { href: "/soluciones/agente-chat-web-ia", image: "/images/agents/web-chat-agent.jpg", alt: "Chat web inteligente con IA para cualificación de leads" },
-  { href: "/soluciones/agente-ventas-ia", image: "/images/agents/sales-agent.jpg", alt: "IA para ventas automáticas: cualificación y cierre de leads" },
-  { href: "/soluciones/agente-soporte-ia", image: "/images/agents/support-agent.jpg", alt: "Soporte al cliente automatizado con agentes IA" },
-  { href: "/soluciones/agente-agendamientos-ia", image: "/images/agents/booking-agent.jpg", alt: "Agendamiento automático de citas con IA por WhatsApp y teléfono" },
-  { href: "/soluciones/lead-generation-ia", image: "/images/agents/leadgen-agent.jpg", alt: "Prospección automática de empresas y generación de leads con IA" },
-  { href: "/soluciones/crm-automation-ia", image: "/images/agents/crm-agent.jpg", alt: "Automatización de CRM con agentes IA para gestión de pipeline" },
+  { href: "/soluciones/atencion-telefonica-ia" },
+  { href: "/soluciones/whatsapp-ia-empresas" },
+  { href: "/soluciones/agente-chat-web-ia" },
+  { href: "/soluciones/agente-ventas-ia" },
+  { href: "/soluciones/agente-soporte-ia" },
+  { href: "/soluciones/agente-agendamientos-ia" },
+  { href: "/soluciones/lead-generation-ia" },
+  { href: "/soluciones/crm-automation-ia" },
 ]
 
 export function ServicesBlock() {
@@ -25,6 +25,7 @@ export function ServicesBlock() {
     ...meta,
     title: translatedItems[i].title,
     description: translatedItems[i].description,
+    Mockup: serviceMockups[i],
   }))
 
   return (
@@ -44,17 +45,10 @@ export function ServicesBlock() {
             <Link
               key={s.href}
               href={s.href}
-              className="group rounded-2xl border border-foreground/15 bg-foreground/5 backdrop-blur-sm hover:bg-foreground/10 hover:border-foreground/25 transition-all hover:scale-[1.02] overflow-hidden shadow-sm shadow-[var(--neon-blue)]/5 hover:shadow-md hover:shadow-[var(--neon-blue)]/10"
+              className="card-elevated group rounded-2xl hover:border-foreground/25 transition-all hover:scale-[1.02] overflow-hidden hover:shadow-lg hover:shadow-[var(--neon-blue)]/10"
             >
-              <div className="relative w-full h-32">
-                <Image
-                  src={s.image}
-                  alt={s.alt}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  loading="lazy"
-                  className="object-cover opacity-80 group-hover:opacity-100 transition-opacity"
-                />
+              <div className="relative w-full h-32 overflow-hidden">
+                <s.Mockup />
               </div>
               <div className="p-4 space-y-2">
                 <h3 className="font-bold text-foreground group-hover:text-foreground/90">{s.title}</h3>

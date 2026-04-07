@@ -123,6 +123,7 @@
   },
   "faq": {
     "title": "Perguntas frequentes sobre agentes IA",
+    "subtitle": "Esclarecemos as suas dúvidas sobre implementação, privacidade e funcionamento dos agentes IA",
     "view_all": "Ver todas as perguntas",
     "items": [
       {"q": "O agente IA parece mesmo humano?", "a": "Sim. Utilizamos tecnologia de voz humana proprietária com vozes indistinguíveis de pessoas reais. Os seus clientes não sabem que falam com IA."},

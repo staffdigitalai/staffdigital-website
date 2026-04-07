@@ -106,7 +106,7 @@
       {"feature": "¿Qué es?", "competitor": "Herramienta que el cliente configura solo", "us": "Plataforma gestionada con implementación incluida"},
       {"feature": "Canales", "competitor": "Normalmente solo chat o solo voz", "us": "WhatsApp + teléfono + chat web + email unificados"},
       {"feature": "CRM", "competitor": "Integración básica o inexistente", "us": "Twenty CRM integrado de fábrica"},
-      {"feature": "Agendamiento", "competitor": "No incluido, hay que contratar aparte", "us": "Cal.com integrado: reservas automáticas"},
+      {"feature": "Agendamiento", "competitor": "No incluido, hay que contratar aparte", "us": "Cal.com integrado: reservas autom��ticas"},
       {"feature": "Orquestación", "competitor": "Flujos simples sin autonomía", "us": "OpenClaw: agentes autónomos que deciden y actúan"},
       {"feature": "Voz", "competitor": "Robótica o sin canal de voz", "us": "Voz humana HD, indistinguible de una persona"},
       {"feature": "Soporte", "competitor": "Documentación + chat", "us": "Equipo dedicado de implementación y gestión"}
@@ -123,6 +123,7 @@
   },
   "faq": {
     "title": "Preguntas frecuentes sobre agentes IA",
+    "subtitle": "Resolvemos tus dudas sobre implementación, privacidad y funcionamiento de los agentes IA",
     "view_all": "Ver todas las preguntas",
     "items": [
       {"q": "¿El agente IA parece realmente humano?", "a": "Sí. Utilizamos tecnología de voz humana propietaria con voces indistinguibles de personas reales. Tus clientes no saben que hablan con IA."},

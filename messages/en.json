@@ -123,6 +123,7 @@
   },
   "faq": {
     "title": "Frequently asked questions about AI agents",
+    "subtitle": "We answer your questions about implementation, privacy and how AI agents work",
     "view_all": "View all questions",
     "items": [
       {"q": "Does the AI agent really sound human?", "a": "Yes. We use proprietary human voice technology with voices indistinguishable from real people. Your customers don't know they're talking to AI."},

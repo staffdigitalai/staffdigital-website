@@ -504,7 +504,8 @@ export function GlassmorphismNav() {
 
                 {/* CTA */}
                 <button
-                  className="relative bg-[var(--neon-blue)] hover:bg-[var(--neon-blue)]/90 text-black font-medium px-5 py-1.5 rounded-full flex items-center transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer group text-sm"
+                  className="relative text-white font-medium px-5 py-1.5 rounded-full flex items-center transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer group text-sm"
+                  style={{ backgroundImage: "linear-gradient(to right, rgb(0, 120, 170), rgb(124, 58, 237) 50%, rgb(0, 120, 170))", backgroundSize: "200% 100%" }}
                   onClick={() => scrollToSection("#contact")}
                 >
                   <span className="mr-1.5">{t("cta")}</span>
@@ -755,7 +756,8 @@ export function GlassmorphismNav() {
 
                 <div className="h-px bg-foreground/10 my-1" />
                 <button
-                  className="relative bg-[var(--neon-blue)] hover:bg-[var(--neon-blue)]/90 text-black font-medium px-6 py-3 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer group"
+                  className="relative text-white font-medium px-6 py-3 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer group"
+                  style={{ backgroundImage: "linear-gradient(to right, rgb(0, 120, 170), rgb(124, 58, 237) 50%, rgb(0, 120, 170))", backgroundSize: "200% 100%" }}
                   onClick={() => scrollToSection("#contact")}
                 >
                   <span className="mr-2">Empezar</span>

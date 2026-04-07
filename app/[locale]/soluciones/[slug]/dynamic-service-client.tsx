@@ -1,68 +1,93 @@
 "use client"
 
-import { useEffect, useState, useRef, useCallback } from "react"
 import Link from "next/link"
-import { ArrowRight, Check, Phone, MessageSquare, Globe, Shield, Home, BarChart3, FileText, Megaphone, Zap, Bot, Users, Headphones, Calendar, Mail, Database, Settings, Cpu, Sparkles, Clock, Target, PiggyBank, Plug, TrendingUp, CheckCircle, FolderOpen, Scan, Repeat, LayoutDashboard, Star, ChevronRight } from "lucide-react"
+import { 
+  Play, 
+  ChevronRight, 
+  Phone, 
+  MessageSquare, 
+  Globe, 
+  Check,
+  ArrowRight,
+  Building2,
+  Headphones,
+  Calendar,
+  ShoppingCart,
+  Stethoscope,
+  Home,
+  GraduationCap,
+  Wrench,
+  Users,
+  TrendingUp,
+  Clock,
+  Shield,
+  Zap,
+  Bot
+} from "lucide-react"
 import type { LucideIcon } from "lucide-react"
-import { CTASection } from "@/components/cta-section"
 import { useFormModals } from "@/components/contact-form-modals"
 import type { WPService } from "@/lib/wordpress"
 import { stripHtml } from "@/lib/wordpress"
 
-// Icon mapping
-const iconMap: Record<string, LucideIcon> = {
-  Phone,
-  MessageSquare,
-  Globe,
-  Shield,
-  Home,
-  BarChart3,
-  FileText,
-  Megaphone,
-  Zap,
-  Bot,
-  Users,
-  Headphones,
-  Calendar,
-  Mail,
-  Database,
-  Settings,
-  Cpu,
-  Sparkles,
-  Clock,
-  Target,
-  PiggyBank,
-  Plug,
-  TrendingUp,
-  CheckCircle,
-  FolderOpen,
-  Scan,
-  Repeat,
-  LayoutDashboard,
-  Star,
-  Check,
+// Service icon mapping
+const serviceIcons: Record<string, LucideIcon> = {
+  "atencion-telefonica-ia": Phone,
+  "whatsapp-ia-empresas": MessageSquare,
+  "agente-chat-web-ia": Globe,
+  "agente-ventas-ia": TrendingUp,
+  "agente-soporte-ia": Headphones,
+  "agente-agendamientos-ia": Calendar,
+  "lead-generation-ia": Users,
+  "crm-automation-ia": Building2,
 }
 
-interface TOCItem {
-  id: string
-  text: string
-}
+// Stats data
+const solutionStats = [
+  { value: "24/7", label: "Atención continua" },
+  { value: "80%", label: "Reducción de costes" },
+  { value: "92%", label: "Satisfacción cliente" },
+]
 
-interface DynamicServiceClientProps {
-  service: WPService
-}
+// Channels data
+const channels = [
+  { icon: Phone, name: "Llamadas Telefónicas", desc: "Voz natural con latencia mínima. Atiende y realiza llamadas 24/7." },
+  { icon: MessageSquare, name: "WhatsApp Business", desc: "Respuestas instantáneas con contexto completo del cliente." },
+  { icon: Globe, name: "Chat Web", desc: "Widget integrado en tu web con el mismo agente IA." },
+]
 
-// Stats data for solution pages
-const solutionStats = {
-  default: [
-    { value: "24/7", label: "Atención continua" },
-    { value: "0", label: "Llamadas perdidas" },
-    { value: "60-80%", label: "Reducción de costes" },
-    { value: "92%", label: "Satisfacción cliente" },
-  ],
-}
+// Features data
+const features = [
+  { icon: Bot, text: "Agente IA con voz humana natural" },
+  { icon: Clock, text: "Disponibilidad 24/7 sin interrupciones" },
+  { icon: Shield, text: "Datos protegidos bajo GDPR" },
+  { icon: Zap, text: "Integración en menos de 48h" },
+  { icon: Users, text: "Escalado automático según demanda" },
+  { icon: TrendingUp, text: "Analytics y métricas en tiempo real" },
+]
 
-// Other solutions for navigation
+// Benefits data
+const benefits = [
+  "Reduce costes operativos hasta un 80% en atención al cliente",
+  "Elimina tiempos de espera: respuestas instantáneas 24/7",
+  "Aumenta la satisfacción del cliente con interacciones naturales",
+  "Escala tu equipo sin límites de contratación",
+  "Libera a tu equipo humano para tareas de alto valor",
+  "Integración perfecta con tu CRM y herramientas existentes",
+]
+
+// Sectors data
+const sectors = [
+  { name: "Concesionarios", icon: Building2 },
+  { name: "Clínicas", icon: Stethoscope },
+  { name: "Inmobiliarias", icon: Home },
+  { name: "Restaurantes", icon: ShoppingCart },
+  { name: "E-commerce", icon: ShoppingCart },
+  { name: "Turismo", icon: Globe },
+  { name: "Educación", icon: GraduationCap },
+  { name: "Servicios Locales", icon: Wrench },
+]
+
+// Other solutions
 const otherSolutions = [
   { label: "IA para Call Center", href: "/soluciones/atencion-telefonica-ia", slug: "atencion-telefonica-ia" },
   { label: "WhatsApp IA", href: "/soluciones/whatsapp-ia-empresas", slug: "whatsapp-ia-empresas" },
@@ -70,66 +95,26 @@ const otherSolutions = [
   { label: "Ventas con IA", href: "/soluciones/agente-ventas-ia", slug: "agente-ventas-ia" },
   { label: "Soporte IA", href: "/soluciones/agente-soporte-ia", slug: "agente-soporte-ia" },
   { label: "Agendamiento IA", href: "/soluciones/agente-agendamientos-ia", slug: "agente-agendamientos-ia" },
-  { label: "LeadGen IA", href: "/soluciones/lead-generation-ia", slug: "lead-generation-ia" },
-  { label: "CRM Automation", href: "/soluciones/crm-automation-ia", slug: "crm-automation-ia" },
 ]
+
+// Testimonial data
+const testimonial = {
+  quote: "Desde que implementamos el agente IA de StaffDigital, hemos reducido un 75% las llamadas perdidas y aumentado las conversiones en un 40%.",
+  author: "María García",
+  role: "Directora de Operaciones",
+  company: "AutoPremium Madrid",
+}
+
+interface DynamicServiceClientProps {
+  service: WPService
+}
 
 export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
   const { openContactForm } = useFormModals()
-  const [tocItems, setTocItems] = useState<TOCItem[]>([])
-  const [activeId, setActiveId] = useState<string>("")
-  const contentRef = useRef<HTMLDivElement>(null)
-
+  
   const title = stripHtml(service.title.rendered)
-  const subtitle = service.acf?.subtitulo || ""
   const excerpt = stripHtml(service.excerpt.rendered)
-  const MainIcon = iconMap[service.acf?.icono || "Zap"] || Zap
-  const stats = solutionStats.default
-
-  // Extract H2s from content for TOC
-  useEffect(() => {
-    if (contentRef.current) {
-      const h2s = contentRef.current.querySelectorAll("h2")
-      const items: TOCItem[] = []
-      h2s.forEach((h2, index) => {
-        const id = `section-${index}`
-        h2.id = id
-        items.push({ id, text: h2.textContent || "" })
-      })
-      setTocItems(items)
-      if (items.length > 0) setActiveId(items[0].id)
-    }
-  }, [service.content.rendered])
-
-  // Scroll spy for TOC
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id)
-          }
-        }
-      },
-      { rootMargin: "-100px 0px -70% 0px", threshold: 0 }
-    )
-
-    tocItems.forEach((item) => {
-      const el = document.getElementById(item.id)
-      if (el) observer.observe(el)
-    })
-
-    return () => observer.disconnect()
-  }, [tocItems])
-
-  const scrollToSection = useCallback((id: string) => {
-    const el = document.getElementById(id)
-    if (el) {
-      const yOffset = -100
-      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset
-      window.scrollTo({ top: y, behavior: "smooth" })
-    }
-  }, [])
+  const ServiceIcon = serviceIcons[service.slug] || Phone
 
   // Breadcrumb JSON-LD
   const breadcrumbJsonLd = {
@@ -143,570 +128,294 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950">
+    <>
       {/* JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      {/* Breadcrumb */}
-      <nav className="pt-24 pb-4 px-4" aria-label="Breadcrumb">
-        <div className="max-w-7xl mx-auto">
-          <ol className="flex items-center gap-2 text-sm">
-            <li>
-              <Link href="/" className="text-gray-500 dark:text-white/50 hover:text-[rgb(0,120,170)] transition-colors">
-                Inicio
-              </Link>
-            </li>
-            <li>
-              <ChevronRight className="w-4 h-4 text-gray-400" />
-            </li>
-            <li>
-              <Link href="/soluciones" className="text-gray-500 dark:text-white/50 hover:text-[rgb(0,120,170)] transition-colors">
-                Soluciones
-              </Link>
-            </li>
-            <li>
-              <ChevronRight className="w-4 h-4 text-gray-400" />
-            </li>
-            <li>
-              <span className="text-gray-900 dark:text-white font-medium">{title}</span>
-            </li>
-          </ol>
-        </div>
+      {/* ═══════════════════════════════════════
+          SECCIÓN 1 — BREADCRUMB
+          ═══════════════════════════════════════ */}
+      <nav className="pt-28 pb-4 px-4 max-w-6xl mx-auto">
+        <ol className="flex items-center gap-2 text-sm">
+          <li>
+            <Link href="/" className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+              Inicio
+            </Link>
+          </li>
+          <ChevronRight className="w-4 h-4 text-gray-400" />
+          <li>
+            <Link href="/soluciones" className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+              Soluciones
+            </Link>
+          </li>
+          <ChevronRight className="w-4 h-4 text-gray-400" />
+          <li className="text-gray-900 dark:text-white font-medium">
+            {title}
+          </li>
+        </ol>
       </nav>
 
-      {/* Hero Section */}
-      <section className="px-4 pt-8 pb-16 md:pb-20">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Icon */}
-          <div 
-            className="inline-flex items-center justify-center w-[72px] h-[72px] rounded-2xl mb-8"
-            style={{ 
-              background: "linear-gradient(to bottom right, rgba(0,120,170,0.2), rgba(124,58,237,0.1))",
-              border: "1px solid rgba(0,120,170,0.2)"
-            }}
-          >
-            <MainIcon size={32} className="text-[rgb(0,120,170)] dark:text-cyan-400" />
-          </div>
-
-          {/* H1 */}
-          <h1 
-            className="text-5xl md:text-6xl font-extrabold leading-tight text-balance mb-4"
-            style={{ color: "rgb(17,24,39)" }}
-          >
-            <span className="dark:text-white">{title}</span>
+      {/* ═══════════════════════════════════════
+          SECCIÓN 2 — HERO (centrado)
+          ═══════════════════════════════════════ */}
+      <section className="px-4 pt-8 pb-16 text-center">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white">
+            {title}
           </h1>
-
-          {/* Subtitle */}
-          {subtitle && (
-            <p className="text-xl md:text-2xl font-medium mb-6 text-[rgb(0,120,170)] dark:text-cyan-400">
-              {subtitle}
-            </p>
-          )}
-
-          {/* Description */}
-          <p 
-            className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10"
-            style={{ color: "rgb(75,85,99)" }}
-          >
-            <span className="dark:text-slate-300">{excerpt}</span>
+          
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-6">
+            {excerpt}
           </p>
 
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex gap-4 justify-center mt-8">
             <button
               onClick={openContactForm}
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-white font-medium transition-all duration-200 hover:opacity-90 hover:shadow-lg cursor-pointer"
-              style={{ background: "linear-gradient(to right, rgb(0,120,170), rgb(124,58,237))" }}
+              className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] text-white rounded-lg px-6 py-3 font-semibold hover:opacity-90 transition-opacity cursor-pointer"
             >
               Pedir Demo
-              <ArrowRight size={18} />
             </button>
             <a
               href="tel:+34931229129"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-medium transition-all duration-200 border hover:bg-gray-50 dark:hover:bg-white/5"
-              style={{ 
-                borderColor: "rgb(229,231,235)",
-                color: "rgb(17,24,39)"
-              }}
+              className="border border-gray-300 dark:border-[rgb(61,61,64)] rounded-lg px-6 py-3 text-gray-900 dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
             >
-              <span className="dark:text-white dark:border-white/20">
-                <Phone size={18} className="inline mr-2" />
-                Escucha la voz IA
-              </span>
+              Escucha la voz IA
             </a>
           </div>
-        </div>
-      </section>
 
-      {/* Content + Sidebar */}
-      <section className="px-4 py-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-12">
-            {/* Main Content (65%) */}
-            <div className="lg:w-[65%]">
-              <div 
-                ref={contentRef}
-                className="wp-content"
-                dangerouslySetInnerHTML={{ __html: service.content.rendered }}
-              />
-            </div>
-
-            {/* Sidebar (35%) */}
-            <aside className="lg:w-[35%]">
-              <div className="lg:sticky lg:top-28 space-y-5">
-                {/* Table of Contents */}
-                {tocItems.length > 0 && (
-                  <nav
-                    className="p-6 rounded-2xl"
-                    style={{ 
-                      backgroundColor: "rgb(255,255,255)",
-                      border: "1px solid rgb(229,231,235)",
-                      boxShadow: "0 4px 20px rgba(0,0,0,0.06)"
-                    }}
-                    aria-label="Índice de contenido"
-                  >
-                    <div className="dark:bg-gray-900 dark:border-white/10">
-                      <p 
-                        className="text-xs uppercase tracking-wider font-semibold mb-4"
-                        style={{ color: "rgb(107,114,128)" }}
-                      >
-                        <span className="dark:text-gray-400">En esta página</span>
-                      </p>
-                      <ul className="space-y-1">
-                        {tocItems.map((item) => (
-                          <li key={item.id}>
-                            <button
-                              onClick={() => scrollToSection(item.id)}
-                              className={`w-full text-left py-2 text-sm transition-all duration-200 cursor-pointer ${
-                                activeId === item.id
-                                  ? "text-[rgb(0,120,170)] font-medium border-l-2 border-[rgb(0,120,170)] pl-3"
-                                  : "text-gray-600 dark:text-gray-300 hover:text-[rgb(0,120,170)] pl-0"
-                              }`}
-                            >
-                              {item.text}
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </nav>
-                )}
-
-                {/* Demo CTA Card */}
-                <div
-                  className="p-6 rounded-2xl"
-                  style={{ 
-                    background: "linear-gradient(to bottom right, rgba(0,120,170,0.05), rgba(124,58,237,0.05))",
-                    border: "1px solid rgba(0,120,170,0.2)"
-                  }}
-                >
-                  <div className="dark:from-cyan-900/20 dark:to-violet-900/20 dark:border-cyan-500/20">
-                    <h3 
-                      className="text-lg font-semibold mb-2"
-                      style={{ color: "rgb(17,24,39)" }}
-                    >
-                      <span className="dark:text-white">¿Listo para empezar?</span>
-                    </h3>
-                    <p 
-                      className="text-sm mb-4"
-                      style={{ color: "rgb(107,114,128)" }}
-                    >
-                      <span className="dark:text-gray-400">Configura tu agente IA en menos de 48h</span>
-                    </p>
-                    <button
-                      onClick={openContactForm}
-                      className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-white font-medium transition-all duration-200 hover:opacity-90 cursor-pointer"
-                      style={{ background: "linear-gradient(to right, rgb(0,120,170), rgb(124,58,237))" }}
-                    >
-                      Solicitar Demo
-                      <ArrowRight size={16} />
-                    </button>
-                    <p 
-                      className="text-xs text-center mt-3"
-                      style={{ color: "rgb(107,114,128)" }}
-                    >
-                      <span className="dark:text-gray-500">o llámanos: +34 931 229 129</span>
-                    </p>
-                  </div>
-                </div>
+          {/* Video Placeholder */}
+          <div className="mt-12 max-w-5xl mx-auto aspect-video rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
+            <div className="flex flex-col items-center gap-4">
+              <div className="w-20 h-20 rounded-full bg-gradient-to-r from-[#0078AA] to-[#7C3AED] flex items-center justify-center cursor-pointer hover:scale-105 transition-transform">
+                <Play className="w-8 h-8 text-white ml-1" fill="white" />
               </div>
-            </aside>
+              <span className="text-gray-500 dark:text-gray-400 text-sm">Video Demo</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="px-4 py-16">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="p-6 rounded-2xl text-center"
-                style={{ 
-                  backgroundColor: "rgb(255,255,255)",
-                  border: "1px solid rgb(229,231,235)"
-                }}
-              >
-                <div className="dark:bg-gray-900 dark:border-white/10">
-                  <p 
-                    className="text-4xl font-extrabold mb-2"
-                    style={{ 
-                      background: "linear-gradient(to right, rgb(0,120,170), rgb(124,58,237))",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text"
-                    }}
-                  >
-                    {stat.value}
-                  </p>
-                  <p 
-                    className="text-sm"
-                    style={{ color: "rgb(107,114,128)" }}
-                  >
-                    <span className="dark:text-gray-400">{stat.label}</span>
-                  </p>
+      {/* ═══════════════════════════════════════
+          SECCIÓN 3 — STATS BAR (3 métricas)
+          ═══════════════════════════════════════ */}
+      <section className="px-4 py-10 border-y border-gray-200 dark:border-[rgb(61,61,64)]">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-around items-center gap-8 md:gap-0">
+          {solutionStats.map((stat, i) => (
+            <div key={i} className="flex items-center">
+              {i > 0 && (
+                <div className="hidden md:block w-px h-12 bg-gray-200 dark:bg-[rgb(61,61,64)] mr-12" />
+              )}
+              <div className="text-center">
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">
+                  {stat.value}
                 </div>
+                <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+          SECCIÓN 4 — CANALES (3 cards)
+          ═══════════════════════════════════════ */}
+      <section className="px-4 py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Un agente, todos los canales
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Tu agente IA atiende con la misma calidad en todos los puntos de contacto
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {channels.map((channel, i) => (
+              <div 
+                key={i}
+                className="p-6 rounded-2xl bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] hover:border-[#0078AA]/50 transition-colors"
+              >
+                <div 
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                  style={{ background: "linear-gradient(135deg, #0078AA, #7C3AED)" }}
+                >
+                  <channel.icon className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{channel.name}</h3>
+                <p className="text-gray-600 dark:text-gray-400">{channel.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Tech Logos */}
-      <section className="px-4 py-12 border-t border-b" style={{ borderColor: "rgb(229,231,235)" }}>
-        <div className="dark:border-white/10">
-          <div className="max-w-4xl mx-auto">
-            <p 
-              className="text-center text-xs uppercase tracking-wider mb-8"
-              style={{ color: "rgb(107,114,128)" }}
-            >
-              <span className="dark:text-gray-400">Tecnología que impulsa nuestros agentes</span>
+      {/* ═══════════════════════════════════════
+          SECCIÓN 5 — FEATURES (6 cards grid)
+          ═══════════════════════════════════════ */}
+      <section className="px-4 py-20 bg-gray-50 dark:bg-transparent">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Qué incluye esta solución
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Todo lo que necesitas para automatizar la atención al cliente
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-12">
-              {[
-                { src: "/images/partners/openai.svg", alt: "OpenAI" },
-                { src: "/images/partners/anthropic.svg", alt: "Anthropic" },
-                { src: "/images/partners/google-cloud.svg", alt: "Google Cloud" },
-                { src: "/images/partners/twilio.svg", alt: "Twilio" },
-                { src: "/images/partners/salesforce.svg", alt: "Salesforce" },
-              ].map((logo) => (
-                <img
-                  key={logo.alt}
-                  src={logo.src}
-                  alt={logo.alt}
-                  className="h-6 sm:h-8 w-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 dark:brightness-0 dark:invert dark:opacity-40 dark:hover:brightness-100 dark:hover:invert-0 dark:hover:opacity-100"
-                />
-              ))}
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, i) => (
+              <div 
+                key={i}
+                className="p-6 rounded-2xl bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)]"
+              >
+                <div className="w-10 h-10 rounded-lg bg-[#0078AA]/10 dark:bg-[#0078AA]/20 flex items-center justify-center mb-4">
+                  <feature.icon className="w-5 h-5 text-[#0078AA]" />
+                </div>
+                <p className="text-gray-900 dark:text-white font-medium">{feature.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+          SECCIÓN 6 — BENEFICIOS (2 columnas)
+          ═══════════════════════════════════════ */}
+      <section className="px-4 py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                Beneficios para tu negocio
+              </h2>
+              <ul className="space-y-4">
+                {benefits.map((benefit, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div 
+                      className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                      style={{ background: "linear-gradient(135deg, #0078AA, #7C3AED)" }}
+                    >
+                      <Check className="w-4 h-4 text-white" />
+                    </div>
+                    <span className="text-gray-600 dark:text-gray-400">{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Imagen placeholder */}
+            <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#0078AA]/10 to-[#7C3AED]/10 border border-gray-200 dark:border-[rgb(61,61,64)] flex items-center justify-center">
+              <ServiceIcon className="w-24 h-24 text-[#0078AA]/30" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Other Solutions */}
-      <section className="px-4 py-20">
-        <div className="max-w-5xl mx-auto">
+      {/* ═══════════════════════════════════════
+          SECCIÓN 7 — SECTORES (pills)
+          ═══════════════════════════════════════ */}
+      <section className="px-4 py-20 bg-gray-50 dark:bg-transparent">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 
-              className="text-3xl font-bold mb-4"
-              style={{ color: "rgb(17,24,39)" }}
-            >
-              <span className="dark:text-white">Otras Soluciones</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Ideal para estos sectores
             </h2>
-            <p style={{ color: "rgb(107,114,128)" }}>
-              <span className="dark:text-gray-400">Descubre más formas de transformar tu negocio con IA</span>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Agentes IA entrenados con el conocimiento de cada industria
             </p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-3">
-            {otherSolutions
-              .filter((s) => s.slug !== service.slug)
-              .slice(0, 6)
-              .map((s) => (
-                <Link
-                  key={s.href}
-                  href={s.href}
-                  className="px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200"
-                  style={{ 
-                    backgroundColor: "rgb(255,255,255)",
-                    border: "1px solid rgb(229,231,235)",
-                    color: "rgb(55,65,81)"
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "rgb(0,120,170)"
-                    e.currentTarget.style.color = "rgb(0,120,170)"
-                    e.currentTarget.style.backgroundColor = "rgba(0,120,170,0.05)"
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "rgb(229,231,235)"
-                    e.currentTarget.style.color = "rgb(55,65,81)"
-                    e.currentTarget.style.backgroundColor = "rgb(255,255,255)"
-                  }}
-                >
-                  <span className="dark:bg-gray-900 dark:border-white/10 dark:text-gray-300 dark:hover:border-cyan-500 dark:hover:text-cyan-400 dark:hover:bg-cyan-900/10">
-                    {s.label}
-                  </span>
-                </Link>
-              ))}
+            {sectors.map((sector, i) => (
+              <div 
+                key={i}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] hover:border-[#0078AA]/50 transition-colors"
+              >
+                <sector.icon className="w-4 h-4 text-[#0078AA]" />
+                <span className="text-gray-900 dark:text-white text-sm font-medium">{sector.name}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section 
-        className="px-4 py-20 border-t border-b"
-        style={{ 
-          background: "linear-gradient(to bottom right, rgba(0,120,170,0.05), transparent, rgba(124,58,237,0.05))",
-          borderColor: "rgb(229,231,235)"
-        }}
-      >
-        <div className="dark:from-cyan-900/10 dark:to-violet-900/10 dark:border-white/10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span style={{ color: "rgb(17,24,39)" }} className="dark:text-white">
-                ¿Listo para transformar la{" "}
-              </span>
-              <span 
-                style={{ 
-                  background: "linear-gradient(to right, rgb(0,120,170), rgb(124,58,237))",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text"
-                }}
+      {/* ═══════════════════════════════════════
+          SECCIÓN 8 — TESTIMONIAL
+          ═══════════════════════════════════════ */}
+      <section className="px-4 py-20">
+        <div className="max-w-4xl mx-auto">
+          <div className="p-8 md:p-12 rounded-2xl bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)]">
+            <blockquote className="text-xl md:text-2xl text-gray-900 dark:text-white font-medium text-center mb-8">
+              &ldquo;{testimonial.quote}&rdquo;
+            </blockquote>
+            <div className="flex items-center justify-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-[#0078AA] to-[#7C3AED] flex items-center justify-center text-white font-bold">
+                {testimonial.author.charAt(0)}
+              </div>
+              <div>
+                <div className="font-semibold text-gray-900 dark:text-white">{testimonial.author}</div>
+                <div className="text-sm text-gray-500">{testimonial.role}, {testimonial.company}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+          SECCIÓN 9 — OTRAS SOLUCIONES (pills)
+          ═══════════════════════════════════════ */}
+      <section className="px-4 py-16 border-t border-gray-200 dark:border-[rgb(61,61,64)]">
+        <div className="max-w-6xl mx-auto">
+          <h3 className="text-center text-gray-500 text-sm uppercase tracking-wider mb-6">
+            Otras soluciones IA
+          </h3>
+          <div className="flex flex-wrap justify-center gap-3">
+            {otherSolutions.filter(s => s.slug !== service.slug).map((s, i) => (
+              <Link
+                key={i}
+                href={s.href}
+                className="px-4 py-2 rounded-full bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] text-gray-900 dark:text-white text-sm font-medium hover:border-[#0078AA]/50 transition-colors"
               >
-                atención al cliente
-              </span>
-              <span style={{ color: "rgb(17,24,39)" }} className="dark:text-white">?</span>
-            </h2>
-            <p 
-              className="text-lg mb-8"
-              style={{ color: "rgb(107,114,128)" }}
-            >
-              <span className="dark:text-gray-400">
-                Agenda una demo gratuita y descubre cómo los agentes IA pueden revolucionar tu negocio
-              </span>
-            </p>
+                {s.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+          SECCIÓN 10 — CTA FINAL
+          ═══════════════════════════════════════ */}
+      <section className="px-4 py-20">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Listo para automatizar tu atención al cliente?
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+            Agenda una demo personalizada y descubre cómo los agentes IA pueden transformar tu negocio
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={openContactForm}
-              className="inline-flex items-center gap-2 px-10 py-4 rounded-xl text-white font-medium text-lg transition-all duration-200 hover:opacity-90 hover:shadow-lg cursor-pointer"
-              style={{ background: "linear-gradient(to right, rgb(0,120,170), rgb(124,58,237))" }}
+              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#0078AA] to-[#7C3AED] text-white rounded-lg px-8 py-4 font-semibold hover:opacity-90 transition-opacity cursor-pointer"
             >
-              Habla con un Experto
-              <ArrowRight size={20} />
+              Solicitar Demo Gratuita
+              <ArrowRight className="w-5 h-5" />
             </button>
+            <Link
+              href="/contacto"
+              className="inline-flex items-center justify-center gap-2 border border-gray-300 dark:border-[rgb(61,61,64)] rounded-lg px-8 py-4 text-gray-900 dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+            >
+              Contactar con ventas
+            </Link>
           </div>
         </div>
       </section>
-
-      {/* WordPress Content Styles */}
-      <style jsx global>{`
-        /* WordPress Content Styling */
-        .wp-content h2 {
-          font-size: 28px;
-          font-weight: 700;
-          color: rgb(17, 24, 39);
-          margin-top: 48px;
-          margin-bottom: 20px;
-          padding-bottom: 12px;
-          border-bottom: 2px solid rgb(229, 231, 235);
-        }
-        
-        .wp-content h2:first-child {
-          margin-top: 0;
-        }
-        
-        .dark .wp-content h2 {
-          color: white;
-          border-bottom-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .wp-content h3 {
-          font-size: 22px;
-          font-weight: 600;
-          color: rgb(17, 24, 39);
-          margin-top: 32px;
-          margin-bottom: 16px;
-        }
-        
-        .dark .wp-content h3 {
-          color: white;
-        }
-        
-        .wp-content p {
-          font-size: 17px;
-          line-height: 1.8;
-          color: rgb(75, 85, 99);
-          margin-bottom: 20px;
-        }
-        
-        .dark .wp-content p {
-          color: rgb(209, 213, 219);
-        }
-        
-        .wp-content strong {
-          color: rgb(17, 24, 39);
-          font-weight: 600;
-        }
-        
-        .dark .wp-content strong {
-          color: white;
-        }
-        
-        .wp-content a {
-          color: rgb(0, 120, 170);
-          text-decoration: none;
-          transition: text-decoration 0.2s;
-        }
-        
-        .wp-content a:hover {
-          text-decoration: underline;
-        }
-        
-        .dark .wp-content a {
-          color: rgb(34, 211, 238);
-        }
-        
-        /* Unordered Lists with Check Icons */
-        .wp-content ul {
-          list-style: none;
-          padding-left: 0;
-          margin-bottom: 24px;
-        }
-        
-        .wp-content ul li {
-          display: flex;
-          align-items: flex-start;
-          gap: 12px;
-          margin-bottom: 12px;
-          font-size: 17px;
-          line-height: 1.8;
-          color: rgb(75, 85, 99);
-        }
-        
-        .dark .wp-content ul li {
-          color: rgb(209, 213, 219);
-        }
-        
-        .wp-content ul li::before {
-          content: "";
-          flex-shrink: 0;
-          width: 20px;
-          height: 20px;
-          margin-top: 4px;
-          background-color: rgba(0, 120, 170, 0.1);
-          border-radius: 50%;
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgb(0,120,170)' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
-          background-repeat: no-repeat;
-          background-position: center;
-        }
-        
-        .dark .wp-content ul li::before {
-          background-color: rgba(34, 211, 238, 0.2);
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgb(34,211,238)' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
-        }
-        
-        .wp-content ul li strong {
-          color: rgb(17, 24, 39);
-          font-weight: 600;
-        }
-        
-        .dark .wp-content ul li strong {
-          color: white;
-        }
-        
-        /* Ordered Lists with Number Circles */
-        .wp-content ol {
-          list-style: none;
-          padding-left: 0;
-          margin-bottom: 24px;
-          counter-reset: step-counter;
-        }
-        
-        .wp-content ol li {
-          display: flex;
-          align-items: flex-start;
-          gap: 16px;
-          margin-bottom: 16px;
-          font-size: 17px;
-          line-height: 1.8;
-          color: rgb(75, 85, 99);
-          position: relative;
-          padding-left: 48px;
-        }
-        
-        .dark .wp-content ol li {
-          color: rgb(209, 213, 219);
-        }
-        
-        .wp-content ol li::before {
-          counter-increment: step-counter;
-          content: counter(step-counter);
-          position: absolute;
-          left: 0;
-          flex-shrink: 0;
-          width: 32px;
-          height: 32px;
-          background: linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237));
-          border-radius: 50%;
-          color: white;
-          font-size: 14px;
-          font-weight: 700;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        
-        .wp-content ol li strong {
-          color: rgb(17, 24, 39);
-          font-weight: 600;
-        }
-        
-        .dark .wp-content ol li strong {
-          color: white;
-        }
-        
-        /* Blockquotes */
-        .wp-content blockquote {
-          position: relative;
-          background: linear-gradient(to bottom right, rgba(0, 120, 170, 0.05), rgba(124, 58, 237, 0.05));
-          border-left: 4px solid;
-          border-image: linear-gradient(to bottom, rgb(0, 120, 170), rgb(124, 58, 237)) 1;
-          border-radius: 16px;
-          padding: 24px 28px;
-          margin: 40px 0;
-          font-style: italic;
-        }
-        
-        .dark .wp-content blockquote {
-          background: linear-gradient(to bottom right, rgba(8, 145, 178, 0.2), rgba(139, 92, 246, 0.2));
-        }
-        
-        .wp-content blockquote::before {
-          content: '"';
-          position: absolute;
-          top: 12px;
-          left: 20px;
-          font-size: 48px;
-          color: rgba(0, 120, 170, 0.3);
-          font-family: Georgia, serif;
-          line-height: 1;
-        }
-        
-        .wp-content blockquote p {
-          font-size: 17px;
-          line-height: 1.7;
-          color: rgb(55, 65, 81);
-          margin-bottom: 0;
-          padding-left: 20px;
-        }
-        
-        .dark .wp-content blockquote p {
-          color: rgb(229, 231, 235);
-        }
-      `}</style>
-    </div>
+    </>
   )
 }

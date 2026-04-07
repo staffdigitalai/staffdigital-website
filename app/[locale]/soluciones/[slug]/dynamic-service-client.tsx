@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback } from "react"
 import Link from "next/link"
-import { ArrowRight, Check, Phone, MessageSquare, Globe, Shield, Home, BarChart3, FileText, Megaphone, Zap, Bot, Users, Headphones, Calendar, Mail, Database, Settings, Cpu, Sparkles, Clock, Target, PiggyBank, Plug, TrendingUp, CheckCircle, FolderOpen, Scan, Repeat, LayoutDashboard, Star, Play } from "lucide-react"
+import { ArrowRight, Check, Phone, MessageSquare, Globe, Shield, Home, BarChart3, FileText, Megaphone, Zap, Bot, Users, Headphones, Calendar, Mail, Database, Settings, Cpu, Sparkles, Clock, Target, PiggyBank, Plug, TrendingUp, CheckCircle, FolderOpen, Scan, Repeat, LayoutDashboard, Star, Play, ChevronRight } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { useFormModals } from "@/components/contact-form-modals"
 import type { WPService } from "@/lib/wordpress"
@@ -53,9 +53,9 @@ interface DynamicServiceClientProps {
 
 // Stats data for solution pages
 const solutionStats = [
-  { value: "24/7", label: "Atención sin interrupciones" },
-  { value: "60-80%", label: "Reducción de costes" },
-  { value: "92%", label: "Satisfacción del cliente" },
+  { value: "24/7", label: "Atención continua" },
+  { value: "80%", label: "Reducción de costes" },
+  { value: "92%", label: "Satisfacción cliente" },
 ]
 
 // Other solutions for navigation
@@ -136,7 +136,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+    <>
       {/* JSON-LD */}
       <script
         type="application/ld+json"
@@ -144,12 +144,37 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
       />
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION 1 — HERO (centrado, full-width)
+          SECTION 1 — BREADCRUMB
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-white dark:bg-black pt-32 pb-12 px-4">
+      <nav aria-label="breadcrumb" className="pt-28 pb-4 px-4">
+        <div className="max-w-6xl mx-auto">
+          <ol className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-500">
+            <li>
+              <Link href="/" className="hover:text-gray-900 dark:hover:text-white transition-colors">
+                Inicio
+              </Link>
+            </li>
+            <li className="flex items-center gap-2">
+              <ChevronRight size={14} className="text-gray-400" />
+              <Link href="/soluciones" className="hover:text-gray-900 dark:hover:text-white transition-colors">
+                Soluciones
+              </Link>
+            </li>
+            <li className="flex items-center gap-2">
+              <ChevronRight size={14} className="text-gray-400" />
+              <span className="text-gray-900 dark:text-white font-medium">{title}</span>
+            </li>
+          </ol>
+        </div>
+      </nav>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          SECTION 2 — HERO (centrado, full-width)
+          ═══════════════════════════════════════════════════════════════════════ */}
+      <section className="pt-8 pb-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           {/* H1 */}
-          <h1 className="text-5xl md:text-6xl font-bold leading-tight text-balance text-gray-900 dark:text-gray-50">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight text-balance text-gray-900 dark:text-white">
             {title}
           </h1>
 
@@ -162,14 +187,14 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
             <button
               onClick={openContactForm}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white dark:bg-white text-gray-900 border border-gray-300 dark:border-gray-600 font-medium text-[15px] transition-all duration-200 hover:bg-gray-50 cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-transparent text-gray-900 dark:text-white border border-gray-300 dark:border-[rgb(61,61,64)] font-medium text-[15px] transition-all duration-200 hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer"
             >
               Pedir Demo
             </button>
             <a
               href="tel:+34931229129"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white font-medium text-[15px] transition-all duration-200 hover:opacity-90"
-              style={{ backgroundColor: "rgb(0, 120, 170)" }}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white font-medium text-[15px] transition-all duration-200 hover:opacity-90 shadow-lg shadow-violet-500/20"
+              style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}
             >
               <Phone size={16} />
               Escucha la voz IA
@@ -179,17 +204,17 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
           {/* Video Placeholder */}
           <div className="mt-12 max-w-5xl mx-auto">
             <div 
-              className="relative aspect-video rounded-2xl overflow-hidden bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-[rgb(61,61,64)]"
+              className="relative aspect-video rounded-[20px] overflow-hidden border border-gray-200 dark:border-[rgb(61,61,64)]"
               style={{ 
-                background: "linear-gradient(135deg, rgba(0, 120, 170, 0.1), rgba(124, 58, 237, 0.1))"
+                background: "linear-gradient(135deg, rgba(0, 120, 170, 0.05), rgba(124, 58, 237, 0.05))"
               }}
             >
               {/* Play Button */}
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-white/80 dark:bg-white/20 backdrop-blur flex items-center justify-center cursor-pointer hover:scale-110 transition-transform duration-200">
-                  <Play size={28} className="text-gray-900 dark:text-white ml-1" fill="currentColor" />
+                <div className="w-20 h-20 rounded-full bg-white/10 dark:bg-white/10 backdrop-blur-sm flex items-center justify-center cursor-pointer hover:scale-110 transition-transform duration-200">
+                  <Play size={32} className="text-white ml-1" fill="currentColor" />
                 </div>
-                <p className="mt-4 text-sm font-medium text-gray-600 dark:text-gray-400">Video Demo</p>
+                <p className="mt-4 text-sm font-medium text-gray-500 dark:text-gray-500">Video Demo</p>
               </div>
             </div>
           </div>
@@ -197,11 +222,11 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION 2 — STATS BAR
+          SECTION 3 — STATS BAR
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 dark:bg-black border-y border-gray-200 dark:border-[rgb(61,61,64)] py-10 px-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between">
+      <section className="py-10 px-4">
+        <div className="max-w-5xl mx-auto border-y border-gray-200 dark:border-[rgb(61,61,64)] py-10">
+          <div className="flex flex-col md:flex-row items-center justify-around">
             {solutionStats.map((stat, index) => (
               <div key={index} className="flex items-center">
                 {/* Stat */}
@@ -230,9 +255,9 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION 3 — CONTENT + SIDEBAR
+          SECTION 4 — CONTENT + SIDEBAR
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-white dark:bg-black px-4 py-16">
+      <section className="px-4 py-16">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-12">
             {/* Main Content (65%) */}
@@ -250,8 +275,8 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
                 {/* Table of Contents */}
                 {tocItems.length > 0 && (
                   <nav
-                    className="p-6 rounded-2xl bg-white dark:bg-[rgba(255,255,255,0.03)] border border-gray-200 dark:border-[rgb(61,61,64)]"
-                    style={{ boxShadow: "0 4px 20px rgba(0, 0, 0, 0.06)" }}
+                    className="p-6 rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)]"
+                    style={{ boxShadow: "0 1px 3px rgba(0, 0, 0, 0.05)" }}
                     aria-label="Índice de contenido"
                   >
                     <p className="text-xs uppercase tracking-wider font-semibold mb-4 text-gray-500 dark:text-gray-500">
@@ -278,23 +303,24 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
 
                 {/* Demo CTA Card */}
                 <div
-                  className="p-6 rounded-2xl bg-gradient-to-br from-[rgba(0,120,170,0.05)] to-[rgba(124,58,237,0.05)] dark:from-[rgba(0,120,170,0.1)] dark:to-[rgba(124,58,237,0.1)] border border-[rgba(0,120,170,0.2)] dark:border-[rgba(0,120,170,0.3)]"
+                  className="p-6 rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)]"
+                  style={{ boxShadow: "0 1px 3px rgba(0, 0, 0, 0.05)" }}
                 >
-                  <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-50">
+                  <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-[rgb(248,249,250)]">
                     ¿Listo para empezar?
                   </h3>
-                  <p className="text-sm mb-4 text-gray-500 dark:text-gray-400">
+                  <p className="text-sm mb-4 text-gray-500 dark:text-[rgb(163,163,163)]">
                     Configura tu agente IA en menos de 48h
                   </p>
                   <button
                     onClick={openContactForm}
-                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-white font-medium transition-all duration-200 hover:opacity-90 cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-white font-medium transition-all duration-200 hover:opacity-90 cursor-pointer"
                     style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}
                   >
                     Solicitar Demo
                     <ArrowRight size={16} />
                   </button>
-                  <p className="text-xs text-center mt-3 text-gray-500 dark:text-gray-500">
+                  <p className="text-xs text-center mt-3 text-gray-500 dark:text-[rgb(107,114,128)]">
                     o llámanos: +34 931 229 129
                   </p>
                 </div>
@@ -305,11 +331,11 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION 4 — TECH LOGOS
+          SECTION 5 — TECH LOGOS
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-white dark:bg-black px-4 py-12 border-y border-gray-200 dark:border-[rgb(61,61,64)]">
+      <section className="px-4 py-12 border-y border-gray-200 dark:border-[rgb(61,61,64)]">
         <div className="max-w-4xl mx-auto">
-          <p className="text-center text-xs uppercase tracking-wider mb-8 text-gray-500 dark:text-gray-500">
+          <p className="text-center text-xs uppercase tracking-wider mb-8 text-gray-500 dark:text-[rgb(107,114,128)]">
             Tecnología que impulsa nuestros agentes
           </p>
           <div className="flex flex-wrap items-center justify-center gap-12">
@@ -332,15 +358,15 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION 5 — OTHER SOLUTIONS
+          SECTION 6 — OTHER SOLUTIONS
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-white dark:bg-black px-4 py-20">
+      <section className="px-4 py-20">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-gray-50">
+            <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-[rgb(248,249,250)]">
               Otras Soluciones
             </h2>
-            <p className="text-gray-500 dark:text-gray-400">
+            <p className="text-gray-500 dark:text-[rgb(163,163,163)]">
               Descubre más formas de transformar tu negocio con IA
             </p>
           </div>
@@ -353,7 +379,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
                 <Link
                   key={s.href}
                   href={s.href}
-                  className="px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 bg-white dark:bg-[rgba(255,255,255,0.03)] border border-gray-200 dark:border-[rgb(61,61,64)] text-gray-700 dark:text-gray-300 hover:border-[rgb(0,120,170)] hover:text-[rgb(0,120,170)] hover:bg-[rgba(0,120,170,0.05)] dark:hover:border-[rgb(0,120,170)] dark:hover:text-[rgb(0,120,170)] dark:hover:bg-[rgba(0,120,170,0.1)]"
+                  className="px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] text-gray-700 dark:text-gray-300 hover:border-[rgb(0,120,170)] hover:text-[rgb(0,120,170)] hover:bg-[rgba(0,120,170,0.05)] dark:hover:border-[rgb(0,120,170)] dark:hover:text-[rgb(0,120,170)] dark:hover:bg-[rgba(0,120,170,0.1)]"
                 >
                   {s.label}
                 </Link>
@@ -363,12 +389,12 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION 6 — FINAL CTA
+          SECTION 7 — FINAL CTA
           ═══════════════════════════════════════════════════════════════════════ */}
       <section 
         className="px-4 py-20 border-t border-gray-200 dark:border-[rgb(61,61,64)]"
         style={{ 
-          background: "linear-gradient(to bottom right, rgba(0, 120, 170, 0.05), transparent, rgba(124, 58, 237, 0.05))"
+          background: "linear-gradient(to bottom right, rgba(0, 120, 170, 0.03), transparent, rgba(124, 58, 237, 0.03))"
         }}
       >
         <div className="max-w-3xl mx-auto text-center">
@@ -386,12 +412,12 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
             </span>
             <span className="text-gray-900 dark:text-white">?</span>
           </h2>
-          <p className="text-lg mb-8 text-gray-500 dark:text-gray-400">
+          <p className="text-lg mb-8 text-gray-500 dark:text-[rgb(163,163,163)]">
             Agenda una demo gratuita y descubre cómo los agentes IA pueden revolucionar tu negocio
           </p>
           <button
             onClick={openContactForm}
-            className="inline-flex items-center gap-2 px-10 py-4 rounded-xl text-white font-medium text-lg transition-all duration-200 hover:opacity-90 hover:shadow-lg cursor-pointer"
+            className="inline-flex items-center gap-2 px-10 py-4 rounded-lg text-white font-medium text-lg transition-all duration-200 hover:opacity-90 hover:shadow-lg cursor-pointer"
             style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}
           >
             Habla con un Experto
@@ -498,11 +524,11 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
         }
 
         .wp-content blockquote {
-          border-left: 4px solid rgb(0, 120, 170);
-          padding-left: 24px;
-          margin: 32px 0;
+          border-left: 3px solid rgb(0, 120, 170);
+          padding-left: 20px;
+          margin: 24px 0;
           font-style: italic;
-          color: rgb(75, 85, 99);
+          color: rgb(107, 114, 128);
         }
 
         .wp-content a {
@@ -515,12 +541,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
           color: rgb(124, 58, 237);
         }
 
-        .wp-content strong {
-          font-weight: 600;
-          color: rgb(17, 24, 39);
-        }
-
-        /* Dark Mode */
+        /* WordPress Content Styling - Dark Mode */
         .dark .wp-content h2 {
           color: rgb(248, 249, 250);
           border-bottom-color: rgb(61, 61, 64);
@@ -534,7 +555,10 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
           color: rgb(163, 163, 163);
         }
 
-        .dark .wp-content ul li,
+        .dark .wp-content ul li {
+          color: rgb(163, 163, 163);
+        }
+
         .dark .wp-content ol li {
           color: rgb(163, 163, 163);
         }
@@ -543,10 +567,14 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
           color: rgb(163, 163, 163);
         }
 
-        .dark .wp-content strong {
-          color: rgb(248, 249, 250);
+        .dark .wp-content a {
+          color: rgb(34, 211, 238);
+        }
+
+        .dark .wp-content a:hover {
+          color: rgb(167, 139, 250);
         }
       `}</style>
-    </div>
+    </>
   )
 }

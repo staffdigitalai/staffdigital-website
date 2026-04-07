@@ -30,7 +30,7 @@ export function CRMBlock() {
             Integración nativa
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            CRM Automation IA
+            Automatización de CRM con IA
           </h2>
           <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
             Tus agentes IA y tu CRM trabajando juntos. Sin entrada manual de datos.
@@ -73,7 +73,7 @@ export function CRMBlock() {
         <div className="text-center">
           <Button asChild variant="outline" className="rounded-full px-6 border-pink-500/30 text-pink-400 hover:bg-pink-500/10">
             <Link href="/soluciones/crm-automation-ia">
-              Descubrir CRM Automation <ArrowRight className="w-4 h-4 ml-2" />
+              Descubrir Automatización CRM <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </Button>
         </div>

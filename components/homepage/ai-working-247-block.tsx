@@ -396,7 +396,7 @@ export function AIWorking247Block() {
                 onMouseEnter={() => setActiveDemo(index)} 
                 onMouseLeave={() => setActiveDemo(null)}
               >
-                <div className="bg-white rounded-2xl p-6 sm:p-8 h-full shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-200 hover:border-slate-300">
+                <div className="bg-white rounded-2xl p-6 sm:p-8 h-full shadow-lg shadow-[var(--neon-blue)]/5 hover:shadow-2xl hover:shadow-[var(--neon-blue)]/10 transition-all duration-500 hover:-translate-y-2 border border-slate-300/50 hover:border-slate-400/60">
                   <div className="mb-6">
                     <feature.demo isActive={activeDemo === index || isVisible} />
                   </div>

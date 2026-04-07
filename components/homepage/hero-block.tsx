@@ -17,11 +17,11 @@ export function HeroBlock() {
     <section className="min-h-screen flex items-center justify-center px-4 py-20 relative">
       <div className="max-w-4xl mx-auto text-center relative z-10 animate-fade-in-hero">
         {/* Voice quality badge with animated border glow */}
-        <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 dark:bg-white/10 backdrop-blur-md border border-[var(--neon-blue)]/30 text-foreground text-sm font-medium mb-8 mt-12 animate-fade-in-badge gap-2 animate-border-glow">
-          <Headphones className="w-4 h-4 text-[var(--neon-blue)]" />
-          <span className="text-[var(--neon-blue)] font-semibold">{t("badge_voice")}</span>
-          <span className="text-foreground/40">·</span>
-          <span className="text-foreground/60">{t("badge_platform")}</span>
+        <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/90 dark:bg-white/15 backdrop-blur-md border border-foreground/25 dark:border-[var(--neon-blue)]/30 text-foreground text-sm font-medium mb-8 mt-12 animate-fade-in-badge gap-2 shadow-sm">
+          <Headphones className="w-4 h-4 text-[#0078AA] dark:text-[var(--neon-blue)]" />
+          <span className="text-[#0078AA] dark:text-[var(--neon-blue)] font-semibold">{t("badge_voice")}</span>
+          <span className="text-foreground/60">·</span>
+          <span className="text-foreground">{t("badge_platform")}</span>
         </div>
 
         {/* H1 with animated gradient text */}

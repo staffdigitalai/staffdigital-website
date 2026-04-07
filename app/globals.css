@@ -9,12 +9,12 @@
 
 :root {
   /* === Neon Palette === */
-  --neon-blue: #0099CC;
-  --neon-blue-rgb: 0, 153, 204;
+  --neon-blue: #0078AA;
+  --neon-blue-rgb: 0, 120, 170;
   --purple-dark: #7C3AED;
   --purple-dark-rgb: 124, 58, 237;
-  --lime-green: #84CC16;
-  --lime-green-rgb: 132, 204, 22;
+  --lime-green: #16A34A;
+  --lime-green-rgb: 22, 163, 74;
   
   /* === Light Theme (Default) === */
   --background: oklch(0.98 0 0);
@@ -420,7 +420,7 @@
 }
 
 .animate-fade-in-badge {
-  animation: fade-in-badge 0.8s ease-out 0.4s forwards;
+  animation: fade-in-badge 0.8s ease-out 0.4s forwards, border-glow 3s ease-in-out 1.2s infinite;
   opacity: 0;
 }
 

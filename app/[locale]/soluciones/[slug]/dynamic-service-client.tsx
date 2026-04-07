@@ -187,7 +187,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
           </div>
 
           {/* Video Placeholder */}
-          <div className="mt-12 max-w-5xl mx-auto aspect-video rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
+          <div className="mt-12 max-w-5xl mx-auto aspect-video rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] bg-white dark:bg-[rgba(101,101,106,0.16)] flex items-center justify-center">
             <div className="flex flex-col items-center gap-4">
               <div className="w-20 h-20 rounded-full bg-gradient-to-r from-[#0078AA] to-[#7C3AED] flex items-center justify-center cursor-pointer hover:scale-105 transition-transform">
                 <Play className="w-8 h-8 text-white ml-1" fill="white" />
@@ -256,7 +256,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
       {/* ═══════════════════════════════════════
           SECCIÓN 5 — FEATURES (6 cards grid)
           ═══════════════════════════════════════ */}
-      <section className="px-4 py-20 bg-gray-50 dark:bg-transparent">
+      <section className="px-4 py-20">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -319,7 +319,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
       {/* ═══════════════════════════════════════
           SECCIÓN 7 — SECTORES (pills)
           ═══════════════════════════════════════ */}
-      <section className="px-4 py-20 bg-gray-50 dark:bg-transparent">
+      <section className="px-4 py-20">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">

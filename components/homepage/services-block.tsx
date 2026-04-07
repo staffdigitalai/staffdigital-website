@@ -41,7 +41,7 @@ export function ServicesBlock() {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {services.map((s) => (
+          {services.slice(0, 4).map((s) => (
             <Link
               key={s.href}
               href={s.href}
@@ -61,9 +61,12 @@ export function ServicesBlock() {
           ))}
         </div>
 
-        <div className="text-center mt-8">
-          <Link href="/soluciones" className="text-sm text-foreground/50 hover:text-foreground/80 underline underline-offset-4 transition-colors">
-            {t("view_all")} →
+        <div className="text-center mt-10">
+          <Link 
+            href="/soluciones" 
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-foreground/20 hover:border-foreground/40 text-foreground/70 hover:text-foreground font-medium transition-all hover:scale-105"
+          >
+            {t("view_all")} <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>

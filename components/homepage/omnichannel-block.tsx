@@ -34,8 +34,7 @@ export function OmnichannelBlock() {
           {channels.map((ch) => (
             <div
               key={ch.name}
-              className="p-5 rounded-2xl border border-gray-200 dark:border-foreground/15 bg-white dark:bg-foreground/5 text-center space-y-3 hover:shadow-lg transition-all duration-300"
-              style={{ boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)" }}
+              className="card-elevated p-5 rounded-2xl text-center space-y-3 hover:shadow-lg transition-all duration-300"
             >
               <div 
                 className="w-12 h-12 rounded-full mx-auto flex items-center justify-center"

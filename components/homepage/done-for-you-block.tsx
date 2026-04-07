@@ -31,11 +31,16 @@ export function DoneForYouBlock() {
         {/* Stack cards — show what powers the platform */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {stackItems.map((item) => (
-            <div key={item.label} className="p-5 rounded-xl border border-foreground/15 bg-foreground/5 text-center space-y-2 hover:bg-foreground/10 transition-colors shadow-sm shadow-[var(--neon-blue)]/5">
-              <item.icon className="w-7 h-7 text-foreground/60 mx-auto" />
-              <div className="text-xs text-[var(--neon-blue)] font-medium uppercase tracking-wide">{item.category}</div>
+            <div key={item.label} className="card-elevated p-5 rounded-xl text-center space-y-3 hover:shadow-lg transition-all duration-300">
+              <div 
+                className="w-12 h-12 rounded-full mx-auto flex items-center justify-center"
+                style={{ background: "linear-gradient(135deg, rgba(0, 120, 170, 0.15), rgba(124, 58, 237, 0.15))" }}
+              >
+                <item.icon className="w-6 h-6 text-[#0078AA]" />
+              </div>
+              <div className="text-xs text-[#0078AA] font-semibold uppercase tracking-wide">{item.category}</div>
               <div className="font-bold text-base text-foreground">{item.label}</div>
-              <p className="text-sm text-foreground/50 leading-relaxed">{item.description}</p>
+              <p className="text-sm text-gray-600 dark:text-foreground/60 leading-relaxed">{item.description}</p>
             </div>
           ))}
         </div>

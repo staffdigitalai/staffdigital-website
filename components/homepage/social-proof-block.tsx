@@ -27,8 +27,7 @@ export function SocialProofBlock() {
           {stats.map((s) => (
             <div 
               key={s.label} 
-              className="p-6 rounded-2xl border border-gray-200 dark:border-foreground/15 bg-white dark:bg-foreground/5 text-center space-y-4 transition-all duration-300 hover:shadow-xl hover:shadow-[var(--purple-dark)]/10 hover:border-[rgba(124,58,237,0.3)] hover:-translate-y-1 cursor-default"
-              style={{ boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)" }}
+              className="card-elevated p-6 rounded-2xl text-center space-y-4 transition-all duration-300 hover:shadow-xl hover:shadow-[var(--purple-dark)]/10 hover:border-[rgba(124,58,237,0.3)] hover:-translate-y-1 cursor-default"
             >
               <div 
                 className="w-12 h-12 rounded-full mx-auto flex items-center justify-center"

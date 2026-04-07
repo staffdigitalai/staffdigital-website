@@ -44,8 +44,7 @@ export function SectorsBlock() {
             <Link
               key={s.href}
               href={s.href}
-              className="group rounded-2xl border border-gray-200 dark:border-foreground/15 bg-white dark:bg-foreground/5 hover:border-gray-300 dark:hover:border-foreground/20 transition-all hover:scale-[1.02] overflow-hidden"
-              style={{ boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)" }}
+              className="card-elevated group rounded-2xl hover:border-gray-300 dark:hover:border-foreground/20 transition-all hover:scale-[1.02] overflow-hidden"
             >
               <div className="relative w-full h-28">
                 <Image

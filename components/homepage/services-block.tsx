@@ -45,7 +45,7 @@ export function ServicesBlock() {
             <Link
               key={s.href}
               href={s.href}
-              className="group rounded-2xl border border-foreground/15 bg-foreground/5 backdrop-blur-sm hover:bg-foreground/10 hover:border-foreground/25 transition-all hover:scale-[1.02] overflow-hidden shadow-sm shadow-[var(--neon-blue)]/5 hover:shadow-md hover:shadow-[var(--neon-blue)]/10"
+              className="card-elevated group rounded-2xl hover:border-foreground/25 transition-all hover:scale-[1.02] overflow-hidden hover:shadow-lg hover:shadow-[var(--neon-blue)]/10"
             >
               <div className="relative w-full h-32 overflow-hidden">
                 <s.Mockup />

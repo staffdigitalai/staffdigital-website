@@ -73,14 +73,14 @@
   "subtitle": "IA entrenada con el conocimiento de tu industria. Lista para atender desde el primer día.",
   "view_all": "Ver todos los sectores",
     "items": [
-      {"name": "Concesionarios", "useCase": "Agente IA que agenda test drives, cualifica compradores y automatiza el seguimiento posventa"},
-      {"name": "Clínicas y Salud", "useCase": "Agente IA que gestiona citas médicas, envía recordatorios y atiende pacientes 24/7"},
-      {"name": "Inmobiliario", "useCase": "Agente IA que programa visitas, cualifica compradores y hace follow-up automático"},
-      {"name": "Restaurantes", "useCase": "Agente IA que gestiona reservas, pedidos takeaway y confirmaciones sin perder una llamada"},
-      {"name": "E-commerce", "useCase": "Agente IA que recupera carritos abandonados, recomienda productos y atiende consultas al instante"},
-      {"name": "Turismo y Hotelería", "useCase": "Agente IA que automatiza reservas, impulsa upselling y da soporte multiidioma 24/7"},
-      {"name": "Educación", "useCase": "Agente IA que gestiona matrículas, responde consultas de padres y envía recordatorios automáticos"},
-      {"name": "Servicios Locales", "useCase": "Agente IA que capta nuevos clientes, agenda citas y automatiza el seguimiento comercial"}
+      {"name": "IA para Concesionarios", "useCase": "Agenda test drives, cualifica compradores y automatiza el seguimiento posventa"},
+      {"name": "IA para Clínicas y Salud", "useCase": "Gestiona citas médicas, envía recordatorios y atiende pacientes 24/7"},
+      {"name": "IA para Inmobiliarias", "useCase": "Programa visitas, cualifica compradores y hace follow-up automático"},
+      {"name": "IA para Restaurantes", "useCase": "Gestiona reservas, pedidos takeaway y confirmaciones sin perder una llamada"},
+      {"name": "IA para E-commerce", "useCase": "Recupera carritos abandonados, recomienda productos y atiende consultas al instante"},
+      {"name": "IA para Turismo y Hotelería", "useCase": "Automatiza reservas, impulsa upselling y da soporte multiidioma 24/7"},
+      {"name": "IA para Educación", "useCase": "Gestiona matrículas, responde consultas de padres y envía recordatorios automáticos"},
+      {"name": "IA para Servicios Locales", "useCase": "Capta nuevos clientes, agenda citas y automatiza el seguimiento comercial"}
     ]
   },
   "methodology": {

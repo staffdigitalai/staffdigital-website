@@ -73,14 +73,14 @@
     "subtitle": "AI trained with your industry knowledge. Ready to serve from day one.",
     "view_all": "View all industries",
     "items": [
-      {"name": "Car Dealers", "useCase": "AI Agent that schedules test drives, qualifies buyers and automates after-sales follow-up"},
-      {"name": "Clinics & Healthcare", "useCase": "AI Agent that manages medical appointments, sends reminders and serves patients 24/7"},
-      {"name": "Real Estate", "useCase": "AI Agent that schedules viewings, qualifies buyers and automates follow-up"},
-      {"name": "Restaurants", "useCase": "AI Agent that manages reservations, takeaway orders and confirmations without missing a call"},
-      {"name": "E-commerce", "useCase": "AI Agent that recovers abandoned carts, recommends products and answers inquiries instantly"},
-      {"name": "Tourism & Hotels", "useCase": "AI Agent that automates bookings, drives upselling and provides multilingual 24/7 support"},
-      {"name": "Education", "useCase": "AI Agent that manages enrollment, answers parent inquiries and sends automatic reminders"},
-      {"name": "Local Services", "useCase": "AI Agent that captures new clients, schedules appointments and automates sales follow-up"}
+      {"name": "AI for Car Dealers", "useCase": "Schedules test drives, qualifies buyers and automates after-sales follow-up"},
+      {"name": "AI for Healthcare", "useCase": "Manages medical appointments, sends reminders and serves patients 24/7"},
+      {"name": "AI for Real Estate", "useCase": "Schedules viewings, qualifies buyers and automates follow-up"},
+      {"name": "AI for Restaurants", "useCase": "Manages reservations, takeaway orders and confirmations without missing a call"},
+      {"name": "AI for E-commerce", "useCase": "Recovers abandoned carts, recommends products and answers inquiries instantly"},
+      {"name": "AI for Hotels", "useCase": "Automates bookings, drives upselling and provides multilingual 24/7 support"},
+      {"name": "AI for Education", "useCase": "Manages enrollment, answers parent inquiries and sends automatic reminders"},
+      {"name": "AI for Local Services", "useCase": "Captures new clients, schedules appointments and automates sales follow-up"}
     ]
   },
   "methodology": {

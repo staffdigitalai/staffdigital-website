@@ -29,11 +29,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!service) return {}
 
     const yoast = service.yoast_head_json
-    const fallbackTitle = `${stripHtml(service.title.rendered)} | StaffDigital AI`
+    // Remove " | StaffDigital AI" suffix if present since layout.tsx adds it via template
+    const cleanYoastTitle = yoast?.title?.replace(/ \| StaffDigital AI$/i, '')
+    const fallbackTitle = stripHtml(service.title.rendered)
     const fallbackDescription = stripHtml(service.excerpt.rendered).slice(0, 160)
 
     return {
-      title: yoast?.title || fallbackTitle,
+      title: cleanYoastTitle || fallbackTitle,
       description: yoast?.description || fallbackDescription,
       openGraph: {
         title: yoast?.og_title || fallbackTitle,

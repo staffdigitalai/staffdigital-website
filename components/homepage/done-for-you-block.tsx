@@ -33,10 +33,13 @@ export function DoneForYouBlock() {
           {stackItems.map((item) => (
             <div key={item.label} className="card-elevated p-5 rounded-xl text-center space-y-3 hover:shadow-lg transition-all duration-300">
               <div 
-                className="w-12 h-12 rounded-full mx-auto flex items-center justify-center"
-                style={{ background: "linear-gradient(135deg, rgba(0, 120, 170, 0.15), rgba(124, 58, 237, 0.15))" }}
+                className="w-14 h-14 rounded-2xl mx-auto flex items-center justify-center"
+                style={{ 
+                  background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))",
+                  boxShadow: "0 4px 12px rgba(124, 58, 237, 0.25)"
+                }}
               >
-                <item.icon className="w-6 h-6 text-[#0078AA]" />
+                <item.icon className="w-7 h-7 text-white" />
               </div>
               <div className="text-xs text-[#0078AA] font-semibold uppercase tracking-wide">{item.category}</div>
               <div className="font-bold text-base text-foreground">{item.label}</div>

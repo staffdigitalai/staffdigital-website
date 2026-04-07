@@ -18,7 +18,7 @@
   },
   "hero": {
     "badge_voice": "Voz Humana HD",
-    "badge_platform": "Plataforma Omnicanal Gerida",
+    "badge_platform": "Engenharia conversacional à medida",
     "h1_line1": "Omnicanal com Orquestração IA",
     "h1_line2": "100% Gerido",
     "reinforcement": "Agentes IA para WhatsApp, telefone e chat web que ouvem, respondem e atuam como humanos nos seus canais, CRM ou página web.",
@@ -123,6 +123,7 @@
   },
   "faq": {
     "title": "Perguntas frequentes sobre agentes IA",
+    "subtitle": "Esclarecemos as suas dúvidas sobre implementação, privacidade e funcionamento dos agentes IA",
     "view_all": "Ver todas as perguntas",
     "items": [
       {"q": "O agente IA parece mesmo humano?", "a": "Sim. Utilizamos tecnologia de voz humana proprietária com vozes indistinguíveis de pessoas reais. Os seus clientes não sabem que falam com IA."},

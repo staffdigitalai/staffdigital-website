@@ -8,7 +8,6 @@ import { HeroBlock } from "@/components/homepage/hero-block"
 import { DoneForYouBlock } from "@/components/homepage/done-for-you-block"
 import { ServicesBlock } from "@/components/homepage/services-block"
 import { SectorsBlock } from "@/components/homepage/sectors-block"
-import { CRMBlock } from "@/components/homepage/crm-block"
 import { ComparisonBlock } from "@/components/homepage/comparison-block"
 import { SocialProofBlock } from "@/components/homepage/social-proof-block"
 import { FAQBlock } from "@/components/homepage/faq-block"
@@ -51,10 +50,7 @@ export default function HomePage() {
             <SectorsBlock />
           </div>
 
-          {/* Bloco 7 — CRM Automation */}
-          <CRMBlock />
-
-          {/* Bloco 8 — Comparativo */}
+          {/* Bloco 6 — Comparativo */}
           <ComparisonBlock />
 
           {/* Bloco 9 — Prova Social */}

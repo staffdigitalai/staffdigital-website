@@ -420,7 +420,7 @@
 }
 
 .animate-fade-in-badge {
-  animation: fade-in-badge 0.8s ease-out 0.4s forwards;
+  animation: fade-in-badge 0.8s ease-out 0.4s forwards, border-glow 3s ease-in-out 1.2s infinite;
   opacity: 0;
 }
 

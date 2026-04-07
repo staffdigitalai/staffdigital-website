@@ -101,6 +101,7 @@
     "title": "Managed platform vs DIY tools",
     "competitor_label": "Bland, Vapi, Synthflow...",
     "us_label": "StaffDigital AI",
+    "recommended": "Recommended",
     "rows": [
       {"feature": "What is it?", "competitor": "Tool the customer configures alone", "us": "Managed platform with implementation included"},
       {"feature": "Channels", "competitor": "Usually only chat or only voice", "us": "WhatsApp + phone + web chat + email unified"},

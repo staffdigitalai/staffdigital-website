@@ -101,6 +101,7 @@
     "title": "Plataforma gestionada vs herramientas DIY",
     "competitor_label": "Bland, Vapi, Synthflow...",
     "us_label": "StaffDigital AI",
+    "recommended": "Recomendado",
     "rows": [
       {"feature": "¿Qué es?", "competitor": "Herramienta que el cliente configura solo", "us": "Plataforma gestionada con implementación incluida"},
       {"feature": "Canales", "competitor": "Normalmente solo chat o solo voz", "us": "WhatsApp + teléfono + chat web + email unificados"},

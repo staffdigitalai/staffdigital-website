@@ -120,6 +120,7 @@ export interface WPService {
       solucion_slug: string;
       solucion_nombre: string;
       solucion_descripcion: string;
+      solucion_imagen?: string; // Featured image URL from WP
       solucion_orden: number;
     }>;
     // Legacy fields

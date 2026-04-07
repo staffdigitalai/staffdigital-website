@@ -265,76 +265,112 @@ export function GlassmorphismNav() {
 
                         {/* Services Dropdown */}
                         <div
-                          className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-200 ${
+                          className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-200 ease-out ${
                             isServicesOpen
                               ? "opacity-100 translate-y-0 pointer-events-auto"
                               : "opacity-0 -translate-y-2 pointer-events-none"
                           }`}
                         >
-                          <div className="bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-2xl p-3 shadow-2xl w-[480px]">
-                            {/* Featured Service */}
-                            {services.filter(s => s.featured).map((service) => {
-                              const Icon = service.icon
-                              return (
+                          <div 
+                            className="bg-white dark:bg-slate-900/95 dark:backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-[20px] shadow-2xl w-[720px] flex overflow-hidden"
+                            style={{ boxShadow: "0 25px 60px -12px rgba(0, 0, 0, 0.25)" }}
+                          >
+                            {/* Left Column - Services List (60%) */}
+                            <div className="flex-[0.6] p-6">
+                              <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-white/40 mb-4">Soluciones IA</p>
+                              
+                              {/* Featured Services */}
+                              <div className="space-y-2 mb-4">
+                                {services.filter(s => s.featured).map((service) => {
+                                  const Icon = service.icon
+                                  return (
+                                    <Link
+                                      key={service.name}
+                                      href={service.href}
+                                      className="flex items-center gap-3 px-3 py-3 rounded-xl bg-gradient-to-r from-[rgb(0,120,170)]/10 to-[rgb(124,58,237)]/10 border border-[rgb(0,120,170)]/20 hover:border-[rgb(0,120,170)]/40 transition-all duration-200 group"
+                                      onClick={() => setIsServicesOpen(false)}
+                                    >
+                                      <div 
+                                        className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                                        style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}
+                                      >
+                                        <Icon size={18} className="text-white" />
+                                      </div>
+                                      <div className="min-w-0 flex-1">
+                                        <div className="flex items-center gap-2">
+                                          <p className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-[rgb(0,120,170)] dark:group-hover:text-white transition-colors">
+                                            {service.name}
+                                          </p>
+                                          <span className="text-[9px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded text-white" style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}>Estrella</span>
+                                        </div>
+                                        <p className="text-[12px] text-gray-500 dark:text-white/50 group-hover:text-gray-700 dark:group-hover:text-white/70 transition-colors">
+                                          {service.description}
+                                        </p>
+                                      </div>
+                                      <ArrowRight size={14} className="text-gray-400 dark:text-white/40 group-hover:text-[rgb(0,120,170)] group-hover:translate-x-0.5 transition-all" />
+                                    </Link>
+                                  )
+                                })}
+                              </div>
+                              
+                              {/* Other Services Grid */}
+                              <div className="grid grid-cols-2 gap-1">
+                                {services.filter(s => !s.featured).map((service) => {
+                                  const Icon = service.icon
+                                  return (
+                                    <Link
+                                      key={service.name}
+                                      href={service.href}
+                                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-200 group"
+                                      onClick={() => setIsServicesOpen(false)}
+                                    >
+                                      <div className="w-9 h-9 rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center group-hover:bg-gray-200 dark:group-hover:bg-white/10 group-hover:border-gray-300 dark:group-hover:border-white/20 transition-all duration-200 flex-shrink-0">
+                                        <Icon size={16} className="text-gray-500 dark:text-white/60 group-hover:text-[rgb(0,120,170)] dark:group-hover:text-white transition-colors" />
+                                      </div>
+                                      <div className="min-w-0">
+                                        <p className="text-sm font-medium text-gray-900 dark:text-white/90 group-hover:text-[rgb(0,120,170)] dark:group-hover:text-white transition-colors truncate">
+                                          {service.name}
+                                        </p>
+                                        <p className="text-[11px] text-gray-400 dark:text-white/35 group-hover:text-gray-600 dark:group-hover:text-white/55 transition-colors truncate">
+                                          {service.description}
+                                        </p>
+                                      </div>
+                                    </Link>
+                                  )
+                                })}
+                              </div>
+                            </div>
+                            
+                            {/* Right Column - CTA (40%) */}
+                            <div 
+                              className="flex-[0.4] p-6 flex flex-col justify-between"
+                              style={{ background: "linear-gradient(180deg, rgba(0, 120, 170, 0.08), rgba(124, 58, 237, 0.12))" }}
+                            >
+                              <div>
+                                <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-white/50 mb-4">Empieza ahora</p>
+                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Implementa agentes IA en tu negocio</h3>
+                                <p className="text-sm text-gray-500 dark:text-white/60 mb-4">Configura tu primer agente en menos de 48h. Sin desarrollo, sin permanencia.</p>
+                              </div>
+                              <div className="space-y-3">
                                 <Link
-                                  key={service.name}
-                                  href={service.href}
-                                  className="flex items-center gap-3 px-3 py-3 rounded-xl bg-gradient-to-r from-primary/20 to-primary/5 border border-primary/30 hover:border-primary/50 transition-all duration-200 group mb-2"
+                                  href="/demo"
+                                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-white font-semibold text-sm transition-all duration-200 hover:scale-[1.02] hover:shadow-lg"
+                                  style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}
                                   onClick={() => setIsServicesOpen(false)}
                                 >
-                                  <div className="w-10 h-10 rounded-lg bg-primary/20 border border-primary/30 flex items-center justify-center group-hover:bg-primary/30 transition-all duration-200 flex-shrink-0">
-                                    <Icon size={18} className="text-primary group-hover:text-primary transition-colors" />
-                                  </div>
-                                  <div className="min-w-0 flex-1">
-                                    <div className="flex items-center gap-2">
-                                      <p className="text-sm font-semibold text-white group-hover:text-white transition-colors">
-                                        {service.name}
-                                      </p>
-                                      <span className="text-[10px] font-medium bg-primary/30 text-primary px-1.5 py-0.5 rounded">ESTRELLA</span>
-                                    </div>
-                                    <p className="text-[11px] text-white/50 group-hover:text-white/70 transition-colors">
-                                      {service.description}
-                                    </p>
-                                  </div>
-                                  <ArrowRight size={14} className="text-primary/60 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+                                  Solicitar demo gratuita
+                                  <ArrowRight size={14} />
                                 </Link>
-                              )
-                            })}
-                            {/* Other Services Grid */}
-                            <div className="grid grid-cols-2 gap-0.5">
-                              {services.filter(s => !s.featured).map((service) => {
-                                const Icon = service.icon
-                                return (
-                                  <Link
-                                    key={service.name}
-                                    href={service.href}
-                                    className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/10 transition-all duration-200 group"
-                                    onClick={() => setIsServicesOpen(false)}
-                                  >
-                                    <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/20 transition-all duration-200 flex-shrink-0">
-                                      <Icon size={16} className="text-white/60 group-hover:text-white transition-colors" />
-                                    </div>
-                                    <div className="min-w-0">
-                                      <p className="text-sm font-medium text-white/90 group-hover:text-white transition-colors truncate">
-                                        {service.name}
-                                      </p>
-                                      <p className="text-[11px] text-white/35 group-hover:text-white/55 transition-colors truncate">
-                                        {service.description}
-                                      </p>
-                                    </div>
-                                  </Link>
-                                )
-                              })}
+                                <Link
+                                  href="/soluciones"
+                                  className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-gray-300 dark:border-white/20 text-gray-700 dark:text-white/80 font-medium text-sm hover:bg-gray-100 dark:hover:bg-white/5 hover:border-gray-400 dark:hover:border-white/30 transition-all duration-200"
+                                  onClick={() => setIsServicesOpen(false)}
+                                >
+                                  Ver todas las soluciones
+                                  <ArrowRight size={12} />
+                                </Link>
+                              </div>
                             </div>
-                            {/* View All Link */}
-                            <Link
-                              href="/soluciones"
-                              className="flex items-center justify-center gap-2 mt-2 px-3 py-2 rounded-xl border border-white/10 hover:bg-white/5 hover:border-white/20 transition-all duration-200 group"
-                              onClick={() => setIsServicesOpen(false)}
-                            >
-                              <span className="text-xs font-medium text-white/60 group-hover:text-white/80">Ver todas las soluciones</span>
-                              <ArrowRight size={12} className="text-white/40 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all" />
-                            </Link>
                           </div>
                         </div>
                       </div>
@@ -367,44 +403,76 @@ export function GlassmorphismNav() {
 
                         {/* Sectors Dropdown */}
                         <div
-                          className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-200 ${
+                          className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-200 ease-out ${
                             isSectorsOpen
                               ? "opacity-100 translate-y-0 pointer-events-auto"
                               : "opacity-0 -translate-y-2 pointer-events-none"
                           }`}
                         >
-                          <div className="bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-2xl p-3 shadow-2xl w-[640px]">
-                            <div className="grid grid-cols-3 gap-0.5">
-                              {sectors.map((sector) => {
-                                const Icon = sector.icon
-                                return (
-                                  <Link
-                                    key={sector.name}
-                                    href={sector.href}
-                                    className="flex items-center gap-2 px-2.5 py-2 rounded-xl hover:bg-white/10 transition-all duration-200 group"
-                                    onClick={() => setIsSectorsOpen(false)}
-                                  >
-                                    <div className="w-7 h-7 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/20 transition-all duration-200 flex-shrink-0">
-                                      <Icon size={14} className="text-white/60 group-hover:text-white transition-colors" />
-                                    </div>
-                                    <div className="min-w-0">
-                                      <p className="text-xs font-medium text-white/90 group-hover:text-white transition-colors truncate">
-                                        {sector.name}
-                                      </p>
-                                    </div>
-                                  </Link>
-                                )
-                              })}
+                          <div 
+                            className="bg-white dark:bg-slate-900/95 dark:backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-[20px] shadow-2xl w-[680px] flex overflow-hidden"
+                            style={{ boxShadow: "0 25px 60px -12px rgba(0, 0, 0, 0.25)" }}
+                          >
+                            {/* Left Column - Sectors Grid (65%) */}
+                            <div className="flex-[0.65] p-6">
+                              <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-white/40 mb-4">Sectores</p>
+                              <div className="grid grid-cols-2 gap-1">
+                                {sectors.map((sector) => {
+                                  const Icon = sector.icon
+                                  return (
+                                    <Link
+                                      key={sector.name}
+                                      href={sector.href}
+                                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-200 group"
+                                      onClick={() => setIsSectorsOpen(false)}
+                                    >
+                                      <div className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center group-hover:bg-gray-200 dark:group-hover:bg-white/10 group-hover:border-gray-300 dark:group-hover:border-white/20 transition-all duration-200 flex-shrink-0">
+                                        <Icon size={15} className="text-gray-500 dark:text-white/60 group-hover:text-[rgb(0,120,170)] dark:group-hover:text-white transition-colors" />
+                                      </div>
+                                      <div className="min-w-0">
+                                        <p className="text-sm font-medium text-gray-900 dark:text-white/90 group-hover:text-[rgb(0,120,170)] dark:group-hover:text-white transition-colors truncate">
+                                          {sector.name}
+                                        </p>
+                                        <p className="text-[11px] text-gray-400 dark:text-white/35 group-hover:text-gray-600 dark:group-hover:text-white/55 transition-colors truncate">
+                                          {sector.description}
+                                        </p>
+                                      </div>
+                                    </Link>
+                                  )
+                                })}
+                              </div>
                             </div>
-                            {/* View All Link */}
-                            <Link
-                              href="/sectores"
-                              className="flex items-center justify-center gap-2 mt-2 px-3 py-2 rounded-xl border border-white/10 hover:bg-white/5 hover:border-white/20 transition-all duration-200 group"
-                              onClick={() => setIsSectorsOpen(false)}
+                            
+                            {/* Right Column - CTA (35%) */}
+                            <div 
+                              className="flex-[0.35] p-6 flex flex-col justify-between"
+                              style={{ background: "linear-gradient(180deg, rgba(0, 120, 170, 0.08), rgba(124, 58, 237, 0.12))" }}
                             >
-                              <span className="text-xs font-medium text-white/60 group-hover:text-white/80">Ver todos los sectores</span>
-                              <ArrowRight size={12} className="text-white/40 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all" />
-                            </Link>
+                              <div>
+                                <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-white/50 mb-4">Tu sector</p>
+                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">IA entrenada para tu industria</h3>
+                                <p className="text-sm text-gray-500 dark:text-white/60 mb-4">Agentes que conocen el vocabulario, procesos y necesidades de tu sector.</p>
+                              </div>
+                              <div className="space-y-3">
+                                <Link
+                                  href="/demo"
+                                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-white font-semibold text-sm transition-all duration-200 hover:scale-[1.02] hover:shadow-lg"
+                                  style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}
+                                  onClick={() => setIsSectorsOpen(false)}
+                                >
+                                  Solicitar demo gratuita
+                                  <ArrowRight size={14} />
+                                </Link>
+                                <Link
+                                  href="/sectores"
+                                  className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-gray-300 dark:border-white/20 text-gray-700 dark:text-white/80 font-medium text-sm hover:bg-gray-100 dark:hover:bg-white/5 hover:border-gray-400 dark:hover:border-white/30 transition-all duration-200"
+                                  onClick={() => setIsSectorsOpen(false)}
+                                >
+                                  Ver todos los sectores
+                                  <ArrowRight size={12} />
+                                </Link>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>

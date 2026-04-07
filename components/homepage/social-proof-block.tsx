@@ -30,10 +30,13 @@ export function SocialProofBlock() {
               className="card-elevated p-6 rounded-2xl text-center space-y-4 transition-all duration-300 hover:shadow-xl hover:shadow-[var(--purple-dark)]/10 hover:border-[rgba(124,58,237,0.3)] hover:-translate-y-1 cursor-default"
             >
               <div 
-                className="w-12 h-12 rounded-full mx-auto flex items-center justify-center"
-                style={{ background: "linear-gradient(135deg, rgba(0, 120, 170, 0.15), rgba(124, 58, 237, 0.15))" }}
+                className="w-14 h-14 rounded-2xl mx-auto flex items-center justify-center"
+                style={{ 
+                  background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))",
+                  boxShadow: "0 4px 12px rgba(124, 58, 237, 0.25)"
+                }}
               >
-                <s.icon className="w-6 h-6 text-[#0078AA]" />
+                <s.icon className="w-7 h-7 text-white" />
               </div>
               <div className="font-bold text-foreground text-sm">{s.label}</div>
               <div className="text-xs text-muted-foreground leading-relaxed">{s.sublabel}</div>

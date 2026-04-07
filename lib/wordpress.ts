@@ -70,14 +70,44 @@ export interface WPService {
   content: { rendered: string };
   featured_media: number;
   menu_order: number;
+  sectors?: number[]; // Sector taxonomy IDs
   acf: {
     icono?: string;
     subtitulo?: string;
-    beneficios?: Array<{
+    // Stats bar
+    stats_bar?: Array<{
+      valor: string;
+      etiqueta: string;
+    }>;
+    // Canales
+    canales?: Array<{
+      titulo: string;
+      descripcion: string;
+      icono: string;
+      color: string;
+    }>;
+    // Features
+    features?: Array<{
       titulo: string;
       descripcion: string;
       icono?: string;
     }>;
+    // Beneficios
+    beneficios?: Array<{
+      texto: string;
+    }>;
+    // FAQ
+    faq_titulo?: string;
+    faq_items?: Array<{
+      pregunta: string;
+      respuesta: string;
+    }>;
+    // Testimonial
+    testimonial_quote?: string;
+    testimonial_nombre?: string;
+    testimonial_cargo?: string;
+    testimonial_empresa?: string;
+    // Legacy fields
     caracteristicas?: Array<{
       titulo: string;
       descripcion: string;
@@ -91,6 +121,14 @@ export interface WPService {
     es_destacado?: boolean;
     meta_title?: string;
     meta_description?: string;
+  };
+  // Yoast SEO
+  yoast_head_json?: {
+    title?: string;
+    description?: string;
+    og_title?: string;
+    og_description?: string;
+    og_image?: Array<{ url: string }>;
   };
   _embedded?: {
     'wp:featuredmedia'?: Array<{
@@ -374,6 +412,15 @@ export async function getCategories(lang: SupportedLang = 'es'): Promise<WPCateg
 // Sectors
 export async function getSectors(): Promise<WPSector[]> {
   return wpFetch<WPSector[]>('/sectors', {
+    per_page: 100,
+  });
+}
+
+// Get sectors by IDs (for service pages)
+export async function getSectorsByIds(ids: number[]): Promise<WPSector[]> {
+  if (!ids || ids.length === 0) return [];
+  return wpFetch<WPSector[]>('/sectors', {
+    include: ids.join(','),
     per_page: 100,
   });
 }

@@ -33,7 +33,7 @@ export function DoneForYouBlock() {
         {/* Stack cards — show what powers the platform */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
           {stackItems.map((item) => (
-            <div key={item.label} className="p-4 rounded-xl border border-foreground/10 bg-foreground/5 text-center space-y-2 hover:bg-foreground/10 transition-colors">
+            <div key={item.label} className="p-4 rounded-xl border border-foreground/15 bg-foreground/5 text-center space-y-2 hover:bg-foreground/10 transition-colors shadow-sm shadow-[var(--neon-blue)]/5">
               <item.icon className="w-6 h-6 text-foreground/60 mx-auto" />
               <div className="text-xs text-[var(--neon-blue)] font-medium">{item.category}</div>
               <div className="font-bold text-sm text-foreground">{item.label}</div>
@@ -47,7 +47,7 @@ export function DoneForYouBlock() {
           {weDoItems.map((item, i) => (
             <div
               key={i}
-              className="flex items-center gap-3 p-4 rounded-xl border border-foreground/10 bg-foreground/5 hover:bg-foreground/10 transition-colors"
+              className="flex items-center gap-3 p-4 rounded-xl border border-foreground/15 bg-foreground/5 hover:bg-foreground/10 transition-colors shadow-sm shadow-[var(--neon-blue)]/5"
             >
               <div className="w-6 h-6 rounded-full bg-[var(--lime-green)]/20 flex items-center justify-center shrink-0">
                 <Check className="w-4 h-4 text-[var(--lime-green)]" />

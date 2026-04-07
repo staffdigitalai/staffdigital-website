@@ -2,9 +2,9 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { 
   Play, 
-  ChevronRight, 
   ChevronDown,
   Phone, 
   MessageSquare, 
@@ -78,16 +78,28 @@ const sectorIconMap: Record<string, LucideIcon> = {
   "servicios-locales": Wrench,
 }
 
-// Other solutions for cross-linking
+// Other solutions for cross-linking (hardcoded fallback)
 const allSolutions = [
-  { label: "IA para Call Center", href: "/soluciones/atencion-telefonica-ia", slug: "atencion-telefonica-ia" },
-  { label: "WhatsApp IA", href: "/soluciones/whatsapp-ia-empresas", slug: "whatsapp-ia-empresas" },
-  { label: "Chat Web IA", href: "/soluciones/agente-chat-web-ia", slug: "agente-chat-web-ia" },
-  { label: "Ventas con IA", href: "/soluciones/agente-ventas-ia", slug: "agente-ventas-ia" },
-  { label: "Soporte IA", href: "/soluciones/agente-soporte-ia", slug: "agente-soporte-ia" },
-  { label: "Agendamiento IA", href: "/soluciones/agente-agendamientos-ia", slug: "agente-agendamientos-ia" },
-  { label: "Lead Generation IA", href: "/soluciones/lead-generation-ia", slug: "lead-generation-ia" },
-  { label: "CRM Automation IA", href: "/soluciones/crm-automation-ia", slug: "crm-automation-ia" },
+  { label: "IA para Call Center", description: "Automatiza llamadas entrantes y salientes", href: "/soluciones/atencion-telefonica-ia", slug: "atencion-telefonica-ia", icon: "phone" },
+  { label: "WhatsApp IA", description: "Respuestas instantáneas en WhatsApp Business", href: "/soluciones/whatsapp-ia-empresas", slug: "whatsapp-ia-empresas", icon: "whatsapp" },
+  { label: "Chat Web IA", description: "Widget inteligente para tu sitio web", href: "/soluciones/agente-chat-web-ia", slug: "agente-chat-web-ia", icon: "globe" },
+  { label: "Ventas con IA", description: "Cierra más ventas con agentes automatizados", href: "/soluciones/agente-ventas-ia", slug: "agente-ventas-ia", icon: "trending-up" },
+  { label: "Soporte IA", description: "Resuelve tickets 24/7 sin esperas", href: "/soluciones/agente-soporte-ia", slug: "agente-soporte-ia", icon: "headphones" },
+  { label: "Agendamiento IA", description: "Gestiona citas automáticamente", href: "/soluciones/agente-agendamientos-ia", slug: "agente-agendamientos-ia", icon: "calendar" },
+  { label: "Lead Generation IA", description: "Captura y cualifica leads 24/7", href: "/soluciones/lead-generation-ia", slug: "lead-generation-ia", icon: "target" },
+  { label: "CRM Automation IA", description: "Sincroniza datos automáticamente", href: "/soluciones/crm-automation-ia", slug: "crm-automation-ia", icon: "layers" },
+]
+
+// Default sectors for fallback
+const defaultSectors = [
+  { slug: "concesionarios", name: "Concesionarios", description: "Test drives, cualificación, posventa" },
+  { slug: "clinicas", name: "Clínicas y Salud", description: "Citas, recordatorios, atención paciente" },
+  { slug: "inmobiliarias", name: "Inmobiliarias", description: "Visitas, cualificación, follow-up" },
+  { slug: "restaurantes", name: "Restaurantes", description: "Reservas, takeaway, confirmaciones" },
+  { slug: "ecommerce", name: "E-commerce", description: "Carrito abandonado, soporte, recomendaciones" },
+  { slug: "turismo", name: "Turismo y Hotelería", description: "Reservas, upsell, soporte 24/7" },
+  { slug: "educacion", name: "Educación", description: "Matrículas, información, recordatorios" },
+  { slug: "servicios-locales", name: "Servicios Técnicos", description: "Citas, seguimiento, atención cliente" },
 ]
 
 // Fallback data when ACF fields are empty
@@ -155,7 +167,15 @@ export function DynamicServiceClient({ service, sectors = [] }: DynamicServiceCl
   const testimonialEmpresa = acf.testimonial_empresa || fallbackTestimonial.empresa
   const hasTestimonial = !!(acf.testimonial_quote || fallbackTestimonial.quote)
 
-  // Breadcrumb JSON-LD
+  // Use sectors from WP or fallback to default
+  const displaySectors = sectors.length > 0 
+    ? sectors.map(s => ({ slug: s.slug, name: s.name, description: s.acf?.descripcion_corta || "", image: s.acf?.imagen?.url }))
+    : defaultSectors
+
+  // Filter out current solution from other solutions
+  const otherSolutions = allSolutions.filter(s => s.slug !== service.slug).slice(0, 4)
+
+  // Breadcrumb JSON-LD (SEO only - no visual breadcrumb)
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -188,7 +208,7 @@ export function DynamicServiceClient({ service, sectors = [] }: DynamicServiceCl
 
   return (
     <>
-      {/* JSON-LD */}
+      {/* JSON-LD for SEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -201,32 +221,9 @@ export function DynamicServiceClient({ service, sectors = [] }: DynamicServiceCl
       )}
 
       {/* ═══════════════════════════════════════
-          SECCIÓN 1 — BREADCRUMB
+          SECCIÓN 1 — HERO (centrado)
           ═══════════════════════════════════════ */}
-      <nav className="pt-28 pb-4 px-4 max-w-6xl mx-auto">
-        <ol className="flex items-center gap-2 text-sm">
-          <li>
-            <Link href="/" className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
-              Inicio
-            </Link>
-          </li>
-          <ChevronRight className="w-4 h-4 text-gray-400" />
-          <li>
-            <Link href="/soluciones" className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
-              Soluciones
-            </Link>
-          </li>
-          <ChevronRight className="w-4 h-4 text-gray-400" />
-          <li className="text-gray-900 dark:text-white font-medium">
-            {title}
-          </li>
-        </ol>
-      </nav>
-
-      {/* ═══════════════════════════════════════
-          SECCIÓN 2 — HERO (centrado)
-          ═══════════════════════════════════════ */}
-      <section className="px-4 pt-8 pb-16 text-center">
+      <section className="px-4 pt-32 pb-16 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white">
             {title}
@@ -239,19 +236,19 @@ export function DynamicServiceClient({ service, sectors = [] }: DynamicServiceCl
           <div className="flex gap-4 justify-center mt-8">
             <button
               onClick={openContactForm}
-              className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] text-white rounded-[20px] px-6 py-3 font-semibold hover:opacity-90 transition-opacity cursor-pointer"
+              className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] text-white rounded-lg px-6 py-3 font-semibold hover:opacity-90 transition-opacity cursor-pointer"
             >
               Pedir Demo
             </button>
             <a
               href="tel:+34931229129"
-              className="border border-gray-300 dark:border-[rgb(61,61,64)] rounded-[20px] px-6 py-3 text-gray-900 dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+              className="border-2 border-gray-800 dark:border-white rounded-lg px-6 py-3 text-gray-900 dark:text-white font-semibold bg-white/50 dark:bg-white/10 backdrop-blur-sm hover:bg-white/80 dark:hover:bg-white/20 transition-colors"
             >
               Escucha la voz IA
             </a>
           </div>
 
-          {/* Video Placeholder - Improved */}
+          {/* Video Placeholder */}
           <div 
             className="mt-12 max-w-5xl mx-auto aspect-video rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] flex items-center justify-center shadow-lg shadow-[#0078AA]/10"
             style={{ background: "linear-gradient(135deg, rgba(0,120,170,0.05), rgba(124,58,237,0.05))" }}
@@ -267,7 +264,7 @@ export function DynamicServiceClient({ service, sectors = [] }: DynamicServiceCl
       </section>
 
       {/* ═══════════════════════════════════════
-          SECCIÓN 3 — STATS BAR (3 métricas)
+          SECCIÓN 2 — STATS BAR (3 métricas)
           ═══════════════════════════════════════ */}
       <section className="px-4 py-10 border-y border-gray-200 dark:border-[rgb(61,61,64)]">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-around items-center gap-8 md:gap-0">
@@ -288,7 +285,7 @@ export function DynamicServiceClient({ service, sectors = [] }: DynamicServiceCl
       </section>
 
       {/* ═══════════════════════════════════════
-          SECCIÓN 4 — CANALES (3 cards)
+          SECCIÓN 3 — CANALES (3 cards)
           ═══════════════════════════════════════ */}
       <section className="px-4 py-20">
         <div className="max-w-6xl mx-auto">
@@ -326,7 +323,7 @@ export function DynamicServiceClient({ service, sectors = [] }: DynamicServiceCl
       </section>
 
       {/* ═══════════════════════════════════════
-          SECCIÓN 5 — FEATURES (6 cards grid)
+          SECCIÓN 4 — FEATURES (6 cards grid)
           ═══════════════════════════════════════ */}
       <section className="px-4 py-20">
         <div className="max-w-6xl mx-auto">
@@ -362,7 +359,7 @@ export function DynamicServiceClient({ service, sectors = [] }: DynamicServiceCl
       </section>
 
       {/* ═══════════════════════════════════════
-          SECCIÓN 6 — BENEFICIOS (2 columnas)
+          SECCIÓN 5 — BENEFICIOS (2 columnas)
           ═══════════════════════════════════════ */}
       <section className="px-4 py-20">
         <div className="max-w-6xl mx-auto">
@@ -387,17 +384,17 @@ export function DynamicServiceClient({ service, sectors = [] }: DynamicServiceCl
             </div>
 
             {/* Panel derecho con mini-cards de stats */}
-            <div className="grid gap-4">
-              <div className="rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] p-4 flex items-center gap-3">
-                <span className="text-2xl font-bold text-[#0078AA]">80%</span>
+            <div className="space-y-4">
+              <div className="rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] p-5 flex items-center gap-4">
+                <div className="text-3xl font-bold bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">80%</div>
                 <span className="text-sm text-gray-600 dark:text-gray-400">menos costes operativos</span>
               </div>
-              <div className="rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] p-4 flex items-center gap-3">
-                <span className="text-2xl font-bold text-[#7C3AED]">24/7</span>
-                <span className="text-sm text-gray-600 dark:text-gray-400">disponible sin interrupciones</span>
+              <div className="rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] p-5 flex items-center gap-4">
+                <div className="text-3xl font-bold bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">24/7</div>
+                <span className="text-sm text-gray-600 dark:text-gray-400">atención sin interrupciones</span>
               </div>
-              <div className="rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] p-4 flex items-center gap-3">
-                <span className="text-2xl font-bold bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">48h</span>
+              <div className="rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] p-5 flex items-center gap-4">
+                <div className="text-3xl font-bold bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">48h</div>
                 <span className="text-sm text-gray-600 dark:text-gray-400">implementación completa</span>
               </div>
             </div>
@@ -406,41 +403,7 @@ export function DynamicServiceClient({ service, sectors = [] }: DynamicServiceCl
       </section>
 
       {/* ═══════════════════════════════════════
-          SECCIÓN 7 — SECTORES (pills como links)
-          ═══════════════════════════════════════ */}
-      {sectors.length > 0 && (
-        <section className="px-4 py-20">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                Ideal para estos sectores
-              </h2>
-              <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                Agentes IA entrenados con el conocimiento de cada industria
-              </p>
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-3">
-              {sectors.map((sector) => {
-                const Icon = sectorIconMap[sector.slug] || Building2
-                return (
-                  <Link 
-                    key={sector.id}
-                    href={`/sectores/${sector.slug}`}
-                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] hover:border-[#0078AA]/50 transition-colors"
-                  >
-                    <Icon className="w-4 h-4 text-[#0078AA]" />
-                    <span className="text-gray-900 dark:text-white text-sm font-medium">{sector.name}</span>
-                  </Link>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ═══════════════════════════════════════
-          SECCIÓN 8 — TESTIMONIAL
+          SECCIÓN 6 — TESTIMONIAL
           ═══════════════════════════════════════ */}
       {hasTestimonial && (
         <section className="px-4 py-20">
@@ -464,7 +427,7 @@ export function DynamicServiceClient({ service, sectors = [] }: DynamicServiceCl
       )}
 
       {/* ═══════════════════════════════════════
-          SECCIÓN 9 — FAQ (accordion)
+          SECCIÓN 7 — FAQ (accordion)
           ═══════════════════════════════════════ */}
       {faqItems.length > 0 && (
         <section className="px-4 py-20">
@@ -505,29 +468,87 @@ export function DynamicServiceClient({ service, sectors = [] }: DynamicServiceCl
       )}
 
       {/* ═══════════════════════════════════════
-          SECCIÓN 10 — OTRAS SOLUCIONES (pills)
+          SECCIÓN 8 — AGENTES IA PARA TU SECTOR (cards com imagem)
           ═══════════════════════════════════════ */}
-      <section className="px-4 py-16 border-t border-gray-200 dark:border-[rgb(61,61,64)]">
+      <section className="px-4 py-20">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-            Otras soluciones IA
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">
+            Agentes IA para tu sector
           </h2>
-          <div className="flex flex-wrap justify-center gap-3">
-            {allSolutions.filter(s => s.slug !== service.slug).map((s, i) => (
-              <Link
-                key={i}
-                href={s.href}
-                className="px-4 py-2 rounded-full bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] text-gray-900 dark:text-white text-sm font-medium hover:border-[#0078AA]/50 transition-colors"
-              >
-                {s.label}
-              </Link>
-            ))}
+          <p className="text-gray-600 dark:text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+            IA entrenada con el conocimiento de tu industria. Lista para atender desde el primer día.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {displaySectors.slice(0, 8).map((sector) => {
+              const Icon = sectorIconMap[sector.slug] || Building2
+              return (
+                <Link 
+                  key={sector.slug}
+                  href={`/sectores/${sector.slug}`}
+                  className="rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] bg-white dark:bg-[rgba(101,101,106,0.16)] overflow-hidden hover:border-[#0078AA]/50 dark:hover:border-[#0078AA]/50 transition-all hover:scale-[1.02] group"
+                >
+                  {/* Image area */}
+                  <div className="w-full h-32 bg-gradient-to-br from-[#0078AA]/5 to-[#7C3AED]/5 dark:from-[#0078AA]/10 dark:to-[#7C3AED]/10 flex items-center justify-center overflow-hidden">
+                    {sector.image ? (
+                      <Image 
+                        src={sector.image} 
+                        alt={sector.name} 
+                        width={300}
+                        height={128}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <Icon className="w-8 h-8 text-[#0078AA]/30 group-hover:text-[#0078AA]/60 transition-colors" />
+                    )}
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-semibold text-gray-900 dark:text-white mb-1 text-sm">IA para {sector.name}</h3>
+                    <p className="text-gray-500 dark:text-gray-400 text-xs">{sector.description}</p>
+                  </div>
+                </Link>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════
-          SECCIÓN 11 — CTA FINAL
+          SECCIÓN 9 — SOLUCIONES IA POR CASO DE USO (cards 4 colunas)
+          ═══════════════════════════════════════ */}
+      <section className="px-4 py-20">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">
+            Soluciones IA por caso de uso
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+            Cada agente resuelve un problema concreto. Todos conectados en una sola plataforma.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {otherSolutions.map((sol) => {
+              const Icon = getIcon(sol.icon)
+              return (
+                <Link 
+                  key={sol.slug}
+                  href={sol.href}
+                  className="rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] bg-white dark:bg-[rgba(101,101,106,0.16)] overflow-hidden hover:border-[#0078AA]/50 dark:hover:border-[#0078AA]/50 transition-all hover:scale-[1.02] group"
+                >
+                  {/* Mockup/illustration area */}
+                  <div className="w-full h-32 bg-gray-50 dark:bg-white/5 flex items-center justify-center">
+                    <Icon className="w-8 h-8 text-[#0078AA] opacity-50 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-semibold text-gray-900 dark:text-white mb-1 text-sm">{sol.label}</h3>
+                    <p className="text-gray-500 dark:text-gray-400 text-xs">{sol.description}</p>
+                  </div>
+                </Link>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+          SECCIÓN 10 — CTA FINAL
           ═══════════════════════════════════════ */}
       <section className="px-4 py-20">
         <div className="max-w-4xl mx-auto text-center">
@@ -540,14 +561,14 @@ export function DynamicServiceClient({ service, sectors = [] }: DynamicServiceCl
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={openContactForm}
-              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#0078AA] to-[#7C3AED] text-white rounded-[20px] px-8 py-4 font-semibold hover:opacity-90 transition-opacity cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#0078AA] to-[#7C3AED] text-white rounded-lg px-8 py-4 font-semibold hover:opacity-90 transition-opacity cursor-pointer"
             >
               Solicitar Demo Gratuita
               <ArrowRight className="w-5 h-5" />
             </button>
             <Link
               href="/contacto"
-              className="inline-flex items-center justify-center gap-2 border border-gray-300 dark:border-[rgb(61,61,64)] rounded-[20px] px-8 py-4 text-gray-900 dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+              className="inline-flex items-center justify-center gap-2 border-2 border-gray-800 dark:border-white rounded-lg px-8 py-4 text-gray-900 dark:text-white font-semibold bg-white/50 dark:bg-white/10 backdrop-blur-sm hover:bg-white/80 dark:hover:bg-white/20 transition-colors"
             >
               Contactar con ventas
             </Link>

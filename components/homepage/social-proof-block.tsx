@@ -1,9 +1,9 @@
 "use client"
 
-import { Shield, Clock, Headphones } from "lucide-react"
+import { ShieldCheck, Clock, HeadsetIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
-const statIcons = [Shield, Clock, Headphones]
+const statIcons = [ShieldCheck, Clock, HeadsetIcon]
 
 export function SocialProofBlock() {
   const t = useTranslations("social_proof")
@@ -25,10 +25,19 @@ export function SocialProofBlock() {
 
         <div className="grid sm:grid-cols-3 gap-4">
           {stats.map((s) => (
-            <div key={s.label} className="p-5 rounded-2xl border border-foreground/10 bg-foreground/5 text-center space-y-3">
-              <s.icon className="w-8 h-8 text-[var(--neon-blue)] mx-auto" />
+            <div 
+              key={s.label} 
+              className="p-6 rounded-2xl border border-gray-200 dark:border-foreground/15 bg-white dark:bg-foreground/5 text-center space-y-4 transition-all duration-300 hover:shadow-xl hover:shadow-[var(--purple-dark)]/10 hover:border-[rgba(124,58,237,0.3)] hover:-translate-y-1 cursor-default"
+              style={{ boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)" }}
+            >
+              <div 
+                className="w-12 h-12 rounded-full mx-auto flex items-center justify-center"
+                style={{ background: "linear-gradient(135deg, rgba(0, 120, 170, 0.15), rgba(124, 58, 237, 0.15))" }}
+              >
+                <s.icon className="w-6 h-6 text-[#0078AA]" />
+              </div>
               <div className="font-bold text-foreground text-sm">{s.label}</div>
-              <div className="text-xs text-foreground/40">{s.sublabel}</div>
+              <div className="text-xs text-muted-foreground leading-relaxed">{s.sublabel}</div>
             </div>
           ))}
         </div>

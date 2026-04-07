@@ -550,7 +550,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {solucionesContextuales.map((sol) => {
-                // Find matching icon from allSolutions array
+                // Find matching icon from allSolutions array (fallback only)
                 const matchingSol = allSolutions.find(s => s.slug === sol.solucion_slug)
                 const Icon = matchingSol ? getIcon(matchingSol.icon) : Sparkles
                 return (
@@ -559,23 +559,27 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
                     href={`/soluciones/${sol.solucion_slug}`}
                     className="card-elevated group rounded-2xl hover:border-foreground/25 transition-all hover:scale-[1.02] overflow-hidden hover:shadow-lg hover:shadow-[var(--neon-blue)]/10"
                   >
-                    {/* Mockup area - same as homepage */}
+                    {/* Image area - real image from WP or fallback */}
                     <div className="relative w-full h-32 overflow-hidden">
-                      <div className="w-full h-32 bg-gray-50 dark:bg-white/5 rounded-lg p-3 flex flex-col gap-2 overflow-hidden">
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 rounded-lg bg-[#0078AA]/10 flex items-center justify-center">
-                            <Icon className="w-4 h-4 text-[#0078AA]" />
-                          </div>
-                          <div className="flex-1">
-                            <div className="h-2 w-16 bg-gray-200 dark:bg-white/10 rounded" />
-                          </div>
+                      {sol.solucion_imagen ? (
+                        <Image
+                          src={sol.solucion_imagen}
+                          alt={sol.solucion_nombre}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          loading="lazy"
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-[#0078AA]/10 to-[#7C3AED]/10 flex items-center justify-center">
+                          <Icon className="w-8 h-8 text-[#0078AA]/40" />
                         </div>
-                        <div className="flex-1 space-y-1.5">
-                          <div className="h-1.5 w-full bg-gray-100 dark:bg-white/5 rounded" />
-                          <div className="h-1.5 w-3/4 bg-gray-100 dark:bg-white/5 rounded" />
-                          <div className="h-1.5 w-1/2 bg-gray-100 dark:bg-white/5 rounded" />
-                        </div>
-                      </div>
+                      )}
+                      {/* Brand overlay */}
+                      <div 
+                        className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-50"
+                        style={{ background: "linear-gradient(135deg, rgba(0, 120, 170, 0.06), rgba(124, 58, 237, 0.10))" }}
+                      />
                     </div>
                     {/* Text content */}
                     <div className="p-4 space-y-2">

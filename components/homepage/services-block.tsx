@@ -1,31 +1,60 @@
-"use client"
-
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Phone, MessageSquare, Globe, Users, TrendingUp, Headphones, Calendar, Target, Layers, Sparkles } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
 import Link from "next/link"
-import { useTranslations } from "next-intl"
-import { serviceMockups } from "./service-mockups"
+import Image from "next/image"
+import { getTranslations } from "next-intl/server"
+import { getServices } from "@/lib/wordpress"
 
+// Icon mapping for service slugs
+const iconMap: Record<string, LucideIcon> = {
+  "atencion-telefonica-ia": Phone,
+  "whatsapp-ia-empresas": MessageSquare,
+  "agente-chat-web-ia": Globe,
+  "agente-ventas-ia": TrendingUp,
+  "agente-soporte-ia": Headphones,
+  "agente-agendamientos-ia": Calendar,
+  "lead-generation-ia": Target,
+  "crm-automation-ia": Layers,
+}
+
+// Fallback services meta (used when WP fetch fails or for translations)
 const servicesMeta = [
-  { href: "/soluciones/atencion-telefonica-ia" },
-  { href: "/soluciones/whatsapp-ia-empresas" },
-  { href: "/soluciones/agente-chat-web-ia" },
-  { href: "/soluciones/agente-ventas-ia" },
-  { href: "/soluciones/agente-soporte-ia" },
-  { href: "/soluciones/agente-agendamientos-ia" },
-  { href: "/soluciones/lead-generation-ia" },
-  { href: "/soluciones/crm-automation-ia" },
+  { slug: "atencion-telefonica-ia", href: "/soluciones/atencion-telefonica-ia" },
+  { slug: "whatsapp-ia-empresas", href: "/soluciones/whatsapp-ia-empresas" },
+  { slug: "agente-chat-web-ia", href: "/soluciones/agente-chat-web-ia" },
+  { slug: "agente-ventas-ia", href: "/soluciones/agente-ventas-ia" },
+  { slug: "agente-soporte-ia", href: "/soluciones/agente-soporte-ia" },
+  { slug: "agente-agendamientos-ia", href: "/soluciones/agente-agendamientos-ia" },
+  { slug: "lead-generation-ia", href: "/soluciones/lead-generation-ia" },
+  { slug: "crm-automation-ia", href: "/soluciones/crm-automation-ia" },
 ]
 
-export function ServicesBlock() {
-  const t = useTranslations("services")
+export async function ServicesBlock() {
+  const t = await getTranslations("services")
+  
+  // Fetch real services from WordPress with images
+  let wpServices: Array<{ slug: string; imageUrl?: string }> = []
+  try {
+    const services = await getServices({ perPage: 20 })
+    wpServices = services.map(s => ({
+      slug: s.slug,
+      imageUrl: s._embedded?.['wp:featuredmedia']?.[0]?.source_url,
+    }))
+  } catch (error) {
+    console.error("[ServicesBlock] Failed to fetch services:", error)
+  }
+
+  // Create a map for quick lookup
+  const imageMap = new Map(wpServices.map(s => [s.slug, s.imageUrl]))
 
   const translatedItems = t.raw("items") as { title: string; description: string }[]
 
   const services = servicesMeta.map((meta, i) => ({
     ...meta,
-    title: translatedItems[i].title,
-    description: translatedItems[i].description,
-    Mockup: serviceMockups[i],
+    title: translatedItems[i]?.title || "",
+    description: translatedItems[i]?.description || "",
+    imageUrl: imageMap.get(meta.slug),
+    Icon: iconMap[meta.slug] || Sparkles,
   }))
 
   return (
@@ -47,8 +76,27 @@ export function ServicesBlock() {
               href={s.href}
               className="card-elevated group rounded-2xl hover:border-foreground/25 transition-all hover:scale-[1.02] overflow-hidden hover:shadow-lg hover:shadow-[var(--neon-blue)]/10"
             >
+              {/* Image area - real image from WP or fallback */}
               <div className="relative w-full h-32 overflow-hidden">
-                <s.Mockup />
+                {s.imageUrl ? (
+                  <Image
+                    src={s.imageUrl}
+                    alt={s.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    loading="lazy"
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-[#0078AA]/10 to-[#7C3AED]/10 flex items-center justify-center">
+                    <s.Icon className="w-8 h-8 text-[#0078AA]/40" />
+                  </div>
+                )}
+                {/* Brand overlay */}
+                <div 
+                  className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-50"
+                  style={{ background: "linear-gradient(135deg, rgba(0, 120, 170, 0.06), rgba(124, 58, 237, 0.10))" }}
+                />
               </div>
               <div className="p-4 space-y-2">
                 <h3 className="font-bold text-foreground group-hover:text-foreground/90">{s.title}</h3>

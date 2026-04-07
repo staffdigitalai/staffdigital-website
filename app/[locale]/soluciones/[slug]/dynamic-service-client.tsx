@@ -1,64 +1,93 @@
 "use client"
 
-import { useEffect, useState, useRef, useCallback } from "react"
 import Link from "next/link"
-import { ArrowRight, Check, Phone, MessageSquare, Globe, Shield, Home, BarChart3, FileText, Megaphone, Zap, Bot, Users, Headphones, Calendar, Mail, Database, Settings, Cpu, Sparkles, Clock, Target, PiggyBank, Plug, TrendingUp, CheckCircle, FolderOpen, Scan, Repeat, LayoutDashboard, Star, Play, ChevronRight } from "lucide-react"
+import { 
+  Play, 
+  ChevronRight, 
+  Phone, 
+  MessageSquare, 
+  Globe, 
+  Check,
+  ArrowRight,
+  Building2,
+  Headphones,
+  Calendar,
+  ShoppingCart,
+  Stethoscope,
+  Home,
+  GraduationCap,
+  Wrench,
+  Users,
+  TrendingUp,
+  Clock,
+  Shield,
+  Zap,
+  Bot
+} from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { useFormModals } from "@/components/contact-form-modals"
 import type { WPService } from "@/lib/wordpress"
 import { stripHtml } from "@/lib/wordpress"
 
-// Icon mapping
-const iconMap: Record<string, LucideIcon> = {
-  Phone,
-  MessageSquare,
-  Globe,
-  Shield,
-  Home,
-  BarChart3,
-  FileText,
-  Megaphone,
-  Zap,
-  Bot,
-  Users,
-  Headphones,
-  Calendar,
-  Mail,
-  Database,
-  Settings,
-  Cpu,
-  Sparkles,
-  Clock,
-  Target,
-  PiggyBank,
-  Plug,
-  TrendingUp,
-  CheckCircle,
-  FolderOpen,
-  Scan,
-  Repeat,
-  LayoutDashboard,
-  Star,
-  Check,
+// Service icon mapping
+const serviceIcons: Record<string, LucideIcon> = {
+  "atencion-telefonica-ia": Phone,
+  "whatsapp-ia-empresas": MessageSquare,
+  "agente-chat-web-ia": Globe,
+  "agente-ventas-ia": TrendingUp,
+  "agente-soporte-ia": Headphones,
+  "agente-agendamientos-ia": Calendar,
+  "lead-generation-ia": Users,
+  "crm-automation-ia": Building2,
 }
 
-interface TOCItem {
-  id: string
-  text: string
-}
-
-interface DynamicServiceClientProps {
-  service: WPService
-}
-
-// Stats data for solution pages
+// Stats data
 const solutionStats = [
   { value: "24/7", label: "Atención continua" },
   { value: "80%", label: "Reducción de costes" },
   { value: "92%", label: "Satisfacción cliente" },
 ]
 
-// Other solutions for navigation
+// Channels data
+const channels = [
+  { icon: Phone, name: "Llamadas Telefónicas", desc: "Voz natural con latencia mínima. Atiende y realiza llamadas 24/7." },
+  { icon: MessageSquare, name: "WhatsApp Business", desc: "Respuestas instantáneas con contexto completo del cliente." },
+  { icon: Globe, name: "Chat Web", desc: "Widget integrado en tu web con el mismo agente IA." },
+]
+
+// Features data
+const features = [
+  { icon: Bot, text: "Agente IA con voz humana natural" },
+  { icon: Clock, text: "Disponibilidad 24/7 sin interrupciones" },
+  { icon: Shield, text: "Datos protegidos bajo GDPR" },
+  { icon: Zap, text: "Integración en menos de 48h" },
+  { icon: Users, text: "Escalado automático según demanda" },
+  { icon: TrendingUp, text: "Analytics y métricas en tiempo real" },
+]
+
+// Benefits data
+const benefits = [
+  "Reduce costes operativos hasta un 80% en atención al cliente",
+  "Elimina tiempos de espera: respuestas instantáneas 24/7",
+  "Aumenta la satisfacción del cliente con interacciones naturales",
+  "Escala tu equipo sin límites de contratación",
+  "Libera a tu equipo humano para tareas de alto valor",
+  "Integración perfecta con tu CRM y herramientas existentes",
+]
+
+// Sectors data
+const sectors = [
+  { name: "Concesionarios", icon: Building2 },
+  { name: "Clínicas", icon: Stethoscope },
+  { name: "Inmobiliarias", icon: Home },
+  { name: "Restaurantes", icon: ShoppingCart },
+  { name: "E-commerce", icon: ShoppingCart },
+  { name: "Turismo", icon: Globe },
+  { name: "Educación", icon: GraduationCap },
+  { name: "Servicios Locales", icon: Wrench },
+]
+
+// Other solutions
 const otherSolutions = [
   { label: "IA para Call Center", href: "/soluciones/atencion-telefonica-ia", slug: "atencion-telefonica-ia" },
   { label: "WhatsApp IA", href: "/soluciones/whatsapp-ia-empresas", slug: "whatsapp-ia-empresas" },
@@ -66,63 +95,26 @@ const otherSolutions = [
   { label: "Ventas con IA", href: "/soluciones/agente-ventas-ia", slug: "agente-ventas-ia" },
   { label: "Soporte IA", href: "/soluciones/agente-soporte-ia", slug: "agente-soporte-ia" },
   { label: "Agendamiento IA", href: "/soluciones/agente-agendamientos-ia", slug: "agente-agendamientos-ia" },
-  { label: "LeadGen IA", href: "/soluciones/lead-generation-ia", slug: "lead-generation-ia" },
-  { label: "CRM Automation", href: "/soluciones/crm-automation-ia", slug: "crm-automation-ia" },
 ]
+
+// Testimonial data
+const testimonial = {
+  quote: "Desde que implementamos el agente IA de StaffDigital, hemos reducido un 75% las llamadas perdidas y aumentado las conversiones en un 40%.",
+  author: "María García",
+  role: "Directora de Operaciones",
+  company: "AutoPremium Madrid",
+}
+
+interface DynamicServiceClientProps {
+  service: WPService
+}
 
 export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
   const { openContactForm } = useFormModals()
-  const [tocItems, setTocItems] = useState<TOCItem[]>([])
-  const [activeId, setActiveId] = useState<string>("")
-  const contentRef = useRef<HTMLDivElement>(null)
-
+  
   const title = stripHtml(service.title.rendered)
   const excerpt = stripHtml(service.excerpt.rendered)
-
-  // Extract H2s from content for TOC
-  useEffect(() => {
-    if (contentRef.current) {
-      const h2s = contentRef.current.querySelectorAll("h2")
-      const items: TOCItem[] = []
-      h2s.forEach((h2, index) => {
-        const id = `section-${index}`
-        h2.id = id
-        items.push({ id, text: h2.textContent || "" })
-      })
-      setTocItems(items)
-      if (items.length > 0) setActiveId(items[0].id)
-    }
-  }, [service.content.rendered])
-
-  // Scroll spy for TOC
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id)
-          }
-        }
-      },
-      { rootMargin: "-100px 0px -70% 0px", threshold: 0 }
-    )
-
-    tocItems.forEach((item) => {
-      const el = document.getElementById(item.id)
-      if (el) observer.observe(el)
-    })
-
-    return () => observer.disconnect()
-  }, [tocItems])
-
-  const scrollToSection = useCallback((id: string) => {
-    const el = document.getElementById(id)
-    if (el) {
-      const yOffset = -100
-      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset
-      window.scrollTo({ top: y, behavior: "smooth" })
-    }
-  }, [])
+  const ServiceIcon = serviceIcons[service.slug] || Phone
 
   // Breadcrumb JSON-LD
   const breadcrumbJsonLd = {
@@ -143,438 +135,287 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION 1 — BREADCRUMB
-          ═══════════════════════════════════════════════════════════════════════ */}
-      <nav aria-label="breadcrumb" className="pt-28 pb-4 px-4">
-        <div className="max-w-6xl mx-auto">
-          <ol className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-500">
-            <li>
-              <Link href="/" className="hover:text-gray-900 dark:hover:text-white transition-colors">
-                Inicio
-              </Link>
-            </li>
-            <li className="flex items-center gap-2">
-              <ChevronRight size={14} className="text-gray-400" />
-              <Link href="/soluciones" className="hover:text-gray-900 dark:hover:text-white transition-colors">
-                Soluciones
-              </Link>
-            </li>
-            <li className="flex items-center gap-2">
-              <ChevronRight size={14} className="text-gray-400" />
-              <span className="text-gray-900 dark:text-white font-medium">{title}</span>
-            </li>
-          </ol>
-        </div>
+      {/* ═══════════════════════════════════════
+          SECCIÓN 1 — BREADCRUMB
+          ═══════════════════════════════════════ */}
+      <nav className="pt-28 pb-4 px-4 max-w-6xl mx-auto">
+        <ol className="flex items-center gap-2 text-sm">
+          <li>
+            <Link href="/" className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+              Inicio
+            </Link>
+          </li>
+          <ChevronRight className="w-4 h-4 text-gray-400" />
+          <li>
+            <Link href="/soluciones" className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+              Soluciones
+            </Link>
+          </li>
+          <ChevronRight className="w-4 h-4 text-gray-400" />
+          <li className="text-gray-900 dark:text-white font-medium">
+            {title}
+          </li>
+        </ol>
       </nav>
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION 2 — HERO (centrado, full-width)
-          ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="pt-8 pb-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* H1 */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight text-balance text-gray-900 dark:text-white">
+      {/* ═══════════════════════════════════════
+          SECCIÓN 2 — HERO (centrado)
+          ═══════════════════════════════════════ */}
+      <section className="px-4 pt-8 pb-16 text-center">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white">
             {title}
           </h1>
-
-          {/* Description */}
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed mt-6">
+          
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-6">
             {excerpt}
           </p>
 
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+          <div className="flex gap-4 justify-center mt-8">
             <button
               onClick={openContactForm}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-transparent text-gray-900 dark:text-white border border-gray-300 dark:border-[rgb(61,61,64)] font-medium text-[15px] transition-all duration-200 hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer"
+              className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] text-white rounded-lg px-6 py-3 font-semibold hover:opacity-90 transition-opacity cursor-pointer"
             >
               Pedir Demo
             </button>
             <a
               href="tel:+34931229129"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-white font-medium text-[15px] transition-all duration-200 hover:opacity-90 shadow-lg shadow-violet-500/20"
-              style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}
+              className="border border-gray-300 dark:border-[rgb(61,61,64)] rounded-lg px-6 py-3 text-gray-900 dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
             >
-              <Phone size={16} />
               Escucha la voz IA
             </a>
           </div>
 
           {/* Video Placeholder */}
-          <div className="mt-12 max-w-5xl mx-auto">
-            <div 
-              className="relative aspect-video rounded-[20px] overflow-hidden border border-gray-200 dark:border-[rgb(61,61,64)]"
-              style={{ 
-                background: "linear-gradient(135deg, rgba(0, 120, 170, 0.05), rgba(124, 58, 237, 0.05))"
-              }}
-            >
-              {/* Play Button */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <div className="w-20 h-20 rounded-full bg-white/10 dark:bg-white/10 backdrop-blur-sm flex items-center justify-center cursor-pointer hover:scale-110 transition-transform duration-200">
-                  <Play size={32} className="text-white ml-1" fill="currentColor" />
-                </div>
-                <p className="mt-4 text-sm font-medium text-gray-500 dark:text-gray-500">Video Demo</p>
+          <div className="mt-12 max-w-5xl mx-auto aspect-video rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
+            <div className="flex flex-col items-center gap-4">
+              <div className="w-20 h-20 rounded-full bg-gradient-to-r from-[#0078AA] to-[#7C3AED] flex items-center justify-center cursor-pointer hover:scale-105 transition-transform">
+                <Play className="w-8 h-8 text-white ml-1" fill="white" />
               </div>
+              <span className="text-gray-500 dark:text-gray-400 text-sm">Video Demo</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION 3 — STATS BAR
-          ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="py-10 px-4">
-        <div className="max-w-5xl mx-auto border-y border-gray-200 dark:border-[rgb(61,61,64)] py-10">
-          <div className="flex flex-col md:flex-row items-center justify-around">
-            {solutionStats.map((stat, index) => (
-              <div key={index} className="flex items-center">
-                {/* Stat */}
-                <div className="text-center px-8 py-4 md:py-0">
-                  <p 
-                    className="text-4xl md:text-5xl font-bold"
-                    style={{ 
-                      background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text"
-                    }}
-                  >
-                    {stat.value}
-                  </p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{stat.label}</p>
+      {/* ═══════════════════════════════════════
+          SECCIÓN 3 — STATS BAR (3 métricas)
+          ═══════════════════════════════════════ */}
+      <section className="px-4 py-10 border-y border-gray-200 dark:border-[rgb(61,61,64)]">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-around items-center gap-8 md:gap-0">
+          {solutionStats.map((stat, i) => (
+            <div key={i} className="flex items-center">
+              {i > 0 && (
+                <div className="hidden md:block w-px h-12 bg-gray-200 dark:bg-[rgb(61,61,64)] mr-12" />
+              )}
+              <div className="text-center">
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">
+                  {stat.value}
                 </div>
-                {/* Divider (except last) */}
-                {index < solutionStats.length - 1 && (
-                  <div className="hidden md:block w-px h-12 bg-gray-200 dark:bg-[rgb(61,61,64)]" />
-                )}
+                <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION 4 — CONTENT + SIDEBAR
-          ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="px-4 py-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-12">
-            {/* Main Content (65%) */}
-            <div className="lg:w-[65%]">
-              <div 
-                ref={contentRef}
-                className="wp-content prose prose-gray dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: service.content.rendered }}
-              />
             </div>
-
-            {/* Sidebar (35%) */}
-            <aside className="lg:w-[35%]">
-              <div className="lg:sticky lg:top-28 space-y-5">
-                {/* Table of Contents */}
-                {tocItems.length > 0 && (
-                  <nav
-                    className="p-6 rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)]"
-                    style={{ boxShadow: "0 1px 3px rgba(0, 0, 0, 0.05)" }}
-                    aria-label="Índice de contenido"
-                  >
-                    <p className="text-xs uppercase tracking-wider font-semibold mb-4 text-gray-500 dark:text-gray-500">
-                      En esta página
-                    </p>
-                    <ul className="space-y-1">
-                      {tocItems.map((item) => (
-                        <li key={item.id}>
-                          <button
-                            onClick={() => scrollToSection(item.id)}
-                            className={`w-full text-left py-2 text-sm transition-all duration-200 cursor-pointer ${
-                              activeId === item.id
-                                ? "text-[rgb(0,120,170)] font-medium border-l-2 border-[rgb(0,120,170)] pl-3"
-                                : "text-gray-600 dark:text-gray-400 hover:text-[rgb(0,120,170)] pl-0"
-                            }`}
-                          >
-                            {item.text}
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  </nav>
-                )}
-
-                {/* Demo CTA Card */}
-                <div
-                  className="p-6 rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)]"
-                  style={{ boxShadow: "0 1px 3px rgba(0, 0, 0, 0.05)" }}
-                >
-                  <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-[rgb(248,249,250)]">
-                    ¿Listo para empezar?
-                  </h3>
-                  <p className="text-sm mb-4 text-gray-500 dark:text-[rgb(163,163,163)]">
-                    Configura tu agente IA en menos de 48h
-                  </p>
-                  <button
-                    onClick={openContactForm}
-                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-white font-medium transition-all duration-200 hover:opacity-90 cursor-pointer"
-                    style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}
-                  >
-                    Solicitar Demo
-                    <ArrowRight size={16} />
-                  </button>
-                  <p className="text-xs text-center mt-3 text-gray-500 dark:text-[rgb(107,114,128)]">
-                    o llámanos: +34 931 229 129
-                  </p>
-                </div>
-              </div>
-            </aside>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION 5 — TECH LOGOS
-          ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="px-4 py-12 border-y border-gray-200 dark:border-[rgb(61,61,64)]">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-center text-xs uppercase tracking-wider mb-8 text-gray-500 dark:text-[rgb(107,114,128)]">
-            Tecnología que impulsa nuestros agentes
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-12">
-            {[
-              { src: "/images/partners/openai.svg", alt: "OpenAI" },
-              { src: "/images/partners/anthropic.svg", alt: "Anthropic" },
-              { src: "/images/partners/google-cloud.svg", alt: "Google Cloud" },
-              { src: "/images/partners/twilio.svg", alt: "Twilio" },
-              { src: "/images/partners/salesforce.svg", alt: "Salesforce" },
-            ].map((logo) => (
-              <img
-                key={logo.alt}
-                src={logo.src}
-                alt={logo.alt}
-                className="h-6 sm:h-8 w-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 dark:brightness-0 dark:invert dark:opacity-40 dark:hover:brightness-100 dark:hover:invert-0 dark:hover:opacity-100"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION 6 — OTHER SOLUTIONS
-          ═══════════════════════════════════════════════════════════════════════ */}
+      {/* ═══════════════════════════════════════
+          SECCIÓN 4 — CANALES (3 cards)
+          ═══════════════════════════════════════ */}
       <section className="px-4 py-20">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-[rgb(248,249,250)]">
-              Otras Soluciones
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Un agente, todos los canales
             </h2>
-            <p className="text-gray-500 dark:text-[rgb(163,163,163)]">
-              Descubre más formas de transformar tu negocio con IA
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Tu agente IA atiende con la misma calidad en todos los puntos de contacto
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {channels.map((channel, i) => (
+              <div 
+                key={i}
+                className="p-6 rounded-2xl bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] hover:border-[#0078AA]/50 transition-colors"
+              >
+                <div 
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                  style={{ background: "linear-gradient(135deg, #0078AA, #7C3AED)" }}
+                >
+                  <channel.icon className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{channel.name}</h3>
+                <p className="text-gray-600 dark:text-gray-400">{channel.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+          SECCIÓN 5 — FEATURES (6 cards grid)
+          ═══════════════════════════════════════ */}
+      <section className="px-4 py-20 bg-gray-50 dark:bg-transparent">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Qué incluye esta solución
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Todo lo que necesitas para automatizar la atención al cliente
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, i) => (
+              <div 
+                key={i}
+                className="p-6 rounded-2xl bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)]"
+              >
+                <div className="w-10 h-10 rounded-lg bg-[#0078AA]/10 dark:bg-[#0078AA]/20 flex items-center justify-center mb-4">
+                  <feature.icon className="w-5 h-5 text-[#0078AA]" />
+                </div>
+                <p className="text-gray-900 dark:text-white font-medium">{feature.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+          SECCIÓN 6 — BENEFICIOS (2 columnas)
+          ═══════════════════════════════════════ */}
+      <section className="px-4 py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                Beneficios para tu negocio
+              </h2>
+              <ul className="space-y-4">
+                {benefits.map((benefit, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div 
+                      className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                      style={{ background: "linear-gradient(135deg, #0078AA, #7C3AED)" }}
+                    >
+                      <Check className="w-4 h-4 text-white" />
+                    </div>
+                    <span className="text-gray-600 dark:text-gray-400">{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Imagen placeholder */}
+            <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#0078AA]/10 to-[#7C3AED]/10 border border-gray-200 dark:border-[rgb(61,61,64)] flex items-center justify-center">
+              <ServiceIcon className="w-24 h-24 text-[#0078AA]/30" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════
+          SECCIÓN 7 — SECTORES (pills)
+          ═══════════════════════════════════════ */}
+      <section className="px-4 py-20 bg-gray-50 dark:bg-transparent">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Ideal para estos sectores
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Agentes IA entrenados con el conocimiento de cada industria
             </p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-3">
-            {otherSolutions
-              .filter((s) => s.slug !== service.slug)
-              .slice(0, 6)
-              .map((s) => (
-                <Link
-                  key={s.href}
-                  href={s.href}
-                  className="px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] text-gray-700 dark:text-gray-300 hover:border-[rgb(0,120,170)] hover:text-[rgb(0,120,170)] hover:bg-[rgba(0,120,170,0.05)] dark:hover:border-[rgb(0,120,170)] dark:hover:text-[rgb(0,120,170)] dark:hover:bg-[rgba(0,120,170,0.1)]"
-                >
-                  {s.label}
-                </Link>
-              ))}
+            {sectors.map((sector, i) => (
+              <div 
+                key={i}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] hover:border-[#0078AA]/50 transition-colors"
+              >
+                <sector.icon className="w-4 h-4 text-[#0078AA]" />
+                <span className="text-gray-900 dark:text-white text-sm font-medium">{sector.name}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION 7 — FINAL CTA
-          ═══════════════════════════════════════════════════════════════════════ */}
-      <section 
-        className="px-4 py-20 border-t border-gray-200 dark:border-[rgb(61,61,64)]"
-        style={{ 
-          background: "linear-gradient(to bottom right, rgba(0, 120, 170, 0.03), transparent, rgba(124, 58, 237, 0.03))"
-        }}
-      >
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-gray-900 dark:text-white">¿Listo para transformar la </span>
-            <span 
-              style={{ 
-                background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text"
-              }}
-            >
-              atención al cliente
-            </span>
-            <span className="text-gray-900 dark:text-white">?</span>
-          </h2>
-          <p className="text-lg mb-8 text-gray-500 dark:text-[rgb(163,163,163)]">
-            Agenda una demo gratuita y descubre cómo los agentes IA pueden revolucionar tu negocio
-          </p>
-          <button
-            onClick={openContactForm}
-            className="inline-flex items-center gap-2 px-10 py-4 rounded-lg text-white font-medium text-lg transition-all duration-200 hover:opacity-90 hover:shadow-lg cursor-pointer"
-            style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}
-          >
-            Habla con un Experto
-            <ArrowRight size={20} />
-          </button>
+      {/* ═══════════════════════════════════════
+          SECCIÓN 8 — TESTIMONIAL
+          ═══════════════════════════════════════ */}
+      <section className="px-4 py-20">
+        <div className="max-w-4xl mx-auto">
+          <div className="p-8 md:p-12 rounded-2xl bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)]">
+            <blockquote className="text-xl md:text-2xl text-gray-900 dark:text-white font-medium text-center mb-8">
+              &ldquo;{testimonial.quote}&rdquo;
+            </blockquote>
+            <div className="flex items-center justify-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-[#0078AA] to-[#7C3AED] flex items-center justify-center text-white font-bold">
+                {testimonial.author.charAt(0)}
+              </div>
+              <div>
+                <div className="font-semibold text-gray-900 dark:text-white">{testimonial.author}</div>
+                <div className="text-sm text-gray-500">{testimonial.role}, {testimonial.company}</div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          WORDPRESS CONTENT STYLES
-          ═══════════════════════════════════════════════════════════════════════ */}
-      <style jsx global>{`
-        /* WordPress Content Styling - Light Mode */
-        .wp-content h2 {
-          font-size: 28px;
-          font-weight: 700;
-          color: rgb(17, 24, 39);
-          margin-top: 48px;
-          margin-bottom: 20px;
-          padding-bottom: 12px;
-          border-bottom: 2px solid rgb(229, 231, 235);
-        }
-        
-        .wp-content h2:first-child {
-          margin-top: 0;
-        }
+      {/* ═══════════════════════════════════════
+          SECCIÓN 9 — OTRAS SOLUCIONES (pills)
+          ═══════════════════════════════════════ */}
+      <section className="px-4 py-16 border-t border-gray-200 dark:border-[rgb(61,61,64)]">
+        <div className="max-w-6xl mx-auto">
+          <h3 className="text-center text-gray-500 text-sm uppercase tracking-wider mb-6">
+            Otras soluciones IA
+          </h3>
+          <div className="flex flex-wrap justify-center gap-3">
+            {otherSolutions.filter(s => s.slug !== service.slug).map((s, i) => (
+              <Link
+                key={i}
+                href={s.href}
+                className="px-4 py-2 rounded-full bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] text-gray-900 dark:text-white text-sm font-medium hover:border-[#0078AA]/50 transition-colors"
+              >
+                {s.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        .wp-content h3 {
-          font-size: 22px;
-          font-weight: 600;
-          color: rgb(17, 24, 39);
-          margin-top: 32px;
-          margin-bottom: 16px;
-        }
-
-        .wp-content p {
-          font-size: 16px;
-          line-height: 1.75;
-          color: rgb(75, 85, 99);
-          margin-bottom: 20px;
-        }
-
-        .wp-content ul {
-          list-style: none;
-          padding-left: 0;
-          margin-bottom: 24px;
-        }
-
-        .wp-content ul li {
-          position: relative;
-          padding-left: 32px;
-          margin-bottom: 12px;
-          font-size: 16px;
-          line-height: 1.6;
-          color: rgb(75, 85, 99);
-        }
-
-        .wp-content ul li::before {
-          content: "";
-          position: absolute;
-          left: 0;
-          top: 4px;
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237));
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
-          background-repeat: no-repeat;
-          background-position: center;
-        }
-
-        .wp-content ol {
-          list-style: none;
-          padding-left: 0;
-          margin-bottom: 24px;
-          counter-reset: ol-counter;
-        }
-
-        .wp-content ol li {
-          position: relative;
-          padding-left: 40px;
-          margin-bottom: 16px;
-          font-size: 16px;
-          line-height: 1.6;
-          color: rgb(75, 85, 99);
-          counter-increment: ol-counter;
-        }
-
-        .wp-content ol li::before {
-          content: counter(ol-counter);
-          position: absolute;
-          left: 0;
-          top: 0;
-          width: 28px;
-          height: 28px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237));
-          color: white;
-          font-size: 14px;
-          font-weight: 600;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .wp-content blockquote {
-          border-left: 3px solid rgb(0, 120, 170);
-          padding-left: 20px;
-          margin: 24px 0;
-          font-style: italic;
-          color: rgb(107, 114, 128);
-        }
-
-        .wp-content a {
-          color: rgb(0, 120, 170);
-          text-decoration: underline;
-          text-underline-offset: 2px;
-        }
-
-        .wp-content a:hover {
-          color: rgb(124, 58, 237);
-        }
-
-        /* WordPress Content Styling - Dark Mode */
-        .dark .wp-content h2 {
-          color: rgb(248, 249, 250);
-          border-bottom-color: rgb(61, 61, 64);
-        }
-
-        .dark .wp-content h3 {
-          color: rgb(248, 249, 250);
-        }
-
-        .dark .wp-content p {
-          color: rgb(163, 163, 163);
-        }
-
-        .dark .wp-content ul li {
-          color: rgb(163, 163, 163);
-        }
-
-        .dark .wp-content ol li {
-          color: rgb(163, 163, 163);
-        }
-
-        .dark .wp-content blockquote {
-          color: rgb(163, 163, 163);
-        }
-
-        .dark .wp-content a {
-          color: rgb(34, 211, 238);
-        }
-
-        .dark .wp-content a:hover {
-          color: rgb(167, 139, 250);
-        }
-      `}</style>
+      {/* ═══════════════════════════════════════
+          SECCIÓN 10 — CTA FINAL
+          ═══════════════════════════════════════ */}
+      <section className="px-4 py-20">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Listo para automatizar tu atención al cliente?
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+            Agenda una demo personalizada y descubre cómo los agentes IA pueden transformar tu negocio
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={openContactForm}
+              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#0078AA] to-[#7C3AED] text-white rounded-lg px-8 py-4 font-semibold hover:opacity-90 transition-opacity cursor-pointer"
+            >
+              Solicitar Demo Gratuita
+              <ArrowRight className="w-5 h-5" />
+            </button>
+            <Link
+              href="/contacto"
+              className="inline-flex items-center justify-center gap-2 border border-gray-300 dark:border-[rgb(61,61,64)] rounded-lg px-8 py-4 text-gray-900 dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+            >
+              Contactar con ventas
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   )
 }

@@ -34,7 +34,7 @@ import {
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { useFormModals } from "@/components/contact-form-modals"
-import type { WPService, WPSector } from "@/lib/wordpress"
+import type { WPService } from "@/lib/wordpress"
 import { stripHtml } from "@/lib/wordpress"
 
 // Icon mapping for ACF icon field values
@@ -66,7 +66,7 @@ const iconMap: Record<string, LucideIcon> = {
   layers: Layers,
 }
 
-// Sector icon mapping
+// Sector icon mapping (fallback when no image)
 const sectorIconMap: Record<string, LucideIcon> = {
   concesionarios: Building2,
   clinicas: Stethoscope,
@@ -74,8 +74,29 @@ const sectorIconMap: Record<string, LucideIcon> = {
   restaurantes: ShoppingCart,
   ecommerce: ShoppingCart,
   turismo: Globe,
+  "turismo-hoteleria": Globe,
   educacion: GraduationCap,
   "servicios-locales": Wrench,
+  "servicios-tecnicos": Wrench,
+}
+
+// Sector image mapping (same as homepage sectors-block.tsx)
+const sectorImageMap: Record<string, { image: string; alt: string }> = {
+  concesionarios: { image: "/images/sectors/concesionarios.jpg", alt: "Agente IA para concesionarios de automóviles" },
+  clinicas: { image: "/images/sectors/clinicas.jpg", alt: "Agente IA para clínicas médicas" },
+  inmobiliarias: { image: "/images/sectors/inmobiliarias.jpg", alt: "Agente IA para inmobiliarias" },
+  restaurantes: { image: "/images/sectors/restaurantes.jpg", alt: "Agente IA para restaurantes" },
+  ecommerce: { image: "/images/sectors/ecommerce.jpg", alt: "Agente IA para e-commerce" },
+  turismo: { image: "/images/sectors/turismo.jpg", alt: "Agente IA para turismo y hoteles" },
+  "turismo-hoteleria": { image: "/images/sectors/turismo.jpg", alt: "Agente IA para turismo y hoteles" },
+  educacion: { image: "/images/sectors/educacion.jpg", alt: "Agente IA para educación" },
+  "servicios-locales": { image: "/images/sectors/servicios-locales.jpg", alt: "Agente IA para servicios locales" },
+  "servicios-tecnicos": { image: "/images/sectors/servicios-locales.jpg", alt: "Agente IA para servicios técnicos" },
+}
+
+// Helper to get sector image
+const getSectorImage = (slug: string): { image: string; alt: string } | null => {
+  return sectorImageMap[slug] || null
 }
 
 // Other solutions for cross-linking (hardcoded fallback)
@@ -90,17 +111,7 @@ const allSolutions = [
   { label: "CRM Automation IA", description: "Sincroniza datos automáticamente", href: "/soluciones/crm-automation-ia", slug: "crm-automation-ia", icon: "layers" },
 ]
 
-// Default sectors for fallback
-const defaultSectors = [
-  { slug: "concesionarios", name: "Concesionarios", description: "Test drives, cualificación, posventa" },
-  { slug: "clinicas", name: "Clínicas y Salud", description: "Citas, recordatorios, atención paciente" },
-  { slug: "inmobiliarias", name: "Inmobiliarias", description: "Visitas, cualificación, follow-up" },
-  { slug: "restaurantes", name: "Restaurantes", description: "Reservas, takeaway, confirmaciones" },
-  { slug: "ecommerce", name: "E-commerce", description: "Carrito abandonado, soporte, recomendaciones" },
-  { slug: "turismo", name: "Turismo y Hotelería", description: "Reservas, upsell, soporte 24/7" },
-  { slug: "educacion", name: "Educación", description: "Matrículas, información, recordatorios" },
-  { slug: "servicios-locales", name: "Servicios Técnicos", description: "Citas, seguimiento, atención cliente" },
-]
+
 
 // Fallback data when ACF fields are empty
 const fallbackStats = [
@@ -142,10 +153,9 @@ const fallbackTestimonial = {
 
 interface DynamicServiceClientProps {
   service: WPService
-  sectors?: WPSector[]
 }
 
-export function DynamicServiceClient({ service, sectors = [] }: DynamicServiceClientProps) {
+export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
   const { openContactForm } = useFormModals()
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
   
@@ -167,13 +177,11 @@ export function DynamicServiceClient({ service, sectors = [] }: DynamicServiceCl
   const testimonialEmpresa = acf.testimonial_empresa || fallbackTestimonial.empresa
   const hasTestimonial = !!(acf.testimonial_quote || fallbackTestimonial.quote)
 
-  // Use sectors from WP or fallback to default
-  const displaySectors = sectors.length > 0 
-    ? sectors.map(s => ({ slug: s.slug, name: s.name, description: s.acf?.descripcion_corta || "", image: s.acf?.imagen?.url }))
-    : defaultSectors
+  // Use contextual sectors from ACF (populated by WP) - NO FALLBACK
+  const sectoresContextuales = acf.sectores_contextuales?.sort((a, b) => a.sector_orden - b.sector_orden) || []
 
-  // Filter out current solution from other solutions
-  const otherSolutions = allSolutions.filter(s => s.slug !== service.slug).slice(0, 4)
+  // Use contextual solutions from ACF (populated by WP) - NO FALLBACK
+  const solucionesContextuales = acf.soluciones_contextuales?.sort((a, b) => a.solucion_orden - b.solucion_orden) || []
 
   // Breadcrumb JSON-LD (SEO only - no visual breadcrumb)
   const breadcrumbJsonLd = {
@@ -469,83 +477,125 @@ export function DynamicServiceClient({ service, sectors = [] }: DynamicServiceCl
 
       {/* ═══════════════════════════════════════
           SECCIÓN 8 — AGENTES IA PARA TU SECTOR (cards com imagem)
+          Only render if WP returns contextual sectors
           ═══════════════════════════════════════ */}
-      <section className="px-4 py-20">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">
-            Agentes IA para tu sector
-          </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-center mb-12 max-w-2xl mx-auto">
-            IA entrenada con el conocimiento de tu industria. Lista para atender desde el primer día.
-          </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {displaySectors.slice(0, 8).map((sector) => {
-              const Icon = sectorIconMap[sector.slug] || Building2
-              return (
-                <Link 
-                  key={sector.slug}
-                  href={`/sectores/${sector.slug}`}
-                  className="rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] bg-white dark:bg-[rgba(101,101,106,0.16)] overflow-hidden hover:border-[#0078AA]/50 dark:hover:border-[#0078AA]/50 transition-all hover:scale-[1.02] group"
-                >
-                  {/* Image area */}
-                  <div className="w-full h-32 bg-gradient-to-br from-[#0078AA]/5 to-[#7C3AED]/5 dark:from-[#0078AA]/10 dark:to-[#7C3AED]/10 flex items-center justify-center overflow-hidden">
-                    {sector.image ? (
-                      <Image 
-                        src={sector.image} 
-                        alt={sector.name} 
-                        width={300}
-                        height={128}
-                        className="w-full h-full object-cover"
+      {sectoresContextuales.length > 0 && (
+        <section className="py-20 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-center">
+              Agentes IA para tu sector
+            </h2>
+            <p className="text-lg text-foreground/60 max-w-2xl mx-auto text-center mb-12">
+              IA entrenada con el conocimiento de tu industria. Lista para atender desde el primer día.
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {sectoresContextuales.map((sector) => {
+                const sectorImg = getSectorImage(sector.sector_slug)
+                return (
+                  <Link
+                    key={sector.sector_slug}
+                    href={`/sectores/${sector.sector_slug}`}
+                    className="card-elevated group rounded-2xl hover:border-gray-300 dark:hover:border-foreground/20 transition-all hover:scale-[1.02] overflow-hidden"
+                  >
+                    <div className="relative w-full h-28">
+                      {sectorImg ? (
+                        <Image
+                          src={sectorImg.image}
+                          alt={sectorImg.alt}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          loading="lazy"
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-[#0078AA]/10 to-[#7C3AED]/10 flex items-center justify-center">
+                          <Building2 className="w-8 h-8 text-[#0078AA]/40" />
+                        </div>
+                      )}
+                      {/* Brand overlay */}
+                      <div 
+                        className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-50"
+                        style={{ background: "linear-gradient(135deg, rgba(0, 120, 170, 0.06), rgba(124, 58, 237, 0.10))" }}
                       />
-                    ) : (
-                      <Icon className="w-8 h-8 text-[#0078AA]/30 group-hover:text-[#0078AA]/60 transition-colors" />
-                    )}
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold text-gray-900 dark:text-white mb-1 text-sm">IA para {sector.name}</h3>
-                    <p className="text-gray-500 dark:text-gray-400 text-xs">{sector.description}</p>
-                  </div>
-                </Link>
-              )
-            })}
+                    </div>
+                    <div className="p-4 space-y-1">
+                      <h3 className="font-bold text-foreground">{sector.sector_nombre}</h3>
+                      <p className="text-sm text-gray-600 dark:text-foreground/60">{sector.sector_descripcion}</p>
+                    </div>
+                  </Link>
+                )
+              })}
+            </div>
+            <div className="text-center mt-8">
+              <Link href="/sectores" className="text-sm text-foreground/40 hover:text-foreground/70 transition-colors">
+                Ver todos los sectores →
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ═══════════════════════════════════════
           SECCIÓN 9 — SOLUCIONES IA POR CASO DE USO (cards 4 colunas)
+          Only render if WP returns contextual solutions
           ═══════════════════════════════════════ */}
-      <section className="px-4 py-20">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">
-            Soluciones IA por caso de uso
-          </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-center mb-12 max-w-2xl mx-auto">
-            Cada agente resuelve un problema concreto. Todos conectados en una sola plataforma.
-          </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {otherSolutions.map((sol) => {
-              const Icon = getIcon(sol.icon)
-              return (
-                <Link 
-                  key={sol.slug}
-                  href={sol.href}
-                  className="rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] bg-white dark:bg-[rgba(101,101,106,0.16)] overflow-hidden hover:border-[#0078AA]/50 dark:hover:border-[#0078AA]/50 transition-all hover:scale-[1.02] group"
-                >
-                  {/* Mockup/illustration area */}
-                  <div className="w-full h-32 bg-gray-50 dark:bg-white/5 flex items-center justify-center">
-                    <Icon className="w-8 h-8 text-[#0078AA] opacity-50 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold text-gray-900 dark:text-white mb-1 text-sm">{sol.label}</h3>
-                    <p className="text-gray-500 dark:text-gray-400 text-xs">{sol.description}</p>
-                  </div>
-                </Link>
-              )
-            })}
+      {solucionesContextuales.length > 0 && (
+        <section className="py-20 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-center">
+              Soluciones IA por caso de uso
+            </h2>
+            <p className="text-lg text-foreground/60 max-w-2xl mx-auto text-center mb-12">
+              Cada agente resuelve un problema concreto. Todos conectados en una sola plataforma.
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {solucionesContextuales.map((sol) => {
+                // Find matching icon from allSolutions array
+                const matchingSol = allSolutions.find(s => s.slug === sol.solucion_slug)
+                const Icon = matchingSol ? getIcon(matchingSol.icon) : Sparkles
+                return (
+                  <Link
+                    key={sol.solucion_slug}
+                    href={`/soluciones/${sol.solucion_slug}`}
+                    className="card-elevated group rounded-2xl hover:border-foreground/25 transition-all hover:scale-[1.02] overflow-hidden hover:shadow-lg hover:shadow-[var(--neon-blue)]/10"
+                  >
+                    {/* Mockup area - same as homepage */}
+                    <div className="relative w-full h-32 overflow-hidden">
+                      <div className="w-full h-32 bg-gray-50 dark:bg-white/5 rounded-lg p-3 flex flex-col gap-2 overflow-hidden">
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 rounded-lg bg-[#0078AA]/10 flex items-center justify-center">
+                            <Icon className="w-4 h-4 text-[#0078AA]" />
+                          </div>
+                          <div className="flex-1">
+                            <div className="h-2 w-16 bg-gray-200 dark:bg-white/10 rounded" />
+                          </div>
+                        </div>
+                        <div className="flex-1 space-y-1.5">
+                          <div className="h-1.5 w-full bg-gray-100 dark:bg-white/5 rounded" />
+                          <div className="h-1.5 w-3/4 bg-gray-100 dark:bg-white/5 rounded" />
+                          <div className="h-1.5 w-1/2 bg-gray-100 dark:bg-white/5 rounded" />
+                        </div>
+                      </div>
+                    </div>
+                    {/* Text content */}
+                    <div className="p-4 space-y-2">
+                      <h3 className="font-bold text-foreground group-hover:text-foreground/90">
+                        {sol.solucion_nombre}
+                      </h3>
+                      <p className="text-sm text-foreground/50">
+                        {sol.solucion_descripcion}
+                      </p>
+                      <span className="text-sm text-foreground/40 group-hover:text-foreground/70 flex items-center gap-1 transition-colors">
+                        Ver solución <span className="group-hover:translate-x-1 transition-transform">→</span>
+                      </span>
+                    </div>
+                  </Link>
+                )
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ═══════════════════════════════════════
           SECCIÓN 10 — CTA FINAL

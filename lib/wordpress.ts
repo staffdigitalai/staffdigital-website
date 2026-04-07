@@ -107,6 +107,21 @@ export interface WPService {
     testimonial_nombre?: string;
     testimonial_cargo?: string;
     testimonial_empresa?: string;
+    // Contextual relationships (populated by WP)
+    sectores_contextuales?: Array<{
+      sector_id: number;
+      sector_slug: string;
+      sector_nombre: string;
+      sector_descripcion: string;
+      sector_orden: number;
+    }>;
+    soluciones_contextuales?: Array<{
+      solucion_id: number;
+      solucion_slug: string;
+      solucion_nombre: string;
+      solucion_descripcion: string;
+      solucion_orden: number;
+    }>;
     // Legacy fields
     caracteristicas?: Array<{
       titulo: string;

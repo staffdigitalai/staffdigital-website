@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { getService, getSectorsByIds, stripHtml, type WPService, type WPSector } from "@/lib/wordpress"
+import { getService, stripHtml, type WPService } from "@/lib/wordpress"
 import { DynamicServiceClient } from "./dynamic-service-client"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import Aurora from "@/components/Aurora"
@@ -63,14 +63,9 @@ export default async function DynamicServicePage({ params }: Props) {
   }
 
   let service: WPService | null = null
-  let sectors: WPSector[] = []
 
   try {
     service = await getService(slug)
-    // Fetch related sectors if any
-    if (service?.sectors && service.sectors.length > 0) {
-      sectors = await getSectorsByIds(service.sectors)
-    }
   } catch (error) {
     console.error("[service page] fetch error:", slug, error)
   }
@@ -110,7 +105,7 @@ export default async function DynamicServicePage({ params }: Props) {
             dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
           />
           
-          <DynamicServiceClient service={service} sectors={sectors} />
+          <DynamicServiceClient service={service} />
           
           <Footer />
         </div>

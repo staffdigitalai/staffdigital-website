@@ -58,7 +58,7 @@
   "omnichannel": {
     "title_1": "Unified inbox:",
     "title_2": "all channels in one place",
-    "subtitle": "Chatwoot CE unifies WhatsApp, phone, web chat, email and social media. One AI agent, all channels, complete history.",
+    "subtitle": "StaffDigital AI unifies WhatsApp, phone, web chat, email and social media in a single inbox. One AI agent, all channels, complete history.",
     "channels": [
       {"name": "Phone", "line1": "Smart IVR with AI", "line2": "No menus, natural conversation"},
       {"name": "WhatsApp", "line1": "Virtual agent 24/7", "line2": "Voice and text automated"},

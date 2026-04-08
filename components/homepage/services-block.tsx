@@ -1,20 +1,7 @@
-import { ArrowRight, Phone, MessageSquare, Globe, TrendingUp, Headphones, Calendar, Target, Layers, Sparkles } from "lucide-react"
-import type { LucideIcon } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { getTranslations } from "next-intl/server"
 import { SolutionMockup } from "@/components/solution-mockups"
-
-// Icon mapping for service slugs (used as fallback)
-const iconMap: Record<string, LucideIcon> = {
-  "atencion-telefonica-ia": Phone,
-  "whatsapp-ia-empresas": MessageSquare,
-  "agente-chat-web-ia": Globe,
-  "agente-ventas-ia": TrendingUp,
-  "agente-soporte-ia": Headphones,
-  "agente-agendamientos-ia": Calendar,
-  "lead-generation-ia": Target,
-  "crm-automation-ia": Layers,
-}
 
 // Services meta
 const servicesMeta = [
@@ -36,7 +23,6 @@ export async function ServicesBlock() {
     ...meta,
     title: translatedItems[i]?.title || "",
     description: translatedItems[i]?.description || "",
-    Icon: iconMap[meta.slug] || Sparkles,
   }))
 
   return (
@@ -60,7 +46,7 @@ export async function ServicesBlock() {
             >
               {/* Dashboard mockup */}
               <div className="relative w-full h-32 overflow-hidden rounded-t-2xl">
-                <SolutionMockup slug={s.slug} fallbackIcon={s.Icon} />
+                <SolutionMockup slug={s.slug} />
                 {/* Subtle gradient overlay on hover */}
                 <div 
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"

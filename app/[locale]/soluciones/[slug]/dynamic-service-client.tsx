@@ -34,6 +34,7 @@ import {
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { useFormModals } from "@/components/contact-form-modals"
+import { SolutionMockup } from "@/components/solution-mockups"
 import type { WPService } from "@/lib/wordpress"
 import { stripHtml } from "@/lib/wordpress"
 
@@ -99,48 +100,7 @@ const getSectorImage = (slug: string): { image: string; alt: string } | null => 
   return sectorImageMap[slug] || null
 }
 
-// Solution image mapping (for cards in Section 9) - covers all slug variations
-const solutionImageMap: Record<string, { image: string; alt: string }> = {
-  // Call Center / Voz
-  "atencion-telefonica-ia": { image: "/images/solutions/call-center-ia.jpg", alt: "IA para Call Center y atención telefónica" },
-  "agentes-ia-voz-humana": { image: "/images/solutions/call-center-ia.jpg", alt: "Agentes IA con voz humana" },
-  "ia-call-center": { image: "/images/solutions/call-center-ia.jpg", alt: "IA para Call Center" },
-  "call-center-ia": { image: "/images/solutions/call-center-ia.jpg", alt: "IA para Call Center" },
-  "voz-ia": { image: "/images/solutions/call-center-ia.jpg", alt: "Voz con IA" },
-  // WhatsApp
-  "whatsapp-ia-empresas": { image: "/images/solutions/whatsapp-ia.jpg", alt: "WhatsApp Business con IA" },
-  "whatsapp-ia": { image: "/images/solutions/whatsapp-ia.jpg", alt: "WhatsApp con IA" },
-  "agente-whatsapp-ia": { image: "/images/solutions/whatsapp-ia.jpg", alt: "Agente WhatsApp con IA" },
-  // Chat Web
-  "agente-chat-web-ia": { image: "/images/solutions/chat-web-ia.jpg", alt: "Chat inteligente para web" },
-  "chat-web-ia": { image: "/images/solutions/chat-web-ia.jpg", alt: "Chat web con IA" },
-  "chat-inteligente-web": { image: "/images/solutions/chat-web-ia.jpg", alt: "Chat inteligente para web" },
-  // Ventas
-  "agente-ventas-ia": { image: "/images/solutions/ventas-ia.jpg", alt: "Agente de ventas con IA" },
-  "ventas-ia": { image: "/images/solutions/ventas-ia.jpg", alt: "Ventas con IA" },
-  "agente-de-ventas-ia": { image: "/images/solutions/ventas-ia.jpg", alt: "Agente de ventas con IA" },
-  // Soporte
-  "agente-soporte-ia": { image: "/images/solutions/soporte-ia.jpg", alt: "Agente de soporte con IA" },
-  "soporte-ia": { image: "/images/solutions/soporte-ia.jpg", alt: "Soporte con IA" },
-  "agente-de-soporte-ia": { image: "/images/solutions/soporte-ia.jpg", alt: "Agente de soporte con IA" },
-  // Agendamiento
-  "agente-agendamientos-ia": { image: "/images/solutions/agendamiento-ia.jpg", alt: "Agente de agendamientos con IA" },
-  "agendamiento-ia": { image: "/images/solutions/agendamiento-ia.jpg", alt: "Agendamiento con IA" },
-  "agente-de-agendamientos-ia": { image: "/images/solutions/agendamiento-ia.jpg", alt: "Agente de agendamientos con IA" },
-  // Atención telefónica
-  "atencion-telefonica": { image: "/images/solutions/atencion-telefonica-ia.jpg", alt: "Atención telefónica con IA" },
-  // Lead Generation
-  "lead-generation-ia": { image: "/images/solutions/lead-generation-ia.jpg", alt: "Lead generation con IA" },
-  "generacion-leads-ia": { image: "/images/solutions/lead-generation-ia.jpg", alt: "Generación de leads con IA" },
-  // CRM
-  "crm-automation-ia": { image: "/images/solutions/ventas-ia.jpg", alt: "Automatización CRM con IA" },
-  "automatizacion-crm-ia": { image: "/images/solutions/ventas-ia.jpg", alt: "Automatización CRM con IA" },
-}
 
-// Helper to get solution image
-const getSolutionImage = (slug: string): { image: string; alt: string } | null => {
-  return solutionImageMap[slug] || null
-}
 
 // Other solutions for cross-linking (hardcoded fallback)
 const allSolutions = [
@@ -592,40 +552,19 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
               Cada agente resuelve un problema concreto. Todos conectados en una sola plataforma.
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {solucionesContextuales.map((sol) => {
-                // Get local image first, then WP image, then icon fallback
-                const localImg = getSolutionImage(sol.solucion_slug)
-                const matchingSol = allSolutions.find(s => s.slug === sol.solucion_slug)
-                const Icon = matchingSol ? getIcon(matchingSol.icon) : Sparkles
-                const imageUrl = localImg?.image || sol.solucion_imagen
-                const imageAlt = localImg?.alt || sol.solucion_nombre
-                
-                return (
+              {solucionesContextuales.map((sol) => (
                   <Link
                     key={sol.solucion_slug}
                     href={`/soluciones/${sol.solucion_slug}`}
                     className="card-elevated group rounded-2xl hover:border-foreground/25 transition-all hover:scale-[1.02] overflow-hidden hover:shadow-lg hover:shadow-[var(--neon-blue)]/10"
                   >
-                    {/* Image area - local image, WP image, or icon fallback */}
-                    <div className="relative w-full h-32 overflow-hidden">
-                      {imageUrl ? (
-                        <Image
-                          src={imageUrl}
-                          alt={imageAlt}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                          loading="lazy"
-                          className="object-cover"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-[#0078AA]/10 to-[#7C3AED]/10 flex items-center justify-center">
-                          <Icon className="w-8 h-8 text-[#0078AA]/40" />
-                        </div>
-                      )}
-                      {/* Brand overlay */}
+                    {/* Dashboard mockup */}
+                    <div className="relative w-full h-32 overflow-hidden rounded-t-2xl">
+                      <SolutionMockup slug={sol.solucion_slug} />
+                      {/* Subtle gradient overlay on hover */}
                       <div 
-                        className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-50"
-                        style={{ background: "linear-gradient(135deg, rgba(0, 120, 170, 0.06), rgba(124, 58, 237, 0.10))" }}
+                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                        style={{ background: "linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.05))" }}
                       />
                     </div>
                     {/* Text content */}
@@ -641,8 +580,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
                       </span>
                     </div>
                   </Link>
-                )
-              })}
+              ))}
             </div>
           </div>
         </section>

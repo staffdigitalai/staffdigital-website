@@ -98,18 +98,19 @@
     ]
   },
   "comparison": {
-    "title": "Plataforma gestionada vs herramientas DIY",
-    "competitor_label": "Bland, Vapi, Synthflow...",
+    "title": "Otras plataformas vs StaffDigital AI",
+    "subtitle": "Mientras otros te venden herramientas para que trabajes tú, nosotros te entregamos resultados.",
+    "competitor_label": "Otros",
     "us_label": "StaffDigital AI",
     "recommended": "Recomendado",
     "rows": [
-      {"feature": "¿Qué es?", "competitor": "Herramienta que el cliente configura solo", "us": "Plataforma gestionada con implementación incluida"},
-      {"feature": "Canales", "competitor": "Normalmente solo chat o solo voz", "us": "WhatsApp + teléfono + chat web + email unificados"},
-      {"feature": "CRM", "competitor": "Integración básica o inexistente", "us": "Twenty CRM integrado de fábrica"},
-      {"feature": "Agendamiento", "competitor": "No incluido, hay que contratar aparte", "us": "Cal.com integrado: reservas autom��ticas"},
-      {"feature": "Orquestación", "competitor": "Flujos simples sin autonomía", "us": "OpenClaw: agentes autónomos que deciden y actúan"},
-      {"feature": "Voz", "competitor": "Robótica o sin canal de voz", "us": "Voz humana HD, indistinguible de una persona"},
-      {"feature": "Soporte", "competitor": "Documentación + chat", "us": "Equipo dedicado de implementación y gestión"}
+      {"feature": "¿Qué es?", "competitor": "Herramienta DIY que tú configuras, mantienes y solucionas cuando falla.", "us": "StaffDigital AI configura, mantiene y optimiza todo por ti. Tú solo ves resultados."},
+      {"feature": "Canales", "competitor": "Un canal a la vez. Tú configuras APIs, tokens y webhooks para cada uno por separado.", "us": "WhatsApp Chat, WhatsApp Llamadas, Teléfono, Chat Web y Email — todos unificados desde el primer día."},
+      {"feature": "CRM", "competitor": "Integración manual con tu CRM. Tokens, mapeo de campos y horas de desarrollo.", "us": "CRM con IA incluido, conectado a todos tus canales y agenda. Sin configuración."},
+      {"feature": "Agendamiento", "competitor": "No incluido. Contratas otra herramienta, otra integración, otro coste mensual.", "us": "Cal.com integrado — reservas automáticas por voz, WhatsApp y web. Todo configurado para ti."},
+      {"feature": "Orquestación", "competitor": "Flujos if/then básicos que no se adaptan a conversaciones reales.", "us": "Agentes autónomos que deciden, actúan y escalan según el contexto de cada conversación."},
+      {"feature": "Voz humana", "competitor": "Voz robótica o sintética. Los clientes cuelgan en segundos.", "us": "Voz humana HD personalizada — imposible de distinguir de una persona real."},
+      {"feature": "Soporte", "competitor": "Documentación, FAQs y tickets. Buscas solo, esperas solo.", "us": "Equipo dedicado — implementación, formación y mantenimiento continuo de tu sistema."}
     ]
   },
   "social_proof": {

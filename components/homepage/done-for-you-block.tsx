@@ -27,14 +27,14 @@ export function DoneForYouBlock() {
         </div>
 
         {/* Stack cards — show what powers the platform */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {stackItems.map((item) => (
-            <div key={item.label} className="card-elevated p-5 rounded-xl text-center space-y-3 hover:shadow-lg transition-all duration-300">
-              <div className="flex items-center justify-center mx-auto">
+            <div key={item.label} className="card-elevated p-6 md:p-8 rounded-2xl text-center space-y-4 hover:shadow-xl hover:shadow-[#0078AA]/10 transition-all duration-300 hover:scale-[1.02]">
+              <div className="flex items-center justify-center mx-auto mb-2">
                 <item.GlassIcon />
               </div>
-              <div className="text-xs text-[#0078AA] font-semibold uppercase tracking-wide">{item.category}</div>
-              <div className="font-bold text-base text-foreground">{item.label}</div>
+              <div className="text-xs text-[#0078AA] font-semibold uppercase tracking-wider">{item.category}</div>
+              <div className="font-bold text-lg text-foreground">{item.label}</div>
               <p className="text-sm text-gray-600 dark:text-foreground/60 leading-relaxed">{item.description}</p>
             </div>
           ))}

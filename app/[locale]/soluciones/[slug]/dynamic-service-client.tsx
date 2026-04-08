@@ -552,11 +552,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
               Cada agente resuelve un problema concreto. Todos conectados en una sola plataforma.
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {solucionesContextuales.map((sol) => {
-                const matchingSol = allSolutions.find(s => s.slug === sol.solucion_slug)
-                const Icon = matchingSol ? getIcon(matchingSol.icon) : Sparkles
-                
-                return (
+              {solucionesContextuales.map((sol) => (
                   <Link
                     key={sol.solucion_slug}
                     href={`/soluciones/${sol.solucion_slug}`}
@@ -564,7 +560,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
                   >
                     {/* Dashboard mockup */}
                     <div className="relative w-full h-32 overflow-hidden rounded-t-2xl">
-                      <SolutionMockup slug={sol.solucion_slug} fallbackIcon={Icon} />
+                      <SolutionMockup slug={sol.solucion_slug} />
                       {/* Subtle gradient overlay on hover */}
                       <div 
                         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
@@ -584,8 +580,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
                       </span>
                     </div>
                   </Link>
-                )
-              })}
+              ))}
             </div>
           </div>
         </section>

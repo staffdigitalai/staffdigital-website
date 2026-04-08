@@ -519,7 +519,7 @@ function DefaultMockup({ icon: Icon }: { icon: React.ElementType }) {
 }
 
 // Main component that selects the right mockup based on slug
-export function SolutionMockup({ slug, fallbackIcon }: { slug: string; fallbackIcon?: React.ElementType }) {
+export function SolutionMockup({ slug }: { slug: string }) {
   // Map slugs to mockup components
   const mockupMap: Record<string, React.ReactNode> = {
     // Call Center variants
@@ -574,7 +574,6 @@ export function SolutionMockup({ slug, fallbackIcon }: { slug: string; fallbackI
     return <>{mockup}</>
   }
   
-  // Fallback to icon-based mockup
-  const Icon = fallbackIcon || Globe
-  return <DefaultMockup icon={Icon} />
+  // Fallback to default mockup with Globe icon
+  return <DefaultMockup icon={Globe} />
 }

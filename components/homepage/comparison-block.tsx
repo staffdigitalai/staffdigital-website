@@ -14,9 +14,12 @@ export function ComparisonBlock() {
     <section className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             {t("title")}
           </h2>
+          <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
+            {t("subtitle")}
+          </p>
         </div>
 
         {/* Desktop table */}

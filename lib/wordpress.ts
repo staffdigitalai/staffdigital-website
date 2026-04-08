@@ -535,8 +535,8 @@ export async function getServices(options: {
   return wpFetch<WPService[]>('/services', {
     lang,
     per_page: perPage,
-    orderby: 'menu_order',
-    order: 'asc',
+    orderby: 'date',
+    order: 'desc',
     _embed: 1,
   });
 }

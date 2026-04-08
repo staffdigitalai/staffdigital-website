@@ -7,88 +7,28 @@ interface StaffDigitalLogoProps {
 }
 
 const sizes = {
-  sm: { icon: 32, text: 20, gap: 8 },
-  md: { icon: 40, text: 24, gap: 10 },
-  lg: { icon: 52, text: 30, gap: 12 },
-  xl: { icon: 68, text: 40, gap: 14 },
+  sm: { text: 18 },
+  md: { text: 22 },
+  lg: { text: 28 },
+  xl: { text: 36 },
 }
 
-function LogoIcon({ size = 36, className }: { size?: number; className?: string }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 48 48"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      aria-hidden="true"
-    >
-      {/* Outer hexagonal frame */}
-      <path
-        d="M24 2L43.0526 12.5V33.5L24 44L4.94744 33.5V12.5L24 2Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-        opacity="0.3"
-      />
-
-      {/* Inner S-shaped neural pathway */}
-      <path
-        d="M16 16C16 16 20 13 26 13C32 13 34 16 34 19C34 22 30 24 24 24C18 24 14 26 14 29C14 32 16 35 22 35C28 35 32 32 32 32"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-
-      {/* Neural nodes */}
-      <circle cx="26" cy="13" r="2.5" fill="currentColor" />
-      <circle cx="24" cy="24" r="2.5" fill="currentColor" />
-      <circle cx="22" cy="35" r="2.5" fill="currentColor" />
-
-      {/* Connection dots - outer ring */}
-      <circle cx="34" cy="19" r="1.5" fill="currentColor" opacity="0.6" />
-      <circle cx="14" cy="29" r="1.5" fill="currentColor" opacity="0.6" />
-
-      {/* Pulse ring on center node */}
-      <circle cx="24" cy="24" r="5" stroke="currentColor" strokeWidth="0.75" opacity="0.2">
-        <animate
-          attributeName="r"
-          values="3;7;3"
-          dur="3s"
-          repeatCount="indefinite"
-        />
-        <animate
-          attributeName="opacity"
-          values="0.3;0;0.3"
-          dur="3s"
-          repeatCount="indefinite"
-        />
-      </circle>
-    </svg>
-  )
-}
-
-function LogoText({ fontSize = 24, className }: { fontSize?: number; className?: string }) {
+// Animated gradient text component for .AI
+function AnimatedAI({ fontSize }: { fontSize: number }) {
   return (
     <span
-      className={`font-sans font-extrabold tracking-tight leading-none ${className ?? ""}`}
-      style={{ fontSize, letterSpacing: "-0.02em" }}
+      className="font-extrabold animate-gradient-flow"
+      style={{
+        fontSize,
+        letterSpacing: "-0.02em",
+        background: "linear-gradient(90deg, #0078AA, #7C3AED, #EC4899, #7C3AED, #0078AA)",
+        backgroundSize: "200% 100%",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        backgroundClip: "text",
+      }}
     >
-      <span className="text-foreground">Staff</span>
-      <span className="text-foreground/80">Digital</span>
-      <span
-        className="font-black"
-        style={{
-          fontSize: fontSize * 1.05,
-          background: "linear-gradient(135deg, #60a5fa, #a78bfa, #818cf8)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-        }}
-      >
-        .AI
-      </span>
+      .AI
     </span>
   )
 }
@@ -100,14 +40,35 @@ export function StaffDigitalLogo({
 }: StaffDigitalLogoProps) {
   const s = sizes[size]
 
+  // For "icon" variant, just show "S" with gradient
   if (variant === "icon") {
-    return <LogoIcon size={s.icon} className={className} />
+    return (
+      <span
+        className={`font-extrabold animate-gradient-flow ${className ?? ""}`}
+        style={{
+          fontSize: s.text * 1.2,
+          letterSpacing: "-0.02em",
+          background: "linear-gradient(90deg, #0078AA, #7C3AED, #EC4899, #7C3AED, #0078AA)",
+          backgroundSize: "200% 100%",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        }}
+      >
+        S
+      </span>
+    )
   }
 
   return (
-    <div className={`flex items-center text-foreground ${className ?? ""}`} style={{ gap: s.gap }}>
-      <LogoIcon size={s.icon} />
-      <LogoText fontSize={s.text} />
+    <div className={`flex items-center ${className ?? ""}`}>
+      <span
+        className="font-extrabold text-foreground"
+        style={{ fontSize: s.text, letterSpacing: "-0.02em" }}
+      >
+        StaffDigital
+      </span>
+      <AnimatedAI fontSize={s.text} />
     </div>
   )
 }
@@ -122,59 +83,32 @@ export function StaffDigitalLogoDark({
 
   if (variant === "icon") {
     return (
-      <svg
-        width={s.icon}
-        height={s.icon}
-        viewBox="0 0 48 48"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className={className}
-        aria-hidden="true"
+      <span
+        className={`font-extrabold animate-gradient-flow ${className ?? ""}`}
+        style={{
+          fontSize: s.text * 1.2,
+          letterSpacing: "-0.02em",
+          background: "linear-gradient(90deg, #0078AA, #7C3AED, #EC4899, #7C3AED, #0078AA)",
+          backgroundSize: "200% 100%",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        }}
       >
-        <path
-          d="M24 2L43.0526 12.5V33.5L24 44L4.94744 33.5V12.5L24 2Z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-          opacity="0.2"
-        />
-        <path
-          d="M16 16C16 16 20 13 26 13C32 13 34 16 34 19C34 22 30 24 24 24C18 24 14 26 14 29C14 32 16 35 22 35C28 35 32 32 32 32"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <circle cx="26" cy="13" r="2.5" fill="currentColor" />
-        <circle cx="24" cy="24" r="2.5" fill="currentColor" />
-        <circle cx="22" cy="35" r="2.5" fill="currentColor" />
-        <circle cx="34" cy="19" r="1.5" fill="currentColor" opacity="0.5" />
-        <circle cx="14" cy="29" r="1.5" fill="currentColor" opacity="0.5" />
-      </svg>
+        S
+      </span>
     )
   }
 
   return (
-    <div className={`flex items-center ${className ?? ""}`} style={{ gap: s.gap }}>
-      <StaffDigitalLogoDark variant="icon" size={size} />
+    <div className={`flex items-center ${className ?? ""}`}>
       <span
-        className="font-sans font-extrabold tracking-tight leading-none"
+        className="font-extrabold text-foreground"
         style={{ fontSize: s.text, letterSpacing: "-0.02em" }}
       >
-        <span className="text-foreground">Staff</span>
-        <span className="text-foreground/70">Digital</span>
-        <span
-          className="font-black"
-          style={{
-            fontSize: s.text * 1.05,
-            background: "linear-gradient(135deg, #3b82f6, #7c3aed, #6366f1)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}
-        >
-          .AI
-        </span>
+        StaffDigital
       </span>
+      <AnimatedAI fontSize={s.text} />
     </div>
   )
 }

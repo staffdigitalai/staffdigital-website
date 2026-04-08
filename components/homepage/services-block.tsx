@@ -3,9 +3,9 @@ import Link from "next/link"
 import { getTranslations } from "next-intl/server"
 import { SolutionMockup } from "@/components/solution-mockups"
 
-// Services meta
+// Services meta - maps slugs to hrefs
 const servicesMeta = [
-  { slug: "ia-call-center", href: "/soluciones/ia-call-center" },
+  { slug: "atencion-telefonica-ia", href: "/soluciones/atencion-telefonica-ia" },
   { slug: "whatsapp-ia-empresas", href: "/soluciones/whatsapp-ia-empresas" },
   { slug: "agente-chat-web-ia", href: "/soluciones/agente-chat-web-ia" },
   { slug: "agente-ventas-ia", href: "/soluciones/agente-ventas-ia" },

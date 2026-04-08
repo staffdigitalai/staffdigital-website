@@ -58,15 +58,9 @@ export function SectorsBlock() {
                   style={{ objectPosition: s.objectPosition }}
                 />
                 {/* Brand gradient overlay - unifies all photos */}
-                <div 
-                  className="absolute inset-0 pointer-events-none"
-                  style={{ background: "linear-gradient(to top, rgba(0, 120, 170, 0.10), transparent 50%, rgba(124, 58, 237, 0.05))" }}
-                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0078AA]/10 via-transparent to-[#7C3AED]/5 pointer-events-none" />
                 {/* Hover overlay */}
-                <div 
-                  className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100 pointer-events-none"
-                  style={{ background: "linear-gradient(135deg, rgba(0, 120, 170, 0.08), rgba(124, 58, 237, 0.12))" }}
-                />
+                <div className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#0078AA]/10 to-[#7C3AED]/15 pointer-events-none" />
               </div>
               <div className="p-4 space-y-1">
                 <h3 className="font-bold text-foreground">{s.name}</h3>

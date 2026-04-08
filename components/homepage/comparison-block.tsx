@@ -1,9 +1,9 @@
 "use client"
 
-import { X, Check, Settings, MessageSquare, Database, CalendarCheck, Workflow, Mic, LifeBuoy, Star, type LucideIcon } from "lucide-react"
+import { HelpCircle, MessagesSquare, Database, CalendarCheck, GitBranch, Mic, Headphones, type LucideIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
-const rowIcons: LucideIcon[] = [Settings, MessageSquare, Database, CalendarCheck, Workflow, Mic, LifeBuoy]
+const rowIcons: LucideIcon[] = [HelpCircle, MessagesSquare, Database, CalendarCheck, GitBranch, Mic, Headphones]
 
 export function ComparisonBlock() {
   const t = useTranslations("comparison")
@@ -25,43 +25,55 @@ export function ComparisonBlock() {
         {/* Desktop table */}
         <div 
           className="card-elevated hidden md:block rounded-2xl overflow-hidden"
-          style={{ boxShadow: "0 8px 30px rgba(0, 0, 0, 0.1)" }}
         >
-          <div className="grid grid-cols-3 bg-gray-50 dark:bg-foreground/5">
-            <div className="p-4 text-sm font-bold text-foreground/70 border-r border-gray-200 dark:border-foreground/10" />
-            <div className="p-4 text-sm font-bold text-red-500 dark:text-red-400 text-center border-r border-gray-200 dark:border-foreground/10">{t("competitor_label")}</div>
-            <div 
-              className="p-4 text-sm font-bold text-[var(--lime-green)] text-center flex items-center justify-center gap-2"
-              style={{ background: "linear-gradient(180deg, rgba(0, 120, 170, 0.05), rgba(124, 58, 237, 0.07))" }}
-            >
-              {t("us_label")}
-              <span 
-                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold text-white"
-                style={{ backgroundImage: "linear-gradient(to right, rgb(0, 120, 170), rgb(124, 58, 237))" }}
-              >
-                <Star className="w-3 h-3 fill-current" />
-                {t("recommended") || "Recomendado"}
-              </span>
+          {/* Header row */}
+          <div className="grid grid-cols-3 bg-gray-100 dark:bg-foreground/10">
+            <div className="px-5 py-4 border-r border-gray-200/60 dark:border-foreground/5" />
+            <div className="px-5 py-4 text-center border-r border-gray-200/60 dark:border-foreground/5">
+              <div className="text-base font-bold text-gray-400 dark:text-foreground/40">
+                {t("competitor_label")}
+              </div>
+              <div className="text-xs text-gray-400 dark:text-foreground/30 mt-0.5">
+                Bland, Vapi, chatbots genéricos...
+              </div>
+            </div>
+            <div className="px-5 py-4 text-center">
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-base font-bold bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">
+                  {t("us_label")}
+                </span>
+                <span className="bg-green-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">
+                  {t("recommended")}
+                </span>
+              </div>
             </div>
           </div>
+
+          {/* Data rows */}
           {rows.map((row, i) => {
-            const Icon = rowIcons[i] || Settings
+            const Icon = rowIcons[i] || HelpCircle
+            const isLast = i === rows.length - 1
             return (
-              <div key={i} className="grid grid-cols-3 border-t border-gray-200 dark:border-foreground/10">
-                <div className="p-4 text-sm font-medium text-foreground border-r border-gray-200 dark:border-foreground/10 flex items-start gap-2">
-                  <Icon className="w-4 h-4 text-muted-foreground shrink-0 mt-0.5" />
-                  {row.feature}
+              <div 
+                key={i} 
+                className={`grid grid-cols-3 ${!isLast ? "border-b border-gray-200/60 dark:border-foreground/5" : ""}`}
+              >
+                {/* Feature label */}
+                <div className="px-5 py-4 border-r border-gray-200/60 dark:border-foreground/5 flex items-start gap-2">
+                  <Icon className="w-4 h-4 text-[#0078AA] shrink-0 mt-0.5" />
+                  <span className="text-sm font-bold text-foreground tracking-tight">{row.feature}</span>
                 </div>
-                <div className="p-4 text-sm text-gray-600 dark:text-foreground/60 border-r border-gray-200 dark:border-foreground/10 flex items-start gap-2">
-                  <X className="w-4 h-4 text-red-500 dark:text-red-400 shrink-0 mt-0.5" />
-                  {row.competitor}
+                
+                {/* Competitor cell */}
+                <div className="px-5 py-4 border-r border-gray-200/60 dark:border-foreground/5 bg-red-50/30 dark:bg-red-500/[0.03] flex items-start gap-1.5">
+                  <span className="text-red-400/70 text-base shrink-0">✗</span>
+                  <span className="text-sm text-gray-500 dark:text-foreground/40">{row.competitor}</span>
                 </div>
-                <div 
-                  className="p-4 text-sm text-foreground flex items-start gap-2"
-                  style={{ background: "linear-gradient(180deg, rgba(0, 120, 170, 0.03), rgba(124, 58, 237, 0.05))" }}
-                >
-                  <Check className="w-4 h-4 text-[var(--lime-green)] shrink-0 mt-0.5" />
-                  {row.us}
+                
+                {/* StaffDigital cell */}
+                <div className="px-5 py-4 bg-green-50/30 dark:bg-green-500/[0.03] flex items-start gap-1.5">
+                  <span className="text-green-500 text-base shrink-0">✓</span>
+                  <span className="text-sm text-foreground dark:text-foreground/90 font-medium">{row.us}</span>
                 </div>
               </div>
             )
@@ -71,26 +83,35 @@ export function ComparisonBlock() {
         {/* Mobile cards */}
         <div className="md:hidden space-y-4">
           {rows.map((row, i) => {
-            const Icon = rowIcons[i] || Settings
+            const Icon = rowIcons[i] || HelpCircle
             return (
               <div 
                 key={i} 
                 className="card-elevated rounded-xl p-4 space-y-3"
               >
+                {/* Header with icon and label */}
                 <div className="font-bold text-sm text-foreground flex items-center gap-2">
-                  <Icon className="w-4 h-4 text-muted-foreground shrink-0" />
+                  <Icon className="w-4 h-4 text-[#0078AA] shrink-0" />
                   {row.feature}
                 </div>
-                <div className="flex items-start gap-2 text-sm text-gray-600 dark:text-foreground/60">
-                  <X className="w-4 h-4 text-red-500 dark:text-red-400 shrink-0 mt-0.5" />
-                  {row.competitor}
-                </div>
-                <div 
-                  className="flex items-start gap-2 text-sm text-foreground p-2 rounded-lg -mx-2"
-                  style={{ background: "linear-gradient(180deg, rgba(0, 120, 170, 0.03), rgba(124, 58, 237, 0.05))" }}
-                >
-                  <Check className="w-4 h-4 text-[var(--lime-green)] shrink-0 mt-0.5" />
-                  {row.us}
+                
+                {/* Two cards side by side */}
+                <div className="flex flex-col sm:flex-row gap-2">
+                  {/* DIY card */}
+                  <div className="flex-1 rounded-xl bg-red-50/50 dark:bg-red-500/5 border border-red-200/30 dark:border-red-500/10 p-3">
+                    <div className="flex items-start gap-1.5">
+                      <span className="text-red-400/70 text-base shrink-0">✗</span>
+                      <span className="text-sm text-gray-500 dark:text-foreground/40">{row.competitor}</span>
+                    </div>
+                  </div>
+                  
+                  {/* StaffDigital card */}
+                  <div className="flex-1 rounded-xl bg-green-50/50 dark:bg-green-500/5 border border-green-200/30 dark:border-green-500/10 border-l-[3px] border-l-green-500 p-3">
+                    <div className="flex items-start gap-1.5">
+                      <span className="text-green-500 text-base shrink-0">✓</span>
+                      <span className="text-sm text-foreground dark:text-foreground/90 font-medium">{row.us}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             )

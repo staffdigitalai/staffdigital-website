@@ -6,20 +6,12 @@ interface StaffDigitalLogoProps {
   className?: string
 }
 
-const sizes = {
-  sm: { text: 18 },
-  md: { text: 22 },
-  lg: { text: 28 },
-  xl: { text: 36 },
-}
-
-// Animated gradient text component for .AI
-function AnimatedAI({ fontSize }: { fontSize: number }) {
+// Animated gradient text component for .AI with glow effect
+function AnimatedAI({ className }: { className?: string }) {
   return (
     <span
-      className="font-extrabold animate-gradient-flow"
+      className={`font-extrabold animate-gradient-flow animate-ai-glow ${className ?? ""}`}
       style={{
-        fontSize,
         letterSpacing: "-0.02em",
         background: "linear-gradient(90deg, #0078AA, #7C3AED, #EC4899, #7C3AED, #0078AA)",
         backgroundSize: "200% 100%",
@@ -35,18 +27,14 @@ function AnimatedAI({ fontSize }: { fontSize: number }) {
 
 export function StaffDigitalLogo({
   variant = "full",
-  size = "md",
   className,
 }: StaffDigitalLogoProps) {
-  const s = sizes[size]
-
   // For "icon" variant, just show "S" with gradient
   if (variant === "icon") {
     return (
       <span
-        className={`font-extrabold animate-gradient-flow ${className ?? ""}`}
+        className={`font-extrabold text-xl sm:text-2xl animate-gradient-flow animate-ai-glow ${className ?? ""}`}
         style={{
-          fontSize: s.text * 1.2,
           letterSpacing: "-0.02em",
           background: "linear-gradient(90deg, #0078AA, #7C3AED, #EC4899, #7C3AED, #0078AA)",
           backgroundSize: "200% 100%",
@@ -63,12 +51,12 @@ export function StaffDigitalLogo({
   return (
     <div className={`flex items-center ${className ?? ""}`}>
       <span
-        className="font-extrabold text-foreground"
-        style={{ fontSize: s.text, letterSpacing: "-0.02em" }}
+        className="font-extrabold text-xl sm:text-2xl text-slate-800 dark:text-slate-100"
+        style={{ letterSpacing: "-0.02em" }}
       >
         StaffDigital
       </span>
-      <AnimatedAI fontSize={s.text} />
+      <AnimatedAI className="text-xl sm:text-2xl" />
     </div>
   )
 }
@@ -76,17 +64,13 @@ export function StaffDigitalLogo({
 /* Dark background variant for footer and other dark sections */
 export function StaffDigitalLogoDark({
   variant = "full",
-  size = "md",
   className,
 }: StaffDigitalLogoProps) {
-  const s = sizes[size]
-
   if (variant === "icon") {
     return (
       <span
-        className={`font-extrabold animate-gradient-flow ${className ?? ""}`}
+        className={`font-extrabold text-xl sm:text-2xl animate-gradient-flow animate-ai-glow ${className ?? ""}`}
         style={{
-          fontSize: s.text * 1.2,
           letterSpacing: "-0.02em",
           background: "linear-gradient(90deg, #0078AA, #7C3AED, #EC4899, #7C3AED, #0078AA)",
           backgroundSize: "200% 100%",
@@ -103,12 +87,12 @@ export function StaffDigitalLogoDark({
   return (
     <div className={`flex items-center ${className ?? ""}`}>
       <span
-        className="font-extrabold text-foreground"
-        style={{ fontSize: s.text, letterSpacing: "-0.02em" }}
+        className="font-extrabold text-xl sm:text-2xl text-slate-100"
+        style={{ letterSpacing: "-0.02em" }}
       >
         StaffDigital
       </span>
-      <AnimatedAI fontSize={s.text} />
+      <AnimatedAI className="text-xl sm:text-2xl" />
     </div>
   )
 }

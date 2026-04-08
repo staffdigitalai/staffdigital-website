@@ -34,6 +34,7 @@ import {
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { useFormModals } from "@/components/contact-form-modals"
+import { SolutionMockup } from "@/components/solution-mockups"
 import type { WPService } from "@/lib/wordpress"
 import { stripHtml } from "@/lib/wordpress"
 
@@ -155,10 +156,9 @@ const fallbackTestimonial = {
 
 interface DynamicServiceClientProps {
   service: WPService
-  serviceImagesMap: Record<number, string> // Map of service ID → featured image URL from WP
 }
 
-export function DynamicServiceClient({ service, serviceImagesMap }: DynamicServiceClientProps) {
+export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
   const { openContactForm } = useFormModals()
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
   
@@ -553,8 +553,6 @@ export function DynamicServiceClient({ service, serviceImagesMap }: DynamicServi
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {solucionesContextuales.map((sol) => {
-                // Get image from serviceImagesMap (using service ID) or fallback to icon
-                const imageUrl = serviceImagesMap[sol.solucion_id]
                 const matchingSol = allSolutions.find(s => s.slug === sol.solucion_slug)
                 const Icon = matchingSol ? getIcon(matchingSol.icon) : Sparkles
                 
@@ -564,26 +562,13 @@ export function DynamicServiceClient({ service, serviceImagesMap }: DynamicServi
                     href={`/soluciones/${sol.solucion_slug}`}
                     className="card-elevated group rounded-2xl hover:border-foreground/25 transition-all hover:scale-[1.02] overflow-hidden hover:shadow-lg hover:shadow-[var(--neon-blue)]/10"
                   >
-                    {/* Image area - real image from WP featured_media or icon fallback */}
-                    <div className="relative w-full h-32 overflow-hidden">
-                      {imageUrl ? (
-                        <Image
-                          src={imageUrl}
-                          alt={sol.solucion_nombre}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                          loading="lazy"
-                          className="object-cover"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-[#0078AA]/10 to-[#7C3AED]/10 flex items-center justify-center">
-                          <Icon className="w-8 h-8 text-[#0078AA]/40" />
-                        </div>
-                      )}
-                      {/* Brand overlay */}
+                    {/* Dashboard mockup */}
+                    <div className="relative w-full h-32 overflow-hidden rounded-t-2xl">
+                      <SolutionMockup slug={sol.solucion_slug} fallbackIcon={Icon} />
+                      {/* Subtle gradient overlay on hover */}
                       <div 
-                        className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-50"
-                        style={{ background: "linear-gradient(135deg, rgba(0, 120, 170, 0.06), rgba(124, 58, 237, 0.10))" }}
+                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                        style={{ background: "linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.05))" }}
                       />
                     </div>
                     {/* Text content */}

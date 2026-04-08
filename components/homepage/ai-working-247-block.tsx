@@ -9,9 +9,9 @@ import { useTranslations } from "next-intl"
 
 const AnimatedChatDemo = ({ isActive }: { isActive: boolean }) => {
   const [messages, setMessages] = useState([
-    { text: "Hi! How can I help you today?", isBot: true, visible: false },
-    { text: "I'd like to book an appointment", isBot: false, visible: false },
-    { text: "Perfect! I can help with that. What service are you interested in?", isBot: true, visible: false },
+    { text: "¡Hola! ¿En qué puedo ayudarte hoy?", isBot: true, visible: false },
+    { text: "Quiero reservar una cita", isBot: false, visible: false },
+    { text: "¡Perfecto! Puedo ayudarte con eso. ¿Qué servicio te interesa?", isBot: true, visible: false },
   ])
   const [typingDots, setTypingDots] = useState(0)
   const [cycleCount, setCycleCount] = useState(0)
@@ -20,19 +20,19 @@ const AnimatedChatDemo = ({ isActive }: { isActive: boolean }) => {
     if (!isActive) return
     const scenarios = [
       [
-        { text: "Hi! How can I help you today?", isBot: true },
-        { text: "I'd like to book an appointment", isBot: false },
-        { text: "Perfect! I can help with that. What service are you interested in?", isBot: true },
+        { text: "¡Hola! ¿En qué puedo ayudarte hoy?", isBot: true },
+        { text: "Quiero reservar una cita", isBot: false },
+        { text: "¡Perfecto! Puedo ayudarte con eso. ¿Qué servicio te interesa?", isBot: true },
       ],
       [
-        { text: "Hello! I'm available 24/7 to assist you.", isBot: true },
-        { text: "Do you have weekend availability?", isBot: false },
-        { text: "I can check our weekend slots for you.", isBot: true },
+        { text: "¡Hola! Estoy disponible 24/7 para ayudarte.", isBot: true },
+        { text: "¿Tienen disponibilidad los fines de semana?", isBot: false },
+        { text: "Déjame verificar los horarios del fin de semana.", isBot: true },
       ],
       [
-        { text: "Good evening! How may I assist you?", isBot: true },
-        { text: "I need help with pricing", isBot: false },
-        { text: "I'd be happy to provide pricing information right away!", isBot: true },
+        { text: "¡Buenas tardes! ¿En qué puedo ayudarte?", isBot: true },
+        { text: "Necesito información sobre precios", isBot: false },
+        { text: "¡Con gusto! Te paso la información de precios ahora mismo.", isBot: true },
       ],
     ]
     const currentScenario = scenarios[cycleCount % scenarios.length]
@@ -115,7 +115,7 @@ const AnimatedPhoneDemo = ({ isActive }: { isActive: boolean }) => {
   
   return (
     <div className="bg-slate-50 rounded-lg p-4 h-32 flex items-center justify-center relative">
-      <div className="absolute top-2 right-2 text-xs text-slate-500 font-medium">Calls: {callCount + 1}</div>
+      <div className="absolute top-2 right-2 text-xs text-slate-500 font-medium">Llamadas: {callCount + 1}</div>
       <div className="relative">
         <div className={`w-16 h-16 rounded-full bg-green-500 flex items-center justify-center transition-all duration-500 ${callState === "ringing" ? "animate-pulse scale-110" : ""} ${callState === "answered" ? "bg-blue-500" : ""}`}>
           <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
@@ -128,7 +128,7 @@ const AnimatedPhoneDemo = ({ isActive }: { isActive: boolean }) => {
         )}
         {callState === "answered" && (
           <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
-            <div className="bg-blue-100 px-2 py-1 rounded text-xs text-blue-700 whitespace-nowrap">Call answered</div>
+            <div className="bg-blue-100 px-2 py-1 rounded text-xs text-blue-700 whitespace-nowrap">Llamada atendida</div>
           </div>
         )}
       </div>
@@ -158,24 +158,24 @@ const AnimatedCalendarDemo = ({ isActive }: { isActive: boolean }) => {
           <div key={day} className={`w-4 h-4 flex items-center justify-center rounded transition-all duration-300 ${day === selectedDate ? (booked ? "bg-green-500 text-white scale-110" : "bg-blue-500 text-white scale-110") : day % 7 === 0 || day % 6 === 0 ? "bg-slate-200 text-slate-400" : "bg-white text-slate-600 hover:bg-slate-100"}`}>{day}</div>
         ))}
       </div>
-      {booked && <div className="mt-2 text-xs text-green-600 font-medium">✓ Appointment booked for the 15th</div>}
+      {booked && <div className="mt-2 text-xs text-green-600 font-medium">✓ Cita reservada para el día 15</div>}
     </div>
   )
 }
 
 const AnimatedEmailDemo = ({ isActive }: { isActive: boolean }) => {
   const [emails, setEmails] = useState([
-    { subject: "Service inquiry", status: "unread" },
-    { subject: "Appointment request", status: "unread" },
-    { subject: "Quote needed", status: "unread" },
+    { subject: "Consulta de servicio", status: "unread" },
+    { subject: "Solicitud de cita", status: "unread" },
+    { subject: "Solicitud de presupuesto", status: "unread" },
   ])
   
   useEffect(() => {
     if (!isActive) return
     setEmails([
-      { subject: "Service inquiry", status: "unread" },
-      { subject: "Appointment request", status: "unread" },
-      { subject: "Quote needed", status: "unread" },
+      { subject: "Consulta de servicio", status: "unread" },
+      { subject: "Solicitud de cita", status: "unread" },
+      { subject: "Solicitud de presupuesto", status: "unread" },
     ])
     const timers: NodeJS.Timeout[] = []
     emails.forEach((_, index) => { 
@@ -204,17 +204,17 @@ const AnimatedEmailDemo = ({ isActive }: { isActive: boolean }) => {
 
 const AnimatedLeadsDemo = ({ isActive }: { isActive: boolean }) => {
   const [leads, setLeads] = useState([
-    { name: "Sarah M.", score: 0, qualified: false },
-    { name: "John D.", score: 0, qualified: false },
-    { name: "Mike R.", score: 0, qualified: false },
+    { name: "Laura M.", score: 0, qualified: false },
+    { name: "Carlos D.", score: 0, qualified: false },
+    { name: "Andrés R.", score: 0, qualified: false },
   ])
   
   useEffect(() => {
     if (!isActive) return
     setLeads([
-      { name: "Sarah M.", score: 0, qualified: false },
-      { name: "John D.", score: 0, qualified: false },
-      { name: "Mike R.", score: 0, qualified: false },
+      { name: "Laura M.", score: 0, qualified: false },
+      { name: "Carlos D.", score: 0, qualified: false },
+      { name: "Andrés R.", score: 0, qualified: false },
     ])
     const targetScores = [85, 92, 78]
     const timers: NodeJS.Timeout[] = []
@@ -264,7 +264,7 @@ const AnimatedIntegrationsDemo = ({ isActive }: { isActive: boolean }) => {
   const [connections, setConnections] = useState([
     { name: "CRM", connected: false },
     { name: "WhatsApp", connected: false },
-    { name: "Calendar", connected: false },
+    { name: "Calendario", connected: false },
     { name: "Email", connected: false },
   ])
   
@@ -273,7 +273,7 @@ const AnimatedIntegrationsDemo = ({ isActive }: { isActive: boolean }) => {
     setConnections([
       { name: "CRM", connected: false },
       { name: "WhatsApp", connected: false },
-      { name: "Calendar", connected: false },
+      { name: "Calendario", connected: false },
       { name: "Email", connected: false },
     ])
     const timers: NodeJS.Timeout[] = []
@@ -297,7 +297,7 @@ const AnimatedIntegrationsDemo = ({ isActive }: { isActive: boolean }) => {
         ))}
       </div>
       <div className="mt-2 text-center">
-        <div className="text-xs text-slate-500">{connections.filter((c) => c.connected).length}/4 connected</div>
+        <div className="text-xs text-slate-500">{connections.filter((c) => c.connected).length}/4 conectados</div>
       </div>
     </div>
   )
@@ -372,12 +372,12 @@ export function AIWorking247Block() {
         <div className="max-w-7xl mx-auto relative">
           {/* Header */}
           <div className={`text-center mb-12 sm:mb-20 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-sm font-medium mb-6">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-[#0078AA]/10 to-[#7C3AED]/10 border border-[#0078AA]/30 text-[#0078AA] dark:from-[#0078AA]/20 dark:to-[#7C3AED]/20 dark:border-[#0078AA]/40 text-sm font-medium mb-6">
               {t("badge")}
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 text-balance mb-4 sm:mb-6">
               {t("title_1")}{" "}
-              <span className="bg-gradient-to-r from-slate-600 to-slate-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">
                 {t("title_2")}
               </span>
             </h2>

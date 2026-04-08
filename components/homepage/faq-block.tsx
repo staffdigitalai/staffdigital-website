@@ -37,7 +37,8 @@ export function FAQBlock() {
             className="text-3xl md:text-4xl font-bold mb-4"
             style={{ color: "rgb(17, 24, 39)" }}
           >
-            {t("title")}
+            <span>Preguntas frecuentes </span>
+            <span className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">sobre agentes IA</span>
           </h2>
           <p 
             className="max-w-xl mx-auto"

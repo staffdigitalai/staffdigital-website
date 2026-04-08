@@ -19,7 +19,10 @@ export function SocialProofBlock() {
     <section className="py-16 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">{t("title")}</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+            <span>Infraestructura IA </span>
+            <span className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">segura y gestionada</span>
+          </h2>
           <p className="text-foreground/50 text-sm">{t("subtitle")}</p>
         </div>
 

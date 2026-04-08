@@ -32,7 +32,7 @@ export function HeroBlock() {
             className="bg-gradient-to-r from-[var(--neon-blue)] via-[var(--purple-dark)] to-[var(--neon-blue)] bg-clip-text text-transparent inline-block animate-gradient-shift"
             style={{ backgroundSize: "200% auto" }}
           >
-            {t("h1_line2")}
+            100% Gestionado<span className="mx-2 opacity-50">—</span>Tú Solo Vendes
           </span>
         </h1>
 

@@ -1,9 +1,10 @@
+import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { getTranslations } from "next-intl/server"
-import { SolutionMockup } from "@/components/solution-mockups"
+import { getServices } from "@/lib/wordpress"
 
-// Services meta
+// Services meta - maps slugs to hrefs
 const servicesMeta = [
   { slug: "ia-call-center", href: "/soluciones/ia-call-center" },
   { slug: "whatsapp-ia-empresas", href: "/soluciones/whatsapp-ia-empresas" },
@@ -19,10 +20,28 @@ export async function ServicesBlock() {
   const t = await getTranslations("services")
   const translatedItems = t.raw("items") as { title: string; description: string }[]
 
+  // Fetch services from WordPress to get featured images
+  let wpServices: Awaited<ReturnType<typeof getServices>> = []
+  try {
+    wpServices = await getServices({ perPage: 50 })
+  } catch (error) {
+    console.error("[ServicesBlock] Failed to fetch services:", error)
+  }
+
+  // Create a map of slug -> featured image URL
+  const imageMap: Record<string, string> = {}
+  for (const service of wpServices) {
+    const imageUrl = service._embedded?.['wp:featuredmedia']?.[0]?.source_url
+    if (imageUrl) {
+      imageMap[service.slug] = imageUrl
+    }
+  }
+
   const services = servicesMeta.map((meta, i) => ({
     ...meta,
     title: translatedItems[i]?.title || "",
     description: translatedItems[i]?.description || "",
+    image: imageMap[meta.slug] || null,
   }))
 
   return (
@@ -45,14 +64,23 @@ export async function ServicesBlock() {
               href={s.href}
               className="card-elevated group rounded-2xl hover:border-foreground/25 transition-all hover:scale-[1.02] overflow-hidden hover:shadow-lg hover:shadow-[var(--neon-blue)]/10"
             >
-              {/* Dashboard mockup */}
-              <div className="relative w-full h-32 overflow-hidden rounded-t-2xl">
-                <SolutionMockup slug={s.slug} />
-                {/* Subtle gradient overlay on hover */}
-                <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                  style={{ background: "linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.05))" }}
-                />
+              {/* WordPress featured image */}
+              <div className="relative w-full h-32 overflow-hidden">
+                {s.image ? (
+                  <Image
+                    src={s.image}
+                    alt={s.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-[#0078AA]/10 to-[#7C3AED]/10" />
+                )}
+                {/* Brand overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0078AA]/10 via-transparent to-[#7C3AED]/5 pointer-events-none" />
+                {/* Hover overlay */}
+                <div className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-[#0078AA]/10 to-[#7C3AED]/15 pointer-events-none" />
               </div>
               <div className="p-4 space-y-2">
                 <h3 className="font-bold text-foreground group-hover:text-foreground/90">{s.title}</h3>

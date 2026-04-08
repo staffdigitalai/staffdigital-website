@@ -15,7 +15,11 @@ export function ComparisonBlock() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            {t("title")}
+            <span className="text-foreground">Otras plataformas</span>
+            {" "}
+            <span className="text-foreground/50">vs</span>
+            {" "}
+            <span className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">StaffDigital AI</span>
           </h2>
           <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
             {t("subtitle")}

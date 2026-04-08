@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { getService, stripHtml, type WPService } from "@/lib/wordpress"
+import { getService, getServiceImagesMap, stripHtml, type WPService } from "@/lib/wordpress"
 import { DynamicServiceClient } from "./dynamic-service-client"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import Aurora from "@/components/Aurora"
@@ -63,9 +63,16 @@ export default async function DynamicServicePage({ params }: Props) {
   }
 
   let service: WPService | null = null
+  let serviceImagesMap: Record<number, string> = {}
 
   try {
-    service = await getService(slug)
+    // Fetch service data and image map in parallel
+    const [serviceData, imagesMap] = await Promise.all([
+      getService(slug),
+      getServiceImagesMap(),
+    ])
+    service = serviceData
+    serviceImagesMap = imagesMap
   } catch (error) {
     console.error("[service page] fetch error:", slug, error)
   }
@@ -105,7 +112,7 @@ export default async function DynamicServicePage({ params }: Props) {
             dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
           />
           
-          <DynamicServiceClient service={service} />
+          <DynamicServiceClient service={service} serviceImagesMap={serviceImagesMap} />
           
           <Footer />
         </div>

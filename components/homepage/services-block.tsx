@@ -70,7 +70,7 @@ export async function ServicesBlock() {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {services.slice(0, 4).map((s) => (
+          {services.slice(0, 8).map((s) => (
             <Link
               key={s.href}
               href={s.href}

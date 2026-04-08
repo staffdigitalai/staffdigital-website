@@ -551,6 +551,22 @@ export async function getService(slug: string, lang: SupportedLang = 'es'): Prom
   return services[0] || null;
 }
 
+// Get a map of service ID → featured image URL for all services
+// Used by solution pages to display real images from WP instead of hardcoded local files
+export async function getServiceImagesMap(): Promise<Record<number, string>> {
+  const services = await getServices({ perPage: 50 });
+  const imageMap: Record<number, string> = {};
+  
+  for (const service of services) {
+    const imageUrl = service._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+    if (imageUrl) {
+      imageMap[service.id] = imageUrl;
+    }
+  }
+  
+  return imageMap;
+}
+
 // ============================================
 // SECTOR PAGES
 // ============================================

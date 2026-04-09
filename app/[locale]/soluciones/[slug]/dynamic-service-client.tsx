@@ -312,72 +312,28 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
             </div>
           </div>
 
-          {/* Dashboard Preview Card */}
-          <Link 
-            href="/dashboard"
-            className="mt-12 w-full max-w-5xl mx-auto block group"
+          {/* Live Dashboard Demo */}
+          <div 
+            className="mt-12 w-full max-w-6xl mx-auto rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] shadow-lg shadow-[#0078AA]/10 overflow-hidden relative"
+            style={{ background: "linear-gradient(135deg, rgba(0,120,170,0.05), rgba(124,58,237,0.05))" }}
           >
-            <div 
-              className="rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] shadow-lg shadow-[#0078AA]/10 overflow-hidden relative p-8 md:p-12 transition-all hover:shadow-xl hover:shadow-[#0078AA]/15 hover:border-[#0078AA]/30"
-              style={{ background: "linear-gradient(135deg, rgba(0,120,170,0.05), rgba(124,58,237,0.05))" }}
-            >
-              {/* Badge */}
-              <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-xs font-medium text-green-700 dark:text-green-400">Demo interactiva</span>
-              </div>
-
-              {/* Content */}
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                {/* Dashboard Preview Image/Mockup */}
-                <div className="w-full md:w-1/2 aspect-[4/3] rounded-xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 shadow-lg overflow-hidden relative">
-                  {/* Mini Dashboard Preview */}
-                  <div className="absolute inset-0 p-3">
-                    {/* Top bar */}
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#0078AA] to-[#7C3AED]" />
-                      <div className="flex-1 h-3 rounded bg-gray-100 dark:bg-gray-700" />
-                    </div>
-                    {/* KPI Cards */}
-                    <div className="grid grid-cols-4 gap-2 mb-3">
-                      {[...Array(4)].map((_, i) => (
-                        <div key={i} className="aspect-[4/3] rounded-lg bg-gray-50 dark:bg-gray-700/50 p-2">
-                          <div className="w-4 h-4 rounded bg-gradient-to-br from-[#0078AA]/20 to-[#7C3AED]/20 mb-1" />
-                          <div className="h-3 w-8 rounded bg-gray-200 dark:bg-gray-600" />
-                        </div>
-                      ))}
-                    </div>
-                    {/* Charts */}
-                    <div className="grid grid-cols-2 gap-2">
-                      <div className="aspect-video rounded-lg bg-gray-50 dark:bg-gray-700/50 flex items-end p-2 gap-1">
-                        {[40, 60, 45, 80, 55, 70, 50].map((h, i) => (
-                          <div key={i} className="flex-1 bg-gradient-to-t from-[#0078AA] to-[#7C3AED] rounded-t" style={{ height: `${h}%` }} />
-                        ))}
-                      </div>
-                      <div className="aspect-video rounded-lg bg-gray-50 dark:bg-gray-700/50 flex items-center justify-center">
-                        <div className="w-12 h-12 rounded-full border-4 border-[#0078AA] border-t-[#7C3AED] border-r-[#25D366]" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Text Content */}
-                <div className="flex-1 text-center md:text-left">
-                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
-                    Explora el Dashboard
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-6">
-                    Panel de control en tiempo real con métricas de llamadas, WhatsApp, chat web y email. 
-                    Gestión de agentes, copiloto IA y analíticas avanzadas.
-                  </p>
-                  <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-medium transition-transform group-hover:scale-105" style={{ background: "linear-gradient(135deg, #0078AA, #7C3AED)" }}>
-                    Ver dashboard completo
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </div>
-              </div>
+            {/* Badge */}
+            <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200 dark:border-gray-700 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Demo en vivo — StaffDigital.AI</span>
             </div>
-          </Link>
+
+            {/* Iframe */}
+            <div className="aspect-video w-full">
+              <iframe
+                src="https://staffdigital.replit.app/"
+                title="StaffDigital AI Dashboard Demo"
+                className="w-full h-full border-0"
+                loading="lazy"
+                allow="clipboard-read; clipboard-write"
+              />
+            </div>
+          </div>
         </div>
       </section>
 

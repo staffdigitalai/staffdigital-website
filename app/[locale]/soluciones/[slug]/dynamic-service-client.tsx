@@ -320,52 +320,21 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
             {/* Badge */}
             <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200 dark:border-gray-700 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Demo en vivo — StaffDigital.AI</span>
+              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Demo interactivo — StaffDigital.AI</span>
             </div>
 
-      {/* Interactive Demo — only for ia-omnicanal */}
-      {service.slug === "ia-omnicanal" && (
-        <section className="px-4 py-16 md:py-24">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold mb-3">
-                Demo interactivo
-              </h2>
-              <p className="text-foreground/60 text-sm">
-                Explora la plataforma omnicanal en acción
-              </p>
-            </div>
-            <div className="relative w-full rounded-2xl border border-foreground/10 overflow-hidden" style={{ paddingBottom: "56.25%" }}>
+            {/* Iframe - Fixed height for better visibility */}
+            <div className="w-full h-[500px] sm:h-[600px] lg:h-[700px]">
               <iframe
                 src="https://demo.storylane.com/share/iothqqbe13c3"
                 title="Demo interactivo StaffDigital AI — Plataforma Omnicanal"
-                allow="fullscreen"
+                className="w-full h-full border-0"
                 loading="lazy"
-                className="absolute top-0 left-0 w-full h-full border-0"
+                allow="clipboard-read; clipboard-write"
+                sandbox="allow-scripts allow-same-origin allow-popups"
               />
             </div>
           </div>
-        </section>
-      )}
-
-      {/* Technology Partners */}
-      <section className="px-4 py-16">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-center text-foreground/40 text-sm mb-8">{t("tech_partners")}</p>
-          <div className="flex flex-wrap items-center justify-center gap-8 opacity-60">
-            {[
-              { src: "/images/partners/openai.svg", alt: "OpenAI" },
-              { src: "/images/partners/anthropic.svg", alt: "Anthropic" },
-              { src: "/images/partners/google-cloud.svg", alt: "Google Cloud" },
-              { src: "/images/partners/twilio.svg", alt: "Twilio" },
-              { src: "/images/partners/salesforce.svg", alt: "Salesforce" },
-              { src: "/images/partners/openclaw.svg", alt: "OpenClaw" },
-            ].map((logo) => (
-              <img
-                key={logo.alt}
-                src={logo.src}
-                alt={logo.alt}
-                className="h-6 sm:h-8 w-auto grayscale brightness-200 hover:grayscale-0 hover:brightness-100 transition-all duration-300"
 
           {/* Mobile hint */}
           <p className="mt-4 text-center text-xs text-gray-400 dark:text-gray-500 sm:hidden">

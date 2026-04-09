@@ -161,8 +161,14 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
   const { openContactForm } = useFormModals()
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
   
-  const title = stripHtml(service.title.rendered)
-  const excerpt = stripHtml(service.excerpt.rendered)
+  // Override title and excerpt for ia-omnicanal page
+  const isOmnicanal = service.slug === "ia-omnicanal"
+  const title = isOmnicanal 
+    ? "Bandeja de Atención al Cliente Omnicanal con IA"
+    : stripHtml(service.title.rendered)
+  const excerpt = isOmnicanal
+    ? "StaffDigital AI unifica WhatsApp, teléfono, chat web, email y redes sociales en una sola bandeja de entrada. Un agente IA, todos los canales, historial completo."
+    : stripHtml(service.excerpt.rendered)
   const acf = service.acf || {}
 
   // Use ACF data or fallbacks
@@ -647,7 +653,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
         </section>
       )}
 
-      {/* ═══════════════════════════════════════
+      {/* ═════════════════════════���═════════════
           SECCIÓN 10 — CTA FINAL
           ═══════════════════════════════════════ */}
       <section className="px-4 py-20">

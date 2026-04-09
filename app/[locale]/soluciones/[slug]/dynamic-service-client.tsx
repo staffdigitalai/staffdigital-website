@@ -312,7 +312,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
             </div>
           </div>
 
-          {/* Live Dashboard Demo - All screens */}
+          {/* Live Dashboard Demo - All screens with zoom out effect */}
           <div 
             className="mt-12 w-full max-w-7xl mx-auto rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] shadow-lg shadow-[#0078AA]/10 overflow-hidden relative"
             style={{ background: "linear-gradient(135deg, rgba(0,120,170,0.05), rgba(124,58,237,0.05))" }}
@@ -323,23 +323,24 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
               <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Demo en vivo — StaffDigital.AI</span>
             </div>
 
-            {/* Iframe - Fixed height for better visibility */}
-            <div className="w-full h-[500px] sm:h-[600px] lg:h-[700px]">
+            {/* Iframe container with scale transform for zoom-out effect */}
+            {/* Mobile: 0.5 scale, Tablet: 0.65 scale, Desktop: 0.75 scale */}
+            <div className="w-full h-[400px] sm:h-[500px] lg:h-[600px] overflow-hidden">
               <iframe
                 src="https://staffdigital.replit.app/"
                 title="StaffDigital AI Dashboard Demo"
-                className="w-full h-full border-0"
+                className="border-0 origin-top-left"
+                style={{
+                  width: '200%',
+                  height: '200%',
+                  transform: 'scale(0.5)',
+                }}
                 loading="lazy"
                 allow="clipboard-read; clipboard-write"
                 sandbox="allow-scripts allow-same-origin allow-popups"
               />
             </div>
           </div>
-
-          {/* Mobile hint */}
-          <p className="mt-4 text-center text-xs text-gray-400 dark:text-gray-500 sm:hidden">
-            Gira tu dispositivo para ver mejor el dashboard
-          </p>
         </div>
       </section>
 

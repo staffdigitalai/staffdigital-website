@@ -326,7 +326,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
             {/* Iframe - Fixed height for better visibility */}
             <div className="w-full h-[500px] sm:h-[600px] lg:h-[700px]">
               <iframe
-                src="https://demo.storylane.com/share/iothqqbe13c3"
+                src="https://demo.storylane.com/demo/iothqqbe13c3"
                 title="Demo interactivo StaffDigital AI — Plataforma Omnicanal"
                 className="w-full h-full border-0"
                 loading="lazy"

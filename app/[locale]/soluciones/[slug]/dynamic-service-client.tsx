@@ -312,9 +312,9 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
             </div>
           </div>
 
-          {/* Live Dashboard Demo - Desktop/Tablet */}
+          {/* Live Dashboard Demo - All screens */}
           <div 
-            className="mt-12 max-w-6xl mx-auto rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] shadow-lg shadow-[#0078AA]/10 overflow-hidden relative hidden sm:block"
+            className="mt-12 w-full max-w-7xl mx-auto rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] shadow-lg shadow-[#0078AA]/10 overflow-hidden relative"
             style={{ background: "linear-gradient(135deg, rgba(0,120,170,0.05), rgba(124,58,237,0.05))" }}
           >
             {/* Badge */}
@@ -323,37 +323,8 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
               <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Demo en vivo — StaffDigital.AI</span>
             </div>
 
-            {/* Expand button */}
-            <a
-              href="https://staffdigital.replit.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200 dark:border-gray-700 shadow-sm hover:bg-white dark:hover:bg-gray-800 transition-colors cursor-pointer"
-              title="Abrir en pantalla completa"
-            >
-              <svg className="w-3.5 h-3.5 text-gray-600 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="15 3 21 3 21 9" />
-                <polyline points="9 21 3 21 3 15" />
-                <line x1="21" y1="3" x2="14" y2="10" />
-                <line x1="3" y1="21" x2="10" y2="14" />
-              </svg>
-              <span className="text-xs font-medium text-gray-600 dark:text-gray-400 hidden lg:inline">Expandir</span>
-            </a>
-
-            {/* Iframe - Desktop (16:10 for more height) */}
-            <div className="aspect-[16/10] w-full hidden md:block">
-              <iframe
-                src="https://staffdigital.replit.app/"
-                title="StaffDigital AI Dashboard Demo"
-                className="w-full h-full border-0"
-                loading="lazy"
-                allow="clipboard-read; clipboard-write"
-                sandbox="allow-scripts allow-same-origin allow-popups"
-              />
-            </div>
-
-            {/* Iframe - Tablet (4:3) */}
-            <div className="aspect-[4/3] w-full overflow-hidden block md:hidden">
+            {/* Iframe - Fixed height for better visibility */}
+            <div className="w-full h-[500px] sm:h-[600px] lg:h-[700px]">
               <iframe
                 src="https://staffdigital.replit.app/"
                 title="StaffDigital AI Dashboard Demo"
@@ -365,43 +336,10 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
             </div>
           </div>
 
-          {/* Mobile Fallback - Static Card */}
-          <div 
-            className="mt-12 max-w-5xl mx-auto rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] shadow-lg shadow-[#0078AA]/10 overflow-hidden sm:hidden p-8"
-            style={{ background: "linear-gradient(135deg, rgba(0,120,170,0.08), rgba(124,58,237,0.08))" }}
-          >
-            <div className="flex flex-col items-center gap-5 text-center">
-              {/* Monitor icon */}
-              <div 
-                className="w-20 h-20 rounded-2xl flex items-center justify-center"
-                style={{ background: "linear-gradient(135deg, #0078AA, #7C3AED)" }}
-              >
-                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <rect x="2" y="3" width="20" height="14" rx="2" strokeWidth="2" />
-                  <path d="M8 21h8M12 17v4" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">
-                  Explora el dashboard en desktop
-                </h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  La demo interactiva está optimizada para pantalla grande
-                </p>
-              </div>
-
-              <a
-                href="https://staffdigital.replit.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#0078AA] to-[#7C3AED] text-white rounded-lg px-5 py-2.5 font-medium text-sm hover:opacity-90 transition-opacity"
-              >
-                Abrir dashboard
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
+          {/* Mobile hint */}
+          <p className="mt-4 text-center text-xs text-gray-400 dark:text-gray-500 sm:hidden">
+            Gira tu dispositivo para ver mejor el dashboard
+          </p>
         </div>
       </section>
 

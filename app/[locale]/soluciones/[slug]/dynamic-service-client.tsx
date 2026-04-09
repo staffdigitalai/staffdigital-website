@@ -314,7 +314,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
 
           {/* Live Dashboard Demo - Desktop/Tablet */}
           <div 
-            className="mt-12 max-w-5xl mx-auto rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] shadow-lg shadow-[#0078AA]/10 overflow-hidden relative hidden sm:block"
+            className="mt-12 max-w-6xl mx-auto rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] shadow-lg shadow-[#0078AA]/10 overflow-hidden relative hidden sm:block"
             style={{ background: "linear-gradient(135deg, rgba(0,120,170,0.05), rgba(124,58,237,0.05))" }}
           >
             {/* Badge */}
@@ -323,8 +323,25 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
               <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Demo en vivo — StaffDigital.AI</span>
             </div>
 
-            {/* Iframe - Desktop (16:9) */}
-            <div className="aspect-video w-full hidden md:block">
+            {/* Expand button */}
+            <a
+              href="https://staffdigital.replit.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200 dark:border-gray-700 shadow-sm hover:bg-white dark:hover:bg-gray-800 transition-colors cursor-pointer"
+              title="Abrir en pantalla completa"
+            >
+              <svg className="w-3.5 h-3.5 text-gray-600 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 3 21 3 21 9" />
+                <polyline points="9 21 3 21 3 15" />
+                <line x1="21" y1="3" x2="14" y2="10" />
+                <line x1="3" y1="21" x2="10" y2="14" />
+              </svg>
+              <span className="text-xs font-medium text-gray-600 dark:text-gray-400 hidden lg:inline">Expandir</span>
+            </a>
+
+            {/* Iframe - Desktop (16:10 for more height) */}
+            <div className="aspect-[16/10] w-full hidden md:block">
               <iframe
                 src="https://staffdigital.replit.app/"
                 title="StaffDigital AI Dashboard Demo"
@@ -335,13 +352,12 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
               />
             </div>
 
-            {/* Iframe - Tablet (4:3 with scale) */}
+            {/* Iframe - Tablet (4:3) */}
             <div className="aspect-[4/3] w-full overflow-hidden block md:hidden">
               <iframe
                 src="https://staffdigital.replit.app/"
                 title="StaffDigital AI Dashboard Demo"
-                className="w-full h-full border-0 origin-top scale-[0.85]"
-                style={{ height: "118%" }}
+                className="w-full h-full border-0"
                 loading="lazy"
                 allow="clipboard-read; clipboard-write"
                 sandbox="allow-scripts allow-same-origin allow-popups"

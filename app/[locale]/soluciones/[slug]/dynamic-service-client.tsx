@@ -4,7 +4,6 @@ import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { 
-  Play, 
   ChevronDown,
   Phone, 
   MessageSquare, 
@@ -259,16 +258,78 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
             </a>
           </div>
 
-          {/* Video Placeholder */}
+          {/* Live Dashboard Demo - Desktop/Tablet */}
           <div 
-            className="mt-12 max-w-5xl mx-auto aspect-video rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] flex items-center justify-center shadow-lg shadow-[#0078AA]/10"
+            className="mt-12 max-w-5xl mx-auto rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] shadow-lg shadow-[#0078AA]/10 overflow-hidden relative hidden sm:block"
             style={{ background: "linear-gradient(135deg, rgba(0,120,170,0.05), rgba(124,58,237,0.05))" }}
           >
-            <div className="flex flex-col items-center gap-4">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-r from-[#0078AA] to-[#7C3AED] flex items-center justify-center cursor-pointer hover:scale-105 transition-transform">
-                <Play className="w-8 h-8 text-white ml-1" fill="white" />
+            {/* Badge */}
+            <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200 dark:border-gray-700 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Demo en vivo — StaffDigital.AI</span>
+            </div>
+
+            {/* Iframe - Desktop (16:9) */}
+            <div className="aspect-video w-full hidden md:block">
+              <iframe
+                src="https://staffdigital.replit.app/"
+                title="StaffDigital AI Dashboard Demo"
+                className="w-full h-full border-0"
+                loading="lazy"
+                allow="clipboard-read; clipboard-write"
+                sandbox="allow-scripts allow-same-origin allow-popups"
+              />
+            </div>
+
+            {/* Iframe - Tablet (4:3 with scale) */}
+            <div className="aspect-[4/3] w-full overflow-hidden block md:hidden">
+              <iframe
+                src="https://staffdigital.replit.app/"
+                title="StaffDigital AI Dashboard Demo"
+                className="w-full h-full border-0 origin-top scale-[0.85]"
+                style={{ height: "118%" }}
+                loading="lazy"
+                allow="clipboard-read; clipboard-write"
+                sandbox="allow-scripts allow-same-origin allow-popups"
+              />
+            </div>
+          </div>
+
+          {/* Mobile Fallback - Static Card */}
+          <div 
+            className="mt-12 max-w-5xl mx-auto rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] shadow-lg shadow-[#0078AA]/10 overflow-hidden sm:hidden p-8"
+            style={{ background: "linear-gradient(135deg, rgba(0,120,170,0.08), rgba(124,58,237,0.08))" }}
+          >
+            <div className="flex flex-col items-center gap-5 text-center">
+              {/* Monitor icon */}
+              <div 
+                className="w-20 h-20 rounded-2xl flex items-center justify-center"
+                style={{ background: "linear-gradient(135deg, #0078AA, #7C3AED)" }}
+              >
+                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <rect x="2" y="3" width="20" height="14" rx="2" strokeWidth="2" />
+                  <path d="M8 21h8M12 17v4" strokeWidth="2" strokeLinecap="round" />
+                </svg>
               </div>
-              <span className="text-gray-500 dark:text-gray-400 text-sm font-medium">Demo: Agente IA en acción</span>
+              
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">
+                  Explora el dashboard en desktop
+                </h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  La demo interactiva está optimizada para pantalla grande
+                </p>
+              </div>
+
+              <a
+                href="https://staffdigital.replit.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#0078AA] to-[#7C3AED] text-white rounded-lg px-5 py-2.5 font-medium text-sm hover:opacity-90 transition-opacity"
+              >
+                Abrir dashboard
+                <ArrowRight className="w-4 h-4" />
+              </a>
             </div>
           </div>
         </div>

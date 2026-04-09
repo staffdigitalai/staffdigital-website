@@ -299,6 +299,31 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
         </section>
       )}
 
+      {/* Interactive Demo — only for ia-omnicanal */}
+      {service.slug === "ia-omnicanal" && (
+        <section className="px-4 py-16 md:py-24">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                Demo interactivo
+              </h2>
+              <p className="text-white/60 text-sm">
+                Explora la plataforma omnicanal en acción
+              </p>
+            </div>
+            <div className="relative w-full rounded-2xl border border-white/10 overflow-hidden" style={{ paddingBottom: "56.25%" }}>
+              <iframe
+                src="https://demo.storylane.com/share/iothqqbe13c3"
+                title="Demo interactivo StaffDigital AI — Plataforma Omnicanal"
+                allow="fullscreen"
+                loading="lazy"
+                className="absolute top-0 left-0 w-full h-full border-0"
+              />
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Technology Partners */}
       <section className="px-4 py-16">
         <div className="max-w-4xl mx-auto">

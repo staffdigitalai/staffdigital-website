@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { Target, ArrowRight, MapPin, Users, Mail, BarChart3 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -24,7 +23,7 @@ export function LeadGenBlock() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             LeadGen IA — Captura clientes automáticamente
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto">
+          <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
             ROI visible en días. Alimenta tu pipeline de ventas sin esfuerzo.
           </p>
         </div>
@@ -36,24 +35,13 @@ export function LeadGenBlock() {
                 <span className="w-7 h-7 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-400 text-sm font-bold">{s.step}</span>
                 <s.icon className="w-5 h-5 text-orange-400/60" />
               </div>
-              <h3 className="font-bold text-sm text-white">{s.title}</h3>
-              <p className="text-xs text-white/50">{s.description}</p>
+              <h3 className="font-bold text-sm text-foreground">{s.title}</h3>
+              <p className="text-xs text-foreground/50">{s.description}</p>
             </div>
           ))}
         </div>
 
-        <div className="max-w-2xl mx-auto mb-8">
-          <Image
-            src="/images/homepage/leadgen.jpg"
-            alt="Embudo de generación de leads con IA: prospección, enriquecimiento, cualificación y entrega al CRM"
-            width={1200}
-            height={686}
-            loading="lazy"
-            className="rounded-2xl border border-orange-500/10 opacity-80"
-          />
-        </div>
-
-        <div className="text-center">
+        <div className="text-center mt-8">
           <Button asChild variant="outline" className="rounded-full px-6 border-orange-500/30 text-orange-400 hover:bg-orange-500/10">
             <Link href="/soluciones/lead-generation-ia">
               Descubrir LeadGen IA <ArrowRight className="w-4 h-4 ml-2" />

@@ -1,13 +1,21 @@
 import type React from "react"
 import { Suspense } from "react"
 import { getLocale } from "next-intl/server"
+import { Inter } from "next/font/google"
 import "./globals.css"
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
+  display: "swap",
+})
 import { PageTransition } from "@/components/page-transition"
 import { NavigationTransition } from "@/components/navigation-transition"
 import { ChatwootWidget } from "@/components/chatwoot-widget"
 import { FormModalProvider } from "@/components/contact-form-modals"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-// Removed unused Dancing_Script and Caveat fonts to reduce JS/font payload
+import { ThemeProvider } from "@/components/theme-provider"
 
 export default async function RootLayout({
   children,
@@ -17,7 +25,7 @@ export default async function RootLayout({
   const locale = await getLocale()
 
   return (
-    <html lang={locale} className="dark" suppressHydrationWarning>
+    <html lang={locale} className={`${inter.variable}`} suppressHydrationWarning>
       <head>
         {/* Google Search Console verification */}
         <meta name="google-site-verification" content="Uw0vYKoZylDM8S2GioiNZbwGdoWYgeywihU5jNrgnvc" />
@@ -100,14 +108,21 @@ export default async function RootLayout({
             }),
           }}
         />
-        <FormModalProvider>
-          <Suspense fallback={null}>
-            <NavigationTransition />
-            <PageTransition>{children}</PageTransition>
-          </Suspense>
-          <ChatwootWidget />
-          <SpeedInsights />
-        </FormModalProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange={false}
+        >
+          <FormModalProvider>
+            <Suspense fallback={null}>
+              <NavigationTransition />
+              <PageTransition>{children}</PageTransition>
+            </Suspense>
+            <ChatwootWidget />
+            <SpeedInsights />
+          </FormModalProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

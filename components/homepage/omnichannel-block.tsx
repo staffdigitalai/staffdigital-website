@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { MessageSquare, Phone, Globe, Mail, Share2 } from "lucide-react"
 import { useTranslations } from "next-intl"
 
@@ -20,13 +19,13 @@ export function OmnichannelBlock() {
     <section className="py-20 px-4">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
             {t("title_1")}{" "}
             <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
               {t("title_2")}
             </span>
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-foreground/60 max-w-2xl mx-auto">
             {t("subtitle")}
           </p>
         </div>
@@ -35,28 +34,22 @@ export function OmnichannelBlock() {
           {channels.map((ch) => (
             <div
               key={ch.name}
-              className="p-5 rounded-2xl border border-white/10 bg-white/5 text-center space-y-3 hover:bg-white/10 transition-colors"
+              className="card-elevated p-5 rounded-2xl text-center space-y-3 hover:shadow-lg transition-all duration-300"
             >
-              <ch.icon className="w-8 h-8 text-white/80 mx-auto" />
-              <h3 className="font-bold text-sm">{ch.name}</h3>
-              <p className="text-xs text-white/50">{ch.line1}</p>
-              <p className="text-xs text-white/40">{ch.line2}</p>
+              <div 
+                className="w-12 h-12 rounded-full mx-auto flex items-center justify-center"
+                style={{ background: "linear-gradient(135deg, rgba(0, 120, 170, 0.15), rgba(124, 58, 237, 0.15))" }}
+              >
+                <ch.icon className="w-6 h-6 text-[#0078AA]" />
+              </div>
+              <h3 className="font-bold text-sm text-foreground">{ch.name}</h3>
+              <p className="text-xs text-muted-foreground">{ch.line1}</p>
+              <p className="text-xs text-muted-foreground/80">{ch.line2}</p>
             </div>
           ))}
         </div>
 
-        <div className="mt-8 max-w-2xl mx-auto">
-          <Image
-            src="/images/homepage/omnichannel.jpg"
-            alt="Bandeja única Chatwoot: WhatsApp, teléfono, chat web, email y redes sociales conectados a agentes IA"
-            width={1200}
-            height={686}
-            loading="lazy"
-            className="rounded-2xl border border-white/10 opacity-80"
-          />
-        </div>
-
-        <p className="text-center text-white/50 mt-6 text-sm italic">
+        <p className="text-center text-gray-700 dark:text-foreground/60 mt-8 text-sm italic font-medium">
           {t("context_note")}
         </p>
       </div>

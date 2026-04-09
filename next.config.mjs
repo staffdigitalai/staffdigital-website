@@ -10,6 +10,13 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  webpack: (config, { isServer }) => {
+    // Suppress next-intl dynamic import parsing warnings
+    config.infrastructureLogging = {
+      level: 'error',
+    }
+    return config
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [

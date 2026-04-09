@@ -1,30 +1,28 @@
-"use client"
-
-import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
-import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
+import { SolutionMockup } from "@/components/solution-mockups"
 
+// Services meta - maps slugs to hrefs
 const servicesMeta = [
-  { href: "/soluciones/atencion-telefonica-ia", image: "/images/agents/phone-agent.jpg", alt: "Central de atendimiento IA para call center con voz realista" },
-  { href: "/soluciones/whatsapp-ia-empresas", image: "/images/agents/whatsapp-agent.jpg", alt: "Agente virtual WhatsApp con IA para atendimiento automático" },
-  { href: "/soluciones/agente-chat-web-ia", image: "/images/agents/web-chat-agent.jpg", alt: "Chat web inteligente con IA para cualificación de leads" },
-  { href: "/soluciones/agente-ventas-ia", image: "/images/agents/sales-agent.jpg", alt: "IA para ventas automáticas: cualificación y cierre de leads" },
-  { href: "/soluciones/agente-soporte-ia", image: "/images/agents/support-agent.jpg", alt: "Soporte al cliente automatizado con agentes IA" },
-  { href: "/soluciones/agente-agendamientos-ia", image: "/images/agents/booking-agent.jpg", alt: "Agendamiento automático de citas con IA por WhatsApp y teléfono" },
-  { href: "/soluciones/lead-generation-ia", image: "/images/agents/leadgen-agent.jpg", alt: "Prospección automática de empresas y generación de leads con IA" },
-  { href: "/soluciones/crm-automation-ia", image: "/images/agents/crm-agent.jpg", alt: "Automatización de CRM con agentes IA para gestión de pipeline" },
+  { slug: "atencion-telefonica-ia", href: "/soluciones/atencion-telefonica-ia" },
+  { slug: "whatsapp-ia-empresas", href: "/soluciones/whatsapp-ia-empresas" },
+  { slug: "agente-chat-web-ia", href: "/soluciones/agente-chat-web-ia" },
+  { slug: "agente-ventas-ia", href: "/soluciones/agente-ventas-ia" },
+  { slug: "agente-soporte-ia", href: "/soluciones/agente-soporte-ia" },
+  { slug: "agente-agendamientos-ia", href: "/soluciones/agente-agendamientos-ia" },
+  { slug: "atencion-telefonica-ia", href: "/soluciones/atencion-telefonica-ia" },
+  { slug: "lead-generation-ia", href: "/soluciones/lead-generation-ia" },
 ]
 
-export function ServicesBlock() {
-  const t = useTranslations("services")
-
+export async function ServicesBlock() {
+  const t = await getTranslations("services")
   const translatedItems = t.raw("items") as { title: string; description: string }[]
 
   const services = servicesMeta.map((meta, i) => ({
     ...meta,
-    title: translatedItems[i].title,
-    description: translatedItems[i].description,
+    title: translatedItems[i]?.title || "",
+    description: translatedItems[i]?.description || "",
   }))
 
   return (
@@ -32,34 +30,34 @@ export function ServicesBlock() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            {t("title")}
+            <span>Un agente IA para </span>
+            <span className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">cada necesidad</span>
           </h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto">
+          <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
             {t("subtitle")}
           </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {services.map((s) => (
+          {services.slice(0, 8).map((s) => (
             <Link
               key={s.href}
               href={s.href}
-              className="group rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/20 transition-all hover:scale-[1.02] overflow-hidden"
+              className="card-elevated group rounded-2xl hover:border-foreground/25 transition-all hover:scale-[1.02] overflow-hidden hover:shadow-lg hover:shadow-[var(--neon-blue)]/10"
             >
-              <div className="relative w-full h-32">
-                <Image
-                  src={s.image}
-                  alt={s.alt}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  loading="lazy"
-                  className="object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+              {/* Dashboard mockup */}
+              <div className="relative w-full h-32 overflow-hidden rounded-t-2xl">
+                <SolutionMockup slug={s.slug} />
+                {/* Subtle gradient overlay on hover */}
+                <div 
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                  style={{ background: "linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.05))" }}
                 />
               </div>
               <div className="p-4 space-y-2">
-                <h3 className="font-bold text-white group-hover:text-white/90">{s.title}</h3>
-                <p className="text-sm text-white/50">{s.description}</p>
-                <span className="text-sm text-white/40 group-hover:text-white/70 flex items-center gap-1 transition-colors">
+                <h3 className="font-bold text-foreground group-hover:text-foreground/90">{s.title}</h3>
+                <p className="text-sm text-foreground/50">{s.description}</p>
+                <span className="text-sm text-foreground/40 group-hover:text-foreground/70 flex items-center gap-1 transition-colors">
                   {t("learn_more")} <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </span>
               </div>
@@ -67,9 +65,12 @@ export function ServicesBlock() {
           ))}
         </div>
 
-        <div className="text-center mt-8">
-          <Link href="/soluciones" className="text-sm text-white/50 hover:text-white/80 underline underline-offset-4 transition-colors">
-            {t("view_all")} →
+        <div className="text-center mt-10">
+          <Link 
+            href="/soluciones" 
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-foreground/20 hover:border-foreground/40 text-foreground/70 hover:text-foreground font-medium transition-all hover:scale-105"
+          >
+            {t("view_all")} <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>

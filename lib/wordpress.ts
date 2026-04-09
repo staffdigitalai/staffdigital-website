@@ -70,14 +70,60 @@ export interface WPService {
   content: { rendered: string };
   featured_media: number;
   menu_order: number;
+  sectors?: number[]; // Sector taxonomy IDs
   acf: {
     icono?: string;
     subtitulo?: string;
-    beneficios?: Array<{
+    // Stats bar
+    stats_bar?: Array<{
+      valor: string;
+      etiqueta: string;
+    }>;
+    // Canales
+    canales?: Array<{
+      titulo: string;
+      descripcion: string;
+      icono: string;
+      color: string;
+    }>;
+    // Features
+    features?: Array<{
       titulo: string;
       descripcion: string;
       icono?: string;
     }>;
+    // Beneficios
+    beneficios?: Array<{
+      texto: string;
+    }>;
+    // FAQ
+    faq_titulo?: string;
+    faq_items?: Array<{
+      pregunta: string;
+      respuesta: string;
+    }>;
+    // Testimonial
+    testimonial_quote?: string;
+    testimonial_nombre?: string;
+    testimonial_cargo?: string;
+    testimonial_empresa?: string;
+    // Contextual relationships (populated by WP)
+    sectores_contextuales?: Array<{
+      sector_id: number;
+      sector_slug: string;
+      sector_nombre: string;
+      sector_descripcion: string;
+      sector_orden: number;
+    }>;
+    soluciones_contextuales?: Array<{
+      solucion_id: number;
+      solucion_slug: string;
+      solucion_nombre: string;
+      solucion_descripcion: string;
+      solucion_imagen?: string; // Featured image URL from WP
+      solucion_orden: number;
+    }>;
+    // Legacy fields
     caracteristicas?: Array<{
       titulo: string;
       descripcion: string;
@@ -91,6 +137,14 @@ export interface WPService {
     es_destacado?: boolean;
     meta_title?: string;
     meta_description?: string;
+  };
+  // Yoast SEO
+  yoast_head_json?: {
+    title?: string;
+    description?: string;
+    og_title?: string;
+    og_description?: string;
+    og_image?: Array<{ url: string }>;
   };
   _embedded?: {
     'wp:featuredmedia'?: Array<{
@@ -378,6 +432,15 @@ export async function getSectors(): Promise<WPSector[]> {
   });
 }
 
+// Get sectors by IDs (for service pages)
+export async function getSectorsByIds(ids: number[]): Promise<WPSector[]> {
+  if (!ids || ids.length === 0) return [];
+  return wpFetch<WPSector[]>('/sectors', {
+    include: ids.join(','),
+    per_page: 100,
+  });
+}
+
 // Case Studies
 export async function getCaseStudies(options: {
   lang?: SupportedLang;
@@ -472,8 +535,8 @@ export async function getServices(options: {
   return wpFetch<WPService[]>('/services', {
     lang,
     per_page: perPage,
-    orderby: 'menu_order',
-    order: 'asc',
+    orderby: 'date',
+    order: 'desc',
     _embed: 1,
   });
 }
@@ -486,6 +549,22 @@ export async function getService(slug: string, lang: SupportedLang = 'es'): Prom
   });
 
   return services[0] || null;
+}
+
+// Get a map of service ID → featured image URL for all services
+// Used by solution pages to display real images from WP instead of hardcoded local files
+export async function getServiceImagesMap(): Promise<Record<number, string>> {
+  const services = await getServices({ perPage: 50 });
+  const imageMap: Record<number, string> = {};
+  
+  for (const service of services) {
+    const imageUrl = service._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+    if (imageUrl) {
+      imageMap[service.id] = imageUrl;
+    }
+  }
+  
+  return imageMap;
 }
 
 // ============================================

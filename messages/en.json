@@ -18,7 +18,7 @@
   },
   "hero": {
     "badge_voice": "Human Voice HD",
-    "badge_platform": "Managed Omnichannel Platform",
+    "badge_platform": "Custom conversational engineering",
     "h1_line1": "Omnichannel with AI Orchestration",
     "h1_line2": "100% Managed",
     "reinforcement": "AI agents for WhatsApp, phone and web chat that listen, respond and act like humans on your channels, CRM or website.",
@@ -33,18 +33,10 @@
     "title_2": "fully managed",
     "subtitle": "We integrate channels, CRM, calendar and AI agents into one platform. You just receive the results.",
     "stack": [
-      {"category": "Channels", "label": "Omnichannel Inbox", "description": "Unified omnichannel inbox"},
-      {"category": "AI", "label": "Autonomous AI Agents", "description": "Autonomous agent orchestration"},
-      {"category": "Booking", "label": "Calendar Management", "description": "Automatic scheduling"},
-      {"category": "Data", "label": "Integrated CRM", "description": "Smart CRM integrated"}
-    ],
-    "items": [
-      "We configure AI agents for your business",
-      "We integrate WhatsApp, phone, web chat and email",
-      "We connect with your CRM and calendar",
-      "We train the AI with your knowledge base",
-      "We manage the infrastructure 24/7",
-      "We ensure security and privacy (EU)"
+      {"category": "Channels", "label": "Omnichannel Inbox", "description": "WhatsApp, phone, web chat and email integrated"},
+      {"category": "AI", "label": "Autonomous AI Agents", "description": "Configured and trained with your knowledge base"},
+      {"category": "Booking", "label": "Calendar Management", "description": "Connected with your CRM and calendar"},
+      {"category": "Data", "label": "Integrated CRM", "description": "24/7 infrastructure, EU security and privacy"}
     ]
   },
   "services": {
@@ -66,7 +58,7 @@
   "omnichannel": {
     "title_1": "Unified inbox:",
     "title_2": "all channels in one place",
-    "subtitle": "Chatwoot CE unifies WhatsApp, phone, web chat, email and social media. One AI agent, all channels, complete history.",
+    "subtitle": "StaffDigital AI unifies WhatsApp, phone, web chat, email and social media in a single inbox. One AI agent, all channels, complete history.",
     "channels": [
       {"name": "Phone", "line1": "Smart IVR with AI", "line2": "No menus, natural conversation"},
       {"name": "WhatsApp", "line1": "Virtual agent 24/7", "line2": "Voice and text automated"},
@@ -77,18 +69,18 @@
     "context_note": "Customer switches channel, but the agent keeps context. No repetition. No frustration."
   },
   "sectors": {
-    "title": "AI agents specialized by industry",
-    "subtitle": "Trained with the specific needs of your industry.",
+    "title": "AI Agents for your industry",
+    "subtitle": "AI trained with your industry knowledge. Ready to serve from day one.",
     "view_all": "View all industries",
     "items": [
-      {"name": "Car Dealers", "useCase": "Test drives, qualification, after-sales"},
-      {"name": "Clinics & Healthcare", "useCase": "Appointments, reminders, first contact"},
-      {"name": "Real Estate", "useCase": "Viewings, qualification, follow-up"},
-      {"name": "Restaurants", "useCase": "Reservations, takeaway, confirmations"},
-      {"name": "E-commerce", "useCase": "Abandoned cart, recommendations"},
-      {"name": "Tourism & Hotels", "useCase": "Bookings, upsell, 24/7 support"},
-      {"name": "Education", "useCase": "Enrollment, information, reminders"},
-      {"name": "Local Services", "useCase": "LeadGen AI, appointments, follow-up"}
+      {"name": "AI for Car Dealers", "useCase": "Schedules test drives, qualifies buyers and automates after-sales follow-up"},
+      {"name": "AI for Healthcare", "useCase": "Manages medical appointments, sends reminders and serves patients 24/7"},
+      {"name": "AI for Real Estate", "useCase": "Schedules viewings, qualifies buyers and automates follow-up"},
+      {"name": "AI for Restaurants", "useCase": "Manages reservations, takeaway orders and confirmations without missing a call"},
+      {"name": "AI for E-commerce", "useCase": "Recovers abandoned carts, recommends products and answers inquiries instantly"},
+      {"name": "AI for Hotels", "useCase": "Automates bookings, drives upselling and provides multilingual 24/7 support"},
+      {"name": "AI for Education", "useCase": "Manages enrollment, answers parent inquiries and sends automatic reminders"},
+      {"name": "AI for Local Services", "useCase": "Captures new clients, schedules appointments and automates sales follow-up"}
     ]
   },
   "methodology": {
@@ -109,6 +101,7 @@
     "title": "Managed platform vs DIY tools",
     "competitor_label": "Bland, Vapi, Synthflow...",
     "us_label": "StaffDigital AI",
+    "recommended": "Recommended",
     "rows": [
       {"feature": "What is it?", "competitor": "Tool the customer configures alone", "us": "Managed platform with implementation included"},
       {"feature": "Channels", "competitor": "Usually only chat or only voice", "us": "WhatsApp + phone + web chat + email unified"},
@@ -130,6 +123,7 @@
   },
   "faq": {
     "title": "Frequently asked questions about AI agents",
+    "subtitle": "We answer your questions about implementation, privacy and how AI agents work",
     "view_all": "View all questions",
     "items": [
       {"q": "Does the AI agent really sound human?", "a": "Yes. We use proprietary human voice technology with voices indistinguishable from real people. Your customers don't know they're talking to AI."},
@@ -163,6 +157,38 @@
     "other_sectors": "Other Industries",
     "other_sectors_subtitle": "Discover how we help other industries",
     "featured": "Featured Solution"
+  },
+  "ai_working_247": {
+    "badge": "AI Working 24/7 — Never Miss a Lead",
+    "title_1": "Your AI Team",
+    "title_2": "Never Sleeps",
+    "subtitle": "Watch our AI handle real customer interactions around the clock, automatically qualifying leads and booking appointments while you focus on growing your business.",
+    "features": {
+      "chat": {
+        "title": "24/7 AI Chat Support",
+        "description": "Intelligent chatbots that handle customer inquiries, answer questions, and capture leads across your website and social channels."
+      },
+      "phone": {
+        "title": "AI Phone Receptionist",
+        "description": "Professional AI voice assistant that answers calls, takes messages, and books appointments when you're busy or closed."
+      },
+      "calendar": {
+        "title": "Smart Appointment Booking",
+        "description": "Automated scheduling system that checks availability, books appointments, and sends confirmations without human intervention."
+      },
+      "email": {
+        "title": "Email Response Automation",
+        "description": "AI-powered email assistant that responds to inquiries, provides information, and forwards complex queries to your team."
+      },
+      "leads": {
+        "title": "Lead Qualification & Handoff",
+        "description": "Intelligent system that qualifies prospects, gathers key information, and seamlessly hands off hot leads to your sales team."
+      },
+      "integrations": {
+        "title": "Multi-Platform Integration",
+        "description": "Connect with your existing tools including CRM, calendar, WhatsApp, SMS, and more for a unified customer experience."
+      }
+    }
   },
   "footer": {
     "slogan": "Managed omnichannel platform with AI agents for businesses.",

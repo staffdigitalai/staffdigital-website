@@ -28,11 +28,11 @@ export function HeroBlock() {
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-balance mb-4 animate-fade-in-heading leading-tight">
           <span className="text-foreground">{t("h1_line1")}</span>
           <br />
-          <span 
+          <span
             className="bg-gradient-to-r from-[var(--neon-blue)] via-[var(--purple-dark)] to-[var(--neon-blue)] bg-clip-text text-transparent inline-block animate-gradient-shift"
             style={{ backgroundSize: "200% auto" }}
           >
-            100% Gestionado<br />Tú Solo Vendes
+            {t("h1_line2")}<br />{t("h1_line3")}
           </span>
         </h1>
 

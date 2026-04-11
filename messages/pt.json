@@ -19,8 +19,9 @@
   "hero": {
     "badge_voice": "Voz Humana HD",
     "badge_platform": "Engenharia conversacional à medida",
-    "h1_line1": "Omnicanal com Orquestração IA",
-    "h1_line2": "100% Gerido",
+    "h1_line1": "A sua Equipa IA para Apoio ao Cliente",
+    "h1_line2": "100% Gerida",
+    "h1_line3": "Só Tem de Vender",
     "reinforcement": "Agentes IA para WhatsApp, telefone e chat web que ouvem, respondem e atuam como humanos nos seus canais, CRM ou página web.",
     "rotate_prefix": "IA para",
     "rotate_words": ["call center", "WhatsApp Business", "marcações", "pré-venda", "pós-venda"],

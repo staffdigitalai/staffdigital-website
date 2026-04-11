@@ -21,7 +21,7 @@ const sampleCases: WPCaseStudy[] = [
     title: { rendered: "Automatización de Atencion al Cliente para Retail" },
     content: { rendered: "<p>Caso de estudio detallado sobre como implementamos automatización IA.</p>" },
     excerpt: { rendered: "Reduccion del 70% en tiempos de respuesta." },
-    date: new Date().toISOString(),
+    date: "2025-01-01T00:00:00.000Z",
     acf: {
       cliente: "RetailMax",
       sector: "Retail",
@@ -35,7 +35,7 @@ const sampleCases: WPCaseStudy[] = [
     title: { rendered: "Gestion Inteligente de Citas para Clinica Dental" },
     content: { rendered: "<p>Implementacion de sistema de reservas automatizado.</p>" },
     excerpt: { rendered: "Aumento del 50% en eficiencia de agenda." },
-    date: new Date().toISOString(),
+    date: "2025-01-01T00:00:00.000Z",
     acf: {
       cliente: "DentalCare Plus",
       sector: "Salud",
@@ -49,7 +49,7 @@ const sampleCases: WPCaseStudy[] = [
     title: { rendered: "Optimizacion Logistica con IA Predictiva" },
     content: { rendered: "<p>Sistema de prediccion de demanda para cadena de suministro.</p>" },
     excerpt: { rendered: "35% mejora en precision de inventario." },
-    date: new Date().toISOString(),
+    date: "2025-01-01T00:00:00.000Z",
     acf: {
       cliente: "LogiTech Solutions",
       sector: "Logistica",
@@ -63,7 +63,7 @@ const sampleCases: WPCaseStudy[] = [
     title: { rendered: "Automatización de Procesos Financieros" },
     content: { rendered: "<p>Transformacion digital del departamento financiero.</p>" },
     excerpt: { rendered: "80% reduccion en errores de facturacion." },
-    date: new Date().toISOString(),
+    date: "2025-01-01T00:00:00.000Z",
     acf: {
       cliente: "FinanceGroup",
       sector: "Finanzas",

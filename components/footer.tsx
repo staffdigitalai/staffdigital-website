@@ -176,7 +176,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-foreground/40 text-sm">
+          <p className="text-foreground/40 text-sm" suppressHydrationWarning>
             &copy; {new Date().getFullYear()} StaffDigital AI. {t("rights")}
           </p>
           <p className="text-foreground/40 text-sm">

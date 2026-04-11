@@ -233,12 +233,16 @@ function VentasMockup() {
             <div className={`h-1 ${col.color} rounded-t mb-0.5`} />
             <div className="text-[6px] text-gray-500 dark:text-gray-400 mb-0.5">{col.name}</div>
             <div className="flex-1 space-y-0.5">
-              {Array.from({ length: Math.min(col.count, 2) }).map((_, j) => (
-                <div key={j} className="bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded p-0.5">
-                  <div className="font-medium text-gray-700 dark:text-gray-300 truncate">Empresa {i * 2 + j + 1}</div>
-                  <div className="text-gray-400">€{(Math.random() * 20 + 5).toFixed(1)}k</div>
-                </div>
-              ))}
+              {Array.from({ length: Math.min(col.count, 2) }).map((_, j) => {
+                // Deterministic pseudo-value to avoid hydration mismatch (React #425)
+                const amount = (((i * 7 + j * 3 + 11) % 20) + 5).toFixed(1)
+                return (
+                  <div key={j} className="bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded p-0.5">
+                    <div className="font-medium text-gray-700 dark:text-gray-300 truncate">Empresa {i * 2 + j + 1}</div>
+                    <div className="text-gray-400">€{amount}k</div>
+                  </div>
+                )
+              })}
             </div>
           </div>
         ))}

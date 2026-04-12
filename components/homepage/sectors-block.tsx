@@ -6,25 +6,26 @@ import Link from "next/link"
 import { useTranslations } from "next-intl"
 
 const sectorsMeta = [
-  { href: "/sectores/concesionarios", image: "/images/sectors/concesionarios.jpg", alt: "Agente IA para concesionarios de automóviles: cualificación de leads y gestión de test drives", objectPosition: "center" },
-  { href: "/sectores/clinicas", image: "/images/sectors/clinicas.jpg", alt: "Agente IA para clínicas: gestión de citas médicas y recordatorios automáticos", objectPosition: "center" },
-  { href: "/sectores/inmobiliarias", image: "/images/sectors/inmobiliarias.jpg", alt: "Agente IA para inmobiliarias: cualificación de compradores y gestión de visitas", objectPosition: "top" },
-  { href: "/sectores/restaurantes", image: "/images/sectors/restaurantes.jpg", alt: "Agente IA para restaurantes: reservas automáticas y gestión de pedidos", objectPosition: "center" },
-  { href: "/sectores/ecommerce", image: "/images/sectors/ecommerce.jpg", alt: "Agente IA para e-commerce: recuperación de carrito y recomendaciones de producto", objectPosition: "center" },
-  { href: "/sectores/turismo-hoteleria", image: "/images/sectors/turismo.jpg", alt: "Agente IA para hoteles y turismo: reservas, upselling y soporte multiidioma", objectPosition: "center" },
-  { href: "/sectores/educacion", image: "/images/sectors/educacion.jpg", alt: "Agente IA para centros educativos: gestión de matrículas y consultas automáticas", objectPosition: "center" },
-  { href: "/sectores/servicios-tecnicos", image: "/images/sectors/servicios-locales.jpg", alt: "Agente IA para servicios locales: generación de leads y agendamiento automático", objectPosition: "center" },
+  { href: "/sectores/concesionarios", image: "/images/sectors/concesionarios.jpg", objectPosition: "center" },
+  { href: "/sectores/clinicas", image: "/images/sectors/clinicas.jpg", objectPosition: "center" },
+  { href: "/sectores/inmobiliarias", image: "/images/sectors/inmobiliarias.jpg", objectPosition: "top" },
+  { href: "/sectores/restaurantes", image: "/images/sectors/restaurantes.jpg", objectPosition: "center" },
+  { href: "/sectores/ecommerce", image: "/images/sectors/ecommerce.jpg", objectPosition: "center" },
+  { href: "/sectores/turismo-hoteleria", image: "/images/sectors/turismo.jpg", objectPosition: "center" },
+  { href: "/sectores/educacion", image: "/images/sectors/educacion.jpg", objectPosition: "center" },
+  { href: "/sectores/servicios-tecnicos", image: "/images/sectors/servicios-locales.jpg", objectPosition: "center" },
 ]
 
 export function SectorsBlock() {
   const t = useTranslations("sectors")
 
-  const translatedItems = t.raw("items") as { name: string; useCase: string }[]
+  const translatedItems = t.raw("items") as { name: string; useCase: string; alt: string }[]
 
   const sectors = sectorsMeta.map((meta, i) => ({
     ...meta,
     name: translatedItems[i].name,
     useCase: translatedItems[i].useCase,
+    alt: translatedItems[i].alt,
   }))
 
   return (
@@ -32,8 +33,8 @@ export function SectorsBlock() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            <span>IA entrenada para </span>
-            <span className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">tu industria</span>
+            <span>{t("title_plain")} </span>
+            <span className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">{t("title_highlight")}</span>
           </h2>
           <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
             {t("subtitle")}

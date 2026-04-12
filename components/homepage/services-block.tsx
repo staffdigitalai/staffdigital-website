@@ -30,8 +30,8 @@ export async function ServicesBlock() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            <span>Un agente IA para </span>
-            <span className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">cada necesidad</span>
+            <span>{t("title_plain")} </span>
+            <span className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">{t("title_highlight")}</span>
           </h2>
           <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
             {t("subtitle")}

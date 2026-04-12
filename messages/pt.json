@@ -42,6 +42,8 @@
   },
   "services": {
     "title": "Soluções IA por caso de uso",
+    "title_plain": "Um agente IA para",
+    "title_highlight": "cada necessidade",
     "subtitle": "Cada agente resolve um problema concreto. Todos conectados numa só plataforma.",
     "view_all": "Ver todas as soluções",
     "learn_more": "Ver solução",
@@ -71,17 +73,19 @@
   },
   "sectors": {
     "title": "Agentes IA para o seu setor",
+    "title_plain": "IA treinada para",
+    "title_highlight": "a sua indústria",
     "subtitle": "IA treinada com o conhecimento da sua indústria. Pronta para atender desde o primeiro dia.",
     "view_all": "Ver todos os setores",
     "items": [
-      {"name": "IA para Concessionários", "useCase": "Agenda test drives, qualifica compradores e automatiza o seguimento pós-venda"},
-      {"name": "IA para Clínicas e Saúde", "useCase": "Gere consultas médicas, envia lembretes e atende pacientes 24/7"},
-      {"name": "IA para Imobiliárias", "useCase": "Programa visitas, qualifica compradores e faz follow-up automático"},
-      {"name": "IA para Restaurantes", "useCase": "Gere reservas, pedidos takeaway e confirmações sem perder uma chamada"},
-      {"name": "IA para E-commerce", "useCase": "Recupera carrinhos abandonados, recomenda produtos e atende consultas instantaneamente"},
-      {"name": "IA para Turismo e Hotelaria", "useCase": "Automatiza reservas, impulsiona upselling e dá suporte multilingue 24/7"},
-      {"name": "IA para Educação", "useCase": "Gere matrículas, responde a consultas de pais e envia lembretes automáticos"},
-      {"name": "IA para Serviços Locais", "useCase": "Capta novos clientes, agenda marcações e automatiza o seguimento comercial"}
+      {"name": "IA para Concessionários", "useCase": "Agenda test drives, qualifica compradores e automatiza o seguimento pós-venda", "alt": "Agente IA para concessionários: qualificação de leads e gestão de test drives"},
+      {"name": "IA para Clínicas e Saúde", "useCase": "Gere consultas médicas, envia lembretes e atende pacientes 24/7", "alt": "Agente IA para clínicas: gestão de consultas médicas e lembretes automáticos"},
+      {"name": "IA para Imobiliárias", "useCase": "Programa visitas, qualifica compradores e faz follow-up automático", "alt": "Agente IA para imobiliárias: qualificação de compradores e gestão de visitas"},
+      {"name": "IA para Restaurantes", "useCase": "Gere reservas, pedidos takeaway e confirmações sem perder uma chamada", "alt": "Agente IA para restaurantes: reservas automáticas e gestão de pedidos"},
+      {"name": "IA para E-commerce", "useCase": "Recupera carrinhos abandonados, recomenda produtos e atende consultas instantaneamente", "alt": "Agente IA para e-commerce: recuperação de carrinho e recomendações"},
+      {"name": "IA para Turismo e Hotelaria", "useCase": "Automatiza reservas, impulsiona upselling e dá suporte multilingue 24/7", "alt": "Agente IA para hotéis e turismo: reservas e suporte multilingue"},
+      {"name": "IA para Educação", "useCase": "Gere matrículas, responde a consultas de pais e envia lembretes automáticos", "alt": "Agente IA para escolas: gestão de matrículas e consultas automáticas"},
+      {"name": "IA para Serviços Locais", "useCase": "Capta novos clientes, agenda marcações e automatiza o seguimento comercial", "alt": "Agente IA para serviços locais: geração de leads e agendamento"}
     ]
   },
   "methodology": {
@@ -100,8 +104,10 @@
   },
   "comparison": {
     "title": "Plataforma gerida vs ferramentas DIY",
+    "title_prefix": "Outras plataformas",
     "subtitle": "Enquanto outros lhe vendem ferramentas para trabalhar, nós entregamos-lhe resultados.",
     "competitor_label": "Bland, Vapi, Synthflow...",
+    "competitor_description": "Bland, Vapi, chatbots genéricos...",
     "us_label": "StaffDigital AI",
     "recommended": "Recomendado",
     "rows": [
@@ -192,8 +198,38 @@
       }
     }
   },
+  "crm": {
+    "badge": "Integração nativa",
+    "title": "Automatização de CRM com IA",
+    "subtitle": "Os seus agentes IA e o seu CRM a trabalhar juntos. Sem entrada manual de dados.",
+    "sync_title": "O que sincronizamos",
+    "sync_items": [
+      "Conversas → CRM",
+      "Leads qualificados → Pipeline",
+      "Oportunidades criadas automaticamente",
+      "Histórico completo do cliente",
+      "Follow-ups e notificações automáticas"
+    ],
+    "crms_title": "CRMs compatíveis",
+    "crms": [
+      {"name": "Twenty", "note": "recomendado"},
+      {"name": "HubSpot", "note": null},
+      {"name": "Salesforce", "note": null},
+      {"name": "Pipedrive", "note": null},
+      {"name": "Zoho", "note": null}
+    ],
+    "cta": "Descobrir Automatização CRM"
+  },
   "footer": {
     "slogan": "Plataforma omnicanal com agentes IA gerida para empresas.",
+    "col_solutions": "Soluções",
+    "col_product": "Produto",
+    "col_company": "Empresa",
+    "col_resources": "Recursos",
+    "solutions_links": ["Agentes IA com Voz Humana ★", "Atendimento Telefónico IA", "WhatsApp IA Empresas", "Geração de Leads IA", "Agente de Suporte IA", "Ver todas as soluções"],
+    "product_links": ["Preços", "Tecnologia", "Integrações", "Segurança", "Setores"],
+    "company_links": ["Sobre Nós", "Contacto", "Parceiros", "Metodologia", "FAQ"],
+    "resources_links": ["Blog", "Casos de Sucesso", "Demo Voz Humana", "Solicitar Demo", "Setores"],
     "rights": "Todos os direitos reservados.",
     "privacy": "Política de Privacidade",
     "legal": "Aviso Legal",

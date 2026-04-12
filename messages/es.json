@@ -42,6 +42,8 @@
   },
   "services": {
     "title": "Un agente IA para cada necesidad",
+    "title_plain": "Un agente IA para",
+    "title_highlight": "cada necesidad",
     "subtitle": "Cada agente resuelve un problema concreto. Todos conectados entre sí dentro de StaffDigital AI.",
     "view_all": "Ver todas las soluciones",
     "learn_more": "Ver solución",
@@ -71,17 +73,19 @@
   },
 "sectors": {
   "title": "IA entrenada para tu industria",
+  "title_plain": "IA entrenada para",
+  "title_highlight": "tu industria",
   "subtitle": "Agentes que conocen el vocabulario, los procesos y las necesidades de tu sector. Listos desde el primer día.",
   "view_all": "Ver todos los sectores",
     "items": [
-      {"name": "IA para Concesionarios", "useCase": "Agenda test drives, cualifica compradores y automatiza el seguimiento posventa"},
-      {"name": "IA para Clínicas y Salud", "useCase": "Gestiona citas médicas, envía recordatorios y atiende pacientes 24/7"},
-      {"name": "IA para Inmobiliarias", "useCase": "Programa visitas, cualifica compradores y hace follow-up automático"},
-      {"name": "IA para Restaurantes", "useCase": "Gestiona reservas, pedidos takeaway y confirmaciones sin perder una llamada"},
-      {"name": "IA para E-commerce", "useCase": "Recupera carritos abandonados, recomienda productos y atiende consultas al instante"},
-      {"name": "IA para Turismo y Hotelería", "useCase": "Automatiza reservas, impulsa upselling y da soporte multiidioma 24/7"},
-      {"name": "IA para Educación", "useCase": "Gestiona matrículas, responde consultas de padres y envía recordatorios automáticos"},
-      {"name": "IA para Servicios Locales", "useCase": "Capta nuevos clientes, agenda citas y automatiza el seguimiento comercial"}
+      {"name": "IA para Concesionarios", "useCase": "Agenda test drives, cualifica compradores y automatiza el seguimiento posventa", "alt": "Agente IA para concesionarios: cualificación de leads y gestión de test drives"},
+      {"name": "IA para Clínicas y Salud", "useCase": "Gestiona citas médicas, envía recordatorios y atiende pacientes 24/7", "alt": "Agente IA para clínicas: gestión de citas médicas y recordatorios automáticos"},
+      {"name": "IA para Inmobiliarias", "useCase": "Programa visitas, cualifica compradores y hace follow-up automático", "alt": "Agente IA para inmobiliarias: cualificación de compradores y gestión de visitas"},
+      {"name": "IA para Restaurantes", "useCase": "Gestiona reservas, pedidos takeaway y confirmaciones sin perder una llamada", "alt": "Agente IA para restaurantes: reservas automáticas y gestión de pedidos"},
+      {"name": "IA para E-commerce", "useCase": "Recupera carritos abandonados, recomienda productos y atiende consultas al instante", "alt": "Agente IA para e-commerce: recuperación de carrito y recomendaciones"},
+      {"name": "IA para Turismo y Hotelería", "useCase": "Automatiza reservas, impulsa upselling y da soporte multiidioma 24/7", "alt": "Agente IA para hoteles y turismo: reservas y soporte multiidioma"},
+      {"name": "IA para Educación", "useCase": "Gestiona matrículas, responde consultas de padres y envía recordatorios automáticos", "alt": "Agente IA para centros educativos: gestión de matrículas y consultas"},
+      {"name": "IA para Servicios Locales", "useCase": "Capta nuevos clientes, agenda citas y automatiza el seguimiento comercial", "alt": "Agente IA para servicios locales: generación de leads y agendamiento"}
     ]
   },
   "methodology": {
@@ -100,8 +104,10 @@
   },
   "comparison": {
     "title": "Otras plataformas vs StaffDigital AI",
+    "title_prefix": "Otras plataformas",
     "subtitle": "Mientras otros te venden herramientas para que trabajes tú, nosotros te entregamos resultados.",
     "competitor_label": "Otros",
+    "competitor_description": "Bland, Vapi, chatbots genéricos...",
     "us_label": "StaffDigital AI",
     "recommended": "Recomendado",
     "rows": [
@@ -192,8 +198,38 @@
       }
     }
   },
+  "crm": {
+    "badge": "Integración nativa",
+    "title": "Automatización de CRM con IA",
+    "subtitle": "Tus agentes IA y tu CRM trabajando juntos. Sin entrada manual de datos.",
+    "sync_title": "Qué sincronizamos",
+    "sync_items": [
+      "Conversaciones → CRM",
+      "Leads cualificados → Pipeline",
+      "Oportunidades creadas automáticamente",
+      "Historial completo del cliente",
+      "Follow-ups y notificaciones automáticas"
+    ],
+    "crms_title": "CRMs compatibles",
+    "crms": [
+      {"name": "Twenty", "note": "recomendado"},
+      {"name": "HubSpot", "note": null},
+      {"name": "Salesforce", "note": null},
+      {"name": "Pipedrive", "note": null},
+      {"name": "Zoho", "note": null}
+    ],
+    "cta": "Descubrir Automatización CRM"
+  },
   "footer": {
     "slogan": "Tu equipo IA omnicanal para atención al cliente — 100% gestionado.",
+    "col_solutions": "Soluciones",
+    "col_product": "Producto",
+    "col_company": "Empresa",
+    "col_resources": "Recursos",
+    "solutions_links": ["Agentes IA con Voz Humana ★", "Atención Telefónica IA", "WhatsApp IA Empresas", "Lead Generation IA", "Agente de Soporte IA", "Ver todas las soluciones"],
+    "product_links": ["Precios", "Tecnología", "Integraciones", "Seguridad", "Sectores"],
+    "company_links": ["Sobre Nosotros", "Contacto", "Partners", "Metodología", "FAQ"],
+    "resources_links": ["Blog", "Casos de Éxito", "Demo Voz Humana", "Solicitar Demo", "Sectores"],
     "rights": "Todos los derechos reservados.",
     "privacy": "Política de Privacidad",
     "legal": "Aviso Legal",

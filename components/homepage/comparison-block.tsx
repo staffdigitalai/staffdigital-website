@@ -15,7 +15,7 @@ export function ComparisonBlock() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            <span className="text-foreground">Otras plataformas</span>
+            <span className="text-foreground">{t("title_prefix")}</span>
             {" "}
             <span className="text-foreground/50">vs</span>
             {" "}
@@ -38,7 +38,7 @@ export function ComparisonBlock() {
                 {t("competitor_label")}
               </div>
               <div className="text-xs text-gray-400 dark:text-foreground/30 mt-0.5">
-                Bland, Vapi, chatbots genéricos...
+                {t("competitor_description")}
               </div>
             </div>
             <div className="px-5 py-4 text-center">

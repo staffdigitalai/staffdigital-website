@@ -42,6 +42,8 @@
   },
   "services": {
     "title": "AI solutions by use case",
+    "title_plain": "An AI agent for",
+    "title_highlight": "every need",
     "subtitle": "Each agent solves a specific problem. All connected in one platform.",
     "view_all": "View all solutions",
     "learn_more": "View solution",
@@ -71,17 +73,19 @@
   },
   "sectors": {
     "title": "AI Agents for your industry",
+    "title_plain": "AI trained for",
+    "title_highlight": "your industry",
     "subtitle": "AI trained with your industry knowledge. Ready to serve from day one.",
     "view_all": "View all industries",
     "items": [
-      {"name": "AI for Car Dealers", "useCase": "Schedules test drives, qualifies buyers and automates after-sales follow-up"},
-      {"name": "AI for Healthcare", "useCase": "Manages medical appointments, sends reminders and serves patients 24/7"},
-      {"name": "AI for Real Estate", "useCase": "Schedules viewings, qualifies buyers and automates follow-up"},
-      {"name": "AI for Restaurants", "useCase": "Manages reservations, takeaway orders and confirmations without missing a call"},
-      {"name": "AI for E-commerce", "useCase": "Recovers abandoned carts, recommends products and answers inquiries instantly"},
-      {"name": "AI for Hotels", "useCase": "Automates bookings, drives upselling and provides multilingual 24/7 support"},
-      {"name": "AI for Education", "useCase": "Manages enrollment, answers parent inquiries and sends automatic reminders"},
-      {"name": "AI for Local Services", "useCase": "Captures new clients, schedules appointments and automates sales follow-up"}
+      {"name": "AI for Car Dealers", "useCase": "Schedules test drives, qualifies buyers and automates after-sales follow-up", "alt": "AI agent for car dealerships: lead qualification and test drive management"},
+      {"name": "AI for Healthcare", "useCase": "Manages medical appointments, sends reminders and serves patients 24/7", "alt": "AI agent for clinics: medical appointment management and automatic reminders"},
+      {"name": "AI for Real Estate", "useCase": "Schedules viewings, qualifies buyers and automates follow-up", "alt": "AI agent for real estate: buyer qualification and viewing management"},
+      {"name": "AI for Restaurants", "useCase": "Manages reservations, takeaway orders and confirmations without missing a call", "alt": "AI agent for restaurants: automatic reservations and order management"},
+      {"name": "AI for E-commerce", "useCase": "Recovers abandoned carts, recommends products and answers inquiries instantly", "alt": "AI agent for e-commerce: cart recovery and product recommendations"},
+      {"name": "AI for Hotels", "useCase": "Automates bookings, drives upselling and provides multilingual 24/7 support", "alt": "AI agent for hotels and tourism: bookings and multilingual support"},
+      {"name": "AI for Education", "useCase": "Manages enrollment, answers parent inquiries and sends automatic reminders", "alt": "AI agent for schools: enrollment management and automatic inquiries"},
+      {"name": "AI for Local Services", "useCase": "Captures new clients, schedules appointments and automates sales follow-up", "alt": "AI agent for local services: lead generation and appointment scheduling"}
     ]
   },
   "methodology": {
@@ -100,8 +104,10 @@
   },
   "comparison": {
     "title": "Managed platform vs DIY tools",
+    "title_prefix": "Other platforms",
     "subtitle": "While others sell you tools so you do the work, we deliver results.",
     "competitor_label": "Bland, Vapi, Synthflow...",
+    "competitor_description": "Bland, Vapi, generic chatbots...",
     "us_label": "StaffDigital AI",
     "recommended": "Recommended",
     "rows": [
@@ -192,8 +198,38 @@
       }
     }
   },
+  "crm": {
+    "badge": "Native integration",
+    "title": "CRM Automation with AI",
+    "subtitle": "Your AI agents and CRM working together. No manual data entry.",
+    "sync_title": "What we sync",
+    "sync_items": [
+      "Conversations → CRM",
+      "Qualified leads → Pipeline",
+      "Opportunities created automatically",
+      "Complete customer history",
+      "Follow-ups and automatic notifications"
+    ],
+    "crms_title": "Compatible CRMs",
+    "crms": [
+      {"name": "Twenty", "note": "recommended"},
+      {"name": "HubSpot", "note": null},
+      {"name": "Salesforce", "note": null},
+      {"name": "Pipedrive", "note": null},
+      {"name": "Zoho", "note": null}
+    ],
+    "cta": "Discover CRM Automation"
+  },
   "footer": {
     "slogan": "Managed omnichannel platform with AI agents for businesses.",
+    "col_solutions": "Solutions",
+    "col_product": "Product",
+    "col_company": "Company",
+    "col_resources": "Resources",
+    "solutions_links": ["AI Agents with Human Voice ★", "AI Phone Service", "WhatsApp AI Business", "AI Lead Generation", "AI Support Agent", "View all solutions"],
+    "product_links": ["Pricing", "Technology", "Integrations", "Security", "Industries"],
+    "company_links": ["About Us", "Contact", "Partners", "Methodology", "FAQ"],
+    "resources_links": ["Blog", "Case Studies", "Human Voice Demo", "Request Demo", "Industries"],
     "rights": "All rights reserved.",
     "privacy": "Privacy Policy",
     "legal": "Legal Notice",

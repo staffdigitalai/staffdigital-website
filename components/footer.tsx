@@ -4,38 +4,37 @@ import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon, MapPin } from "
 import { StaffDigitalLogoDark } from "@/components/staffdigital-logo"
 import { useTranslations } from "next-intl"
 
-const solucionesLinks = [
-  { title: "Agentes IA con Voz Humana ★", href: "/soluciones/agentes-ia-voz-humana" },
-  { title: "Atención Telefónica IA", href: "/soluciones/atencion-telefonica-ia" },
-  { title: "WhatsApp IA Empresas", href: "/soluciones/whatsapp-ia-empresas" },
-  { title: "Lead Generation IA", href: "/soluciones/lead-generation-ia" },
-  { title: "Agente de Soporte IA", href: "/soluciones/agente-soporte-ia" },
-  { title: "Ver todas las soluciones", href: "/soluciones" },
-]
-
-const productLinks = [
-  { title: "Precios", href: "/precios" },
-  { title: "Tecnología", href: "/tecnologia" },
-  { title: "Integraciones", href: "/integraciones" },
-  { title: "Seguridad", href: "/seguridad-compliance" },
-  { title: "Sectores", href: "/sectores" },
-]
-
-const empresaLinks = [
-  { title: "Sobre Nosotros", href: "/nosotros" },
-  { title: "Contacto", href: "/contacto" },
-  { title: "Partners", href: "/partners" },
-  { title: "Metodología", href: "/metodologia" },
-  { title: "FAQ", href: "/faq" },
-]
-
-const recursosLinks = [
-  { title: "Blog", href: "/blog" },
-  { title: "Casos de Éxito", href: "/casos-exito" },
-  { title: "Demo Voz Humana", href: "/demo-voice" },
-  { title: "Solicitar Demo", href: "/demo" },
-  { title: "Sectores", href: "/sectores" },
-]
+const linkHrefs = {
+  solutions: [
+    "/soluciones/agentes-ia-voz-humana",
+    "/soluciones/atencion-telefonica-ia",
+    "/soluciones/whatsapp-ia-empresas",
+    "/soluciones/lead-generation-ia",
+    "/soluciones/agente-soporte-ia",
+    "/soluciones",
+  ],
+  product: [
+    "/precios",
+    "/tecnologia",
+    "/integraciones",
+    "/seguridad-compliance",
+    "/sectores",
+  ],
+  company: [
+    "/nosotros",
+    "/contacto",
+    "/partners",
+    "/metodologia",
+    "/faq",
+  ],
+  resources: [
+    "/blog",
+    "/casos-exito",
+    "/demo-voice",
+    "/demo",
+    "/sectores",
+  ],
+}
 
 const socialLinks = [
   { icon: FacebookIcon, href: "https://www.facebook.com/staffdigitalai", label: "Facebook" },
@@ -46,6 +45,11 @@ const socialLinks = [
 
 export function Footer() {
   const t = useTranslations("footer")
+
+  const solutionsTitles = t.raw("solutions_links") as string[]
+  const productTitles = t.raw("product_links") as string[]
+  const companyTitles = t.raw("company_links") as string[]
+  const resourcesTitles = t.raw("resources_links") as string[]
 
   return (
     <footer className="relative w-full border-t border-foreground/10 bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/8%),transparent)] dark:bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/8%),transparent)]">
@@ -89,68 +93,68 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Soluciones */}
+          {/* Column 2: Solutions */}
           <div>
-            <h3 className="text-sm font-medium text-foreground/80 mb-4">Soluciones</h3>
+            <h3 className="text-sm font-medium text-foreground/80 mb-4">{t("col_solutions")}</h3>
             <ul className="space-y-3">
-              {solucionesLinks.map((link) => (
-                <li key={link.title}>
+              {solutionsTitles.map((title, i) => (
+                <li key={i}>
                   <a
-                    href={link.href}
+                    href={linkHrefs.solutions[i]}
                     className="text-foreground/50 hover:text-foreground text-sm transition-colors duration-200"
                   >
-                    {link.title}
+                    {title}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 3: Producto */}
+          {/* Column 3: Product */}
           <div>
-            <h3 className="text-sm font-medium text-foreground/80 mb-4">Producto</h3>
+            <h3 className="text-sm font-medium text-foreground/80 mb-4">{t("col_product")}</h3>
             <ul className="space-y-3">
-              {productLinks.map((link) => (
-                <li key={link.title}>
+              {productTitles.map((title, i) => (
+                <li key={i}>
                   <a
-                    href={link.href}
+                    href={linkHrefs.product[i]}
                     className="text-foreground/50 hover:text-foreground text-sm transition-colors duration-200"
                   >
-                    {link.title}
+                    {title}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 4: Empresa */}
+          {/* Column 4: Company */}
           <div>
-            <h3 className="text-sm font-medium text-foreground/80 mb-4">Empresa</h3>
+            <h3 className="text-sm font-medium text-foreground/80 mb-4">{t("col_company")}</h3>
             <ul className="space-y-3">
-              {empresaLinks.map((link) => (
-                <li key={link.title}>
+              {companyTitles.map((title, i) => (
+                <li key={i}>
                   <a
-                    href={link.href}
+                    href={linkHrefs.company[i]}
                     className="text-foreground/50 hover:text-foreground text-sm transition-colors duration-200"
                   >
-                    {link.title}
+                    {title}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 5: Recursos */}
+          {/* Column 5: Resources */}
           <div>
-            <h3 className="text-sm font-medium text-foreground/80 mb-4">Recursos</h3>
+            <h3 className="text-sm font-medium text-foreground/80 mb-4">{t("col_resources")}</h3>
             <ul className="space-y-3">
-              {recursosLinks.map((link) => (
-                <li key={link.title}>
+              {resourcesTitles.map((title, i) => (
+                <li key={i}>
                   <a
-                    href={link.href}
+                    href={linkHrefs.resources[i]}
                     className="text-foreground/50 hover:text-foreground text-sm transition-colors duration-200"
                   >
-                    {link.title}
+                    {title}
                   </a>
                 </li>
               ))}

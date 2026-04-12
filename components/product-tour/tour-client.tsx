@@ -2,6 +2,7 @@
 
 import { useRef } from "react"
 import { TourProvider, useTour } from "./tour-provider"
+import { ChatwootMockup } from "./chatwoot-mockup"
 import { TourOverlay } from "./tour-overlay"
 import { useTranslations } from "next-intl"
 import Link from "next/link"
@@ -9,26 +10,15 @@ import { Monitor } from "lucide-react"
 
 function TourContent() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const { isActive } = useTour()
+  const { mockupState, selectConversation, selectTab } = useTour()
 
   return (
     <div ref={containerRef} className="relative max-w-6xl mx-auto">
-      {/* Real Chatwoot demo instance */}
-      <div
-        data-tour-target="full-mockup"
-        className="w-full rounded-2xl overflow-hidden border border-gray-200 shadow-2xl shadow-gray-300/50"
-        style={{ height: "600px" }}
-      >
-        <iframe
-          src="https://demo.staffdigital.ai/app/accounts/1/dashboard"
-          title="StaffDigital AI — Plataforma Omnicanal"
-          className="w-full h-full border-0"
-          allow="clipboard-read; clipboard-write"
-          loading="eager"
-        />
-      </div>
-
-      {/* Tour overlay positioned on top of iframe */}
+      <ChatwootMockup
+        state={mockupState}
+        onSelectConversation={selectConversation}
+        onSelectTab={selectTab}
+      />
       <TourOverlay containerRef={containerRef} />
     </div>
   )
@@ -43,11 +33,7 @@ function MobileGate() {
       </div>
       <h3 className="text-xl font-bold text-foreground mb-2">{t("mobile_title")}</h3>
       <p className="text-sm text-foreground/60 mb-6 max-w-sm">{t("mobile_description")}</p>
-      <Link
-        href="/demo"
-        className="px-6 py-3 rounded-xl text-white font-semibold text-sm"
-        style={{ background: "linear-gradient(135deg, var(--neon-blue), var(--purple-dark))" }}
-      >
+      <Link href="/demo" className="px-6 py-3 rounded-xl text-white font-semibold text-sm bg-gradient-to-r from-blue-500 to-purple-600">
         {t("cta_button")}
       </Link>
     </div>
@@ -57,11 +43,9 @@ function MobileGate() {
 export function TourClient() {
   return (
     <TourProvider>
-      {/* Desktop */}
       <div className="hidden md:block py-8 px-4">
         <TourContent />
       </div>
-      {/* Mobile */}
       <div className="md:hidden">
         <MobileGate />
       </div>

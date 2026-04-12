@@ -6,15 +6,8 @@ import {
   Sparkles, Tag, Building2, AtSign, Calendar,
   ChevronDown, MoreHorizontal, Clock, PhoneCall,
 } from "lucide-react"
-import type {
-  Conversation, ChatMessage, ContactInfo,
-} from "./chatwoot-mockup-data"
-import {
-  conversations as defaultConversations,
-  chatMessages as defaultMessages,
-  contactInfoBase,
-  lifecycleFilters,
-} from "./chatwoot-mockup-data"
+import type { Conversation, ChatMessage, ContactInfo } from "./chatwoot-mockup-data"
+import { conversations as allConversations, contactInfoBase, lifecycleFilters } from "./chatwoot-mockup-data"
 
 // ─── Types ───────────────────────────────────────────────────────────
 export interface MockupState {
@@ -26,20 +19,13 @@ export interface MockupState {
   showTyping: boolean
 }
 
-export const defaultMockupState: MockupState = {
-  activeTab: "inbox",
-  activeConversationId: "1",
-  conversations: defaultConversations,
-  messages: defaultMessages,
-  contact: contactInfoBase,
-  showTyping: false,
-}
-
 interface ChatwootMockupProps {
   state: MockupState
+  onSelectConversation: (id: string) => void
+  onSelectTab: (tab: string) => void
 }
 
-// ─── Channel icon helper ─────────────────────────────────────────────
+// ─── Channel icon ────────────────────────────────────────────────────
 function ChannelIcon({ channel, size = 12 }: { channel: string; size?: number }) {
   const cls = "shrink-0"
   switch (channel) {
@@ -60,23 +46,21 @@ const sidebarIcons = [
   { id: "settings", Icon: Settings },
 ]
 
-function Sidebar({ activeTab }: { activeTab: string }) {
+function Sidebar({ activeTab, onSelectTab }: { activeTab: string; onSelectTab: (t: string) => void }) {
   return (
     <div
       data-tour-target="sidebar"
       className="w-12 bg-white border-r border-gray-200 flex flex-col items-center py-3 gap-1 shrink-0"
     >
-      {/* Brand icon */}
       <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#1F93FF] to-[#7C3AED] flex items-center justify-center mb-4">
         <span className="text-white text-xs font-bold">SD</span>
       </div>
       {sidebarIcons.map(({ id, Icon, count }) => (
         <button
           key={id}
-          className={`relative w-9 h-9 rounded-lg flex items-center justify-center transition-colors ${
-            activeTab === id
-              ? "bg-blue-50 text-blue-600"
-              : "text-gray-400 hover:text-gray-600 hover:bg-gray-100"
+          onClick={() => onSelectTab(id)}
+          className={`relative w-9 h-9 rounded-lg flex items-center justify-center transition-colors cursor-pointer ${
+            activeTab === id ? "bg-blue-50 text-blue-600" : "text-gray-400 hover:text-gray-600 hover:bg-gray-100"
           }`}
         >
           <Icon size={18} />
@@ -93,17 +77,12 @@ function Sidebar({ activeTab }: { activeTab: string }) {
 
 // ─── Conversation List ───────────────────────────────────────────────
 function ConversationList({
-  conversations,
-  activeId,
+  conversations, activeId, onSelect,
 }: {
-  conversations: Conversation[]
-  activeId: string
+  conversations: Conversation[]; activeId: string; onSelect: (id: string) => void
 }) {
   return (
-    <div
-      data-tour-target="conversation-list"
-      className="w-60 bg-white border-r border-gray-200 flex flex-col shrink-0"
-    >
+    <div data-tour-target="conversation-list" className="w-60 bg-white border-r border-gray-200 flex flex-col shrink-0">
       {/* Header */}
       <div className="px-3 py-2.5 border-b border-gray-200">
         <div className="flex items-center justify-between mb-2">
@@ -111,9 +90,7 @@ function ConversationList({
             <span className="text-sm font-semibold text-gray-900">Chats</span>
             <span className="text-sm text-gray-400">Calls</span>
           </div>
-          <div className="flex items-center gap-1">
-            <Search size={14} className="text-gray-400" />
-          </div>
+          <Search size={14} className="text-gray-400" />
         </div>
         <div className="flex items-center gap-2 text-xs">
           <span className="text-gray-600">All, Newest</span>
@@ -146,15 +123,14 @@ function ConversationList({
         ))}
       </div>
 
-      {/* Conversation items */}
+      {/* Clickable conversation items */}
       <div className="flex-1 overflow-y-auto">
         {conversations.map((conv) => (
           <div
             key={conv.id}
+            onClick={() => onSelect(conv.id)}
             className={`px-3 py-2.5 border-b border-gray-100 cursor-pointer transition-colors ${
-              conv.id === activeId
-                ? "bg-blue-50"
-                : "hover:bg-gray-50"
+              conv.id === activeId ? "bg-blue-50" : "hover:bg-gray-50"
             }`}
           >
             <div className="flex items-start gap-2">
@@ -175,9 +151,7 @@ function ConversationList({
                     <span className={`text-[9px] px-1.5 py-0.5 rounded ${conv.badgeColor} text-white font-medium`}>
                       {conv.badge}
                     </span>
-                    {conv.unread && (
-                      <span className="w-2 h-2 rounded-full bg-blue-500 ml-auto" />
-                    )}
+                    {conv.unread && <span className="w-2 h-2 rounded-full bg-blue-500 ml-auto" />}
                   </div>
                 )}
               </div>
@@ -190,40 +164,24 @@ function ConversationList({
 }
 
 // ─── Chat Thread ─────────────────────────────────────────────────────
-function ChatThread({
-  messages,
-  contact,
-  showTyping,
-}: {
-  messages: ChatMessage[]
-  contact: ContactInfo
-  showTyping: boolean
-}) {
+function ChatThread({ messages, contact, showTyping }: { messages: ChatMessage[]; contact: ContactInfo; showTyping: boolean }) {
   return (
-    <div
-      data-tour-target="chat-thread"
-      className="flex-1 flex flex-col bg-gray-50 min-w-0"
-    >
+    <div data-tour-target="chat-thread" className="flex-1 flex flex-col bg-gray-50 min-w-0">
       {/* Header */}
       <div className="h-12 px-4 flex items-center justify-between border-b border-gray-200 bg-white shrink-0">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-full bg-rose-500 flex items-center justify-center text-white text-xs font-bold">
             {contact.name.split(" ").map(n => n[0]).join("")}
           </div>
-          <div>
-            <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold text-gray-900">{contact.name}</span>
-              <span className={`text-[9px] px-1.5 py-0.5 rounded ${contact.lifecycleColor} text-white font-medium`}>
-                {contact.lifecycleStage}
-              </span>
-            </div>
+          <div className="flex items-center gap-1.5">
+            <span className="text-sm font-semibold text-gray-900">{contact.name}</span>
+            <span className={`text-[9px] px-1.5 py-0.5 rounded ${contact.lifecycleColor} text-white font-medium`}>
+              {contact.lifecycleStage}
+            </span>
           </div>
         </div>
         <div className="flex items-center gap-2 text-gray-400">
-          <Search size={16} />
-          <Clock size={16} />
-          <PhoneCall size={16} />
-          <MoreHorizontal size={16} />
+          <Search size={16} /><Clock size={16} /><PhoneCall size={16} /><MoreHorizontal size={16} />
         </div>
       </div>
 
@@ -254,16 +212,13 @@ function ChatThread({
               </div>
             )
           }
-          // agent
           return (
             <div key={msg.id} className="flex justify-end gap-2">
               <div className="max-w-[70%] bg-blue-50 border border-blue-100 rounded-2xl rounded-br-md px-3 py-2">
                 <p className="text-sm text-gray-800">{msg.text}</p>
                 <div className="flex items-center gap-1 mt-1">
                   <span className="text-[10px] text-gray-400">{msg.timestamp}</span>
-                  {msg.agentName && (
-                    <span className="text-[10px] text-blue-500">• {msg.agentName}</span>
-                  )}
+                  {msg.agentName && <span className="text-[10px] text-blue-500">• {msg.agentName}</span>}
                 </div>
               </div>
               <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shrink-0 mt-auto">
@@ -272,7 +227,6 @@ function ChatThread({
             </div>
           )
         })}
-
         {showTyping && (
           <div className="flex justify-end gap-2">
             <div className="bg-blue-50 border border-blue-100 rounded-2xl px-4 py-2.5">
@@ -289,11 +243,9 @@ function ChatThread({
         )}
       </div>
 
-      {/* Input bar */}
+      {/* Input */}
       <div className="h-12 px-4 flex items-center gap-2 border-t border-gray-200 bg-white shrink-0">
-        <div className="flex-1 bg-gray-100 rounded-lg px-3 py-1.5 text-xs text-gray-400">
-          Type a message...
-        </div>
+        <div className="flex-1 bg-gray-100 rounded-lg px-3 py-1.5 text-xs text-gray-400">Type a message...</div>
       </div>
     </div>
   )
@@ -302,11 +254,7 @@ function ChatThread({
 // ─── Contact Panel ───────────────────────────────────────────────────
 function ContactPanel({ contact }: { contact: ContactInfo }) {
   return (
-    <div
-      data-tour-target="contact-panel"
-      className="w-64 bg-white border-l border-gray-200 flex flex-col shrink-0 overflow-y-auto"
-    >
-      {/* Header */}
+    <div data-tour-target="contact-panel" className="w-64 bg-white border-l border-gray-200 flex flex-col shrink-0 overflow-y-auto">
       <div className="p-4 border-b border-gray-200 text-center">
         <div className="w-12 h-12 rounded-full bg-rose-500 flex items-center justify-center text-white text-lg font-bold mx-auto mb-2">
           {contact.name.split(" ").map(n => n[0]).join("")}
@@ -316,8 +264,6 @@ function ContactPanel({ contact }: { contact: ContactInfo }) {
           {contact.lifecycleStage}
         </span>
       </div>
-
-      {/* Contact details */}
       <div className="p-4 space-y-3 border-b border-gray-200">
         <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Contact Info</h4>
         {[
@@ -338,44 +284,28 @@ function ContactPanel({ contact }: { contact: ContactInfo }) {
           </div>
         ))}
       </div>
-
-      {/* Tags */}
       <div className="p-4 space-y-2 border-b border-gray-200">
-        <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider flex items-center gap-1">
-          <Tag size={12} /> Tags
-        </h4>
+        <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider flex items-center gap-1"><Tag size={12} /> Tags</h4>
         <div className="flex flex-wrap gap-1">
           {contact.tags.map((tag) => (
-            <span key={tag} className="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 border border-gray-200">
-              {tag}
-            </span>
+            <span key={tag} className="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 border border-gray-200">{tag}</span>
           ))}
         </div>
       </div>
-
-      {/* CRM Deal */}
       {contact.deal && (
         <div className="p-4 space-y-2">
-          <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider flex items-center gap-1">
-            <AtSign size={12} /> CRM Deal
-          </h4>
+          <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider flex items-center gap-1"><AtSign size={12} /> CRM Deal</h4>
           <div className="bg-gray-50 rounded-lg p-3 space-y-1.5 border border-gray-200">
             <div className="text-xs font-medium text-gray-900">{contact.deal.name}</div>
             <div className="flex items-center justify-between">
               <span className="text-[11px] text-green-600 font-semibold">{contact.deal.value}</span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded bg-purple-50 text-purple-600 border border-purple-200">
-                {contact.deal.stage}
-              </span>
+              <span className="text-[10px] px-1.5 py-0.5 rounded bg-purple-50 text-purple-600 border border-purple-200">{contact.deal.stage}</span>
             </div>
           </div>
         </div>
       )}
-
-      {/* Booking card */}
       <div className="p-4 space-y-2 border-t border-gray-200">
-        <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider flex items-center gap-1">
-          <Calendar size={12} /> Appointments
-        </h4>
+        <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider flex items-center gap-1"><Calendar size={12} /> Appointments</h4>
         <div className="bg-gray-50 rounded-lg p-3 text-center border border-gray-200">
           <div className="text-[11px] text-gray-500">Next: Today, 11:00 AM</div>
           <div className="text-[10px] text-blue-500 mt-0.5">Cal.com integration</div>
@@ -385,7 +315,7 @@ function ContactPanel({ contact }: { contact: ContactInfo }) {
   )
 }
 
-// ─── Reports panel ───────────────────────────────────────────────────
+// ─── Reports ─────────────────────────────────────────────────────────
 function ReportsPanel() {
   const bars = [65, 85, 45, 92, 73, 58, 88]
   return (
@@ -396,23 +326,20 @@ function ReportsPanel() {
           { label: "Conversations", value: "1,247", change: "+12%" },
           { label: "Resolution Rate", value: "94.3%", change: "+3.2%" },
           { label: "Avg Response", value: "< 1s", change: "-0.3s" },
-        ].map((stat) => (
-          <div key={stat.label} className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
-            <div className="text-xs text-gray-500">{stat.label}</div>
-            <div className="text-xl font-bold text-gray-900 mt-1">{stat.value}</div>
-            <div className="text-xs text-green-500 mt-0.5">{stat.change}</div>
+        ].map((s) => (
+          <div key={s.label} className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
+            <div className="text-xs text-gray-500">{s.label}</div>
+            <div className="text-xl font-bold text-gray-900 mt-1">{s.value}</div>
+            <div className="text-xs text-green-500 mt-0.5">{s.change}</div>
           </div>
         ))}
       </div>
       <div className="bg-white rounded-xl p-4 flex-1 border border-gray-200 shadow-sm">
         <div className="text-sm text-gray-500 mb-3">Weekly Activity</div>
         <div className="flex items-end gap-3 h-32">
-          {bars.map((h, i) => (
+          {bars.map((ht, i) => (
             <div key={i} className="flex-1 flex flex-col items-center gap-1">
-              <div
-                className="w-full rounded-t bg-gradient-to-t from-blue-500 to-purple-500 transition-all"
-                style={{ height: `${h}%` }}
-              />
+              <div className="w-full rounded-t bg-gradient-to-t from-blue-500 to-purple-500" style={{ height: `${ht}%` }} />
               <span className="text-[10px] text-gray-400">{["M","T","W","T","F","S","S"][i]}</span>
             </div>
           ))}
@@ -422,26 +349,26 @@ function ReportsPanel() {
   )
 }
 
-// ─── Settings panel ──────────────────────────────────────────────────
+// ─── Settings ────────────────────────────────────────────────────────
 function SettingsPanel() {
   return (
     <div className="flex-1 flex flex-col bg-gray-50 p-6">
       <h2 className="text-lg font-bold text-gray-900 mb-4">Configuration</h2>
       <div className="space-y-4 max-w-md">
         {[
-          { label: "AI Agent Name", value: "AI Sales Agent", done: true },
-          { label: "Response Language", value: "Auto-detect (ES, EN, PT)", done: true },
-          { label: "WhatsApp Channel", value: "Connected ✓", done: true },
-          { label: "Phone (Telnyx SIP)", value: "+34 931 229 129 ✓", done: true },
-          { label: "CRM Integration", value: "Twenty CRM ✓", done: true },
-          { label: "Calendar", value: "Cal.com ✓", done: true },
+          { label: "AI Agent Name", value: "AI Sales Agent" },
+          { label: "Response Language", value: "Auto-detect (ES, EN, PT)" },
+          { label: "WhatsApp Channel", value: "Connected ✓" },
+          { label: "Phone (Telnyx SIP)", value: "+34 931 229 129 ✓" },
+          { label: "CRM Integration", value: "Twenty CRM ✓" },
+          { label: "Calendar", value: "Cal.com ✓" },
         ].map((item) => (
           <div key={item.label} className="flex items-center justify-between bg-white rounded-lg p-3 border border-gray-200 shadow-sm">
             <div>
               <div className="text-sm text-gray-900">{item.label}</div>
               <div className="text-xs text-gray-500">{item.value}</div>
             </div>
-            {item.done && <span className="text-green-500 text-sm">✓</span>}
+            <span className="text-green-500 text-sm">✓</span>
           </div>
         ))}
       </div>
@@ -449,12 +376,8 @@ function SettingsPanel() {
   )
 }
 
-// ─── Main Mockup Component ───────────────────────────────────────────
-export function ChatwootMockup({ state }: ChatwootMockupProps) {
-  const showInbox = state.activeTab === "inbox"
-  const showReports = state.activeTab === "reports"
-  const showSettings = state.activeTab === "settings"
-
+// ─── Main ────────────────────────────────────────────────────────────
+export function ChatwootMockup({ state, onSelectConversation, onSelectTab }: ChatwootMockupProps) {
   return (
     <div
       data-tour-target="full-mockup"
@@ -462,25 +385,40 @@ export function ChatwootMockup({ state }: ChatwootMockupProps) {
       style={{ height: "540px" }}
     >
       <div className="flex h-full bg-white">
-        <Sidebar activeTab={state.activeTab} />
+        <Sidebar activeTab={state.activeTab} onSelectTab={onSelectTab} />
 
-        {showInbox && (
+        {state.activeTab === "inbox" && (
           <>
-            <ConversationList
-              conversations={state.conversations}
-              activeId={state.activeConversationId}
-            />
-            <ChatThread
-              messages={state.messages}
-              contact={state.contact}
-              showTyping={state.showTyping}
-            />
+            <ConversationList conversations={state.conversations} activeId={state.activeConversationId} onSelect={onSelectConversation} />
+            <ChatThread messages={state.messages} contact={state.contact} showTyping={state.showTyping} />
             <ContactPanel contact={state.contact} />
           </>
         )}
-
-        {showReports && <ReportsPanel />}
-        {showSettings && <SettingsPanel />}
+        {state.activeTab === "reports" && <ReportsPanel />}
+        {state.activeTab === "settings" && <SettingsPanel />}
+        {state.activeTab === "contacts" && (
+          <div className="flex-1 bg-gray-50 p-6">
+            <h2 className="text-lg font-bold text-gray-900 mb-4">Contacts</h2>
+            <div className="space-y-2">
+              {allConversations.map((c) => (
+                <div key={c.id} className="flex items-center gap-3 bg-white p-3 rounded-lg border border-gray-200">
+                  <div className={`w-8 h-8 rounded-full ${c.contactColor} flex items-center justify-center text-white text-xs font-bold`}>{c.contactInitials}</div>
+                  <div><div className="text-sm font-medium text-gray-900">{c.contactName}</div><div className="text-xs text-gray-500">{c.lastMessage}</div></div>
+                  <span className={`text-[9px] px-1.5 py-0.5 rounded ${c.badgeColor} text-white font-medium ml-auto`}>{c.badge}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        {state.activeTab === "campaigns" && (
+          <div className="flex-1 bg-gray-50 p-6">
+            <h2 className="text-lg font-bold text-gray-900 mb-4">Campaigns</h2>
+            <div className="bg-white rounded-lg border border-gray-200 p-8 text-center">
+              <Megaphone size={32} className="text-gray-300 mx-auto mb-2" />
+              <p className="text-sm text-gray-500">Automated campaigns via WhatsApp, email and SMS</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

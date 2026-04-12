@@ -1,125 +1,129 @@
-// Tour steps with percentage-based target areas for the real Chatwoot iframe.
-// Since we can't query DOM inside cross-origin iframe, we define target
-// rectangles as percentages of the container dimensions.
-
-export interface TargetArea {
-  x: number  // % from left
-  y: number  // % from top
-  w: number  // % width
-  h: number  // % height
-}
+import type { MockupState } from "./chatwoot-mockup"
+import {
+  chatMessages,
+  chatMessagesQualifying,
+  chatMessagesMultilang,
+  contactInfoBase,
+  contactInfoWithDeal,
+} from "./chatwoot-mockup-data"
 
 export interface TourStep {
   id: string
-  target: TargetArea | null  // null = full mockup (no spotlight cutout)
+  target: string  // data-tour-target value
   popoverPosition: "top" | "bottom" | "left" | "right"
   i18nKey: string
+  stateOverride: Partial<MockupState>
 }
-
-// Chatwoot layout reference (approximate percentages):
-// Sidebar:           x=0,    w=4%
-// Conversation list: x=4%,   w=20%
-// Chat thread:       x=24%,  w=52%
-// Contact panel:     x=76%,  w=24%
-
-const SIDEBAR: TargetArea        = { x: 0,  y: 0,  w: 4,  h: 100 }
-const CONV_LIST: TargetArea      = { x: 4,  y: 0,  w: 20, h: 100 }
-const CHAT_THREAD: TargetArea    = { x: 24, y: 0,  w: 52, h: 100 }
-const CHAT_HEADER: TargetArea    = { x: 24, y: 0,  w: 52, h: 8 }
-const CHAT_MESSAGES: TargetArea  = { x: 24, y: 8,  w: 52, h: 84 }
-const CONTACT_PANEL: TargetArea  = { x: 76, y: 0,  w: 24, h: 100 }
-const CONTACT_INFO: TargetArea   = { x: 76, y: 0,  w: 24, h: 50 }
-const CONTACT_BOTTOM: TargetArea = { x: 76, y: 50, w: 24, h: 50 }
 
 export const tourSteps: TourStep[] = [
   {
     id: "welcome",
-    target: null,
+    target: "full-mockup",
     popoverPosition: "bottom",
     i18nKey: "welcome",
+    stateOverride: {},
   },
   {
     id: "unified-inbox",
-    target: CONV_LIST,
+    target: "conversation-list",
     popoverPosition: "right",
     i18nKey: "unified_inbox",
+    stateOverride: {},
   },
   {
     id: "channels",
-    target: SIDEBAR,
+    target: "sidebar",
     popoverPosition: "right",
     i18nKey: "channels",
+    stateOverride: {},
   },
   {
     id: "ai-conversation",
-    target: CHAT_MESSAGES,
+    target: "chat-thread",
     popoverPosition: "left",
     i18nKey: "ai_conversation",
+    stateOverride: { messages: chatMessages.slice(0, 2), showTyping: true },
   },
   {
     id: "ai-qualifying",
-    target: CHAT_MESSAGES,
+    target: "chat-thread",
     popoverPosition: "left",
     i18nKey: "ai_qualifying",
+    stateOverride: { messages: chatMessagesQualifying, showTyping: false },
   },
   {
     id: "contact-enrichment",
-    target: CONTACT_INFO,
+    target: "contact-panel",
     popoverPosition: "left",
     i18nKey: "contact_enrichment",
+    stateOverride: { contact: contactInfoBase, messages: chatMessages.slice(0, 4) },
   },
   {
     id: "lifecycle",
-    target: CHAT_HEADER,
-    popoverPosition: "bottom",
+    target: "contact-panel",
+    popoverPosition: "left",
     i18nKey: "lifecycle",
+    stateOverride: { contact: contactInfoBase, messages: chatMessages.slice(0, 5) },
   },
   {
     id: "booking",
-    target: CHAT_MESSAGES,
+    target: "chat-thread",
     popoverPosition: "left",
     i18nKey: "booking",
+    stateOverride: { messages: chatMessages.slice(0, 7) },
   },
   {
     id: "team-handoff",
-    target: CHAT_MESSAGES,
+    target: "chat-thread",
     popoverPosition: "left",
     i18nKey: "team_handoff",
+    stateOverride: { messages: chatMessages },
   },
   {
     id: "crm",
-    target: CONTACT_BOTTOM,
+    target: "contact-panel",
     popoverPosition: "left",
     i18nKey: "crm",
+    stateOverride: { contact: contactInfoWithDeal, messages: chatMessages },
   },
   {
     id: "ai-agents-count",
-    target: CONV_LIST,
+    target: "conversation-list",
     popoverPosition: "right",
     i18nKey: "ai_agents",
+    stateOverride: { contact: contactInfoWithDeal },
   },
   {
     id: "reports",
-    target: { x: 0, y: 30, w: 4, h: 12 }, // reports icon in sidebar
-    popoverPosition: "right",
+    target: "full-mockup",
+    popoverPosition: "bottom",
     i18nKey: "reports",
+    stateOverride: { activeTab: "reports" },
   },
   {
     id: "settings",
-    target: { x: 0, y: 55, w: 4, h: 12 }, // settings icon in sidebar
-    popoverPosition: "right",
+    target: "full-mockup",
+    popoverPosition: "bottom",
     i18nKey: "settings",
+    stateOverride: { activeTab: "settings" },
   },
   {
     id: "multilanguage",
-    target: CHAT_THREAD,
+    target: "chat-thread",
     popoverPosition: "left",
     i18nKey: "multilanguage",
+    stateOverride: {
+      activeTab: "inbox",
+      activeConversationId: "6",
+      messages: chatMessagesMultilang,
+      contact: { ...contactInfoBase, name: "João Silva", email: "joao@clinica.pt", company: "Clínica Sorriso", source: "WhatsApp", lifecycleStage: "New Lead", lifecycleColor: "bg-blue-500", tags: ["Healthcare", "Portugal"] },
+    },
   },
   {
     id: "cta-final",
-    target: null,
+    target: "full-mockup",
     popoverPosition: "bottom",
     i18nKey: "cta_final",
+    stateOverride: { activeTab: "inbox", activeConversationId: "1", messages: chatMessages, contact: contactInfoWithDeal },
   },
 ]

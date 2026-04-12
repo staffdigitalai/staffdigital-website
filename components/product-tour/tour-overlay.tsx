@@ -176,22 +176,22 @@ export function TourOverlay({ containerRef }: { containerRef: React.RefObject<HT
           className="absolute z-40 w-80"
           style={getPopoverStyle()}
         >
-          <div className="bg-slate-900/90 backdrop-blur-xl border border-slate-600/50 rounded-2xl p-5 shadow-2xl shadow-black/30">
+          <div className="bg-white/95 backdrop-blur-xl border border-gray-200 rounded-2xl p-5 shadow-2xl shadow-gray-400/30">
             {/* Step counter + close */}
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs text-slate-400 font-medium">
+              <span className="text-xs text-gray-400 font-medium">
                 {currentStep + 1} / {totalSteps}
               </span>
-              <button onClick={skip} className="text-slate-500 hover:text-slate-300 transition-colors">
+              <button onClick={skip} className="text-gray-400 hover:text-gray-600 transition-colors">
                 <X size={16} />
               </button>
             </div>
 
             {/* Content */}
-            <h4 className="text-base font-bold text-white mb-1.5">
+            <h4 className="text-base font-bold text-gray-900 mb-1.5">
               {t(`steps.${step.i18nKey}.title`)}
             </h4>
-            <p className="text-sm text-slate-300 leading-relaxed mb-4">
+            <p className="text-sm text-gray-600 leading-relaxed mb-4">
               {t(`steps.${step.i18nKey}.description`)}
             </p>
 
@@ -207,7 +207,7 @@ export function TourOverlay({ containerRef }: { containerRef: React.RefObject<HT
                 </Link>
                 <button
                   onClick={skip}
-                  className="w-full text-xs text-slate-400 hover:text-slate-200 py-1 transition-colors"
+                  className="w-full text-xs text-gray-400 hover:text-gray-600 py-1 transition-colors"
                 >
                   {t("close")}
                 </button>
@@ -218,7 +218,7 @@ export function TourOverlay({ containerRef }: { containerRef: React.RefObject<HT
                 <button
                   onClick={prev}
                   disabled={isFirstStep}
-                  className="flex items-center gap-1 text-sm text-slate-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                  className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-800 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                 >
                   <ArrowLeft size={14} />
                   {t("previous")}

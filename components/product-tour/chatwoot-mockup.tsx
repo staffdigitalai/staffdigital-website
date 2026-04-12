@@ -43,10 +43,10 @@ interface ChatwootMockupProps {
 function ChannelIcon({ channel, size = 12 }: { channel: string; size?: number }) {
   const cls = "shrink-0"
   switch (channel) {
-    case "whatsapp": return <MessageSquare size={size} className={`${cls} text-green-400`} />
-    case "phone": return <Phone size={size} className={`${cls} text-blue-400`} />
-    case "email": return <Mail size={size} className={`${cls} text-amber-400`} />
-    case "web": return <Globe size={size} className={`${cls} text-purple-400`} />
+    case "whatsapp": return <MessageSquare size={size} className={`${cls} text-green-500`} />
+    case "phone": return <Phone size={size} className={`${cls} text-blue-500`} />
+    case "email": return <Mail size={size} className={`${cls} text-amber-500`} />
+    case "web": return <Globe size={size} className={`${cls} text-purple-500`} />
     default: return <MessageSquare size={size} className={cls} />
   }
 }
@@ -64,10 +64,10 @@ function Sidebar({ activeTab }: { activeTab: string }) {
   return (
     <div
       data-tour-target="sidebar"
-      className="w-12 bg-slate-900 border-r border-slate-700 flex flex-col items-center py-3 gap-1 shrink-0"
+      className="w-12 bg-white border-r border-gray-200 flex flex-col items-center py-3 gap-1 shrink-0"
     >
       {/* Brand icon */}
-      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--neon-blue)] to-[var(--purple-dark)] flex items-center justify-center mb-4">
+      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#1F93FF] to-[#7C3AED] flex items-center justify-center mb-4">
         <span className="text-white text-xs font-bold">SD</span>
       </div>
       {sidebarIcons.map(({ id, Icon, count }) => (
@@ -75,8 +75,8 @@ function Sidebar({ activeTab }: { activeTab: string }) {
           key={id}
           className={`relative w-9 h-9 rounded-lg flex items-center justify-center transition-colors ${
             activeTab === id
-              ? "bg-slate-700 text-white"
-              : "text-slate-400 hover:text-slate-200 hover:bg-slate-800"
+              ? "bg-blue-50 text-blue-600"
+              : "text-gray-400 hover:text-gray-600 hover:bg-gray-100"
           }`}
         >
           <Icon size={18} />
@@ -102,47 +102,46 @@ function ConversationList({
   return (
     <div
       data-tour-target="conversation-list"
-      className="w-60 bg-slate-850 border-r border-slate-700 flex flex-col shrink-0"
-      style={{ backgroundColor: "rgb(20, 27, 45)" }}
+      className="w-60 bg-white border-r border-gray-200 flex flex-col shrink-0"
     >
       {/* Header */}
-      <div className="px-3 py-2.5 border-b border-slate-700">
+      <div className="px-3 py-2.5 border-b border-gray-200">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
-            <span className="text-sm font-semibold text-white">Chats</span>
-            <span className="text-sm text-slate-400">Calls</span>
+            <span className="text-sm font-semibold text-gray-900">Chats</span>
+            <span className="text-sm text-gray-400">Calls</span>
           </div>
           <div className="flex items-center gap-1">
-            <Search size={14} className="text-slate-400" />
+            <Search size={14} className="text-gray-400" />
           </div>
         </div>
         <div className="flex items-center gap-2 text-xs">
-          <span className="text-slate-300">All, Newest</span>
-          <ChevronDown size={12} className="text-slate-400" />
-          <span className="text-slate-500 ml-auto">Unreplied</span>
+          <span className="text-gray-600">All, Newest</span>
+          <ChevronDown size={12} className="text-gray-400" />
+          <span className="text-gray-400 ml-auto">Unreplied</span>
         </div>
       </div>
 
       {/* Filters */}
-      <div className="px-3 py-2 border-b border-slate-700 space-y-1">
+      <div className="px-3 py-2 border-b border-gray-200 space-y-1">
         <div className="flex items-center justify-between text-xs">
-          <span className="text-slate-400">AI Agents</span>
-          <ChevronDown size={10} className="text-slate-500" />
+          <span className="text-gray-500">AI Agents</span>
+          <ChevronDown size={10} className="text-gray-400" />
         </div>
         <div className="flex items-center gap-2 text-xs">
           <span className="w-4 h-4 rounded-full bg-orange-500 flex items-center justify-center text-[8px] text-white">🤖</span>
-          <span className="text-slate-300">AI Sales Agent</span>
-          <span className="text-slate-500 ml-auto">50</span>
+          <span className="text-gray-700">AI Sales Agent</span>
+          <span className="text-gray-400 ml-auto">50</span>
         </div>
         <div className="flex items-center justify-between text-xs mt-1">
-          <span className="text-slate-400">Lifecycle</span>
-          <ChevronDown size={10} className="text-slate-500" />
+          <span className="text-gray-500">Lifecycle</span>
+          <ChevronDown size={10} className="text-gray-400" />
         </div>
         {lifecycleFilters.slice(0, 3).map((f) => (
           <div key={f.label} className="flex items-center gap-2 text-xs">
             <span className={`w-3 h-3 rounded-sm ${f.color}`} />
-            <span className="text-slate-300">{f.label}</span>
-            <span className="text-slate-500 ml-auto">{f.count}</span>
+            <span className="text-gray-700">{f.label}</span>
+            <span className="text-gray-400 ml-auto">{f.count}</span>
           </div>
         ))}
       </div>
@@ -152,10 +151,10 @@ function ConversationList({
         {conversations.map((conv) => (
           <div
             key={conv.id}
-            className={`px-3 py-2.5 border-b border-slate-700/50 cursor-pointer transition-colors ${
+            className={`px-3 py-2.5 border-b border-gray-100 cursor-pointer transition-colors ${
               conv.id === activeId
-                ? "bg-slate-700/50"
-                : "hover:bg-slate-800/50"
+                ? "bg-blue-50"
+                : "hover:bg-gray-50"
             }`}
           >
             <div className="flex items-start gap-2">
@@ -164,12 +163,12 @@ function ConversationList({
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-white truncate">{conv.contactName}</span>
-                  <span className="text-[10px] text-slate-500 shrink-0">{conv.timestamp}</span>
+                  <span className="text-sm font-medium text-gray-900 truncate">{conv.contactName}</span>
+                  <span className="text-[10px] text-gray-400 shrink-0">{conv.timestamp}</span>
                 </div>
                 <div className="flex items-center gap-1 mt-0.5">
                   <ChannelIcon channel={conv.channel} size={10} />
-                  <span className="text-xs text-slate-400 truncate">{conv.lastMessage}</span>
+                  <span className="text-xs text-gray-500 truncate">{conv.lastMessage}</span>
                 </div>
                 {conv.badge && (
                   <div className="flex items-center gap-1 mt-1">
@@ -203,24 +202,24 @@ function ChatThread({
   return (
     <div
       data-tour-target="chat-thread"
-      className="flex-1 flex flex-col bg-slate-800 min-w-0"
+      className="flex-1 flex flex-col bg-gray-50 min-w-0"
     >
       {/* Header */}
-      <div className="h-12 px-4 flex items-center justify-between border-b border-slate-700 shrink-0">
+      <div className="h-12 px-4 flex items-center justify-between border-b border-gray-200 bg-white shrink-0">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 rounded-full bg-rose-500 flex items-center justify-center text-white text-xs font-bold">
             {contact.name.split(" ").map(n => n[0]).join("")}
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold text-white">{contact.name}</span>
+              <span className="text-sm font-semibold text-gray-900">{contact.name}</span>
               <span className={`text-[9px] px-1.5 py-0.5 rounded ${contact.lifecycleColor} text-white font-medium`}>
                 {contact.lifecycleStage}
               </span>
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-2 text-slate-400">
+        <div className="flex items-center gap-2 text-gray-400">
           <Search size={16} />
           <Clock size={16} />
           <PhoneCall size={16} />
@@ -230,12 +229,12 @@ function ChatThread({
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
-        <div className="text-center text-xs text-slate-500 mb-2">Jun 18, 2025</div>
+        <div className="text-center text-xs text-gray-400 mb-2">Jun 18, 2025</div>
         {messages.map((msg) => {
           if (msg.sender === "system") {
             return (
               <div key={msg.id} className="flex justify-center">
-                <span className="text-[11px] text-slate-400 bg-slate-700/50 px-3 py-1 rounded-full">
+                <span className="text-[11px] text-gray-500 bg-gray-200/70 px-3 py-1 rounded-full">
                   {msg.systemType === "lifecycle" && "🔄 "}
                   {msg.systemType === "contact" && "📋 "}
                   {msg.systemType === "assignment" && "👤 "}
@@ -248,9 +247,9 @@ function ChatThread({
           if (msg.sender === "customer") {
             return (
               <div key={msg.id} className="flex justify-start">
-                <div className="max-w-[70%] bg-slate-700 rounded-2xl rounded-bl-md px-3 py-2">
-                  <p className="text-sm text-slate-100">{msg.text}</p>
-                  <span className="text-[10px] text-slate-500 mt-1 block">{msg.timestamp}</span>
+                <div className="max-w-[70%] bg-white border border-gray-200 rounded-2xl rounded-bl-md px-3 py-2 shadow-sm">
+                  <p className="text-sm text-gray-800">{msg.text}</p>
+                  <span className="text-[10px] text-gray-400 mt-1 block">{msg.timestamp}</span>
                 </div>
               </div>
             )
@@ -258,16 +257,16 @@ function ChatThread({
           // agent
           return (
             <div key={msg.id} className="flex justify-end gap-2">
-              <div className="max-w-[70%] bg-[var(--neon-blue)]/20 border border-[var(--neon-blue)]/30 rounded-2xl rounded-br-md px-3 py-2">
-                <p className="text-sm text-slate-100">{msg.text}</p>
+              <div className="max-w-[70%] bg-blue-50 border border-blue-100 rounded-2xl rounded-br-md px-3 py-2">
+                <p className="text-sm text-gray-800">{msg.text}</p>
                 <div className="flex items-center gap-1 mt-1">
-                  <span className="text-[10px] text-slate-500">{msg.timestamp}</span>
+                  <span className="text-[10px] text-gray-400">{msg.timestamp}</span>
                   {msg.agentName && (
-                    <span className="text-[10px] text-[var(--neon-blue)]">• {msg.agentName}</span>
+                    <span className="text-[10px] text-blue-500">• {msg.agentName}</span>
                   )}
                 </div>
               </div>
-              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[var(--neon-blue)] to-[var(--purple-dark)] flex items-center justify-center shrink-0 mt-auto">
+              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shrink-0 mt-auto">
                 <span className="text-[8px] text-white font-bold">AI</span>
               </div>
             </div>
@@ -276,14 +275,14 @@ function ChatThread({
 
         {showTyping && (
           <div className="flex justify-end gap-2">
-            <div className="bg-[var(--neon-blue)]/10 border border-[var(--neon-blue)]/20 rounded-2xl px-4 py-2.5">
+            <div className="bg-blue-50 border border-blue-100 rounded-2xl px-4 py-2.5">
               <div className="flex gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--neon-blue)] animate-bounce" style={{ animationDelay: "0ms" }} />
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--neon-blue)] animate-bounce" style={{ animationDelay: "150ms" }} />
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--neon-blue)] animate-bounce" style={{ animationDelay: "300ms" }} />
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-bounce" style={{ animationDelay: "0ms" }} />
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-bounce" style={{ animationDelay: "150ms" }} />
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-bounce" style={{ animationDelay: "300ms" }} />
               </div>
             </div>
-            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[var(--neon-blue)] to-[var(--purple-dark)] flex items-center justify-center shrink-0 mt-auto">
+            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shrink-0 mt-auto">
               <span className="text-[8px] text-white font-bold">AI</span>
             </div>
           </div>
@@ -291,8 +290,8 @@ function ChatThread({
       </div>
 
       {/* Input bar */}
-      <div className="h-12 px-4 flex items-center gap-2 border-t border-slate-700 shrink-0">
-        <div className="flex-1 bg-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-500">
+      <div className="h-12 px-4 flex items-center gap-2 border-t border-gray-200 bg-white shrink-0">
+        <div className="flex-1 bg-gray-100 rounded-lg px-3 py-1.5 text-xs text-gray-400">
           Type a message...
         </div>
       </div>
@@ -305,23 +304,22 @@ function ContactPanel({ contact }: { contact: ContactInfo }) {
   return (
     <div
       data-tour-target="contact-panel"
-      className="w-64 bg-slate-850 border-l border-slate-700 flex flex-col shrink-0 overflow-y-auto"
-      style={{ backgroundColor: "rgb(20, 27, 45)" }}
+      className="w-64 bg-white border-l border-gray-200 flex flex-col shrink-0 overflow-y-auto"
     >
       {/* Header */}
-      <div className="p-4 border-b border-slate-700 text-center">
+      <div className="p-4 border-b border-gray-200 text-center">
         <div className="w-12 h-12 rounded-full bg-rose-500 flex items-center justify-center text-white text-lg font-bold mx-auto mb-2">
           {contact.name.split(" ").map(n => n[0]).join("")}
         </div>
-        <h3 className="text-sm font-semibold text-white">{contact.name}</h3>
+        <h3 className="text-sm font-semibold text-gray-900">{contact.name}</h3>
         <span className={`inline-block text-[10px] px-2 py-0.5 rounded-full ${contact.lifecycleColor} text-white font-medium mt-1`}>
           {contact.lifecycleStage}
         </span>
       </div>
 
       {/* Contact details */}
-      <div className="p-4 space-y-3 border-b border-slate-700">
-        <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Contact Info</h4>
+      <div className="p-4 space-y-3 border-b border-gray-200">
+        <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Contact Info</h4>
         {[
           { icon: Mail, label: "Email", value: contact.email, auto: !!contact.email },
           { icon: Phone, label: "Phone", value: contact.phone, auto: false },
@@ -329,12 +327,12 @@ function ContactPanel({ contact }: { contact: ContactInfo }) {
           { icon: Globe, label: "Source", value: contact.source, auto: false },
         ].map((field) => (
           <div key={field.label} className="flex items-center gap-2">
-            <field.icon size={13} className="text-slate-500 shrink-0" />
+            <field.icon size={13} className="text-gray-400 shrink-0" />
             <div className="min-w-0">
-              <div className="text-[10px] text-slate-500">{field.label}</div>
-              <div className="text-xs text-slate-200 truncate flex items-center gap-1">
-                {field.value || <span className="text-slate-600">—</span>}
-                {field.auto && <Sparkles size={10} className="text-amber-400 shrink-0" />}
+              <div className="text-[10px] text-gray-400">{field.label}</div>
+              <div className="text-xs text-gray-700 truncate flex items-center gap-1">
+                {field.value || <span className="text-gray-300">—</span>}
+                {field.auto && <Sparkles size={10} className="text-amber-500 shrink-0" />}
               </div>
             </div>
           </div>
@@ -342,13 +340,13 @@ function ContactPanel({ contact }: { contact: ContactInfo }) {
       </div>
 
       {/* Tags */}
-      <div className="p-4 space-y-2 border-b border-slate-700">
-        <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+      <div className="p-4 space-y-2 border-b border-gray-200">
+        <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider flex items-center gap-1">
           <Tag size={12} /> Tags
         </h4>
         <div className="flex flex-wrap gap-1">
           {contact.tags.map((tag) => (
-            <span key={tag} className="text-[10px] px-2 py-0.5 rounded-full bg-slate-700 text-slate-300 border border-slate-600">
+            <span key={tag} className="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 border border-gray-200">
               {tag}
             </span>
           ))}
@@ -358,14 +356,14 @@ function ContactPanel({ contact }: { contact: ContactInfo }) {
       {/* CRM Deal */}
       {contact.deal && (
         <div className="p-4 space-y-2">
-          <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+          <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider flex items-center gap-1">
             <AtSign size={12} /> CRM Deal
           </h4>
-          <div className="bg-slate-700/50 rounded-lg p-3 space-y-1.5">
-            <div className="text-xs font-medium text-white">{contact.deal.name}</div>
+          <div className="bg-gray-50 rounded-lg p-3 space-y-1.5 border border-gray-200">
+            <div className="text-xs font-medium text-gray-900">{contact.deal.name}</div>
             <div className="flex items-center justify-between">
-              <span className="text-[11px] text-[var(--lime-green)] font-semibold">{contact.deal.value}</span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">
+              <span className="text-[11px] text-green-600 font-semibold">{contact.deal.value}</span>
+              <span className="text-[10px] px-1.5 py-0.5 rounded bg-purple-50 text-purple-600 border border-purple-200">
                 {contact.deal.stage}
               </span>
             </div>
@@ -373,49 +371,49 @@ function ContactPanel({ contact }: { contact: ContactInfo }) {
         </div>
       )}
 
-      {/* Booking card placeholder */}
-      <div className="p-4 space-y-2 border-t border-slate-700">
-        <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+      {/* Booking card */}
+      <div className="p-4 space-y-2 border-t border-gray-200">
+        <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider flex items-center gap-1">
           <Calendar size={12} /> Appointments
         </h4>
-        <div className="bg-slate-700/50 rounded-lg p-3 text-center">
-          <div className="text-[11px] text-slate-400">Next: Today, 11:00 AM</div>
-          <div className="text-[10px] text-[var(--neon-blue)] mt-0.5">Cal.com integration</div>
+        <div className="bg-gray-50 rounded-lg p-3 text-center border border-gray-200">
+          <div className="text-[11px] text-gray-500">Next: Today, 11:00 AM</div>
+          <div className="text-[10px] text-blue-500 mt-0.5">Cal.com integration</div>
         </div>
       </div>
     </div>
   )
 }
 
-// ─── Reports panel (shown when tab=reports) ──────────────────────────
+// ─── Reports panel ───────────────────────────────────────────────────
 function ReportsPanel() {
   const bars = [65, 85, 45, 92, 73, 58, 88]
   return (
-    <div className="flex-1 flex flex-col bg-slate-800 p-6">
-      <h2 className="text-lg font-bold text-white mb-4">Agent Performance</h2>
+    <div className="flex-1 flex flex-col bg-gray-50 p-6">
+      <h2 className="text-lg font-bold text-gray-900 mb-4">Agent Performance</h2>
       <div className="grid grid-cols-3 gap-4 mb-6">
         {[
           { label: "Conversations", value: "1,247", change: "+12%" },
           { label: "Resolution Rate", value: "94.3%", change: "+3.2%" },
           { label: "Avg Response", value: "< 1s", change: "-0.3s" },
         ].map((stat) => (
-          <div key={stat.label} className="bg-slate-700/50 rounded-xl p-4">
-            <div className="text-xs text-slate-400">{stat.label}</div>
-            <div className="text-xl font-bold text-white mt-1">{stat.value}</div>
-            <div className="text-xs text-green-400 mt-0.5">{stat.change}</div>
+          <div key={stat.label} className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
+            <div className="text-xs text-gray-500">{stat.label}</div>
+            <div className="text-xl font-bold text-gray-900 mt-1">{stat.value}</div>
+            <div className="text-xs text-green-500 mt-0.5">{stat.change}</div>
           </div>
         ))}
       </div>
-      <div className="bg-slate-700/50 rounded-xl p-4 flex-1">
-        <div className="text-sm text-slate-400 mb-3">Weekly Activity</div>
+      <div className="bg-white rounded-xl p-4 flex-1 border border-gray-200 shadow-sm">
+        <div className="text-sm text-gray-500 mb-3">Weekly Activity</div>
         <div className="flex items-end gap-3 h-32">
           {bars.map((h, i) => (
             <div key={i} className="flex-1 flex flex-col items-center gap-1">
               <div
-                className="w-full rounded-t bg-gradient-to-t from-[var(--neon-blue)] to-[var(--purple-dark)] transition-all"
+                className="w-full rounded-t bg-gradient-to-t from-blue-500 to-purple-500 transition-all"
                 style={{ height: `${h}%` }}
               />
-              <span className="text-[10px] text-slate-500">{["M","T","W","T","F","S","S"][i]}</span>
+              <span className="text-[10px] text-gray-400">{["M","T","W","T","F","S","S"][i]}</span>
             </div>
           ))}
         </div>
@@ -424,11 +422,11 @@ function ReportsPanel() {
   )
 }
 
-// ─── Settings panel (shown when tab=settings) ────────────────────────
+// ─── Settings panel ──────────────────────────────────────────────────
 function SettingsPanel() {
   return (
-    <div className="flex-1 flex flex-col bg-slate-800 p-6">
-      <h2 className="text-lg font-bold text-white mb-4">Configuration</h2>
+    <div className="flex-1 flex flex-col bg-gray-50 p-6">
+      <h2 className="text-lg font-bold text-gray-900 mb-4">Configuration</h2>
       <div className="space-y-4 max-w-md">
         {[
           { label: "AI Agent Name", value: "AI Sales Agent", done: true },
@@ -438,12 +436,12 @@ function SettingsPanel() {
           { label: "CRM Integration", value: "Twenty CRM ✓", done: true },
           { label: "Calendar", value: "Cal.com ✓", done: true },
         ].map((item) => (
-          <div key={item.label} className="flex items-center justify-between bg-slate-700/50 rounded-lg p-3">
+          <div key={item.label} className="flex items-center justify-between bg-white rounded-lg p-3 border border-gray-200 shadow-sm">
             <div>
-              <div className="text-sm text-white">{item.label}</div>
-              <div className="text-xs text-slate-400">{item.value}</div>
+              <div className="text-sm text-gray-900">{item.label}</div>
+              <div className="text-xs text-gray-500">{item.value}</div>
             </div>
-            {item.done && <span className="text-green-400 text-sm">✓</span>}
+            {item.done && <span className="text-green-500 text-sm">✓</span>}
           </div>
         ))}
       </div>
@@ -460,10 +458,10 @@ export function ChatwootMockup({ state }: ChatwootMockupProps) {
   return (
     <div
       data-tour-target="full-mockup"
-      className="w-full rounded-2xl overflow-hidden border border-slate-700/50 shadow-2xl shadow-[var(--neon-blue)]/5"
+      className="w-full rounded-2xl overflow-hidden border border-gray-200 shadow-2xl shadow-gray-300/50"
       style={{ height: "540px" }}
     >
-      <div className="flex h-full bg-slate-800">
+      <div className="flex h-full bg-white">
         <Sidebar activeTab={state.activeTab} />
 
         {showInbox && (

@@ -273,5 +273,82 @@
     "cookies": "Política de Cookies",
     "terms": "Termos e Condições",
     "dev_by": "Desenvolvimento Web por"
+  },
+  "tour": {
+    "meta_title": "Demo Interativa",
+    "meta_description": "Descubra como funciona a plataforma StaffDigital AI com este tour interativo. Sem registo necessário.",
+    "title": "Demo Interativa",
+    "subtitle": "Veja como funciona a sua plataforma de atendimento ao cliente com IA. Sem registo, sem compromisso.",
+    "start_button": "✨ Começar tour interativo",
+    "next": "Seguinte",
+    "previous": "Anterior",
+    "finish": "Finalizar",
+    "skip": "Saltar",
+    "close": "Fechar",
+    "cta_button": "Solicitar demo personalizada",
+    "mobile_title": "Melhor em desktop",
+    "mobile_description": "Esta demo interativa visualiza-se melhor em ecrã grande. Solicite uma demo personalizada e mostramos-lhe ao vivo.",
+    "steps": {
+      "welcome": {
+        "title": "O seu centro de comando IA",
+        "description": "Esta é a caixa de entrada unificada onde a sua equipa IA atende todos os canais: WhatsApp, telefone, email e chat web. Tudo num só lugar."
+      },
+      "unified_inbox": {
+        "title": "Todas as conversas aqui",
+        "description": "Cada conversa, independente do canal, aparece nesta lista. Com badges de lifecycle, agente atribuído e última mensagem."
+      },
+      "channels": {
+        "title": "Todos os canais conectados",
+        "description": "WhatsApp, telefone, email e chat web — todos unificados desde o primeiro dia. Um agente IA gere todos."
+      },
+      "ai_conversation": {
+        "title": "IA a responder automaticamente",
+        "description": "O agente IA cumprimenta o cliente e inicia a conversa. Voz natural, respostas instantâneas, sem esperas."
+      },
+      "ai_qualifying": {
+        "title": "Qualificação inteligente",
+        "description": "O agente IA recolhe email, empresa e necessidades do cliente. Qualifica automaticamente sem intervenção humana."
+      },
+      "contact_enrichment": {
+        "title": "Dados do contacto enriquecidos",
+        "description": "Email e empresa detetados automaticamente pela IA. Os campos preenchem-se sozinhos — veja o ícone ✨ junto a cada campo."
+      },
+      "lifecycle": {
+        "title": "De lead a cliente",
+        "description": "O lifecycle stage atualiza-se automaticamente: New Lead → Hot Lead → Customer. A IA decide conforme a conversa."
+      },
+      "booking": {
+        "title": "Agendamento automático",
+        "description": "O agente IA propõe horários disponíveis e agenda a reunião automaticamente. Integração com Cal.com incluída."
+      },
+      "team_handoff": {
+        "title": "Transferência inteligente",
+        "description": "Quando o lead está qualificado, a IA notifica a sua equipa de vendas (@Sales team) com todo o contexto da conversa."
+      },
+      "crm": {
+        "title": "CRM integrado",
+        "description": "Deal criado automaticamente no CRM com valor estimado e etapa do pipeline. Sem entrada manual de dados."
+      },
+      "ai_agents": {
+        "title": "Agentes IA a trabalhar 24/7",
+        "description": "O AI Sales Agent gere 50+ conversas simultâneas. Sem filas, sem tempos de espera, sem horários limitados."
+      },
+      "reports": {
+        "title": "Métricas em tempo real",
+        "description": "Dashboard com conversas atendidas, taxa de resolução, tempo de resposta e atividade semanal. Tudo mensurável."
+      },
+      "settings": {
+        "title": "Configuração simples",
+        "description": "Canais, idiomas, CRM e calendário — tudo configurado e gerido pela nossa equipa. Só vê resultados."
+      },
+      "multilanguage": {
+        "title": "Suporte multilingue",
+        "description": "A IA deteta o idioma do cliente e responde na sua língua. Espanhol, português, inglês e mais — automaticamente."
+      },
+      "cta_final": {
+        "title": "Pronto para transformar o seu atendimento ao cliente?",
+        "description": "Solicite uma demo personalizada e mostramos-lhe como funciona com o seu negócio real. Sem compromisso, em 30 minutos."
+      }
+    }
   }
 }

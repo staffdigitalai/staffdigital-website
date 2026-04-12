@@ -273,5 +273,82 @@
     "cookies": "Cookie Policy",
     "terms": "Terms & Conditions",
     "dev_by": "Web Development by"
+  },
+  "tour": {
+    "meta_title": "Interactive Demo",
+    "meta_description": "Discover how StaffDigital AI works with this interactive tour. No registration required.",
+    "title": "Interactive Demo",
+    "subtitle": "See how your AI-powered customer service platform works. No registration, no commitment.",
+    "start_button": "✨ Start interactive tour",
+    "next": "Next",
+    "previous": "Back",
+    "finish": "Finish",
+    "skip": "Skip",
+    "close": "Close",
+    "cta_button": "Request personalized demo",
+    "mobile_title": "Best on desktop",
+    "mobile_description": "This interactive demo is best viewed on a larger screen. Request a personalized demo and we'll show you live.",
+    "steps": {
+      "welcome": {
+        "title": "Your AI command centre",
+        "description": "This is the unified inbox where your AI team handles all channels: WhatsApp, phone, email and web chat. All in one place."
+      },
+      "unified_inbox": {
+        "title": "All conversations here",
+        "description": "Every conversation, regardless of channel, appears in this list. With lifecycle badges, assigned agent and last message."
+      },
+      "channels": {
+        "title": "All channels connected",
+        "description": "WhatsApp, phone, email and web chat — all unified from day one. One AI agent manages them all."
+      },
+      "ai_conversation": {
+        "title": "AI responding automatically",
+        "description": "The AI agent greets the customer and starts the conversation. Natural voice, instant responses, no waiting."
+      },
+      "ai_qualifying": {
+        "title": "Intelligent qualification",
+        "description": "The AI agent collects email, company and customer needs. Qualifies automatically without human intervention."
+      },
+      "contact_enrichment": {
+        "title": "Enriched contact data",
+        "description": "Email and company auto-detected by AI. Fields fill themselves — notice the ✨ icon next to each field."
+      },
+      "lifecycle": {
+        "title": "From lead to customer",
+        "description": "Lifecycle stage updates automatically: New Lead → Hot Lead → Customer. The AI decides based on the conversation."
+      },
+      "booking": {
+        "title": "Automatic scheduling",
+        "description": "The AI agent suggests available slots and books the meeting automatically. Cal.com integration included."
+      },
+      "team_handoff": {
+        "title": "Smart team handoff",
+        "description": "When the lead is qualified, the AI notifies your sales team (@Sales team) with full conversation context."
+      },
+      "crm": {
+        "title": "Integrated CRM",
+        "description": "Deal created automatically in the CRM with estimated value and pipeline stage. No manual data entry."
+      },
+      "ai_agents": {
+        "title": "AI agents working 24/7",
+        "description": "The AI Sales Agent handles 50+ simultaneous conversations. No queues, no wait times, no limited hours."
+      },
+      "reports": {
+        "title": "Real-time metrics",
+        "description": "Dashboard with conversations handled, resolution rate, response time and weekly activity. Everything measurable."
+      },
+      "settings": {
+        "title": "Simple configuration",
+        "description": "Channels, languages, CRM and calendar — all configured and managed by our team. You just see results."
+      },
+      "multilanguage": {
+        "title": "Multilingual support",
+        "description": "The AI detects the customer's language and responds accordingly. Spanish, Portuguese, English and more — automatically."
+      },
+      "cta_final": {
+        "title": "Ready to transform your customer service?",
+        "description": "Request a personalized demo and we'll show you how it works with your real business. No commitment, in 30 minutes."
+      }
+    }
   }
 }

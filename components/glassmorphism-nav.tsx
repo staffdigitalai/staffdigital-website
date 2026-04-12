@@ -449,9 +449,9 @@ export function GlassmorphismNav() {
                               style={{ background: "linear-gradient(180deg, rgba(0, 120, 170, 0.08), rgba(124, 58, 237, 0.12))" }}
                             >
                               <div>
-                                <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-white/50 mb-4">Tu sector</p>
-                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">IA entrenada para tu industria</h3>
-                                <p className="text-sm text-gray-500 dark:text-white/60 mb-4">Agentes que conocen el vocabulario, procesos y necesidades de tu sector.</p>
+                                <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-white/50 mb-4">{t("sectors_cta_label")}</p>
+                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{t("sectors_cta_title")}</h3>
+                                <p className="text-sm text-gray-500 dark:text-white/60 mb-4">{t("sectors_cta_description")}</p>
                               </div>
                               <div className="space-y-3">
                                 <Link
@@ -460,7 +460,7 @@ export function GlassmorphismNav() {
                                   style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}
                                   onClick={() => setIsSectorsOpen(false)}
                                 >
-                                  Solicitar demo gratuita
+                                  {t("sectors_cta_demo")}
                                   <ArrowRight size={14} />
                                 </Link>
                                 <Link
@@ -468,7 +468,7 @@ export function GlassmorphismNav() {
                                   className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-gray-300 dark:border-white/20 text-gray-700 dark:text-white/80 font-medium text-sm hover:bg-gray-100 dark:hover:bg-white/5 hover:border-gray-400 dark:hover:border-white/30 transition-all duration-200"
                                   onClick={() => setIsSectorsOpen(false)}
                                 >
-                                  Ver todos los sectores
+                                  {t("sectors_cta_view_all")}
                                   <ArrowRight size={12} />
                                 </Link>
                               </div>

@@ -14,7 +14,12 @@
     "demo": "Demo",
     "contact": "Contact",
     "faq": "FAQ",
-    "cta": "Request implementation"
+    "cta": "Request implementation",
+    "sectors_cta_label": "Your industry",
+    "sectors_cta_title": "AI trained for your industry",
+    "sectors_cta_description": "Agents that know the vocabulary, processes and needs of your sector.",
+    "sectors_cta_demo": "Request free demo",
+    "sectors_cta_view_all": "View all industries"
   },
   "hero": {
     "badge_voice": "Human Voice HD",

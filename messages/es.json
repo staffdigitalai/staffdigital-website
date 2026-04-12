@@ -14,7 +14,12 @@
     "demo": "Demo",
     "contact": "Contacto",
     "faq": "FAQ",
-    "cta": "Pedir Demo"
+    "cta": "Pedir Demo",
+    "sectors_cta_label": "Tu sector",
+    "sectors_cta_title": "IA entrenada para tu industria",
+    "sectors_cta_description": "Agentes que conocen el vocabulario, procesos y necesidades de tu sector.",
+    "sectors_cta_demo": "Solicitar demo gratuita",
+    "sectors_cta_view_all": "Ver todos los sectores"
   },
   "hero": {
     "badge_voice": "Voz humana HD",

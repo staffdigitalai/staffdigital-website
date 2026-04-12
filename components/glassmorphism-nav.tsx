@@ -9,33 +9,35 @@ import { useLocale, useTranslations } from "next-intl"
 import { StaffDigitalLogo } from "@/components/staffdigital-logo"
 import { ThemeSwitcher } from "@/components/theme-switcher"
 
-const services = [
-  { name: "Agentes IA con Voz Humana", href: "/soluciones/agentes-ia-voz-humana", icon: MessageSquare, description: "Voces indistinguibles de personas reales", featured: true },
-  { name: "Atención Telefónica IA", href: "/soluciones/atencion-telefonica-ia", icon: MessageSquare, description: "Agentes de voz inteligentes 24/7", featured: true },
-  { name: "WhatsApp IA Empresas", href: "/soluciones/whatsapp-ia-empresas", icon: MessageSquare, description: "Agentes IA para WhatsApp Business" },
-  { name: "Agente Chat Web IA", href: "/soluciones/agente-chat-web-ia", icon: MessageSquare, description: "Agentes IA para tu sitio web" },
-  { name: "Agente de Ventas IA", href: "/soluciones/agente-ventas-ia", icon: BriefcaseMedical, description: "Cualificación y cierre automatizado" },
-  { name: "Agente de Soporte IA", href: "/soluciones/agente-soporte-ia", icon: Headphones, description: "Resuelve incidencias 24/7" },
-  { name: "Agendamientos IA", href: "/soluciones/agente-agendamientos-ia", icon: GraduationCap, description: "Citas y reservas en piloto automático" },
-  { name: "Lead Generation IA", href: "/soluciones/lead-generation-ia", icon: Layers, description: "Prospección automática de empresas" },
-  { name: "IA Omnicanal", href: "/soluciones/ia-omnicanal", icon: Layers, description: "Bandeja unificada y workflows" },
+import type { LucideIcon } from "lucide-react"
+
+const servicesMeta: { href: string; icon: LucideIcon; featured?: boolean }[] = [
+  { href: "/soluciones/agentes-ia-voz-humana", icon: MessageSquare, featured: true },
+  { href: "/soluciones/atencion-telefonica-ia", icon: MessageSquare, featured: true },
+  { href: "/soluciones/whatsapp-ia-empresas", icon: MessageSquare },
+  { href: "/soluciones/agente-chat-web-ia", icon: MessageSquare },
+  { href: "/soluciones/agente-ventas-ia", icon: BriefcaseMedical },
+  { href: "/soluciones/agente-soporte-ia", icon: Headphones },
+  { href: "/soluciones/agente-agendamientos-ia", icon: GraduationCap },
+  { href: "/soluciones/lead-generation-ia", icon: Layers },
+  { href: "/soluciones/ia-omnicanal", icon: Layers },
 ]
 
-const sectors = [
-  { name: "Concesionarios", href: "/sectores/concesionarios", icon: Car, description: "Venta y posventa de vehículos" },
-  { name: "Clínicas y Salud", href: "/sectores/clinicas", icon: BriefcaseMedical, description: "Clínicas y centros médicos" },
-  { name: "Restaurantes", href: "/sectores/restaurantes", icon: UtensilsCrossed, description: "Hostelería y restauración" },
-  { name: "Inmobiliarias", href: "/sectores/inmobiliarias", icon: Home, description: "Agencias inmobiliarias" },
-  { name: "E-commerce", href: "/sectores/ecommerce", icon: ShoppingBag, description: "Tiendas online y marketplaces" },
-  { name: "Turismo y Hotelería", href: "/sectores/turismo-hoteleria", icon: Globe, description: "Hoteles y agencias de viajes" },
-  { name: "Centros de Belleza", href: "/sectores/centros-belleza", icon: Scissors, description: "Belleza y estética" },
-  { name: "Retail", href: "/sectores/retail", icon: ShoppingBag, description: "Comercio minorista" },
-  { name: "Despachos de Abogados", href: "/sectores/despachos-abogados", icon: Building2, description: "Bufetes y asesorías jurídicas" },
-  { name: "Clubs Deportivos", href: "/sectores/clubs-deportivos", icon: Dumbbell, description: "Socios, captación y gestión" },
-  { name: "Oficinas", href: "/sectores/oficinas", icon: Building2, description: "Despachos profesionales" },
-  { name: "Logística", href: "/sectores/logistica", icon: Warehouse, description: "Transporte y distribución" },
-  { name: "Servicios Técnicos", href: "/sectores/servicios-tecnicos", icon: Wrench, description: "Asistencia técnica y SAT" },
-  { name: "Educación", href: "/sectores/educacion", icon: GraduationCap, description: "Colegios y academias" },
+const sectorsMeta: { href: string; icon: LucideIcon }[] = [
+  { href: "/sectores/concesionarios", icon: Car },
+  { href: "/sectores/clinicas", icon: BriefcaseMedical },
+  { href: "/sectores/restaurantes", icon: UtensilsCrossed },
+  { href: "/sectores/inmobiliarias", icon: Home },
+  { href: "/sectores/ecommerce", icon: ShoppingBag },
+  { href: "/sectores/turismo-hoteleria", icon: Globe },
+  { href: "/sectores/centros-belleza", icon: Scissors },
+  { href: "/sectores/retail", icon: ShoppingBag },
+  { href: "/sectores/despachos-abogados", icon: Building2 },
+  { href: "/sectores/clubs-deportivos", icon: Dumbbell },
+  { href: "/sectores/oficinas", icon: Building2 },
+  { href: "/sectores/logistica", icon: Warehouse },
+  { href: "/sectores/servicios-tecnicos", icon: Wrench },
+  { href: "/sectores/educacion", icon: GraduationCap },
 ]
 
 const languages = [
@@ -53,6 +55,10 @@ const navItemsDef = [
 
 export function GlassmorphismNav() {
   const t = useTranslations("nav")
+  const servicesT = t.raw("services_items") as { name: string; description: string }[]
+  const sectorsT = t.raw("sectors_items") as { name: string; description: string }[]
+  const services = servicesMeta.map((meta, i) => ({ ...meta, name: servicesT[i]?.name ?? "", description: servicesT[i]?.description ?? "" }))
+  const sectors = sectorsMeta.map((meta, i) => ({ ...meta, name: sectorsT[i]?.name ?? "", description: sectorsT[i]?.description ?? "" }))
   const [isOpen, setIsOpen] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
   const [isSectorsOpen, setIsSectorsOpen] = useState(false)
@@ -347,9 +353,9 @@ export function GlassmorphismNav() {
                               style={{ background: "linear-gradient(180deg, rgba(0, 120, 170, 0.08), rgba(124, 58, 237, 0.12))" }}
                             >
                               <div>
-                                <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-white/50 mb-4">Empieza ahora</p>
-                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Implementa agentes IA en tu negocio</h3>
-                                <p className="text-sm text-gray-500 dark:text-white/60 mb-4">Configura tu primer agente en menos de 48h. Sin desarrollo, sin permanencia.</p>
+                                <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-white/50 mb-4">{t("services_cta_label")}</p>
+                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{t("services_cta_title")}</h3>
+                                <p className="text-sm text-gray-500 dark:text-white/60 mb-4">{t("services_cta_description")}</p>
                               </div>
                               <div className="space-y-3">
                                 <Link
@@ -358,7 +364,7 @@ export function GlassmorphismNav() {
                                   style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}
                                   onClick={() => setIsServicesOpen(false)}
                                 >
-                                  Solicitar demo gratuita
+                                  {t("services_cta_demo")}
                                   <ArrowRight size={14} />
                                 </Link>
                                 <Link
@@ -366,7 +372,7 @@ export function GlassmorphismNav() {
                                   className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-gray-300 dark:border-white/20 text-gray-700 dark:text-white/80 font-medium text-sm hover:bg-gray-100 dark:hover:bg-white/5 hover:border-gray-400 dark:hover:border-white/30 transition-all duration-200"
                                   onClick={() => setIsServicesOpen(false)}
                                 >
-                                  Ver todas las soluciones
+                                  {t("services_cta_view_all")}
                                   <ArrowRight size={12} />
                                 </Link>
                               </div>

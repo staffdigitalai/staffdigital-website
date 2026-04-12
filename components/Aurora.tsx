@@ -122,11 +122,21 @@ export default function Aurora(props) {
     const ctn = ctnDom.current
     if (!ctn) return
 
-    const renderer = new Renderer({
-      alpha: true,
-      premultipliedAlpha: true,
-      antialias: true,
-    })
+    // Detect WebGL support — headless browsers / bots often lack GPU
+    const testCanvas = document.createElement("canvas")
+    const testGl = testCanvas.getContext("webgl2") || testCanvas.getContext("webgl")
+    if (!testGl) return // graceful fallback: render empty container
+
+    let renderer
+    try {
+      renderer = new Renderer({
+        alpha: true,
+        premultipliedAlpha: true,
+        antialias: true,
+      })
+    } catch {
+      return // OGL failed to initialise — degrade gracefully
+    }
     const gl = renderer.gl
     gl.clearColor(0, 0, 0, 0)
     gl.enable(gl.BLEND)

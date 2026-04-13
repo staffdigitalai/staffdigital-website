@@ -79,7 +79,7 @@ export function HeroBlock() {
           {/* Secondary CTA */}
           <a
             href="#how-it-works"
-            className="group inline-flex items-center justify-center rounded-full px-7 sm:px-9 py-4 text-base font-medium text-foreground/70 dark:text-white/70 transition-all duration-300 hover:text-foreground dark:hover:text-white border border-foreground/[0.1] dark:border-white/[0.12] hover:border-foreground/20 dark:hover:border-white/25 hover:bg-foreground/[0.03] dark:hover:bg-white/[0.04]"
+            className="group inline-flex items-center justify-center rounded-full px-7 sm:px-9 py-4 text-base font-medium text-foreground dark:text-white/80 transition-all duration-300 hover:text-foreground dark:hover:text-white border border-foreground/20 dark:border-white/[0.15] hover:border-foreground/30 dark:hover:border-white/30 bg-white/60 dark:bg-white/[0.05] hover:bg-white/80 dark:hover:bg-white/[0.08] backdrop-blur-sm shadow-sm"
           >
             {t("cta_secondary")}
             <ArrowRight className="ml-2 h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />

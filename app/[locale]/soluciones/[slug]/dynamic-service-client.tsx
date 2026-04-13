@@ -312,34 +312,45 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
             </div>
           </div>
 
-          {/* Live Dashboard Demo - All screens */}
-          <div 
-            className="mt-12 w-full max-w-7xl mx-auto rounded-[20px] border border-gray-200 dark:border-[rgb(61,61,64)] shadow-lg shadow-[#0078AA]/10 overflow-hidden relative"
-            style={{ background: "linear-gradient(135deg, rgba(0,120,170,0.05), rgba(124,58,237,0.05))" }}
+          {/* Dashboard Preview with CTA overlay */}
+          <div className="mt-12 w-full max-w-6xl mx-auto relative group cursor-pointer rounded-2xl overflow-hidden"
+            style={{ border: "1px solid rgba(99, 102, 241, 0.2)", boxShadow: "0 0 30px rgba(99, 102, 241, 0.08)" }}
           >
-            {/* Badge */}
-            <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200 dark:border-gray-700 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Demo interactivo — StaffDigital.AI</span>
-            </div>
-
-            {/* Iframe - Fixed height for better visibility */}
-            <div className="w-full h-[500px] sm:h-[600px] lg:h-[700px]">
-              <iframe
-                src="https://demo.storylane.com/demo/iothqqbe13c3"
-                title="Demo interactivo StaffDigital AI — Plataforma Omnicanal"
-                className="w-full h-full border-0"
-                loading="lazy"
-                allow="clipboard-read; clipboard-write"
-                sandbox="allow-scripts allow-same-origin allow-popups"
-              />
+            {/* Real dashboard screenshot */}
+            <img
+              src="https://cms.staffdigital.ai/wp-content/uploads/2026/04/tour-02-conversation.png"
+              alt="StaffDigital AI — Plataforma Omnicanal"
+              className="w-full h-auto"
+              loading="lazy"
+            />
+            {/* Dark overlay with CTA */}
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-all duration-500 flex flex-col items-center justify-center gap-4">
+              <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                <span className="text-xs font-medium text-white/80">Plataforma en vivo — StaffDigital AI</span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center px-4">
+                Tu equipo IA, listo para trabajar
+              </h3>
+              <p className="text-sm sm:text-base text-white/70 text-center max-w-lg px-4">
+                WhatsApp, teléfono, email y chat web — todo gestionado por IA en una sola plataforma
+              </p>
+              <div className="flex flex-col sm:flex-row items-center gap-3 mt-2">
+                <a
+                  href="/demo"
+                  className="px-8 py-3.5 rounded-xl text-white font-semibold text-sm sm:text-base transition-all hover:scale-105 bg-gradient-to-r from-[#0078AA] to-[#7C3AED] shadow-lg shadow-[#0078AA]/25"
+                >
+                  Solicitar demo personalizada →
+                </a>
+                <a
+                  href="/contacto"
+                  className="px-6 py-3 rounded-xl text-white/90 font-medium text-sm border border-white/20 hover:bg-white/10 transition-all"
+                >
+                  Hablar con ventas
+                </a>
+              </div>
             </div>
           </div>
-
-          {/* Mobile hint */}
-          <p className="mt-4 text-center text-xs text-gray-400 dark:text-gray-500 sm:hidden">
-            Gira tu dispositivo para ver mejor el dashboard
-          </p>
         </div>
       </section>
 

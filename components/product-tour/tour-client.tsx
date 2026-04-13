@@ -1,28 +1,10 @@
 "use client"
 
-import { useRef } from "react"
-import { TourProvider, useTour } from "./tour-provider"
-import { ChatwootMockup } from "./chatwoot-mockup"
+import { TourProvider } from "./tour-provider"
 import { TourOverlay } from "./tour-overlay"
 import { useTranslations } from "next-intl"
 import Link from "next/link"
 import { Monitor } from "lucide-react"
-
-function TourContent() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const { mockupState, selectConversation, selectTab } = useTour()
-
-  return (
-    <div ref={containerRef} className="relative max-w-6xl mx-auto">
-      <ChatwootMockup
-        state={mockupState}
-        onSelectConversation={selectConversation}
-        onSelectTab={selectTab}
-      />
-      <TourOverlay containerRef={containerRef} />
-    </div>
-  )
-}
 
 function MobileGate() {
   const t = useTranslations("tour")
@@ -44,7 +26,7 @@ export function TourClient() {
   return (
     <TourProvider>
       <div className="hidden md:block py-8 px-4">
-        <TourContent />
+        <TourOverlay />
       </div>
       <div className="md:hidden">
         <MobileGate />

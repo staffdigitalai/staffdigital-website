@@ -1,126 +1,191 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { ArrowLeft, ArrowRight, X, Play } from "lucide-react"
 import { useTranslations } from "next-intl"
-import { useTour } from "./tour-provider"
+import Image from "next/image"
 import Link from "next/link"
+import { useTour } from "./tour-provider"
 
-interface Rect { x: number; y: number; width: number; height: number }
-
-export function TourOverlay({ containerRef }: { containerRef: React.RefObject<HTMLDivElement | null> }) {
+export function TourOverlay() {
   const t = useTranslations("tour")
   const { currentStep, totalSteps, step, isActive, start, next, prev, skip } = useTour()
-  const [targetRect, setTargetRect] = useState<Rect | null>(null)
-  const [containerRect, setContainerRect] = useState<Rect | null>(null)
-
-  // Recalculate rects when step changes
-  useEffect(() => {
-    if (!isActive || !containerRef.current) return
-    const update = () => {
-      const container = containerRef.current
-      if (!container) return
-      const cRect = container.getBoundingClientRect()
-      setContainerRect({ x: 0, y: 0, width: cRect.width, height: cRect.height })
-
-      if (step.target === "full-mockup") {
-        setTargetRect(null)
-        return
-      }
-      const el = container.querySelector(`[data-tour-target="${step.target}"]`)
-      if (!el) { setTargetRect(null); return }
-      const tRect = el.getBoundingClientRect()
-      setTargetRect({ x: tRect.x - cRect.x, y: tRect.y - cRect.y, width: tRect.width, height: tRect.height })
-    }
-    // Small delay to let mockup re-render after state change
-    const timer = setTimeout(update, 50)
-    const ro = new ResizeObserver(update)
-    ro.observe(containerRef.current)
-    return () => { clearTimeout(timer); ro.disconnect() }
-  }, [isActive, step.target, containerRef, currentStep])
 
   const isLastStep = currentStep === totalSteps - 1
   const isFirstStep = currentStep === 0
-  const isCTA = step.id === "cta-final"
+  const isCTA = step.id === "csat"
 
-  const getPopoverStyle = (): React.CSSProperties => {
-    if (!targetRect || !containerRect) return { top: "50%", left: "50%", transform: "translate(-50%, -50%)" }
-    const pad = 16; const popW = 320
-    switch (step.popoverPosition) {
-      case "right": return { top: Math.max(pad, targetRect.y + targetRect.height / 2 - 90), left: targetRect.x + targetRect.width + pad }
-      case "left": return { top: Math.max(pad, targetRect.y + targetRect.height / 2 - 90), left: Math.max(pad, targetRect.x - popW - pad) }
-      case "top": return { top: Math.max(pad, targetRect.y - 200), left: Math.max(pad, targetRect.x + targetRect.width / 2 - popW / 2) }
-      default: return { top: targetRect.y + targetRect.height + pad, left: Math.max(pad, Math.min(targetRect.x + targetRect.width / 2 - popW / 2, (containerRect.width) - popW - pad)) }
+  // Tooltip position based on anchor + side
+  const getTooltipStyle = (): React.CSSProperties => {
+    const { x, y } = step.tooltipAnchor
+    const pad = 2 // % padding from anchor
+
+    switch (step.tooltipSide) {
+      case "right":
+        return { top: `${y}%`, left: `${x + pad}%`, transform: "translateY(-50%)" }
+      case "left":
+        return { top: `${y}%`, left: `${x - pad}%`, transform: "translate(-100%, -50%)" }
+      case "top":
+        return { top: `${y - pad}%`, left: `${x}%`, transform: "translate(-50%, -100%)" }
+      case "bottom":
+      default:
+        return { top: `${y + pad}%`, left: `${x}%`, transform: "translateX(-50%)" }
     }
   }
 
+  // Start screen
   if (!isActive) {
     return (
-      <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/50 backdrop-blur-[2px] rounded-2xl">
-        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="text-center max-w-md px-6">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mx-auto mb-4 shadow-lg">
-            <Play size={28} className="text-white ml-1" />
+      <div className="relative max-w-6xl mx-auto">
+        <div className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-2xl shadow-gray-300/50">
+          {/* Show first screenshot as background */}
+          <Image
+            src={step.image}
+            alt="StaffDigital AI Platform"
+            width={1920}
+            height={1080}
+            className="w-full h-auto"
+            priority
+          />
+          {/* Dark overlay with CTA */}
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px] flex items-center justify-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center max-w-md px-6"
+            >
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <Play size={28} className="text-white ml-1" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">{t("title")}</h3>
+              <p className="text-sm text-white/80 mb-6">{t("subtitle")}</p>
+              <button
+                onClick={start}
+                className="px-6 py-3 rounded-xl text-white font-semibold text-sm transition-all hover:scale-105 hover:shadow-lg shadow-blue-500/25 bg-gradient-to-r from-blue-500 to-purple-600"
+              >
+                {t("start_button")}
+              </button>
+            </motion.div>
           </div>
-          <h3 className="text-2xl font-bold text-white mb-2">{t("title")}</h3>
-          <p className="text-sm text-white/80 mb-6">{t("subtitle")}</p>
-          <button onClick={start} className="px-6 py-3 rounded-xl text-white font-semibold text-sm transition-all hover:scale-105 hover:shadow-lg shadow-blue-500/25 bg-gradient-to-r from-blue-500 to-purple-600">
-            {t("start_button")}
-          </button>
-        </motion.div>
+        </div>
       </div>
     )
   }
 
+  // Active tour: screenshot + tooltip
   return (
-    <>
+    <div className="relative max-w-6xl mx-auto">
       {/* Progress bar */}
-      <div className="absolute top-0 left-0 right-0 z-40 h-1 bg-gray-200/80 rounded-t-2xl overflow-hidden">
-        <motion.div className="h-full bg-gradient-to-r from-blue-500 to-purple-600" initial={{ width: "0%" }} animate={{ width: `${((currentStep + 1) / totalSteps) * 100}%` }} transition={{ duration: 0.4, ease: "easeOut" }} />
+      <div className="h-1 bg-gray-200 rounded-t-2xl overflow-hidden">
+        <motion.div
+          className="h-full bg-gradient-to-r from-blue-500 to-purple-600"
+          initial={{ width: "0%" }}
+          animate={{ width: `${((currentStep + 1) / totalSteps) * 100}%` }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        />
       </div>
 
-      {/* Spotlight */}
-      {containerRect && (
-        <svg className="absolute inset-0 z-30 pointer-events-none" width={containerRect.width} height={containerRect.height} style={{ borderRadius: "1rem" }}>
-          <defs>
-            <mask id="tour-spotlight">
-              <rect width="100%" height="100%" fill="white" />
-              {targetRect && (
-                <motion.rect fill="black" rx={8} initial={false}
-                  animate={{ x: targetRect.x - 4, y: targetRect.y - 4, width: targetRect.width + 8, height: targetRect.height + 8 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }} />
-              )}
-            </mask>
-          </defs>
-          <rect width="100%" height="100%" fill="rgba(0,0,0,0.5)" mask="url(#tour-spotlight)" />
-        </svg>
-      )}
+      {/* Screenshot container */}
+      <div className="relative rounded-b-2xl overflow-hidden border border-t-0 border-gray-200 shadow-2xl shadow-gray-300/50">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentStep}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Image
+              src={step.image}
+              alt={t(`steps.${step.i18nKey}.title`)}
+              width={1920}
+              height={1080}
+              className="w-full h-auto"
+              priority
+            />
+          </motion.div>
+        </AnimatePresence>
 
-      {/* Popover */}
-      <AnimatePresence mode="wait">
-        <motion.div key={currentStep} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25 }}
-          className="absolute z-40 w-80 pointer-events-auto" style={getPopoverStyle()}>
-          <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-2xl shadow-gray-400/20">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-xs text-gray-400 font-medium">{currentStep + 1} / {totalSteps}</span>
-              <button onClick={skip} className="text-gray-400 hover:text-gray-600 transition-colors"><X size={16} /></button>
+        {/* Tooltip positioned over the screenshot */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`tooltip-${currentStep}`}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.25, delay: 0.15 }}
+            className="absolute z-10 w-72 sm:w-80 pointer-events-auto"
+            style={getTooltipStyle()}
+          >
+            <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-2xl shadow-gray-400/20">
+              {/* Step counter + close */}
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs text-gray-400 font-medium">
+                  {currentStep + 1}/{totalSteps}
+                </span>
+                <button onClick={skip} className="text-gray-400 hover:text-gray-600 transition-colors">
+                  <X size={16} />
+                </button>
+              </div>
+
+              {/* Content */}
+              <h4 className="text-base font-bold text-gray-900 mb-1.5">
+                {t(`steps.${step.i18nKey}.title`)}
+              </h4>
+              <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                {t(`steps.${step.i18nKey}.description`)}
+              </p>
+
+              {/* CTA on last step */}
+              {isCTA ? (
+                <div className="space-y-2">
+                  <Link
+                    href="/demo"
+                    className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl text-white font-semibold text-sm transition-all hover:scale-[1.02] bg-gradient-to-r from-blue-500 to-purple-600"
+                  >
+                    {t("cta_button")}
+                  </Link>
+                  <button
+                    onClick={skip}
+                    className="w-full text-xs text-gray-400 hover:text-gray-600 py-1 transition-colors"
+                  >
+                    {t("close")}
+                  </button>
+                </div>
+              ) : (
+                /* Navigation */
+                <div className="flex items-center justify-between">
+                  <button
+                    onClick={prev}
+                    disabled={isFirstStep}
+                    className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-800 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                  >
+                    <ArrowLeft size={14} />
+                    {t("previous")}
+                  </button>
+                  <button
+                    onClick={next}
+                    className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all hover:scale-105 bg-gradient-to-r from-blue-500 to-purple-600"
+                  >
+                    {t("next")}
+                    <ArrowRight size={14} />
+                  </button>
+                </div>
+              )}
             </div>
-            <h4 className="text-base font-bold text-gray-900 mb-1.5">{t(`steps.${step.i18nKey}.title`)}</h4>
-            <p className="text-sm text-gray-600 leading-relaxed mb-4">{t(`steps.${step.i18nKey}.description`)}</p>
-            {isCTA ? (
-              <div className="space-y-2">
-                <Link href="/demo" className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl text-white font-semibold text-sm transition-all hover:scale-[1.02] bg-gradient-to-r from-blue-500 to-purple-600">{t("cta_button")}</Link>
-                <button onClick={skip} className="w-full text-xs text-gray-400 hover:text-gray-600 py-1 transition-colors">{t("close")}</button>
-              </div>
-            ) : (
-              <div className="flex items-center justify-between">
-                <button onClick={prev} disabled={isFirstStep} className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-800 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"><ArrowLeft size={14} />{t("previous")}</button>
-                <button onClick={next} className="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all hover:scale-105 bg-gradient-to-r from-blue-500 to-purple-600"><ArrowRight size={14} />{t("next")}</button>
-              </div>
-            )}
-          </div>
-        </motion.div>
-      </AnimatePresence>
-    </>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Fixed CTA button bottom-right (like Storylane "Reservar una demostración") */}
+        <div className="absolute bottom-4 right-4 z-20">
+          <Link
+            href="/demo"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-full text-white text-sm font-semibold shadow-lg transition-all hover:scale-105 bg-gray-900 hover:bg-gray-800"
+          >
+            👉 {t("cta_button")}
+          </Link>
+        </div>
+      </div>
+    </div>
   )
 }

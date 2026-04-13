@@ -298,8 +298,28 @@
         "description": "Cada conversa, independente do canal, aparece nesta lista. Com badges de lifecycle, agente atribuído e última mensagem."
       },
       "channels": {
-        "title": "Todos os canais conectados",
-        "description": "WhatsApp, telefone, email e chat web — todos unificados desde o primeiro dia. Um agente IA gere todos."
+        "title": "Canais conectados",
+        "description": "Configure os seus canais de comunicação: WhatsApp, telefone, email, chat web. Todos conectados desde o primeiro dia."
+      },
+      "channel_catalog": {
+        "title": "Catálogo de canais",
+        "description": "WhatsApp, TikTok, Messenger, Instagram, Telegram, Viber, LINE e mais — conecte todos os seus canais num só clique."
+      },
+      "contacts": {
+        "title": "Gestão de contactos",
+        "description": "Todos os seus contactos centralizados com histórico completo, tags, lifecycle stage e dados enriquecidos pela IA."
+      },
+      "integrations": {
+        "title": "Integrações",
+        "description": "Conecte CRM, calendário, ferramentas de produtividade e mais. Integração nativa com HubSpot, Salesforce, Cal.com."
+      },
+      "automation": {
+        "title": "Automatizações",
+        "description": "Regras automáticas que atribuem conversas, mudam lifecycle stages, enviam notificações e executam ações sem intervenção."
+      },
+      "campaigns": {
+        "title": "Campanhas",
+        "description": "Envie mensagens em massa por WhatsApp, email e SMS. Segmente por lifecycle, tags ou qualquer campo do contacto."
       },
       "ai_conversation": {
         "title": "IA a responder automaticamente",

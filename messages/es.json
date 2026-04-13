@@ -425,34 +425,34 @@
     "featured": "Solución Destacada"
   },
   "ai_working_247": {
-    "badge": "Tu Equipo IA Trabajando 24/7 — Nunca Pierdas un Lead",
-    "title_1": "Tu Equipo IA",
-    "title_2": "Nunca Duerme",
-    "subtitle": "Observa cómo nuestra IA gestiona interacciones reales con clientes las 24 horas, cualificando leads automáticamente y agendando citas mientras tú te enfocas en crecer tu negocio.",
+    "badge": "Plataforma IA operando en tiempo real",
+    "title_1": "Tu plataforma de IA ejecutando procesos,",
+    "title_2": "24/7",
+    "subtitle": "Observa cómo los agentes IA entienden, analizan y actúan en tiempo real — gestionando conversaciones, tomando decisiones y ejecutando tareas sin intervención humana.",
     "features": {
       "chat": {
-        "title": "Soporte Chat IA 24/7",
-        "description": "Chatbots inteligentes que gestionan consultas de clientes, responden preguntas y capturan leads en tu web y canales sociales."
+        "title": "Interacción y ejecución en tiempo real",
+        "description": "Agentes IA que no solo responden — entienden el contexto, toman decisiones y ejecutan acciones directamente desde la conversación."
       },
       "phone": {
-        "title": "Recepcionista Telefónico IA",
-        "description": "Asistente de voz IA profesional que responde llamadas, toma mensajes y agenda citas cuando estás ocupado o cerrado."
+        "title": "Gestión inteligente de interacciones por voz",
+        "description": "Interpreta solicitudes, accede a información y ejecuta acciones como registrar, derivar o programar — todo en una sola interacción."
       },
       "calendar": {
-        "title": "Agendamiento Inteligente",
-        "description": "Sistema de programación automatizado que verifica disponibilidad, reserva citas y envía confirmaciones sin intervención humana."
+        "title": "Coordinación y gestión automática",
+        "description": "Verifica disponibilidad, toma decisiones y gestiona agendas en tiempo real sin intervención humana."
       },
       "email": {
-        "title": "Automatización de Email",
-        "description": "Asistente de email con IA que responde consultas, proporciona información y deriva consultas complejas a tu equipo."
+        "title": "Procesamiento y gestión de solicitudes",
+        "description": "Analiza, clasifica y ejecuta acciones sobre cada solicitud, conectando la información con los procesos internos."
       },
       "leads": {
-        "title": "Cualificación y Entrega de Leads",
-        "description": "Sistema inteligente que cualifica prospectos, recopila información clave y entrega leads calientes a tu equipo de ventas."
+        "title": "Análisis y toma de decisiones",
+        "description": "Evalúa información, estructura datos y decide el siguiente paso dentro del proceso operativo o comercial."
       },
       "integrations": {
-        "title": "Integración Multi-Canal",
-        "description": "Conecta CRM, calendario, WhatsApp, SMS y más en una experiencia unificada."
+        "title": "Ejecución conectada entre sistemas",
+        "description": "Actúa directamente sobre CRM, calendarios y herramientas para mantener los procesos en funcionamiento continuo."
       }
     }
   },

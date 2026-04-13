@@ -425,34 +425,34 @@
     "featured": "Featured Solution"
   },
   "ai_working_247": {
-    "badge": "AI Working 24/7 — Never Miss a Lead",
-    "title_1": "Your AI Team",
-    "title_2": "Never Sleeps",
-    "subtitle": "Watch our AI handle real customer interactions around the clock, automatically qualifying leads and booking appointments while you focus on growing your business.",
+    "badge": "AI platform operating in real time",
+    "title_1": "Your AI platform executing processes,",
+    "title_2": "24/7",
+    "subtitle": "Watch how AI agents understand, analyze and act in real time — managing conversations, making decisions and executing tasks without human intervention.",
     "features": {
       "chat": {
-        "title": "24/7 AI Chat Support",
-        "description": "Intelligent chatbots that handle customer inquiries, answer questions, and capture leads across your website and social channels."
+        "title": "Real-time interaction and execution",
+        "description": "AI agents that don't just respond — they understand context, make decisions and execute actions directly from the conversation."
       },
       "phone": {
-        "title": "AI Phone Receptionist",
-        "description": "Professional AI voice assistant that answers calls, takes messages, and books appointments when you're busy or closed."
+        "title": "Intelligent voice interaction management",
+        "description": "Interprets requests, accesses information and executes actions like recording, routing or scheduling — all in a single interaction."
       },
       "calendar": {
-        "title": "Smart Appointment Booking",
-        "description": "Automated scheduling system that checks availability, books appointments, and sends confirmations without human intervention."
+        "title": "Automatic coordination and management",
+        "description": "Checks availability, makes decisions and manages schedules in real time without human intervention."
       },
       "email": {
-        "title": "Email Response Automation",
-        "description": "AI-powered email assistant that responds to inquiries, provides information, and forwards complex queries to your team."
+        "title": "Request processing and management",
+        "description": "Analyzes, classifies and executes actions on each request, connecting information with internal processes."
       },
       "leads": {
-        "title": "Lead Qualification & Handoff",
-        "description": "Intelligent system that qualifies prospects, gathers key information, and seamlessly hands off hot leads to your sales team."
+        "title": "Analysis and decision-making",
+        "description": "Evaluates information, structures data and decides the next step within the operational or commercial process."
       },
       "integrations": {
-        "title": "Multi-Platform Integration",
-        "description": "Connect with your existing tools including CRM, calendar, WhatsApp, SMS, and more for a unified customer experience."
+        "title": "Connected execution across systems",
+        "description": "Acts directly on CRM, calendars and tools to keep processes running continuously."
       }
     }
   },

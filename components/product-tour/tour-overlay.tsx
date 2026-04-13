@@ -8,18 +8,17 @@ import Link from "next/link"
 import { useRef, useState, useEffect } from "react"
 import { useTour } from "./tour-provider"
 
-// ─── Tooltip arrow (CSS triangle pointing toward the beacon) ─────────
+// ─── Tooltip arrow — CSS rotated square with selective borders ───────
 function TooltipArrow({ side }: { side: string }) {
-  // Arrow is a rotated square with selective borders to create a triangle effect
   switch (side) {
     case "right":
-      return <div className="absolute -left-[7px] top-7 w-3.5 h-3.5 bg-white rotate-45 border-l border-b border-gray-200 shadow-sm" />
+      return <div className="absolute -left-[7px] top-7 w-3.5 h-3.5 bg-white rotate-45 border-l border-b border-gray-200" />
     case "left":
-      return <div className="absolute -right-[7px] top-7 w-3.5 h-3.5 bg-white rotate-45 border-r border-t border-gray-200 shadow-sm" />
+      return <div className="absolute -right-[7px] top-7 w-3.5 h-3.5 bg-white rotate-45 border-r border-t border-gray-200" />
     case "top":
-      return <div className="absolute -bottom-[7px] left-10 w-3.5 h-3.5 bg-white rotate-45 border-r border-b border-gray-200 shadow-sm" />
+      return <div className="absolute -bottom-[7px] left-10 w-3.5 h-3.5 bg-white rotate-45 border-r border-b border-gray-200" />
     case "bottom":
-      return <div className="absolute -top-[7px] left-10 w-3.5 h-3.5 bg-white rotate-45 border-l border-t border-gray-200 shadow-sm" />
+      return <div className="absolute -top-[7px] left-10 w-3.5 h-3.5 bg-white rotate-45 border-l border-t border-gray-200" />
     default:
       return null
   }
@@ -35,7 +34,7 @@ export function TourOverlay() {
   const isFirstStep = currentStep === 0
   const isCTA = step.id === "csat"
 
-  // Track container dimensions for SVG mask
+  // Track container size
   useEffect(() => {
     const el = containerRef.current
     if (!el) return
@@ -49,7 +48,7 @@ export function TourOverlay() {
     return () => ro.disconnect()
   }, [])
 
-  // Zoom: pan + scale toward spotlight center
+  // Zoom: scale + pan toward spotlight center
   const getZoomTransform = (): React.CSSProperties => {
     if (!isActive) return {}
     const z = step.zoom ?? 1
@@ -66,7 +65,7 @@ export function TourOverlay() {
     }
   }
 
-  // Spotlight rectangle in pixels
+  // Spotlight in pixels
   const sl = step.spotlight
   const spotPx = {
     x: (sl.x / 100) * dims.w,
@@ -75,27 +74,41 @@ export function TourOverlay() {
     h: (sl.h / 100) * dims.h,
   }
 
-  // Tooltip position from beacon
+  // Position tooltip ADJACENT to the spotlight rectangle edge
+  // (not the beacon — the tooltip hugs the spotlight area)
   const getTooltipStyle = (): React.CSSProperties => {
-    const { x, y } = step.beacon
-    const pad = 3
+    const gap = 12 // px gap between spotlight edge and tooltip
     switch (step.tooltipSide) {
       case "right":
-        return { top: `${y}%`, left: `${x + pad}%`, transform: "translateY(-50%)" }
+        return {
+          top: spotPx.y + spotPx.h * 0.15,
+          left: spotPx.x + spotPx.w + gap,
+        }
       case "left":
-        return { top: `${y}%`, left: `${x - pad}%`, transform: "translate(-100%, -50%)" }
+        return {
+          top: spotPx.y + spotPx.h * 0.15,
+          left: spotPx.x - gap,
+          transform: "translateX(-100%)",
+        }
       case "top":
-        return { top: `${y - pad}%`, left: `${x}%`, transform: "translate(-50%, -100%)" }
+        return {
+          top: spotPx.y - gap,
+          left: spotPx.x + spotPx.w * 0.4,
+          transform: "translate(-50%, -100%)",
+        }
       case "bottom":
       default:
-        return { top: `${y + pad}%`, left: `${x}%`, transform: "translateX(-50%)" }
+        return {
+          top: spotPx.y + spotPx.h + gap,
+          left: spotPx.x + spotPx.w * 0.4,
+          transform: "translateX(-50%)",
+        }
     }
   }
 
   // ═══════════════════════════════════════════════════════════════════
-  // START SCREEN (before tour begins)
-  // Storylane style: 20% dark overlay, no blur, no play icon,
-  // dark title text, solid black button, hover:scale on container
+  // START SCREEN — Storylane style: light overlay, no blur, no play
+  // icon, dark text, solid black button, hover:scale on container
   // ═══════════════════════════════════════════════════════════════════
   if (!isActive) {
     return (
@@ -116,7 +129,7 @@ export function TourOverlay() {
             className="w-full h-auto"
             priority
           />
-          {/* Light overlay — 20% opacity, NO blur (Storylane style) */}
+          {/* 20% overlay — lets the screenshot show through (Storylane) */}
           <div className="absolute inset-0 bg-black/20 flex items-center justify-center transition-colors group-hover:bg-black/25">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -140,7 +153,8 @@ export function TourOverlay() {
   }
 
   // ═══════════════════════════════════════════════════════════════════
-  // ACTIVE TOUR — fullscreen overlay to hide navbar
+  // ACTIVE TOUR — fullscreen (fixed) to hide navbar and isolate the
+  // experience, exactly like Storylane's iframe isolation
   // ═══════════════════════════════════════════════════════════════════
   return (
     <div className="fixed inset-0 z-50 bg-gray-100 overflow-auto flex items-center justify-center p-4">
@@ -149,7 +163,7 @@ export function TourOverlay() {
         {/* Progress bar */}
         <div className="h-1 bg-gray-200 rounded-t-2xl overflow-hidden">
           <motion.div
-            className="h-full bg-gradient-to-r from-blue-500 to-purple-600"
+            className="h-full bg-gradient-to-r from-blue-500 to-indigo-600"
             animate={{ width: `${((currentStep + 1) / totalSteps) * 100}%` }}
             transition={{ duration: 0.4, ease: "easeOut" }}
           />
@@ -186,7 +200,7 @@ export function TourOverlay() {
             </motion.div>
           </AnimatePresence>
 
-          {/* SVG spotlight mask overlay — 55% dark for more "pop" */}
+          {/* SVG spotlight mask — 55% dark overlay with cutout */}
           {dims.w > 0 && (
             <svg
               className="absolute inset-0 z-10 pointer-events-none"
@@ -199,150 +213,123 @@ export function TourOverlay() {
                 <mask id="spotlight-mask">
                   <rect width={dims.w} height={dims.h} fill="white" />
                   <motion.rect
-                    fill="black"
-                    rx={12}
+                    fill="black" rx={10}
                     initial={false}
                     animate={{
-                      x: spotPx.x - 6,
-                      y: spotPx.y - 6,
-                      width: spotPx.w + 12,
-                      height: spotPx.h + 12,
+                      x: spotPx.x - 4, y: spotPx.y - 4,
+                      width: spotPx.w + 8, height: spotPx.h + 8,
                     }}
                     transition={{ type: "spring", stiffness: 250, damping: 30 }}
                   />
                 </mask>
               </defs>
               <rect
-                width={dims.w}
-                height={dims.h}
+                width={dims.w} height={dims.h}
                 fill="rgba(0,0,0,0.55)"
                 mask="url(#spotlight-mask)"
               />
-              {/* Spotlight border — indigo/brand color, subtle */}
+              {/* Spotlight border — subtle indigo */}
               <motion.rect
-                fill="none"
-                stroke="rgba(99, 102, 241, 0.35)"
-                strokeWidth={1.5}
-                rx={12}
+                fill="none" stroke="rgba(99,102,241,0.3)" strokeWidth={1.5} rx={10}
                 initial={false}
                 animate={{
-                  x: spotPx.x - 6,
-                  y: spotPx.y - 6,
-                  width: spotPx.w + 12,
-                  height: spotPx.h + 12,
+                  x: spotPx.x - 4, y: spotPx.y - 4,
+                  width: spotPx.w + 8, height: spotPx.h + 8,
                 }}
                 transition={{ type: "spring", stiffness: 250, damping: 30 }}
               />
             </svg>
           )}
 
-          {/* Hotspot beacon — brand blue, softer pulse */}
+          {/* Beacon — blue dot with soft pulse */}
           <motion.div
             key={`beacon-${currentStep}`}
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.35, type: "spring" }}
             className="absolute z-20 pointer-events-none"
-            style={{
-              left: `${step.beacon.x}%`,
-              top: `${step.beacon.y}%`,
-              transform: "translate(-50%, -50%)",
-            }}
+            style={{ left: `${step.beacon.x}%`, top: `${step.beacon.y}%`, transform: "translate(-50%, -50%)" }}
           >
             <div className="relative">
-              <div className="w-4 h-4 rounded-full bg-blue-600 border-2 border-white shadow-lg ring-2 ring-blue-500/30" />
-              <div className="absolute inset-0 w-4 h-4 rounded-full bg-blue-500/30 animate-pulse" />
+              <div className="w-3.5 h-3.5 rounded-full bg-blue-600 border-2 border-white shadow-lg ring-2 ring-blue-400/30" />
+              <div className="absolute inset-[-4px] rounded-full bg-blue-400/20 animate-pulse" />
             </div>
           </motion.div>
 
-          {/* Tooltip with arrow */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`tooltip-${currentStep}`}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.35, delay: 0.2 }}
-              className="absolute z-30 w-72 sm:w-80"
-              style={getTooltipStyle()}
-            >
-              <div className="relative bg-white border border-gray-200 rounded-2xl p-5 shadow-xl">
-                <TooltipArrow side={step.tooltipSide} />
+          {/* Tooltip — positioned against spotlight edge, arrow connects */}
+          {dims.w > 0 && (
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`tooltip-${currentStep}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35, delay: 0.2 }}
+                className="absolute z-30 w-72 sm:w-80"
+                style={getTooltipStyle()}
+              >
+                <div className="relative bg-white border border-gray-200 rounded-2xl p-5 shadow-xl">
+                  <TooltipArrow side={step.tooltipSide} />
 
-                {/* Step counter — small, subtle */}
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[11px] text-gray-400 font-medium tracking-wide">
-                    {currentStep + 1}/{totalSteps}
-                  </span>
-                  <button
-                    onClick={skip}
-                    className="text-gray-400 hover:text-gray-600 transition-colors p-0.5"
-                  >
-                    <X size={14} />
-                  </button>
+                  {/* Counter */}
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[11px] text-gray-400 font-medium tracking-wide">
+                      {currentStep + 1}/{totalSteps}
+                    </span>
+                    <button onClick={skip} className="text-gray-400 hover:text-gray-600 transition-colors p-0.5">
+                      <X size={14} />
+                    </button>
+                  </div>
+
+                  {/* Content */}
+                  <h4 className="text-[15px] font-bold text-gray-900 mb-1.5">
+                    {t(`steps.${step.i18nKey}.title`)}
+                  </h4>
+                  <p className="text-[13px] text-gray-600 leading-relaxed mb-4">
+                    {t(`steps.${step.i18nKey}.description`)}
+                  </p>
+
+                  {/* CTA or nav */}
+                  {isCTA ? (
+                    <div className="space-y-2">
+                      <Link href="/demo" className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl text-white font-semibold text-sm hover:scale-[1.02] transition-all bg-black hover:bg-gray-800">
+                        {t("cta_button")}
+                      </Link>
+                      <button onClick={skip} className="w-full text-xs text-gray-400 hover:text-gray-600 py-1">
+                        {t("close")}
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between">
+                      <button
+                        onClick={prev}
+                        disabled={isFirstStep}
+                        className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm text-gray-500 hover:text-gray-800 hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                      >
+                        <ArrowLeft size={14} /> {t("previous")}
+                      </button>
+                      <button
+                        onClick={next}
+                        className="flex items-center gap-1.5 px-5 py-2 rounded-lg text-sm font-semibold text-white bg-black hover:bg-gray-800 transition-all"
+                      >
+                        {t("next")} <ArrowRight size={14} />
+                      </button>
+                    </div>
+                  )}
                 </div>
-
-                {/* Content */}
-                <h4 className="text-[15px] font-bold text-gray-900 mb-1.5">
-                  {t(`steps.${step.i18nKey}.title`)}
-                </h4>
-                <p className="text-[13px] text-gray-600 leading-relaxed mb-4">
-                  {t(`steps.${step.i18nKey}.description`)}
-                </p>
-
-                {/* CTA or navigation */}
-                {isCTA ? (
-                  <div className="space-y-2">
-                    <Link
-                      href="/demo"
-                      className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl text-white font-semibold text-sm hover:scale-[1.02] transition-all bg-black hover:bg-gray-800"
-                    >
-                      {t("cta_button")}
-                    </Link>
-                    <button
-                      onClick={skip}
-                      className="w-full text-xs text-gray-400 hover:text-gray-600 py-1"
-                    >
-                      {t("close")}
-                    </button>
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-between">
-                    {/* Previous — ghost button style */}
-                    <button
-                      onClick={prev}
-                      disabled={isFirstStep}
-                      className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm text-gray-500 hover:text-gray-800 hover:bg-gray-100 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
-                    >
-                      <ArrowLeft size={14} />
-                      {t("previous")}
-                    </button>
-                    {/* Next — solid black button (Storylane style) */}
-                    <button
-                      onClick={next}
-                      className="flex items-center gap-1.5 px-5 py-2 rounded-lg text-sm font-semibold text-white bg-black hover:bg-gray-800 transition-all"
-                    >
-                      {t("next")}
-                      <ArrowRight size={14} />
-                    </button>
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          </AnimatePresence>
+              </motion.div>
+            </AnimatePresence>
+          )}
 
           {/* Fixed CTA bottom-right */}
           <div className="absolute bottom-4 right-4 z-30">
-            <Link
-              href="/demo"
-              className="flex items-center gap-2 px-4 py-2.5 rounded-full text-white text-sm font-semibold shadow-lg transition-all hover:scale-105 bg-black hover:bg-gray-800"
-            >
+            <Link href="/demo" className="flex items-center gap-2 px-4 py-2.5 rounded-full text-white text-sm font-semibold shadow-lg transition-all hover:scale-105 bg-black hover:bg-gray-800">
               👉 {t("cta_button")}
             </Link>
           </div>
         </div>
 
-        {/* Close/exit button top-right (to exit fullscreen mode) */}
+        {/* Exit fullscreen button */}
         <button
           onClick={skip}
           className="absolute -top-2 -right-2 z-40 w-8 h-8 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-50 transition-all"

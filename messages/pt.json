@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "IA para Call Center, WhatsApp e Chat Web | StaffDigital AI",
-    "description": "Plataforma omnicanal com agentes IA para atendimento, vendas e marcações 24/7. CRM, agenda e canais integrados. Solução gerida."
+    "title": "Agentes IA que Atuam, Decidem e Executam | StaffDigital AI",
+    "description": "StaffDigital AI transforma conversas em ações reais — analisando contexto, tomando decisões e executando workflows em canais e operações de negócio."
   },
   "nav": {
     "home": "Início",
@@ -16,31 +16,100 @@
     "faq": "FAQ",
     "cta": "Pedir Demo",
     "services_items": [
-      {"name": "Agentes IA com Voz Humana", "description": "Vozes indistinguíveis de pessoas reais"},
-      {"name": "Atendimento Telefónico IA", "description": "Agentes de voz inteligentes 24/7"},
-      {"name": "WhatsApp IA Empresas", "description": "Agentes IA para WhatsApp Business"},
-      {"name": "Agente Chat Web IA", "description": "Agentes IA para o seu site"},
-      {"name": "Agente de Vendas IA", "description": "Qualificação e fecho automatizado"},
-      {"name": "Agente de Suporte IA", "description": "Resolve incidências 24/7"},
-      {"name": "Agendamentos IA", "description": "Marcações e reservas em piloto automático"},
-      {"name": "Geração de Leads IA", "description": "Prospeção automática de empresas"},
-      {"name": "IA Omnicanal", "description": "Caixa de entrada unificada e workflows"}
+      {
+        "name": "Agentes IA com Voz Humana",
+        "description": "Vozes indistinguíveis de pessoas reais"
+      },
+      {
+        "name": "Atendimento Telefónico IA",
+        "description": "Agentes de voz inteligentes 24/7"
+      },
+      {
+        "name": "WhatsApp IA Empresas",
+        "description": "Agentes IA para WhatsApp Business"
+      },
+      {
+        "name": "Agente Chat Web IA",
+        "description": "Agentes IA para o seu site"
+      },
+      {
+        "name": "Agente de Vendas IA",
+        "description": "Qualificação e fecho automatizado"
+      },
+      {
+        "name": "Agente de Suporte IA",
+        "description": "Resolve incidências 24/7"
+      },
+      {
+        "name": "Agendamentos IA",
+        "description": "Marcações e reservas em piloto automático"
+      },
+      {
+        "name": "Geração de Leads IA",
+        "description": "Prospeção automática de empresas"
+      },
+      {
+        "name": "IA Omnicanal",
+        "description": "Caixa de entrada unificada e workflows"
+      }
     ],
     "sectors_items": [
-      {"name": "Concessionários", "description": "Venda e pós-venda de veículos"},
-      {"name": "Clínicas e Saúde", "description": "Clínicas e centros médicos"},
-      {"name": "Restaurantes", "description": "Hotelaria e restauração"},
-      {"name": "Imobiliárias", "description": "Agências imobiliárias"},
-      {"name": "E-commerce", "description": "Lojas online e marketplaces"},
-      {"name": "Turismo e Hotelaria", "description": "Hotéis e agências de viagens"},
-      {"name": "Centros de Beleza", "description": "Beleza e estética"},
-      {"name": "Retail", "description": "Comércio a retalho"},
-      {"name": "Escritórios de Advogados", "description": "Escritórios e consultorias jurídicas"},
-      {"name": "Clubes Desportivos", "description": "Sócios, captação e gestão"},
-      {"name": "Escritórios", "description": "Escritórios profissionais"},
-      {"name": "Logística", "description": "Transporte e distribuição"},
-      {"name": "Serviços Técnicos", "description": "Assistência técnica e SAT"},
-      {"name": "Educação", "description": "Colégios e academias"}
+      {
+        "name": "Concessionários",
+        "description": "Venda e pós-venda de veículos"
+      },
+      {
+        "name": "Clínicas e Saúde",
+        "description": "Clínicas e centros médicos"
+      },
+      {
+        "name": "Restaurantes",
+        "description": "Hotelaria e restauração"
+      },
+      {
+        "name": "Imobiliárias",
+        "description": "Agências imobiliárias"
+      },
+      {
+        "name": "E-commerce",
+        "description": "Lojas online e marketplaces"
+      },
+      {
+        "name": "Turismo e Hotelaria",
+        "description": "Hotéis e agências de viagens"
+      },
+      {
+        "name": "Centros de Beleza",
+        "description": "Beleza e estética"
+      },
+      {
+        "name": "Retail",
+        "description": "Comércio a retalho"
+      },
+      {
+        "name": "Escritórios de Advogados",
+        "description": "Escritórios e consultorias jurídicas"
+      },
+      {
+        "name": "Clubes Desportivos",
+        "description": "Sócios, captação e gestão"
+      },
+      {
+        "name": "Escritórios",
+        "description": "Escritórios profissionais"
+      },
+      {
+        "name": "Logística",
+        "description": "Transporte e distribuição"
+      },
+      {
+        "name": "Serviços Técnicos",
+        "description": "Assistência técnica e SAT"
+      },
+      {
+        "name": "Educação",
+        "description": "Colégios e academias"
+      }
     ],
     "services_cta_label": "Comece agora",
     "services_cta_title": "Implemente agentes IA no seu negócio",
@@ -54,27 +123,38 @@
     "sectors_cta_view_all": "Ver todos os setores"
   },
   "hero": {
-    "badge_voice": "Voz Humana HD",
-    "badge_platform": "Engenharia conversacional à medida",
-    "h1_line1": "A sua Equipa IA para Apoio ao Cliente",
-    "h1_line2": "100% Gerida",
-    "h1_line3": "Só Tem de Vender",
-    "reinforcement": "Agentes IA para WhatsApp, telefone e chat web que ouvem, respondem e atuam como humanos nos seus canais, CRM ou página web.",
-    "rotate_prefix": "IA para",
-    "rotate_words": ["call center", "WhatsApp Business", "marcações", "pré-venda", "pós-venda"],
-    "cta_primary": "Pedir Demo",
-    "cta_secondary": "Ouvir a voz IA",
-    "microproofs": ["Caixa de entrada única", "Agendamento automático", "CRM integrado", "Orquestração IA"]
+    "h1_plain": "Agentes IA que não só respondem —",
+    "h1_gradient": "atuam, decidem e executam.",
+    "subtitle": "StaffDigital AI transforma conversas e inputs em ações reais — analisando contexto, tomando decisões e executando workflows em canais, sistemas e operações de negócio.",
+    "cta_primary": "Pedir demo",
+    "cta_secondary": "Ver como funciona",
+    "microcopy": "Sem templates. Totalmente personalizado. Desenhado para o seu negócio."
   },
   "done_for_you": {
     "title_1": "Plataforma completa,",
     "title_2": "totalmente gerida",
     "subtitle": "Integramos canais, CRM, agenda e agentes IA numa só plataforma. Só recebe os resultados.",
     "stack": [
-      {"category": "Canais", "label": "Caixa de Entrada Omnicanal", "description": "WhatsApp, telefone, chat web e email integrados"},
-      {"category": "IA", "label": "Agentes IA Autónomos", "description": "Configurados e treinados com a sua base de conhecimento"},
-      {"category": "Marcações", "label": "Gestão de Agenda", "description": "Conectado com o seu CRM e calendário"},
-      {"category": "Dados", "label": "CRM Integrado", "description": "Infraestrutura 24/7, segurança e privacidade UE"}
+      {
+        "category": "Canais",
+        "label": "Caixa de Entrada Omnicanal",
+        "description": "WhatsApp, telefone, chat web e email integrados"
+      },
+      {
+        "category": "IA",
+        "label": "Agentes IA Autónomos",
+        "description": "Configurados e treinados com a sua base de conhecimento"
+      },
+      {
+        "category": "Marcações",
+        "label": "Gestão de Agenda",
+        "description": "Conectado com o seu CRM e calendário"
+      },
+      {
+        "category": "Dados",
+        "label": "CRM Integrado",
+        "description": "Infraestrutura 24/7, segurança e privacidade UE"
+      }
     ]
   },
   "services": {
@@ -85,14 +165,38 @@
     "view_all": "Ver todas as soluções",
     "learn_more": "Ver solução",
     "items": [
-      {"title": "IA para Call Center", "description": "Atendimento automático de chamadas com voz realista. Sem filas, sem menus IVR."},
-      {"title": "Atendimento WhatsApp IA", "description": "Agente virtual no WhatsApp Business. Responde, qualifica e agenda automaticamente."},
-      {"title": "Chat Web Inteligente", "description": "Atendimento instantâneo no seu site. Qualifica visitantes e captura leads 24/7."},
-      {"title": "Vendas Automáticas com IA", "description": "Qualifica leads, recomenda produtos e agenda reuniões de fecho."},
-      {"title": "Suporte ao Cliente com IA", "description": "Resolução de incidências, abertura de tickets, escalamento inteligente."},
-      {"title": "Agendamento Automático", "description": "Reserva, confirma e reprograma marcações por WhatsApp, telefone ou web."},
-      {"title": "Prospeção Automática", "description": "Encontra empresas do seu setor, enriquece dados e gera leads qualificados."},
-      {"title": "Automatização de CRM", "description": "Sincroniza conversas, leads e pipeline. Sem entrada manual de dados."}
+      {
+        "title": "IA para Call Center",
+        "description": "Atendimento automático de chamadas com voz realista. Sem filas, sem menus IVR."
+      },
+      {
+        "title": "Atendimento WhatsApp IA",
+        "description": "Agente virtual no WhatsApp Business. Responde, qualifica e agenda automaticamente."
+      },
+      {
+        "title": "Chat Web Inteligente",
+        "description": "Atendimento instantâneo no seu site. Qualifica visitantes e captura leads 24/7."
+      },
+      {
+        "title": "Vendas Automáticas com IA",
+        "description": "Qualifica leads, recomenda produtos e agenda reuniões de fecho."
+      },
+      {
+        "title": "Suporte ao Cliente com IA",
+        "description": "Resolução de incidências, abertura de tickets, escalamento inteligente."
+      },
+      {
+        "title": "Agendamento Automático",
+        "description": "Reserva, confirma e reprograma marcações por WhatsApp, telefone ou web."
+      },
+      {
+        "title": "Prospeção Automática",
+        "description": "Encontra empresas do seu setor, enriquece dados e gera leads qualificados."
+      },
+      {
+        "title": "Automatização de CRM",
+        "description": "Sincroniza conversas, leads e pipeline. Sem entrada manual de dados."
+      }
     ]
   },
   "omnichannel": {
@@ -100,11 +204,31 @@
     "title_2": "todos os canais num só lugar",
     "subtitle": "StaffDigital AI unifica WhatsApp, telefone, chat web, email e redes sociais numa única caixa de entrada. Um agente IA, todos os canais, histórico completo.",
     "channels": [
-      {"name": "Telefone", "line1": "URA inteligente com IA", "line2": "Sem menus, conversa natural"},
-      {"name": "WhatsApp", "line1": "Agente virtual 24/7", "line2": "Voz e texto automáticos"},
-      {"name": "Chat Web", "line1": "Atendimento instantâneo", "line2": "Qualificação de leads"},
-      {"name": "Email", "line1": "Respostas automáticas", "line2": "Sincronizado com CRM"},
-      {"name": "Redes", "line1": "Instagram, Facebook", "line2": "DMs automatizados"}
+      {
+        "name": "Telefone",
+        "line1": "URA inteligente com IA",
+        "line2": "Sem menus, conversa natural"
+      },
+      {
+        "name": "WhatsApp",
+        "line1": "Agente virtual 24/7",
+        "line2": "Voz e texto automáticos"
+      },
+      {
+        "name": "Chat Web",
+        "line1": "Atendimento instantâneo",
+        "line2": "Qualificação de leads"
+      },
+      {
+        "name": "Email",
+        "line1": "Respostas automáticas",
+        "line2": "Sincronizado com CRM"
+      },
+      {
+        "name": "Redes",
+        "line1": "Instagram, Facebook",
+        "line2": "DMs automatizados"
+      }
     ],
     "context_note": "O cliente muda de canal, mas o agente mantém o contexto. Sem repetições. Sem frustrações."
   },
@@ -115,14 +239,46 @@
     "subtitle": "IA treinada com o conhecimento da sua indústria. Pronta para atender desde o primeiro dia.",
     "view_all": "Ver todos os setores",
     "items": [
-      {"name": "IA para Concessionários", "useCase": "Agenda test drives, qualifica compradores e automatiza o seguimento pós-venda", "alt": "Agente IA para concessionários: qualificação de leads e gestão de test drives"},
-      {"name": "IA para Clínicas e Saúde", "useCase": "Gere consultas médicas, envia lembretes e atende pacientes 24/7", "alt": "Agente IA para clínicas: gestão de consultas médicas e lembretes automáticos"},
-      {"name": "IA para Imobiliárias", "useCase": "Programa visitas, qualifica compradores e faz follow-up automático", "alt": "Agente IA para imobiliárias: qualificação de compradores e gestão de visitas"},
-      {"name": "IA para Restaurantes", "useCase": "Gere reservas, pedidos takeaway e confirmações sem perder uma chamada", "alt": "Agente IA para restaurantes: reservas automáticas e gestão de pedidos"},
-      {"name": "IA para E-commerce", "useCase": "Recupera carrinhos abandonados, recomenda produtos e atende consultas instantaneamente", "alt": "Agente IA para e-commerce: recuperação de carrinho e recomendações"},
-      {"name": "IA para Turismo e Hotelaria", "useCase": "Automatiza reservas, impulsiona upselling e dá suporte multilingue 24/7", "alt": "Agente IA para hotéis e turismo: reservas e suporte multilingue"},
-      {"name": "IA para Educação", "useCase": "Gere matrículas, responde a consultas de pais e envia lembretes automáticos", "alt": "Agente IA para escolas: gestão de matrículas e consultas automáticas"},
-      {"name": "IA para Serviços Locais", "useCase": "Capta novos clientes, agenda marcações e automatiza o seguimento comercial", "alt": "Agente IA para serviços locais: geração de leads e agendamento"}
+      {
+        "name": "IA para Concessionários",
+        "useCase": "Agenda test drives, qualifica compradores e automatiza o seguimento pós-venda",
+        "alt": "Agente IA para concessionários: qualificação de leads e gestão de test drives"
+      },
+      {
+        "name": "IA para Clínicas e Saúde",
+        "useCase": "Gere consultas médicas, envia lembretes e atende pacientes 24/7",
+        "alt": "Agente IA para clínicas: gestão de consultas médicas e lembretes automáticos"
+      },
+      {
+        "name": "IA para Imobiliárias",
+        "useCase": "Programa visitas, qualifica compradores e faz follow-up automático",
+        "alt": "Agente IA para imobiliárias: qualificação de compradores e gestão de visitas"
+      },
+      {
+        "name": "IA para Restaurantes",
+        "useCase": "Gere reservas, pedidos takeaway e confirmações sem perder uma chamada",
+        "alt": "Agente IA para restaurantes: reservas automáticas e gestão de pedidos"
+      },
+      {
+        "name": "IA para E-commerce",
+        "useCase": "Recupera carrinhos abandonados, recomenda produtos e atende consultas instantaneamente",
+        "alt": "Agente IA para e-commerce: recuperação de carrinho e recomendações"
+      },
+      {
+        "name": "IA para Turismo e Hotelaria",
+        "useCase": "Automatiza reservas, impulsiona upselling e dá suporte multilingue 24/7",
+        "alt": "Agente IA para hotéis e turismo: reservas e suporte multilingue"
+      },
+      {
+        "name": "IA para Educação",
+        "useCase": "Gere matrículas, responde a consultas de pais e envia lembretes automáticos",
+        "alt": "Agente IA para escolas: gestão de matrículas e consultas automáticas"
+      },
+      {
+        "name": "IA para Serviços Locais",
+        "useCase": "Capta novos clientes, agenda marcações e automatiza o seguimento comercial",
+        "alt": "Agente IA para serviços locais: geração de leads e agendamento"
+      }
     ]
   },
   "methodology": {
@@ -131,12 +287,30 @@
     "subtitle": "Só precisa de nos dar acesso. Nós tratamos do resto.",
     "cta": "Agendar reunião de descoberta",
     "steps": [
-      {"title": "Descoberta", "description": "Entendemos o seu negócio, canais e objetivos"},
-      {"title": "Configuração", "description": "Criamos os agentes e integramos o seu CRM"},
-      {"title": "Treino", "description": "Alimentamos com o seu conhecimento: produtos, FAQ, tom"},
-      {"title": "Testes", "description": "Validamos cada interação e ajustamos fluxos"},
-      {"title": "Formação", "description": "Treinamos a sua equipa para gerir exceções"},
-      {"title": "Lançamento", "description": "Produção + acompanhamento e suporte contínuo"}
+      {
+        "title": "Descoberta",
+        "description": "Entendemos o seu negócio, canais e objetivos"
+      },
+      {
+        "title": "Configuração",
+        "description": "Criamos os agentes e integramos o seu CRM"
+      },
+      {
+        "title": "Treino",
+        "description": "Alimentamos com o seu conhecimento: produtos, FAQ, tom"
+      },
+      {
+        "title": "Testes",
+        "description": "Validamos cada interação e ajustamos fluxos"
+      },
+      {
+        "title": "Formação",
+        "description": "Treinamos a sua equipa para gerir exceções"
+      },
+      {
+        "title": "Lançamento",
+        "description": "Produção + acompanhamento e suporte contínuo"
+      }
     ]
   },
   "comparison": {
@@ -148,44 +322,91 @@
     "us_label": "StaffDigital AI",
     "recommended": "Recomendado",
     "rows": [
-      {"feature": "O que é?", "competitor": "Ferramenta que o cliente configura sozinho", "us": "Plataforma gerida com implementação incluída"},
-      {"feature": "Canais", "competitor": "Normalmente só chat ou só voz", "us": "WhatsApp + telefone + chat web + email unificados"},
-      {"feature": "CRM", "competitor": "Integração básica ou inexistente", "us": "Twenty CRM integrado de fábrica"},
-      {"feature": "Agendamento", "competitor": "Não incluído, tem de contratar à parte", "us": "Cal.com integrado: reservas automáticas"},
-      {"feature": "Orquestração", "competitor": "Fluxos simples sem autonomia", "us": "OpenClaw: agentes autónomos que decidem e atuam"},
-      {"feature": "Voz", "competitor": "Robótica ou sem canal de voz", "us": "Voz humana HD, indistinguível de uma pessoa"},
-      {"feature": "Suporte", "competitor": "Documentação + chat", "us": "Equipa dedicada de implementação e gestão"}
+      {
+        "feature": "O que é?",
+        "competitor": "Ferramenta que o cliente configura sozinho",
+        "us": "Plataforma gerida com implementação incluída"
+      },
+      {
+        "feature": "Canais",
+        "competitor": "Normalmente só chat ou só voz",
+        "us": "WhatsApp + telefone + chat web + email unificados"
+      },
+      {
+        "feature": "CRM",
+        "competitor": "Integração básica ou inexistente",
+        "us": "Twenty CRM integrado de fábrica"
+      },
+      {
+        "feature": "Agendamento",
+        "competitor": "Não incluído, tem de contratar à parte",
+        "us": "Cal.com integrado: reservas automáticas"
+      },
+      {
+        "feature": "Orquestração",
+        "competitor": "Fluxos simples sem autonomia",
+        "us": "OpenClaw: agentes autónomos que decidem e atuam"
+      },
+      {
+        "feature": "Voz",
+        "competitor": "Robótica ou sem canal de voz",
+        "us": "Voz humana HD, indistinguível de uma pessoa"
+      },
+      {
+        "feature": "Suporte",
+        "competitor": "Documentação + chat",
+        "us": "Equipa dedicada de implementação e gestão"
+      }
     ]
   },
   "social_proof": {
-    "title": "Infraestrutura IA segura e gerida",
-    "subtitle": "Servidores na UE, suporte humano e disponibilidade contínua.",
-    "items": [
-      {"label": "Infraestrutura 100% europeia", "sublabel": "Dados protegidos sob RGPD"},
-      {"label": "Disponibilidade 24/7/365", "sublabel": "Sem interrupções"},
-      {"label": "Acompanhamento humano", "sublabel": "Não só tecnologia — serviço real"}
-    ]
+    "title": "Impacto real, não apenas promessas",
+    "metrics": [
+      "Gere milhares de interações automaticamente",
+      "Reduz tempos de resposta para segundos",
+      "Aumenta conversão e eficiência operacional",
+      "Mantém consistência em todos os canais e equipas"
+    ],
+    "quote": "StaffDigital AI permitiu-nos gerir elevados volumes de interações melhorando a qualidade de resposta e a eficiência operacional.",
+    "quote_author": "Diretor de Operações"
   },
   "faq": {
     "title": "Perguntas frequentes sobre agentes IA",
     "subtitle": "Esclarecemos as suas dúvidas sobre implementação, privacidade e funcionamento dos agentes IA",
     "view_all": "Ver todas as perguntas",
     "items": [
-      {"q": "O agente IA parece mesmo humano?", "a": "Sim. Utilizamos tecnologia de voz humana proprietária com vozes indistinguíveis de pessoas reais. Os seus clientes não sabem que falam com IA."},
-      {"q": "Quanto tempo demora a implementação?", "a": "Entre 2 e 6 semanas, dependendo da complexidade. Nós tratamos de tudo — só precisa de nos dar acesso."},
-      {"q": "O que preciso de fornecer?", "a": "Acesso ao seu CRM (se existir), informação sobre produtos/serviços e acesso aos canais (WhatsApp, etc.). Nós fazemos o resto."},
-      {"q": "E se o agente não souber responder?", "a": "Transfere a conversa para um humano da sua equipa com todo o contexto da interação. Nunca se perde informação."},
-      {"q": "Como funciona a privacidade dos dados?", "a": "Infraestrutura própria na UE, desenhada para facilitar o cumprimento do RGPD. Os dados são seus."},
-      {"q": "Preciso de equipa técnica?", "a": "Não. Nós configuramos, gerimos e mantemos tudo. O seu negócio só precisa de usar o serviço."}
+      {
+        "q": "O agente IA parece mesmo humano?",
+        "a": "Sim. Utilizamos tecnologia de voz humana proprietária com vozes indistinguíveis de pessoas reais. Os seus clientes não sabem que falam com IA."
+      },
+      {
+        "q": "Quanto tempo demora a implementação?",
+        "a": "Entre 2 e 6 semanas, dependendo da complexidade. Nós tratamos de tudo — só precisa de nos dar acesso."
+      },
+      {
+        "q": "O que preciso de fornecer?",
+        "a": "Acesso ao seu CRM (se existir), informação sobre produtos/serviços e acesso aos canais (WhatsApp, etc.). Nós fazemos o resto."
+      },
+      {
+        "q": "E se o agente não souber responder?",
+        "a": "Transfere a conversa para um humano da sua equipa com todo o contexto da interação. Nunca se perde informação."
+      },
+      {
+        "q": "Como funciona a privacidade dos dados?",
+        "a": "Infraestrutura própria na UE, desenhada para facilitar o cumprimento do RGPD. Os dados são seus."
+      },
+      {
+        "q": "Preciso de equipa técnica?",
+        "a": "Não. Nós configuramos, gerimos e mantemos tudo. O seu negócio só precisa de usar o serviço."
+      }
     ]
   },
   "cta": {
-    "title_1": "Solicite a sua",
-    "title_2": "demo de agentes IA",
-    "title_3": "gratuita",
-    "subtitle": "Demo personalizada. Sem compromisso. Em 30 minutos vê como os seus agentes IA atenderiam os seus clientes.",
-    "demo": "Solicitar demo gratuita",
-    "contact": "Contactar"
+    "title_plain": "Pronto para transformar interações em",
+    "title_gradient": "execução?",
+    "subtitle": "Veja como StaffDigital AI pode ser adaptado ao seu negócio e comece a operar processos com inteligência e precisão.",
+    "demo": "Pedir demo",
+    "microcopy": "Feito à medida. Totalmente gerido. Para operações reais."
   },
   "templates": {
     "cta_primary": "Pedir Demo",
@@ -249,11 +470,26 @@
     ],
     "crms_title": "CRMs compatíveis",
     "crms": [
-      {"name": "Twenty", "note": "recomendado"},
-      {"name": "HubSpot", "note": null},
-      {"name": "Salesforce", "note": null},
-      {"name": "Pipedrive", "note": null},
-      {"name": "Zoho", "note": null}
+      {
+        "name": "Twenty",
+        "note": "recomendado"
+      },
+      {
+        "name": "HubSpot",
+        "note": null
+      },
+      {
+        "name": "Salesforce",
+        "note": null
+      },
+      {
+        "name": "Pipedrive",
+        "note": null
+      },
+      {
+        "name": "Zoho",
+        "note": null
+      }
     ],
     "cta": "Descobrir Automatização CRM"
   },
@@ -263,10 +499,35 @@
     "col_product": "Produto",
     "col_company": "Empresa",
     "col_resources": "Recursos",
-    "solutions_links": ["Agentes IA com Voz Humana ★", "Atendimento Telefónico IA", "WhatsApp IA Empresas", "Geração de Leads IA", "Agente de Suporte IA", "Ver todas as soluções"],
-    "product_links": ["Preços", "Tecnologia", "Integrações", "Segurança", "Setores"],
-    "company_links": ["Sobre Nós", "Contacto", "Parceiros", "Metodologia", "FAQ"],
-    "resources_links": ["Blog", "Casos de Sucesso", "Demo Voz Humana", "Solicitar Demo", "Setores"],
+    "solutions_links": [
+      "Agentes IA com Voz Humana ★",
+      "Atendimento Telefónico IA",
+      "WhatsApp IA Empresas",
+      "Geração de Leads IA",
+      "Agente de Suporte IA",
+      "Ver todas as soluções"
+    ],
+    "product_links": [
+      "Preços",
+      "Tecnologia",
+      "Integrações",
+      "Segurança",
+      "Setores"
+    ],
+    "company_links": [
+      "Sobre Nós",
+      "Contacto",
+      "Parceiros",
+      "Metodologia",
+      "FAQ"
+    ],
+    "resources_links": [
+      "Blog",
+      "Casos de Sucesso",
+      "Demo Voz Humana",
+      "Solicitar Demo",
+      "Setores"
+    ],
     "rights": "Todos os direitos reservados.",
     "privacy": "Política de Privacidade",
     "legal": "Aviso Legal",
@@ -370,5 +631,183 @@
         "description": "Solicite uma demo personalizada e mostramos-lhe como funciona com o seu negócio real. Sem compromisso, em 30 minutos."
       }
     }
+  },
+  "clarification": {
+    "title": "Não é só suporte ao cliente. Não é só vendas.",
+    "p1": "A maioria das ferramentas IA para em responder.",
+    "p2": "StaffDigital AI vai mais longe — opera.",
+    "p3": "A nossa plataforma entende o contexto, processa informação e executa ações em tempo real, conectando conversas com resultados reais."
+  },
+  "what_we_do": {
+    "title_plain": "Da interação à",
+    "title_gradient": "execução",
+    "subtitle": "Transforma conversas, inputs e sinais em ações estruturadas e resultados reais.",
+    "cards": [
+      {
+        "icon": "brain",
+        "title": "Compreender",
+        "description": "Interpreta linguagem, dados e contexto em conversas e sistemas."
+      },
+      {
+        "icon": "file-text",
+        "title": "Analisar",
+        "description": "Avalia inputs, deteta intenção e estrutura informação para tomada de decisão."
+      },
+      {
+        "icon": "target",
+        "title": "Decidir",
+        "description": "Aplica lógica, regras e objetivos para determinar a melhor ação."
+      },
+      {
+        "icon": "zap",
+        "title": "Executar",
+        "description": "Responde, regista, agenda, atualiza sistemas ou encaminha tarefas — automaticamente."
+      }
+    ]
+  },
+  "use_cases": {
+    "title_plain": "Uma plataforma.",
+    "title_gradient": "Múltiplas aplicações reais.",
+    "items": [
+      {
+        "emoji": "🏥",
+        "title": "Saúde e fluxos de pacientes",
+        "description": "Fala com pacientes, recolhe sintomas, regista informação e encaminha casos conforme necessidades."
+      },
+      {
+        "emoji": "📅",
+        "title": "Agendamento e coordenação",
+        "description": "Gere disponibilidade, agenda marcações, confirma e ajusta em tempo real."
+      },
+      {
+        "emoji": "📊",
+        "title": "Captura de dados e qualificação",
+        "description": "Captura informação estruturada, valida inputs e prepara decisões ou transferências."
+      },
+      {
+        "emoji": "🔄",
+        "title": "Workflows operacionais",
+        "description": "Executa processos repetitivos, conecta sistemas e mantém a continuidade entre tarefas."
+      },
+      {
+        "emoji": "💬",
+        "title": "Operações de cliente e receita",
+        "description": "Gere conversas em todos os canais e transforma-as em ações qualificadas."
+      }
+    ],
+    "cta": "Explorar soluções"
+  },
+  "how_it_works": {
+    "title": "Como funciona StaffDigital AI",
+    "steps": [
+      {
+        "num": "1",
+        "title": "Recebe",
+        "description": "Voz, chat, formulários, APIs ou inputs de sistemas."
+      },
+      {
+        "num": "2",
+        "title": "Compreende",
+        "description": "Contexto, intenção, histórico e dados estruturados."
+      },
+      {
+        "num": "3",
+        "title": "Decide",
+        "description": "Regras, lógica e objetivos de negócio."
+      },
+      {
+        "num": "4",
+        "title": "Atua",
+        "description": "Responde, agenda, atualiza, notifica ou escala."
+      }
+    ],
+    "closing": "Cada interação torna-se parte de um processo contínuo e inteligente — não uma resposta isolada."
+  },
+  "differentiation": {
+    "title_plain": "Construído à volta do seu negócio.",
+    "title_gradient": "Sem templates.",
+    "text": "StaffDigital AI não é uma ferramenta plug-and-play. É uma camada operacional totalmente personalizada, desenhada conforme o seu negócio realmente funciona.",
+    "points": [
+      "Adaptado aos seus processos e workflows",
+      "Implementado por especialistas em IA",
+      "Integrado com os seus sistemas existentes",
+      "Otimizado continuamente com uso real",
+      "Sem necessidade de equipa técnica da sua parte"
+    ]
+  },
+  "voice": {
+    "title_plain": "Voz natural,",
+    "title_gradient": "quando importa",
+    "text": "Os nossos agentes IA podem comunicar com voz humana, permitindo interações mais naturais, claras e de confiança — especialmente em cenários complexos ou sensíveis.",
+    "microcopy": "A voz não é o centro. É o multiplicador."
+  },
+  "solutions_explore": {
+    "title": "Explore aplicações específicas",
+    "categories": [
+      {
+        "name": "Cliente e Receita",
+        "items": [
+          {
+            "label": "IA Omnicanal",
+            "href": "/soluciones/ia-omnicanal"
+          },
+          {
+            "label": "WhatsApp IA",
+            "href": "/soluciones/whatsapp-ia-empresas"
+          },
+          {
+            "label": "IA Call Center",
+            "href": "/soluciones/ia-call-center"
+          },
+          {
+            "label": "Agentes de Vendas",
+            "href": "/soluciones/agente-ventas-ia"
+          }
+        ]
+      },
+      {
+        "name": "Operações e Workflows",
+        "items": [
+          {
+            "label": "Agendamentos IA",
+            "href": "/soluciones/agente-agendamientos-ia"
+          },
+          {
+            "label": "Onboarding",
+            "href": "/soluciones/onboarding-automatico"
+          },
+          {
+            "label": "Execução de Processos",
+            "href": "/soluciones/automacion-ventas-ia"
+          },
+          {
+            "label": "Automatização CRM",
+            "href": "/soluciones/crm-automation-ia"
+          }
+        ]
+      },
+      {
+        "name": "Interfaces e Experiência",
+        "items": [
+          {
+            "label": "Voz IA",
+            "href": "/soluciones/agentes-ia-voz-humana"
+          },
+          {
+            "label": "Chat Web",
+            "href": "/soluciones/agente-chat-web-ia"
+          },
+          {
+            "label": "Assistente de Produtos",
+            "href": "/soluciones/agente-chat-productos-ia"
+          },
+          {
+            "label": "Agente de Suporte",
+            "href": "/soluciones/agente-soporte-ia"
+          }
+        ]
+      }
+    ],
+    "cta": "Explorar todas as soluções"
   }
 }

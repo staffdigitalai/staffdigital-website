@@ -1,50 +1,61 @@
 "use client"
 
-import { ShieldCheck, Clock, HeadsetIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
-const statIcons = [ShieldCheck, Clock, HeadsetIcon]
+interface Metric {
+  value: string
+  label: string
+}
 
 export function SocialProofBlock() {
   const t = useTranslations("social_proof")
 
-  const translatedItems = t.raw("items") as { label: string; sublabel: string }[]
-
-  const stats = translatedItems.map((item, i) => ({
-    ...item,
-    icon: statIcons[i],
-  }))
+  const metrics = t.raw("metrics") as Metric[]
 
   return (
-    <section className="py-16 px-4">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
-            <span>Infraestructura IA </span>
-            <span className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">segura y gestionada</span>
-          </h2>
-          <p className="text-foreground/50 text-sm">{t("subtitle")}</p>
-        </div>
+    <section className="py-20 px-4 animate-fade-in-section">
+      <div className="max-w-5xl mx-auto">
+        {/* Title */}
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-14 text-foreground">
+          {t("title")}
+        </h2>
 
-        <div className="grid sm:grid-cols-3 gap-4">
-          {stats.map((s) => (
-            <div 
-              key={s.label} 
-              className="card-elevated p-6 rounded-2xl text-center space-y-4 transition-all duration-300 hover:shadow-xl hover:shadow-[var(--purple-dark)]/10 hover:border-[rgba(124,58,237,0.3)] hover:-translate-y-1 cursor-default"
+        {/* 4 Metrics */}
+        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+          {metrics.map((metric, index) => (
+            <div
+              key={index}
+              className="border-l-4 border-transparent pl-5 py-2"
+              style={{
+                borderImage: "linear-gradient(to bottom, #0078AA, #7C3AED) 1",
+              }}
             >
-              <div 
-                className="w-14 h-14 rounded-2xl mx-auto flex items-center justify-center"
-                style={{ 
-                  background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))",
-                  boxShadow: "0 4px 12px rgba(124, 58, 237, 0.25)"
-                }}
-              >
-                <s.icon className="w-7 h-7 text-white" />
+              <div className="text-3xl md:text-4xl font-bold text-foreground mb-1">
+                {metric.value}
               </div>
-              <div className="font-bold text-foreground text-sm">{s.label}</div>
-              <div className="text-xs text-muted-foreground leading-relaxed">{s.sublabel}</div>
+              <div className="text-sm text-foreground/60">
+                {metric.label}
+              </div>
             </div>
           ))}
+        </div>
+
+        {/* Quote */}
+        <div className="max-w-3xl mx-auto text-center">
+          <blockquote className="relative">
+            <span className="absolute -top-6 -left-2 text-6xl text-[#0078AA]/20 dark:text-[var(--neon-blue)]/20 font-serif leading-none select-none">
+              &ldquo;
+            </span>
+            <p className="text-xl md:text-2xl text-foreground/80 italic leading-relaxed">
+              {t("quote")}
+            </p>
+            <span className="absolute -bottom-8 right-0 text-6xl text-[#7C3AED]/20 font-serif leading-none select-none">
+              &rdquo;
+            </span>
+          </blockquote>
+          <p className="mt-8 text-sm font-semibold text-foreground/50 tracking-wide uppercase">
+            {t("quote_author")}
+          </p>
         </div>
       </div>
     </section>

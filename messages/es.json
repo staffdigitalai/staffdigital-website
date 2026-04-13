@@ -204,7 +204,7 @@
   "omnichannel": {
     "title_1": "Bandeja única:",
     "title_2": "todos los canales en un solo lugar",
-    "subtitle": "StaffDigital AI unifica WhatsApp, tel��fono, chat web, email y redes sociales en una sola bandeja. Un agente IA, todos los canales, historial completo.",
+    "subtitle": "StaffDigital AI unifica WhatsApp, tel����fono, chat web, email y redes sociales en una sola bandeja. Un agente IA, todos los canales, historial completo.",
     "channels": [
       {
         "name": "Teléfono",
@@ -374,9 +374,17 @@
     "quote_author_initials": "MG",
     "quote_author_name": "Miguel Garcia",
     "quote_author_role": "Director de Operaciones",
-    "quote_company_abbr": "CH",
     "quote_company": "Clinica Horizonte",
-    "quote_company_type": "Red de clinicas privadas"
+    "case_study_label": "Caso de exito",
+    "case_study_company": "Clinica Horizonte",
+    "case_study_type": "Red de clinicas privadas -- 12 centros",
+    "case_study_challenge_label": "Desafio",
+    "case_study_challenge": "Perdian el 40% de llamadas fuera de horario y los tiempos de espera superaban los 8 minutos.",
+    "case_study_solution_label": "Solucion",
+    "case_study_solution": "Agente IA con voz humana para atencion telefonica 24/7 integrado con su sistema de citas.",
+    "case_study_result_label": "Resultado",
+    "case_study_result": "0 llamadas perdidas. Tiempo de respuesta reducido a 12 segundos. +35% en reservas confirmadas.",
+    "case_study_cta": "Ver casos de exito"
   },
   "faq": {
     "title": "Preguntas frecuentes sobre agentes IA",

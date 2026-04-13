@@ -373,9 +373,17 @@
     "quote_author_initials": "MG",
     "quote_author_name": "Miguel Garcia",
     "quote_author_role": "Operations Director",
-    "quote_company_abbr": "CH",
     "quote_company": "Clinica Horizonte",
-    "quote_company_type": "Private clinic network"
+    "case_study_label": "Success story",
+    "case_study_company": "Clinica Horizonte",
+    "case_study_type": "Private clinic network -- 12 centers",
+    "case_study_challenge_label": "Challenge",
+    "case_study_challenge": "They were losing 40% of calls outside business hours and wait times exceeded 8 minutes.",
+    "case_study_solution_label": "Solution",
+    "case_study_solution": "AI agent with human voice for 24/7 phone support integrated with their appointment system.",
+    "case_study_result_label": "Result",
+    "case_study_result": "0 missed calls. Response time reduced to 12 seconds. +35% in confirmed bookings.",
+    "case_study_cta": "View success stories"
   },
   "faq": {
     "title": "Frequently asked questions about AI agents",

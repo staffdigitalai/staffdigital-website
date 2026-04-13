@@ -360,15 +360,29 @@
     ]
   },
   "social_proof": {
-    "title": "Impacto real, não apenas promessas",
+    "badge": "Resultados mensuraveis",
+    "title": "Impacto real, nao apenas promessas",
     "metrics": [
-      "Gere milhares de interações automaticamente",
-      "Reduz tempos de resposta para segundos",
-      "Aumenta conversão e eficiência operacional",
-      "Mantém consistência em todos os canais e equipas"
+      { "value": "87%", "label": "Reducao no tempo de resposta" },
+      { "value": "24/7", "label": "Disponibilidade continua sem pausas" },
+      { "value": "+40%", "label": "Aumento na conversao de leads" },
+      { "value": "2-6", "label": "Semanas para implementacao completa" }
     ],
-    "quote": "StaffDigital AI permitiu-nos gerir elevados volumes de interações melhorando a qualidade de resposta e a eficiência operacional.",
-    "quote_author": "Diretor de Operações"
+    "quote": "StaffDigital AI transformou por completo o nosso atendimento ao paciente. Passamos de perder chamadas a gerir 100% das interacoes com a mesma qualidade -- mesmo fora de horario.",
+    "quote_author_initials": "MG",
+    "quote_author_name": "Miguel Garcia",
+    "quote_author_role": "Diretor de Operacoes",
+    "quote_company": "Clinica Horizonte",
+    "case_study_label": "Caso de sucesso",
+    "case_study_company": "Clinica Horizonte",
+    "case_study_type": "Rede de clinicas privadas -- 12 centros",
+    "case_study_challenge_label": "Desafio",
+    "case_study_challenge": "Perdiam 40% das chamadas fora de horario e os tempos de espera ultrapassavam os 8 minutos.",
+    "case_study_solution_label": "Solucao",
+    "case_study_solution": "Agente IA com voz humana para atendimento telefonico 24/7 integrado com o sistema de marcacoes.",
+    "case_study_result_label": "Resultado",
+    "case_study_result": "0 chamadas perdidas. Tempo de resposta reduzido para 12 segundos. +35% em reservas confirmadas.",
+    "case_study_cta": "Ver casos de sucesso"
   },
   "faq": {
     "title": "Perguntas frequentes sobre agentes IA",

@@ -8,89 +8,70 @@ export function HeroBlock() {
   const t = useTranslations("hero")
 
   return (
-    <section className="min-h-[100svh] flex items-center justify-center px-6 sm:px-8 lg:px-12 pt-28 pb-16 sm:pt-32 sm:pb-20 relative overflow-hidden">
-      {/* Premium cinematic background */}
+    <section className="min-h-[100svh] flex items-center justify-center px-6 sm:px-8 lg:px-12 pt-32 pb-20 sm:pt-36 sm:pb-24 relative overflow-hidden">
+      {/* Clean cinematic background */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Primary radial glow - top center */}
         <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] h-[80%] opacity-25 dark:opacity-40"
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[120%] h-[70%] opacity-20 dark:opacity-30"
           style={{
-            background: "radial-gradient(ellipse 70% 55% at 50% 0%, rgba(0,120,170,0.35) 0%, rgba(124,58,237,0.2) 35%, transparent 70%)",
+            background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,120,170,0.3) 0%, transparent 70%)",
           }}
         />
-        {/* Secondary accent glow - bottom */}
         <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[120%] h-[50%] opacity-15 dark:opacity-25"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[100%] h-[40%] opacity-10 dark:opacity-20"
           style={{
-            background: "radial-gradient(ellipse 80% 50% at 50% 100%, rgba(124,58,237,0.25) 0%, transparent 60%)",
-          }}
-        />
-        {/* Subtle grain texture overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.025] dark:opacity-[0.05]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-          }}
-        />
-        {/* Subtle horizontal lines for depth */}
-        <div
-          className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]"
-          style={{
-            backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 100px, rgba(255,255,255,0.03) 100px, rgba(255,255,255,0.03) 101px)",
+            background: "radial-gradient(ellipse 70% 50% at 50% 100%, rgba(124,58,237,0.2) 0%, transparent 60%)",
           }}
         />
       </div>
 
-      <div className="w-full max-w-5xl mx-auto text-center relative z-10">
+      <div className="w-full max-w-4xl mx-auto text-center relative z-10">
         {/* Eyebrow badge */}
-        <div className="animate-fade-in-badge mb-8 sm:mb-10">
-          <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-foreground/[0.04] dark:bg-white/[0.06] border border-foreground/[0.08] dark:border-white/[0.12] backdrop-blur-sm">
-            <Sparkles className="w-4 h-4 text-[#0078AA] dark:text-[#00D4FF]" />
-            <span className="text-xs sm:text-sm font-medium tracking-wide text-foreground/70 dark:text-white/70">
+        <div className="animate-fade-in-badge mb-10 sm:mb-12">
+          <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-foreground/[0.03] dark:bg-white/[0.05] border border-foreground/[0.06] dark:border-white/[0.1] backdrop-blur-sm">
+            <Sparkles className="w-3.5 h-3.5 text-[#0078AA] dark:text-[#00D4FF]" />
+            <span className="text-xs font-semibold tracking-widest uppercase text-foreground/60 dark:text-white/60">
               {t("badge") || "Plataforma IA Operativa"}
             </span>
           </div>
         </div>
 
-        {/* H1 — Editorial, impactful */}
+        {/* H1 -- Commanding, clean */}
         <h1 className="animate-fade-in-hero">
-          <span className="block text-foreground text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold leading-[1.05] tracking-[-0.02em]">
+          <span className="block text-foreground text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-[-0.025em]">
             {t("h1_plain")}
           </span>
           <span
-            className="block mt-2 sm:mt-3 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold leading-[1.05] tracking-[-0.02em] bg-clip-text text-transparent"
+            className="block mt-2 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-[-0.025em] bg-clip-text text-transparent"
             style={{
-              backgroundImage: "linear-gradient(135deg, #0078AA 0%, #7C3AED 50%, #0078AA 100%)",
-              backgroundSize: "200% auto",
-              animation: "gradient-shift 4s ease-in-out infinite",
+              backgroundImage: "linear-gradient(135deg, #0078AA 0%, #7C3AED 100%)",
             }}
           >
             {t("h1_gradient")}
           </span>
         </h1>
 
-        {/* Subtitle — Clear hierarchy, readable */}
-        <p className="mt-8 sm:mt-10 md:mt-12 text-base sm:text-lg md:text-xl text-foreground/60 dark:text-white/55 max-w-2xl mx-auto leading-relaxed font-normal animate-fade-in-heading text-balance">
+        {/* Subtitle -- Clear hierarchy */}
+        <p className="mt-8 sm:mt-10 text-base sm:text-lg md:text-xl text-foreground/55 dark:text-white/50 max-w-xl mx-auto leading-relaxed animate-fade-in-heading text-balance">
           {t("subtitle")}
         </p>
 
-        {/* CTAs — Premium presence */}
-        <div className="mt-10 sm:mt-14 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 animate-fade-in-buttons">
+        {/* CTAs -- Clean, premium */}
+        <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-buttons">
           {/* Primary CTA */}
           <Link
             href="/demo"
-            className="group relative inline-flex items-center justify-center rounded-full px-8 sm:px-10 py-4 sm:py-[1.125rem] text-base sm:text-[1.0625rem] font-semibold text-white transition-all duration-500 hover:scale-[1.03] overflow-hidden"
+            className="group relative inline-flex items-center justify-center rounded-full px-8 sm:px-10 py-4 text-base font-semibold text-white transition-all duration-400 hover:scale-[1.02] overflow-hidden"
             style={{
               background: "linear-gradient(135deg, #0078AA 0%, #5B21B6 100%)",
-              boxShadow: "0 4px 20px rgba(0,120,170,0.35), 0 8px 32px rgba(91,33,182,0.25), inset 0 1px 0 rgba(255,255,255,0.1)",
+              boxShadow: "0 4px 16px rgba(0,120,170,0.25), 0 8px 24px rgba(91,33,182,0.15)",
             }}
           >
             <span className="relative z-10 flex items-center">
               {t("cta_primary")}
-              <ArrowRight className="ml-2.5 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+              <ArrowRight className="ml-2.5 h-4.5 w-4.5 group-hover:translate-x-1 transition-transform duration-300" />
             </span>
-            {/* Hover glow overlay */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400" 
               style={{ background: "linear-gradient(135deg, #0090CC 0%, #7C3AED 100%)" }} 
             />
           </Link>
@@ -98,16 +79,16 @@ export function HeroBlock() {
           {/* Secondary CTA */}
           <a
             href="#how-it-works"
-            className="group inline-flex items-center justify-center rounded-full px-7 sm:px-9 py-4 sm:py-[1.125rem] text-base sm:text-[1.0625rem] font-medium text-foreground/80 dark:text-white/80 transition-all duration-400 hover:text-foreground dark:hover:text-white border border-foreground/[0.12] dark:border-white/[0.15] hover:border-foreground/25 dark:hover:border-white/30 hover:bg-foreground/[0.03] dark:hover:bg-white/[0.05] backdrop-blur-sm"
+            className="group inline-flex items-center justify-center rounded-full px-7 sm:px-9 py-4 text-base font-medium text-foreground/70 dark:text-white/70 transition-all duration-300 hover:text-foreground dark:hover:text-white border border-foreground/[0.1] dark:border-white/[0.12] hover:border-foreground/20 dark:hover:border-white/25 hover:bg-foreground/[0.03] dark:hover:bg-white/[0.04]"
           >
             {t("cta_secondary")}
             <ArrowRight className="ml-2 h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
           </a>
         </div>
 
-        {/* Microcopy — Elegant, subtle */}
+        {/* Microcopy */}
         <p 
-          className="mt-10 sm:mt-12 text-xs sm:text-sm text-foreground/35 dark:text-white/30 tracking-wide font-light animate-fade-in-buttons" 
+          className="mt-10 text-xs text-foreground/30 dark:text-white/25 tracking-wide animate-fade-in-buttons" 
           style={{ animationDelay: "1.2s" }}
         >
           {t("microcopy")}

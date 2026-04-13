@@ -28,9 +28,9 @@ export function HeroBlock() {
       <div className="w-full max-w-4xl mx-auto text-center relative z-10">
         {/* Eyebrow badge */}
         <div className="animate-fade-in-badge mb-10 sm:mb-12 flex justify-center">
-          <span className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-foreground/[0.03] dark:bg-white/[0.05] border border-foreground/[0.06] dark:border-white/[0.1] backdrop-blur-sm">
+          <span className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/80 dark:bg-white/[0.08] border border-foreground/[0.12] dark:border-white/[0.15] backdrop-blur-md shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-[#0078AA] dark:text-[#00D4FF] flex-shrink-0" />
-            <span className="text-xs font-semibold tracking-widest uppercase text-foreground/60 dark:text-white/60 whitespace-nowrap">
+            <span className="text-xs font-semibold tracking-widest uppercase text-foreground/80 dark:text-white/70 whitespace-nowrap">
               {t("badge") || "Plataforma IA Operativa"}
             </span>
           </span>

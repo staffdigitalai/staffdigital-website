@@ -204,7 +204,7 @@
   "omnichannel": {
     "title_1": "Bandeja única:",
     "title_2": "todos los canales en un solo lugar",
-    "subtitle": "StaffDigital AI unifica WhatsApp, tel����fono, chat web, email y redes sociales en una sola bandeja. Un agente IA, todos los canales, historial completo.",
+    "subtitle": "StaffDigital AI unifica WhatsApp, tel������fono, chat web, email y redes sociales en una sola bandeja. Un agente IA, todos los canales, historial completo.",
     "channels": [
       {
         "name": "Teléfono",
@@ -664,33 +664,7 @@
     "p2": "StaffDigital AI va más allá — opera.",
     "p3": "Nuestra plataforma entiende el contexto, procesa información y ejecuta acciones en tiempo real, conectando conversaciones con resultados reales."
   },
-  "what_we_do": {
-    "title_plain": "De la interacción a la",
-    "title_gradient": "ejecución",
-    "subtitle": "Convierte conversaciones, inputs y señales en acciones estructuradas y resultados reales.",
-    "cards": [
-    {
-    "icon": "brain",
-    "title": "Comprender",
-    "description": "Interpreta lenguaje, datos y contexto a través de conversaciones y sistemas."
-    },
-    {
-    "icon": "bar-chart",
-    "title": "Analizar",
-    "description": "Evalúa inputs, detecta intención y estructura información para la toma de decisiones."
-    },
-    {
-    "icon": "check-circle",
-    "title": "Decidir",
-    "description": "Aplica lógica, reglas y objetivos para determinar la mejor acción."
-    },
-    {
-    "icon": "zap",
-    "title": "Ejecutar",
-    "description": "Responde, registra, agenda, actualiza sistemas o enruta tareas — automáticamente."
-    }
-    ]
-  },
+  "_what_we_do_deprecated": true,
   "use_cases": {
     "title_plain": "Una plataforma.",
     "title_gradient": "Múltiples aplicaciones reales.",
@@ -725,29 +699,46 @@
   },
   "how_it_works": {
     "title": "Cómo funciona StaffDigital AI",
+    "subtitle": "Cada interacción se convierte en contexto, decisión y acción — conectada a los procesos de tu negocio.",
     "steps": [
       {
         "num": "1",
-        "title": "Recibe",
-        "description": "Voz, chat, formularios, APIs o inputs de sistemas."
+        "label": "Recibe",
+        "description": "Voz, chat, formularios, APIs o inputs de sistemas.",
+        "icon": "inbox",
+        "card_title": "Captura multicanal",
+        "card_text": "Recibe interacciones desde cualquier punto de contacto — llamadas, WhatsApp, formularios web o APIs — y las unifica en un flujo estructurado.",
+        "card_example": "Llamada entrante → transcrita → datos extraídos → flujo iniciado"
       },
       {
         "num": "2",
-        "title": "Comprende",
-        "description": "Contexto, intención, historial y datos estructurados."
+        "label": "Comprende",
+        "description": "Contexto, intención, historial y datos estructurados.",
+        "icon": "brain",
+        "card_title": "Comprensión contextual",
+        "card_text": "Analiza el lenguaje, detecta la intención, cruza el historial del contacto y estructura la información para tomar decisiones.",
+        "card_example": "\"Quiero cambiar mi cita\" → intención: reagendar → contexto: cita #4521"
       },
       {
         "num": "3",
-        "title": "Decide",
-        "description": "Reglas, lógica y objetivos de negocio."
+        "label": "Decide",
+        "description": "Reglas, lógica y objetivos de negocio.",
+        "icon": "git-branch",
+        "card_title": "Motor de decisión",
+        "card_text": "Aplica reglas de negocio, lógica condicional y objetivos configurados para determinar la mejor acción en cada caso.",
+        "card_example": "Si disponibilidad > 0 → reagendar automáticamente → confirmar"
       },
       {
         "num": "4",
-        "title": "Actúa",
-        "description": "Responde, agenda, actualiza, notifica o escala."
+        "label": "Ejecuta",
+        "description": "Responde, agenda, actualiza, notifica o escala.",
+        "icon": "zap",
+        "card_title": "Ejecución autónoma",
+        "card_text": "Ejecuta la acción decidida — responde al usuario, actualiza sistemas, agenda citas, envía notificaciones o escala a un humano.",
+        "card_example": "Cita reagendada → SMS enviado → CRM actualizado → caso cerrado"
       }
     ],
-    "closing": "Cada interacción se convierte en parte de un proceso continuo e inteligente — no una respuesta aislada."
+    "closing": "No responde como un sistema aislado. Convierte cada interacción en una acción conectada al negocio."
   },
   "differentiation": {
     "title_plain": "Construido alrededor de tu negocio.",

@@ -663,33 +663,7 @@
     "p2": "StaffDigital AI goes further — it operates.",
     "p3": "Our platform understands context, processes information and executes actions in real time, connecting conversations with actual outcomes."
   },
-  "what_we_do": {
-    "title_plain": "From interaction to",
-    "title_gradient": "execution",
-    "subtitle": "Turn conversations, inputs and signals into structured actions and real results.",
-    "cards": [
-    {
-    "icon": "brain",
-    "title": "Understand",
-    "description": "Interprets language, data and context across conversations and systems."
-    },
-    {
-    "icon": "bar-chart",
-    "title": "Analyze",
-    "description": "Evaluates inputs, detects intent and structures information for decision-making."
-    },
-    {
-    "icon": "check-circle",
-    "title": "Decide",
-    "description": "Applies logic, rules and objectives to determine the next best action."
-    },
-    {
-    "icon": "zap",
-    "title": "Execute",
-    "description": "Responds, records, schedules, updates systems or routes tasks — automatically."
-    }
-    ]
-  },
+  "_what_we_do_deprecated": true,
   "use_cases": {
     "title_plain": "One platform.",
     "title_gradient": "Multiple real-world applications.",
@@ -724,29 +698,46 @@
   },
   "how_it_works": {
     "title": "How StaffDigital AI works",
+    "subtitle": "Every interaction becomes context, decision, and action — connected to your business processes.",
     "steps": [
       {
         "num": "1",
-        "title": "Receive",
-        "description": "Voice, chat, forms, APIs or system inputs."
+        "label": "Receive",
+        "description": "Voice, chat, forms, APIs or system inputs.",
+        "icon": "inbox",
+        "card_title": "Multichannel capture",
+        "card_text": "Receives interactions from any touchpoint — calls, WhatsApp, web forms or APIs — and unifies them into a structured flow.",
+        "card_example": "Incoming call → transcribed → data extracted → flow initiated"
       },
       {
         "num": "2",
-        "title": "Understand",
-        "description": "Context, intent, history and structured data."
+        "label": "Understand",
+        "description": "Context, intent, history and structured data.",
+        "icon": "brain",
+        "card_title": "Contextual understanding",
+        "card_text": "Analyzes language, detects intent, cross-references contact history and structures information for decision-making.",
+        "card_example": "\"I want to reschedule\" → intent: reschedule → context: appt #4521"
       },
       {
         "num": "3",
-        "title": "Decide",
-        "description": "Rules, logic and business objectives."
+        "label": "Decide",
+        "description": "Rules, logic and business objectives.",
+        "icon": "git-branch",
+        "card_title": "Decision engine",
+        "card_text": "Applies business rules, conditional logic and configured objectives to determine the best action in each case.",
+        "card_example": "If availability > 0 → auto-reschedule → confirm"
       },
       {
         "num": "4",
-        "title": "Act",
-        "description": "Respond, schedule, update, notify or escalate."
+        "label": "Execute",
+        "description": "Respond, schedule, update, notify or escalate.",
+        "icon": "zap",
+        "card_title": "Autonomous execution",
+        "card_text": "Executes the decided action — responds to the user, updates systems, books appointments, sends notifications or escalates to a human.",
+        "card_example": "Appointment rescheduled → SMS sent → CRM updated → case closed"
       }
     ],
-    "closing": "Every interaction becomes part of a continuous, intelligent process — not an isolated response."
+    "closing": "It doesn't respond like an isolated system. It turns every interaction into an action connected to the business."
   },
   "differentiation": {
     "title_plain": "Built around your business.",

@@ -652,33 +652,7 @@
     "p2": "StaffDigital AI vai mais longe — opera.",
     "p3": "A nossa plataforma entende o contexto, processa informação e executa ações em tempo real, conectando conversas com resultados reais."
   },
-  "what_we_do": {
-    "title_plain": "Da interação à",
-    "title_gradient": "execução",
-    "subtitle": "Transforma conversas, inputs e sinais em ações estruturadas e resultados reais.",
-    "cards": [
-      {
-        "icon": "brain",
-        "title": "Compreender",
-        "description": "Interpreta linguagem, dados e contexto em conversas e sistemas."
-      },
-      {
-        "icon": "file-text",
-        "title": "Analisar",
-        "description": "Avalia inputs, deteta intenção e estrutura informação para tomada de decisão."
-      },
-      {
-        "icon": "target",
-        "title": "Decidir",
-        "description": "Aplica lógica, regras e objetivos para determinar a melhor ação."
-      },
-      {
-        "icon": "zap",
-        "title": "Executar",
-        "description": "Responde, regista, agenda, atualiza sistemas ou encaminha tarefas — automaticamente."
-      }
-    ]
-  },
+  "_what_we_do_deprecated": true,
   "use_cases": {
     "title_plain": "Uma plataforma.",
     "title_gradient": "Múltiplas aplicações reais.",
@@ -713,29 +687,46 @@
   },
   "how_it_works": {
     "title": "Como funciona StaffDigital AI",
+    "subtitle": "Cada interação transforma-se em contexto, decisão e ação — conectada aos processos do seu negócio.",
     "steps": [
       {
         "num": "1",
-        "title": "Recebe",
-        "description": "Voz, chat, formulários, APIs ou inputs de sistemas."
+        "label": "Recebe",
+        "description": "Voz, chat, formulários, APIs ou inputs de sistemas.",
+        "icon": "inbox",
+        "card_title": "Captura multicanal",
+        "card_text": "Recebe interações de qualquer ponto de contacto — chamadas, WhatsApp, formulários web ou APIs — e unifica-as num fluxo estruturado.",
+        "card_example": "Chamada recebida → transcrita → dados extraídos → fluxo iniciado"
       },
       {
         "num": "2",
-        "title": "Compreende",
-        "description": "Contexto, intenção, histórico e dados estruturados."
+        "label": "Compreende",
+        "description": "Contexto, intenção, histórico e dados estruturados.",
+        "icon": "brain",
+        "card_title": "Compreensão contextual",
+        "card_text": "Analisa a linguagem, deteta a intenção, cruza o histórico do contacto e estrutura a informação para tomada de decisão.",
+        "card_example": "\"Quero alterar a minha consulta\" → intenção: reagendar → contexto: consulta #4521"
       },
       {
         "num": "3",
-        "title": "Decide",
-        "description": "Regras, lógica e objetivos de negócio."
+        "label": "Decide",
+        "description": "Regras, lógica e objetivos de negócio.",
+        "icon": "git-branch",
+        "card_title": "Motor de decisão",
+        "card_text": "Aplica regras de negócio, lógica condicional e objetivos configurados para determinar a melhor ação em cada caso.",
+        "card_example": "Se disponibilidade > 0 → reagendar automaticamente → confirmar"
       },
       {
         "num": "4",
-        "title": "Atua",
-        "description": "Responde, agenda, atualiza, notifica ou escala."
+        "label": "Executa",
+        "description": "Responde, agenda, atualiza, notifica ou escala.",
+        "icon": "zap",
+        "card_title": "Execução autónoma",
+        "card_text": "Executa a ação decidida — responde ao utilizador, atualiza sistemas, agenda consultas, envia notificações ou escala para um humano.",
+        "card_example": "Consulta reagendada → SMS enviado → CRM atualizado → caso encerrado"
       }
     ],
-    "closing": "Cada interação torna-se parte de um processo contínuo e inteligente — não uma resposta isolada."
+    "closing": "Não responde como um sistema isolado. Transforma cada interação numa ação conectada ao negócio."
   },
   "differentiation": {
     "title_plain": "Construído à volta do seu negócio.",

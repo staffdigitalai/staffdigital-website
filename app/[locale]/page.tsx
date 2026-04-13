@@ -7,7 +7,6 @@ import { BackgroundEffects } from "@/components/background-effects"
 import { HeroBlock } from "@/components/homepage/hero-block"
 import { AIWorking247Block } from "@/components/homepage/ai-working-247-block"
 import { ClarificationBlock } from "@/components/homepage/clarification-block"
-import { WhatWeDoBlock } from "@/components/homepage/what-we-do-block"
 import { UseCasesBlock } from "@/components/homepage/use-cases-block"
 import { HowItWorksBlock } from "@/components/homepage/how-it-works-block"
 import { DifferentiationBlock } from "@/components/homepage/differentiation-block"
@@ -42,8 +41,8 @@ export default function HomePage() {
           {/* 3 -- Clarification: Editorial breathing room */}
           <ClarificationBlock />
 
-          {/* 4 -- What We Do: Process overview */}
-          <WhatWeDoBlock />
+          {/* 4 -- How It Works: Unified process + cards */}
+          <HowItWorksBlock />
 
           {/* Section divider */}
           <div className="section-divider max-w-3xl mx-auto" />
@@ -52,9 +51,6 @@ export default function HomePage() {
           <div id="soluciones">
             <UseCasesBlock />
           </div>
-
-          {/* 6 -- How It Works: Pipeline steps */}
-          <HowItWorksBlock />
 
           {/* Section divider */}
           <div className="section-divider max-w-3xl mx-auto" />

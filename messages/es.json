@@ -204,7 +204,7 @@
   "omnichannel": {
     "title_1": "Bandeja única:",
     "title_2": "todos los canales en un solo lugar",
-    "subtitle": "StaffDigital AI unifica WhatsApp, teléfono, chat web, email y redes sociales en una sola bandeja. Un agente IA, todos los canales, historial completo.",
+    "subtitle": "StaffDigital AI unifica WhatsApp, tel��fono, chat web, email y redes sociales en una sola bandeja. Un agente IA, todos los canales, historial completo.",
     "channels": [
       {
         "name": "Teléfono",
@@ -661,26 +661,26 @@
     "title_gradient": "ejecución",
     "subtitle": "Convierte conversaciones, inputs y señales en acciones estructuradas y resultados reales.",
     "cards": [
-      {
-        "icon": "brain",
-        "title": "Comprender",
-        "description": "Interpreta lenguaje, datos y contexto a través de conversaciones y sistemas."
-      },
-      {
-        "icon": "file-text",
-        "title": "Analizar",
-        "description": "Evalúa inputs, detecta intención y estructura información para la toma de decisiones."
-      },
-      {
-        "icon": "target",
-        "title": "Decidir",
-        "description": "Aplica lógica, reglas y objetivos para determinar la mejor acción."
-      },
-      {
-        "icon": "zap",
-        "title": "Ejecutar",
-        "description": "Responde, registra, agenda, actualiza sistemas o enruta tareas — automáticamente."
-      }
+    {
+    "icon": "brain",
+    "title": "Comprender",
+    "description": "Interpreta lenguaje, datos y contexto a través de conversaciones y sistemas."
+    },
+    {
+    "icon": "bar-chart",
+    "title": "Analizar",
+    "description": "Evalúa inputs, detecta intención y estructura información para la toma de decisiones."
+    },
+    {
+    "icon": "check-circle",
+    "title": "Decidir",
+    "description": "Aplica lógica, reglas y objetivos para determinar la mejor acción."
+    },
+    {
+    "icon": "zap",
+    "title": "Ejecutar",
+    "description": "Responde, registra, agenda, actualiza sistemas o enruta tareas — automáticamente."
+    }
     ]
   },
   "use_cases": {

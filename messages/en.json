@@ -660,26 +660,26 @@
     "title_gradient": "execution",
     "subtitle": "Turn conversations, inputs and signals into structured actions and real results.",
     "cards": [
-      {
-        "icon": "brain",
-        "title": "Understand",
-        "description": "Interprets language, data and context across conversations and systems."
-      },
-      {
-        "icon": "file-text",
-        "title": "Analyze",
-        "description": "Evaluates inputs, detects intent and structures information for decision-making."
-      },
-      {
-        "icon": "target",
-        "title": "Decide",
-        "description": "Applies logic, rules and objectives to determine the next best action."
-      },
-      {
-        "icon": "zap",
-        "title": "Execute",
-        "description": "Responds, records, schedules, updates systems or routes tasks — automatically."
-      }
+    {
+    "icon": "brain",
+    "title": "Understand",
+    "description": "Interprets language, data and context across conversations and systems."
+    },
+    {
+    "icon": "bar-chart",
+    "title": "Analyze",
+    "description": "Evaluates inputs, detects intent and structures information for decision-making."
+    },
+    {
+    "icon": "check-circle",
+    "title": "Decide",
+    "description": "Applies logic, rules and objectives to determine the next best action."
+    },
+    {
+    "icon": "zap",
+    "title": "Execute",
+    "description": "Responds, records, schedules, updates systems or routes tasks — automatically."
+    }
     ]
   },
   "use_cases": {

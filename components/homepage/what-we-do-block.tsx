@@ -1,13 +1,13 @@
 "use client"
 
-import { Brain, FileText, Target, Zap } from "lucide-react"
+import { Brain, BarChart3, CheckCircle, Zap } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  Brain,
-  FileText,
-  Target,
-  Zap,
+  brain: Brain,
+  "bar-chart": BarChart3,
+  "check-circle": CheckCircle,
+  zap: Zap,
 }
 
 interface WhatWeDoCard {
@@ -37,32 +37,42 @@ export function WhatWeDoBlock() {
           </p>
         </div>
 
-        {/* 2x2 Grid — Premium cards */}
-        <div className="grid md:grid-cols-2 gap-5 lg:gap-6">
+        {/* 2x2 Grid — Modern cards with depth and shadows */}
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {cards.map((card, index) => {
             const Icon = iconMap[card.icon] || Brain
             return (
               <div
                 key={card.title}
-                className="group relative bg-foreground/[0.02] dark:bg-white/[0.03] backdrop-blur-sm p-7 sm:p-8 rounded-2xl lg:rounded-3xl transition-all duration-500 hover:bg-foreground/[0.04] dark:hover:bg-white/[0.05] border border-foreground/[0.06] dark:border-white/[0.08] hover:border-foreground/[0.12] dark:hover:border-white/[0.15] overflow-hidden"
+                className="group relative p-8 sm:p-10 rounded-3xl transition-all duration-500 hover:shadow-xl hover:-translate-y-1 overflow-hidden"
+                style={{
+                  background: "linear-gradient(135deg, rgba(248,250,252,0.8) 0%, rgba(248,250,252,0.5) 100%)",
+                  boxShadow: "0 4px 16px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.8)",
+                  border: "1px solid rgba(0,120,170,0.08)",
+                }}
               >
-                {/* Number indicator */}
-                <div className="absolute top-6 right-6 sm:top-8 sm:right-8 text-6xl sm:text-7xl font-bold text-foreground/[0.03] dark:text-white/[0.04] leading-none select-none">
+                {/* Number indicator - modern style */}
+                <div className="absolute top-6 right-6 sm:top-8 sm:right-8 text-5xl sm:text-6xl font-bold text-foreground/[0.05] dark:text-white/[0.08] leading-none select-none tracking-tight">
                   {String(index + 1).padStart(2, '0')}
                 </div>
                 
-                {/* Icon with gradient background */}
-                <div className="relative w-14 h-14 rounded-xl bg-gradient-to-br from-[#0078AA]/10 to-[#7C3AED]/10 dark:from-[#0078AA]/15 dark:to-[#7C3AED]/15 flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300">
-                  <Icon className="w-7 h-7 text-[#0078AA] dark:text-[#00D4FF]" />
+                {/* Icon with modern gradient background */}
+                <div className="relative w-16 h-16 rounded-2xl mb-7 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(0,120,170,0.12) 0%, rgba(124,58,237,0.08) 100%)",
+                    boxShadow: "0 2px 8px rgba(0,120,170,0.1), inset 0 1px 2px rgba(255,255,255,0.5)",
+                  }}
+                >
+                  <Icon className="w-8 h-8 text-[#0078AA]" />
                 </div>
                 
                 {/* Title */}
-                <h3 className="relative text-xl sm:text-2xl font-bold text-foreground mb-3 leading-snug tracking-tight">
+                <h3 className="relative text-2xl sm:text-3xl font-bold text-foreground mb-4 leading-tight tracking-tight">
                   {card.title}
                 </h3>
                 
                 {/* Description */}
-                <p className="relative text-foreground/55 text-sm sm:text-base leading-relaxed">
+                <p className="relative text-foreground/60 text-base leading-relaxed">
                   {card.description}
                 </p>
               </div>

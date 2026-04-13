@@ -88,7 +88,7 @@ export function HeroBlock() {
 
         {/* Microcopy */}
         <p 
-          className="mt-10 text-xs text-foreground/30 dark:text-white/25 tracking-wide animate-fade-in-buttons" 
+          className="mt-10 text-xs text-foreground/55 dark:text-white/45 tracking-wide animate-fade-in-buttons" 
           style={{ animationDelay: "1.2s" }}
         >
           {t("microcopy")}

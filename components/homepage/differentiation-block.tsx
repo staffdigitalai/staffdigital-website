@@ -20,7 +20,7 @@ export function DifferentiationBlock() {
                 {t("title_gradient")}
               </span>
             </h2>
-            <p className="text-foreground/50 text-base sm:text-lg leading-relaxed">
+            <p className="text-foreground/55 dark:text-foreground/50 text-base sm:text-lg leading-[1.7]">
               {t("text")}
             </p>
           </div>
@@ -30,12 +30,12 @@ export function DifferentiationBlock() {
             {points.map((point, index) => (
               <div 
                 key={index} 
-                className="flex items-start gap-4 p-5 rounded-xl card-premium"
+                className="flex items-start gap-4 p-5 sm:p-6 rounded-2xl card-premium"
               >
                 <div className="w-7 h-7 rounded-full bg-[#0078AA]/[0.08] dark:bg-[#00D4FF]/[0.1] flex items-center justify-center shrink-0 mt-0.5">
                   <Check className="w-3.5 h-3.5 text-[#0078AA] dark:text-[#00D4FF]" />
                 </div>
-                <span className="text-foreground/75 text-sm sm:text-base leading-relaxed font-medium">
+                <span className="text-foreground/70 dark:text-foreground/65 text-sm sm:text-base leading-relaxed font-medium">
                   {point}
                 </span>
               </div>

@@ -52,7 +52,7 @@ export function HeroBlock() {
         </h1>
 
         {/* Subtitle -- Clear hierarchy */}
-        <p className="mt-8 sm:mt-10 text-base sm:text-lg md:text-xl text-foreground/55 dark:text-white/50 max-w-xl mx-auto leading-relaxed animate-fade-in-heading text-balance">
+        <p className="mt-8 sm:mt-10 text-base sm:text-lg md:text-xl text-foreground/60 dark:text-white/55 max-w-2xl mx-auto leading-relaxed animate-fade-in-heading text-balance">
           {t("subtitle")}
         </p>
 

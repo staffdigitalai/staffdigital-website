@@ -278,7 +278,7 @@ export function AIWorking247Block() {
     <section id="features" ref={sectionRef} className="relative z-10">
       {/* Elegant transition from dark to light */}
       <div 
-        className="absolute top-0 left-0 right-0 h-24 pointer-events-none"
+        className="absolute top-0 left-0 right-0 h-24 pointer-events-none dark:hidden"
         style={{
           background: "linear-gradient(to bottom, transparent 0%, rgb(248,250,252) 100%)",
         }}

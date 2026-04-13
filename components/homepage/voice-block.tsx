@@ -65,9 +65,9 @@ export function VoiceBlock() {
           {/* Left Column - Content */}
           <div className="relative">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/[0.03] dark:bg-white/[0.05] border border-foreground/[0.06] dark:border-white/[0.08] mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-white/[0.06] border border-foreground/[0.1] dark:border-white/[0.1] mb-6 backdrop-blur-sm">
               <Volume2 className="w-3.5 h-3.5 text-[#0078AA] dark:text-[#00D4FF]" />
-              <span className="text-xs font-semibold tracking-widest text-foreground/55 dark:text-white/55 uppercase">
+              <span className="text-xs font-semibold tracking-widest text-foreground/65 dark:text-white/55 uppercase">
                 {t("badge") || "Voz Humana HD"}
               </span>
             </div>
@@ -81,7 +81,7 @@ export function VoiceBlock() {
             </h2>
             
             {/* Description */}
-            <p className="text-foreground/50 text-base sm:text-lg leading-relaxed mb-8 max-w-md">
+            <p className="text-foreground/55 dark:text-foreground/50 text-base sm:text-lg leading-[1.7] mb-8 max-w-md">
               {t("text")}
             </p>
             
@@ -176,7 +176,7 @@ export function VoiceBlock() {
               </div>
             </div>
             
-            <p className="mt-5 text-center text-xs text-foreground/30 dark:text-white/25">
+            <p className="mt-5 text-center text-xs text-foreground/45 dark:text-white/35">
               {t("microcopy")}
             </p>
           </div>

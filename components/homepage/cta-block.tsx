@@ -28,7 +28,7 @@ export function CTABlock() {
         </h2>
 
         {/* Subtitle */}
-        <p className="text-base sm:text-lg md:text-xl text-foreground/50 max-w-xl mx-auto leading-relaxed mb-10 sm:mb-12">
+        <p className="text-base sm:text-lg md:text-xl text-foreground/55 dark:text-foreground/50 max-w-xl mx-auto leading-relaxed mb-10 sm:mb-12">
           {t("subtitle")}
         </p>
 
@@ -55,22 +55,22 @@ export function CTABlock() {
 
         {/* Trust indicators */}
         <div className="flex flex-wrap items-center justify-center gap-6 mb-4">
-          <div className="flex items-center gap-2 text-foreground/35">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500/70" />
+          <div className="flex items-center gap-2 text-foreground/50 dark:text-foreground/40">
+            <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
             <span className="text-xs">{t("trust_1") || "Sin permanencia"}</span>
           </div>
-          <div className="flex items-center gap-2 text-foreground/35">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500/70" />
+          <div className="flex items-center gap-2 text-foreground/50 dark:text-foreground/40">
+            <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
             <span className="text-xs">{t("trust_2") || "Implementacion incluida"}</span>
           </div>
-          <div className="flex items-center gap-2 text-foreground/35">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500/70" />
+          <div className="flex items-center gap-2 text-foreground/50 dark:text-foreground/40">
+            <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
             <span className="text-xs">{t("trust_3") || "Soporte dedicado"}</span>
           </div>
         </div>
 
         {/* Microcopy */}
-        <p className="text-xs text-foreground/25 dark:text-white/20 tracking-wide">
+        <p className="text-xs text-foreground/40 dark:text-white/30 tracking-wide">
           {t("microcopy")}
         </p>
       </div>

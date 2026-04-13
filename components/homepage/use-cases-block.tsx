@@ -33,24 +33,24 @@ export function UseCasesBlock() {
           {items.map((item, index) => (
             <div
               key={index}
-              className={`group relative card-premium p-6 rounded-xl overflow-hidden ${
+              className={`group relative card-premium p-6 sm:p-7 rounded-2xl overflow-hidden ${
                 items.length % 3 === 1 && index === items.length - 1
                   ? "lg:col-span-3 lg:max-w-sm lg:mx-auto"
                   : ""
               }`}
             >
               {/* Emoji */}
-              <div className="w-10 h-10 rounded-lg bg-foreground/[0.03] dark:bg-white/[0.05] flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300">
+              <div className="w-10 h-10 rounded-xl bg-foreground/[0.03] dark:bg-white/[0.05] flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300">
                 <span className="text-xl">{item.emoji}</span>
               </div>
               
               {/* Title */}
-              <h3 className="font-bold text-foreground text-base mb-2 leading-snug">
+              <h3 className="font-bold text-foreground text-base mb-2 leading-snug tracking-tight">
                 {item.title}
               </h3>
               
               {/* Description */}
-              <p className="text-sm text-foreground/50 leading-relaxed">
+              <p className="text-sm text-foreground/55 dark:text-foreground/50 leading-relaxed">
                 {item.description}
               </p>
             </div>

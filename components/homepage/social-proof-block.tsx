@@ -16,7 +16,7 @@ export function SocialProofBlock() {
       <div className="max-w-5xl mx-auto relative">
         {/* Section badge */}
         <div className="text-center mb-6">
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/[0.03] dark:bg-white/[0.04] border border-foreground/[0.05] dark:border-white/[0.07] text-xs font-semibold tracking-widest text-foreground/50 dark:text-white/50 uppercase">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-white/[0.06] border border-foreground/[0.1] dark:border-white/[0.1] text-xs font-semibold tracking-widest text-foreground/65 dark:text-white/55 uppercase backdrop-blur-sm">
             {t("badge") || "Resultados reales"}
           </span>
         </div>
@@ -31,14 +31,14 @@ export function SocialProofBlock() {
           {metrics.map((metric, index) => {
             const Icon = metricIcons[index] || TrendingUp
             return (
-              <div key={index} className="card-premium p-6 sm:p-8 rounded-xl text-center">
-                <div className="w-10 h-10 mx-auto mb-4 rounded-lg bg-[#0078AA]/[0.06] dark:bg-[#00D4FF]/[0.08] flex items-center justify-center">
+              <div key={index} className="card-premium p-6 sm:p-7 rounded-2xl text-center">
+                <div className="w-10 h-10 mx-auto mb-4 rounded-xl bg-[#0078AA]/[0.06] dark:bg-[#00D4FF]/[0.08] flex items-center justify-center">
                   <Icon className="w-5 h-5 text-[#0078AA] dark:text-[#00D4FF]" />
                 </div>
                 <div className="text-3xl sm:text-4xl font-bold text-foreground mb-1.5 tracking-tight">
                   {metric.value}
                 </div>
-                <p className="text-sm text-foreground/45 leading-snug">
+                <p className="text-sm text-foreground/55 dark:text-foreground/45 leading-snug">
                   {metric.label}
                 </p>
               </div>
@@ -55,21 +55,21 @@ export function SocialProofBlock() {
             </div>
             
             <blockquote className="mb-8">
-              <p className="text-lg sm:text-xl text-foreground/80 leading-relaxed font-light italic">
+              <p className="text-lg sm:text-xl text-foreground/75 dark:text-foreground/70 leading-[1.65] font-light italic">
                 {t("quote")}
               </p>
             </blockquote>
             
             {/* Author */}
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0078AA] to-[#7C3AED] flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0078AA] to-[#7C3AED] flex items-center justify-center shadow-sm">
                 <span className="text-white text-sm font-bold">{t("quote_author_initials") || "MG"}</span>
               </div>
               <div>
                 <p className="font-semibold text-foreground text-sm">
                   {t("quote_author_name") || "Miguel Garcia"}
                 </p>
-                <p className="text-xs text-foreground/45">
+                <p className="text-xs text-foreground/50 dark:text-foreground/45">
                   {t("quote_author_role") || "Director de Operaciones"} &middot; {t("quote_company") || "Clinica Horizonte"}
                 </p>
               </div>
@@ -90,33 +90,33 @@ export function SocialProofBlock() {
             <h3 className="text-lg font-bold text-foreground mb-1">
               {t("case_study_company") || "Clinica Horizonte"}
             </h3>
-            <p className="text-xs text-foreground/40 mb-6">
+            <p className="text-xs text-foreground/45 dark:text-foreground/40 mb-6">
               {t("case_study_type") || "Red de clinicas privadas -- 12 centros"}
             </p>
             
             {/* Challenge / Solution / Result */}
             <div className="space-y-4">
               <div>
-                <p className="text-xs font-semibold text-foreground/40 uppercase tracking-wide mb-1">
+                <p className="text-xs font-semibold text-foreground/45 dark:text-foreground/40 uppercase tracking-wide mb-1">
                   {t("case_study_challenge_label") || "Desafio"}
                 </p>
-                <p className="text-sm text-foreground/65 leading-relaxed">
+                <p className="text-sm text-foreground/60 dark:text-foreground/55 leading-relaxed">
                   {t("case_study_challenge") || "Perdian el 40% de llamadas fuera de horario y los tiempos de espera superaban los 8 minutos."}
                 </p>
               </div>
               <div>
-                <p className="text-xs font-semibold text-foreground/40 uppercase tracking-wide mb-1">
+                <p className="text-xs font-semibold text-foreground/45 dark:text-foreground/40 uppercase tracking-wide mb-1">
                   {t("case_study_solution_label") || "Solucion"}
                 </p>
-                <p className="text-sm text-foreground/65 leading-relaxed">
+                <p className="text-sm text-foreground/60 dark:text-foreground/55 leading-relaxed">
                   {t("case_study_solution") || "Agente IA con voz humana para atencion telefonica 24/7 integrado con su sistema de citas."}
                 </p>
               </div>
               <div>
-                <p className="text-xs font-semibold text-foreground/40 uppercase tracking-wide mb-1">
+                <p className="text-xs font-semibold text-foreground/45 dark:text-foreground/40 uppercase tracking-wide mb-1">
                   {t("case_study_result_label") || "Resultado"}
                 </p>
-                <p className="text-sm text-foreground/90 font-semibold leading-relaxed">
+                <p className="text-sm text-foreground/85 dark:text-foreground/80 font-semibold leading-relaxed">
                   {t("case_study_result") || "0 llamadas perdidas. Tiempo de respuesta reducido a 12 segundos. +35% en reservas confirmadas."}
                 </p>
               </div>

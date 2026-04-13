@@ -48,7 +48,7 @@ export function HowItWorksBlock() {
               </h3>
               
               {/* Description */}
-              <p className="text-sm text-foreground/50 leading-relaxed max-w-[200px] mx-auto">
+              <p className="text-sm text-foreground/55 dark:text-foreground/50 leading-relaxed max-w-[200px] mx-auto">
                 {step.description}
               </p>
             </div>
@@ -57,7 +57,7 @@ export function HowItWorksBlock() {
 
         {/* Closing text */}
         <div className="mt-16 sm:mt-20 max-w-2xl mx-auto">
-          <p className="text-center text-foreground/40 text-sm sm:text-base leading-relaxed px-6 py-5 rounded-2xl bg-foreground/[0.02] dark:bg-white/[0.03] border border-foreground/[0.04] dark:border-white/[0.05]">
+          <p className="text-center text-foreground/55 dark:text-foreground/45 text-sm sm:text-base leading-relaxed px-6 py-5 rounded-2xl bg-foreground/[0.02] dark:bg-white/[0.03] border border-foreground/[0.05] dark:border-white/[0.06]">
             {t("closing")}
           </p>
         </div>

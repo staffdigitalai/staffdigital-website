@@ -46,7 +46,7 @@ export default function HomePage() {
           <WhatWeDoBlock />
 
           {/* Section divider */}
-          <div className="section-divider max-w-4xl mx-auto" />
+          <div className="section-divider max-w-3xl mx-auto" />
 
           {/* 5 -- Use Cases: Practical applications */}
           <div id="soluciones">
@@ -57,7 +57,7 @@ export default function HomePage() {
           <HowItWorksBlock />
 
           {/* Section divider */}
-          <div className="section-divider max-w-4xl mx-auto" />
+          <div className="section-divider max-w-3xl mx-auto" />
 
           {/* 7 -- Differentiation: Why us */}
           <DifferentiationBlock />
@@ -69,7 +69,7 @@ export default function HomePage() {
           <VoiceBlock />
 
           {/* Section divider */}
-          <div className="section-divider max-w-4xl mx-auto" />
+          <div className="section-divider max-w-3xl mx-auto" />
 
           {/* 10 -- Solutions: Categories exploration */}
           <SolutionsBlock />

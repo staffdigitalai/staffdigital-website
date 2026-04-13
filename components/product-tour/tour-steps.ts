@@ -26,9 +26,9 @@ export const tourSteps: TourStep[] = [
     id: "settings",
     image: `${WP}/tour-01-inbox.png`,
     i18nKey: "welcome",
-    beacon: { x: 1.8, y: 87 }, // settings icon bottom-left
-    tooltipSide: "right",
-    spotlight: { x: 0, y: 78, w: 3.5, h: 15 },
+    beacon: { x: 1.8, y: 80 },
+    tooltipSide: "top",
+    spotlight: { x: 0, y: 72, w: 14, h: 18 },
   },
   {
     id: "channel-catalog",

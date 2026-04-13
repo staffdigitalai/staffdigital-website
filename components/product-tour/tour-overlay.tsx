@@ -74,36 +74,40 @@ export function TourOverlay() {
     h: (sl.h / 100) * dims.h,
   }
 
-  // Position tooltip ADJACENT to the spotlight rectangle edge
-  // (not the beacon — the tooltip hugs the spotlight area)
+  // Position tooltip ADJACENT to the spotlight edge, clamped within container
+  const tooltipW = 320 // approx w-80
+  const tooltipH = 220 // approx height of tooltip
+  const gap = 14
+
   const getTooltipStyle = (): React.CSSProperties => {
-    const gap = 12 // px gap between spotlight edge and tooltip
+    let top = 0
+    let left = 0
+
     switch (step.tooltipSide) {
       case "right":
-        return {
-          top: spotPx.y + spotPx.h * 0.15,
-          left: spotPx.x + spotPx.w + gap,
-        }
+        top = spotPx.y + spotPx.h * 0.15
+        left = spotPx.x + spotPx.w + gap
+        break
       case "left":
-        return {
-          top: spotPx.y + spotPx.h * 0.15,
-          left: spotPx.x - gap,
-          transform: "translateX(-100%)",
-        }
+        top = spotPx.y + spotPx.h * 0.15
+        left = spotPx.x - gap - tooltipW
+        break
       case "top":
-        return {
-          top: spotPx.y - gap,
-          left: spotPx.x + spotPx.w * 0.4,
-          transform: "translate(-50%, -100%)",
-        }
+        top = spotPx.y - gap - tooltipH
+        left = spotPx.x + spotPx.w * 0.3
+        break
       case "bottom":
       default:
-        return {
-          top: spotPx.y + spotPx.h + gap,
-          left: spotPx.x + spotPx.w * 0.4,
-          transform: "translateX(-50%)",
-        }
+        top = spotPx.y + spotPx.h + gap
+        left = spotPx.x + spotPx.w * 0.3
+        break
     }
+
+    // Clamp: keep tooltip fully within the container
+    top = Math.max(8, Math.min(top, dims.h - tooltipH - 8))
+    left = Math.max(8, Math.min(left, dims.w - tooltipW - 8))
+
+    return { top, left }
   }
 
   // ═══════════════════════════════════════════════════════════════════

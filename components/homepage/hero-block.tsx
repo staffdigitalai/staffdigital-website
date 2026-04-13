@@ -34,7 +34,7 @@ export function HeroBlock() {
             {t("h1_plain")}
           </span>
           <span
-            className="block mt-2 sm:mt-3 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight bg-clip-text text-transparent"
+            className="block mt-1 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight bg-clip-text text-transparent"
             style={{
               backgroundImage: "linear-gradient(135deg, #0078AA 0%, #7C3AED 50%, #0078AA 100%)",
               backgroundSize: "200% auto",

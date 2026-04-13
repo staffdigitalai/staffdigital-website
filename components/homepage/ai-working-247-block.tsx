@@ -276,53 +276,86 @@ export function AIWorking247Block() {
 
   return (
     <section id="features" ref={sectionRef} className="relative z-10">
-      <div className="bg-white rounded-t-[3rem] pt-16 sm:pt-24 pb-16 sm:pb-24 px-4 relative overflow-hidden">
-        {/* Dot pattern */}
-        <div className="absolute inset-0 opacity-[0.02]">
-          <div className="absolute inset-0" style={{ backgroundImage: `radial-gradient(circle at 1px 1px, rgb(0,0,0) 1px, transparent 0)`, backgroundSize: "24px 24px" }} />
+      {/* Elegant transition from dark to light */}
+      <div 
+        className="absolute top-0 left-0 right-0 h-32 pointer-events-none"
+        style={{
+          background: "linear-gradient(to bottom, transparent 0%, rgba(248,250,252,0.5) 50%, rgb(248,250,252) 100%)",
+        }}
+      />
+      
+      <div className="bg-[#f8fafc] pt-20 sm:pt-28 pb-20 sm:pb-28 px-6 sm:px-8 relative overflow-hidden">
+        {/* Refined dot pattern */}
+        <div className="absolute inset-0 opacity-[0.025]">
+          <div className="absolute inset-0" style={{ backgroundImage: `radial-gradient(circle at 1px 1px, rgb(0,0,0) 0.5px, transparent 0)`, backgroundSize: "32px 32px" }} />
         </div>
 
+        {/* Subtle gradient accent */}
+        <div 
+          className="absolute top-0 right-0 w-[60%] h-[60%] opacity-[0.03] pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse at 80% 20%, #0078AA, transparent 70%)",
+          }}
+        />
+
         <div className="max-w-7xl mx-auto relative">
-          {/* Header */}
-          <div className={`text-center mb-12 sm:mb-20 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-[#0078AA]/10 to-[#7C3AED]/10 border border-[#0078AA]/30 text-[#0078AA] text-sm font-medium mb-6">
-              {t("badge")}
+          {/* Header — More editorial */}
+          <div className={`text-center mb-16 sm:mb-24 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-slate-200/80 shadow-sm mb-8">
+              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#0078AA] to-[#7C3AED] animate-pulse" />
+              <span className="text-xs font-semibold tracking-wide text-slate-600 uppercase">
+                {t("badge")}
+              </span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 text-balance mb-4 sm:mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-slate-900 text-balance mb-6 sm:mb-8 leading-[1.1] tracking-tight">
               {t("title_1")}{" "}
               <span className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">
                 {t("title_2")}
               </span>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto font-light leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-slate-500 max-w-3xl mx-auto font-normal leading-relaxed">
               {t("subtitle")}
             </p>
           </div>
 
-          {/* Feature Cards Grid */}
-          <div className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+          {/* Feature Cards Grid — Premium styling */}
+          <div className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 lg:gap-6 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
             {featuresConfig.map((feature, index) => (
               <div
                 key={feature.key}
-                className={`group transition-all duration-1000 ${feature.size === "large" ? "md:col-span-2" : ""}`}
-                style={{ transitionDelay: isVisible ? `${300 + index * 100}ms` : "0ms" }}
+                className={`group transition-all duration-700 ${feature.size === "large" ? "md:col-span-2" : ""}`}
+                style={{ transitionDelay: isVisible ? `${300 + index * 80}ms` : "0ms" }}
                 onMouseEnter={() => setActiveDemo(index)}
                 onMouseLeave={() => setActiveDemo(null)}
               >
-                <div className="bg-white rounded-2xl p-6 sm:p-8 h-full shadow-lg shadow-[var(--neon-blue)]/5 hover:shadow-2xl hover:shadow-[var(--neon-blue)]/10 transition-all duration-500 hover:-translate-y-2 border border-slate-300/50 hover:border-slate-400/60">
-                  {/* Micro-label */}
-                  <div className="mb-3">
-                    <span className="text-[10px] font-semibold uppercase tracking-widest text-[#0078AA]">
+                <div className="relative bg-white rounded-2xl lg:rounded-3xl p-6 sm:p-7 lg:p-8 h-full shadow-[0_2px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1.5 border border-slate-200/60 hover:border-slate-300/80 overflow-hidden">
+                  {/* Subtle gradient overlay on hover */}
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{
+                      background: "linear-gradient(135deg, rgba(0,120,170,0.02) 0%, rgba(124,58,237,0.02) 100%)",
+                    }}
+                  />
+                  
+                  {/* Micro-label with pill styling */}
+                  <div className="relative mb-4">
+                    <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-gradient-to-r from-[#0078AA]/[0.08] to-[#7C3AED]/[0.08] text-[10px] font-bold uppercase tracking-[0.08em] text-[#0078AA]">
                       {feature.microLabel}
                     </span>
                   </div>
-                  <div className="mb-6">
+                  
+                  {/* Demo area with better frame */}
+                  <div className="relative mb-6 rounded-xl overflow-hidden ring-1 ring-slate-200/50">
                     <feature.demo isActive={activeDemo === index || isVisible} />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-4 group-hover:text-slate-700 transition-colors duration-300">
+                  
+                  {/* Title with better typography */}
+                  <h3 className="relative text-lg sm:text-xl font-bold text-slate-900 mb-3 leading-snug tracking-tight group-hover:text-slate-800 transition-colors duration-300">
                     {t(`features.${feature.key}.title`)}
                   </h3>
-                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                  
+                  {/* Description with improved readability */}
+                  <p className="relative text-slate-500 text-sm sm:text-[0.9375rem] leading-relaxed">
                     {t(`features.${feature.key}.description`)}
                   </p>
                 </div>
@@ -331,6 +364,14 @@ export function AIWorking247Block() {
           </div>
         </div>
       </div>
+      
+      {/* Bottom transition back to dark */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
+        style={{
+          background: "linear-gradient(to top, transparent 0%, rgb(248,250,252) 100%)",
+        }}
+      />
     </section>
   )
 }

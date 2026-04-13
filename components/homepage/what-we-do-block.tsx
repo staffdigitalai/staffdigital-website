@@ -22,37 +22,47 @@ export function WhatWeDoBlock() {
   const cards = t.raw("cards") as WhatWeDoCard[]
 
   return (
-    <section className="py-20 px-4 animate-fade-in-section">
-      <div className="max-w-5xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+    <section className="py-24 sm:py-32 px-6 sm:px-8 animate-fade-in-section">
+      <div className="max-w-6xl mx-auto">
+        {/* Header — More editorial */}
+        <div className="text-center mb-16 sm:mb-20">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 sm:mb-6 leading-tight tracking-tight">
             <span className="text-foreground">{t("title_plain")} </span>
             <span className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">
               {t("title_gradient")}
             </span>
           </h2>
-          <p className="text-foreground/60 text-base md:text-lg max-w-2xl mx-auto">
+          <p className="text-foreground/55 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             {t("subtitle")}
           </p>
         </div>
 
-        {/* 2x2 Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {cards.map((card) => {
+        {/* 2x2 Grid — Premium cards */}
+        <div className="grid md:grid-cols-2 gap-5 lg:gap-6">
+          {cards.map((card, index) => {
             const Icon = iconMap[card.icon] || Brain
             return (
               <div
                 key={card.title}
-                className="card-elevated p-6 rounded-2xl transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                className="group relative bg-foreground/[0.02] dark:bg-white/[0.03] backdrop-blur-sm p-7 sm:p-8 rounded-2xl lg:rounded-3xl transition-all duration-500 hover:bg-foreground/[0.04] dark:hover:bg-white/[0.05] border border-foreground/[0.06] dark:border-white/[0.08] hover:border-foreground/[0.12] dark:hover:border-white/[0.15] overflow-hidden"
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-[#0078AA]/10 to-[#7C3AED]/10 flex items-center justify-center mb-4">
-                  <Icon className="w-6 h-6 text-[#0078AA] dark:text-[var(--neon-blue)]" />
+                {/* Number indicator */}
+                <div className="absolute top-6 right-6 sm:top-8 sm:right-8 text-6xl sm:text-7xl font-bold text-foreground/[0.03] dark:text-white/[0.04] leading-none select-none">
+                  {String(index + 1).padStart(2, '0')}
                 </div>
-                <h3 className="text-lg font-bold text-foreground mb-2">
+                
+                {/* Icon with gradient background */}
+                <div className="relative w-14 h-14 rounded-xl bg-gradient-to-br from-[#0078AA]/10 to-[#7C3AED]/10 dark:from-[#0078AA]/15 dark:to-[#7C3AED]/15 flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300">
+                  <Icon className="w-7 h-7 text-[#0078AA] dark:text-[#00D4FF]" />
+                </div>
+                
+                {/* Title */}
+                <h3 className="relative text-xl sm:text-2xl font-bold text-foreground mb-3 leading-snug tracking-tight">
                   {card.title}
                 </h3>
-                <p className="text-sm text-foreground/60 leading-relaxed">
+                
+                {/* Description */}
+                <p className="relative text-foreground/55 text-sm sm:text-base leading-relaxed">
                   {card.description}
                 </p>
               </div>

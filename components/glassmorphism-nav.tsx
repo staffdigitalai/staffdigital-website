@@ -50,7 +50,7 @@ const navItemsDef = [
   { key: "home", href: "/" },
   { key: "solutions", href: "/soluciones", dropdown: "services" },
   { key: "sectors", href: "/sectores", dropdown: "sectors" },
-  { key: "pricing", href: "/precios" },
+  { key: "about", href: "/nosotros" },
 ]
 
 export function GlassmorphismNav() {

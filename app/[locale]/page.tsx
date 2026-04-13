@@ -5,6 +5,7 @@ import { BackgroundEffects } from "@/components/background-effects"
 
 // Homepage blocks — new positioning: AI operational platform
 import { HeroBlock } from "@/components/homepage/hero-block"
+import { AIWorking247Block } from "@/components/homepage/ai-working-247-block"
 import { ClarificationBlock } from "@/components/homepage/clarification-block"
 import { WhatWeDoBlock } from "@/components/homepage/what-we-do-block"
 import { UseCasesBlock } from "@/components/homepage/use-cases-block"
@@ -35,7 +36,10 @@ export default function HomePage() {
             <HeroBlock />
           </div>
 
-          {/* 2 — Clarification */}
+          {/* 2 — AI Working 24/7 */}
+          <AIWorking247Block />
+
+          {/* 3 — Clarification */}
           <ClarificationBlock />
 
           {/* 3 — What We Do (Understand → Analyze → Decide → Execute) */}

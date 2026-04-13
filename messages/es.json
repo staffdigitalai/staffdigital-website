@@ -120,7 +120,8 @@
     "sectors_cta_title": "IA entrenada para tu industria",
     "sectors_cta_description": "Agentes que conocen el vocabulario, procesos y necesidades de tu sector.",
     "sectors_cta_demo": "Solicitar demo gratuita",
-    "sectors_cta_view_all": "Ver todos los sectores"
+    "sectors_cta_view_all": "Ver todos los sectores",
+    "featured": "Destacado"
   },
   "hero": {
     "badge": "Plataforma IA Operativa",
@@ -361,15 +362,21 @@
     ]
   },
   "social_proof": {
+    "badge": "Resultados medibles",
     "title": "Impacto real, no solo promesas",
     "metrics": [
-      "Gestiona miles de interacciones automáticamente",
-      "Reduce tiempos de respuesta a segundos",
-      "Aumenta conversión y eficiencia operativa",
-      "Mantiene consistencia en todos los canales y equipos"
+      { "value": "87%", "label": "Reduccion en tiempo de respuesta" },
+      { "value": "24/7", "label": "Disponibilidad continua sin pausas" },
+      { "value": "+40%", "label": "Aumento en conversion de leads" },
+      { "value": "2-6", "label": "Semanas de implementacion completa" }
     ],
-    "quote": "StaffDigital AI nos permitió gestionar altos volúmenes de interacciones mejorando la calidad de respuesta y la eficiencia operativa.",
-    "quote_author": "Director de Operaciones"
+    "quote": "StaffDigital AI transformo por completo nuestra atencion al paciente. Pasamos de perder llamadas a gestionar el 100% de las interacciones con la misma calidad — incluso fuera de horario.",
+    "quote_author_initials": "MG",
+    "quote_author_name": "Miguel Garcia",
+    "quote_author_role": "Director de Operaciones",
+    "quote_company_abbr": "CH",
+    "quote_company": "Clinica Horizonte",
+    "quote_company_type": "Red de clinicas privadas"
   },
   "faq": {
     "title": "Preguntas frecuentes sobre agentes IA",
@@ -403,11 +410,15 @@
     ]
   },
   "cta": {
-    "title_plain": "¿Listo para convertir interacciones en",
-    "title_gradient": "ejecución?",
-    "subtitle": "Descubre cómo StaffDigital AI puede adaptarse a tu negocio y empezar a operar procesos con inteligencia y precisión.",
-    "demo": "Solicitar demo",
-    "microcopy": "Diseñado a medida. Totalmente gestionado. Para operaciones reales."
+    "badge": "Empieza hoy",
+    "title_plain": "Listo para convertir interacciones en",
+    "title_gradient": "ejecucion real?",
+    "subtitle": "Descubre como StaffDigital AI puede adaptarse a tu negocio y empezar a operar procesos con inteligencia y precision.",
+    "demo": "Solicitar demo gratuita",
+    "trust_1": "Sin permanencia",
+    "trust_2": "Implementacion incluida",
+    "trust_3": "Soporte dedicado",
+    "microcopy": "Disenado a medida. Totalmente gestionado. Para operaciones reales."
   },
   "templates": {
     "cta_primary": "Pedir Demo",
@@ -432,28 +443,34 @@
     "subtitle": "Observa cómo los agentes IA entienden, analizan y actúan en tiempo real — gestionando conversaciones, tomando decisiones y ejecutando tareas sin intervención humana.",
     "features": {
       "chat": {
-        "title": "Interacción y ejecución en tiempo real",
-        "description": "Agentes IA que no solo responden — entienden el contexto, toman decisiones y ejecutan acciones directamente desde la conversación."
+        "micro_label": "Interaccion",
+        "title": "Interaccion y ejecucion en tiempo real",
+        "description": "Agentes IA que no solo responden — entienden el contexto, toman decisiones y ejecutan acciones directamente desde la conversacion."
       },
       "phone": {
-        "title": "Gestión inteligente de interacciones por voz",
-        "description": "Interpreta solicitudes, accede a información y ejecuta acciones como registrar, derivar o programar — todo en una sola interacción."
+        "micro_label": "Analisis",
+        "title": "Gestion inteligente de interacciones por voz",
+        "description": "Interpreta solicitudes, accede a informacion y ejecuta acciones como registrar, derivar o programar — todo en una sola interaccion."
       },
       "calendar": {
-        "title": "Coordinación y gestión automática",
-        "description": "Verifica disponibilidad, toma decisiones y gestiona agendas en tiempo real sin intervención humana."
+        "micro_label": "Decision",
+        "title": "Coordinacion y gestion automatica",
+        "description": "Verifica disponibilidad, toma decisiones y gestiona agendas en tiempo real sin intervencion humana."
       },
       "email": {
-        "title": "Procesamiento y gestión de solicitudes",
-        "description": "Analiza, clasifica y ejecuta acciones sobre cada solicitud, conectando la información con los procesos internos."
+        "micro_label": "Ejecucion",
+        "title": "Procesamiento y gestion de solicitudes",
+        "description": "Analiza, clasifica y ejecuta acciones sobre cada solicitud, conectando la informacion con los procesos internos."
       },
       "leads": {
-        "title": "Análisis y toma de decisiones",
-        "description": "Evalúa información, estructura datos y decide el siguiente paso dentro del proceso operativo o comercial."
+        "micro_label": "Inteligencia",
+        "title": "Analisis y toma de decisiones",
+        "description": "Evalua informacion, estructura datos y decide el siguiente paso dentro del proceso operativo o comercial."
       },
       "integrations": {
-        "title": "Ejecución conectada entre sistemas",
-        "description": "Actúa directamente sobre CRM, calendarios y herramientas para mantener los procesos en funcionamiento continuo."
+        "micro_label": "Conectividad",
+        "title": "Ejecucion conectada entre sistemas",
+        "description": "Actua directamente sobre CRM, calendarios y herramientas para mantener los procesos en funcionamiento continuo."
       }
     }
   },
@@ -740,8 +757,18 @@
   "badge": "Voz Humana HD",
   "title_plain": "Voz natural,",
   "title_gradient": "cuando importa",
-  "text": "Nuestros agentes IA pueden comunicarse con voz humana, permitiendo interacciones mas naturales, claras y de confianza — especialmente en escenarios complejos o sensibles.",
-  "cta": "Escuchar demo de voz",
+  "text": "Nuestros agentes IA se comunican con voz humana real — imposible de distinguir de una persona. Ideal para escenarios donde la confianza y la claridad son criticas.",
+  "use_cases": [
+    "Llamadas de confirmacion de citas medicas",
+    "Atencion al cliente en horario extendido",
+    "Reservas y confirmaciones de restaurantes",
+    "Seguimiento posventa y recordatorios"
+  ],
+  "demo_title": "Demo de Voz Humana",
+  "demo_subtitle": "Agente IA atendiendo llamada",
+  "transcript_label": "Transcripcion",
+  "transcript_preview": "Buenos dias, gracias por llamar a Clinica Horizonte. Soy Laura, tu asistente virtual. Veo que tienes una cita programada para manana a las 10. Quieres confirmarla o necesitas reprogramar?",
+  "cta": "Escuchar demo completo",
   "microcopy": "La voz no es el centro. Es el multiplicador."
   },
   "solutions_explore": {

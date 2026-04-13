@@ -23,6 +23,7 @@ const servicesMeta: { href: string; icon: LucideIcon; featured?: boolean }[] = [
   { href: "/soluciones/ia-omnicanal", icon: Layers },
 ]
 
+// Only show top 6 sectors in nav dropdown for cleaner UX - rest accessible via /sectores page
 const sectorsMeta: { href: string; icon: LucideIcon }[] = [
   { href: "/sectores/concesionarios", icon: Car },
   { href: "/sectores/clinicas", icon: BriefcaseMedical },
@@ -30,14 +31,6 @@ const sectorsMeta: { href: string; icon: LucideIcon }[] = [
   { href: "/sectores/inmobiliarias", icon: Home },
   { href: "/sectores/ecommerce", icon: ShoppingBag },
   { href: "/sectores/turismo-hoteleria", icon: Globe },
-  { href: "/sectores/centros-belleza", icon: Scissors },
-  { href: "/sectores/retail", icon: ShoppingBag },
-  { href: "/sectores/despachos-abogados", icon: Building2 },
-  { href: "/sectores/clubs-deportivos", icon: Dumbbell },
-  { href: "/sectores/oficinas", icon: Building2 },
-  { href: "/sectores/logistica", icon: Warehouse },
-  { href: "/sectores/servicios-tecnicos", icon: Wrench },
-  { href: "/sectores/educacion", icon: GraduationCap },
 ]
 
 const languages = [
@@ -283,7 +276,7 @@ export function GlassmorphismNav() {
                           >
                             {/* Left Column - Services List (60%) */}
                             <div className="flex-[0.6] p-6">
-                              <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-white/40 mb-4">Soluciones IA</p>
+                              <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-white/40 mb-4">{t("solutions")}</p>
                               
                               {/* Featured Services */}
                               <div className="space-y-2 mb-4">
@@ -307,7 +300,7 @@ export function GlassmorphismNav() {
                                           <p className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-[rgb(0,120,170)] dark:group-hover:text-white transition-colors">
                                             {service.name}
                                           </p>
-                                          <span className="text-[9px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded text-white" style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}>Estrella</span>
+                                          <span className="text-[9px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded text-white" style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}>{t("featured") || "Destacado"}</span>
                                         </div>
                                         <p className="text-[12px] text-gray-500 dark:text-white/50 group-hover:text-gray-700 dark:group-hover:text-white/70 transition-colors">
                                           {service.description}
@@ -421,7 +414,7 @@ export function GlassmorphismNav() {
                           >
                             {/* Left Column - Sectors Grid (65%) */}
                             <div className="flex-[0.65] p-6">
-                              <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-white/40 mb-4">Sectores</p>
+                              <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-white/40 mb-4">{t("sectors")}</p>
                               <div className="grid grid-cols-2 gap-1">
                                 {sectors.map((sector) => {
                                   const Icon = sector.icon

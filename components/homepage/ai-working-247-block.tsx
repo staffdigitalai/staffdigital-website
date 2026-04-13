@@ -243,12 +243,12 @@ const AnimatedIntegrationsDemo = ({ isActive }: { isActive: boolean }) => {
 // ============================================
 
 const featuresConfig = [
-  { key: "chat", demo: AnimatedChatDemo, size: "large", microLabel: "Interacción" },
-  { key: "phone", demo: AnimatedPhoneDemo, size: "medium", microLabel: "Análisis" },
-  { key: "calendar", demo: AnimatedCalendarDemo, size: "medium", microLabel: "Decisión" },
-  { key: "email", demo: AnimatedEmailDemo, size: "large", microLabel: "Ejecución" },
-  { key: "leads", demo: AnimatedLeadsDemo, size: "medium", microLabel: "Inteligencia" },
-  { key: "integrations", demo: AnimatedIntegrationsDemo, size: "medium", microLabel: "Conectividad" },
+  { key: "chat", demo: AnimatedChatDemo, size: "large", microLabelKey: "chat" },
+  { key: "phone", demo: AnimatedPhoneDemo, size: "medium", microLabelKey: "phone" },
+  { key: "calendar", demo: AnimatedCalendarDemo, size: "medium", microLabelKey: "calendar" },
+  { key: "email", demo: AnimatedEmailDemo, size: "large", microLabelKey: "email" },
+  { key: "leads", demo: AnimatedLeadsDemo, size: "medium", microLabelKey: "leads" },
+  { key: "integrations", demo: AnimatedIntegrationsDemo, size: "medium", microLabelKey: "integrations" },
 ]
 
 // ============================================
@@ -340,7 +340,7 @@ export function AIWorking247Block() {
                   {/* Micro-label with pill styling */}
                   <div className="relative mb-4">
                     <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-gradient-to-r from-[#0078AA]/[0.08] to-[#7C3AED]/[0.08] text-[10px] font-bold uppercase tracking-[0.08em] text-[#0078AA]">
-                      {feature.microLabel}
+                      {t(`features.${feature.microLabelKey}.micro_label`)}
                     </span>
                   </div>
                   

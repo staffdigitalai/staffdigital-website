@@ -1,69 +1,129 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import { CheckCircle2 } from "lucide-react"
+import { TrendingUp, Clock, Users, Zap, Quote } from "lucide-react"
+import Image from "next/image"
+
+const metricIcons = [TrendingUp, Clock, Users, Zap]
 
 export function SocialProofBlock() {
   const t = useTranslations("social_proof")
 
-  const metrics = t.raw("metrics") as string[]
+  const metrics = t.raw("metrics") as { value: string; label: string }[]
 
   return (
-    <section className="py-24 sm:py-32 px-6 sm:px-8 animate-fade-in-section relative overflow-hidden">
-      {/* Subtle gradient background */}
+    <section className="py-28 sm:py-36 px-6 sm:px-8 animate-fade-in-section relative overflow-hidden">
+      {/* Premium gradient background */}
       <div 
-        className="absolute inset-0 opacity-40 dark:opacity-25"
+        className="absolute inset-0"
         style={{
-          background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,120,170,0.05) 0%, transparent 60%)",
+          background: "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,120,170,0.06) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 50% 100%, rgba(124,58,237,0.04) 0%, transparent 50%)",
         }}
       />
       
-      <div className="max-w-5xl mx-auto relative">
-        {/* Title — Editorial */}
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-16 sm:mb-20 text-foreground leading-tight tracking-tight">
+      {/* Top border accent */}
+      <div 
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{
+          background: "linear-gradient(90deg, transparent 0%, rgba(0,120,170,0.15) 30%, rgba(124,58,237,0.15) 70%, transparent 100%)",
+        }}
+      />
+      
+      <div className="max-w-6xl mx-auto relative">
+        {/* Section badge */}
+        <div className="text-center mb-6">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/[0.03] dark:bg-white/[0.05] border border-foreground/[0.06] dark:border-white/[0.08] text-xs font-semibold tracking-wide text-foreground/60 dark:text-white/60 uppercase">
+            {t("badge") || "Resultados reales"}
+          </span>
+        </div>
+        
+        {/* Title */}
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-center mb-16 sm:mb-20 text-foreground leading-[1.1] tracking-tight">
           {t("title")}
         </h2>
 
-        {/* Metrics as feature list */}
-        <div className="grid sm:grid-cols-2 gap-4 lg:gap-5 mb-16 sm:mb-20 max-w-3xl mx-auto">
-          {metrics.map((metric, index) => (
-            <div
-              key={index}
-              className="flex items-start gap-4 p-5 sm:p-6 rounded-2xl bg-foreground/[0.02] dark:bg-white/[0.03] border border-foreground/[0.06] dark:border-white/[0.08]"
-            >
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0078AA]/10 to-[#7C3AED]/10 dark:from-[#0078AA]/15 dark:to-[#7C3AED]/15 flex items-center justify-center flex-shrink-0">
-                <CheckCircle2 className="w-5 h-5 text-[#0078AA] dark:text-[#00D4FF]" />
+        {/* Metrics Grid - Concrete numbers */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-20 sm:mb-24">
+          {metrics.map((metric, index) => {
+            const Icon = metricIcons[index] || TrendingUp
+            return (
+              <div
+                key={index}
+                className="relative p-6 sm:p-8 rounded-2xl lg:rounded-3xl bg-foreground/[0.02] dark:bg-white/[0.03] border border-foreground/[0.06] dark:border-white/[0.08] text-center group hover:bg-foreground/[0.04] dark:hover:bg-white/[0.05] transition-all duration-300"
+              >
+                {/* Icon */}
+                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-[#0078AA]/10 to-[#7C3AED]/10 dark:from-[#0078AA]/15 dark:to-[#7C3AED]/15 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                  <Icon className="w-6 h-6 text-[#0078AA] dark:text-[#00D4FF]" />
+                </div>
+                
+                {/* Value - Large and bold */}
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-2 tracking-tight">
+                  {metric.value}
+                </div>
+                
+                {/* Label */}
+                <p className="text-sm sm:text-base text-foreground/55 leading-snug">
+                  {metric.label}
+                </p>
               </div>
-              <p className="text-foreground/80 text-sm sm:text-base leading-relaxed font-medium pt-2">
-                {metric}
-              </p>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
-        {/* Quote — Premium testimonial */}
-        <div className="max-w-3xl mx-auto">
-          <div className="relative p-8 sm:p-10 md:p-12 rounded-3xl bg-gradient-to-br from-foreground/[0.02] to-foreground/[0.04] dark:from-white/[0.03] dark:to-white/[0.05] border border-foreground/[0.06] dark:border-white/[0.08]">
-            {/* Quote marks */}
-            <span className="absolute top-6 left-6 sm:top-8 sm:left-8 text-5xl sm:text-6xl text-[#0078AA]/15 dark:text-[#00D4FF]/15 font-serif leading-none select-none">
-              &ldquo;
-            </span>
+        {/* Testimonial Card - Premium design */}
+        <div className="max-w-4xl mx-auto">
+          <div className="relative p-8 sm:p-10 md:p-14 rounded-3xl bg-gradient-to-br from-foreground/[0.02] to-foreground/[0.04] dark:from-white/[0.03] dark:to-white/[0.06] border border-foreground/[0.08] dark:border-white/[0.1]">
+            {/* Quote icon */}
+            <div className="absolute top-6 left-6 sm:top-8 sm:left-8">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0078AA]/10 to-[#7C3AED]/10 flex items-center justify-center">
+                <Quote className="w-6 h-6 text-[#0078AA] dark:text-[#00D4FF]" />
+              </div>
+            </div>
             
-            <blockquote className="relative text-center pt-4 sm:pt-6">
-              <p className="text-lg sm:text-xl md:text-2xl text-foreground/80 leading-relaxed font-light">
+            {/* Quote text */}
+            <blockquote className="relative pt-10 sm:pt-8 text-center sm:text-left sm:pl-16">
+              <p className="text-lg sm:text-xl md:text-2xl text-foreground/85 leading-relaxed font-light italic">
                 {t("quote")}
               </p>
             </blockquote>
             
-            {/* Author */}
-            <div className="mt-8 text-center">
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-foreground/[0.03] dark:bg-white/[0.05]">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#0078AA] to-[#7C3AED] flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">DO</span>
+            {/* Author section with company */}
+            <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center sm:justify-start sm:pl-16 gap-4">
+              {/* Author info */}
+              <div className="flex items-center gap-4">
+                {/* Avatar with initials */}
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#0078AA] to-[#7C3AED] flex items-center justify-center shadow-lg">
+                  <span className="text-white text-lg font-bold">{t("quote_author_initials") || "MG"}</span>
                 </div>
-                <span className="text-sm font-medium text-foreground/60 tracking-wide">
-                  {t("quote_author")}
-                </span>
+                <div>
+                  <p className="font-semibold text-foreground text-base">
+                    {t("quote_author_name") || "Miguel Garcia"}
+                  </p>
+                  <p className="text-sm text-foreground/55">
+                    {t("quote_author_role") || "Director de Operaciones"}
+                  </p>
+                </div>
+              </div>
+              
+              {/* Divider */}
+              <div className="hidden sm:block w-px h-12 bg-foreground/10 dark:bg-white/10 mx-4" />
+              
+              {/* Company */}
+              <div className="flex items-center gap-3">
+                {/* Company logo placeholder - square box */}
+                <div className="w-10 h-10 rounded-lg bg-foreground/[0.05] dark:bg-white/[0.08] border border-foreground/[0.08] dark:border-white/[0.12] flex items-center justify-center">
+                  <span className="text-xs font-bold text-foreground/40 dark:text-white/40">
+                    {t("quote_company_abbr") || "CH"}
+                  </span>
+                </div>
+                <div>
+                  <p className="font-medium text-foreground/80 text-sm">
+                    {t("quote_company") || "Clinica Horizonte"}
+                  </p>
+                  <p className="text-xs text-foreground/45">
+                    {t("quote_company_type") || "Red de clinicas privadas"}
+                  </p>
+                </div>
               </div>
             </div>
           </div>

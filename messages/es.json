@@ -123,12 +123,13 @@
     "sectors_cta_view_all": "Ver todos los sectores"
   },
   "hero": {
+    "badge": "Plataforma IA Operativa",
     "h1_plain": "Agentes IA que no solo responden",
-    "h1_gradient": "actúan, deciden y ejecutan.",
+    "h1_gradient": "actuan, deciden y ejecutan.",
     "subtitle": "StaffDigital AI transforma conversaciones e inputs en acciones reales — analizando contexto, tomando decisiones y ejecutando workflows en canales, sistemas y operaciones de negocio.",
     "cta_primary": "Solicitar demo",
-    "cta_secondary": "Ver cómo funciona",
-    "microcopy": "Sin plantillas. Totalmente personalizado. Diseñado para tu negocio."
+    "cta_secondary": "Ver como funciona",
+    "microcopy": "Sin plantillas. Totalmente personalizado. Disenado para tu negocio."
   },
   "done_for_you": {
     "title_1": "Todo incluido.",
@@ -494,45 +495,45 @@
     "cta": "Descubrir Automatización CRM"
   },
   "footer": {
-    "slogan": "Tu equipo IA omnicanal para atención al cliente — 100% gestionado.",
+    "slogan": "Plataforma IA operativa que entiende, decide y ejecuta procesos de negocio.",
     "col_solutions": "Soluciones",
-    "col_product": "Producto",
+    "col_product": "Plataforma",
     "col_company": "Empresa",
     "col_resources": "Recursos",
+    "col_offices": "Oficinas",
     "solutions_links": [
-      "Agentes IA con Voz Humana ★",
-      "Atención Telefónica IA",
+      "Agentes IA con Voz Humana",
+      "Atencion Telefonica IA",
       "WhatsApp IA Empresas",
       "Lead Generation IA",
       "Agente de Soporte IA",
       "Ver todas las soluciones"
     ],
     "product_links": [
-      "Precios",
-      "Tecnología",
+      "Tecnologia",
       "Integraciones",
       "Seguridad",
-      "Sectores"
+      "Sectores",
+      "Metodologia"
     ],
     "company_links": [
       "Sobre Nosotros",
       "Contacto",
       "Partners",
-      "Metodología",
+      "Blog",
       "FAQ"
     ],
     "resources_links": [
-      "Blog",
-      "Casos de Éxito",
+      "Casos de Exito",
       "Demo Voz Humana",
       "Solicitar Demo",
       "Sectores"
     ],
     "rights": "Todos los derechos reservados.",
-    "privacy": "Política de Privacidad",
+    "privacy": "Politica de Privacidad",
     "legal": "Aviso Legal",
-    "cookies": "Política de Cookies",
-    "terms": "Términos y Condiciones",
+    "cookies": "Politica de Cookies",
+    "terms": "Terminos y Condiciones",
     "dev_by": "Desarrollo Web por"
   },
   "tour": {
@@ -735,11 +736,13 @@
       "Sin necesidad de equipo técnico de tu parte"
     ]
   },
-  "voice": {
-    "title_plain": "Voz natural,",
-    "title_gradient": "cuando importa",
-    "text": "Nuestros agentes IA pueden comunicarse con voz humana, permitiendo interacciones más naturales, claras y de confianza — especialmente en escenarios complejos o sensibles.",
-    "microcopy": "La voz no es el centro. Es el multiplicador."
+"voice": {
+  "badge": "Voz Humana HD",
+  "title_plain": "Voz natural,",
+  "title_gradient": "cuando importa",
+  "text": "Nuestros agentes IA pueden comunicarse con voz humana, permitiendo interacciones mas naturales, claras y de confianza — especialmente en escenarios complejos o sensibles.",
+  "cta": "Escuchar demo de voz",
+  "microcopy": "La voz no es el centro. Es el multiplicador."
   },
   "solutions_explore": {
     "title": "Explora aplicaciones específicas",

@@ -1,8 +1,9 @@
 "use client"
 
-import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon, MapPin } from "lucide-react"
+import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon, MapPin, Mail, Phone } from "lucide-react"
 import { StaffDigitalLogoDark } from "@/components/staffdigital-logo"
 import { useTranslations } from "next-intl"
+import Link from "next/link"
 
 const linkHrefs = {
   solutions: [
@@ -14,21 +15,20 @@ const linkHrefs = {
     "/soluciones",
   ],
   product: [
-    "/precios",
     "/tecnologia",
     "/integraciones",
     "/seguridad-compliance",
     "/sectores",
+    "/metodologia",
   ],
   company: [
     "/nosotros",
     "/contacto",
     "/partners",
-    "/metodologia",
+    "/blog",
     "/faq",
   ],
   resources: [
-    "/blog",
     "/casos-exito",
     "/demo-voice",
     "/demo",
@@ -52,40 +52,65 @@ export function Footer() {
   const resourcesTitles = t.raw("resources_links") as string[]
 
   return (
-    <footer className="relative w-full border-t border-foreground/10 bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/8%),transparent)] dark:bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/8%),transparent)]">
-      <div className="max-w-6xl mx-auto px-6 sm:px-8 py-16 lg:py-20">
-        {/* 5 Column Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 mb-12">
-          {/* Column 1: Logo + Slogan + Addresses + Social Icons */}
-          <div className="space-y-5 lg:col-span-1">
+    <footer className="relative w-full">
+      {/* Premium top border */}
+      <div 
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{
+          background: "linear-gradient(90deg, transparent 0%, rgba(0,120,170,0.2) 20%, rgba(124,58,237,0.2) 80%, transparent 100%)",
+        }}
+      />
+      
+      {/* Subtle gradient background */}
+      <div 
+        className="absolute inset-0 opacity-50 dark:opacity-30"
+        style={{
+          background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(0,120,170,0.03) 0%, transparent 60%)",
+        }}
+      />
+      
+      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 pt-20 pb-12 lg:pt-24 lg:pb-16">
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-12 lg:gap-8 mb-16">
+          {/* Column 1: Logo + Slogan + Contact (spans 2 cols) */}
+          <div className="lg:col-span-2 space-y-6">
             <StaffDigitalLogoDark variant="full" size="md" />
-            <p className="text-foreground/50 text-sm leading-relaxed">
+            <p className="text-foreground/50 text-sm sm:text-base leading-relaxed max-w-sm">
               {t("slogan")}
             </p>
-            <div className="space-y-3">
-              <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-foreground/40 mt-0.5 shrink-0" />
-                <p className="text-foreground/50 text-sm leading-relaxed">
-                  Carrer d&apos;Aragó, 308, 1o 2a<br />
-                  08009 Barcelona
-                </p>
-              </div>
-              <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-foreground/40 mt-0.5 shrink-0" />
-                <p className="text-foreground/50 text-sm leading-relaxed">
-                  Av. Afonso Costa 22 B<br />
-                  Lisbon Business Center<br />
-                  1900-036 Lisboa
-                </p>
-              </div>
+            
+            {/* Contact Info */}
+            <div className="space-y-3 pt-2">
+              <a 
+                href="mailto:info@staffdigital.ai" 
+                className="flex items-center gap-3 text-foreground/50 hover:text-foreground/80 text-sm transition-colors duration-200 group"
+              >
+                <div className="w-8 h-8 rounded-lg bg-foreground/[0.04] dark:bg-white/[0.06] flex items-center justify-center group-hover:bg-foreground/[0.08] dark:group-hover:bg-white/[0.1] transition-colors">
+                  <Mail className="w-4 h-4" />
+                </div>
+                info@staffdigital.ai
+              </a>
+              <a 
+                href="tel:+34931229129" 
+                className="flex items-center gap-3 text-foreground/50 hover:text-foreground/80 text-sm transition-colors duration-200 group"
+              >
+                <div className="w-8 h-8 rounded-lg bg-foreground/[0.04] dark:bg-white/[0.06] flex items-center justify-center group-hover:bg-foreground/[0.08] dark:group-hover:bg-white/[0.1] transition-colors">
+                  <Phone className="w-4 h-4" />
+                </div>
+                +34 931 229 129
+              </a>
             </div>
-            <div className="flex items-center gap-3 pt-2">
+            
+            {/* Social Icons */}
+            <div className="flex items-center gap-2 pt-4">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-9 h-9 rounded-full bg-foreground/5 border border-foreground/10 flex items-center justify-center hover:bg-foreground/10 hover:border-foreground/20 transition-all duration-200"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-xl bg-foreground/[0.04] dark:bg-white/[0.06] border border-foreground/[0.06] dark:border-white/[0.08] flex items-center justify-center hover:bg-foreground/[0.08] dark:hover:bg-white/[0.1] hover:border-foreground/[0.12] dark:hover:border-white/[0.15] transition-all duration-200"
                 >
                   <social.icon className="w-4 h-4 text-foreground/60" />
                 </a>
@@ -95,16 +120,16 @@ export function Footer() {
 
           {/* Column 2: Solutions */}
           <div>
-            <h3 className="text-sm font-medium text-foreground/80 mb-4">{t("col_solutions")}</h3>
-            <ul className="space-y-3">
+            <h3 className="text-sm font-semibold text-foreground/90 mb-5 tracking-wide">{t("col_solutions")}</h3>
+            <ul className="space-y-3.5">
               {solutionsTitles.map((title, i) => (
                 <li key={i}>
-                  <a
+                  <Link
                     href={linkHrefs.solutions[i]}
-                    className="text-foreground/50 hover:text-foreground text-sm transition-colors duration-200"
+                    className="text-foreground/45 hover:text-foreground/80 text-sm transition-colors duration-200"
                   >
                     {title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -112,16 +137,16 @@ export function Footer() {
 
           {/* Column 3: Product */}
           <div>
-            <h3 className="text-sm font-medium text-foreground/80 mb-4">{t("col_product")}</h3>
-            <ul className="space-y-3">
+            <h3 className="text-sm font-semibold text-foreground/90 mb-5 tracking-wide">{t("col_product")}</h3>
+            <ul className="space-y-3.5">
               {productTitles.map((title, i) => (
                 <li key={i}>
-                  <a
+                  <Link
                     href={linkHrefs.product[i]}
-                    className="text-foreground/50 hover:text-foreground text-sm transition-colors duration-200"
+                    className="text-foreground/45 hover:text-foreground/80 text-sm transition-colors duration-200"
                   >
                     {title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -129,71 +154,84 @@ export function Footer() {
 
           {/* Column 4: Company */}
           <div>
-            <h3 className="text-sm font-medium text-foreground/80 mb-4">{t("col_company")}</h3>
-            <ul className="space-y-3">
+            <h3 className="text-sm font-semibold text-foreground/90 mb-5 tracking-wide">{t("col_company")}</h3>
+            <ul className="space-y-3.5">
               {companyTitles.map((title, i) => (
                 <li key={i}>
-                  <a
+                  <Link
                     href={linkHrefs.company[i]}
-                    className="text-foreground/50 hover:text-foreground text-sm transition-colors duration-200"
+                    className="text-foreground/45 hover:text-foreground/80 text-sm transition-colors duration-200"
                   >
                     {title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 5: Resources */}
+          {/* Column 5: Offices */}
           <div>
-            <h3 className="text-sm font-medium text-foreground/80 mb-4">{t("col_resources")}</h3>
-            <ul className="space-y-3">
-              {resourcesTitles.map((title, i) => (
-                <li key={i}>
-                  <a
-                    href={linkHrefs.resources[i]}
-                    className="text-foreground/50 hover:text-foreground text-sm transition-colors duration-200"
-                  >
-                    {title}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <h3 className="text-sm font-semibold text-foreground/90 mb-5 tracking-wide">{t("col_offices") || "Oficinas"}</h3>
+            <div className="space-y-5">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-foreground/[0.04] dark:bg-white/[0.06] flex items-center justify-center shrink-0 mt-0.5">
+                  <MapPin className="w-4 h-4 text-foreground/40" />
+                </div>
+                <p className="text-foreground/45 text-sm leading-relaxed">
+                  Carrer d&apos;Arago, 308<br />
+                  08009 Barcelona
+                </p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-foreground/[0.04] dark:bg-white/[0.06] flex items-center justify-center shrink-0 mt-0.5">
+                  <MapPin className="w-4 h-4 text-foreground/40" />
+                </div>
+                <p className="text-foreground/45 text-sm leading-relaxed">
+                  Av. Afonso Costa 22 B<br />
+                  1900-036 Lisboa
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Legal Links */}
-        <div className="pt-6 border-t border-foreground/10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-4">
-          <a href="/privacidad" className="text-foreground/40 hover:text-foreground/70 text-xs transition-colors">
-            {t("privacy")}
-          </a>
-          <a href="/aviso-legal" className="text-foreground/40 hover:text-foreground/70 text-xs transition-colors">
-            {t("legal")}
-          </a>
-          <a href="/cookies" className="text-foreground/40 hover:text-foreground/70 text-xs transition-colors">
-            {t("cookies")}
-          </a>
-          <a href="/terminos" className="text-foreground/40 hover:text-foreground/70 text-xs transition-colors">
-            {t("terms")}
-          </a>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-foreground/40 text-sm" suppressHydrationWarning>
-            &copy; {new Date().getFullYear()} StaffDigital AI. {t("rights")}
-          </p>
-          <p className="text-foreground/40 text-sm">
-            {t("dev_by")}{" "}
-            <a
-              href="https://www.webdesignvip.pt"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-foreground/70 transition-colors"
-            >
-              Web Design VIP
-            </a>
-          </p>
+        {/* Bottom Section */}
+        <div className="pt-8 border-t border-foreground/[0.06] dark:border-white/[0.08]">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+            {/* Copyright */}
+            <p className="text-foreground/35 text-sm" suppressHydrationWarning>
+              &copy; {new Date().getFullYear()} StaffDigital AI. {t("rights")}
+            </p>
+            
+            {/* Legal Links */}
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+              <Link href="/privacidad" className="text-foreground/35 hover:text-foreground/60 text-sm transition-colors">
+                {t("privacy")}
+              </Link>
+              <Link href="/aviso-legal" className="text-foreground/35 hover:text-foreground/60 text-sm transition-colors">
+                {t("legal")}
+              </Link>
+              <Link href="/cookies" className="text-foreground/35 hover:text-foreground/60 text-sm transition-colors">
+                {t("cookies")}
+              </Link>
+              <Link href="/terminos" className="text-foreground/35 hover:text-foreground/60 text-sm transition-colors">
+                {t("terms")}
+              </Link>
+            </div>
+            
+            {/* Dev Credit */}
+            <p className="text-foreground/35 text-sm">
+              {t("dev_by")}{" "}
+              <a
+                href="https://www.webdesignvip.pt"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-foreground/60 transition-colors"
+              >
+                Web Design VIP
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

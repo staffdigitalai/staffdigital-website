@@ -124,13 +124,16 @@
     "featured": "Destaque"
   },
   "hero": {
-    "badge": "Agentes IA de Nova Geração",
-    "h1_plain": "Agentes IA que não só respondem —",
-    "h1_gradient": "atuam, decidem e executam.",
-    "subtitle": "StaffDigital AI transforma conversas e inputs em ações reais — analisando contexto, tomando decisões e executando workflows em canais, sistemas e operações de negócio.",
+    "badge": "Plataforma de Agentes IA Operacionais",
+    "h1_plain": "Agentes IA que não só respondem",
+    "h1_gradient": "Atuam, decidem e executam",
+    "h2": "A sua equipa de IA a trabalhar 24/7 em vendas, suporte e operações.",
+    "subtitle": "Transforma conversas e inputs em ações reais — analisando contexto, tomando decisões e executando workflows em canais, sistemas e operações de negócio.",
     "cta_primary": "Pedir demo",
     "cta_secondary": "Ver como funciona",
-    "microcopy": "Sem templates. Totalmente personalizado. Desenhado para o seu negócio."
+    "trust_1": "Sem templates",
+    "trust_2": "Totalmente personalizado",
+    "trust_3": "Desenhado para o seu negócio"
   },
   "done_for_you": {
     "title_1": "Plataforma completa,",

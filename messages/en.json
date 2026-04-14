@@ -124,13 +124,16 @@
     "featured": "Featured"
   },
   "hero": {
-    "badge": "Next-Gen AI Agents",
-    "h1_plain": "AI agents that don't just respond —",
-    "h1_gradient": "they act, decide and execute.",
-    "subtitle": "StaffDigital AI transforms conversations and inputs into real actions — analyzing context, making decisions and executing workflows across channels, systems and business operations.",
+    "badge": "Operational AI Agents Platform",
+    "h1_plain": "AI agents that don't just respond",
+    "h1_gradient": "They act, decide and execute",
+    "h2": "Your AI team working 24/7 on sales, support and operations.",
+    "subtitle": "Transform conversations and inputs into real actions — analyzing context, making decisions and executing workflows across channels, systems and business operations.",
     "cta_primary": "Book a demo",
     "cta_secondary": "See how it works",
-    "microcopy": "No templates. Fully customized. Built around your business."
+    "trust_1": "No templates",
+    "trust_2": "Fully customized",
+    "trust_3": "Built around your business"
   },
   "done_for_you": {
     "title_1": "Complete platform,",

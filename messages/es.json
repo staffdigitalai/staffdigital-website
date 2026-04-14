@@ -120,7 +120,8 @@
     "sectors_cta_title": "IA entrenada para tu industria",
     "sectors_cta_description": "Agentes que conocen el vocabulario, procesos y necesidades de tu sector.",
     "sectors_cta_demo": "Solicitar demo gratuita",
-    "sectors_cta_view_all": "Ver todos los sectores"
+    "sectors_cta_view_all": "Ver todos los sectores",
+    "featured": "Destacado"
   },
   "hero": {
     "badge": "Plataforma IA Operativa",
@@ -203,7 +204,7 @@
   "omnichannel": {
     "title_1": "Bandeja única:",
     "title_2": "todos los canales en un solo lugar",
-    "subtitle": "StaffDigital AI unifica WhatsApp, teléfono, chat web, email y redes sociales en una sola bandeja. Un agente IA, todos los canales, historial completo.",
+    "subtitle": "StaffDigital AI unifica WhatsApp, tel������fono, chat web, email y redes sociales en una sola bandeja. Un agente IA, todos los canales, historial completo.",
     "channels": [
       {
         "name": "Teléfono",
@@ -361,15 +362,29 @@
     ]
   },
   "social_proof": {
+    "badge": "Resultados medibles",
     "title": "Impacto real, no solo promesas",
     "metrics": [
-      "Gestiona miles de interacciones automáticamente",
-      "Reduce tiempos de respuesta a segundos",
-      "Aumenta conversión y eficiencia operativa",
-      "Mantiene consistencia en todos los canales y equipos"
+      { "value": "87%", "label": "Reduccion en tiempo de respuesta" },
+      { "value": "24/7", "label": "Disponibilidad continua sin pausas" },
+      { "value": "+40%", "label": "Aumento en conversion de leads" },
+      { "value": "2-6", "label": "Semanas de implementacion completa" }
     ],
-    "quote": "StaffDigital AI nos permitió gestionar altos volúmenes de interacciones mejorando la calidad de respuesta y la eficiencia operativa.",
-    "quote_author": "Director de Operaciones"
+    "quote": "StaffDigital AI transformo por completo nuestra atencion al paciente. Pasamos de perder llamadas a gestionar el 100% de las interacciones con la misma calidad — incluso fuera de horario.",
+    "quote_author_initials": "MG",
+    "quote_author_name": "Miguel Garcia",
+    "quote_author_role": "Director de Operaciones",
+    "quote_company": "Clinica Horizonte",
+    "case_study_label": "Caso de exito",
+    "case_study_company": "Clinica Horizonte",
+    "case_study_type": "Red de clinicas privadas -- 12 centros",
+    "case_study_challenge_label": "Desafio",
+    "case_study_challenge": "Perdian el 40% de llamadas fuera de horario y los tiempos de espera superaban los 8 minutos.",
+    "case_study_solution_label": "Solucion",
+    "case_study_solution": "Agente IA con voz humana para atencion telefonica 24/7 integrado con su sistema de citas.",
+    "case_study_result_label": "Resultado",
+    "case_study_result": "0 llamadas perdidas. Tiempo de respuesta reducido a 12 segundos. +35% en reservas confirmadas.",
+    "case_study_cta": "Ver casos de exito"
   },
   "faq": {
     "title": "Preguntas frecuentes sobre agentes IA",
@@ -403,11 +418,15 @@
     ]
   },
   "cta": {
-    "title_plain": "¿Listo para convertir interacciones en",
-    "title_gradient": "ejecución?",
-    "subtitle": "Descubre cómo StaffDigital AI puede adaptarse a tu negocio y empezar a operar procesos con inteligencia y precisión.",
-    "demo": "Solicitar demo",
-    "microcopy": "Diseñado a medida. Totalmente gestionado. Para operaciones reales."
+    "badge": "Empieza hoy",
+    "title_plain": "Listo para convertir interacciones en",
+    "title_gradient": "ejecucion real?",
+    "subtitle": "Descubre como StaffDigital AI puede adaptarse a tu negocio y empezar a operar procesos con inteligencia y precision.",
+    "demo": "Solicitar demo gratuita",
+    "trust_1": "Sin permanencia",
+    "trust_2": "Implementacion incluida",
+    "trust_3": "Soporte dedicado",
+    "microcopy": "Disenado a medida. Totalmente gestionado. Para operaciones reales."
   },
   "templates": {
     "cta_primary": "Pedir Demo",
@@ -432,28 +451,34 @@
     "subtitle": "Observa cómo los agentes IA entienden, analizan y actúan en tiempo real — gestionando conversaciones, tomando decisiones y ejecutando tareas sin intervención humana.",
     "features": {
       "chat": {
-        "title": "Interacción y ejecución en tiempo real",
-        "description": "Agentes IA que no solo responden — entienden el contexto, toman decisiones y ejecutan acciones directamente desde la conversación."
+        "micro_label": "Interaccion",
+        "title": "Interaccion y ejecucion en tiempo real",
+        "description": "Agentes IA que no solo responden — entienden el contexto, toman decisiones y ejecutan acciones directamente desde la conversacion."
       },
       "phone": {
-        "title": "Gestión inteligente de interacciones por voz",
-        "description": "Interpreta solicitudes, accede a información y ejecuta acciones como registrar, derivar o programar — todo en una sola interacción."
+        "micro_label": "Analisis",
+        "title": "Gestion inteligente de interacciones por voz",
+        "description": "Interpreta solicitudes, accede a informacion y ejecuta acciones como registrar, derivar o programar — todo en una sola interaccion."
       },
       "calendar": {
-        "title": "Coordinación y gestión automática",
-        "description": "Verifica disponibilidad, toma decisiones y gestiona agendas en tiempo real sin intervención humana."
+        "micro_label": "Decision",
+        "title": "Coordinacion y gestion automatica",
+        "description": "Verifica disponibilidad, toma decisiones y gestiona agendas en tiempo real sin intervencion humana."
       },
       "email": {
-        "title": "Procesamiento y gestión de solicitudes",
-        "description": "Analiza, clasifica y ejecuta acciones sobre cada solicitud, conectando la información con los procesos internos."
+        "micro_label": "Ejecucion",
+        "title": "Procesamiento y gestion de solicitudes",
+        "description": "Analiza, clasifica y ejecuta acciones sobre cada solicitud, conectando la informacion con los procesos internos."
       },
       "leads": {
-        "title": "Análisis y toma de decisiones",
-        "description": "Evalúa información, estructura datos y decide el siguiente paso dentro del proceso operativo o comercial."
+        "micro_label": "Inteligencia",
+        "title": "Analisis y toma de decisiones",
+        "description": "Evalua informacion, estructura datos y decide el siguiente paso dentro del proceso operativo o comercial."
       },
       "integrations": {
-        "title": "Ejecución conectada entre sistemas",
-        "description": "Actúa directamente sobre CRM, calendarios y herramientas para mantener los procesos en funcionamiento continuo."
+        "micro_label": "Conectividad",
+        "title": "Ejecucion conectada entre sistemas",
+        "description": "Actua directamente sobre CRM, calendarios y herramientas para mantener los procesos en funcionamiento continuo."
       }
     }
   },
@@ -639,33 +664,7 @@
     "p2": "StaffDigital AI va más allá — opera.",
     "p3": "Nuestra plataforma entiende el contexto, procesa información y ejecuta acciones en tiempo real, conectando conversaciones con resultados reales."
   },
-  "what_we_do": {
-    "title_plain": "De la interacción a la",
-    "title_gradient": "ejecución",
-    "subtitle": "Convierte conversaciones, inputs y señales en acciones estructuradas y resultados reales.",
-    "cards": [
-      {
-        "icon": "brain",
-        "title": "Comprender",
-        "description": "Interpreta lenguaje, datos y contexto a través de conversaciones y sistemas."
-      },
-      {
-        "icon": "file-text",
-        "title": "Analizar",
-        "description": "Evalúa inputs, detecta intención y estructura información para la toma de decisiones."
-      },
-      {
-        "icon": "target",
-        "title": "Decidir",
-        "description": "Aplica lógica, reglas y objetivos para determinar la mejor acción."
-      },
-      {
-        "icon": "zap",
-        "title": "Ejecutar",
-        "description": "Responde, registra, agenda, actualiza sistemas o enruta tareas — automáticamente."
-      }
-    ]
-  },
+  "_what_we_do_deprecated": true,
   "use_cases": {
     "title_plain": "Una plataforma.",
     "title_gradient": "Múltiples aplicaciones reales.",
@@ -700,29 +699,46 @@
   },
   "how_it_works": {
     "title": "Cómo funciona StaffDigital AI",
+    "subtitle": "Cada interacción se convierte en contexto, decisión y acción — conectada a los procesos de tu negocio.",
     "steps": [
       {
         "num": "1",
-        "title": "Recibe",
-        "description": "Voz, chat, formularios, APIs o inputs de sistemas."
+        "label": "Recibe",
+        "description": "Voz, chat, formularios, APIs o inputs de sistemas.",
+        "icon": "inbox",
+        "card_title": "Captura multicanal",
+        "card_text": "Recibe interacciones desde cualquier punto de contacto — llamadas, WhatsApp, formularios web o APIs — y las unifica en un flujo estructurado.",
+        "card_example": "Llamada entrante → transcrita → datos extraídos → flujo iniciado"
       },
       {
         "num": "2",
-        "title": "Comprende",
-        "description": "Contexto, intención, historial y datos estructurados."
+        "label": "Comprende",
+        "description": "Contexto, intención, historial y datos estructurados.",
+        "icon": "brain",
+        "card_title": "Comprensión contextual",
+        "card_text": "Analiza el lenguaje, detecta la intención, cruza el historial del contacto y estructura la información para tomar decisiones.",
+        "card_example": "\"Quiero cambiar mi cita\" → intención: reagendar → contexto: cita #4521"
       },
       {
         "num": "3",
-        "title": "Decide",
-        "description": "Reglas, lógica y objetivos de negocio."
+        "label": "Decide",
+        "description": "Reglas, lógica y objetivos de negocio.",
+        "icon": "git-branch",
+        "card_title": "Motor de decisión",
+        "card_text": "Aplica reglas de negocio, lógica condicional y objetivos configurados para determinar la mejor acción en cada caso.",
+        "card_example": "Si disponibilidad > 0 → reagendar automáticamente → confirmar"
       },
       {
         "num": "4",
-        "title": "Actúa",
-        "description": "Responde, agenda, actualiza, notifica o escala."
+        "label": "Ejecuta",
+        "description": "Responde, agenda, actualiza, notifica o escala.",
+        "icon": "zap",
+        "card_title": "Ejecución autónoma",
+        "card_text": "Ejecuta la acción decidida — responde al usuario, actualiza sistemas, agenda citas, envía notificaciones o escala a un humano.",
+        "card_example": "Cita reagendada → SMS enviado → CRM actualizado → caso cerrado"
       }
     ],
-    "closing": "Cada interacción se convierte en parte de un proceso continuo e inteligente — no una respuesta aislada."
+    "closing": "No responde como un sistema aislado. Convierte cada interacción en una acción conectada al negocio."
   },
   "differentiation": {
     "title_plain": "Construido alrededor de tu negocio.",
@@ -740,8 +756,18 @@
   "badge": "Voz Humana HD",
   "title_plain": "Voz natural,",
   "title_gradient": "cuando importa",
-  "text": "Nuestros agentes IA pueden comunicarse con voz humana, permitiendo interacciones mas naturales, claras y de confianza — especialmente en escenarios complejos o sensibles.",
-  "cta": "Escuchar demo de voz",
+  "text": "Nuestros agentes IA se comunican con voz humana real — imposible de distinguir de una persona. Ideal para escenarios donde la confianza y la claridad son criticas.",
+  "use_cases": [
+    "Llamadas de confirmacion de citas medicas",
+    "Atencion al cliente en horario extendido",
+    "Reservas y confirmaciones de restaurantes",
+    "Seguimiento posventa y recordatorios"
+  ],
+  "demo_title": "Demo de Voz Humana",
+  "demo_subtitle": "Agente IA atendiendo llamada",
+  "transcript_label": "Transcripcion",
+  "transcript_preview": "Buenos dias, gracias por llamar a Clinica Horizonte. Soy Laura, tu asistente virtual. Veo que tienes una cita programada para manana a las 10. Quieres confirmarla o necesitas reprogramar?",
+  "cta": "Escuchar demo completo",
   "microcopy": "La voz no es el centro. Es el multiplicador."
   },
   "solutions_explore": {

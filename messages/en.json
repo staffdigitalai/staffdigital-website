@@ -120,7 +120,8 @@
     "sectors_cta_title": "AI trained for your industry",
     "sectors_cta_description": "Agents that know the vocabulary, processes and needs of your sector.",
     "sectors_cta_demo": "Request free demo",
-    "sectors_cta_view_all": "View all industries"
+    "sectors_cta_view_all": "View all industries",
+    "featured": "Featured"
   },
   "hero": {
     "h1_plain": "AI agents that don't just respond",
@@ -360,15 +361,29 @@
     ]
   },
   "social_proof": {
+    "badge": "Measurable results",
     "title": "Real impact, not just promises",
     "metrics": [
-      "Handle thousands of interactions automatically",
-      "Reduce response times to seconds",
-      "Increase conversion and operational efficiency",
-      "Maintain consistency across channels and teams"
+      { "value": "87%", "label": "Reduction in response time" },
+      { "value": "24/7", "label": "Continuous availability without breaks" },
+      { "value": "+40%", "label": "Increase in lead conversion" },
+      { "value": "2-6", "label": "Weeks for full implementation" }
     ],
-    "quote": "StaffDigital AI allowed us to manage high volumes of interactions while improving response quality and operational efficiency.",
-    "quote_author": "Operations Director"
+    "quote": "StaffDigital AI completely transformed our patient care. We went from missing calls to handling 100% of interactions with the same quality — even after hours.",
+    "quote_author_initials": "MG",
+    "quote_author_name": "Miguel Garcia",
+    "quote_author_role": "Operations Director",
+    "quote_company": "Clinica Horizonte",
+    "case_study_label": "Success story",
+    "case_study_company": "Clinica Horizonte",
+    "case_study_type": "Private clinic network -- 12 centers",
+    "case_study_challenge_label": "Challenge",
+    "case_study_challenge": "They were losing 40% of calls outside business hours and wait times exceeded 8 minutes.",
+    "case_study_solution_label": "Solution",
+    "case_study_solution": "AI agent with human voice for 24/7 phone support integrated with their appointment system.",
+    "case_study_result_label": "Result",
+    "case_study_result": "0 missed calls. Response time reduced to 12 seconds. +35% in confirmed bookings.",
+    "case_study_cta": "View success stories"
   },
   "faq": {
     "title": "Frequently asked questions about AI agents",
@@ -402,10 +417,14 @@
     ]
   },
   "cta": {
+    "badge": "Get started today",
     "title_plain": "Ready to turn interactions into",
-    "title_gradient": "execution?",
-    "subtitle": "See how StaffDigital AI can be adapted to your business and start operating processes with intelligence and precision.",
-    "demo": "Book a demo",
+    "title_gradient": "real execution?",
+    "subtitle": "Discover how StaffDigital AI can adapt to your business and start operating processes with intelligence and precision.",
+    "demo": "Request free demo",
+    "trust_1": "No commitment",
+    "trust_2": "Implementation included",
+    "trust_3": "Dedicated support",
     "microcopy": "Custom-built. Fully managed. Designed for real operations."
   },
   "templates": {
@@ -431,26 +450,32 @@
     "subtitle": "Watch how AI agents understand, analyze and act in real time — managing conversations, making decisions and executing tasks without human intervention.",
     "features": {
       "chat": {
+        "micro_label": "Interaction",
         "title": "Real-time interaction and execution",
         "description": "AI agents that don't just respond — they understand context, make decisions and execute actions directly from the conversation."
       },
       "phone": {
+        "micro_label": "Analysis",
         "title": "Intelligent voice interaction management",
         "description": "Interprets requests, accesses information and executes actions like recording, routing or scheduling — all in a single interaction."
       },
       "calendar": {
+        "micro_label": "Decision",
         "title": "Automatic coordination and management",
         "description": "Checks availability, makes decisions and manages schedules in real time without human intervention."
       },
       "email": {
+        "micro_label": "Execution",
         "title": "Request processing and management",
         "description": "Analyzes, classifies and executes actions on each request, connecting information with internal processes."
       },
       "leads": {
+        "micro_label": "Intelligence",
         "title": "Analysis and decision-making",
         "description": "Evaluates information, structures data and decides the next step within the operational or commercial process."
       },
       "integrations": {
+        "micro_label": "Connectivity",
         "title": "Connected execution across systems",
         "description": "Acts directly on CRM, calendars and tools to keep processes running continuously."
       }
@@ -638,33 +663,7 @@
     "p2": "StaffDigital AI goes further — it operates.",
     "p3": "Our platform understands context, processes information and executes actions in real time, connecting conversations with actual outcomes."
   },
-  "what_we_do": {
-    "title_plain": "From interaction to",
-    "title_gradient": "execution",
-    "subtitle": "Turn conversations, inputs and signals into structured actions and real results.",
-    "cards": [
-      {
-        "icon": "brain",
-        "title": "Understand",
-        "description": "Interprets language, data and context across conversations and systems."
-      },
-      {
-        "icon": "file-text",
-        "title": "Analyze",
-        "description": "Evaluates inputs, detects intent and structures information for decision-making."
-      },
-      {
-        "icon": "target",
-        "title": "Decide",
-        "description": "Applies logic, rules and objectives to determine the next best action."
-      },
-      {
-        "icon": "zap",
-        "title": "Execute",
-        "description": "Responds, records, schedules, updates systems or routes tasks — automatically."
-      }
-    ]
-  },
+  "_what_we_do_deprecated": true,
   "use_cases": {
     "title_plain": "One platform.",
     "title_gradient": "Multiple real-world applications.",
@@ -699,29 +698,46 @@
   },
   "how_it_works": {
     "title": "How StaffDigital AI works",
+    "subtitle": "Every interaction becomes context, decision, and action — connected to your business processes.",
     "steps": [
       {
         "num": "1",
-        "title": "Receive",
-        "description": "Voice, chat, forms, APIs or system inputs."
+        "label": "Receive",
+        "description": "Voice, chat, forms, APIs or system inputs.",
+        "icon": "inbox",
+        "card_title": "Multichannel capture",
+        "card_text": "Receives interactions from any touchpoint — calls, WhatsApp, web forms or APIs — and unifies them into a structured flow.",
+        "card_example": "Incoming call → transcribed → data extracted → flow initiated"
       },
       {
         "num": "2",
-        "title": "Understand",
-        "description": "Context, intent, history and structured data."
+        "label": "Understand",
+        "description": "Context, intent, history and structured data.",
+        "icon": "brain",
+        "card_title": "Contextual understanding",
+        "card_text": "Analyzes language, detects intent, cross-references contact history and structures information for decision-making.",
+        "card_example": "\"I want to reschedule\" → intent: reschedule → context: appt #4521"
       },
       {
         "num": "3",
-        "title": "Decide",
-        "description": "Rules, logic and business objectives."
+        "label": "Decide",
+        "description": "Rules, logic and business objectives.",
+        "icon": "git-branch",
+        "card_title": "Decision engine",
+        "card_text": "Applies business rules, conditional logic and configured objectives to determine the best action in each case.",
+        "card_example": "If availability > 0 → auto-reschedule → confirm"
       },
       {
         "num": "4",
-        "title": "Act",
-        "description": "Respond, schedule, update, notify or escalate."
+        "label": "Execute",
+        "description": "Respond, schedule, update, notify or escalate.",
+        "icon": "zap",
+        "card_title": "Autonomous execution",
+        "card_text": "Executes the decided action — responds to the user, updates systems, books appointments, sends notifications or escalates to a human.",
+        "card_example": "Appointment rescheduled → SMS sent → CRM updated → case closed"
       }
     ],
-    "closing": "Every interaction becomes part of a continuous, intelligent process — not an isolated response."
+    "closing": "It doesn't respond like an isolated system. It turns every interaction into an action connected to the business."
   },
   "differentiation": {
     "title_plain": "Built around your business.",
@@ -735,11 +751,23 @@
       "No technical team required on your side"
     ]
   },
-  "voice": {
-    "title_plain": "Natural voice,",
-    "title_gradient": "when it matters",
-    "text": "Our AI agents can communicate using human-like voice, enabling more natural, clear and trusted interactions — especially in complex or sensitive scenarios.",
-    "microcopy": "Voice is not the core. It's the multiplier."
+"voice": {
+  "badge": "Human Voice HD",
+  "title_plain": "Natural voice,",
+  "title_gradient": "when it matters",
+  "text": "Our AI agents communicate with real human voice — impossible to distinguish from a person. Ideal for scenarios where trust and clarity are critical.",
+  "use_cases": [
+    "Medical appointment confirmation calls",
+    "Extended hours customer service",
+    "Restaurant reservations and confirmations",
+    "After-sales follow-up and reminders"
+  ],
+  "demo_title": "Human Voice Demo",
+  "demo_subtitle": "AI agent handling a call",
+  "transcript_label": "Transcript",
+  "transcript_preview": "Good morning, thank you for calling Horizonte Clinic. I'm Laura, your virtual assistant. I see you have an appointment scheduled for tomorrow at 10. Would you like to confirm it or need to reschedule?",
+  "cta": "Listen to full demo",
+  "microcopy": "Voice is not the core. It's the multiplier."
   },
   "solutions_explore": {
     "title": "Explore specific applications",

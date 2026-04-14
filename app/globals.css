@@ -56,10 +56,6 @@
   --glow-purple: 0 0 15px rgba(var(--purple-dark-rgb), 0.3), 0 0 30px rgba(var(--purple-dark-rgb), 0.15);
   --glow-lime: 0 0 15px rgba(var(--lime-green-rgb), 0.3), 0 0 30px rgba(var(--lime-green-rgb), 0.15);
 
-  /* === Hero Section === */
-  --hero-gradient: linear-gradient(135deg, #0062CC 0%, #7C3AED 100%);
-  --hero-h1-shadow: none;
-  --aurora-blend: multiply;
 }
 
 /* === Dark Theme === */
@@ -105,10 +101,6 @@
   --glow-purple: 0 0 20px rgba(var(--purple-dark-rgb), 0.5), 0 0 40px rgba(var(--purple-dark-rgb), 0.3);
   --glow-lime: 0 0 20px rgba(var(--lime-green-rgb), 0.5), 0 0 40px rgba(var(--lime-green-rgb), 0.3);
 
-  /* === Hero Section (Dark) === */
-  --hero-gradient: linear-gradient(135deg, #00B4F0 0%, #A855F7 100%);
-  --hero-h1-shadow: 0 0 60px rgba(0,180,240,0.1);
-  --aurora-blend: screen;
 }
 
 /* === Global Card Elevated Style === */
@@ -501,6 +493,79 @@
 .animate-fade-in-trust {
   animation: fade-in-trust 0.8s ease-out 1.2s forwards;
   opacity: 0;
+}
+
+/* === Hero Section Entrance Animations (spec-matched timings) === */
+@keyframes hero-badge-in {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-h1-in {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-subtitle-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes hero-ctas-in {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-trust-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-hero-badge {
+  animation: hero-badge-in 0.6s ease-out 0.3s forwards;
+  opacity: 0;
+}
+.animate-hero-h1 {
+  animation: hero-h1-in 0.8s ease-out 0.6s forwards;
+  opacity: 0;
+}
+.animate-hero-subtitle {
+  animation: hero-subtitle-in 0.6s ease-out 0.9s forwards;
+  opacity: 0;
+}
+.animate-hero-ctas {
+  animation: hero-ctas-in 0.6s ease-out 1.1s forwards;
+  opacity: 0;
+}
+.animate-hero-trust {
+  animation: hero-trust-in 0.5s ease-out 1.3s forwards;
+  opacity: 0;
+}
+
+/* === Badge Shimmer Animation === */
+@keyframes badge-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.hero-badge-shimmer {
+  background-size: 200% 100%;
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.12) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  animation: badge-shimmer 3s ease-in-out infinite;
+}
+
+.dark .hero-badge-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 60%,
+    transparent 100%
+  );
 }
 
 /* Removed problem section CSS animations since we're using scroll-triggered animations */
@@ -1171,88 +1236,50 @@ html.light body {
 }
 
 /* ============================================
-   AURORA BACKGROUND ANIMATIONS
+   AURORA BACKGROUND ANIMATIONS (4 blobs)
    ============================================ */
 
-/* Blob 1 — Slow horizontal drift */
-@keyframes aurora-drift-x {
-  0%, 100% {
-    transform: translateX(0) translateY(0);
-    opacity: 1;
-  }
-  25% {
-    opacity: 0.7;
-  }
-  50% {
-    transform: translateX(80px) translateY(-30px);
-    opacity: 1;
-  }
-  75% {
-    opacity: 0.6;
-  }
+/* Blob 1 — Horizontal drift */
+@keyframes aurora-blob-1 {
+  0% { transform: translateX(-100px); }
+  100% { transform: translateX(100px); }
+}
+.animate-aurora-blob-1 {
+  animation: aurora-blob-1 20s ease-in-out infinite alternate;
 }
 
-.animate-aurora-drift-x {
-  animation: aurora-drift-x 20s ease-in-out infinite;
+/* Blob 2 — Vertical drift */
+@keyframes aurora-blob-2 {
+  0% { transform: translateY(-80px); }
+  100% { transform: translateY(80px); }
+}
+.animate-aurora-blob-2 {
+  animation: aurora-blob-2 25s ease-in-out infinite alternate;
 }
 
-/* Blob 2 — Circular orbit motion */
-@keyframes aurora-orbit {
-  0% {
-    transform: translate(0, 0);
-    opacity: 1;
-  }
-  25% {
-    transform: translate(-60px, -40px);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translate(-30px, 50px);
-    opacity: 1;
-  }
-  75% {
-    transform: translate(40px, 20px);
-    opacity: 0.7;
-  }
-  100% {
-    transform: translate(0, 0);
-    opacity: 1;
-  }
+/* Blob 3 — Scale + rotate, centered */
+@keyframes aurora-blob-3 {
+  0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) scale(1.2) rotate(10deg); }
+}
+.animate-aurora-blob-3 {
+  animation: aurora-blob-3 18s ease-in-out infinite alternate;
 }
 
-.animate-aurora-orbit {
-  animation: aurora-orbit 25s ease-in-out infinite;
+/* Blob 4 — Diagonal drift */
+@keyframes aurora-blob-4 {
+  0% { transform: translate(50px, -50px); }
+  100% { transform: translate(-50px, 50px); }
+}
+.animate-aurora-blob-4 {
+  animation: aurora-blob-4 22s ease-in-out infinite alternate;
 }
 
-/* Blob 3 — Pulse scale + vertical drift */
-@keyframes aurora-pulse-drift {
-  0%, 100% {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-  }
-  25% {
-    transform: scale(1.15) translateY(-30px);
-    opacity: 0.6;
-  }
-  50% {
-    transform: scale(1.3) translateY(-50px);
-    opacity: 1;
-  }
-  75% {
-    transform: scale(1.1) translateY(-20px);
-    opacity: 0.7;
-  }
-}
-
-.animate-aurora-pulse-drift {
-  animation: aurora-pulse-drift 15s ease-in-out infinite;
-}
-
-/* Aurora blob blend mode — multiply in light, screen in dark */
+/* Aurora blob blend mode — plus-lighter in dark, normal in light */
 .aurora-blob {
-  mix-blend-mode: multiply;
+  mix-blend-mode: normal;
 }
 
 .dark .aurora-blob {
-  mix-blend-mode: screen;
+  mix-blend-mode: plus-lighter;
 }

@@ -120,7 +120,8 @@
     "sectors_cta_title": "IA treinada para a sua indústria",
     "sectors_cta_description": "Agentes que conhecem o vocabulário, processos e necessidades do seu setor.",
     "sectors_cta_demo": "Solicitar demo gratuita",
-    "sectors_cta_view_all": "Ver todos os setores"
+    "sectors_cta_view_all": "Ver todos os setores",
+    "featured": "Destaque"
   },
   "hero": {
     "h1_plain": "Agentes IA que não só respondem",
@@ -363,10 +364,22 @@
     "badge": "Resultados mensuraveis",
     "title": "Impacto real, nao apenas promessas",
     "metrics": [
-      { "value": "87%", "label": "Reducao no tempo de resposta" },
-      { "value": "24/7", "label": "Disponibilidade continua sem pausas" },
-      { "value": "+40%", "label": "Aumento na conversao de leads" },
-      { "value": "2-6", "label": "Semanas para implementacao completa" }
+      {
+        "value": "87%",
+        "label": "Reducao no tempo de resposta"
+      },
+      {
+        "value": "24/7",
+        "label": "Disponibilidade continua sem pausas"
+      },
+      {
+        "value": "+40%",
+        "label": "Aumento na conversao de leads"
+      },
+      {
+        "value": "2-6",
+        "label": "Semanas para implementacao completa"
+      }
     ],
     "quote": "StaffDigital AI transformou por completo o nosso atendimento ao paciente. Passamos de perder chamadas a gerir 100% das interacoes com a mesma qualidade -- mesmo fora de horario.",
     "quote_author_initials": "MG",
@@ -420,7 +433,11 @@
     "title_gradient": "execução?",
     "subtitle": "Veja como StaffDigital AI pode ser adaptado ao seu negócio e comece a operar processos com inteligência e precisão.",
     "demo": "Pedir demo",
-    "microcopy": "Feito à medida. Totalmente gerido. Para operações reais."
+    "microcopy": "Feito à medida. Totalmente gerido. Para operações reais.",
+    "badge": "Comece hoje",
+    "trust_1": "Sem compromisso",
+    "trust_2": "Implementação incluída",
+    "trust_3": "Suporte dedicado"
   },
   "templates": {
     "cta_primary": "Pedir Demo",
@@ -446,27 +463,33 @@
     "features": {
       "chat": {
         "title": "Interação e execução em tempo real",
-        "description": "Agentes IA que não só respondem — entendem o contexto, tomam decisões e executam ações diretamente a partir da conversa."
+        "description": "Agentes IA que não só respondem — entendem o contexto, tomam decisões e executam ações diretamente a partir da conversa.",
+        "micro_label": "Interação"
       },
       "phone": {
         "title": "Gestão inteligente de interações por voz",
-        "description": "Interpreta pedidos, acede a informação e executa ações como registar, encaminhar ou agendar — tudo numa só interação."
+        "description": "Interpreta pedidos, acede a informação e executa ações como registar, encaminhar ou agendar — tudo numa só interação.",
+        "micro_label": "Análise"
       },
       "calendar": {
         "title": "Coordenação e gestão automática",
-        "description": "Verifica disponibilidade, toma decisões e gere agendas em tempo real sem intervenção humana."
+        "description": "Verifica disponibilidade, toma decisões e gere agendas em tempo real sem intervenção humana.",
+        "micro_label": "Decisão"
       },
       "email": {
         "title": "Processamento e gestão de pedidos",
-        "description": "Analisa, classifica e executa ações sobre cada pedido, conectando a informação com os processos internos."
+        "description": "Analisa, classifica e executa ações sobre cada pedido, conectando a informação com os processos internos.",
+        "micro_label": "Execução"
       },
       "leads": {
         "title": "Análise e tomada de decisão",
-        "description": "Avalia informação, estrutura dados e decide o próximo passo dentro do processo operacional ou comercial."
+        "description": "Avalia informação, estrutura dados e decide o próximo passo dentro do processo operacional ou comercial.",
+        "micro_label": "Inteligência"
       },
       "integrations": {
         "title": "Execução conectada entre sistemas",
-        "description": "Atua diretamente sobre CRM, calendários e ferramentas para manter os processos em funcionamento contínuo."
+        "description": "Atua diretamente sobre CRM, calendários e ferramentas para manter os processos em funcionamento contínuo.",
+        "micro_label": "Conectividade"
       }
     }
   },
@@ -744,7 +767,19 @@
     "title_plain": "Voz natural,",
     "title_gradient": "quando importa",
     "text": "Os nossos agentes IA podem comunicar com voz humana, permitindo interações mais naturais, claras e de confiança — especialmente em cenários complexos ou sensíveis.",
-    "microcopy": "A voz não é o centro. É o multiplicador."
+    "microcopy": "A voz não é o centro. É o multiplicador.",
+    "badge": "Tecnologia de voz",
+    "use_cases": [
+      "Atendimento telefónico",
+      "Confirmação de marcações",
+      "Suporte técnico",
+      "Qualificação de leads"
+    ],
+    "demo_title": "Oiça a diferença",
+    "demo_subtitle": "Compare a voz IA com uma chamada robótica tradicional",
+    "transcript_label": "Transcrição",
+    "transcript_preview": "Olá, ligo da clínica para confirmar a sua marcação de amanhã às 10h. Posso confirmar?",
+    "cta": "Experimentar a voz IA"
   },
   "solutions_explore": {
     "title": "Explore aplicações específicas",

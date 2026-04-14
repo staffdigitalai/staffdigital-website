@@ -124,13 +124,13 @@
     "featured": "Destacado"
   },
   "hero": {
-    "badge": "Plataforma IA Operativa",
-    "h1_plain": "Agentes IA que no solo responden",
-    "h1_gradient": "actuan, deciden y ejecutan.",
+    "badge": "Agentes IA de Nueva Generación",
+    "h1_plain": "Agentes IA que no solo responden —",
+    "h1_gradient": "actúan, deciden y ejecutan.",
     "subtitle": "StaffDigital AI transforma conversaciones e inputs en acciones reales — analizando contexto, tomando decisiones y ejecutando workflows en canales, sistemas y operaciones de negocio.",
     "cta_primary": "Solicitar demo",
-    "cta_secondary": "Ver como funciona",
-    "microcopy": "Sin plantillas. Totalmente personalizado. Disenado para tu negocio."
+    "cta_secondary": "Ver cómo funciona",
+    "microcopy": "Sin plantillas. Totalmente personalizado. Diseñado para tu negocio."
   },
   "done_for_you": {
     "title_1": "Todo incluido.",
@@ -204,7 +204,7 @@
   "omnichannel": {
     "title_1": "Bandeja única:",
     "title_2": "todos los canales en un solo lugar",
-    "subtitle": "StaffDigital AI unifica WhatsApp, tel������fono, chat web, email y redes sociales en una sola bandeja. Un agente IA, todos los canales, historial completo.",
+    "subtitle": "StaffDigital AI unifica WhatsApp, tel��������fono, chat web, email y redes sociales en una sola bandeja. Un agente IA, todos los canales, historial completo.",
     "channels": [
       {
         "name": "Teléfono",

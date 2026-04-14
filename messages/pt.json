@@ -124,7 +124,8 @@
     "featured": "Destaque"
   },
   "hero": {
-    "h1_plain": "Agentes IA que não só respondem",
+    "badge": "Agentes IA de Nova Geração",
+    "h1_plain": "Agentes IA que não só respondem —",
     "h1_gradient": "atuam, decidem e executam.",
     "subtitle": "StaffDigital AI transforma conversas e inputs em ações reais — analisando contexto, tomando decisões e executando workflows em canais, sistemas e operações de negócio.",
     "cta_primary": "Pedir demo",

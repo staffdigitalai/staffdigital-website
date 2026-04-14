@@ -739,19 +739,43 @@ export interface PageSEO {
   hreflang: WPMLHreflang[]
 }
 
+// WPML locale codes differ from our routing locales
+const WPML_LOCALE_MAP: Record<string, string> = { es: "es", en: "en", pt: "pt-pt" }
+
 export async function getPageSEO(slug: string, locale: string): Promise<PageSEO> {
   try {
-    const res = await fetch(
-      `${WP_API_URL}/pages?slug=${slug}&lang=${locale}`,
+    // 1. Fetch ES master page by slug (WPML master is always ES)
+    const masterRes = await fetch(
+      `${WP_API_URL}/pages?slug=${slug}`,
       { next: { revalidate: 3600 } },
     )
-    if (!res.ok) return { yoast: null, hreflang: [] }
-    const pages = await res.json()
-    if (!pages.length) return { yoast: null, hreflang: [] }
-    const page = pages[0]
+    if (!masterRes.ok) return { yoast: null, hreflang: [] }
+    const masterPages = await masterRes.json()
+    if (!masterPages.length) return { yoast: null, hreflang: [] }
+    const master = masterPages[0]
+
+    // 2. Find the translated page ID for the current locale
+    let pageId = master.id
+    if (locale !== "es") {
+      const wpmlLocale = WPML_LOCALE_MAP[locale] ?? locale
+      const translation = master.wpml_translations?.[wpmlLocale]
+      if (translation) pageId = translation.id
+    }
+
+    // 3. Fetch the page in the correct language (by ID if different)
+    const page = pageId !== master.id
+      ? await fetch(`${WP_API_URL}/pages/${pageId}`, { next: { revalidate: 3600 } }).then(r => r.json())
+      : master
+
+    // 4. Normalize hreflang URLs (pt-pt → pt)
+    const hreflang = (master.wpml_hreflang ?? []).map((h: WPMLHreflang) => ({
+      ...h,
+      href: h.href?.replace("/pt-pt/", "/pt/") ?? h.href,
+    }))
+
     return {
       yoast: page.yoast_head_json ?? null,
-      hreflang: page.wpml_hreflang ?? [],
+      hreflang,
     }
   } catch {
     return { yoast: null, hreflang: [] }

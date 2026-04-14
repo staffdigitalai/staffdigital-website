@@ -1,7 +1,47 @@
+import type { Metadata } from "next"
+import { getPageSEO } from "@/lib/wordpress"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import Aurora from "@/components/Aurora"
 import { Footer } from "@/components/footer"
 import { BackgroundEffects } from "@/components/background-effects"
+
+// ─── SEO from WordPress Yoast + WPML ─────────────────────────────
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const { yoast, hreflang } = await getPageSEO("homepage", locale)
+
+  // Fallback to static translations if Yoast data isn't available
+  if (!yoast) {
+    return {
+      title: "StaffDigital AI",
+      description: "AI agents that act, decide and execute.",
+    }
+  }
+
+  return {
+    title: yoast.title,
+    description: yoast.description,
+    openGraph: {
+      title: yoast.og_title ?? yoast.title,
+      description: yoast.og_description ?? yoast.description,
+      ...(yoast.og_image?.[0] && {
+        images: [{ url: yoast.og_image[0].url, width: yoast.og_image[0].width, height: yoast.og_image[0].height }],
+      }),
+    },
+    alternates: {
+      canonical: yoast.canonical ?? `https://www.staffdigital.ai/${locale === "es" ? "" : locale}`,
+      languages: Object.fromEntries(
+        hreflang
+          .filter((h) => h.hreflang !== "x-default")
+          .map((h) => [h.hreflang, h.href]),
+      ),
+    },
+  }
+}
 
 // Homepage blocks — new positioning: AI operational platform
 import { HeroBlock } from "@/components/homepage/hero-block"

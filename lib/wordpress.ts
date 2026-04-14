@@ -715,3 +715,45 @@ export function getPageFeaturedImageUrl(page: WPPage): string | null {
   const media = page._embedded?.['wp:featuredmedia']?.[0];
   return media?.source_url || null;
 }
+
+// ─── Yoast SEO + WPML hreflang from WP pages ────────────────────
+export interface YoastSEO {
+  title?: string
+  description?: string
+  og_title?: string
+  og_description?: string
+  og_image?: Array<{ url: string; width: number; height: number }>
+  canonical?: string
+  robots?: Record<string, string>
+  schema?: Record<string, unknown>
+}
+
+export interface WPMLHreflang {
+  hreflang: string
+  href: string
+  lang?: string
+}
+
+export interface PageSEO {
+  yoast: YoastSEO | null
+  hreflang: WPMLHreflang[]
+}
+
+export async function getPageSEO(slug: string, locale: string): Promise<PageSEO> {
+  try {
+    const res = await fetch(
+      `${WP_API_URL}/pages?slug=${slug}&lang=${locale}`,
+      { next: { revalidate: 3600 } },
+    )
+    if (!res.ok) return { yoast: null, hreflang: [] }
+    const pages = await res.json()
+    if (!pages.length) return { yoast: null, hreflang: [] }
+    const page = pages[0]
+    return {
+      yoast: page.yoast_head_json ?? null,
+      hreflang: page.wpml_hreflang ?? [],
+    }
+  } catch {
+    return { yoast: null, hreflang: [] }
+  }
+}

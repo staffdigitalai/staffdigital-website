@@ -45,7 +45,7 @@ export function HeroBlock() {
         </h1>
 
         {/* C) H2 — Supporting headline */}
-        <h2 className="animate-hero-h2 text-lg md:text-xl font-normal max-w-3xl mx-auto mb-5 text-[#1E293B] dark:text-[#E2E8F0]">
+        <h2 className="animate-hero-h2 text-lg md:text-xl font-medium max-w-3xl mx-auto mb-5 text-[#475569] dark:text-[#94A3B8]">
           {t("h2")}
         </h2>
 

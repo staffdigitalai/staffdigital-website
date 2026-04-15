@@ -673,29 +673,36 @@
     "title_gradient": "Múltiples aplicaciones reales.",
     "items": [
       {
-        "emoji": "🏥",
-        "title": "Salud y flujos de pacientes",
-        "description": "Habla con pacientes, recoge síntomas, registra información y enruta casos según necesidades."
+        "title": "Seguridad y videovigilancia",
+        "description": "Recibe alertas de cámaras y sensores, interpreta eventos, decide acciones y escala — sin intervención humana en el primer nivel de respuesta."
       },
       {
-        "emoji": "📅",
-        "title": "Agendamiento y coordinación",
-        "description": "Gestiona disponibilidad, agenda citas, confirma y ajusta en tiempo real."
+        "title": "Atención médica y triaje",
+        "description": "Triaje inteligente por voz y chat. Recoge síntomas, prioriza urgencia y enruta al especialista correcto, 24/7."
       },
       {
-        "emoji": "📊",
-        "title": "Captura de datos y cualificación",
-        "description": "Captura información estructurada, valida inputs y prepara decisiones o transferencias."
+        "title": "Gestión de propiedades",
+        "description": "Recibe incidencias de inquilinos, clasifica urgencia, contacta técnicos y agenda intervenciones automáticamente."
       },
       {
-        "emoji": "🔄",
-        "title": "Workflows operativos",
-        "description": "Ejecuta procesos repetitivos, conecta sistemas y mantiene la continuidad entre tareas."
+        "title": "Educación y formación",
+        "description": "Tutores IA que responden dudas, adaptan contenido al nivel del alumno y reportan progreso al profesor."
       },
       {
-        "emoji": "💬",
-        "title": "Operaciones de cliente e ingresos",
-        "description": "Gestiona conversaciones en todos los canales y las convierte en acciones cualificadas."
+        "title": "Recursos humanos y onboarding",
+        "description": "Gestiona onboarding completo: responde preguntas, guía formularios, agenda formaciones y hace follow-up automático."
+      },
+      {
+        "title": "Energía y monitorización ambiental",
+        "description": "Monitoriza consumos, recibe alertas de sensores, notifica anomalías y genera informes — gestión energética autónoma."
+      },
+      {
+        "title": "Cobranza y gestión de pagos",
+        "description": "Follow-up automático de facturas, negociación de planes de pago y escalamiento inteligente. Recupera ingresos sin fricción."
+      },
+      {
+        "title": "Agricultura inteligente",
+        "description": "Monitoriza sensores de campo, alerta sobre riego y plagas, coordina equipos y optimiza recursos con datos en tiempo real."
       }
     ],
     "cta": "Explorar soluciones"

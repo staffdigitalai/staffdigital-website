@@ -1393,3 +1393,46 @@ html.light body {
   80%  { left: 48%; top: 49%; opacity: 1; }
   100% { left: 50%; top: 50%; opacity: 0; }
 }
+
+/* ============================================
+   USE CASES — DOT PATTERN + ICON DRAW + GLOW
+   ============================================ */
+
+/* Subtle dot grid pattern (Linear-style) */
+.dot-pattern {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.dark .dot-pattern {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+}
+
+/* SVG icon draw animation */
+.icon-draw-hidden {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+.icon-draw-visible {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s ease-out;
+}
+
+/* Icon glow on card hover */
+.icon-glow {
+  position: relative;
+}
+.group:hover .icon-glow::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(0,120,170,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.dark .group:hover .icon-glow::before {
+  background: radial-gradient(circle, rgba(56,189,248,0.06) 0%, transparent 70%);
+}

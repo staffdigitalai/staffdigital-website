@@ -673,29 +673,36 @@
     "title_gradient": "Multiple real-world applications.",
     "items": [
       {
-        "emoji": "🏥",
-        "title": "Healthcare & patient workflows",
-        "description": "Talk to patients, collect symptoms, register information and route cases based on needs."
+        "title": "Security & video surveillance",
+        "description": "Receive alerts from cameras and sensors, interpret events, decide actions and escalate — without human intervention at the first response level."
       },
       {
-        "emoji": "📅",
-        "title": "Scheduling & coordination",
-        "description": "Manage availability, book appointments, confirm and adjust in real time."
+        "title": "Medical care & triage",
+        "description": "Intelligent triage by voice and chat. Collects symptoms, prioritizes urgency and routes to the right specialist, 24/7."
       },
       {
-        "emoji": "📊",
-        "title": "Data collection & qualification",
-        "description": "Capture structured information, validate inputs and prepare decisions or handoffs."
+        "title": "Property management",
+        "description": "Receives tenant incidents, classifies urgency, contacts technicians and schedules interventions automatically."
       },
       {
-        "emoji": "🔄",
-        "title": "Operational workflows",
-        "description": "Execute repetitive processes, connect systems and maintain continuity across tasks."
+        "title": "Education & training",
+        "description": "AI tutors that answer questions, adapt content to the student's level and report progress to the teacher."
       },
       {
-        "emoji": "💬",
-        "title": "Customer & revenue operations",
-        "description": "Handle conversations across channels and turn them into qualified actions."
+        "title": "Human resources & onboarding",
+        "description": "Manages complete onboarding: answers questions, guides forms, schedules training and does automatic follow-up."
+      },
+      {
+        "title": "Energy & environmental monitoring",
+        "description": "Monitors consumption, receives sensor alerts, notifies anomalies and generates reports — autonomous energy management."
+      },
+      {
+        "title": "Collections & payment management",
+        "description": "Automatic invoice follow-up, payment plan negotiation and intelligent escalation. Recover revenue without friction."
+      },
+      {
+        "title": "Smart agriculture",
+        "description": "Monitors field sensors, alerts on irrigation and pests, coordinates teams and optimizes resources with real-time data."
       }
     ],
     "cta": "Explore solutions"

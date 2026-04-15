@@ -40,23 +40,33 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const post = await getPostData(slug)
 
   if (!post) {
-    return {
-      title: "Post no encontrado - StaffDigital AI",
-    }
+    return { title: "Post no encontrado - StaffDigital AI" }
   }
 
-  const description = post.acf?.meta_description || stripHtml(post.excerpt.rendered).slice(0, 160)
+  // Prefer Yoast SEO data, fallback to ACF, then raw content
+  const yoast = (post as Record<string, unknown>).yoast_head_json as Record<string, unknown> | undefined
+  const fallbackTitle = stripHtml(post.title.rendered)
+  const fallbackDesc = post.acf?.meta_description || stripHtml(post.excerpt.rendered).slice(0, 160)
   const imageUrl = getFeaturedImageUrl(post, "full")
 
+  const title = (yoast?.title as string)?.replace(/ \| StaffDigital AI$/i, "") || post.acf?.meta_title || fallbackTitle
+  const description = (yoast?.description as string) || fallbackDesc
+
   return {
-    title: post.acf?.meta_title || `${stripHtml(post.title.rendered)} - StaffDigital AI`,
+    title,
     description,
     openGraph: {
-      title: stripHtml(post.title.rendered),
-      description,
-      images: imageUrl ? [imageUrl] : undefined,
+      title: (yoast?.og_title as string) || fallbackTitle,
+      description: (yoast?.og_description as string) || description,
+      images: (yoast?.og_image as Array<{ url: string }>)?.map(i => i.url) || (imageUrl ? [imageUrl] : undefined),
       type: "article",
       publishedTime: post.date,
+      siteName: "StaffDigital AI",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: (yoast?.og_title as string) || fallbackTitle,
+      description: (yoast?.og_description as string) || description,
     },
   }
 }

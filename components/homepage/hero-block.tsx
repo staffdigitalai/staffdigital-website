@@ -28,7 +28,7 @@ export function HeroBlock() {
 
         {/* A) Badge pill */}
         <div className="animate-hero-badge mt-0 mb-10 flex justify-center">
-          <span className="hero-badge-shimmer inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium tracking-wide bg-gradient-to-r from-[#0078AA]/10 to-[#7C3AED]/10 border border-[#0062CC]/20 text-[#0062CC] dark:from-[#0078AA]/20 dark:to-[#7C3AED]/20 dark:border-[#38BDF8]/30 dark:text-[#7DD3FC]">
+          <span className="hero-badge-shimmer inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium tracking-wide bg-[#EEF4FF] border border-[#0062CC]/25 text-[#0062CC] dark:bg-[#0F1B2E] dark:border-[#38BDF8]/40 dark:text-[#7DD3FC]">
             <span className="text-[#0062CC] dark:text-[#38BDF8]">&#10022;</span>
             {t("badge")}
           </span>

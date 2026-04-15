@@ -47,7 +47,6 @@ export async function generateMetadata({
 import { HeroBlock } from "@/components/homepage/hero-block"
 import { AIWorking247Block } from "@/components/homepage/ai-working-247-block"
 import { ClarificationBlock } from "@/components/homepage/clarification-block"
-import { UseCasesBlock } from "@/components/homepage/use-cases-block"
 import { HowItWorksBlock } from "@/components/homepage/how-it-works-block"
 import { DifferentiationBlock } from "@/components/homepage/differentiation-block"
 import { SocialProofBlock } from "@/components/homepage/social-proof-block"
@@ -87,15 +86,7 @@ export default function HomePage() {
             {/* Section divider */}
             <div className="section-divider max-w-3xl mx-auto" />
 
-            {/* 5 -- Use Cases: Practical applications */}
-            <div id="soluciones">
-              <UseCasesBlock />
-            </div>
-
-            {/* Section divider */}
-            <div className="section-divider max-w-3xl mx-auto" />
-
-            {/* 7 -- Differentiation: Why us */}
+            {/* 5 -- Differentiation: Why us */}
             <DifferentiationBlock />
 
             {/* 8 -- Social Proof: Trust and credibility */}

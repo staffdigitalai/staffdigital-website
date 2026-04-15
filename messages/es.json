@@ -667,6 +667,45 @@
     "p2": "StaffDigital AI va más allá — opera.",
     "p3": "Nuestra plataforma entiende el contexto, procesa información y ejecuta acciones en tiempo real, conectando conversaciones con resultados reales."
   },
+  "bento_grid": {
+    "badge": "IA aplicada a cualquier proceso",
+    "title": "No solo soporte al cliente. No solo ventas.",
+    "subtitle": "La mayoría de herramientas IA se quedan en responder. Nuestra plataforma opera en cualquier proceso de negocio.",
+    "items": [
+      {
+        "title": "Seguridad y videovigilancia",
+        "description": "Recibe alertas de cámaras y sensores, interpreta eventos, decide acciones y escala — sin intervención humana en el primer nivel de respuesta."
+      },
+      {
+        "title": "Atención médica y triaje",
+        "description": "Triaje inteligente por voz y chat. Recoge síntomas, prioriza urgencia y enruta al especialista correcto, 24/7."
+      },
+      {
+        "title": "Gestión de propiedades",
+        "description": "Recibe incidencias de inquilinos, clasifica urgencia, contacta técnicos y agenda intervenciones automáticamente."
+      },
+      {
+        "title": "Educación y formación",
+        "description": "Tutores IA que responden dudas, adaptan contenido al nivel del alumno y reportan progreso al profesor."
+      },
+      {
+        "title": "Recursos humanos y onboarding",
+        "description": "Gestiona onboarding completo: responde preguntas, guía formularios, agenda formaciones y hace follow-up automático."
+      },
+      {
+        "title": "Energía y monitorización ambiental",
+        "description": "Monitoriza consumos, recibe alertas de sensores, notifica anomalías y genera informes — gestión energética autónoma."
+      },
+      {
+        "title": "Cobranza y gestión de pagos",
+        "description": "Follow-up automático de facturas, negociación de planes de pago y escalamiento inteligente. Recupera ingresos sin fricción."
+      },
+      {
+        "title": "Agricultura inteligente",
+        "description": "Monitoriza sensores de campo, alerta sobre riego y plagas, coordina equipos y optimiza recursos con datos en tiempo real."
+      }
+    ]
+  },
   "_what_we_do_deprecated": true,
   "use_cases": {
     "title_plain": "Una plataforma.",

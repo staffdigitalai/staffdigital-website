@@ -667,6 +667,45 @@
     "p2": "StaffDigital AI goes further — it operates.",
     "p3": "Our platform understands context, processes information and executes actions in real time, connecting conversations with actual outcomes."
   },
+  "bento_grid": {
+    "badge": "AI applied to any process",
+    "title": "Not just customer support. Not just sales.",
+    "subtitle": "Most AI tools stop at answering. Our platform operates in any business process.",
+    "items": [
+      {
+        "title": "Security & video surveillance",
+        "description": "Receive alerts from cameras and sensors, interpret events, decide actions and escalate — without human intervention at the first response level."
+      },
+      {
+        "title": "Medical care & triage",
+        "description": "Intelligent triage by voice and chat. Collects symptoms, prioritizes urgency and routes to the right specialist, 24/7."
+      },
+      {
+        "title": "Property management",
+        "description": "Receives tenant incidents, classifies urgency, contacts technicians and schedules interventions automatically."
+      },
+      {
+        "title": "Education & training",
+        "description": "AI tutors that answer questions, adapt content to the student's level and report progress to the teacher."
+      },
+      {
+        "title": "Human resources & onboarding",
+        "description": "Manages complete onboarding: answers questions, guides forms, schedules training and does automatic follow-up."
+      },
+      {
+        "title": "Energy & environmental monitoring",
+        "description": "Monitors consumption, receives sensor alerts, notifies anomalies and generates reports — autonomous energy management."
+      },
+      {
+        "title": "Collections & payment management",
+        "description": "Automatic invoice follow-up, payment plan negotiation and intelligent escalation. Recover revenue without friction."
+      },
+      {
+        "title": "Smart agriculture",
+        "description": "Monitors field sensors, alerts on irrigation and pests, coordinates teams and optimizes resources with real-time data."
+      }
+    ]
+  },
   "_what_we_do_deprecated": true,
   "use_cases": {
     "title_plain": "One platform.",

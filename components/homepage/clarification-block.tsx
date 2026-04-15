@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useTranslations } from "next-intl"
 import { Shield, HeartPulse, Building2, GraduationCap, Users, Zap, Receipt, Sprout } from "lucide-react"
+import { IconBadge } from "@/components/ui/icon-system"
 
 const ICONS = [Shield, HeartPulse, Building2, GraduationCap, Users, Zap, Receipt, Sprout] as const
 
@@ -89,11 +90,8 @@ export function ClarificationBlock() {
                   ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
                 `}
               >
-                {/* Icon container */}
-                <div className="relative w-11 h-11 rounded-xl bg-[#EEF4FF] dark:bg-[#0F1B2E] flex items-center justify-center mb-4
-                  group-hover:bg-[#0078AA]/10 dark:group-hover:bg-[#38BDF8]/10 transition-colors duration-300">
-                  <Icon className="w-5 h-5 text-[#0078AA] dark:text-[#38BDF8]" />
-                </div>
+                {/* Functional icon badge */}
+                <IconBadge icon={Icon} size="md" className="mb-4" />
 
                 <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug">
                   {item.title}

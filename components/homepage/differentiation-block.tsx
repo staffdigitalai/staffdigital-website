@@ -46,7 +46,7 @@ export function DifferentiationBlock() {
                   className="flex items-start gap-3 py-3.5 border-b border-slate-200/60 dark:border-white/[0.06] last:border-b-0"
                 >
                   <X className="w-5 h-5 text-red-400 dark:text-red-400/70 shrink-0 mt-0.5" />
-                  <span className="text-foreground/55 dark:text-foreground/45 text-base sm:text-[17px] leading-relaxed">
+                  <span className="text-foreground/55 dark:text-foreground/45 text-sm sm:text-[15px] leading-relaxed">
                     {item}
                   </span>
                 </div>
@@ -73,7 +73,7 @@ export function DifferentiationBlock() {
                   <div className="w-5 h-5 rounded-full bg-[#0078AA]/20 dark:bg-[#00D4FF]/20 flex items-center justify-center shrink-0 mt-0.5">
                     <Check className="w-3.5 h-3.5 text-[#0078AA] dark:text-[#00D4FF]" />
                   </div>
-                  <span className="text-foreground/80 dark:text-foreground/70 text-base sm:text-[17px] leading-relaxed font-medium">
+                  <span className="text-foreground/80 dark:text-foreground/70 text-sm sm:text-[15px] leading-relaxed font-medium">
                     {point}
                   </span>
                 </div>

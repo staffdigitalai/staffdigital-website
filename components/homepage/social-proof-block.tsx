@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl"
 import { TrendingUp, Clock, Users, Zap, Quote, ArrowRight, Building2 } from "lucide-react"
 import Link from "next/link"
+import { IconBadge, FeatureIcon } from "@/components/ui/icon-system"
 
 const metricIcons = [TrendingUp, Clock, Users, Zap]
 
@@ -32,9 +33,7 @@ export function SocialProofBlock() {
             const Icon = metricIcons[index] || TrendingUp
             return (
               <div key={index} className="card-premium p-6 sm:p-7 rounded-2xl text-center">
-                <div className="w-10 h-10 mx-auto mb-4 rounded-xl bg-[#0078AA]/[0.06] dark:bg-[#00D4FF]/[0.08] flex items-center justify-center">
-                  <Icon className="w-5 h-5 text-[#0078AA] dark:text-[#00D4FF]" />
-                </div>
+                <IconBadge icon={Icon} size="md" className="mx-auto mb-4" />
                 <div className="text-3xl sm:text-4xl font-bold text-foreground mb-1.5 tracking-tight">
                   {metric.value}
                 </div>
@@ -80,7 +79,7 @@ export function SocialProofBlock() {
           <div className="card-premium p-8 sm:p-10 rounded-2xl relative overflow-hidden">
             {/* Case study label */}
             <div className="flex items-center gap-2 mb-6">
-              <Building2 className="w-4 h-4 text-[#0078AA] dark:text-[#00D4FF]" />
+              <FeatureIcon icon={Building2} className="w-4 h-4" />
               <span className="text-xs font-semibold tracking-widest text-[#0078AA] dark:text-[#00D4FF] uppercase">
                 {t("case_study_label") || "Caso de exito"}
               </span>

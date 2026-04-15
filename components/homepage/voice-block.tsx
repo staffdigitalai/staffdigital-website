@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { useTranslations } from "next-intl"
 import { Volume2, Play, Pause, Phone, MessageSquare, Calendar, HeartPulse } from "lucide-react"
 import Link from "next/link"
+import { IconBadge } from "@/components/ui/icon-system"
 
 // Audio waveform visualization component
 function AudioWaveform({ isPlaying }: { isPlaying: boolean }) {
@@ -65,8 +66,8 @@ export function VoiceBlock() {
           {/* Left Column - Content */}
           <div className="relative">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-white/[0.06] border border-foreground/[0.1] dark:border-white/[0.1] mb-6 backdrop-blur-sm">
-              <Volume2 className="w-3.5 h-3.5 text-[#0078AA] dark:text-[#00D4FF]" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#EEF4FF] dark:bg-[#0F1B2E] border border-[#0062CC]/25 dark:border-[#38BDF8]/40 mb-6">
+              <Volume2 className="w-3.5 h-3.5 text-[#0078AA] dark:text-[#38BDF8]" />
               <span className="text-xs font-semibold tracking-widest text-foreground/65 dark:text-white/55 uppercase">
                 {t("badge") || "Voz Humana HD"}
               </span>
@@ -91,10 +92,8 @@ export function VoiceBlock() {
                 {useCases.map((useCase, index) => {
                   const Icon = useCaseIcons[index] || Phone
                   return (
-                    <div key={index} className="flex items-center gap-3">
-                      <div className="w-7 h-7 rounded-lg bg-[#0078AA]/[0.06] dark:bg-[#00D4FF]/[0.08] flex items-center justify-center flex-shrink-0">
-                        <Icon className="w-3.5 h-3.5 text-[#0078AA] dark:text-[#00D4FF]" />
-                      </div>
+                    <div key={index} className="flex items-center gap-3 group">
+                      <IconBadge icon={Icon} size="sm" />
                       <span className="text-sm text-foreground/60">{useCase}</span>
                     </div>
                   )

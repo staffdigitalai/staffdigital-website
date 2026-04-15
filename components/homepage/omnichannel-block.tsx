@@ -2,6 +2,7 @@
 
 import { MessageSquare, Phone, Globe, Mail, Share2 } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { IconBadge } from "@/components/ui/icon-system"
 
 const channelIcons = [Phone, MessageSquare, Globe, Mail, Share2]
 
@@ -34,14 +35,9 @@ export function OmnichannelBlock() {
           {channels.map((ch) => (
             <div
               key={ch.name}
-              className="card-elevated p-5 rounded-2xl text-center space-y-3 hover:shadow-lg transition-all duration-300"
+              className="group card-premium p-5 rounded-2xl text-center space-y-3"
             >
-              <div 
-                className="w-12 h-12 rounded-full mx-auto flex items-center justify-center"
-                style={{ background: "linear-gradient(135deg, rgba(0, 120, 170, 0.15), rgba(124, 58, 237, 0.15))" }}
-              >
-                <ch.icon className="w-6 h-6 text-[#0078AA]" />
-              </div>
+              <IconBadge icon={ch.icon} size="lg" className="mx-auto" />
               <h3 className="font-bold text-sm text-foreground">{ch.name}</h3>
               <p className="text-xs text-muted-foreground">{ch.line1}</p>
               <p className="text-xs text-muted-foreground/80">{ch.line2}</p>

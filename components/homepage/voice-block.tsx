@@ -1,57 +1,131 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { useTranslations } from "next-intl"
 import { Volume2, Play, Pause, Phone, MessageSquare, Calendar, HeartPulse } from "lucide-react"
 import Link from "next/link"
 import { IconBadge } from "@/components/ui/icon-system"
 
-// Audio waveform visualization component
-function AudioWaveform({ isPlaying }: { isPlaying: boolean }) {
-  return (
-    <div className="flex items-center justify-center gap-1 h-8">
-      {Array.from({ length: 24 }).map((_, i) => (
-        <div
-          key={i}
-          className={`w-1 rounded-full bg-gradient-to-t from-[#0078AA] to-[#7C3AED] transition-all duration-150 ${
-            isPlaying ? "animate-wave" : "h-2"
-          }`}
-          style={{
-            animationDelay: `${i * 50}ms`,
-            height: isPlaying ? `${Math.random() * 24 + 8}px` : "8px",
-          }}
-        />
-      ))}
-    </div>
-  )
-}
-
 const useCaseIcons = [Phone, MessageSquare, Calendar, HeartPulse]
+
+// Total simulated call duration in seconds
+const CALL_DURATION = 32
+// Pause after completing before looping
+const LOOP_PAUSE_MS = 2000
 
 export function VoiceBlock() {
   const t = useTranslations("voice")
+
+  // Animation state
   const [isPlaying, setIsPlaying] = useState(false)
-  const [currentTime, setCurrentTime] = useState(0)
-  const [duration] = useState(32) // Demo duration in seconds
+  const [currentSecond, setCurrentSecond] = useState(0)
+  const [barHeights, setBarHeights] = useState<number[]>(Array(24).fill(8))
+  const [visibleWords, setVisibleWords] = useState(0)
+
+  // Refs for cleanup
+  const cardRef = useRef<HTMLDivElement>(null)
+  const loopTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const useCases = t.raw("use_cases") as string[] | undefined
+  const transcriptText = (t("transcript_preview") || "Buenos dias, gracias por llamar. Soy Laura, tu asistente virtual. Como puedo ayudarte hoy?") as string
+  const transcriptWords = transcriptText.split(" ")
 
-  // Simulate audio progress
+  // Reset all animation state
+  const resetAll = useCallback(() => {
+    setCurrentSecond(0)
+    setBarHeights(Array(24).fill(8))
+    setVisibleWords(0)
+  }, [])
+
+  // -- IntersectionObserver: start/stop on viewport enter/leave --
   useEffect(() => {
-    let interval: NodeJS.Timeout
-    if (isPlaying) {
-      interval = setInterval(() => {
-        setCurrentTime((prev) => {
-          if (prev >= duration) {
-            setIsPlaying(false)
-            return 0
+    const el = cardRef.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsPlaying(true)
+        } else {
+          setIsPlaying(false)
+          resetAll()
+          if (loopTimeoutRef.current) {
+            clearTimeout(loopTimeoutRef.current)
+            loopTimeoutRef.current = null
           }
-          return prev + 0.1
-        })
-      }, 100)
+        }
+      },
+      { threshold: 0.3 }
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [resetAll])
+
+  // -- Waveform animation: random bar heights every 120ms --
+  useEffect(() => {
+    if (!isPlaying) {
+      setBarHeights(Array(24).fill(8))
+      return
     }
+
+    const interval = setInterval(() => {
+      setBarHeights(
+        Array.from({ length: 24 }, (_, i) => {
+          // Natural wave: center bars taller, edges shorter
+          const centerFactor = 1 - Math.abs(i - 11.5) / 12
+          const base = 4 + centerFactor * 16
+          return Math.max(4, Math.min(28, base + (Math.random() - 0.5) * 14))
+        })
+      )
+    }, 120)
+
     return () => clearInterval(interval)
-  }, [isPlaying, duration])
+  }, [isPlaying])
+
+  // -- Progress bar + timer: increment every ~470ms (32 steps in ~15s) --
+  useEffect(() => {
+    if (!isPlaying) return
+
+    const interval = setInterval(() => {
+      setCurrentSecond((prev) => {
+        if (prev >= CALL_DURATION) return prev // handled by loop effect
+        return prev + 1
+      })
+    }, 470)
+
+    return () => clearInterval(interval)
+  }, [isPlaying])
+
+  // -- Typewriter: reveal one word every ~350ms --
+  useEffect(() => {
+    if (!isPlaying) return
+
+    const interval = setInterval(() => {
+      setVisibleWords((prev) => {
+        if (prev >= transcriptWords.length) return prev // handled by loop effect
+        return prev + 1
+      })
+    }, 350)
+
+    return () => clearInterval(interval)
+  }, [isPlaying, transcriptWords.length])
+
+  // -- Loop: when progress reaches 32, pause 2s, then reset all --
+  useEffect(() => {
+    if (currentSecond >= CALL_DURATION && isPlaying) {
+      loopTimeoutRef.current = setTimeout(() => {
+        resetAll()
+      }, LOOP_PAUSE_MS)
+
+      return () => {
+        if (loopTimeoutRef.current) {
+          clearTimeout(loopTimeoutRef.current)
+          loopTimeoutRef.current = null
+        }
+      }
+    }
+  }, [currentSecond, isPlaying, resetAll])
 
   const formatTime = (time: number) => {
     const mins = Math.floor(time / 60)
@@ -60,7 +134,7 @@ export function VoiceBlock() {
   }
 
   return (
-    <section className="py-28 sm:py-36 px-6 sm:px-8 animate-fade-in-section">
+    <section className="py-28 sm:py-36 px-6 sm:px-8 bg-[#F8FAFC] dark:bg-[#0A0E1A] animate-fade-in-section">
       <div className="max-w-5xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           {/* Left Column - Content */}
@@ -115,9 +189,9 @@ export function VoiceBlock() {
             </Link>
           </div>
           
-          {/* Right Column - Audio Player */}
+          {/* Right Column - Audio Player (auto-play on viewport) */}
           <div className="relative">
-            <div className="card-premium rounded-2xl overflow-hidden p-6 sm:p-8">
+            <div ref={cardRef} className="card-premium rounded-2xl overflow-hidden p-6 sm:p-8">
               <div className="relative">
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-6">
@@ -126,51 +200,76 @@ export function VoiceBlock() {
                   </div>
                   <div>
                     <p className="font-semibold text-foreground text-sm">{t("demo_title") || "Demo de Voz Humana"}</p>
-                    <p className="text-xs text-foreground/40">{t("demo_subtitle") || "Agente IA atendiendo llamada"}</p>
+                    <p className="text-xs text-foreground/40">
+                      {t("demo_subtitle") || "Agente IA atendiendo llamada"}
+                      {isPlaying && (
+                        <span className="inline-flex items-center gap-1.5 ml-2">
+                          <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                          <span className="text-[10px] font-semibold text-green-600 dark:text-green-400 uppercase tracking-wider">En vivo</span>
+                        </span>
+                      )}
+                    </p>
                   </div>
                 </div>
                 
                 {/* Waveform */}
                 <div className="py-5 px-3 rounded-xl bg-foreground/[0.02] dark:bg-white/[0.03] border border-foreground/[0.04] dark:border-white/[0.05] mb-4">
-                  <AudioWaveform isPlaying={isPlaying} />
+                  <div className="flex items-center justify-center gap-1 h-8">
+                    {barHeights.map((h, i) => (
+                      <div
+                        key={i}
+                        className="w-1 rounded-full bg-gradient-to-t from-[#0078AA] to-[#7C3AED] transition-all duration-150"
+                        style={{ height: `${h}px` }}
+                      />
+                    ))}
+                  </div>
                 </div>
                 
                 {/* Controls */}
                 <div className="flex items-center gap-4">
-                  <button
-                    onClick={() => setIsPlaying(!isPlaying)}
-                    className="w-11 h-11 rounded-full bg-gradient-to-br from-[#0078AA] to-[#7C3AED] flex items-center justify-center text-white hover:scale-105 transition-transform"
-                    style={{ boxShadow: "0 4px 12px rgba(0,120,170,0.25)" }}
-                    aria-label={isPlaying ? "Pause" : "Play"}
-                  >
-                    {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
-                  </button>
+                  {/* Play/Pause button with pulsing ring */}
+                  <div className="relative">
+                    <button
+                      onClick={() => setIsPlaying(!isPlaying)}
+                      className="relative w-11 h-11 rounded-full bg-gradient-to-br from-[#0078AA] to-[#7C3AED] flex items-center justify-center text-white hover:scale-105 transition-transform z-10"
+                      style={{ boxShadow: "0 4px 12px rgba(0,120,170,0.25)" }}
+                      aria-label={isPlaying ? "Pause" : "Play"}
+                    >
+                      {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
+                    </button>
+                    {isPlaying && (
+                      <span className="absolute inset-0 rounded-full border-2 border-[#0078AA]/40 animate-ping" style={{ animationDuration: "2s" }} />
+                    )}
+                  </div>
                   
                   <div className="flex-1">
                     <div className="h-1.5 rounded-full bg-foreground/[0.06] dark:bg-white/[0.08] overflow-hidden">
                       <div
-                        className="h-full rounded-full transition-all duration-100"
-                        style={{
-                          width: `${(currentTime / duration) * 100}%`,
-                          background: "linear-gradient(90deg, #0078AA, #7C3AED)",
-                        }}
+                        className="h-full rounded-full bg-gradient-to-r from-[#0078AA] to-[#7C3AED] transition-all duration-100"
+                        style={{ width: `${(currentSecond / CALL_DURATION) * 100}%` }}
                       />
                     </div>
                     <div className="flex justify-between mt-1.5 text-xs text-foreground/35">
-                      <span>{formatTime(currentTime)}</span>
-                      <span>{formatTime(duration)}</span>
+                      <span>{formatTime(currentSecond)}</span>
+                      <span>{formatTime(CALL_DURATION)}</span>
                     </div>
                   </div>
                 </div>
                 
-                {/* Transcript */}
+                {/* Transcript with typewriter */}
                 <div className="mt-5 p-4 rounded-xl bg-foreground/[0.02] dark:bg-white/[0.02] border border-foreground/[0.04] dark:border-white/[0.04]">
                   <p className="text-[10px] font-semibold text-foreground/35 uppercase tracking-widest mb-1.5">
                     {t("transcript_label") || "Transcripcion"}
                   </p>
-                  <p className="text-sm text-foreground/60 italic leading-relaxed">
-                    &ldquo;{t("transcript_preview") || "Buenos dias, gracias por llamar. Soy Laura, tu asistente virtual. Como puedo ayudarte hoy?"}&rdquo;
-                  </p>
+                  <div className="min-h-[3.5rem]">
+                    <p className="text-sm text-foreground/60 italic leading-relaxed">
+                      &ldquo;{transcriptWords.slice(0, visibleWords).join(" ")}
+                      {visibleWords < transcriptWords.length && visibleWords > 0 && (
+                        <span className="inline-block w-[2px] h-4 bg-[#0078AA] dark:bg-[#00D4FF] ml-1 animate-pulse align-middle" />
+                      )}
+                      {visibleWords >= transcriptWords.length && <>&rdquo;</>}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

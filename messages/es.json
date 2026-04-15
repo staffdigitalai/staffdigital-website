@@ -478,12 +478,41 @@
         "title": "Analisis y toma de decisiones",
         "description": "Evalua informacion, estructura datos y decide el siguiente paso dentro del proceso operativo o comercial."
       },
-      "integrations": {
-        "micro_label": "Conectividad",
-        "title": "Ejecucion conectada entre sistemas",
-        "description": "Actua directamente sobre CRM, calendarios y herramientas para mantener los procesos en funcionamiento continuo."
-      }
-    }
+  "integrations": {
+  "micro_label": "Conectividad",
+  "title": "Ejecucion conectada entre sistemas",
+  "description": "Actua directamente sobre CRM, calendarios y herramientas para mantener los procesos en funcionamiento continuo."
+  }
+  },
+  "mockup": {
+    "chat_question": "\u00bfPuedo reservar para este viernes?",
+    "chat_response": "\u00a1Claro! He verificado disponibilidad.",
+    "chat_confirmation": "\u26a1 Reserva confirmada: Viernes 16:30 \u2713",
+    "chat_info_question": "Necesito informaci\u00f3n sobre precios",
+    "chat_info_response": "Te env\u00edo nuestro cat\u00e1logo actualizado.",
+    "chat_info_confirmation": "\ud83d\udcce Documento enviado \u2713",
+    "chat_agent_question": "Quiero hablar con un agente",
+    "chat_agent_response": "Analizando tu consulta...",
+    "chat_agent_confirmation": "\u2713 Derivado al especialista indicado",
+    "call_incoming": "Llamada entrante",
+    "call_in_progress": "En curso",
+    "call_completed": "Completada \u2713",
+    "call_finished": "Finalizada",
+    "call_connecting": "Conectando...",
+    "call_listening": "Escuchando",
+    "call_label": "Llamadas",
+    "calendar_confirmed": "\u2713 Cita confirmada: d\u00eda {day}, {time}",
+    "inbox_request": "Solicitud recibida",
+    "inbox_query": "Consulta cliente",
+    "inbox_document": "Documento adjunto",
+    "inbox_classified": "Clasificada",
+    "inbox_responded": "Respondida",
+    "inbox_processed": "Procesado",
+    "inbox_pending": "pendiente",
+    "analytics_resolved": "Resueltos",
+    "analytics_time": "Tiempo",
+    "analytics_insight": "Mejora continua basada en datos"
+  }
   },
   "crm": {
     "badge": "Integración nativa",
@@ -787,7 +816,11 @@
         "card_example": "Cita reagendada → SMS enviado → CRM actualizado → caso cerrado"
       }
     ],
-    "closing": "No responde como un sistema aislado. Convierte cada interacción en una acción conectada al negocio."
+    "closing": "No responde como un sistema aislado. Convierte cada interacción en una acción conectada al negocio.",
+    "example1": "Llamada \u2192 transcrita \u2192 datos extraídos \u2192 flujo iniciado",
+    "example2": "Intención: reagendar \u2192 contexto: cita #4521",
+    "example3": "Si disponibilidad > 0 \u2192 reagendar \u2192 confirmar",
+    "example4": "SMS enviado \u2192 CRM actualizado \u2192 caso cerrado"
   },
   "differentiation": {
     "title_plain": "Construido alrededor de tu negocio.",
@@ -799,7 +832,21 @@
       "Integrado con tus sistemas existentes",
       "Optimizado continuamente con uso real",
       "Sin necesidad de equipo técnico"
-    ]
+    ],
+    "comparison_title_prefix": "Otras herramientas vs ",
+    "comparison_title_brand": "StaffDigital AI",
+    "comparison_subtitle": "La mayoría de soluciones IA te dan una herramienta y te dejan solo. Nosotros configuramos, integramos y operamos todo por ti.",
+    "comparison_generic_title": "Herramientas genéricas",
+    "comparison_generic_items": [
+      "Plantillas prediseñadas para todos",
+      "Configuración DIY sin soporte real",
+      "Integraciones limitadas y genéricas",
+      "Sin evolución después del setup",
+      "Requiere equipo técnico interno"
+    ],
+    "comparison_badge": "Recomendado",
+    "comparison_cta_text": "Sin compromisos. Sin permanencia. Implementación incluida.",
+    "comparison_cta_button": "Solicitar demo"
   },
 "voice": {
   "badge": "Voz Humana HD",

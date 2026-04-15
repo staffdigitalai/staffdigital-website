@@ -27,25 +27,25 @@ const stepStyles = [
     container: "bg-gradient-to-br from-[#0078AA]/[0.15] to-[#0078AA]/[0.06] dark:from-[#0078AA]/[0.3] dark:to-[#00D4FF]/[0.12] border border-[#0078AA]/25 dark:border-[#00D4FF]/30 shadow-[0_8px_24px_rgba(0,120,170,0.15)] dark:shadow-[0_8px_24px_rgba(0,120,170,0.25)] hover:shadow-[0_8px_30px_rgba(0,120,170,0.25)]",
     icon: "text-[#0078AA] dark:text-[#38BDF8]",
     badge: "bg-[#0078AA]",
-    example: "Llamada \u2192 transcrita \u2192 datos extra\u00eddos \u2192 flujo iniciado",
+    exampleKey: "example1",
   },
   {
     container: "bg-gradient-to-br from-[#0078AA]/[0.12] to-[#7C3AED]/[0.08] dark:from-[#0078AA]/[0.25] dark:to-[#7C3AED]/[0.15] border border-[#4F46E5]/20 dark:border-[#A855F7]/25 shadow-[0_8px_24px_rgba(79,70,229,0.12)] dark:shadow-[0_8px_24px_rgba(124,58,237,0.2)] hover:shadow-[0_8px_30px_rgba(79,70,229,0.2)]",
     icon: "text-[#4F46E5] dark:text-[#A855F7]",
     badge: "bg-gradient-to-r from-[#0078AA] to-[#7C3AED]",
-    example: "Intenci\u00f3n: reagendar \u2192 contexto: cita #4521",
+    exampleKey: "example2",
   },
   {
     container: "bg-gradient-to-br from-[#7C3AED]/[0.1] to-[#0078AA]/[0.06] dark:from-[#7C3AED]/[0.25] dark:to-[#0078AA]/[0.12] border border-[#7C3AED]/20 dark:border-[#A855F7]/25 shadow-[0_8px_24px_rgba(124,58,237,0.12)] dark:shadow-[0_8px_24px_rgba(124,58,237,0.2)] hover:shadow-[0_8px_30px_rgba(124,58,237,0.2)]",
     icon: "text-[#7C3AED] dark:text-[#C084FC]",
     badge: "bg-[#7C3AED]",
-    example: "Si disponibilidad > 0 \u2192 reagendar \u2192 confirmar",
+    exampleKey: "example3",
   },
   {
     container: "bg-gradient-to-br from-[#7C3AED]/[0.15] to-[#7C3AED]/[0.06] dark:from-[#A855F7]/[0.3] dark:to-[#7C3AED]/[0.12] border border-[#7C3AED]/25 dark:border-[#A855F7]/30 shadow-[0_8px_24px_rgba(124,58,237,0.15)] dark:shadow-[0_8px_24px_rgba(168,85,247,0.25)] hover:shadow-[0_8px_30px_rgba(124,58,237,0.25)]",
     icon: "text-[#7C3AED] dark:text-[#C084FC]",
     badge: "bg-[#7C3AED]",
-    example: "SMS enviado \u2192 CRM actualizado \u2192 caso cerrado",
+    exampleKey: "example4",
   },
 ]
 
@@ -123,7 +123,7 @@ export function HowItWorksBlock() {
 
                     {/* Mono example flow text */}
                     <p className="font-mono text-[11px] text-foreground/30 dark:text-foreground/25 mt-2.5 max-w-[200px] mx-auto leading-relaxed">
-                      {style.example}
+                      {t(style.exampleKey)}
                     </p>
                   </div>
                 )
@@ -165,7 +165,7 @@ export function HowItWorksBlock() {
                       </p>
                       {/* Mono example flow text */}
                       <p className="font-mono text-[11px] text-foreground/30 dark:text-foreground/25 mt-2.5 leading-relaxed">
-                        {style.example}
+                        {t(style.exampleKey)}
                       </p>
                     </div>
                   </div>

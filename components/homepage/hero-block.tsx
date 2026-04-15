@@ -7,20 +7,20 @@ export function HeroBlock() {
   const t = useTranslations("hero")
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-6 py-32 bg-[#F8FAFC] dark:bg-[#050A14]">
+    <section className="min-h-[90vh] max-h-screen flex items-center justify-center relative overflow-hidden px-6 pt-28 pb-16 bg-[#F8FAFC] dark:bg-[#050A14]">
       {/* ─── Animated Aurora Background ─── */}
       <div className="absolute inset-0 overflow-hidden -z-10">
         {/* Blob 1 — Top-left, cyan, horizontal drift */}
-        <div className="absolute top-[10%] left-[5%] w-[600px] h-[600px] rounded-full bg-[#0078AA]/[0.07] dark:bg-[#0078AA]/25 blur-[120px] animate-aurora-blob-1 aurora-blob" />
+        <div className="absolute top-[10%] left-[5%] w-[600px] h-[600px] rounded-full bg-[#0078AA]/[0.07] dark:bg-[#0078AA]/30 blur-[120px] animate-aurora-blob-1 aurora-blob" />
 
         {/* Blob 2 — Top-right, purple, vertical drift */}
-        <div className="absolute top-[5%] right-[10%] w-[500px] h-[500px] rounded-full bg-[#7C3AED]/[0.06] dark:bg-[#7C3AED]/20 blur-[100px] animate-aurora-blob-2 aurora-blob" />
+        <div className="absolute top-[5%] right-[10%] w-[500px] h-[500px] rounded-full bg-[#7C3AED]/[0.06] dark:bg-[#7C3AED]/25 blur-[100px] animate-aurora-blob-2 aurora-blob" />
 
         {/* Blob 3 — Center, sky-blue, scale + rotate */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full bg-[#38BDF8]/[0.04] dark:bg-[#38BDF8]/10 blur-[140px] animate-aurora-blob-3 aurora-blob" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full bg-[#38BDF8]/[0.04] dark:bg-[#38BDF8]/[0.15] blur-[140px] animate-aurora-blob-3 aurora-blob" />
 
         {/* Blob 4 — Bottom center-right, purple, diagonal drift */}
-        <div className="absolute bottom-[10%] right-[25%] w-[400px] h-[400px] rounded-full bg-[#A855F7]/[0.05] dark:bg-[#A855F7]/15 blur-[100px] animate-aurora-blob-4 aurora-blob" />
+        <div className="absolute bottom-[10%] right-[25%] w-[400px] h-[400px] rounded-full bg-[#A855F7]/[0.05] dark:bg-[#A855F7]/20 blur-[100px] animate-aurora-blob-4 aurora-blob" />
       </div>
 
       {/* ─── Hero Content ─── */}
@@ -28,14 +28,14 @@ export function HeroBlock() {
 
         {/* A) Badge pill */}
         <div className="animate-hero-badge mt-0 mb-10 flex justify-center">
-          <span className="hero-badge-shimmer inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium tracking-wide bg-gradient-to-r from-[#0078AA]/10 to-[#7C3AED]/10 border border-[#0062CC]/20 text-[#0062CC] dark:from-[#0078AA]/20 dark:to-[#7C3AED]/20 dark:border-[#38BDF8]/25 dark:text-[#7DD3FC]">
-            <span className="text-[#38BDF8] dark:text-[#7DD3FC]">&#10022;</span>
+          <span className="hero-badge-shimmer inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium tracking-wide bg-gradient-to-r from-[#0078AA]/10 to-[#7C3AED]/10 border border-[#0062CC]/20 text-[#0062CC] dark:from-[#0078AA]/20 dark:to-[#7C3AED]/20 dark:border-[#38BDF8]/30 dark:text-[#7DD3FC]">
+            <span className="text-[#0062CC] dark:text-[#38BDF8]">&#10022;</span>
             {t("badge")}
           </span>
         </div>
 
         {/* B) H1 — Main headline */}
-        <h1 className="animate-hero-h1 mb-6 leading-[1.15] text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight">
+        <h1 className="animate-hero-h1 mb-5 leading-[1.2] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
           <span className="block text-[#0F172A] dark:text-[#F8FAFC]">
             {t("h1_plain")}
           </span>
@@ -45,12 +45,12 @@ export function HeroBlock() {
         </h1>
 
         {/* C) H2 — Supporting headline */}
-        <h2 className="animate-hero-h2 text-xl md:text-2xl font-normal max-w-3xl mx-auto mb-8 text-[#1E293B] dark:text-[#E2E8F0]">
+        <h2 className="animate-hero-h2 text-lg md:text-xl font-normal max-w-3xl mx-auto mb-5 text-[#1E293B] dark:text-[#E2E8F0]">
           {t("h2")}
         </h2>
 
         {/* D) Subtitle / Description */}
-        <p className="animate-hero-subtitle text-base md:text-lg font-light leading-relaxed max-w-2xl mx-auto mb-12 text-[#64748B] dark:text-[#94A3B8]">
+        <p className="animate-hero-subtitle text-base md:text-lg font-light leading-relaxed max-w-2xl mx-auto mb-8 text-[#64748B] dark:text-[#94A3B8]">
           {t("subtitle")}
         </p>
 
@@ -74,7 +74,7 @@ export function HeroBlock() {
         </div>
 
         {/* F) Trust indicators */}
-        <div className="flex items-center justify-center gap-x-2 gap-y-1 flex-wrap text-sm font-medium animate-hero-trust">
+        <div className="flex items-center justify-center gap-x-1.5 gap-y-1 flex-wrap text-sm font-medium animate-hero-trust mb-0">
           <span className="inline-flex items-center gap-1.5 text-[#64748B]">
             <span className="text-[#0062CC] dark:text-[#38BDF8]">&#10003;</span>
             {t("trust_1")}

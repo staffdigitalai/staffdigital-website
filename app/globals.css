@@ -1351,3 +1351,45 @@ html.light body {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.88; }
 }
+
+/* ============================================
+   FEATURE CARD ANIMATIONS
+   ============================================ */
+
+/* Phone waveform bar height animation */
+@keyframes waveform-bar {
+  0% { transform: scaleY(0.3); }
+  100% { transform: scaleY(1); }
+}
+
+/* Hub center glow pulse */
+@keyframes hub-glow {
+  0%, 100% { box-shadow: 0 0 12px rgba(147, 51, 234, 0.4); }
+  50% { box-shadow: 0 0 24px rgba(147, 51, 234, 0.7), 0 0 48px rgba(147, 51, 234, 0.3); }
+}
+
+/* Data pulse dots — travel from channel node toward center (50%, 50%) */
+/* WhatsApp: from (50%, 8%) to (50%, 50%) */
+@keyframes data-pulse-0 {
+  0%   { left: 50%; top: 8%;  opacity: 1; }
+  80%  { left: 50%; top: 48%; opacity: 1; }
+  100% { left: 50%; top: 50%; opacity: 0; }
+}
+/* Email: from (88%, 45%) to (50%, 50%) */
+@keyframes data-pulse-1 {
+  0%   { left: 88%; top: 45%; opacity: 1; }
+  80%  { left: 52%; top: 49%; opacity: 1; }
+  100% { left: 50%; top: 50%; opacity: 0; }
+}
+/* Tel: from (50%, 82%) to (50%, 50%) */
+@keyframes data-pulse-2 {
+  0%   { left: 50%; top: 82%; opacity: 1; }
+  80%  { left: 50%; top: 52%; opacity: 1; }
+  100% { left: 50%; top: 50%; opacity: 0; }
+}
+/* Web: from (12%, 45%) to (50%, 50%) */
+@keyframes data-pulse-3 {
+  0%   { left: 12%; top: 45%; opacity: 1; }
+  80%  { left: 48%; top: 49%; opacity: 1; }
+  100% { left: 50%; top: 50%; opacity: 0; }
+}

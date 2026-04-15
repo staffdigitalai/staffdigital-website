@@ -1,86 +1,241 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useCallback } from "react"
 import { useTranslations } from "next-intl"
 
 // ============================================
-// STATIC CARD MOCKUP COMPONENTS
+// HOOK: IntersectionObserver trigger
 // ============================================
+function useInView(options?: IntersectionObserverInit) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect() } },
+      { threshold: 0.25, ...options },
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+  return { ref, inView }
+}
 
-/** Card 0 — WhatsApp-style chat mockup */
-const ChatMockup = () => (
-  <div className="bg-[#F0F2F5] dark:bg-[#1A1D21] rounded-xl p-3 h-36 overflow-hidden">
-    {/* Top bar */}
-    <div className="flex items-center gap-2 mb-2 pb-1.5 border-b border-slate-200/60 dark:border-white/[0.06]">
-      <div className="w-1 h-3 rounded-full bg-green-500" />
-      <span className="text-[10px] font-semibold text-slate-600 dark:text-slate-300">WhatsApp Business</span>
-      <div className="ml-auto flex items-center gap-1">
-        <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-        <span className="text-[10px] text-slate-400">24/7</span>
-      </div>
-    </div>
-    {/* Chat bubbles */}
-    <div className="space-y-1.5">
-      {/* User bubble — right */}
-      <div className="flex justify-end">
-        <div className="bg-[#DCF8C6] dark:bg-[#005C4B] text-slate-800 dark:text-white rounded-xl rounded-tr-sm px-3 py-1.5 text-xs max-w-[80%]">
-          {"\""}{"?"}Puedo reservar para este viernes?
-        </div>
-      </div>
-      {/* AI bubble — left */}
-      <div className="flex justify-start">
-        <div className="bg-white dark:bg-[#1F2937] text-slate-700 dark:text-slate-200 rounded-xl rounded-tl-sm px-3 py-1.5 text-xs max-w-[80%]">
-          {"!"}Claro! He verificado disponibilidad.
-        </div>
-      </div>
-      {/* AI action bubble — left */}
-      <div className="flex justify-start">
-        <div className="bg-white dark:bg-[#1F2937] text-slate-700 dark:text-slate-200 rounded-xl rounded-tl-sm px-3 py-1.5 text-xs max-w-[80%]">
-          {"⚡"} Reserva confirmada: Viernes 16:30 <span className="text-green-600 dark:text-green-400">{"✓"}</span>
-        </div>
-      </div>
-    </div>
-  </div>
-)
+// ============================================
+// Card 0 — WhatsApp Chat (sequential bubbles, 3 scenarios, loops)
+// ============================================
+const conversations = [
+  [
+    { from: "user", text: "\u00BFPuedo reservar para este viernes?" },
+    { from: "ai",   text: "\u00A1Claro! He verificado disponibilidad." },
+    { from: "ai",   text: "\u26A1 Reserva confirmada: Viernes 16:30 \u2713" },
+  ],
+  [
+    { from: "user", text: "Necesito informaci\u00F3n sobre precios" },
+    { from: "ai",   text: "Te env\u00EDo nuestro cat\u00E1logo actualizado." },
+    { from: "ai",   text: "\uD83D\uDCCE Documento enviado \u2713" },
+  ],
+  [
+    { from: "user", text: "Quiero hablar con un agente" },
+    { from: "ai",   text: "Analizando tu consulta..." },
+    { from: "ai",   text: "\u2713 Derivado al especialista indicado" },
+  ],
+]
 
-/** Card 1 — Phone call interface mockup */
-const PhoneMockup = () => (
-  <div className="bg-[#F0F2F5] dark:bg-[#1A1D21] rounded-xl p-3 h-36 overflow-hidden flex flex-col">
-    {/* Top label */}
-    <div className="flex items-center gap-1.5 mb-3">
-      <svg className="w-3.5 h-3.5 text-green-500" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-      <span className="text-[10px] text-slate-500 dark:text-slate-400">Llamada entrante</span>
-    </div>
-    {/* Center: avatar + waveform */}
-    <div className="flex-1 flex items-center justify-center gap-4">
-      <div className="w-10 h-10 rounded-full bg-slate-300 dark:bg-slate-600" />
-      <div className="flex items-end gap-0.5 h-8">
-        {[14, 22, 10, 28, 16].map((h, i) => (
-          <div key={i} className="w-1 rounded-full bg-green-500" style={{ height: `${h}px` }} />
+const ChatMockup = ({ active }: { active: boolean }) => {
+  const [scenarioIdx, setScenarioIdx] = useState(0)
+  const [visibleBubbles, setVisibleBubbles] = useState(0)
+  const [showTyping, setShowTyping] = useState(false)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const runScenario = useCallback(() => {
+    const convo = conversations[scenarioIdx]
+    let step = 0
+    setVisibleBubbles(0)
+    setShowTyping(false)
+
+    const next = () => {
+      if (step < convo.length) {
+        const msg = convo[step]
+        if (msg.from === "ai") {
+          setShowTyping(true)
+          timerRef.current = setTimeout(() => {
+            setShowTyping(false)
+            step++
+            setVisibleBubbles(step)
+            timerRef.current = setTimeout(next, 1000)
+          }, 1000)
+        } else {
+          step++
+          setVisibleBubbles(step)
+          timerRef.current = setTimeout(next, 1000)
+        }
+      } else {
+        // hold, then advance scenario
+        timerRef.current = setTimeout(() => {
+          setScenarioIdx((prev) => (prev + 1) % conversations.length)
+        }, 4000)
+      }
+    }
+    timerRef.current = setTimeout(next, 500)
+  }, [scenarioIdx])
+
+  useEffect(() => {
+    if (!active) return
+    runScenario()
+    return () => { if (timerRef.current) clearTimeout(timerRef.current) }
+  }, [active, runScenario])
+
+  const convo = conversations[scenarioIdx]
+
+  return (
+    <div className="bg-[#F0F2F5] dark:bg-[#1A1D21] rounded-xl p-3 h-36 overflow-hidden">
+      {/* Top bar */}
+      <div className="flex items-center gap-2 mb-2 pb-1.5 border-b border-slate-200/60 dark:border-white/[0.06]">
+        <div className="w-1 h-3 rounded-full bg-green-500" />
+        <span className="text-[10px] font-semibold text-slate-600 dark:text-slate-300">WhatsApp Business</span>
+        <div className="ml-auto flex items-center gap-1">
+          <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+          <span className="text-[10px] text-slate-400">24/7</span>
+        </div>
+      </div>
+      {/* Chat bubbles */}
+      <div className="space-y-1.5">
+        {convo.map((msg, i) => (
+          <div
+            key={`${scenarioIdx}-${i}`}
+            className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"} transition-all duration-500 ${i < visibleBubbles ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}
+          >
+            <div className={`rounded-xl px-3 py-1.5 text-xs max-w-[80%] ${
+              msg.from === "user"
+                ? "bg-[#DCF8C6] dark:bg-[#005C4B] text-slate-800 dark:text-white rounded-tr-sm"
+                : "bg-white dark:bg-[#1F2937] text-slate-700 dark:text-slate-200 rounded-tl-sm"
+            }`}>
+              {msg.text}
+            </div>
+          </div>
         ))}
+        {/* Typing indicator */}
+        {showTyping && (
+          <div className="flex justify-start">
+            <div className="bg-white dark:bg-[#1F2937] rounded-xl rounded-tl-sm px-3 py-2 flex gap-1">
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+            </div>
+          </div>
+        )}
       </div>
     </div>
-    {/* Bottom */}
-    <div className="flex items-center justify-between mt-2">
-      <span className="text-[10px] text-slate-500 dark:text-slate-400">{"En curso \u00B7 2:34"}</span>
-      <span className="text-[10px] text-slate-400 dark:text-slate-500">Llamadas: 14</span>
-    </div>
-  </div>
-)
+  )
+}
 
-/** Card 2 — Calendar/booking mockup */
-const CalendarMockup = () => {
-  const days = Array.from({ length: 21 }, (_, i) => i + 1)
+// ============================================
+// Card 1 — Phone call state cycling
+// ============================================
+const callStates = [
+  { label: "Llamada entrante", color: "text-yellow-500", icon: "ring", status: "ringing" },
+  { label: "En curso \u00B7 2:34", color: "text-green-500", icon: "active", status: "active" },
+  { label: "Completada \u2713", color: "text-blue-500", icon: "done", status: "done" },
+] as const
+
+const PhoneMockup = ({ active }: { active: boolean }) => {
+  const [stateIdx, setStateIdx] = useState(0)
+  const [callCount, setCallCount] = useState(14)
+
+  useEffect(() => {
+    if (!active) return
+    const iv = setInterval(() => {
+      setStateIdx((prev) => {
+        const next = (prev + 1) % 3
+        if (next === 0) setCallCount((c) => c + 1)
+        return next
+      })
+    }, 3000)
+    return () => clearInterval(iv)
+  }, [active])
+
+  const state = callStates[stateIdx]
+  const waveHeights = [14, 22, 10, 28, 16]
+
   return (
     <div className="bg-[#F0F2F5] dark:bg-[#1A1D21] rounded-xl p-3 h-36 overflow-hidden flex flex-col">
-      {/* Mini calendar grid: 3 rows x 7 cols */}
+      {/* Top label */}
+      <div className="flex items-center gap-1.5 mb-3">
+        <svg className={`w-3.5 h-3.5 ${state.color} transition-colors duration-500 ${state.status === "ringing" ? "animate-pulse" : ""}`} fill="currentColor" viewBox="0 0 24 24">
+          <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        </svg>
+        <span className={`text-[10px] ${state.color} transition-colors duration-500`}>{state.label}</span>
+      </div>
+      {/* Center: avatar + waveform */}
+      <div className="flex-1 flex items-center justify-center gap-4">
+        <div className="w-10 h-10 rounded-full bg-slate-300 dark:bg-slate-600" />
+        <div className="flex items-end gap-0.5 h-8">
+          {waveHeights.map((h, i) => (
+            <div
+              key={i}
+              className={`w-1 rounded-full transition-all duration-300 ${state.status === "active" ? "bg-green-500" : "bg-slate-300 dark:bg-slate-600"}`}
+              style={{
+                height: state.status === "active" ? `${h}px` : "4px",
+                animation: state.status === "active" ? `waveform-bar 0.8s ease-in-out ${i * 0.15}s infinite alternate` : "none",
+              }}
+            />
+          ))}
+        </div>
+      </div>
+      {/* Bottom */}
+      <div className="flex items-center justify-between mt-2">
+        <span className={`text-[10px] ${state.color} transition-colors duration-500`}>
+          {state.status === "done" ? "\u2713 Finalizada" : state.status === "ringing" ? "Conectando..." : "Escuchando"}
+        </span>
+        <span className="text-[10px] text-slate-400 dark:text-slate-500">Llamadas: {callCount}</span>
+      </div>
+    </div>
+  )
+}
+
+// ============================================
+// Card 2 — Calendar booking cycling
+// ============================================
+const bookings = [
+  { day: 15, time: "10:00" },
+  { day: 18, time: "14:30" },
+  { day: 22, time: "09:00" },
+]
+
+const CalendarMockup = ({ active }: { active: boolean }) => {
+  const [bookingIdx, setBookingIdx] = useState(0)
+  const [showConfirmation, setShowConfirmation] = useState(false)
+  const days = Array.from({ length: 21 }, (_, i) => i + 1)
+
+  useEffect(() => {
+    if (!active) return
+    // Show confirmation after 1s
+    const t1 = setTimeout(() => setShowConfirmation(true), 1000)
+    // Cycle every 5s
+    const iv = setInterval(() => {
+      setShowConfirmation(false)
+      setTimeout(() => {
+        setBookingIdx((prev) => (prev + 1) % bookings.length)
+        setTimeout(() => setShowConfirmation(true), 1000)
+      }, 500)
+    }, 5000)
+    return () => { clearTimeout(t1); clearInterval(iv) }
+  }, [active])
+
+  const booking = bookings[bookingIdx]
+
+  return (
+    <div className="bg-[#F0F2F5] dark:bg-[#1A1D21] rounded-xl p-3 h-36 overflow-hidden flex flex-col">
+      {/* Mini calendar grid */}
       <div className="grid grid-cols-7 gap-1 mb-2">
         {days.map((d) => (
           <div
             key={d}
-            className={`flex items-center justify-center text-[10px] w-5 h-5 ${
-              d === 15
-                ? "bg-blue-500 text-white rounded-full font-bold"
+            className={`flex items-center justify-center text-[10px] w-5 h-5 transition-all duration-500 ${
+              d === booking.day
+                ? "bg-blue-500 text-white rounded-full font-bold ring-2 ring-blue-500/30 animate-pulse"
                 : "text-slate-400 dark:text-slate-500"
             }`}
           >
@@ -89,64 +244,137 @@ const CalendarMockup = () => {
         ))}
       </div>
       {/* Confirmation banner */}
-      <div className="mt-auto bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs rounded-lg px-2 py-1.5">
-        {"✓"} Cita confirmada: {"día"} 15, 10:00
+      <div className={`mt-auto bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs rounded-lg px-2 py-1.5 transition-all duration-500 ${showConfirmation ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
+        {"\u2713"} Cita confirmada: d{"\u00ED"}a {booking.day}, {booking.time}
       </div>
     </div>
   )
 }
 
-/** Card 3 — Email inbox mockup */
-const EmailMockup = () => {
-  const rows = [
-    { icon: "\uD83D\uDCCB", label: "Solicitud recibida", badge: "Clasificada" },
-    { icon: "\uD83D\uDCE7", label: "Consulta cliente", badge: "Respondida" },
-    { icon: "\uD83D\uDCC4", label: "Documento adjunto", badge: "Procesado" },
-  ]
+// ============================================
+// Card 3 — Email sequential processing
+// ============================================
+const emailRows = [
+  { icon: "\uD83D\uDCCB", label: "Solicitud recibida", badge: "Clasificada" },
+  { icon: "\uD83D\uDCE7", label: "Consulta cliente", badge: "Respondida" },
+  { icon: "\uD83D\uDCC4", label: "Documento adjunto", badge: "Procesado" },
+]
+
+const EmailMockup = ({ active }: { active: boolean }) => {
+  const [processed, setProcessed] = useState(0) // 0=none processing, 1-3 = rows done
+  const [processing, setProcessing] = useState(-1) // which row is currently spinning
+
+  useEffect(() => {
+    if (!active) return
+    let step = 0
+    setProcessed(0)
+    setProcessing(0) // start processing row 0
+
+    const iv = setInterval(() => {
+      step++
+      if (step <= 3) {
+        setProcessed(step)
+        setProcessing(step < 3 ? step : -1)
+      } else if (step === 5) {
+        // Reset
+        step = 0
+        setProcessed(0)
+        setProcessing(0)
+      }
+    }, 1500)
+
+    return () => clearInterval(iv)
+  }, [active])
+
   return (
     <div className="bg-[#F0F2F5] dark:bg-[#1A1D21] rounded-xl p-3 h-36 overflow-hidden">
       <div className="space-y-2">
-        {rows.map((row, i) => (
-          <div
-            key={i}
-            className="flex items-center justify-between bg-blue-50 dark:bg-blue-900/20 border-l-2 border-blue-500 rounded-r-lg px-2.5 py-2"
-          >
-            <span className="text-xs text-slate-700 dark:text-slate-200">
-              {row.icon} {row.label}
-            </span>
-            <span className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] px-1.5 py-0.5 rounded-full font-medium">
-              {"✓"} {row.badge}
-            </span>
-          </div>
-        ))}
+        {emailRows.map((row, i) => {
+          const isDone = i < processed
+          const isProcessing = i === processing
+          const isPending = !isDone && !isProcessing
+          return (
+            <div
+              key={i}
+              className={`flex items-center justify-between border-l-2 rounded-r-lg px-2.5 py-2 transition-all duration-500 ${
+                isDone
+                  ? "bg-blue-50 dark:bg-blue-900/20 border-blue-500"
+                  : isProcessing
+                    ? "bg-yellow-50/60 dark:bg-yellow-900/10 border-yellow-400"
+                    : "bg-slate-50 dark:bg-slate-800/30 border-slate-300 dark:border-slate-600 opacity-50"
+              }`}
+            >
+              <span className="text-xs text-slate-700 dark:text-slate-200">
+                {row.icon} {row.label}
+              </span>
+              {isDone && (
+                <span className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] px-1.5 py-0.5 rounded-full font-medium transition-opacity duration-500">
+                  {"\u2713"} {row.badge}
+                </span>
+              )}
+              {isProcessing && (
+                <svg className="w-3.5 h-3.5 text-yellow-500 animate-spin" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                </svg>
+              )}
+              {isPending && (
+                <span className="text-[10px] text-slate-400">pendiente</span>
+              )}
+            </div>
+          )
+        })}
       </div>
     </div>
   )
 }
 
-/** Card 4 — Hub-and-spoke integrations mockup */
-const IntegrationsMockup = () => {
-  const nodes = [
-    { label: "WhatsApp", color: "bg-green-500", x: "50%", y: "8%" },
-    { label: "Email", color: "bg-blue-500", x: "88%", y: "45%" },
-    { label: "Tel", color: "bg-slate-500", x: "50%", y: "82%" },
-    { label: "Web", color: "bg-purple-500", x: "12%", y: "45%" },
-  ]
+// ============================================
+// Card 4 — Hub-and-spoke with data pulse animation
+// ============================================
+const hubNodes = [
+  { label: "WhatsApp", color: "bg-green-500", dotColor: "bg-green-400", x: 50, y: 8 },
+  { label: "Email", color: "bg-blue-500", dotColor: "bg-blue-400", x: 88, y: 45 },
+  { label: "Tel", color: "bg-slate-500", dotColor: "bg-slate-400", x: 50, y: 82 },
+  { label: "Web", color: "bg-purple-500", dotColor: "bg-purple-400", x: 12, y: 45 },
+]
+
+const IntegrationsMockup = ({ active }: { active: boolean }) => {
+  const [pulseActive, setPulseActive] = useState(false)
+
+  useEffect(() => {
+    if (!active) return
+    setPulseActive(true)
+  }, [active])
+
   return (
     <div className="bg-[#F0F2F5] dark:bg-[#1A1D21] rounded-xl p-3 h-36 overflow-hidden">
       <div className="relative w-full h-full">
         {/* Center hub */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-purple-600 flex items-center justify-center z-10">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-purple-600 flex items-center justify-center z-10 shadow-[0_0_12px_rgba(147,51,234,0.4)]"
+          style={{ animation: pulseActive ? "hub-glow 2s ease-in-out infinite" : "none" }}
+        >
           <span className="text-white text-xs font-bold">S</span>
         </div>
-        {/* Connecting lines + nodes */}
+        {/* Connecting lines */}
         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          {nodes.map((n, i) => (
-            <line key={i} x1="50" y1="50" x2={parseFloat(n.x)} y2={parseFloat(n.y)} stroke="currentColor" strokeWidth="0.5" className="text-slate-300 dark:text-slate-600" />
+          {hubNodes.map((n, i) => (
+            <line key={i} x1="50" y1="50" x2={n.x} y2={n.y} stroke="currentColor" strokeWidth="0.5" className="text-slate-300 dark:text-slate-600" />
           ))}
         </svg>
-        {nodes.map((n, i) => (
-          <div key={i} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-0.5" style={{ left: n.x, top: n.y }}>
+        {/* Animated data pulse dots */}
+        {pulseActive && hubNodes.map((n, i) => (
+          <div
+            key={`pulse-${i}`}
+            className={`absolute w-1.5 h-1.5 rounded-full ${n.dotColor} z-20`}
+            style={{
+              animation: `data-pulse-${i} 2s ease-in-out ${i * 0.5}s infinite`,
+            }}
+          />
+        ))}
+        {/* Channel nodes */}
+        {hubNodes.map((n, i) => (
+          <div key={i} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-0.5" style={{ left: `${n.x}%`, top: `${n.y}%` }}>
             <div className={`w-6 h-6 rounded-full ${n.color} flex items-center justify-center`}>
               <span className="text-white text-[8px] font-bold">{n.label[0]}</span>
             </div>
@@ -158,26 +386,54 @@ const IntegrationsMockup = () => {
   )
 }
 
-/** Card 5 — Analytics dashboard mockup */
-const AnalyticsMockup = () => {
+// ============================================
+// Card 5 — Analytics with count-up + bar grow
+// ============================================
+const AnalyticsMockup = ({ active }: { active: boolean }) => {
+  const [progress, setProgress] = useState(0) // 0 to 1
   const bars = [65, 80, 45, 90, 55]
+
+  useEffect(() => {
+    if (!active) return
+    let start: number
+    const duration = 1500
+    const step = (ts: number) => {
+      if (!start) start = ts
+      const elapsed = ts - start
+      const p = Math.min(elapsed / duration, 1)
+      setProgress(p)
+      if (p < 1) requestAnimationFrame(step)
+    }
+    requestAnimationFrame(step)
+  }, [active])
+
+  const resolved = Math.round(progress * 94)
+  const time = (progress * 2.3).toFixed(1)
+
   return (
     <div className="bg-[#F0F2F5] dark:bg-[#1A1D21] rounded-xl p-3 h-36 overflow-hidden flex flex-col">
       {/* Stat boxes */}
       <div className="grid grid-cols-2 gap-2 mb-3">
         <div className="bg-white dark:bg-[#1F2937] rounded-lg px-2 py-1.5">
           <div className="text-[10px] text-slate-400 dark:text-slate-500">Resueltos</div>
-          <div className="text-sm font-bold text-slate-800 dark:text-white">94%</div>
+          <div className="text-sm font-bold text-slate-800 dark:text-white">{resolved}%</div>
         </div>
         <div className="bg-white dark:bg-[#1F2937] rounded-lg px-2 py-1.5">
           <div className="text-[10px] text-slate-400 dark:text-slate-500">Tiempo</div>
-          <div className="text-sm font-bold text-slate-800 dark:text-white">2.3s</div>
+          <div className="text-sm font-bold text-slate-800 dark:text-white">{time}s</div>
         </div>
       </div>
       {/* Bar chart */}
       <div className="flex-1 flex items-end gap-1.5 px-1">
         {bars.map((h, i) => (
-          <div key={i} className="flex-1 bg-blue-500 rounded-t" style={{ height: `${h}%` }} />
+          <div
+            key={i}
+            className="flex-1 bg-blue-500 rounded-t transition-all duration-700 ease-out"
+            style={{
+              height: `${progress * h}%`,
+              transitionDelay: `${i * 100}ms`,
+            }}
+          />
         ))}
       </div>
       {/* Bottom label */}
@@ -191,20 +447,57 @@ const AnalyticsMockup = () => {
 // ============================================
 // FEATURES CONFIG
 // ============================================
-
 const featuresConfig = [
-  { key: "chat", Mockup: ChatMockup, size: "large", microLabelKey: "chat" },
-  { key: "phone", Mockup: PhoneMockup, size: "medium", microLabelKey: "phone" },
-  { key: "calendar", Mockup: CalendarMockup, size: "medium", microLabelKey: "calendar" },
-  { key: "email", Mockup: EmailMockup, size: "large", microLabelKey: "email" },
-  { key: "leads", Mockup: IntegrationsMockup, size: "medium", microLabelKey: "leads" },
-  { key: "integrations", Mockup: AnalyticsMockup, size: "medium", microLabelKey: "integrations" },
+  { key: "chat", MockupComponent: ChatMockup, size: "large", microLabelKey: "chat" },
+  { key: "phone", MockupComponent: PhoneMockup, size: "medium", microLabelKey: "phone" },
+  { key: "calendar", MockupComponent: CalendarMockup, size: "medium", microLabelKey: "calendar" },
+  { key: "email", MockupComponent: EmailMockup, size: "large", microLabelKey: "email" },
+  { key: "leads", MockupComponent: IntegrationsMockup, size: "medium", microLabelKey: "leads" },
+  { key: "integrations", MockupComponent: AnalyticsMockup, size: "medium", microLabelKey: "integrations" },
 ]
+
+// ============================================
+// ANIMATED CARD WRAPPER
+// ============================================
+function AnimatedCard({ feature, index, t }: { feature: typeof featuresConfig[number]; index: number; t: ReturnType<typeof useTranslations> }) {
+  const { ref, inView } = useInView()
+
+  return (
+    <div
+      ref={ref}
+      className={`group transition-all duration-700 ${feature.size === "large" ? "md:col-span-2" : ""}`}
+      style={{ transitionDelay: inView ? `${index * 80}ms` : "0ms" }}
+    >
+      <div className={`relative bg-white dark:bg-[#111827] rounded-2xl p-6 sm:p-7 h-full shadow-[0_1px_3px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_2px_8px_rgba(0,0,0,0.3)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.06),0_12px_40px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_4px_16px_rgba(0,0,0,0.5)] transition-all duration-400 hover:-translate-y-1 border border-slate-200/60 dark:border-white/[0.08] hover:border-[#0078AA]/20 dark:hover:border-[#00D4FF]/20 overflow-hidden ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        {/* Micro-label */}
+        <div className="relative mb-4">
+          <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-[#0078AA]/[0.06] dark:bg-[#00D4FF]/[0.08] text-[10px] font-bold uppercase tracking-[0.1em] text-[#0078AA] dark:text-[#00D4FF]">
+            {t(`features.${feature.microLabelKey}.micro_label`)}
+          </span>
+        </div>
+        
+        {/* Mockup area */}
+        <div className="relative mb-5 rounded-xl overflow-hidden ring-1 ring-slate-200/40 dark:ring-white/[0.06]">
+          <feature.MockupComponent active={inView} />
+        </div>
+        
+        {/* Title */}
+        <h3 className="relative text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug tracking-tight">
+          {t(`features.${feature.key}.title`)}
+        </h3>
+        
+        {/* Description */}
+        <p className="relative text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+          {t(`features.${feature.key}.description`)}
+        </p>
+      </div>
+    </div>
+  )
+}
 
 // ============================================
 // MAIN COMPONENT
 // ============================================
-
 export function AIWorking247Block() {
   const t = useTranslations("ai_working_247")
   const sectionRef = useRef<HTMLElement>(null)
@@ -212,19 +505,16 @@ export function AIWorking247Block() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true)
-      },
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true) },
       { threshold: 0.1, rootMargin: "0px 0px -100px 0px" },
     )
     if (sectionRef.current) observer.observe(sectionRef.current)
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current)
-    }
+    return () => { if (sectionRef.current) observer.unobserve(sectionRef.current) }
   }, [])
 
   return (
     <section id="features" ref={sectionRef} className="relative z-10">
+      {/* Transition overlay removed -- aurora flows through */}
       <div className="bg-[#F8FAFC] dark:bg-[#0A0E1A] pt-24 sm:pt-32 pb-24 sm:pb-32 px-6 sm:px-8 relative overflow-hidden">
         {/* Refined dot pattern */}
         <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
@@ -235,7 +525,7 @@ export function AIWorking247Block() {
           {/* Header */}
           <div className={`text-center mb-16 sm:mb-20 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#EEF4FF] dark:bg-[#0F1B2E] border border-[#0062CC]/25 dark:border-[#38BDF8]/40 mb-8">
-              <span className="text-[#0062CC] dark:text-[#7DD3FC] text-sm">{"✦"}</span>
+              <span className="text-[#0062CC] dark:text-[#7DD3FC] text-sm">{"\u2726"}</span>
               <span className="text-xs font-semibold tracking-widest text-[#0062CC] dark:text-[#7DD3FC] uppercase">
                 {t("badge")}
               </span>
@@ -252,37 +542,9 @@ export function AIWorking247Block() {
           </div>
 
           {/* Feature Cards Grid */}
-          <div className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-5 transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-5">
             {featuresConfig.map((feature, index) => (
-              <div
-                key={feature.key}
-                className={`group transition-all duration-700 ${feature.size === "large" ? "md:col-span-2" : ""}`}
-                style={{ transitionDelay: isVisible ? `${300 + index * 80}ms` : "0ms" }}
-              >
-                <div className="relative bg-white dark:bg-[#111827] rounded-2xl p-6 sm:p-7 h-full shadow-[0_1px_3px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_2px_8px_rgba(0,0,0,0.3)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.06),0_12px_40px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_4px_16px_rgba(0,0,0,0.5)] transition-all duration-400 hover:-translate-y-1 border border-slate-200/60 dark:border-white/[0.08] hover:border-[#0078AA]/20 dark:hover:border-[#00D4FF]/20 overflow-hidden">
-                  {/* Micro-label */}
-                  <div className="relative mb-4">
-                    <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-[#0078AA]/[0.06] dark:bg-[#00D4FF]/[0.08] text-[10px] font-bold uppercase tracking-[0.1em] text-[#0078AA] dark:text-[#00D4FF]">
-                      {t(`features.${feature.microLabelKey}.micro_label`)}
-                    </span>
-                  </div>
-                  
-                  {/* Mockup area */}
-                  <div className="relative mb-5 rounded-xl overflow-hidden ring-1 ring-slate-200/40 dark:ring-white/[0.06]">
-                    <feature.Mockup />
-                  </div>
-                  
-                  {/* Title */}
-                  <h3 className="relative text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug tracking-tight">
-                    {t(`features.${feature.key}.title`)}
-                  </h3>
-                  
-                  {/* Description */}
-                  <p className="relative text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
-                    {t(`features.${feature.key}.description`)}
-                  </p>
-                </div>
-              </div>
+              <AnimatedCard key={feature.key} feature={feature} index={index} t={t} />
             ))}
           </div>
         </div>

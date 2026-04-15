@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
 import { getPageSEO } from "@/lib/wordpress"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
-import Aurora from "@/components/Aurora"
 import { Footer } from "@/components/footer"
 import { BackgroundEffects } from "@/components/background-effects"
+import { CSSAurora } from "@/components/css-aurora"
 
 // ─── SEO from WordPress Yoast + WPML ─────────────────────────────
 export async function generateMetadata({
@@ -59,61 +59,62 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background overflow-hidden transition-colors duration-300">
       <main className="min-h-screen relative overflow-hidden">
-        {/* Aurora background */}
-        <div className="fixed inset-0 w-full h-full dark:opacity-100 opacity-20 transition-opacity duration-500">
-          <Aurora colorStops={["#475569", "#64748b", "#475569"]} amplitude={1.2} blend={0.6} speed={0.8} />
-        </div>
+        {/* CSS animated aurora background — z-0 */}
+        <CSSAurora />
 
-        {/* Neon background effects (grid + floating orbs) */}
+        {/* Neon background effects (grid + floating orbs) — z-[1] */}
         <BackgroundEffects intensity="low" />
 
         <div className="relative z-10">
           <GlassmorphismNav />
 
-          {/* 1 -- Hero: Full viewport, commanding entry */}
+          {/* 1 -- Hero: Transparent bg, aurora shows through */}
           <div id="inicio">
             <HeroBlock />
           </div>
 
-          {/* 2 -- AI Working 24/7: Centerpiece animated cards */}
+          {/* 2 -- AI Working 24/7: Aurora shows through */}
           <AIWorking247Block />
 
-          {/* 3 -- Clarification: Editorial breathing room */}
-          <ClarificationBlock />
+          {/* Solid background zone — rounded top creates premium transition over aurora */}
+          <div className="bg-[#F8FAFC] dark:bg-[#0A0E1A] rounded-t-[3rem] relative z-10">
+            {/* 3 -- Clarification: Editorial breathing room */}
+            <ClarificationBlock />
 
-          {/* 4 -- How It Works: Unified process + cards */}
-          <HowItWorksBlock />
+            {/* 4 -- How It Works: Unified process + cards */}
+            <HowItWorksBlock />
 
-          {/* Section divider */}
-          <div className="section-divider max-w-3xl mx-auto" />
+            {/* Section divider */}
+            <div className="section-divider max-w-3xl mx-auto" />
 
-          {/* 5 -- Use Cases: Practical applications */}
-          <div id="soluciones">
-            <UseCasesBlock />
+            {/* 5 -- Use Cases: Practical applications */}
+            <div id="soluciones">
+              <UseCasesBlock />
+            </div>
+
+            {/* Section divider */}
+            <div className="section-divider max-w-3xl mx-auto" />
+
+            {/* 7 -- Differentiation: Why us */}
+            <DifferentiationBlock />
+
+            {/* 8 -- Social Proof: Trust and credibility */}
+            <SocialProofBlock />
+
+            {/* 9 -- Voice: HD voice capability */}
+            <VoiceBlock />
+
+            {/* Section divider */}
+            <div className="section-divider max-w-3xl mx-auto" />
+
+            {/* 10 -- Solutions: Categories exploration */}
+            <SolutionsBlock />
+
+            {/* 11 -- Final CTA: Climax */}
+            <CTABlock />
+
+            <Footer />
           </div>
-
-          {/* Section divider */}
-          <div className="section-divider max-w-3xl mx-auto" />
-
-          {/* 7 -- Differentiation: Why us */}
-          <DifferentiationBlock />
-
-          {/* 8 -- Social Proof: Trust and credibility */}
-          <SocialProofBlock />
-
-          {/* 9 -- Voice: HD voice capability */}
-          <VoiceBlock />
-
-          {/* Section divider */}
-          <div className="section-divider max-w-3xl mx-auto" />
-
-          {/* 10 -- Solutions: Categories exploration */}
-          <SolutionsBlock />
-
-          {/* 11 -- Final CTA: Climax */}
-          <CTABlock />
-
-          <Footer />
         </div>
       </main>
     </div>

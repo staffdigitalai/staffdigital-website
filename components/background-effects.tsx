@@ -40,7 +40,7 @@ export function BackgroundEffects({
   }[intensity]
 
   return (
-    <div className={cn("fixed inset-0 pointer-events-none overflow-hidden", className)}>
+    <div className={cn("fixed inset-0 pointer-events-none overflow-hidden z-[1]", className)}>
       {/* SVG Grid Pattern */}
       {showGrid && (
         <svg 

@@ -276,15 +276,9 @@ export function AIWorking247Block() {
 
   return (
     <section id="features" ref={sectionRef} className="relative z-10">
-      {/* Elegant transition from dark to light */}
-      <div 
-        className="absolute top-0 left-0 right-0 h-24 pointer-events-none dark:hidden"
-        style={{
-          background: "linear-gradient(to bottom, transparent 0%, rgb(248,250,252) 100%)",
-        }}
-      />
+      {/* Transition overlay removed — aurora flows through */}
       
-      <div className="bg-[#f8fafc] dark:bg-foreground/[0.02] pt-24 sm:pt-32 pb-24 sm:pb-32 px-6 sm:px-8 relative overflow-hidden">
+      <div className="bg-transparent dark:bg-transparent pt-24 sm:pt-32 pb-24 sm:pb-32 px-6 sm:px-8 relative overflow-hidden">
         {/* Refined dot pattern */}
         <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
           <div className="absolute inset-0" style={{ backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 0.5px, transparent 0)`, backgroundSize: "32px 32px" }} />

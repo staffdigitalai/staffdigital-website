@@ -7,21 +7,7 @@ export function HeroBlock() {
   const t = useTranslations("hero")
 
   return (
-    <section className="min-h-[90vh] max-h-screen flex items-center justify-center relative overflow-hidden px-6 pt-28 pb-16 bg-[#F8FAFC] dark:bg-[#050A14]">
-      {/* ─── Animated Aurora Background ─── */}
-      <div className="absolute inset-0 overflow-hidden -z-10">
-        {/* Blob 1 — Top-left, cyan, horizontal drift */}
-        <div className="absolute top-[10%] left-[5%] w-[600px] h-[600px] rounded-full bg-[#0078AA]/[0.07] dark:bg-[#0078AA]/30 blur-[120px] animate-aurora-blob-1 aurora-blob" />
-
-        {/* Blob 2 — Top-right, purple, vertical drift */}
-        <div className="absolute top-[5%] right-[10%] w-[500px] h-[500px] rounded-full bg-[#7C3AED]/[0.06] dark:bg-[#7C3AED]/25 blur-[100px] animate-aurora-blob-2 aurora-blob" />
-
-        {/* Blob 3 — Center, sky-blue, scale + rotate */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full bg-[#38BDF8]/[0.04] dark:bg-[#38BDF8]/[0.15] blur-[140px] animate-aurora-blob-3 aurora-blob" />
-
-        {/* Blob 4 — Bottom center-right, purple, diagonal drift */}
-        <div className="absolute bottom-[10%] right-[25%] w-[400px] h-[400px] rounded-full bg-[#A855F7]/[0.05] dark:bg-[#A855F7]/20 blur-[100px] animate-aurora-blob-4 aurora-blob" />
-      </div>
+    <section className="min-h-[90vh] max-h-screen flex items-center justify-center relative overflow-hidden px-6 pt-28 pb-16 bg-transparent">
 
       {/* ─── Hero Content ─── */}
       <div className="w-full max-w-6xl mx-auto text-center relative z-10">

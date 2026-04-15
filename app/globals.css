@@ -1240,50 +1240,114 @@ html.light body {
 }
 
 /* ============================================
-   AURORA BACKGROUND ANIMATIONS (4 blobs)
+   GLOBAL CSS AURORA BACKGROUND
    ============================================ */
 
-/* Blob 1 — Horizontal drift */
-@keyframes aurora-blob-1 {
-  0% { transform: translateX(-100px); }
-  100% { transform: translateX(100px); }
-}
-.animate-aurora-blob-1 {
-  animation: aurora-blob-1 20s ease-in-out infinite alternate;
-}
-
-/* Blob 2 — Vertical drift */
-@keyframes aurora-blob-2 {
-  0% { transform: translateY(-80px); }
-  100% { transform: translateY(80px); }
-}
-.animate-aurora-blob-2 {
-  animation: aurora-blob-2 25s ease-in-out infinite alternate;
+/* Container */
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
-/* Blob 3 — Scale + rotate, centered */
-@keyframes aurora-blob-3 {
-  0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) scale(1.2) rotate(10deg); }
-}
-.animate-aurora-blob-3 {
-  animation: aurora-blob-3 18s ease-in-out infinite alternate;
+/* Shared blob base */
+.aurora-global-blob {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform, opacity;
 }
 
-/* Blob 4 — Diagonal drift */
-@keyframes aurora-blob-4 {
-  0% { transform: translate(50px, -50px); }
-  100% { transform: translate(-50px, 50px); }
-}
-.animate-aurora-blob-4 {
-  animation: aurora-blob-4 22s ease-in-out infinite alternate;
-}
-
-/* Aurora blob blend mode — plus-lighter in dark, normal in light */
-.aurora-blob {
-  mix-blend-mode: normal;
+/* ---- LIGHT MODE blobs (very subtle) ---- */
+.aurora-global-blob-1 {
+  top: -5%;
+  left: 5%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(0,120,170,0.12) 0%, rgba(0,120,170,0.04) 40%, transparent 70%);
+  filter: blur(100px);
+  animation: aurora-drift-1 25s ease-in-out infinite alternate;
 }
 
-.dark .aurora-blob {
-  mix-blend-mode: plus-lighter;
+.aurora-global-blob-2 {
+  top: 10%;
+  right: -5%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(124,58,237,0.10) 0%, rgba(124,58,237,0.03) 40%, transparent 70%);
+  filter: blur(110px);
+  animation: aurora-drift-2 30s ease-in-out infinite alternate;
+}
+
+.aurora-global-blob-3 {
+  top: 40%;
+  left: 30%;
+  width: 800px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(56,189,248,0.08) 0%, rgba(56,189,248,0.02) 40%, transparent 70%);
+  filter: blur(140px);
+  animation: aurora-drift-3 22s ease-in-out infinite alternate;
+}
+
+.aurora-global-blob-4 {
+  bottom: -10%;
+  right: 15%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(168,85,247,0.10) 0%, rgba(168,85,247,0.03) 40%, transparent 70%);
+  filter: blur(100px);
+  animation: aurora-drift-4 28s ease-in-out infinite alternate;
+}
+
+/* ---- DARK MODE blobs (vivid, visible) ---- */
+.dark .aurora-global-blob-1 {
+  background: radial-gradient(circle, rgba(0,120,170,0.55) 0%, rgba(0,120,170,0.18) 40%, transparent 70%);
+}
+.dark .aurora-global-blob-2 {
+  background: radial-gradient(circle, rgba(124,58,237,0.45) 0%, rgba(124,58,237,0.15) 40%, transparent 70%);
+}
+.dark .aurora-global-blob-3 {
+  background: radial-gradient(circle, rgba(56,189,248,0.35) 0%, rgba(56,189,248,0.10) 40%, transparent 70%);
+}
+.dark .aurora-global-blob-4 {
+  background: radial-gradient(circle, rgba(168,85,247,0.40) 0%, rgba(168,85,247,0.12) 40%, transparent 70%);
+}
+
+/* Drift animations — slow, organic movements */
+@keyframes aurora-drift-1 {
+  0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+  50%  { transform: translate(120px, -60px) scale(1.15); opacity: 0.7; }
+  100% { transform: translate(-60px, 90px) scale(0.95); opacity: 0.9; }
+}
+
+@keyframes aurora-drift-2 {
+  0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+  50%  { transform: translate(-80px, 70px) scale(1.1); opacity: 0.6; }
+  100% { transform: translate(50px, -40px) scale(1.05); opacity: 0.85; }
+}
+
+@keyframes aurora-drift-3 {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+  50%  { transform: translate(60px, -30px) scale(1.2) rotate(5deg); opacity: 0.7; }
+  100% { transform: translate(-40px, 50px) scale(0.9) rotate(-3deg); opacity: 0.9; }
+}
+
+@keyframes aurora-drift-4 {
+  0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+  50%  { transform: translate(-100px, -60px) scale(1.15); opacity: 0.65; }
+  100% { transform: translate(70px, 30px) scale(1.05); opacity: 0.8; }
+}
+
+/* Subtle overall pulse — "alive" breathing effect */
+.aurora-pulse-overlay {
+  position: absolute;
+  inset: 0;
+  animation: aurora-breathe 9s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes aurora-breathe {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.88; }
 }

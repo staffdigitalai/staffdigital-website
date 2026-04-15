@@ -23,27 +23,27 @@ interface Step {
 /* Per-step color configurations */
 const stepStyles = [
   {
-    container: "bg-gradient-to-br from-sky-100 to-sky-50 dark:from-[#0078AA]/20 dark:to-[#00D4FF]/10 border border-sky-200/60 dark:border-[#00D4FF]/20 shadow-lg shadow-sky-100/50 dark:shadow-[#0078AA]/10",
+    container: "bg-gradient-to-br from-[#0078AA]/[0.15] to-[#0078AA]/[0.06] dark:from-[#0078AA]/[0.3] dark:to-[#00D4FF]/[0.12] border border-[#0078AA]/25 dark:border-[#00D4FF]/30 shadow-[0_8px_24px_rgba(0,120,170,0.15)] dark:shadow-[0_8px_24px_rgba(0,120,170,0.25)] hover:shadow-[0_8px_30px_rgba(0,120,170,0.25)]",
     icon: "text-[#0078AA] dark:text-[#38BDF8]",
     badge: "bg-[#0078AA]",
     example: "Llamada \u2192 transcrita \u2192 datos extra\u00eddos \u2192 flujo iniciado",
   },
   {
-    container: "bg-gradient-to-br from-violet-100 to-violet-50 dark:from-[#7C3AED]/20 dark:to-[#A855F7]/10 border border-violet-200/60 dark:border-[#A855F7]/20 shadow-lg shadow-violet-100/50 dark:shadow-[#7C3AED]/10",
-    icon: "text-[#7C3AED] dark:text-[#A855F7]",
-    badge: "bg-[#7C3AED]",
+    container: "bg-gradient-to-br from-[#0078AA]/[0.12] to-[#7C3AED]/[0.08] dark:from-[#0078AA]/[0.25] dark:to-[#7C3AED]/[0.15] border border-[#4F46E5]/20 dark:border-[#A855F7]/25 shadow-[0_8px_24px_rgba(79,70,229,0.12)] dark:shadow-[0_8px_24px_rgba(124,58,237,0.2)] hover:shadow-[0_8px_30px_rgba(79,70,229,0.2)]",
+    icon: "text-[#4F46E5] dark:text-[#A855F7]",
+    badge: "bg-gradient-to-r from-[#0078AA] to-[#7C3AED]",
     example: "Intenci\u00f3n: reagendar \u2192 contexto: cita #4521",
   },
   {
-    container: "bg-gradient-to-br from-indigo-100 to-indigo-50 dark:from-[#4F46E5]/20 dark:to-[#818CF8]/10 border border-indigo-200/60 dark:border-[#818CF8]/20 shadow-lg shadow-indigo-100/50 dark:shadow-[#4F46E5]/10",
-    icon: "text-[#4F46E5] dark:text-[#818CF8]",
-    badge: "bg-[#4F46E5]",
+    container: "bg-gradient-to-br from-[#7C3AED]/[0.1] to-[#0078AA]/[0.06] dark:from-[#7C3AED]/[0.25] dark:to-[#0078AA]/[0.12] border border-[#7C3AED]/20 dark:border-[#A855F7]/25 shadow-[0_8px_24px_rgba(124,58,237,0.12)] dark:shadow-[0_8px_24px_rgba(124,58,237,0.2)] hover:shadow-[0_8px_30px_rgba(124,58,237,0.2)]",
+    icon: "text-[#7C3AED] dark:text-[#C084FC]",
+    badge: "bg-[#7C3AED]",
     example: "Si disponibilidad > 0 \u2192 reagendar \u2192 confirmar",
   },
   {
-    container: "bg-gradient-to-br from-amber-100 to-amber-50 dark:from-[#F59E0B]/20 dark:to-[#FBBF24]/10 border border-amber-200/60 dark:border-[#FBBF24]/20 shadow-lg shadow-amber-100/50 dark:shadow-[#F59E0B]/10",
-    icon: "text-[#F59E0B] dark:text-[#FBBF24]",
-    badge: "bg-gradient-to-br from-[#F59E0B] to-[#EF4444]",
+    container: "bg-gradient-to-br from-[#7C3AED]/[0.15] to-[#7C3AED]/[0.06] dark:from-[#A855F7]/[0.3] dark:to-[#7C3AED]/[0.12] border border-[#7C3AED]/25 dark:border-[#A855F7]/30 shadow-[0_8px_24px_rgba(124,58,237,0.15)] dark:shadow-[0_8px_24px_rgba(168,85,247,0.25)] hover:shadow-[0_8px_30px_rgba(124,58,237,0.25)]",
+    icon: "text-[#7C3AED] dark:text-[#C084FC]",
+    badge: "bg-[#7C3AED]",
     example: "SMS enviado \u2192 CRM actualizado \u2192 caso cerrado",
   },
 ]
@@ -89,7 +89,7 @@ export function HowItWorksBlock() {
           <div className="hidden md:block relative">
             {/* Animated gradient connecting line — all 4 step colors */}
             <div className="absolute top-12 left-[12%] right-[12%] h-[2px] overflow-hidden">
-              <div className="w-full h-full rounded-full bg-gradient-to-r from-[#0078AA]/30 via-[#7C3AED]/25 to-[#F59E0B]/30 dark:from-[#0078AA]/40 dark:via-[#7C3AED]/35 dark:to-[#F59E0B]/40" />
+              <div className="w-full h-full rounded-full bg-gradient-to-r from-[#0078AA]/40 via-[#4F46E5]/35 to-[#7C3AED]/40 dark:from-[#0078AA]/50 dark:via-[#4F46E5]/45 dark:to-[#7C3AED]/50" />
             </div>
 
             <div className="grid grid-cols-4 gap-4 lg:gap-6">
@@ -136,7 +136,7 @@ export function HowItWorksBlock() {
           <div className="md:hidden relative">
             {/* Vertical connecting line — all 4 step colors */}
             <div className="absolute top-0 bottom-0 left-10 w-[2px] overflow-hidden">
-              <div className="w-full h-full bg-gradient-to-b from-[#0078AA]/30 via-[#7C3AED]/25 to-[#F59E0B]/30 dark:from-[#0078AA]/40 dark:via-[#7C3AED]/35 dark:to-[#F59E0B]/40" />
+              <div className="w-full h-full bg-gradient-to-b from-[#0078AA]/40 via-[#4F46E5]/35 to-[#7C3AED]/40 dark:from-[#0078AA]/50 dark:via-[#4F46E5]/45 dark:to-[#7C3AED]/50" />
             </div>
 
             <div className="flex flex-col gap-12">

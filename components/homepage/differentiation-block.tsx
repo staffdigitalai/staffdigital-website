@@ -35,18 +35,18 @@ export function DifferentiationBlock() {
         {/* COMPARISON GRID */}
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
           {/* LEFT CARD — Herramientas genéricas */}
-          <div className="rounded-2xl p-8 sm:p-10 bg-foreground/[0.02] dark:bg-white/[0.03] border border-foreground/[0.06] dark:border-white/[0.06]">
-            <h3 className="text-foreground/40 dark:text-foreground/35 font-semibold text-lg mb-8">
+          <div className="rounded-2xl p-8 sm:p-10 bg-[#F1F5F9] dark:bg-white/[0.06] border border-slate-200 dark:border-white/[0.1]">
+            <h3 className="text-foreground/60 dark:text-foreground/50 font-semibold text-lg mb-8">
               Herramientas gen&eacute;ricas
             </h3>
             <div>
               {genericItems.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-3 py-3.5 border-b border-foreground/[0.04] dark:border-white/[0.04] last:border-b-0"
+                  className="flex items-start gap-3 py-3.5 border-b border-slate-200/60 dark:border-white/[0.06] last:border-b-0"
                 >
-                  <X className="w-5 h-5 text-red-300 dark:text-red-400/50 shrink-0 mt-0.5" />
-                  <span className="text-foreground/40 dark:text-foreground/35 text-[15px] leading-relaxed">
+                  <X className="w-5 h-5 text-red-400 dark:text-red-400/70 shrink-0 mt-0.5" />
+                  <span className="text-foreground/55 dark:text-foreground/45 text-[15px] leading-relaxed">
                     {item}
                   </span>
                 </div>
@@ -55,7 +55,7 @@ export function DifferentiationBlock() {
           </div>
 
           {/* RIGHT CARD — StaffDigital AI */}
-          <div className="rounded-2xl p-8 sm:p-10 bg-gradient-to-br from-[#0078AA]/[0.04] to-[#7C3AED]/[0.04] dark:from-[#0078AA]/[0.08] dark:to-[#7C3AED]/[0.06] border border-[#0078AA]/[0.12] dark:border-[#0078AA]/[0.15]">
+          <div className="rounded-2xl p-8 sm:p-10 bg-gradient-to-br from-[#0078AA]/[0.08] to-[#7C3AED]/[0.08] dark:from-[#0078AA]/[0.15] dark:to-[#7C3AED]/[0.12] border border-[#0078AA]/20 dark:border-[#0078AA]/25 shadow-lg shadow-[#0078AA]/[0.06] dark:shadow-[#0078AA]/[0.1]">
             <h3 className="text-foreground dark:text-white font-semibold text-lg mb-1">
               StaffDigital AI
             </h3>
@@ -64,12 +64,12 @@ export function DifferentiationBlock() {
               {points.map((point, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-3 py-3.5 border-b border-[#0078AA]/[0.06] dark:border-[#0078AA]/[0.08] last:border-b-0"
+                  className="flex items-start gap-3 py-3.5 border-b border-[#0078AA]/10 dark:border-[#0078AA]/[0.12] last:border-b-0"
                 >
-                  <div className="w-5 h-5 rounded-full bg-[#0078AA]/[0.1] dark:bg-[#00D4FF]/[0.15] flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-5 h-5 rounded-full bg-[#0078AA]/20 dark:bg-[#00D4FF]/20 flex items-center justify-center shrink-0 mt-0.5">
                     <Check className="w-3.5 h-3.5 text-[#0078AA] dark:text-[#00D4FF]" />
                   </div>
-                  <span className="text-foreground dark:text-foreground/90 text-[15px] leading-relaxed font-medium">
+                  <span className="text-foreground/80 dark:text-foreground/70 text-[15px] leading-relaxed font-medium">
                     {point}
                   </span>
                 </div>

@@ -50,7 +50,7 @@ export function HeroBlock() {
         </h2>
 
         {/* D) Subtitle / Description */}
-        <p className="animate-hero-subtitle text-base md:text-lg font-light leading-relaxed max-w-2xl mx-auto mb-8 text-[#64748B] dark:text-[#94A3B8]">
+        <p className="animate-hero-subtitle text-base md:text-lg font-normal leading-relaxed max-w-2xl mx-auto mb-8 text-[#64748B] dark:text-[#64748B]">
           {t("subtitle")}
         </p>
 

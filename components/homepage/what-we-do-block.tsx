@@ -2,6 +2,7 @@
 
 import { Brain, BarChart3, CheckCircle, Zap } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { IconBadge } from "@/components/ui/icon-system"
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   brain: Brain,
@@ -51,10 +52,8 @@ export function WhatWeDoBlock() {
                   {String(index + 1).padStart(2, '0')}
                 </div>
                 
-                {/* Icon */}
-                <div className="relative w-11 h-11 rounded-xl mb-5 flex items-center justify-center flex-shrink-0 bg-[#0078AA]/[0.08] dark:bg-[#00D4FF]/[0.1] group-hover:scale-105 transition-transform duration-300">
-                  <Icon className="w-5 h-5 text-[#0078AA] dark:text-[#00D4FF]" />
-                </div>
+                {/* Functional icon badge */}
+                <IconBadge icon={Icon} size="md" className="mb-5" />
                 
                 {/* Title */}
                 <h3 className="relative text-lg sm:text-xl font-bold text-foreground mb-2.5 leading-tight tracking-tight">

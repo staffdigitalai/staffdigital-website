@@ -3,6 +3,7 @@
 import { Target, ArrowRight, MapPin, Users, Mail, BarChart3 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { ProcessStepIcon } from "@/components/ui/icon-system"
 
 const steps = [
   { icon: MapPin, step: "1", title: "Prospección inteligente", description: "Identificamos empresas de tu sector en tu zona objetivo" },
@@ -30,13 +31,10 @@ export function LeadGenBlock() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {steps.map((s) => (
-            <div key={s.step} className="p-5 rounded-2xl border border-orange-500/10 bg-orange-500/5 space-y-3">
-              <div className="flex items-center gap-2">
-                <span className="w-7 h-7 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-400 text-sm font-bold">{s.step}</span>
-                <s.icon className="w-5 h-5 text-orange-400/60" />
-              </div>
+            <div key={s.step} className="group card-premium p-6 rounded-2xl space-y-4">
+              <ProcessStepIcon icon={s.icon} stepNumber={s.step} />
               <h3 className="font-bold text-sm text-foreground">{s.title}</h3>
-              <p className="text-xs text-foreground/50">{s.description}</p>
+              <p className="text-xs text-foreground/55 dark:text-foreground/45 leading-relaxed">{s.description}</p>
             </div>
           ))}
         </div>

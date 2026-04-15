@@ -2,6 +2,7 @@
 
 import { HelpCircle, MessagesSquare, Database, CalendarCheck, GitBranch, Mic, Headphones, type LucideIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { FeatureIcon } from "@/components/ui/icon-system"
 
 const rowIcons: LucideIcon[] = [HelpCircle, MessagesSquare, Database, CalendarCheck, GitBranch, Mic, Headphones]
 
@@ -64,7 +65,7 @@ export function ComparisonBlock() {
               >
                 {/* Feature label */}
                 <div className="px-5 py-4 border-r border-gray-200/60 dark:border-foreground/5 flex items-start gap-2">
-                  <Icon className="w-4 h-4 text-[#0078AA] shrink-0 mt-0.5" />
+                  <FeatureIcon icon={Icon} className="w-4 h-4 shrink-0 mt-0.5" />
                   <span className="text-sm font-bold text-foreground tracking-tight">{row.feature}</span>
                 </div>
                 
@@ -95,7 +96,7 @@ export function ComparisonBlock() {
               >
                 {/* Header with icon and label */}
                 <div className="font-bold text-sm text-foreground flex items-center gap-2">
-                  <Icon className="w-4 h-4 text-[#0078AA] shrink-0" />
+                  <FeatureIcon icon={Icon} className="w-4 h-4 shrink-0" />
                   {row.feature}
                 </div>
                 

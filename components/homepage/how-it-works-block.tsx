@@ -2,6 +2,7 @@
 
 import { Inbox, Brain, GitBranch, Zap } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { HighlightFeatureIcon } from "@/components/ui/icon-system"
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   inbox: Inbox,
@@ -98,18 +99,16 @@ export function HowItWorksBlock() {
                 const style = stepStyles[index] || stepStyles[0]
                 return (
                   <div key={index} className="relative text-center group">
-                    {/* Colored gradient icon container */}
-                    <div className="relative mx-auto mb-5">
-                      <div className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl flex items-center justify-center mx-auto ${style.container} hover:scale-105 transition-all duration-500`}>
-                        <Icon className={`w-8 h-8 sm:w-10 sm:h-10 ${style.icon}`} />
-                      </div>
-
-                      {/* Number badge */}
-                      <div className={`absolute -top-2 -right-2 w-7 h-7 rounded-full ${style.badge} flex items-center justify-center shadow-md`}>
-                        <span className="text-[11px] font-bold text-white">
-                          {step.num}
-                        </span>
-                      </div>
+                    {/* Accent icon with numbered badge */}
+                    <div className="mx-auto mb-5">
+                      <HighlightFeatureIcon
+                        icon={Icon}
+                        stepNumber={step.num}
+                        variant={index === 0 ? "primary" : index === 1 ? "mixed" : "secondary"}
+                        size="lg"
+                        badgeColor={style.badge}
+                        className="mx-auto"
+                      />
                     </div>
 
                     {/* Label */}
@@ -145,18 +144,15 @@ export function HowItWorksBlock() {
                 const style = stepStyles[index] || stepStyles[0]
                 return (
                   <div key={index} className="relative flex items-start gap-5 group">
-                    {/* Colored gradient icon container (mobile) */}
-                    <div className="relative flex-shrink-0">
-                      <div className={`relative w-20 h-20 rounded-2xl flex items-center justify-center ${style.container} hover:scale-105 transition-all duration-500`}>
-                        <Icon className={`w-8 h-8 ${style.icon}`} />
-                      </div>
-
-                      {/* Number badge */}
-                      <div className={`absolute -top-2 -right-2 w-7 h-7 rounded-full ${style.badge} flex items-center justify-center shadow-md`}>
-                        <span className="text-[11px] font-bold text-white">
-                          {step.num}
-                        </span>
-                      </div>
+                    {/* Accent icon with numbered badge (mobile) */}
+                    <div className="flex-shrink-0">
+                      <HighlightFeatureIcon
+                        icon={Icon}
+                        stepNumber={step.num}
+                        variant={index === 0 ? "primary" : index === 1 ? "mixed" : "secondary"}
+                        size="md"
+                        badgeColor={style.badge}
+                      />
                     </div>
 
                     {/* Text */}

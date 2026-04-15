@@ -4,6 +4,7 @@ import { Search, Settings, Brain, TestTube, GraduationCap, Rocket } from "lucide
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
+import { ProcessStepIcon } from "@/components/ui/icon-system"
 
 const stepIcons = [Search, Settings, Brain, TestTube, GraduationCap, Rocket]
 
@@ -54,13 +55,10 @@ export function MethodologyBlock() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {steps.map((s) => (
-            <div key={s.num} className="p-5 rounded-2xl border border-foreground/10 bg-foreground/5 space-y-3 hover:bg-foreground/10 transition-colors">
-              <div className="flex items-center gap-3">
-                <span className="w-8 h-8 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/70 text-sm font-bold">{s.num}</span>
-                <s.icon className="w-5 h-5 text-foreground/50" />
-              </div>
+            <div key={s.num} className="group card-premium p-6 rounded-2xl space-y-4">
+              <ProcessStepIcon icon={s.icon} stepNumber={s.num} />
               <h3 className="font-bold text-foreground">{s.title}</h3>
-              <p className="text-sm text-foreground/50">{s.description}</p>
+              <p className="text-sm text-foreground/55 dark:text-foreground/45 leading-relaxed">{s.description}</p>
             </div>
           ))}
         </div>

@@ -478,12 +478,41 @@
         "title": "Analysis and decision-making",
         "description": "Evaluates information, structures data and decides the next step within the operational or commercial process."
       },
-      "integrations": {
-        "micro_label": "Connectivity",
-        "title": "Connected execution across systems",
-        "description": "Acts directly on CRM, calendars and tools to keep processes running continuously."
-      }
-    }
+  "integrations": {
+  "micro_label": "Connectivity",
+  "title": "Connected execution across systems",
+  "description": "Acts directly on CRM, calendars and tools to keep processes running continuously."
+  }
+  },
+  "mockup": {
+    "chat_question": "Can I book for this Friday?",
+    "chat_response": "Of course! I've checked availability.",
+    "chat_confirmation": "\u26a1 Booking confirmed: Friday 16:30 \u2713",
+    "chat_info_question": "I need information about prices",
+    "chat_info_response": "I'll send you our updated catalog.",
+    "chat_info_confirmation": "\ud83d\udcce Document sent \u2713",
+    "chat_agent_question": "I want to speak to an agent",
+    "chat_agent_response": "Analyzing your inquiry...",
+    "chat_agent_confirmation": "\u2713 Routed to the right specialist",
+    "call_incoming": "Incoming call",
+    "call_in_progress": "In progress",
+    "call_completed": "Completed \u2713",
+    "call_finished": "Finished",
+    "call_connecting": "Connecting...",
+    "call_listening": "Listening",
+    "call_label": "Calls",
+    "calendar_confirmed": "\u2713 Appointment confirmed: day {day}, {time}",
+    "inbox_request": "Request received",
+    "inbox_query": "Client inquiry",
+    "inbox_document": "Attached document",
+    "inbox_classified": "Classified",
+    "inbox_responded": "Responded",
+    "inbox_processed": "Processed",
+    "inbox_pending": "pending",
+    "analytics_resolved": "Resolved",
+    "analytics_time": "Time",
+    "analytics_insight": "Continuous improvement based on data"
+  }
   },
   "crm": {
     "badge": "Native integration",
@@ -787,7 +816,11 @@
         "card_example": "Appointment rescheduled → SMS sent → CRM updated → case closed"
       }
     ],
-    "closing": "It doesn't respond like an isolated system. It turns every interaction into an action connected to the business."
+    "closing": "It doesn't respond like an isolated system. It turns every interaction into an action connected to the business.",
+    "example1": "Call \u2192 transcribed \u2192 data extracted \u2192 flow started",
+    "example2": "Intent: reschedule \u2192 context: appointment #4521",
+    "example3": "If availability > 0 \u2192 reschedule \u2192 confirm",
+    "example4": "SMS sent \u2192 CRM updated \u2192 case closed"
   },
   "differentiation": {
     "title_plain": "Built around your business.",
@@ -799,7 +832,21 @@
       "Integrated with your existing systems",
       "Continuously optimized with real usage",
       "No technical team required on your side"
-    ]
+    ],
+    "comparison_title_prefix": "Other tools vs ",
+    "comparison_title_brand": "StaffDigital AI",
+    "comparison_subtitle": "Most AI solutions give you a tool and leave you on your own. We configure, integrate and operate everything for you.",
+    "comparison_generic_title": "Generic tools",
+    "comparison_generic_items": [
+      "Pre-made templates for everyone",
+      "DIY setup with no real support",
+      "Limited and generic integrations",
+      "No evolution after setup",
+      "Requires internal technical team"
+    ],
+    "comparison_badge": "Recommended",
+    "comparison_cta_text": "No commitments. No lock-in. Implementation included.",
+    "comparison_cta_button": "Request demo"
   },
 "voice": {
   "badge": "Human Voice HD",

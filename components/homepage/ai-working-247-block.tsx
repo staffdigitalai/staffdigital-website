@@ -26,25 +26,40 @@ function useInView(options?: IntersectionObserverInit) {
 // ============================================
 // Card 0 — WhatsApp Chat (sequential bubbles, 3 scenarios, loops)
 // ============================================
-const conversations = [
-  [
-    { from: "user", text: "\u00BFPuedo reservar para este viernes?" },
-    { from: "ai",   text: "\u00A1Claro! He verificado disponibilidad." },
-    { from: "ai",   text: "\u26A1 Reserva confirmada: Viernes 16:30 \u2713" },
-  ],
-  [
-    { from: "user", text: "Necesito informaci\u00F3n sobre precios" },
-    { from: "ai",   text: "Te env\u00EDo nuestro cat\u00E1logo actualizado." },
-    { from: "ai",   text: "\uD83D\uDCCE Documento enviado \u2713" },
-  ],
-  [
-    { from: "user", text: "Quiero hablar con un agente" },
-    { from: "ai",   text: "Analizando tu consulta..." },
-    { from: "ai",   text: "\u2713 Derivado al especialista indicado" },
-  ],
-]
+interface MockupTexts {
+  chat_question: string; chat_response: string; chat_confirmation: string;
+  chat_info_question: string; chat_info_response: string; chat_info_confirmation: string;
+  chat_agent_question: string; chat_agent_response: string; chat_agent_confirmation: string;
+  call_incoming: string; call_in_progress: string; call_completed: string;
+  call_finished: string; call_connecting: string; call_listening: string; call_label: string;
+  calendar_confirmed: string;
+  inbox_request: string; inbox_query: string; inbox_document: string;
+  inbox_classified: string; inbox_responded: string; inbox_processed: string; inbox_pending: string;
+  analytics_resolved: string; analytics_time: string; analytics_insight: string;
+}
 
-const ChatMockup = ({ active }: { active: boolean }) => {
+function getConversations(m: MockupTexts) {
+  return [
+    [
+      { from: "user", text: m.chat_question },
+      { from: "ai",   text: m.chat_response },
+      { from: "ai",   text: m.chat_confirmation },
+    ],
+    [
+      { from: "user", text: m.chat_info_question },
+      { from: "ai",   text: m.chat_info_response },
+      { from: "ai",   text: m.chat_info_confirmation },
+    ],
+    [
+      { from: "user", text: m.chat_agent_question },
+      { from: "ai",   text: m.chat_agent_response },
+      { from: "ai",   text: m.chat_agent_confirmation },
+    ],
+  ]
+}
+
+const ChatMockup = ({ active, m }: { active: boolean; m: MockupTexts }) => {
+  const conversations = getConversations(m)
   const [scenarioIdx, setScenarioIdx] = useState(0)
   const [visibleBubbles, setVisibleBubbles] = useState(0)
   const [showTyping, setShowTyping] = useState(false)
@@ -135,13 +150,12 @@ const ChatMockup = ({ active }: { active: boolean }) => {
 // ============================================
 // Card 1 — Phone call state cycling
 // ============================================
-const callStates = [
-  { label: "Llamada entrante", color: "text-yellow-500", icon: "ring", status: "ringing" },
-  { label: "En curso \u00B7 2:34", color: "text-green-500", icon: "active", status: "active" },
-  { label: "Completada \u2713", color: "text-blue-500", icon: "done", status: "done" },
-] as const
-
-const PhoneMockup = ({ active }: { active: boolean }) => {
+const PhoneMockup = ({ active, m }: { active: boolean; m: MockupTexts }) => {
+  const callStates = [
+    { label: m.call_incoming, color: "text-yellow-500", icon: "ring", status: "ringing" },
+    { label: `${m.call_in_progress} \u00B7 2:34`, color: "text-green-500", icon: "active", status: "active" },
+    { label: m.call_completed, color: "text-blue-500", icon: "done", status: "done" },
+  ] as const
   const [stateIdx, setStateIdx] = useState(0)
   const [callCount, setCallCount] = useState(14)
 
@@ -190,9 +204,9 @@ const PhoneMockup = ({ active }: { active: boolean }) => {
       {/* Bottom */}
       <div className="flex items-center justify-between mt-2">
         <span className={`text-[10px] ${state.color} transition-colors duration-500`}>
-          {state.status === "done" ? "\u2713 Finalizada" : state.status === "ringing" ? "Conectando..." : "Escuchando"}
+          {state.status === "done" ? `\u2713 ${m.call_finished}` : state.status === "ringing" ? m.call_connecting : m.call_listening}
         </span>
-        <span className="text-[10px] text-slate-400 dark:text-slate-500">Llamadas: {callCount}</span>
+        <span className="text-[10px] text-slate-400 dark:text-slate-500">{m.call_label}: {callCount}</span>
       </div>
     </div>
   )
@@ -207,7 +221,7 @@ const bookings = [
   { day: 22, time: "09:00" },
 ]
 
-const CalendarMockup = ({ active }: { active: boolean }) => {
+const CalendarMockup = ({ active, m }: { active: boolean; m: MockupTexts }) => {
   const [bookingIdx, setBookingIdx] = useState(0)
   const [showConfirmation, setShowConfirmation] = useState(false)
   const days = Array.from({ length: 21 }, (_, i) => i + 1)
@@ -248,7 +262,7 @@ const CalendarMockup = ({ active }: { active: boolean }) => {
       </div>
       {/* Confirmation banner */}
       <div className={`mt-auto bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs rounded-lg px-2 py-1.5 transition-all duration-500 ${showConfirmation ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
-        {"\u2713"} Cita confirmada: d{"\u00ED"}a {booking.day}, {booking.time}
+        {m.calendar_confirmed.replace("{day}", String(booking.day)).replace("{time}", booking.time)}
       </div>
     </div>
   )
@@ -257,13 +271,12 @@ const CalendarMockup = ({ active }: { active: boolean }) => {
 // ============================================
 // Card 3 — Email sequential processing
 // ============================================
-const emailRows = [
-  { icon: "\uD83D\uDCCB", label: "Solicitud recibida", badge: "Clasificada" },
-  { icon: "\uD83D\uDCE7", label: "Consulta cliente", badge: "Respondida" },
-  { icon: "\uD83D\uDCC4", label: "Documento adjunto", badge: "Procesado" },
-]
-
-const EmailMockup = ({ active }: { active: boolean }) => {
+const EmailMockup = ({ active, m }: { active: boolean; m: MockupTexts }) => {
+  const emailRows = [
+    { icon: "\uD83D\uDCCB", label: m.inbox_request, badge: m.inbox_classified },
+    { icon: "\uD83D\uDCE7", label: m.inbox_query, badge: m.inbox_responded },
+    { icon: "\uD83D\uDCC4", label: m.inbox_document, badge: m.inbox_processed },
+  ]
   const [processed, setProcessed] = useState(0) // 0=none processing, 1-3 = rows done
   const [processing, setProcessing] = useState(-1) // which row is currently spinning
 
@@ -322,7 +335,7 @@ const EmailMockup = ({ active }: { active: boolean }) => {
                 </svg>
               )}
               {isPending && (
-                <span className="text-[10px] text-slate-400">pendiente</span>
+                <span className="text-[10px] text-slate-400">{m.inbox_pending}</span>
               )}
             </div>
           )
@@ -342,7 +355,7 @@ const hubNodes = [
   { label: "Web", color: "bg-purple-500", dotColor: "bg-purple-400", x: 12, y: 45 },
 ]
 
-const IntegrationsMockup = ({ active }: { active: boolean }) => {
+const IntegrationsMockup = ({ active }: { active: boolean; m: MockupTexts }) => {
   const [pulseActive, setPulseActive] = useState(false)
 
   useEffect(() => {
@@ -392,7 +405,7 @@ const IntegrationsMockup = ({ active }: { active: boolean }) => {
 // ============================================
 // Card 5 — Analytics with count-up + bar grow
 // ============================================
-const AnalyticsMockup = ({ active }: { active: boolean }) => {
+const AnalyticsMockup = ({ active, m }: { active: boolean; m: MockupTexts }) => {
   const [progress, setProgress] = useState(0) // 0 to 1
   const bars = [65, 80, 45, 90, 55]
 
@@ -418,11 +431,11 @@ const AnalyticsMockup = ({ active }: { active: boolean }) => {
       {/* Stat boxes */}
       <div className="grid grid-cols-2 gap-2 mb-3">
         <div className="bg-white dark:bg-[#1F2937] rounded-lg px-2 py-1.5">
-          <div className="text-[10px] text-slate-400 dark:text-slate-500">Resueltos</div>
+          <div className="text-[10px] text-slate-400 dark:text-slate-500">{m.analytics_resolved}</div>
           <div className="text-sm font-bold text-slate-800 dark:text-white">{resolved}%</div>
         </div>
         <div className="bg-white dark:bg-[#1F2937] rounded-lg px-2 py-1.5">
-          <div className="text-[10px] text-slate-400 dark:text-slate-500">Tiempo</div>
+          <div className="text-[10px] text-slate-400 dark:text-slate-500">{m.analytics_time}</div>
           <div className="text-sm font-bold text-slate-800 dark:text-white">{time}s</div>
         </div>
       </div>
@@ -441,7 +454,7 @@ const AnalyticsMockup = ({ active }: { active: boolean }) => {
       </div>
       {/* Bottom label */}
       <div className="text-[10px] text-slate-400 dark:text-slate-500 mt-1.5 text-center">
-        Mejora continua basada en datos
+        {m.analytics_insight}
       </div>
     </div>
   )
@@ -450,7 +463,14 @@ const AnalyticsMockup = ({ active }: { active: boolean }) => {
 // ============================================
 // FEATURES CONFIG
 // ============================================
-const featuresConfig = [
+interface FeatureConfig {
+  key: string
+  MockupComponent: React.ComponentType<{ active: boolean; m: MockupTexts }>
+  size: string
+  microLabelKey: string
+}
+
+const featuresConfig: FeatureConfig[] = [
   { key: "chat", MockupComponent: ChatMockup, size: "large", microLabelKey: "chat" },
   { key: "phone", MockupComponent: PhoneMockup, size: "medium", microLabelKey: "phone" },
   { key: "calendar", MockupComponent: CalendarMockup, size: "medium", microLabelKey: "calendar" },
@@ -462,7 +482,7 @@ const featuresConfig = [
 // ============================================
 // ANIMATED CARD WRAPPER
 // ============================================
-function AnimatedCard({ feature, index, t }: { feature: typeof featuresConfig[number]; index: number; t: ReturnType<typeof useTranslations> }) {
+function AnimatedCard({ feature, index, t, m }: { feature: FeatureConfig; index: number; t: ReturnType<typeof useTranslations>; m: MockupTexts }) {
   const { ref, inView } = useInView()
 
   return (
@@ -481,7 +501,7 @@ function AnimatedCard({ feature, index, t }: { feature: typeof featuresConfig[nu
         
         {/* Mockup area */}
         <div className="relative mb-5 rounded-xl overflow-hidden ring-1 ring-slate-200/40 dark:ring-white/[0.06]">
-          <feature.MockupComponent active={inView} />
+          <feature.MockupComponent active={inView} m={m} />
         </div>
         
         {/* Title */}
@@ -505,6 +525,36 @@ export function AIWorking247Block() {
   const t = useTranslations("ai_working_247")
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+
+  const m: MockupTexts = {
+    chat_question: t("mockup.chat_question"),
+    chat_response: t("mockup.chat_response"),
+    chat_confirmation: t("mockup.chat_confirmation"),
+    chat_info_question: t("mockup.chat_info_question"),
+    chat_info_response: t("mockup.chat_info_response"),
+    chat_info_confirmation: t("mockup.chat_info_confirmation"),
+    chat_agent_question: t("mockup.chat_agent_question"),
+    chat_agent_response: t("mockup.chat_agent_response"),
+    chat_agent_confirmation: t("mockup.chat_agent_confirmation"),
+    call_incoming: t("mockup.call_incoming"),
+    call_in_progress: t("mockup.call_in_progress"),
+    call_completed: t("mockup.call_completed"),
+    call_finished: t("mockup.call_finished"),
+    call_connecting: t("mockup.call_connecting"),
+    call_listening: t("mockup.call_listening"),
+    call_label: t("mockup.call_label"),
+    calendar_confirmed: t.raw("mockup.calendar_confirmed") as string,
+    inbox_request: t("mockup.inbox_request"),
+    inbox_query: t("mockup.inbox_query"),
+    inbox_document: t("mockup.inbox_document"),
+    inbox_classified: t("mockup.inbox_classified"),
+    inbox_responded: t("mockup.inbox_responded"),
+    inbox_processed: t("mockup.inbox_processed"),
+    inbox_pending: t("mockup.inbox_pending"),
+    analytics_resolved: t("mockup.analytics_resolved"),
+    analytics_time: t("mockup.analytics_time"),
+    analytics_insight: t("mockup.analytics_insight"),
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -547,7 +597,7 @@ export function AIWorking247Block() {
           {/* Feature Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-5">
             {featuresConfig.map((feature, index) => (
-              <AnimatedCard key={feature.key} feature={feature} index={index} t={t} />
+              <AnimatedCard key={feature.key} feature={feature} index={index} t={t} m={m} />
             ))}
           </div>
         </div>

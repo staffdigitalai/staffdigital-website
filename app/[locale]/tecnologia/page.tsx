@@ -2,25 +2,22 @@ import type { Metadata } from "next"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
 import { PageWrapper } from "@/components/page-wrapper"
-import { getPage } from "@/lib/wordpress"
+import { buildPageMetadata, getPage } from "@/lib/wordpress"
 import { TecnologiaContent } from "./tecnologia-content"
 
 export const revalidate = 300
 
-export async function generateMetadata(): Promise<Metadata> {
-  let page = null
-  try {
-    page = await getPage("tecnologia")
-  } catch (error) {
-    console.error("Error fetching tecnologia page:", error)
-  }
-
-  return {
-    title: page?.acf?.meta_title || "Tecnologia - StaffDigital AI",
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return buildPageMetadata("tecnologia", locale, {
+    title: "Tecnologia - StaffDigital AI",
     description:
-      page?.acf?.meta_description ||
       "Descubre la tecnologia detras de StaffDigital AI. LLMs avanzados, procesamiento de lenguaje natural y mas.",
-  }
+  })
 }
 
 export default async function TecnologiaPage() {

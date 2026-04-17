@@ -2,11 +2,18 @@ import type { Metadata } from "next"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
 import { DynamicFaqSection } from "@/components/dynamic-faq-section"
-import { getFaqs } from "@/lib/wordpress"
+import { buildPageMetadata, getFaqs } from "@/lib/wordpress"
 
-export const metadata: Metadata = {
-  title: "Preguntas Frecuentes",
-  description: "Preguntas frecuentes sobre agentes IA con voz humana. Precios, integración, seguridad y mas.",
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return buildPageMetadata("faq", locale, {
+    title: "Preguntas Frecuentes",
+    description: "Preguntas frecuentes sobre agentes IA con voz humana. Precios, integración, seguridad y mas.",
+  })
 }
 
 export const revalidate = 300

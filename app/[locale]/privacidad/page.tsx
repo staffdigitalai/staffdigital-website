@@ -1,10 +1,18 @@
 import type { Metadata } from "next"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
+import { buildPageMetadata } from "@/lib/wordpress"
 
-export const metadata: Metadata = {
-  title: "Politica de Privacidad",
-  description: "Politica de privacidad de StaffDigital AI. Informacion sobre el tratamiento de datos personales conforme al RGPD y la LOPDGDD.",
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return buildPageMetadata("privacidad", locale, {
+    title: "Politica de Privacidad",
+    description: "Politica de privacidad de StaffDigital AI. Informacion sobre el tratamiento de datos personales conforme al RGPD y la LOPDGDD.",
+  })
 }
 
 export default function PrivacidadPage() {

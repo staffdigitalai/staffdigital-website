@@ -1,15 +1,18 @@
 import type { Metadata } from "next"
-import { getPage, stripHtml } from "@/lib/wordpress"
+import { buildPageMetadata, getPage, stripHtml } from "@/lib/wordpress"
 import { PartnersClient } from "./partners-client"
 
-export const metadata: Metadata = {
-  title: "Partners Tecnológicos | StaffDigital AI",
-  description:
-    "Alianzas con los mejores proveedores de IA, telecomunicaciones y CRM. Nuestros partners garantizan la máxima calidad de servicio.",
-  openGraph: {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return buildPageMetadata("partners", locale, {
     title: "Partners Tecnológicos | StaffDigital AI",
-    description: "Alianzas estratégicas para resultados excepcionales.",
-  },
+    description:
+      "Alianzas con los mejores proveedores de IA, telecomunicaciones y CRM. Nuestros partners garantizan la máxima calidad de servicio.",
+  })
 }
 
 export const revalidate = 3600

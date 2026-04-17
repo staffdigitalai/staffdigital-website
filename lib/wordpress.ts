@@ -742,6 +742,52 @@ export interface PageSEO {
 // WPML locale codes differ from our routing locales
 const WPML_LOCALE_MAP: Record<string, string> = { es: "es", en: "en", pt: "pt-pt" }
 
+/**
+ * Build a Next.js Metadata object for any static page from WP Yoast data.
+ * Falls back to provided defaults if Yoast isn't configured yet.
+ *
+ * @param slug - WP page slug (e.g. "precios", "tecnologia", "homepage")
+ * @param locale - Current locale (es/en/pt)
+ * @param fallback - Fallback title/description if Yoast unavailable
+ */
+export async function buildPageMetadata(
+  slug: string,
+  locale: string,
+  fallback: { title: string; description: string },
+): Promise<import("next").Metadata> {
+  const { yoast, hreflang } = await getPageSEO(slug, locale)
+
+  // Strip "| StaffDigital AI" suffix since layout adds it via template
+  const cleanTitle = yoast?.title?.replace(/ \| StaffDigital AI$/i, "") ?? fallback.title
+  const description = yoast?.description ?? fallback.description
+
+  return {
+    title: cleanTitle,
+    description,
+    openGraph: {
+      title: yoast?.og_title?.replace(/ \| StaffDigital AI$/i, "") ?? cleanTitle,
+      description: yoast?.og_description ?? description,
+      images: yoast?.og_image?.map(i => ({ url: i.url, width: i.width, height: i.height })) ?? [],
+      type: "website",
+      siteName: "StaffDigital AI",
+      locale: locale === "es" ? "es_ES" : locale === "pt" ? "pt_PT" : "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: yoast?.og_title?.replace(/ \| StaffDigital AI$/i, "") ?? cleanTitle,
+      description: yoast?.og_description ?? description,
+    },
+    alternates: {
+      canonical: yoast?.canonical ?? `https://www.staffdigital.ai/${locale === "es" ? "" : locale + "/"}${slug === "homepage" ? "" : slug}`,
+      languages: Object.fromEntries(
+        hreflang
+          .filter(h => h.hreflang !== "x-default")
+          .map(h => [h.hreflang, h.href]),
+      ),
+    },
+  }
+}
+
 export async function getPageSEO(slug: string, locale: string): Promise<PageSEO> {
   try {
     // 1. Fetch ES master page by slug (WPML master is always ES)

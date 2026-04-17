@@ -1,10 +1,18 @@
 import type { Metadata } from "next"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
+import { buildPageMetadata } from "@/lib/wordpress"
 
-export const metadata: Metadata = {
-  title: "Política de Cookies",
-  description: "Información sobre el uso de cookies en staffdigital.ai conforme a la LSSI-CE y el RGPD.",
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return buildPageMetadata("cookies", locale, {
+    title: "Política de Cookies",
+    description: "Información sobre el uso de cookies en staffdigital.ai conforme a la LSSI-CE y el RGPD.",
+  })
 }
 
 export default function CookiesPage() {

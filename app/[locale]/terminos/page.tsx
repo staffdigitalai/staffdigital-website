@@ -1,10 +1,18 @@
 import type { Metadata } from "next"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
+import { buildPageMetadata } from "@/lib/wordpress"
 
-export const metadata: Metadata = {
-  title: "Terminos y Condiciones",
-  description: "Terminos y condiciones de uso de los servicios de StaffDigital AI.",
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return buildPageMetadata("terminos", locale, {
+    title: "Terminos y Condiciones",
+    description: "Terminos y condiciones de uso de los servicios de StaffDigital AI.",
+  })
 }
 
 export default function TerminosPage() {

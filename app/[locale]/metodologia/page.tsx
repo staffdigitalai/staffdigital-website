@@ -2,25 +2,22 @@ import type { Metadata } from "next"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
 import { PageWrapper } from "@/components/page-wrapper"
-import { getPage } from "@/lib/wordpress"
+import { buildPageMetadata, getPage } from "@/lib/wordpress"
 import { MetodologiaContent } from "./metodologia-content"
 
 export const revalidate = 300
 
-export async function generateMetadata(): Promise<Metadata> {
-  let page = null
-  try {
-    page = await getPage("metodologia")
-  } catch (error) {
-    console.error("Error fetching metodologia page:", error)
-  }
-
-  return {
-    title: page?.acf?.meta_title || "Metodologia - StaffDigital AI",
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return buildPageMetadata("metodologia", locale, {
+    title: "Metodologia - StaffDigital AI",
     description:
-      page?.acf?.meta_description ||
       "Descubre nuestro proceso de implementacion de IA. Metodologia probada enmás de 500 proyectos exitosos.",
-  }
+  })
 }
 
 export default async function MetodologiaPage() {

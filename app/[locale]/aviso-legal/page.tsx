@@ -1,10 +1,18 @@
 import type { Metadata } from "next"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
+import { buildPageMetadata } from "@/lib/wordpress"
 
-export const metadata: Metadata = {
-  title: "Aviso Legal",
-  description: "Aviso legal e informacion sobre el titular del sitio web staffdigital.ai conforme a la LSSI-CE.",
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return buildPageMetadata("aviso-legal", locale, {
+    title: "Aviso Legal",
+    description: "Aviso legal e informacion sobre el titular del sitio web staffdigital.ai conforme a la LSSI-CE.",
+  })
 }
 
 export default function AvisoLegalPage() {

@@ -2,25 +2,22 @@ import type { Metadata } from "next"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
 import { PageWrapper } from "@/components/page-wrapper"
-import { getPage } from "@/lib/wordpress"
+import { buildPageMetadata, getPage } from "@/lib/wordpress"
 import { DemoContent } from "./demo-content"
 
 export const revalidate = 300
 
-export async function generateMetadata(): Promise<Metadata> {
-  let page = null
-  try {
-    page = await getPage("demo")
-  } catch (error) {
-    console.error("Error fetching demo page:", error)
-  }
-
-  return {
-    title: page?.acf?.meta_title || "Demo Gratuita - Agentes IA con Voz Humana",
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return buildPageMetadata("demo", locale, {
+    title: "Demo Gratuita - Agentes IA con Voz Humana",
     description:
-      page?.acf?.meta_description ||
       "Escucha la diferencia. Demo gratuita de agentes IA con voz humana. Voz masculina y femenina disponible.",
-  }
+  })
 }
 
 export default async function DemoPage() {

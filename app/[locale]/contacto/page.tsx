@@ -1,14 +1,18 @@
 import type { Metadata } from "next"
+import { buildPageMetadata } from "@/lib/wordpress"
 import { ContactClient } from "./contact-client"
 
-export const metadata: Metadata = {
-  title: "Contacto | StaffDigital AI",
-  description:
-    "Contacta con StaffDigital AI. Oficinas en Barcelona y Lisboa. Llámanos, escríbenos por WhatsApp o rellena el formulario.",
-  openGraph: {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return buildPageMetadata("contacto", locale, {
     title: "Contacto | StaffDigital AI",
-    description: "Oficinas en Barcelona y Lisboa. Contacta con nuestro equipo.",
-  },
+    description:
+      "Contacta con StaffDigital AI. Oficinas en Barcelona y Lisboa. Llámanos, escríbenos por WhatsApp o rellena el formulario.",
+  })
 }
 
 export default function ContactoPage() {

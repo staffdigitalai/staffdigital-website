@@ -87,7 +87,7 @@ export function AiTeamDealershipSection() {
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
-                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-5 h-5 text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -98,7 +98,7 @@ export function AiTeamDealershipSection() {
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-slate-900">Soporte IA 24/7 por Chat</h3>
-                    <p className="text-xs text-slate-500">Mensajeria multicanal</p>
+                    <p className="text-xs text-foreground/50">Mensajeria multicanal</p>
                   </div>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4 mb-4">
@@ -110,17 +110,17 @@ export function AiTeamDealershipSection() {
                       <div className="ml-auto flex gap-1">
                         {/* Platform badges */}
                         <div className="w-5 h-5 bg-[#25D366] rounded-full flex items-center justify-center">
-                          <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-3 h-3 text-foreground" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
                           </svg>
                         </div>
                         <div className="w-5 h-5 bg-gradient-to-br from-[#00B2FF] to-[#006AFF] rounded-full flex items-center justify-center">
-                          <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-3 h-3 text-foreground" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.974 12-11.11C24 4.975 18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26L10.732 8l3.131 3.259L19.752 8l-6.561 6.963z" />
                           </svg>
                         </div>
                         <div className="w-5 h-5 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
-                          <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg className="w-3 h-3 text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path
                               strokeLinecap="round"
                               strokeLinejoin="round"
@@ -139,7 +139,7 @@ export function AiTeamDealershipSection() {
                         </div>
                       </div>
                       <div className="flex gap-2 justify-end animate-slide-in-right animation-delay-500">
-                        <div className="bg-blue-500 rounded-lg rounded-tr-sm px-3 py-1.5 text-xs text-white">
+                        <div className="bg-blue-500 rounded-lg rounded-tr-sm px-3 py-1.5 text-xs text-foreground">
                           Teneis X5 en stock?
                         </div>
                       </div>
@@ -156,12 +156,12 @@ export function AiTeamDealershipSection() {
                   <div className="space-y-3">
                     <div className="bg-white rounded-xl p-4 border border-slate-200/60 shadow-sm">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs text-slate-500 font-medium">Tiempo de Respuesta</span>
+                        <span className="text-xs text-foreground/50 font-medium">Tiempo de Respuesta</span>
                         <span className="text-xs text-green-600 font-bold">Excelente</span>
                       </div>
                       <div className="text-2xl font-bold text-slate-900">
                         <span className="animate-pulse">8</span>
-                        <span className="text-sm text-slate-500 ml-1">segundos</span>
+                        <span className="text-sm text-foreground/50 ml-1">segundos</span>
                       </div>
                       <div className="mt-2 h-1.5 bg-slate-100 rounded-full overflow-hidden">
                         <div className="h-full bg-gradient-to-r from-green-500 to-emerald-500 rounded-full w-[95%] animate-pulse"></div>
@@ -170,7 +170,7 @@ export function AiTeamDealershipSection() {
 
                     <div className="bg-white rounded-xl p-4 border border-slate-200/60 shadow-sm">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs text-slate-500 font-medium">Leads Captados</span>
+                        <span className="text-xs text-foreground/50 font-medium">Leads Captados</span>
                         <span className="text-xs text-blue-600 font-bold">Hoy</span>
                       </div>
                       <div className="text-2xl font-bold text-slate-900">
@@ -187,7 +187,7 @@ export function AiTeamDealershipSection() {
                     <div className="relative">
                       <div className="absolute inset-0 bg-green-500 rounded-xl animate-ping opacity-20"></div>
                       <div className="relative w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/30">
-                        <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-5 h-5 text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -199,7 +199,7 @@ export function AiTeamDealershipSection() {
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-slate-900">Recepcionista Telefónica IA</h3>
-                      <p className="text-xs text-slate-500">Asistente de voz</p>
+                      <p className="text-xs text-foreground/50">Asistente de voz</p>
                     </div>
                   </div>
 
@@ -210,17 +210,17 @@ export function AiTeamDealershipSection() {
                         Llamada en Curso
                       </div>
                       <p className="text-sm font-semibold text-slate-900">John Smith</p>
-                      <p className="text-xs text-slate-500">Consulta de servicio</p>
+                      <p className="text-xs text-foreground/50">Consulta de servicio</p>
                     </div>
                     <div className="flex items-center justify-center gap-4 text-center pt-3 border-t border-slate-100">
                       <div>
                         <p className="text-xl font-bold text-slate-900 tabular-nums">{callsToday}</p>
-                        <p className="text-xs text-slate-500">Llamadas Hoy</p>
+                        <p className="text-xs text-foreground/50">Llamadas Hoy</p>
                       </div>
                       <div className="w-px h-8 bg-slate-200"></div>
                       <div>
                         <p className="text-xl font-bold text-green-600">24/7</p>
-                        <p className="text-xs text-slate-500">Disponible</p>
+                        <p className="text-xs text-foreground/50">Disponible</p>
                       </div>
                     </div>
                   </div>
@@ -234,7 +234,7 @@ export function AiTeamDealershipSection() {
                 <div className="bg-gradient-to-br from-slate-50 to-purple-50/30 rounded-2xl p-6 border border-slate-200/60 shadow-lg hover:shadow-xl transition-all duration-300 group">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/30">
-                      <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="w-5 h-5 text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -245,7 +245,7 @@ export function AiTeamDealershipSection() {
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-slate-900">Reserva de Servicio</h3>
-                      <p className="text-xs text-slate-500">Programacion automatica</p>
+                      <p className="text-xs text-foreground/50">Programacion automatica</p>
                     </div>
                   </div>
 
@@ -261,14 +261,14 @@ export function AiTeamDealershipSection() {
                         <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                         <div className="flex-1">
                           <p className="text-xs font-semibold text-slate-900">Cambio de Aceite</p>
-                          <p className="text-xs text-slate-500">10:00 AM</p>
+                          <p className="text-xs text-foreground/50">10:00 AM</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 p-2 bg-purple-50 rounded-lg animate-slide-in-left animation-delay-300">
                         <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                         <div className="flex-1">
                           <p className="text-xs font-semibold text-slate-900">Servicio de Frenos</p>
-                          <p className="text-xs text-slate-500">2:30 PM</p>
+                          <p className="text-xs text-foreground/50">2:30 PM</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 p-2 bg-green-50 rounded-lg border border-green-200 animate-scale-in animation-delay-600">
@@ -290,7 +290,7 @@ export function AiTeamDealershipSection() {
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/30">
-                        <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-5 h-5 text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -301,7 +301,7 @@ export function AiTeamDealershipSection() {
                       </div>
                       <div>
                         <h3 className="text-lg font-bold text-slate-900">Asistente de Recambios</h3>
-                        <p className="text-xs text-slate-500">Inventario en tiempo real</p>
+                        <p className="text-xs text-foreground/50">Inventario en tiempo real</p>
                       </div>
                     </div>
                     <span className="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-bold rounded-full">
@@ -313,7 +313,7 @@ export function AiTeamDealershipSection() {
                     <div className="bg-white rounded-xl p-4 border border-slate-200/60 shadow-sm">
                       <div className="flex items-center gap-3 mb-2">
                         <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
-                          <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg className="w-4 h-4 text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path
                               strokeLinecap="round"
                               strokeLinejoin="round"
@@ -327,14 +327,14 @@ export function AiTeamDealershipSection() {
                         </span>
                       </div>
                       <p className="text-sm font-bold text-slate-900 mb-1">Pastillas de Freno</p>
-                      <p className="text-xs text-slate-500 mb-2">BMW X5 - Stock: 8</p>
+                      <p className="text-xs text-foreground/50 mb-2">BMW X5 - Stock: 8</p>
                       <p className="text-lg font-bold text-slate-900">€89</p>
                     </div>
 
                     <div className="bg-white rounded-xl p-4 border border-slate-200/60 shadow-sm">
                       <div className="flex items-center gap-3 mb-2">
                         <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
-                          <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg className="w-4 h-4 text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path
                               strokeLinecap="round"
                               strokeLinejoin="round"
@@ -348,14 +348,14 @@ export function AiTeamDealershipSection() {
                         </span>
                       </div>
                       <p className="text-sm font-bold text-slate-900 mb-1">Filtro de Aceite</p>
-                      <p className="text-xs text-slate-500 mb-2">Universal - Stock: 24</p>
+                      <p className="text-xs text-foreground/50 mb-2">Universal - Stock: 24</p>
                       <p className="text-lg font-bold text-slate-900">€24</p>
                     </div>
 
                     <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border-2 border-green-200 shadow-md animate-scale-in">
                       <div className="flex items-center gap-2 mb-2">
                         <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center">
-                          <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg className="w-4 h-4 text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
                         </div>

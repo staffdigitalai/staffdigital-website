@@ -25,14 +25,14 @@ function WhatsAppMockup({
   isTyping: boolean
 }) {
   return (
-    <div className="bg-slate-900/80 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
+    <div className="bg-background/80 backdrop-blur-xl rounded-3xl border border-foreground/10 overflow-hidden shadow-2xl">
       {/* WhatsApp header */}
       <div className="bg-green-600 px-4 py-3 flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-          <span className="text-white text-xs font-bold">SD</span>
+        <div className="w-8 h-8 rounded-full bg-foreground/20 flex items-center justify-center">
+          <span className="text-foreground text-xs font-bold">SD</span>
         </div>
         <div>
-          <div className="text-white text-sm font-medium">{simulation.headerName || "StaffDigital AI"}</div>
+          <div className="text-foreground text-sm font-medium">{simulation.headerName || "StaffDigital AI"}</div>
           <div className="text-green-200 text-xs">{simulation.headerStatus || "en linea"}</div>
         </div>
         <div className="ml-auto flex items-center gap-1">
@@ -52,28 +52,28 @@ function WhatsAppMockup({
             <div
               className={`max-w-[80%] px-3 py-2 rounded-lg text-sm ${
                 msg.isUser
-                  ? "bg-green-700 text-white rounded-br-none"
-                  : "bg-slate-800 text-white/90 rounded-bl-none"
+                  ? "bg-green-700 text-foreground rounded-br-none"
+                  : "bg-card text-foreground/90 rounded-bl-none"
               }`}
             >
               {msg.text.startsWith("[Nota de voz") ? (
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 rounded-full bg-green-600/50 flex items-center justify-center">
-                    <Mic className="w-4 h-4 text-white" />
+                    <Mic className="w-4 h-4 text-foreground" />
                   </div>
                   <div className="flex-1">
-                    <div className="h-1 bg-white/20 rounded-full w-24">
-                      <div className="h-1 bg-white/60 rounded-full w-3/4" />
+                    <div className="h-1 bg-foreground/20 rounded-full w-24">
+                      <div className="h-1 bg-foreground/60 rounded-full w-3/4" />
                     </div>
-                    <span className="text-[10px] text-white/40">0:15</span>
+                    <span className="text-[10px] text-foreground/40">0:15</span>
                   </div>
-                  <Play className="w-4 h-4 text-white/60" />
+                  <Play className="w-4 h-4 text-foreground/60" />
                 </div>
               ) : (
                 <p>{msg.text}</p>
               )}
               <div className={`flex items-center gap-1 mt-1 ${msg.isUser ? "justify-end" : "justify-start"}`}>
-                <span className="text-[10px] text-white/40">{msg.time}</span>
+                <span className="text-[10px] text-foreground/40">{msg.time}</span>
                 {msg.isUser && <CheckCheck className="w-3 h-3 text-blue-400" />}
               </div>
             </div>
@@ -83,11 +83,11 @@ function WhatsAppMockup({
         {/* Typing indicator */}
         {isTyping && (
           <div className="flex justify-start">
-            <div className="bg-slate-800 px-4 py-2 rounded-lg rounded-bl-none">
+            <div className="bg-card px-4 py-2 rounded-lg rounded-bl-none">
               <div className="flex space-x-1">
-                <div className="w-2 h-2 bg-white/40 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                <div className="w-2 h-2 bg-white/40 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                <div className="w-2 h-2 bg-white/40 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                <div className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                <div className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                <div className="w-2 h-2 bg-foreground/40 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
               </div>
             </div>
           </div>
@@ -108,14 +108,14 @@ function ChatMockup({
   isTyping: boolean
 }) {
   return (
-    <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
+    <div className="bg-background/80 backdrop-blur-xl rounded-2xl border border-foreground/10 overflow-hidden shadow-2xl">
       {/* Chat header */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-3 flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-          <Globe className="w-4 h-4 text-white" />
+        <div className="w-8 h-8 rounded-full bg-foreground/20 flex items-center justify-center">
+          <Globe className="w-4 h-4 text-foreground" />
         </div>
         <div>
-          <div className="text-white text-sm font-medium">{simulation.headerName || "Asistente Virtual"}</div>
+          <div className="text-foreground text-sm font-medium">{simulation.headerName || "Asistente Virtual"}</div>
           <div className="text-blue-200 text-xs">{simulation.headerStatus || "Activo"}</div>
         </div>
         <div className="ml-auto">
@@ -134,8 +134,8 @@ function ChatMockup({
             <div
               className={`max-w-[80%] px-3 py-2 rounded-xl text-sm ${
                 msg.isUser
-                  ? "bg-blue-600 text-white"
-                  : "bg-white/10 text-white/90 border border-white/10"
+                  ? "bg-blue-600 text-foreground"
+                  : "bg-foreground/10 text-foreground/90 border border-foreground/10"
               }`}
             >
               {msg.text.includes("[Lead Score") ? (
@@ -149,7 +149,7 @@ function ChatMockup({
                 <p>{msg.text}</p>
               )}
               <div className={`mt-1 ${msg.isUser ? "text-right" : "text-left"}`}>
-                <span className="text-[10px] text-white/40">{msg.time}</span>
+                <span className="text-[10px] text-foreground/40">{msg.time}</span>
               </div>
             </div>
           </div>
@@ -158,7 +158,7 @@ function ChatMockup({
         {/* Typing indicator */}
         {isTyping && (
           <div className="flex justify-start">
-            <div className="bg-white/10 border border-white/10 px-4 py-2 rounded-xl">
+            <div className="bg-foreground/10 border border-foreground/10 px-4 py-2 rounded-xl">
               <div className="flex space-x-1">
                 <div className="w-2 h-2 bg-blue-400/60 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
                 <div className="w-2 h-2 bg-blue-400/60 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
@@ -183,28 +183,28 @@ function PhoneMockup({
   isTyping: boolean
 }) {
   return (
-    <div className="bg-slate-900/80 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
+    <div className="bg-background/80 backdrop-blur-xl rounded-3xl border border-foreground/10 overflow-hidden shadow-2xl">
       {/* Phone header */}
       <div className="bg-gradient-to-r from-orange-500 to-red-500 px-4 py-3 flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-          <Phone className="w-4 h-4 text-white" />
+        <div className="w-8 h-8 rounded-full bg-foreground/20 flex items-center justify-center">
+          <Phone className="w-4 h-4 text-foreground" />
         </div>
         <div>
-          <div className="text-white text-sm font-medium">{simulation.headerName || "Llamada IA"}</div>
+          <div className="text-foreground text-sm font-medium">{simulation.headerName || "Llamada IA"}</div>
           <div className="text-orange-200 text-xs">En curso</div>
         </div>
         <div className="ml-auto flex items-center gap-2">
           <div className="flex items-center gap-1">
-            <div className="w-1.5 h-3 bg-white/60 rounded-full animate-pulse" />
-            <div className="w-1.5 h-4 bg-white/80 rounded-full animate-pulse" style={{ animationDelay: "100ms" }} />
-            <div className="w-1.5 h-2 bg-white/40 rounded-full animate-pulse" style={{ animationDelay: "200ms" }} />
+            <div className="w-1.5 h-3 bg-foreground/60 rounded-full animate-pulse" />
+            <div className="w-1.5 h-4 bg-foreground/80 rounded-full animate-pulse" style={{ animationDelay: "100ms" }} />
+            <div className="w-1.5 h-2 bg-foreground/40 rounded-full animate-pulse" style={{ animationDelay: "200ms" }} />
           </div>
         </div>
       </div>
 
       {/* Transcript area */}
       <div className="p-4 min-h-[320px] max-h-[360px] bg-slate-950 space-y-3 overflow-y-auto">
-        <div className="text-center text-white/30 text-xs mb-4 pb-2 border-b border-white/10">
+        <div className="text-center text-foreground/30 text-xs mb-4 pb-2 border-b border-foreground/10">
           Transcripcion en tiempo real
         </div>
         {simulation.messages.slice(0, visibleMessages).map((msg, i) => (
@@ -216,10 +216,10 @@ function PhoneMockup({
             <div
               className={`max-w-[85%] px-3 py-2 rounded-lg text-sm ${
                 msg.isUser
-                  ? "bg-orange-500/20 text-white border border-orange-500/30"
+                  ? "bg-orange-500/20 text-foreground border border-orange-500/30"
                   : msg.text.startsWith("[Sistema]") || msg.text.startsWith("[Llamada")
-                    ? "bg-slate-800/50 text-white/60 border border-white/5 italic"
-                    : "bg-white/10 text-white/90 border border-white/10"
+                    ? "bg-card/50 text-foreground/60 border border-foreground/5 italic"
+                    : "bg-foreground/10 text-foreground/90 border border-foreground/10"
               }`}
             >
               <div className="flex items-start gap-2">
@@ -230,7 +230,7 @@ function PhoneMockup({
                 )}
                 <div>
                   <p>{msg.text}</p>
-                  <span className="text-[10px] text-white/30 mt-1 block">{msg.time}</span>
+                  <span className="text-[10px] text-foreground/30 mt-1 block">{msg.time}</span>
                 </div>
               </div>
             </div>
@@ -240,14 +240,14 @@ function PhoneMockup({
         {/* Speaking indicator */}
         {isTyping && (
           <div className="flex justify-start">
-            <div className="bg-white/10 border border-white/10 px-4 py-2 rounded-lg flex items-center gap-2">
+            <div className="bg-foreground/10 border border-foreground/10 px-4 py-2 rounded-lg flex items-center gap-2">
               <div className="flex items-center gap-0.5">
                 <div className="w-1 h-3 bg-orange-400/60 rounded-full animate-pulse" />
                 <div className="w-1 h-4 bg-orange-400/80 rounded-full animate-pulse" style={{ animationDelay: "100ms" }} />
                 <div className="w-1 h-2 bg-orange-400/40 rounded-full animate-pulse" style={{ animationDelay: "200ms" }} />
                 <div className="w-1 h-5 bg-orange-400/60 rounded-full animate-pulse" style={{ animationDelay: "300ms" }} />
               </div>
-              <span className="text-xs text-white/40">Hablando...</span>
+              <span className="text-xs text-foreground/40">Hablando...</span>
             </div>
           </div>
         )}
@@ -358,14 +358,14 @@ export function ConversationSimulator({
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium mb-6">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-foreground/10 backdrop-blur-md border border-foreground/20 text-foreground text-sm font-medium mb-6">
             <BadgeIcon className="w-4 h-4 mr-2" />
             {badge}
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white text-balance mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-balance mb-4">
             {title}
           </h2>
-          <p className="text-base sm:text-lg text-white/70 max-w-2xl mx-auto font-light">
+          <p className="text-base sm:text-lg text-foreground/70 max-w-2xl mx-auto font-light">
             {subtitle}
           </p>
         </div>
@@ -379,7 +379,7 @@ export function ConversationSimulator({
                 isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
               }`}
             >
-              <div className="text-white/50 text-sm font-medium mb-4">Casos de uso:</div>
+              <div className="text-foreground/50 text-sm font-medium mb-4">Casos de uso:</div>
               {simulations.map((sim, index) => (
                 <button
                   key={sim.id}
@@ -390,8 +390,8 @@ export function ConversationSimulator({
                   }}
                   className={`w-full text-left p-4 rounded-xl border transition-all duration-300 ${
                     activeSimulation === index
-                      ? "bg-white/10 border-white/30"
-                      : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20"
+                      ? "bg-foreground/10 border-foreground/30"
+                      : "bg-foreground/5 border-foreground/10 hover:bg-foreground/10 hover:border-foreground/20"
                   }`}
                 >
                   <div className="flex items-center gap-3">
@@ -413,8 +413,8 @@ export function ConversationSimulator({
                       )}
                     </div>
                     <div>
-                      <div className="text-white font-medium text-sm">{sim.title}</div>
-                      <div className="text-white/50 text-xs">{sim.description}</div>
+                      <div className="text-foreground font-medium text-sm">{sim.title}</div>
+                      <div className="text-foreground/50 text-xs">{sim.description}</div>
                     </div>
                     {activeSimulation === index && (
                       <div className="ml-auto">
@@ -428,7 +428,7 @@ export function ConversationSimulator({
               {/* Pause/Play button */}
               <button
                 onClick={() => setIsPaused(!isPaused)}
-                className="flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors mt-4"
+                className="flex items-center gap-2 text-foreground/50 hover:text-foreground text-sm transition-colors mt-4"
               >
                 {isPaused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
                 {isPaused ? "Reanudar" : "Pausar"} simulacion
@@ -455,8 +455,8 @@ export function ConversationSimulator({
                     }`}
                     style={{ transitionDelay: `${800 + i * 200}ms` }}
                   >
-                    <div className="text-xl font-bold text-white">{stat.value}</div>
-                    <div className="text-xs text-white/50">{stat.label}</div>
+                    <div className="text-xl font-bold text-foreground">{stat.value}</div>
+                    <div className="text-xs text-foreground/50">{stat.label}</div>
                   </div>
                 ))}
               </div>

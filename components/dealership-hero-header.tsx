@@ -50,38 +50,38 @@ export function DealershipHeroHeader() {
 
   return (
     <div className="space-y-8">
-      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight text-balance animate-fade-in-heading">
+      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight text-balance animate-fade-in-heading">
         No Pierdas Ni Un Lead Mas
       </h1>
 
       <div className="animate-fade-in-subheading">
         {/* Mobile version - stacked */}
         <div className="flex flex-col items-center gap-2 sm:hidden">
-          <span className="text-lg text-slate-300">Los concesionarios pierden</span>
+          <span className="text-lg text-foreground/70">Los concesionarios pierden</span>
           <span className="text-3xl font-bold bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent animate-pulse-glow">
             €{counter}K+
           </span>
-          <span className="text-lg text-slate-300">anualmente</span>
+          <span className="text-lg text-foreground/70">anualmente</span>
         </div>
 
         {/* Desktop version - single line */}
         <div className="hidden sm:flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
-          <span className="text-xl md:text-2xl text-slate-300">Los concesionarios pierden</span>
+          <span className="text-xl md:text-2xl text-foreground/70">Los concesionarios pierden</span>
           <span className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent animate-pulse-glow">
             €{counter}K+
           </span>
-          <span className="text-xl md:text-2xl text-slate-300">anualmente</span>
+          <span className="text-xl md:text-2xl text-foreground/70">anualmente</span>
         </div>
       </div>
 
       {/* Video placeholder */}
       <div className="max-w-xs sm:max-w-3xl mx-auto px-6 sm:px-0 mb-8 animate-fade-in-buttons">
-        <div className="relative w-full aspect-video bg-white/5 backdrop-blur-xl rounded-3xl overflow-hidden border border-white/20 shadow-2xl group cursor-pointer hover:bg-white/10 hover:border-white/30 transition-all duration-500">
+        <div className="relative w-full aspect-video bg-foreground/5 backdrop-blur-xl rounded-3xl overflow-hidden border border-foreground/20 shadow-2xl group cursor-pointer hover:bg-foreground/10 hover:border-foreground/30 transition-all duration-500">
           <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/5"></div>
 
           <div className="absolute inset-0 flex items-center justify-center z-10">
             <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 group-hover:bg-white transition-all duration-300 shadow-xl">
-              <svg className="w-6 h-6 sm:w-8 sm:h-8 text-black ml-1" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 sm:w-8 sm:h-8 text-background ml-1" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z" />
               </svg>
             </div>
@@ -89,7 +89,7 @@ export function DealershipHeroHeader() {
 
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="text-center space-y-2 mt-24 sm:mt-32">
-              <p className="text-white/70 text-xs sm:text-base font-medium">Video Demo Proximamente</p>
+              <p className="text-foreground/70 text-xs sm:text-base font-medium">Video Demo Proximamente</p>
             </div>
           </div>
 
@@ -108,7 +108,7 @@ export function DealershipHeroHeader() {
       <div className="max-w-xs sm:max-w-3xl mx-auto px-6 sm:px-0 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-buttons">
         <Button
           size="lg"
-          className="bg-white text-black rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-gray-50 hover:scale-105 hover:shadow-lg group cursor-pointer relative overflow-hidden w-full sm:w-auto"
+          className="bg-foreground text-background rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-foreground/90 hover:scale-105 hover:shadow-lg group cursor-pointer relative overflow-hidden w-full sm:w-auto"
         >
           Reservar Demo
           <ArrowRight />
@@ -116,7 +116,7 @@ export function DealershipHeroHeader() {
         <Button
           size="lg"
           variant="outline"
-          className="bg-transparent text-white border-2 border-white/30 rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-white/10 hover:border-white/50 hover:scale-105 hover:shadow-lg cursor-pointer backdrop-blur-sm w-full sm:w-auto"
+          className="bg-transparent text-foreground border-2 border-foreground/30 rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-foreground/10 hover:border-white/50 hover:scale-105 hover:shadow-lg cursor-pointer backdrop-blur-sm w-full sm:w-auto"
         >
           Consultar Ahora
         </Button>

@@ -1,13 +1,20 @@
 "use client"
 
 import { useRef } from "react"
-import { useInView } from "framer-motion"
+import { useInView, useReducedMotion } from "framer-motion"
 import { Clock, AlertTriangle, Users, TrendingDown, Bot, Calendar, Plug, MessageSquare, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function LeadsProblemSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
+  const isInViewRaw = useInView(sectionRef, { once: true, margin: "-100px" })
+  const shouldReduce = useReducedMotion()
+  // A11y: when user prefers reduced motion, treat sections as always-in-view
+  // so the opacity-0 initial state never traps content behind an un-fired
+  // reveal. Transitions below also become instant.
+  const isInView = shouldReduce ? true : isInViewRaw
+  const motionTransition = (delay: number) =>
+    shouldReduce ? "none" : `all 0.6s ease-out ${delay}s`
 
   const problems = [
     {
@@ -49,12 +56,12 @@ export function LeadsProblemSection() {
     <section ref={sectionRef} className="py-12 sm:py-16 px-4 relative z-10">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div 
+        <div
           className="text-center mb-12"
           style={{
             opacity: isInView ? 1 : 0,
             transform: isInView ? "translateY(0)" : "translateY(20px)",
-            transition: "all 0.6s ease-out",
+            transition: motionTransition(0),
           }}
         >
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-sm font-medium mb-4">
@@ -78,7 +85,7 @@ export function LeadsProblemSection() {
             style={{
               opacity: isInView ? 1 : 0,
               transform: isInView ? "translateX(0)" : "translateX(-30px)",
-              transition: "all 0.6s ease-out 0.2s",
+              transition: motionTransition(0.2),
             }}
           >
             <div className="flex items-center gap-3 mb-6">
@@ -114,7 +121,7 @@ export function LeadsProblemSection() {
             style={{
               opacity: isInView ? 1 : 0,
               transform: isInView ? "translateX(0)" : "translateX(30px)",
-              transition: "all 0.6s ease-out 0.2s",
+              transition: motionTransition(0.2),
             }}
           >
             <div className="flex items-center gap-3 mb-6">
@@ -151,7 +158,7 @@ export function LeadsProblemSection() {
           style={{
             opacity: isInView ? 1 : 0,
             transform: isInView ? "translateY(0)" : "translateY(20px)",
-            transition: "all 0.6s ease-out 0.4s",
+            transition: motionTransition(0.4),
           }}
         >
           {stats.map((stat, index) => (
@@ -173,7 +180,7 @@ export function LeadsProblemSection() {
           style={{
             opacity: isInView ? 1 : 0,
             transform: isInView ? "translateY(0)" : "translateY(20px)",
-            transition: "all 0.6s ease-out 0.5s",
+            transition: motionTransition(0.5),
           }}
         >
           <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">

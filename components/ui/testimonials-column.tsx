@@ -1,6 +1,6 @@
 "use client"
 import React from "react"
-import { motion } from "framer-motion"
+import { motion, useReducedMotion } from "framer-motion"
 
 interface Testimonial {
   text: string
@@ -13,18 +13,24 @@ export const TestimonialsColumn = (props: {
   testimonials: Testimonial[]
   duration?: number
 }) => {
+  const shouldReduce = useReducedMotion()
+  // A11y: respect prefers-reduced-motion by stopping the infinite scroll.
+  // The column still shows all testimonials (via the duplicated render),
+  // users just scroll the page naturally instead of an autoplay loop.
+  const animate = shouldReduce ? undefined : { translateY: "-50%" }
+  const transition = shouldReduce
+    ? undefined
+    : {
+        duration: props.duration || 10,
+        repeat: Number.POSITIVE_INFINITY,
+        ease: "linear" as const,
+        repeatType: "loop" as const,
+      }
   return (
     <div className={`relative overflow-hidden h-[700px] ${props.className}`}>
       <motion.div
-        animate={{
-          translateY: "-50%",
-        }}
-        transition={{
-          duration: props.duration || 10,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "linear",
-          repeatType: "loop",
-        }}
+        animate={animate}
+        transition={transition}
         className="flex flex-col gap-6 pb-6"
       >
         {[

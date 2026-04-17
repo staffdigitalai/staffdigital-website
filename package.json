@@ -8,7 +8,7 @@
     "lint": "next lint",
     "start": "next start",
     "lint:colors": "! grep -rE '(bg|text|border|from|to|via|ring|shadow)-\\[(#[0-9a-fA-F]+|rgb)' app/ components/ --include='*.tsx' --include='*.ts' 2>/dev/null",
-    "prepare": "husky",
+    "prepare": "husky || true",
     "lint:colors:palette": "grep -rE '(bg|text|border)-(white|black|gray-[0-9]+|slate-[0-9]+|zinc-[0-9]+|neutral-[0-9]+|stone-[0-9]+)' app/ components/ --include='*.tsx' --include='*.ts' 2>/dev/null | wc -l"
   },
   "dependencies": {

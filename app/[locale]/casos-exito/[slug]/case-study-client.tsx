@@ -65,7 +65,7 @@ export function CaseStudyClient({ caseStudy }: CaseStudyClientProps) {
           {/* Back link */}
           <Link
             href="/casos-exito"
-            className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-foreground/60 hover:text-foreground transition-colors mb-8"
           >
             <ArrowLeft size={16} />
             Volver a casos de exito
@@ -79,7 +79,7 @@ export function CaseStudyClient({ caseStudy }: CaseStudyClientProps) {
               </Badge>
             )}
             {cliente && (
-              <span className="flex items-center gap-2 text-white/60 text-sm">
+              <span className="flex items-center gap-2 text-foreground/60 text-sm">
                 <Building2 size={14} />
                 {cliente}
               </span>
@@ -87,7 +87,7 @@ export function CaseStudyClient({ caseStudy }: CaseStudyClientProps) {
           </div>
 
           {/* Title */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight text-balance mb-6 animate-fade-in-heading">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight text-balance mb-6 animate-fade-in-heading">
             {title}
           </h1>
 
@@ -106,7 +106,7 @@ export function CaseStudyClient({ caseStudy }: CaseStudyClientProps) {
             <Button
               size="lg"
               onClick={openContactForm}
-              className="bg-white text-black rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-gray-50 hover:scale-105 hover:shadow-lg group cursor-pointer"
+              className="bg-foreground text-background rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-foreground/90 hover:scale-105 hover:shadow-lg group cursor-pointer"
             >
               Quiero resultados similares
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -119,8 +119,8 @@ export function CaseStudyClient({ caseStudy }: CaseStudyClientProps) {
       {metricas.length > 0 && (
         <section ref={metricsRef} className="px-4 py-16 md:py-24">
           <div className="max-w-5xl mx-auto">
-            <div className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm p-8 md:p-12">
-              <h2 className="text-2xl font-bold text-white text-center mb-8">
+            <div className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 rounded-3xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm p-8 md:p-12">
+              <h2 className="text-2xl font-bold text-foreground text-center mb-8">
                 Resultados Clave
               </h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
@@ -129,7 +129,7 @@ export function CaseStudyClient({ caseStudy }: CaseStudyClientProps) {
                     <p className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-400 to-amber-300 bg-clip-text text-transparent mb-2">
                       {metrica.valor}
                     </p>
-                    <p className="text-white/50 text-sm">{metrica.etiqueta}</p>
+                    <p className="text-foreground/50 text-sm">{metrica.etiqueta}</p>
                   </div>
                 ))}
               </div>
@@ -144,13 +144,13 @@ export function CaseStudyClient({ caseStudy }: CaseStudyClientProps) {
           <div className="max-w-4xl mx-auto">
             <div
               className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 prose prose-invert prose-lg max-w-none
-                prose-headings:text-white prose-headings:font-bold
-                prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:border-b prose-h2:border-white/10 prose-h2:pb-4
+                prose-headings:text-foreground prose-headings:font-bold
+                prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:border-b prose-h2:border-foreground/10 prose-h2:pb-4
                 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
-                prose-p:text-white/70 prose-p:leading-relaxed
+                prose-p:text-foreground/70 prose-p:leading-relaxed
                 prose-a:text-orange-400 prose-a:no-underline hover:prose-a:underline
-                prose-strong:text-white
-                prose-ul:text-white/70 prose-li:marker:text-orange-400
+                prose-strong:text-foreground
+                prose-ul:text-foreground/70 prose-li:marker:text-orange-400
                 prose-li:my-2"
               dangerouslySetInnerHTML={{ __html: caseStudy.content.rendered }}
             />
@@ -162,9 +162,9 @@ export function CaseStudyClient({ caseStudy }: CaseStudyClientProps) {
       {testimonio && (
         <section className="px-4 py-16 md:py-24">
           <div className="max-w-4xl mx-auto">
-            <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-orange-500/10 to-amber-500/5 p-8 md:p-12">
+            <div className="rounded-3xl border border-foreground/10 bg-gradient-to-br from-orange-500/10 to-amber-500/5 p-8 md:p-12">
               <Quote className="h-12 w-12 text-orange-400/40 mb-6" />
-              <blockquote className="text-xl md:text-2xl text-white/90 font-medium leading-relaxed mb-6 text-balance">
+              <blockquote className="text-xl md:text-2xl text-foreground/90 font-medium leading-relaxed mb-6 text-balance">
                 "{testimonio}"
               </blockquote>
               {cliente && (
@@ -173,8 +173,8 @@ export function CaseStudyClient({ caseStudy }: CaseStudyClientProps) {
                     <Building2 className="h-6 w-6 text-orange-400" />
                   </div>
                   <div>
-                    <p className="text-white font-medium">{cliente}</p>
-                    {sector && <p className="text-white/50 text-sm">{sector}</p>}
+                    <p className="text-foreground font-medium">{cliente}</p>
+                    {sector && <p className="text-foreground/50 text-sm">{sector}</p>}
                   </div>
                 </div>
               )}
@@ -186,10 +186,10 @@ export function CaseStudyClient({ caseStudy }: CaseStudyClientProps) {
       {/* Next Steps Section */}
       <section className="px-4 py-16 md:py-24">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
             Tu empresa puede ser la proxima
           </h2>
-          <p className="text-white/60 text-lg mb-8 max-w-xl mx-auto">
+          <p className="text-foreground/60 text-lg mb-8 max-w-xl mx-auto">
             Descubre como nuestras soluciones de IA pueden transformar tu negocio con resultados medibles.
           </p>
 
@@ -197,14 +197,14 @@ export function CaseStudyClient({ caseStudy }: CaseStudyClientProps) {
             <Button
               size="lg"
               onClick={openContactForm}
-              className="bg-white text-black rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-gray-50 hover:scale-105 hover:shadow-lg group cursor-pointer"
+              className="bg-foreground text-background rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-foreground/90 hover:scale-105 hover:shadow-lg group cursor-pointer"
             >
               Solicitar Demo Gratuita
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Link
               href="/casos-exito"
-              className="inline-flex items-center gap-2 px-6 py-3 text-white/80 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 text-foreground/80 hover:text-foreground transition-colors"
             >
               Vermás casos de exito
               <ArrowRight size={16} />

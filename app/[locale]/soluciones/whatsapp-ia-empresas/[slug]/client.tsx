@@ -228,16 +228,16 @@ export function WhatsAppSubPageClient({ slug }: WhatsAppSubPageClientProps) {
             {/* Hero Section */}
             <section className="pt-8 pb-16">
               <div className="max-w-4xl">
-                <div className={`inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r ${content.color} border border-green-500/30 text-white text-sm font-medium mb-6`}>
+                <div className={`inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r ${content.color} border border-green-500/30 text-foreground text-sm font-medium mb-6`}>
                   <Icon className="w-4 h-4 mr-2 text-green-400" />
                   WhatsApp IA para Empresas
                 </div>
 
-                <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+                <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
                   {content.title}
                 </h1>
                 <p className="text-xl text-green-400 mb-6">{content.subtitle}</p>
-                <p className="text-lg text-white/70 leading-relaxed mb-8">
+                <p className="text-lg text-foreground/70 leading-relaxed mb-8">
                   {content.description}
                 </p>
 
@@ -246,10 +246,10 @@ export function WhatsAppSubPageClient({ slug }: WhatsAppSubPageClientProps) {
                   {content.stats.map((stat, index) => (
                     <div 
                       key={index}
-                      className="bg-white/5 border border-white/10 rounded-xl px-6 py-3 text-center"
+                      className="bg-foreground/5 border border-foreground/10 rounded-xl px-6 py-3 text-center"
                     >
                       <div className="text-xl font-bold text-green-400">{stat.value}</div>
-                      <div className="text-xs text-white/60">{stat.label}</div>
+                      <div className="text-xs text-foreground/60">{stat.label}</div>
                     </div>
                   ))}
                 </div>
@@ -257,7 +257,7 @@ export function WhatsAppSubPageClient({ slug }: WhatsAppSubPageClientProps) {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
                     size="lg" 
-                    className="bg-green-500 hover:bg-green-600 text-white font-semibold"
+                    className="bg-green-500 hover:bg-green-600 text-foreground font-semibold"
                     asChild
                   >
                     <Link href="/demo">
@@ -268,7 +268,7 @@ export function WhatsAppSubPageClient({ slug }: WhatsAppSubPageClientProps) {
                   <Button 
                     size="lg" 
                     variant="outline" 
-                    className="border-white/20 text-white hover:bg-white/10"
+                    className="border-foreground/20 text-foreground hover:bg-foreground/10"
                     asChild
                   >
                     <Link href="/soluciones/whatsapp-ia-empresas">
@@ -286,15 +286,15 @@ export function WhatsAppSubPageClient({ slug }: WhatsAppSubPageClientProps) {
                 <div className="lg:col-span-2 space-y-12">
                   {/* Features */}
                   <div>
-                    <h2 className="text-2xl font-bold text-white mb-6">Caracteristicas</h2>
+                    <h2 className="text-2xl font-bold text-foreground mb-6">Caracteristicas</h2>
                     <div className="grid sm:grid-cols-2 gap-4">
                       {content.features.map((feature, index) => (
                         <div 
                           key={index}
-                          className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl p-4"
+                          className="flex items-center gap-3 bg-foreground/5 border border-foreground/10 rounded-xl p-4"
                         >
                           <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0" />
-                          <span className="text-white/80">{feature}</span>
+                          <span className="text-foreground/80">{feature}</span>
                         </div>
                       ))}
                     </div>
@@ -302,15 +302,15 @@ export function WhatsAppSubPageClient({ slug }: WhatsAppSubPageClientProps) {
 
                   {/* Use Cases */}
                   <div>
-                    <h2 className="text-2xl font-bold text-white mb-6">Casos de uso</h2>
+                    <h2 className="text-2xl font-bold text-foreground mb-6">Casos de uso</h2>
                     <div className="space-y-4">
                       {content.useCases.map((useCase, index) => (
                         <div 
                           key={index}
-                          className="bg-white/5 border border-white/10 rounded-xl p-6"
+                          className="bg-foreground/5 border border-foreground/10 rounded-xl p-6"
                         >
-                          <h3 className="text-lg font-semibold text-white mb-2">{useCase.title}</h3>
-                          <p className="text-white/60">{useCase.description}</p>
+                          <h3 className="text-lg font-semibold text-foreground mb-2">{useCase.title}</h3>
+                          <p className="text-foreground/60">{useCase.description}</p>
                         </div>
                       ))}
                     </div>
@@ -319,8 +319,8 @@ export function WhatsAppSubPageClient({ slug }: WhatsAppSubPageClientProps) {
 
                 {/* Sidebar */}
                 <div className="space-y-6">
-                  <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sticky top-24">
-                    <h3 className="text-lg font-semibold text-white mb-4">Otras soluciones WhatsApp</h3>
+                  <div className="bg-foreground/5 border border-foreground/10 rounded-2xl p-6 sticky top-24">
+                    <h3 className="text-lg font-semibold text-foreground mb-4">Otras soluciones WhatsApp</h3>
                     <div className="space-y-2">
                       {relatedPages.filter(p => p.slug !== slug).map((page) => {
                         const PageIcon = page.icon
@@ -328,16 +328,16 @@ export function WhatsAppSubPageClient({ slug }: WhatsAppSubPageClientProps) {
                           <Link
                             key={page.slug}
                             href={`/soluciones/whatsapp-ia-empresas/${page.slug}`}
-                            className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition-colors group"
+                            className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-foreground/10 transition-colors group"
                           >
-                            <PageIcon className="w-5 h-5 text-white/60 group-hover:text-green-400 transition-colors" />
-                            <span className="text-white/80 group-hover:text-white transition-colors flex-1">{page.title}</span>
-                            <ChevronRight className="w-4 h-4 text-white/40 group-hover:text-green-400 transition-colors" />
+                            <PageIcon className="w-5 h-5 text-foreground/60 group-hover:text-green-400 transition-colors" />
+                            <span className="text-foreground/80 group-hover:text-foreground transition-colors flex-1">{page.title}</span>
+                            <ChevronRight className="w-4 h-4 text-foreground/40 group-hover:text-green-400 transition-colors" />
                           </Link>
                         )
                       })}
                     </div>
-                    <div className="mt-6 pt-6 border-t border-white/10">
+                    <div className="mt-6 pt-6 border-t border-foreground/10">
                       <Link
                         href="/soluciones/whatsapp-ia-empresas"
                         className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-green-500/20 border border-green-500/30 text-green-400 hover:bg-green-500/30 transition-colors"
@@ -365,15 +365,15 @@ export function WhatsAppSubPageClient({ slug }: WhatsAppSubPageClientProps) {
           <section className="py-20 px-4 relative">
             <div className="max-w-4xl mx-auto">
               <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-sm border border-green-500/30 rounded-3xl p-8 md:p-12 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                   Prueba {content.title} gratis
                 </h2>
-                <p className="text-white/70 max-w-xl mx-auto mb-8">
+                <p className="text-foreground/70 max-w-xl mx-auto mb-8">
                   14 dias de prueba gratuita. Configuracion en menos de 1 hora. Sin tarjeta de credito.
                 </p>
                 <Button 
                   size="lg" 
-                  className="bg-green-500 hover:bg-green-600 text-white font-semibold px-8"
+                  className="bg-green-500 hover:bg-green-600 text-foreground font-semibold px-8"
                   asChild
                 >
                   <Link href="/demo">

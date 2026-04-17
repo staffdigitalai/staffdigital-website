@@ -77,19 +77,19 @@ export function SectorsListClient({ sectors }: SectorsListClientProps) {
       {/* Hero Section */}
       <section className="px-4 pt-8 pb-16 md:pb-24">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium mb-8 animate-fade-in-badge">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-foreground/10 backdrop-blur-md border border-foreground/20 text-foreground text-sm font-medium mb-8 animate-fade-in-badge">
             <span className="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse" />
             IA para cada Industria
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight text-balance mb-6 animate-fade-in-heading">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground leading-tight text-balance mb-6 animate-fade-in-heading">
             Soluciones de IA para{" "}
             <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">
               tu Sector
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed animate-fade-in-subheading">
+          <p className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto leading-relaxed animate-fade-in-subheading">
             Cada industria tiene sus desafios unicos. Descubre como nuestras soluciones de IA estan disenadas especificamente para resolver los problemas de tu sector.
           </p>
         </div>
@@ -107,13 +107,13 @@ export function SectorsListClient({ sectors }: SectorsListClientProps) {
                   href={`/sectores/${sector.slug}`}
                   className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 group block"
                 >
-                  <div className="h-full p-6 md:p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                  <div className="h-full p-6 md:p-8 rounded-2xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm hover:bg-foreground/10 hover:border-foreground/20 transition-all duration-300">
                     <div className="flex items-start gap-4 mb-4">
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500/20 to-teal-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                         <IconComponent size={24} className="text-emerald-400" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-xl font-semibold text-white mb-1 group-hover:text-white/90">
+                        <h3 className="text-xl font-semibold text-foreground mb-1 group-hover:text-foreground/90">
                           {sector.title}
                         </h3>
                         {sector.subtitle && (
@@ -122,7 +122,7 @@ export function SectorsListClient({ sectors }: SectorsListClientProps) {
                       </div>
                     </div>
 
-                    <p className="text-white/60 leading-relaxed text-sm mb-4 line-clamp-2">
+                    <p className="text-foreground/60 leading-relaxed text-sm mb-4 line-clamp-2">
                       {sector.excerpt}
                     </p>
 
@@ -136,7 +136,7 @@ export function SectorsListClient({ sectors }: SectorsListClientProps) {
                             <span className="text-emerald-400 text-sm font-semibold">
                               {metrica.valor}
                             </span>
-                            <span className="text-white/50 text-xs ml-1.5">
+                            <span className="text-foreground/50 text-xs ml-1.5">
                               {metrica.etiqueta}
                             </span>
                           </div>
@@ -162,11 +162,11 @@ export function SectorsListClient({ sectors }: SectorsListClientProps) {
       {/* CTA Section */}
       <section className="px-4 pb-20 md:pb-32">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm p-8 md:p-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 text-balance">
+          <div className="rounded-3xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm p-8 md:p-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">
               No encuentras tu sector?
             </h2>
-            <p className="text-white/60 text-lg mb-8 max-w-xl mx-auto">
+            <p className="text-foreground/60 text-lg mb-8 max-w-xl mx-auto">
               Nuestras soluciones de IA se adaptan a cualquier industria. Contactanos para una solucion personalizada.
             </p>
             <Link

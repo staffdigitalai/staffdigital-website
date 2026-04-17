@@ -191,6 +191,29 @@ export interface WPSectorPage {
     servicios_relacionados?: number[]; // IDs of related services
     meta_title?: string;
     meta_description?: string;
+    // ─── New ACF fields (for future data-driven template) ──
+    // When WP dev populates these, the template uses them instead of
+    // lib/sector-fallback-content.ts. All optional.
+    sector_problemas?: Array<{
+      titulo: string;
+      descripcion: string;
+      icono?: string;
+    }>;
+    sector_soluciones?: Array<{
+      titulo: string;
+      descripcion: string;
+      metrica?: string;
+      icono?: string;
+    }>;
+    sector_integraciones?: Array<{
+      logo_url?: string;
+      nombre: string;
+      slug?: string;
+    }>;
+    sector_faq?: Array<{
+      pregunta: string;
+      respuesta: string;
+    }>;
   };
   _embedded?: {
     'wp:featuredmedia'?: Array<{

@@ -28,9 +28,9 @@ export function PageWrapper({
   showBreadcrumbs = true,
 }: PageWrapperProps) {
   return (
-    <div className="min-h-screen bg-black overflow-hidden">
+    <div className="min-h-screen bg-background overflow-hidden">
       <main className="min-h-screen relative overflow-hidden">
-        <div className="fixed inset-0 w-full h-full">
+        <div className="fixed inset-0 w-full h-full opacity-30 dark:opacity-100 transition-opacity duration-500">
           <Aurora
             colorStops={["#475569", "#64748b", "#475569"]}
             amplitude={1.2}
@@ -40,30 +40,30 @@ export function PageWrapper({
         </div>
         <div className="relative z-10">
           <GlassmorphismNav />
-          
+
           {showBreadcrumbs && breadcrumbs.length > 0 && (
             <div className="pt-24 md:pt-28 px-4">
               <div className="max-w-6xl mx-auto">
                 <Breadcrumb>
-                  <BreadcrumbList className="text-white/60">
+                  <BreadcrumbList className="text-foreground/60">
                     <BreadcrumbItem>
                       <BreadcrumbLink asChild>
-                        <Link href="/" className="hover:text-white/90 transition-colors">
+                        <Link href="/" className="hover:text-foreground/90 transition-colors">
                           Inicio
                         </Link>
                       </BreadcrumbLink>
                     </BreadcrumbItem>
                     {breadcrumbs.map((item, index) => (
                       <BreadcrumbItem key={index}>
-                        <BreadcrumbSeparator className="text-white/40" />
+                        <BreadcrumbSeparator className="text-foreground/40" />
                         {item.href ? (
                           <BreadcrumbLink asChild>
-                            <Link href={item.href} className="hover:text-white/90 transition-colors">
+                            <Link href={item.href} className="hover:text-foreground/90 transition-colors">
                               {item.label}
                             </Link>
                           </BreadcrumbLink>
                         ) : (
-                          <BreadcrumbPage className="text-white/90">
+                          <BreadcrumbPage className="text-foreground/90">
                             {item.label}
                           </BreadcrumbPage>
                         )}
@@ -74,7 +74,7 @@ export function PageWrapper({
               </div>
             </div>
           )}
-          
+
           {children}
           <Footer />
         </div>

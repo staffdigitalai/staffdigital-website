@@ -152,30 +152,30 @@ export function ServicePageTemplate({ data, children }: { data: ServicePageData;
       {/* Hero Section */}
       <section className="min-h-screen flex items-start justify-center px-4 pt-24 md:pt-32 pb-20 relative">
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium mb-8 mt-8 md:mt-12 animate-fade-in-badge">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-foreground/10 backdrop-blur-md border border-foreground/20 text-foreground text-sm font-medium mb-8 mt-8 md:mt-12 animate-fade-in-badge">
             <span className={`w-2 h-2 ${colors.badge} rounded-full mr-2 animate-pulse`} />
             {data.badge}
           </div>
 
           <div className="space-y-8">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight text-balance animate-fade-in-heading">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight text-balance animate-fade-in-heading">
               {data.headline}{" "}
               <span className={`bg-gradient-to-r ${colors.gradient} bg-clip-text text-transparent`}>
                 {data.headlineAccent}
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed animate-fade-in-subheading">
+            <p className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto leading-relaxed animate-fade-in-subheading">
               {data.subheadline}
             </p>
 
             <div className="animate-fade-in-subheading">
               <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 flex-wrap">
-                <span className="text-lg md:text-xl text-slate-300">{data.valueStatement}</span>
+                <span className="text-lg md:text-xl text-foreground/70">{data.valueStatement}</span>
                 <span className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${colors.statGradient} bg-clip-text text-transparent`}>
                   {data.valueHighlight}
                 </span>
-                <span className="text-lg md:text-xl text-slate-300">{data.valueSuffix}</span>
+                <span className="text-lg md:text-xl text-foreground/70">{data.valueSuffix}</span>
               </div>
             </div>
 
@@ -183,7 +183,7 @@ export function ServicePageTemplate({ data, children }: { data: ServicePageData;
               <Button
                 size="lg"
                 onClick={openContactForm}
-                className="bg-white text-black rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-gray-50 hover:scale-105 hover:shadow-lg group cursor-pointer w-full sm:w-auto"
+                className="bg-foreground text-background rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-foreground/90 hover:scale-105 hover:shadow-lg group cursor-pointer w-full sm:w-auto"
               >
                 Pide tu Demo Hoy
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -192,7 +192,7 @@ export function ServicePageTemplate({ data, children }: { data: ServicePageData;
                 size="lg"
                 variant="outline"
                 onClick={openBudgetForm}
-                className="bg-transparent text-white border-2 border-white/30 rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-white/10 hover:border-white/50 hover:scale-105 cursor-pointer backdrop-blur-sm w-full sm:w-auto"
+                className="bg-transparent text-foreground border-2 border-foreground/30 rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-foreground/10 hover:border-foreground/50 hover:scale-105 cursor-pointer backdrop-blur-sm w-full sm:w-auto"
               >
                 Pedir Presupuesto
               </Button>
@@ -209,10 +209,10 @@ export function ServicePageTemplate({ data, children }: { data: ServicePageData;
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-white text-balance fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
                 {data.overviewTitle}
               </h2>
-              <p className="text-white/70 text-lg leading-relaxed fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
+              <p className="text-foreground/70 text-lg leading-relaxed fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
                 {data.overviewDescription}
               </p>
             </div>
@@ -220,12 +220,12 @@ export function ServicePageTemplate({ data, children }: { data: ServicePageData;
               {data.overviewPoints.map((point, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-4 p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm"
+                  className="flex items-start gap-4 p-4 rounded-xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm"
                 >
                   <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${colors.iconBg} border ${colors.iconBorder} flex items-center justify-center flex-shrink-0`}>
                     <Check size={16} className={colors.iconText} />
                   </div>
-                  <p className="text-white/80 leading-relaxed">{point}</p>
+                  <p className="text-foreground/80 leading-relaxed">{point}</p>
                 </div>
               ))}
             </div>
@@ -237,13 +237,13 @@ export function ServicePageTemplate({ data, children }: { data: ServicePageData;
       <section ref={servicesRef} className="py-20 md:py-32 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-balance fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
               Servicios de{" "}
               <span className={`bg-gradient-to-r ${colors.gradient} bg-clip-text text-transparent`}>
                 {data.serviceName}
               </span>
             </h2>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
+            <p className="text-foreground/60 text-lg max-w-2xl mx-auto fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
               Todo lo que necesitas para transformar tu negocio
             </p>
           </div>
@@ -256,14 +256,14 @@ export function ServicePageTemplate({ data, children }: { data: ServicePageData;
                   key={service.title}
                   className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 group"
                 >
-                  <div className="h-full p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                  <div className="h-full p-8 rounded-2xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm hover:bg-foreground/10 hover:border-foreground/20 transition-all duration-300">
                     <div className="flex items-start gap-4">
                       <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${colors.iconBg} border ${colors.iconBorder} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
                         <Icon size={24} className={colors.iconText} />
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold text-white mb-2">{service.title}</h3>
-                        <p className="text-white/60 leading-relaxed">{service.description}</p>
+                        <h3 className="text-xl font-semibold text-foreground mb-2">{service.title}</h3>
+                        <p className="text-foreground/60 leading-relaxed">{service.description}</p>
                         {service.highlight && (
                           <div className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20">
                             <Check size={14} className="text-green-400" />
@@ -284,10 +284,10 @@ export function ServicePageTemplate({ data, children }: { data: ServicePageData;
       <section ref={benefitsRef} className="py-20 md:py-32 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-balance fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
               {data.benefitsTitle}
             </h2>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
+            <p className="text-foreground/60 text-lg max-w-2xl mx-auto fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
               {data.benefitsSubtitle}
             </p>
           </div>
@@ -300,12 +300,12 @@ export function ServicePageTemplate({ data, children }: { data: ServicePageData;
                   key={benefit.title}
                   className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 group"
                 >
-                  <div className="h-full p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                  <div className="h-full p-6 rounded-2xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm hover:bg-foreground/10 hover:border-foreground/20 transition-all duration-300">
                     <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${colors.iconBg} border ${colors.iconBorder} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                       <Icon size={24} className={colors.iconText} />
                     </div>
-                    <h3 className="text-lg font-semibold text-white mb-2">{benefit.title}</h3>
-                    <p className="text-white/60 leading-relaxed text-sm">{benefit.description}</p>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">{benefit.title}</h3>
+                    <p className="text-foreground/60 leading-relaxed text-sm">{benefit.description}</p>
                   </div>
                 </div>
               )
@@ -318,13 +318,13 @@ export function ServicePageTemplate({ data, children }: { data: ServicePageData;
       <section ref={sectorsRef} className="py-20 md:py-32 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-balance fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
               Casos de Uso por{" "}
               <span className={`bg-gradient-to-r ${colors.gradient} bg-clip-text text-transparent`}>
                 Sector
               </span>
             </h2>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
+            <p className="text-foreground/60 text-lg max-w-2xl mx-auto fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
               Descubre como diferentes industrias aprovechan {data.serviceName.toLowerCase()}
             </p>
           </div>
@@ -337,18 +337,18 @@ export function ServicePageTemplate({ data, children }: { data: ServicePageData;
                   key={sectorCase.sector}
                   className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 group"
                 >
-                  <div className="h-full p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                  <div className="h-full p-6 rounded-2xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm hover:bg-foreground/10 hover:border-foreground/20 transition-all duration-300">
                     <div className="flex items-center gap-3 mb-4">
                       <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${colors.sectorBg} border ${colors.sectorBorder} flex items-center justify-center group-hover:scale-110 transition-transform`}>
                         <SectorIcon size={20} className={colors.iconText} />
                       </div>
-                      <h3 className="text-lg font-semibold text-white">{sectorCase.sector}</h3>
+                      <h3 className="text-lg font-semibold text-foreground">{sectorCase.sector}</h3>
                     </div>
                     <ul className="space-y-2">
                       {sectorCase.useCases.map((useCase, index) => (
                         <li key={index} className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-white/40 mt-2 flex-shrink-0" />
-                          <span className="text-white/60 text-sm leading-relaxed">{useCase}</span>
+                          <div className="w-1.5 h-1.5 rounded-full bg-foreground/40 mt-2 flex-shrink-0" />
+                          <span className="text-foreground/60 text-sm leading-relaxed">{useCase}</span>
                         </li>
                       ))}
                     </ul>
@@ -363,14 +363,14 @@ export function ServicePageTemplate({ data, children }: { data: ServicePageData;
       {/* Stats Section */}
       <section ref={statsRef} className="py-20 md:py-32 px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm p-8 md:p-12">
+          <div className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 rounded-3xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm p-8 md:p-12">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
               {data.stats.map((stat) => (
                 <div key={stat.label} className="text-center">
                   <p className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${colors.statGradient} bg-clip-text text-transparent mb-2`}>
                     {stat.value}
                   </p>
-                  <p className="text-white/50 text-sm">{stat.label}</p>
+                  <p className="text-foreground/50 text-sm">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -383,7 +383,7 @@ export function ServicePageTemplate({ data, children }: { data: ServicePageData;
         <section ref={relatedRef} className="py-20 md:py-32 px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
                 Soluciones Relacionadas
               </h2>
             </div>
@@ -395,10 +395,10 @@ export function ServicePageTemplate({ data, children }: { data: ServicePageData;
                   href={service.href}
                   className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 group block"
                 >
-                  <div className="h-full p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/20 transition-all duration-300">
-                    <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-white/90">{service.title}</h3>
-                    <p className="text-white/60 text-sm mb-4">{service.description}</p>
-                    <div className="flex items-center text-white/70 group-hover:text-white transition-colors">
+                  <div className="h-full p-6 rounded-2xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm hover:bg-foreground/10 hover:border-foreground/20 transition-all duration-300">
+                    <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-foreground/90">{service.title}</h3>
+                    <p className="text-foreground/60 text-sm mb-4">{service.description}</p>
+                    <div className="flex items-center text-foreground/70 group-hover:text-foreground transition-colors">
                       <span className="text-sm">Ver mas</span>
                       <ArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform" />
                     </div>
@@ -413,14 +413,14 @@ export function ServicePageTemplate({ data, children }: { data: ServicePageData;
       {/* CTA Section */}
       <section id="contact" className="relative py-8 px-4 sm:px-6 lg:px-8 mb-32">
         <div className="relative max-w-4xl mx-auto">
-          <div className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 text-center p-8 md:p-10 rounded-3xl border border-white/20 bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/15%),theme(backgroundColor.white/5%))]">
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-light text-white mb-6 text-balance leading-tight">
+          <div className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 text-center p-8 md:p-10 rounded-3xl border border-foreground/20 bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/15%),theme(backgroundColor.white/5%))]">
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-light text-foreground mb-6 text-balance leading-tight">
               {data.ctaTitle}{" "}
               <span className="font-medium italic bg-gradient-to-r from-white to-slate-200 bg-clip-text text-transparent">
                 {data.ctaAccent}
               </span>
             </h3>
-            <p className="text-lg text-white/70 mb-8 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-foreground/70 mb-8 max-w-2xl mx-auto leading-relaxed">
               {data.ctaDescription}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">

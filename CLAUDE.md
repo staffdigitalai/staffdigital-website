@@ -85,7 +85,8 @@ gh pr merge <pr-number> --squash --delete-branch
 ## i18n — MANDATORY
 
 - 3 locales supported: ES (default, no URL prefix), EN (`/en/`), PT (`/pt/`)
-- All user-facing strings in `messages/<locale>.json`, never hardcoded
+- **Every user-facing string must come from i18n via `t('key')`. Never hardcode copy in components** — not in JSX, not in `aria-label`, not in `alt`, not in button text.
+- **When modifying an existing string, update ALL 3 locale files (`es.json`, `en.json`, `pt.json`) in the same commit.** A PR that touches only one locale for a live key will ship a mistranslation.
 - Next-intl config: `onError: 'warn'` + `getMessageFallback` prevents crash on missing keys
 - When adding a new key, add to ALL 3 locale files or the fallback renders `namespace.key` visibly
 

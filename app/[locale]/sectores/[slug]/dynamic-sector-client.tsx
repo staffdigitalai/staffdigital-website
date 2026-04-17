@@ -1,132 +1,83 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import Link from "next/link"
-import { ArrowRight, Check, Stethoscope, Smile, Scissors, UtensilsCrossed, Home, Car, Dumbbell, ShoppingBag, Building2, Wrench, GraduationCap, Warehouse, Building, Briefcase, Heart, Hotel, MessageSquare, Calendar, TrendingUp, Image, Camera, Video, Phone, Clock, Target, AlertTriangle, Users, FileText, CalendarCheck, BarChart3 } from "lucide-react"
+import * as Icons from "lucide-react"
 import type { LucideIcon } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { PageWrapper } from "@/components/page-wrapper"
-import { CTASection } from "@/components/cta-section"
 import { useFormModals } from "@/components/contact-form-modals"
-import { useTranslations } from "next-intl"
 import type { WPSectorPage } from "@/lib/wordpress"
 import { stripHtml } from "@/lib/wordpress"
-
-// Icon mapping
-const iconMap: Record<string, LucideIcon> = {
-  Stethoscope,
-  Smile,
-  Scissors,
-  UtensilsCrossed,
-  Home,
-  Car,
-  Dumbbell,
-  ShoppingBag,
-  Building2,
-  Wrench,
-  GraduationCap,
-  Warehouse,
-  Building,
-  Briefcase,
-  Heart,
-  Hotel,
-  MessageSquare,
-  Calendar,
-  TrendingUp,
-  Image,
-  Camera,
-  Video,
-  Phone,
-  Clock,
-  Target,
-  AlertTriangle,
-  Users,
-  FileText,
-  CalendarCheck,
-  BarChart3,
-  Check,
-}
+import { getSectorFallback } from "@/lib/sector-fallback-content"
+import { SectorHeroSection } from "@/components/sector/hero-section"
+import { SectorProblemsSection } from "@/components/sector/problems-section"
+import { SectorSolutionsSection } from "@/components/sector/solutions-section"
+import { SectorUseCasesSection } from "@/components/sector/use-cases-section"
+import { SectorIntegrationsSection } from "@/components/sector/integrations-section"
+import { SectorFaqSection } from "@/components/sector/faq-section"
+import { SectorCrossSellSection } from "@/components/sector/cross-sell-section"
+import { SectorFinalCtaSection } from "@/components/sector/final-cta-section"
 
 interface DynamicSectorClientProps {
   sector: WPSectorPage
 }
 
 export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
-  const { openContactForm, openBudgetForm } = useFormModals()
-  const t = useTranslations("templates")
-  const [counter, setCounter] = useState(0)
-  const problemsRef = useRef<HTMLElement>(null)
-  const solutionsRef = useRef<HTMLElement>(null)
-  const statsRef = useRef<HTMLElement>(null)
+  const { openContactForm } = useFormModals()
 
-  const title = sector.title.rendered
-  const subtitle = sector.acf?.subtitulo || ""
-  const excerpt = stripHtml(sector.excerpt.rendered)
-  const MainIcon = iconMap[sector.acf?.icono || "Building2"] || Building2
-  const problemas = Array.isArray(sector.acf?.problemas_sector) ? sector.acf.problemas_sector : []
-  const soluciones = Array.isArray(sector.acf?.soluciones) ? sector.acf.soluciones : []
+  const slug = sector.slug
+  const title = stripHtml(sector.title.rendered)
+  const subtitle = sector.acf?.subtitulo
+  const excerpt = stripHtml(sector.excerpt?.rendered ?? "")
 
-  // Metricas can be string or array — handle both
-  const rawMetricas = sector.acf?.metricas
-  const metricas: Array<{valor: string; etiqueta: string}> = Array.isArray(rawMetricas)
-    ? rawMetricas
-    : typeof rawMetricas === "string" && rawMetricas.length > 0
-      ? rawMetricas.split("|").map((m: string) => {
-          const parts = m.trim().split(" ")
-          return { valor: parts[0] || "", etiqueta: parts.slice(1).join(" ") || "" }
-        })
-      : []
+  // ─── Data fallback chain: ACF → sector map → generic ──────────
+  const fallback = getSectorFallback(slug)
 
-  // Get first metric value for animated counter
-  const firstMetricNum = metricas[0]?.valor
-    ? parseInt(metricas[0].valor.replace(/[^0-9]/g, ''), 10) || 0
-    : 0
+  const heroIconName = sector.acf?.icono || fallback.heroIcon
+  const HeroIconComponent = (Icons[heroIconName as keyof typeof Icons] as LucideIcon) || Icons.Building2
 
-  useEffect(() => {
-    if (firstMetricNum === 0) return
-    
-    const duration = 2000
-    const steps = 60
-    const increment = firstMetricNum / steps
-    const stepDuration = duration / steps
-    let currentStep = 0
+  // Problems: prefer new sector_problemas, then old problemas_sector, then fallback
+  const problems = sector.acf?.sector_problemas?.length
+    ? sector.acf.sector_problemas.map((p) => ({
+        titulo: p.titulo,
+        descripcion: p.descripcion,
+        icono: p.icono || "AlertTriangle",
+      }))
+    : sector.acf?.problemas_sector?.length
+    ? sector.acf.problemas_sector.map((p) => ({
+        titulo: p.problema,
+        descripcion: p.descripcion,
+        icono: "AlertTriangle",
+      }))
+    : fallback.problems
 
-    const timer = setInterval(() => {
-      currentStep++
-      if (currentStep <= steps) {
-        setCounter(Math.min(Math.round(increment * currentStep), firstMetricNum))
-      } else {
-        clearInterval(timer)
-      }
-    }, stepDuration)
+  // Solutions: prefer sector_soluciones (with metric), then soluciones, then fallback
+  const solutions = sector.acf?.sector_soluciones?.length
+    ? sector.acf.sector_soluciones.map((s) => ({
+        titulo: s.titulo,
+        descripcion: s.descripcion,
+        metrica: s.metrica || "Ver detalle",
+        icono: s.icono || "Check",
+      }))
+    : sector.acf?.soluciones?.length && sector.acf?.metricas?.length
+    ? sector.acf.soluciones.map((s, i) => ({
+        titulo: s.titulo,
+        descripcion: s.descripcion,
+        metrica: sector.acf?.metricas?.[i]?.valor ?? "",
+        icono: s.icono || "Check",
+      }))
+    : fallback.solutions
 
-    return () => clearInterval(timer)
-  }, [firstMetricNum])
+  // Use cases: only from fallback for now (ACF not planned)
+  const useCases = fallback.useCases
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            const elements = entry.target.querySelectorAll(".fade-in-element")
-            elements.forEach((el, i) => {
-              setTimeout(() => {
-                el.classList.add("animate-fade-in-up")
-              }, i * 100)
-            })
-          }
-        }
-      },
-      { threshold: 0.1 }
-    )
+  // Integrations: prefer sector_integraciones slugs, then fallback
+  const integrations = sector.acf?.sector_integraciones?.length
+    ? sector.acf.sector_integraciones.map((i) => i.slug || "openai").filter(Boolean)
+    : fallback.integrations
 
-    const refs = [problemsRef, solutionsRef, statsRef]
-    for (const ref of refs) {
-      if (ref.current) observer.observe(ref.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
+  // FAQ: prefer sector_faq, then fallback
+  const faqs = sector.acf?.sector_faq?.length
+    ? sector.acf.sector_faq
+    : fallback.faq
 
   const breadcrumbs = [
     { label: "Sectores", href: "/sectores" },
@@ -135,261 +86,61 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
 
   return (
     <PageWrapper breadcrumbs={breadcrumbs}>
-      {/* Hero Section */}
-      <section className="px-4 pt-8 pb-16 md:pb-24">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-foreground/10 backdrop-blur-md border border-foreground/20 text-foreground text-sm font-medium mb-8 animate-fade-in-badge">
-            <span className="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse" />
-            StaffDigital AI · {title.replace(/^Agentes IA para /i, "")}
-          </div>
+      <SectorHeroSection
+        title={title}
+        subtitle={subtitle}
+        excerpt={excerpt || `Agentes IA especializados para ${title.toLowerCase()}.`}
+        heroImage={fallback.heroImage}
+        heroIcon={HeroIconComponent}
+        onContactClick={openContactForm}
+        ctaPrimary="Pedir Demo"
+        ctaSecondary="Hablar con ventas"
+      />
 
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-teal-500/10 border border-emerald-500/20 mb-8 animate-fade-in-badge">
-            <MainIcon size={40} className="text-emerald-400" />
-          </div>
+      <SectorProblemsSection
+        problems={problems}
+        title="Problemas que enfrentan"
+        subtitle="Los desafíos diarios que frenan el crecimiento de tu negocio."
+        sectorName={title.replace(/^Agentes IA para /i, "").replace(/^IA para /i, "")}
+      />
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground leading-tight text-balance mb-4 animate-fade-in-heading"
-            dangerouslySetInnerHTML={{ __html: title }}
-          />
+      <SectorSolutionsSection
+        solutions={solutions}
+        title="Cómo StaffDigital AI transforma"
+        sectorName={title.replace(/^Agentes IA para /i, "").replace(/^IA para /i, "")}
+      />
 
-          {subtitle && (
-            <p className="text-xl md:text-2xl text-emerald-400/80 font-medium mb-6 animate-fade-in-subheading">
-              {subtitle}
-            </p>
-          )}
+      <SectorUseCasesSection
+        useCases={useCases}
+        title="Casos de uso reales"
+        subtitle="Escenarios concretos donde nuestros agentes IA ya están operando."
+      />
 
-          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-10 animate-fade-in-subheading">
-            {excerpt}
-          </p>
+      <SectorIntegrationsSection
+        integrations={integrations}
+        title="Integrado con tu stack"
+        subtitle="Conectamos con las herramientas que ya usas. Sin migraciones, sin dolor."
+      />
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-buttons">
-            <Button
-              size="lg"
-              onClick={openContactForm}
-              className="bg-foreground text-background rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-foreground/90 hover:scale-105 hover:shadow-lg group cursor-pointer w-full sm:w-auto"
-            >
-              {t("cta_primary")}
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              asChild
-              className="bg-transparent text-foreground border-2 border-foreground/30 rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-foreground/10 hover:border-foreground/50 hover:scale-105 cursor-pointer backdrop-blur-sm w-full sm:w-auto"
-            >
-              <a href="tel:+34931229129">
-                <Phone className="mr-2 h-5 w-5" />
-                {t("cta_secondary")}
-              </a>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <SectorFaqSection
+        faqs={faqs}
+        title="Preguntas frecuentes"
+        subtitle="Las dudas más comunes antes de implementar agentes IA en tu sector."
+      />
 
-      {/* Problems Section */}
-      {problemas.length > 0 && (
-        <section ref={problemsRef} className="px-4 py-20 md:py-32">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
-                {t("problems_title")} —{" "}
-                <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
-                  {title}
-                </span>
-              </h2>
-              <p className="text-foreground/60 text-lg max-w-2xl mx-auto fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
-                {t("problems_subtitle")}
-              </p>
-            </div>
+      <SectorCrossSellSection
+        currentSlug={slug}
+        title="Otros sectores que atendemos"
+        subtitle="Descubre cómo ayudamos a otros negocios con agentes IA especializados."
+        ctaAll="Ver todos los sectores"
+      />
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {problemas.map((problema, index) => (
-                <div
-                  key={index}
-                  className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 group"
-                >
-                  <div className="h-full p-6 rounded-2xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm hover:bg-foreground/10 hover:border-foreground/20 transition-all duration-300">
-                    <div className="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-4 group-hover:bg-red-500/20 transition-colors">
-                      <AlertTriangle size={24} className="text-red-400" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">
-                      {problema.problema}
-                    </h3>
-                    <p className="text-foreground/60 leading-relaxed text-sm">
-                      {problema.descripcion}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Solutions Section */}
-      {soluciones.length > 0 && (
-        <section ref={solutionsRef} className="px-4 py-20 md:py-32">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
-                Como StaffDigital AI transforma tu{" "}
-                <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
-                  {title.toLowerCase()}
-                </span>
-              </h2>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {soluciones.map((solucion, index) => {
-                const SolutionIcon = iconMap[solucion.icono || "Check"] || Check
-                return (
-                  <div
-                    key={index}
-                    className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 group"
-                  >
-                    <div className="h-full p-8 rounded-2xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm hover:bg-foreground/10 hover:border-foreground/20 transition-all duration-300">
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500/20 to-teal-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                          <SolutionIcon size={24} className="text-emerald-400" />
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-semibold text-foreground mb-2">
-                            {solucion.titulo}
-                          </h3>
-                          <p className="text-foreground/60 leading-relaxed">
-                            {solucion.descripcion}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Stats Section */}
-      {metricas.length > 0 && (
-        <section ref={statsRef} className="px-4 py-20 md:py-32">
-          <div className="max-w-5xl mx-auto">
-            <div className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 rounded-3xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm p-8 md:p-12">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
-                {metricas.map((metrica, index) => (
-                  <div key={index} className="text-center">
-                    <p className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent mb-2">
-                      {index === 0 && firstMetricNum > 0
-                        ? metrica.valor.replace(/\d+/, String(counter))
-                        : metrica.valor}
-                    </p>
-                    <p className="text-foreground/50 text-sm">{metrica.etiqueta}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* WordPress Content Section */}
-      {sector.content.rendered && (
-        <section className="px-4 py-20 md:py-32">
-          <div className="max-w-4xl mx-auto">
-            <div
-              className="prose prose-invert prose-lg max-w-none
-                prose-headings:text-foreground prose-headings:font-bold
-                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-                prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-                prose-p:text-foreground/70 prose-p:leading-relaxed
-                prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:underline
-                prose-strong:text-foreground
-                prose-ul:text-foreground/70 prose-li:marker:text-emerald-400"
-              dangerouslySetInnerHTML={{ __html: sector.content.rendered }}
-            />
-          </div>
-        </section>
-      )}
-
-      {/* Technology Partners */}
-      <section className="px-4 py-16">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-center text-foreground/40 text-sm mb-8">{t("tech_partners")}</p>
-          <div className="flex flex-wrap items-center justify-center gap-8 opacity-60">
-            {[
-              { src: "/images/partners/openai.svg", alt: "OpenAI" },
-              { src: "/images/partners/anthropic.svg", alt: "Anthropic" },
-              { src: "/images/partners/google-cloud.svg", alt: "Google Cloud" },
-              { src: "/images/partners/twilio.svg", alt: "Twilio" },
-              { src: "/images/partners/salesforce.svg", alt: "Salesforce" },
-              { src: "/images/partners/openclaw.svg", alt: "OpenClaw" },
-            ].map((logo) => (
-              <img
-                key={logo.alt}
-                src={logo.src}
-                alt={logo.alt}
-                className="h-6 sm:h-8 w-auto grayscale brightness-200 hover:grayscale-0 hover:brightness-100 transition-all duration-300"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Client Logos Placeholder */}
-      <section className="px-4 py-16">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-center text-foreground/40 text-sm mb-8">{t("client_logos")}</p>
-          <div className="flex flex-wrap items-center justify-center gap-10 opacity-40">
-            {["Cliente 1", "Cliente 2", "Cliente 3", "Cliente 4", "Cliente 5"].map((name) => (
-              <div
-                key={name}
-                className="w-24 h-10 rounded-lg border border-foreground/10 bg-foreground/5 flex items-center justify-center text-foreground/30 text-xs"
-              >
-                {name}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Related Sectors */}
-      <section className="px-4 py-20 md:py-32">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-              {t("other_sectors")}
-            </h2>
-            <p className="text-foreground/60">
-              {t("other_sectors_subtitle")}
-            </p>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-3">
-            {[
-              { label: "Concesionarios", href: "/sectores/concesionarios" },
-              { label: "Clínicas", href: "/sectores/clinicas" },
-              { label: "Restaurantes", href: "/sectores/restaurantes" },
-              { label: "Inmobiliarias", href: "/sectores/inmobiliarias" },
-              { label: "E-commerce", href: "/sectores/ecommerce" },
-              { label: "Turismo", href: "/sectores/turismo-hoteleria" },
-              { label: "Educación", href: "/sectores/educacion" },
-              { label: "Servicios Técnicos", href: "/sectores/servicios-tecnicos" },
-            ]
-              .filter((s) => s.href !== `/sectores/${sector.slug}`)
-              .slice(0, 6)
-              .map((s) => (
-                <Link
-                  key={s.href}
-                  href={s.href}
-                  className="px-5 py-2.5 rounded-full border border-foreground/10 bg-foreground/5 text-foreground/70 text-sm hover:bg-foreground/10 hover:border-foreground/20 hover:text-foreground transition-all"
-                >
-                  {s.label}
-                </Link>
-              ))}
-          </div>
-        </div>
-      </section>
-
-      <CTASection />
+      <SectorFinalCtaSection
+        title="¿Listo para transformar tu negocio?"
+        subtitle="Implementación llave en mano en 2-6 semanas. Sin permanencia."
+        ctaLabel="Pedir Demo"
+        sectorName={title}
+      />
     </PageWrapper>
   )
 }

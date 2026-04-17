@@ -42,7 +42,7 @@ export function SolutionsBlock() {
                   <li key={i}>
                     <Link
                       href={item.href}
-                      className="flex items-center gap-2 text-foreground/55 dark:text-foreground/50 hover:text-[#0078AA] dark:hover:text-[#00D4FF] text-sm transition-all duration-200 group"
+                      className="flex items-center gap-2 text-foreground/55 dark:text-foreground/50 hover:text-brand-secondary dark:hover:text-brand-secondary text-sm transition-all duration-200 group"
                     >
                       <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
                       <span className="group-hover:translate-x-1 transition-transform duration-200">

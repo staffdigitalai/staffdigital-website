@@ -28,7 +28,7 @@ function CallCenterMockup() {
     <div className="w-full h-full bg-white dark:bg-gray-900 flex text-[8px]">
       {/* Sidebar */}
       <div className="w-7 bg-gray-50 dark:bg-gray-800 border-r border-gray-100 dark:border-gray-700 flex flex-col items-center py-2 gap-2">
-        <Phone className="w-3 h-3 text-[#0078AA]" />
+        <Phone className="w-3 h-3 text-brand-secondary" />
         <MessageCircle className="w-3 h-3 text-gray-400" />
         <Mail className="w-3 h-3 text-gray-400" />
       </div>
@@ -78,7 +78,7 @@ function AtencionTelefonicaMockup() {
       {/* Waveform */}
       <div className="flex items-end gap-0.5 h-6 my-1">
         {[3, 5, 8, 12, 8, 14, 10, 6, 9, 12, 7, 4, 8, 11, 6, 9, 5, 3].map((h, i) => (
-          <div key={i} className="w-1 bg-gradient-to-t from-[#0078AA] to-[#7C3AED] rounded-full" style={{ height: `${h}px` }} />
+          <div key={i} className="w-1 bg-gradient-to-t from-gradient-from to-gradient-to rounded-full" style={{ height: `${h}px` }} />
         ))}
       </div>
       {/* Timer */}
@@ -170,12 +170,12 @@ function ChatWebMockup() {
             </div>
           </div>
           <div className="flex justify-end">
-            <div className="bg-[#0078AA] rounded px-1.5 py-0.5 text-white max-w-[80%]">
+            <div className="bg-brand-secondary rounded px-1.5 py-0.5 text-white max-w-[80%]">
               ¡Sí! Te agendo una demo ahora
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-1 text-[#7C3AED]">
+        <div className="flex items-center gap-1 text-brand-primary">
           <div className="flex gap-0.5">
             <span className="w-1 h-1 bg-current rounded-full animate-bounce" />
             <span className="w-1 h-1 bg-current rounded-full animate-bounce" style={{ animationDelay: "0.1s" }} />
@@ -193,14 +193,14 @@ function ChatProductosMockup() {
   return (
     <div className="w-full h-full bg-white dark:bg-gray-900 p-1.5 flex flex-col text-[8px]">
       <div className="flex items-center gap-1 mb-1">
-        <ShoppingCart className="w-3 h-3 text-[#0078AA]" />
+        <ShoppingCart className="w-3 h-3 text-brand-secondary" />
         <span className="font-semibold text-gray-600 dark:text-gray-400">Asistente de compra</span>
       </div>
       <div className="flex-1 space-y-1">
         <div className="bg-gray-100 dark:bg-gray-700 rounded px-1.5 py-0.5 text-gray-700 dark:text-gray-300 w-fit">
           Busco zapatillas running 42
         </div>
-        <div className="bg-[#0078AA]/10 dark:bg-[#0078AA]/20 rounded p-1 flex gap-1.5">
+        <div className="bg-brand-secondary/10 dark:bg-brand-secondary/20 rounded p-1 flex gap-1.5">
           <div className="w-8 h-8 bg-gray-200 dark:bg-gray-600 rounded shrink-0" />
           <div className="flex-1 min-w-0">
             <div className="font-medium text-gray-800 dark:text-gray-200 truncate">Nike Air Zoom</div>
@@ -217,7 +217,7 @@ function ChatProductosMockup() {
 function VentasMockup() {
   const columns = [
     { name: "Nuevo", count: 3, color: "bg-gray-200 dark:bg-gray-600" },
-    { name: "Cualificado", count: 2, color: "bg-[#0078AA]" },
+    { name: "Cualificado", count: 2, color: "bg-brand-secondary" },
     { name: "Propuesta", count: 2, color: "bg-yellow-400" },
     { name: "Cierre", count: 1, color: "bg-green-500" },
   ]
@@ -257,14 +257,14 @@ function SoporteMockup() {
     <div className="w-full h-full bg-white dark:bg-gray-900 p-1.5 text-[7px]">
       <div className="flex items-center justify-between mb-1">
         <div className="flex items-center gap-1">
-          <Headphones className="w-3 h-3 text-[#0078AA]" />
+          <Headphones className="w-3 h-3 text-brand-secondary" />
           <span className="font-semibold text-gray-600 dark:text-gray-400">Tickets · 145</span>
         </div>
         <Badge variant="success">82% IA</Badge>
       </div>
       {/* Progress bar */}
       <div className="h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full mb-1.5 overflow-hidden">
-        <div className="h-full w-[82%] bg-gradient-to-r from-[#0078AA] to-[#7C3AED] rounded-full" />
+        <div className="h-full w-[82%] bg-gradient-to-r from-gradient-from to-gradient-to rounded-full" />
       </div>
       {/* Tickets table */}
       <div className="space-y-0.5">
@@ -293,7 +293,7 @@ function AgendamientosMockup() {
       {/* Calendar */}
       <div className="flex-1">
         <div className="flex items-center justify-between mb-1">
-          <Calendar className="w-3 h-3 text-[#0078AA]" />
+          <Calendar className="w-3 h-3 text-brand-secondary" />
           <span className="font-semibold text-gray-600 dark:text-gray-400">Abril 2026</span>
         </div>
         <div className="grid grid-cols-7 gap-0.5">
@@ -308,8 +308,8 @@ function AgendamientosMockup() {
               <div
                 key={i}
                 className={`w-3 h-3 rounded text-center leading-3 ${
-                  isSelected ? "bg-[#0078AA] text-white" : 
-                  isAvailable ? "bg-blue-100 dark:bg-blue-900/30 text-[#0078AA]" : 
+                  isSelected ? "bg-brand-secondary text-white" : 
+                  isAvailable ? "bg-blue-100 dark:bg-blue-900/30 text-brand-secondary" : 
                   "text-gray-400"
                 }`}
               >
@@ -323,7 +323,7 @@ function AgendamientosMockup() {
       <div className="w-12 space-y-0.5">
         <div className="text-[6px] text-gray-400 mb-1">Hora</div>
         {["09:00", "09:30", "10:00", "10:30"].map((t, i) => (
-          <div key={i} className={`text-center py-0.5 rounded ${i === 2 ? "bg-[#0078AA] text-white" : "bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400"}`}>
+          <div key={i} className={`text-center py-0.5 rounded ${i === 2 ? "bg-brand-secondary text-white" : "bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400"}`}>
             {t}
           </div>
         ))}
@@ -338,7 +338,7 @@ function LeadGenerationMockup() {
     <div className="w-full h-full bg-white dark:bg-gray-900 p-1.5 text-[7px]">
       <div className="flex items-center justify-between mb-1">
         <div className="flex items-center gap-1">
-          <Target className="w-3 h-3 text-[#7C3AED]" />
+          <Target className="w-3 h-3 text-brand-primary" />
           <span className="font-semibold text-gray-600 dark:text-gray-400">Leads · 234</span>
         </div>
       </div>
@@ -372,8 +372,8 @@ function EmbudoVentasMockup() {
   const stages = [
     { name: "Visitantes", value: "10.000", color: "bg-gray-300 dark:bg-gray-600", width: "100%" },
     { name: "Leads", value: "2.400", color: "bg-blue-300 dark:bg-blue-700", width: "75%" },
-    { name: "Cualificados", value: "890", color: "bg-[#0078AA]", width: "50%" },
-    { name: "Clientes", value: "156", color: "bg-[#7C3AED]", width: "25%" },
+    { name: "Cualificados", value: "890", color: "bg-brand-secondary", width: "50%" },
+    { name: "Clientes", value: "156", color: "bg-brand-primary", width: "25%" },
   ]
   return (
     <div className="w-full h-full bg-white dark:bg-gray-900 p-1.5 flex gap-2 text-[7px]">
@@ -418,7 +418,7 @@ function OnboardingMockup() {
       </div>
       {/* Progress bar */}
       <div className="h-1 bg-gray-100 dark:bg-gray-700 rounded-full mb-1.5 overflow-hidden">
-        <div className="h-full w-[60%] bg-gradient-to-r from-[#0078AA] to-[#7C3AED] rounded-full" />
+        <div className="h-full w-[60%] bg-gradient-to-r from-gradient-from to-gradient-to rounded-full" />
       </div>
       {/* Steps */}
       <div className="flex gap-0.5">
@@ -427,11 +427,11 @@ function OnboardingMockup() {
             {s.done ? (
               <CheckCircle2 className="w-3 h-3 text-green-500" />
             ) : s.active ? (
-              <div className="w-3 h-3 rounded-full border-2 border-[#0078AA] bg-[#0078AA]/20" />
+              <div className="w-3 h-3 rounded-full border-2 border-brand-secondary bg-brand-secondary/20" />
             ) : (
               <Circle className="w-3 h-3 text-gray-300 dark:text-gray-600" />
             )}
-            <span className={`text-[5px] text-center mt-0.5 ${s.active ? "text-[#0078AA] font-medium" : "text-gray-400"}`}>
+            <span className={`text-[5px] text-center mt-0.5 ${s.active ? "text-brand-secondary font-medium" : "text-gray-400"}`}>
               {s.name.split(' ')[0]}
             </span>
           </div>
@@ -444,9 +444,9 @@ function OnboardingMockup() {
 // 12. Omnicanal Mockup
 function OmnicanalMockup() {
   const channels = [
-    { icon: Phone, color: "text-[#0078AA]", name: "Carlos M.", channel: "Llamada", time: "3m" },
+    { icon: Phone, color: "text-brand-secondary", name: "Carlos M.", channel: "Llamada", time: "3m" },
     { icon: MessageCircle, color: "text-[#25D366]", name: "Ana R.", channel: "WhatsApp", time: "5m" },
-    { icon: Globe, color: "text-[#7C3AED]", name: "Pedro S.", channel: "Chat Web", time: "1m" },
+    { icon: Globe, color: "text-brand-primary", name: "Pedro S.", channel: "Chat Web", time: "1m" },
     { icon: Mail, color: "text-gray-500", name: "Laura V.", channel: "Email", time: "12m" },
   ]
   return (
@@ -477,7 +477,7 @@ function VozHumanaMockup() {
     <div className="w-full h-full bg-white dark:bg-gray-900 flex flex-col items-center justify-center p-2 text-[8px]">
       {/* Agent info */}
       <div className="flex items-center gap-1 mb-1">
-        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#0078AA] to-[#7C3AED] flex items-center justify-center">
+        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-gradient-from to-gradient-to flex items-center justify-center">
           <Mic className="w-2.5 h-2.5 text-white" />
         </div>
         <div>
@@ -490,7 +490,7 @@ function VozHumanaMockup() {
         {[2, 4, 6, 8, 10, 12, 8, 14, 10, 8, 12, 6, 8, 10, 6, 4, 6, 8, 4, 2].map((h, i) => (
           <div 
             key={i} 
-            className="w-1 rounded-full bg-gradient-to-t from-[#0078AA] to-[#7C3AED]" 
+            className="w-1 rounded-full bg-gradient-to-t from-gradient-from to-gradient-to" 
             style={{ height: `${h}px` }} 
           />
         ))}
@@ -505,7 +505,7 @@ function VozHumanaMockup() {
       <div className="flex items-center gap-1 mt-1 w-full max-w-[120px]">
         <span className="text-[6px] text-gray-400">00:00</span>
         <div className="flex-1 h-1 bg-gray-200 dark:bg-gray-700 rounded-full relative">
-          <div className="absolute left-[40%] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-[#0078AA] rounded-full" />
+          <div className="absolute left-[40%] top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-brand-secondary rounded-full" />
         </div>
         <span className="text-[6px] text-gray-400">04:21</span>
       </div>
@@ -516,8 +516,8 @@ function VozHumanaMockup() {
 // Default mockup with icon
 function DefaultMockup({ icon: Icon }: { icon: React.ElementType }) {
   return (
-    <div className="w-full h-full bg-gradient-to-br from-[#0078AA]/10 to-[#7C3AED]/10 flex items-center justify-center">
-      <Icon className="w-8 h-8 text-[#0078AA]/40" />
+    <div className="w-full h-full bg-gradient-to-br from-gradient-from/10 to-gradient-to/10 flex items-center justify-center">
+      <Icon className="w-8 h-8 text-brand-secondary/40" />
     </div>
   )
 }

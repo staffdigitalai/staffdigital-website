@@ -22,7 +22,7 @@ export function CTABlock() {
         <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.08] tracking-tight mb-8">
           <span className="text-foreground">{t("title_plain")} </span>
           <br className="hidden sm:block" />
-          <span className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-gradient-from to-gradient-to bg-clip-text text-transparent">
             {t("title_gradient")}
           </span>
         </h2>

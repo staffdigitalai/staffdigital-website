@@ -29,7 +29,7 @@ export function WhatWeDoBlock() {
         <div className="text-center mb-16 sm:mb-20">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 leading-tight tracking-tight">
             <span className="text-foreground">{t("title_plain")} </span>
-            <span className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-gradient-from to-gradient-to bg-clip-text text-transparent">
               {t("title_gradient")}
             </span>
           </h2>

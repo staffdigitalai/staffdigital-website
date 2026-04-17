@@ -107,7 +107,7 @@ function ChatMessage({
       className={`flex ${isAgent ? 'justify-start' : 'justify-end'} gap-2`}
     >
       {isAgent && (
-        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#00D4FF] to-[#8B5CF6] flex items-center justify-center shrink-0">
+        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gradient-from to-brand-primary flex items-center justify-center shrink-0">
           <Bot className="w-4 h-4 text-white" />
         </div>
       )}
@@ -213,7 +213,7 @@ export function OmnicanalShowcase({
           
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900">
             {title}{" "}
-            <span className="text-[#00D4FF]">{titleHighlight}</span>
+            <span className="text-brand-secondary">{titleHighlight}</span>
           </h2>
           
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -252,14 +252,14 @@ export function OmnicanalShowcase({
             </p>
 
             {/* Testimonial - Cliste style */}
-            <div className="relative p-6 rounded-2xl bg-gray-50 border-l-4 border-[#00D4FF]">
+            <div className="relative p-6 rounded-2xl bg-gray-50 border-l-4 border-brand-secondary">
               <Quote className="w-6 h-6 text-gray-300 absolute top-4 left-6" />
               <blockquote className="pl-6">
                 <p className="text-gray-700 italic leading-relaxed mb-4">
                   &ldquo;{testimonial.quote}&rdquo;
                 </p>
                 <footer className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#00D4FF] to-[#8B5CF6] flex items-center justify-center text-white font-bold text-sm">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gradient-from to-brand-primary flex items-center justify-center text-white font-bold text-sm">
                     {testimonial.author.charAt(0)}
                   </div>
                   <div>
@@ -286,7 +286,7 @@ export function OmnicanalShowcase({
               {/* Dark header - Cliste style */}
               <div className="px-4 py-3 flex items-center justify-between bg-[#1a1f2e]">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#00D4FF]" />
+                  <span className="w-2 h-2 rounded-full bg-brand-secondary" />
                   <span className="text-white font-medium text-sm">{chatHeader}</span>
                 </div>
                 <div className="flex items-center gap-1.5 text-gray-400 text-xs">
@@ -299,7 +299,7 @@ export function OmnicanalShowcase({
               <div className="px-4 py-3 bg-white border-b border-gray-100 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="relative">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#00D4FF] to-[#8B5CF6] flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gradient-from to-brand-primary flex items-center justify-center">
                       <Bot className="w-6 h-6 text-white" />
                     </div>
                   </div>
@@ -336,7 +336,7 @@ export function OmnicanalShowcase({
                     exit={{ opacity: 0 }}
                     className="flex items-center gap-2"
                   >
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#00D4FF] to-[#8B5CF6] flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gradient-from to-brand-primary flex items-center justify-center">
                       <Bot className="w-4 h-4 text-white" />
                     </div>
                     <div className="bg-gray-100 rounded-2xl rounded-tl-sm">
@@ -367,7 +367,7 @@ export function OmnicanalShowcase({
             </div>
 
             {/* Decorative shadow/glow */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-[#00D4FF]/5 via-transparent to-[#8B5CF6]/5 rounded-3xl blur-2xl -z-10" />
+            <div className="absolute -inset-4 bg-gradient-to-r from-gradient-from/5 via-transparent to-brand-primary/5 rounded-3xl blur-2xl -z-10" />
           </motion.div>
         </div>
       </div>

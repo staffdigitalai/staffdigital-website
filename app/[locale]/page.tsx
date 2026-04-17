@@ -51,7 +51,7 @@ export default function HomePage() {
           <AIWorking247Block />
 
           {/* Solid background zone — rounded top creates premium transition over aurora */}
-          <div className="bg-[#F8FAFC] dark:bg-[#0A0E1A] rounded-t-[3rem] relative z-10">
+          <div className="bg-bg-page dark:bg-bg-page rounded-t-[3rem] relative z-10">
             {/* 3 -- Clarification: Editorial breathing room */}
             <ClarificationBlock />
 

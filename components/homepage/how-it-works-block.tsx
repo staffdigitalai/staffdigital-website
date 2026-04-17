@@ -24,27 +24,27 @@ interface Step {
 /* Per-step color configurations */
 const stepStyles = [
   {
-    container: "bg-gradient-to-br from-[#0078AA]/[0.15] to-[#0078AA]/[0.06] dark:from-[#0078AA]/[0.3] dark:to-[#00D4FF]/[0.12] border border-[#0078AA]/25 dark:border-[#00D4FF]/30 shadow-[0_8px_24px_rgba(0,120,170,0.15)] dark:shadow-[0_8px_24px_rgba(0,120,170,0.25)] hover:shadow-[0_8px_30px_rgba(0,120,170,0.25)]",
-    icon: "text-[#0078AA] dark:text-[#38BDF8]",
-    badge: "bg-[#0078AA]",
+    container: "bg-gradient-to-br from-gradient-from/[0.15] to-brand-secondary/[0.06] dark:from-gradient-from/[0.3] dark:to-gradient-from/[0.12] border border-brand-secondary/25 dark:border-brand-secondary/30 shadow-[0_8px_24px_rgba(0,120,170,0.15)] dark:shadow-[0_8px_24px_rgba(0,120,170,0.25)] hover:shadow-[0_8px_30px_rgba(0,120,170,0.25)]",
+    icon: "text-brand-secondary dark:text-accent-cyan",
+    badge: "bg-brand-secondary",
     exampleKey: "example1",
   },
   {
-    container: "bg-gradient-to-br from-[#0078AA]/[0.12] to-[#7C3AED]/[0.08] dark:from-[#0078AA]/[0.25] dark:to-[#7C3AED]/[0.15] border border-[#4F46E5]/20 dark:border-[#A855F7]/25 shadow-[0_8px_24px_rgba(79,70,229,0.12)] dark:shadow-[0_8px_24px_rgba(124,58,237,0.2)] hover:shadow-[0_8px_30px_rgba(79,70,229,0.2)]",
-    icon: "text-[#4F46E5] dark:text-[#A855F7]",
-    badge: "bg-gradient-to-r from-[#0078AA] to-[#7C3AED]",
+    container: "bg-gradient-to-br from-gradient-from/[0.12] to-gradient-to/[0.08] dark:from-gradient-from/[0.25] dark:to-gradient-to/[0.15] border border-accent-blue/20 dark:border-accent-violet/25 shadow-[0_8px_24px_rgba(79,70,229,0.12)] dark:shadow-[0_8px_24px_rgba(124,58,237,0.2)] hover:shadow-[0_8px_30px_rgba(79,70,229,0.2)]",
+    icon: "text-accent-blue dark:text-accent-violet",
+    badge: "bg-gradient-to-r from-gradient-from to-gradient-to",
     exampleKey: "example2",
   },
   {
-    container: "bg-gradient-to-br from-[#7C3AED]/[0.1] to-[#0078AA]/[0.06] dark:from-[#7C3AED]/[0.25] dark:to-[#0078AA]/[0.12] border border-[#7C3AED]/20 dark:border-[#A855F7]/25 shadow-[0_8px_24px_rgba(124,58,237,0.12)] dark:shadow-[0_8px_24px_rgba(124,58,237,0.2)] hover:shadow-[0_8px_30px_rgba(124,58,237,0.2)]",
-    icon: "text-[#7C3AED] dark:text-[#C084FC]",
-    badge: "bg-[#7C3AED]",
+    container: "bg-gradient-to-br from-brand-primary/[0.1] to-brand-secondary/[0.06] dark:from-brand-primary/[0.25] dark:to-brand-secondary/[0.12] border border-brand-primary/20 dark:border-accent-violet/25 shadow-[0_8px_24px_rgba(124,58,237,0.12)] dark:shadow-[0_8px_24px_rgba(124,58,237,0.2)] hover:shadow-[0_8px_30px_rgba(124,58,237,0.2)]",
+    icon: "text-brand-primary dark:text-accent-violet",
+    badge: "bg-brand-primary",
     exampleKey: "example3",
   },
   {
-    container: "bg-gradient-to-br from-[#7C3AED]/[0.15] to-[#7C3AED]/[0.06] dark:from-[#A855F7]/[0.3] dark:to-[#7C3AED]/[0.12] border border-[#7C3AED]/25 dark:border-[#A855F7]/30 shadow-[0_8px_24px_rgba(124,58,237,0.15)] dark:shadow-[0_8px_24px_rgba(168,85,247,0.25)] hover:shadow-[0_8px_30px_rgba(124,58,237,0.25)]",
-    icon: "text-[#7C3AED] dark:text-[#C084FC]",
-    badge: "bg-[#7C3AED]",
+    container: "bg-gradient-to-br from-brand-primary/[0.15] to-gradient-to/[0.06] dark:from-[#A855F7]/[0.3] dark:to-gradient-to/[0.12] border border-brand-primary/25 dark:border-accent-violet/30 shadow-[0_8px_24px_rgba(124,58,237,0.15)] dark:shadow-[0_8px_24px_rgba(168,85,247,0.25)] hover:shadow-[0_8px_30px_rgba(124,58,237,0.25)]",
+    icon: "text-brand-primary dark:text-accent-violet",
+    badge: "bg-brand-primary",
     exampleKey: "example4",
   },
 ]
@@ -56,7 +56,7 @@ export function HowItWorksBlock() {
   return (
     <section
       id="how-it-works"
-      className="py-28 sm:py-36 px-6 sm:px-8 animate-fade-in-section relative overflow-hidden bg-[#F8FAFC] dark:bg-[#0A0E1A]"
+      className="py-28 sm:py-36 px-6 sm:px-8 animate-fade-in-section relative overflow-hidden bg-bg-page dark:bg-bg-page"
     >
       {/* Subtle radial glow behind timeline */}
       <div
@@ -90,7 +90,7 @@ export function HowItWorksBlock() {
           <div className="hidden md:block relative">
             {/* Animated gradient connecting line — all 4 step colors */}
             <div className="absolute top-12 left-[12%] right-[12%] h-[2px] overflow-hidden">
-              <div className="w-full h-full rounded-full bg-gradient-to-r from-[#0078AA]/40 via-[#4F46E5]/35 to-[#7C3AED]/40 dark:from-[#0078AA]/50 dark:via-[#4F46E5]/45 dark:to-[#7C3AED]/50" />
+              <div className="w-full h-full rounded-full bg-gradient-to-r from-gradient-from/40 via-gradient-via/35 to-gradient-to/40 dark:from-gradient-from/50 dark:via-gradient-via/45 dark:to-gradient-to/50" />
             </div>
 
             <div className="grid grid-cols-4 gap-4 lg:gap-6">
@@ -135,7 +135,7 @@ export function HowItWorksBlock() {
           <div className="md:hidden relative">
             {/* Vertical connecting line — all 4 step colors */}
             <div className="absolute top-0 bottom-0 left-10 w-[2px] overflow-hidden">
-              <div className="w-full h-full bg-gradient-to-b from-[#0078AA]/40 via-[#4F46E5]/35 to-[#7C3AED]/40 dark:from-[#0078AA]/50 dark:via-[#4F46E5]/45 dark:to-[#7C3AED]/50" />
+              <div className="w-full h-full bg-gradient-to-b from-gradient-from/40 via-gradient-via/35 to-gradient-to/40 dark:from-gradient-from/50 dark:via-gradient-via/45 dark:to-gradient-to/50" />
             </div>
 
             <div className="flex flex-col gap-12">
@@ -178,7 +178,7 @@ export function HowItWorksBlock() {
         {/* ─── Closing Statement ─── */}
         <div className="text-center max-w-2xl mx-auto mt-16 sm:mt-20">
           {/* Decorative gradient line */}
-          <div className="w-12 h-[2px] bg-gradient-to-r from-[#0078AA] to-[#7C3AED] mx-auto mb-6 rounded-full" />
+          <div className="w-12 h-[2px] bg-gradient-to-r from-gradient-from to-gradient-to mx-auto mb-6 rounded-full" />
           <p className="text-foreground/50 dark:text-foreground/40 text-base sm:text-lg italic leading-relaxed">
             {t("closing")}
           </p>

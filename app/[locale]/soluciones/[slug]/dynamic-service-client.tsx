@@ -275,10 +275,10 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
                 <div className="w-7 h-7 rounded-full bg-green-500 flex items-center justify-center border-2 border-white dark:border-gray-900 relative z-[5]">
                   <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
                 </div>
-                <div className="w-7 h-7 rounded-full bg-[#0078AA] flex items-center justify-center border-2 border-white dark:border-gray-900 relative z-[4]">
+                <div className="w-7 h-7 rounded-full bg-brand-secondary flex items-center justify-center border-2 border-white dark:border-gray-900 relative z-[4]">
                   <svg className="w-3.5 h-3.5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 </div>
-                <div className="w-7 h-7 rounded-full bg-[#7C3AED] flex items-center justify-center border-2 border-white dark:border-gray-900 relative z-[3]">
+                <div className="w-7 h-7 rounded-full bg-brand-primary flex items-center justify-center border-2 border-white dark:border-gray-900 relative z-[3]">
                   <svg className="w-3.5 h-3.5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                 </div>
                 <div className="w-7 h-7 rounded-full bg-blue-500 flex items-center justify-center border-2 border-white dark:border-gray-900 relative z-[2]">
@@ -338,7 +338,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
               <div className="flex flex-col sm:flex-row items-center gap-3 mt-2">
                 <a
                   href="/demo"
-                  className="px-8 py-3.5 rounded-xl text-white font-semibold text-sm sm:text-base transition-all hover:scale-105 bg-gradient-to-r from-[#0078AA] to-[#7C3AED] shadow-lg shadow-[#0078AA]/25"
+                  className="px-8 py-3.5 rounded-xl text-white font-semibold text-sm sm:text-base transition-all hover:scale-105 bg-gradient-to-r from-gradient-from to-gradient-to shadow-lg shadow-[#0078AA]/25"
                 >
                   Solicitar demo personalizada →
                 </a>
@@ -365,7 +365,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
                 <div className="hidden md:block w-px h-12 bg-gray-200 dark:bg-[rgb(61,61,64)] mr-12" />
               )}
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gradient-from to-gradient-to bg-clip-text text-transparent">
                   {stat.valor}
                 </div>
                 <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">{stat.etiqueta}</div>
@@ -396,7 +396,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
               return (
                 <div 
                   key={i}
-                  className="p-6 rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] hover:border-[#0078AA]/50 transition-colors"
+                  className="p-6 rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] hover:border-brand-secondary/50 transition-colors"
                 >
                   <div 
                     className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
@@ -435,8 +435,8 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
                   key={i}
                   className="p-6 rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)]"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-[#0078AA]/10 dark:bg-[#0078AA]/20 flex items-center justify-center mb-4">
-                    <Icon className="w-5 h-5 text-[#0078AA]" />
+                  <div className="w-10 h-10 rounded-lg bg-brand-secondary/10 dark:bg-brand-secondary/20 flex items-center justify-center mb-4">
+                    <Icon className="w-5 h-5 text-brand-secondary" />
                   </div>
                   <p className="text-gray-900 dark:text-white font-medium">{feature.titulo}</p>
                   {feature.descripcion && (
@@ -477,15 +477,15 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
             {/* Panel derecho con mini-cards de stats */}
             <div className="space-y-4">
               <div className="rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] p-5 flex items-center gap-4">
-                <div className="text-3xl font-bold bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">80%</div>
+                <div className="text-3xl font-bold bg-gradient-to-r from-gradient-from to-gradient-to bg-clip-text text-transparent">80%</div>
                 <span className="text-sm text-gray-600 dark:text-gray-400">menos costes operativos</span>
               </div>
               <div className="rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] p-5 flex items-center gap-4">
-                <div className="text-3xl font-bold bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">24/7</div>
+                <div className="text-3xl font-bold bg-gradient-to-r from-gradient-from to-gradient-to bg-clip-text text-transparent">24/7</div>
                 <span className="text-sm text-gray-600 dark:text-gray-400">atención sin interrupciones</span>
               </div>
               <div className="rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] p-5 flex items-center gap-4">
-                <div className="text-3xl font-bold bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">48h</div>
+                <div className="text-3xl font-bold bg-gradient-to-r from-gradient-from to-gradient-to bg-clip-text text-transparent">48h</div>
                 <span className="text-sm text-gray-600 dark:text-gray-400">implementación completa</span>
               </div>
             </div>
@@ -504,7 +504,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
                 &ldquo;{testimonialQuote}&rdquo;
               </blockquote>
               <div className="flex items-center justify-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-[#0078AA] to-[#7C3AED] flex items-center justify-center text-white font-bold">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-gradient-from to-gradient-to flex items-center justify-center text-white font-bold">
                   {testimonialNombre.charAt(0)}
                 </div>
                 <div>
@@ -543,7 +543,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
                       {faq.pregunta}
                     </span>
                     <ChevronDown 
-                      className={`w-5 h-5 text-[#0078AA] flex-shrink-0 transition-transform duration-200 ${openFaqIndex === i ? "rotate-180" : ""}`}
+                      className={`w-5 h-5 text-brand-secondary flex-shrink-0 transition-transform duration-200 ${openFaqIndex === i ? "rotate-180" : ""}`}
                     />
                   </button>
                   {openFaqIndex === i && (
@@ -591,8 +591,8 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
                           className="object-cover"
                         />
                       ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-[#0078AA]/10 to-[#7C3AED]/10 flex items-center justify-center">
-                          <Building2 className="w-8 h-8 text-[#0078AA]/40" />
+                        <div className="w-full h-full bg-gradient-to-br from-gradient-from/10 to-gradient-to/10 flex items-center justify-center">
+                          <Building2 className="w-8 h-8 text-brand-secondary/40" />
                         </div>
                       )}
                       {/* Brand overlay */}
@@ -680,7 +680,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={openContactForm}
-              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#0078AA] to-[#7C3AED] text-white rounded-lg px-8 py-4 font-semibold hover:opacity-90 transition-opacity cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-gradient-from to-gradient-to text-white rounded-lg px-8 py-4 font-semibold hover:opacity-90 transition-opacity cursor-pointer"
             >
               Solicitar Demo Gratuita
               <ArrowRight className="w-5 h-5" />

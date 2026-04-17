@@ -46,7 +46,7 @@ export function ClarificationBlock() {
   }, [])
 
   return (
-    <section className="py-28 sm:py-36 px-6 sm:px-8 relative overflow-hidden bg-[#F8FAFC] dark:bg-[#0A0E1A]">
+    <section className="py-28 sm:py-36 px-6 sm:px-8 relative overflow-hidden bg-bg-page dark:bg-bg-page">
       {/* Subtle dot grid pattern */}
       <div
         className="absolute inset-0 pointer-events-none opacity-40 dark:opacity-20"
@@ -57,8 +57,8 @@ export function ClarificationBlock() {
       <div className="max-w-6xl mx-auto relative" ref={sectionRef}>
         {/* Header */}
         <div className="text-center mb-14 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#EEF4FF] dark:bg-[#0F1B2E] border border-[#0062CC]/25 dark:border-[#38BDF8]/40 text-[#0062CC] dark:text-[#7DD3FC] text-sm font-medium mb-6">
-            <span className="text-[#38BDF8]">{"\u2726"}</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bg-subtle dark:bg-bg-subtle border border-brand-secondary-hover/25 dark:border-accent-cyan/40 text-brand-secondary-hover dark:text-accent-cyan text-sm font-medium mb-6">
+            <span className="text-accent-cyan">{"\u2726"}</span>
             {t("badge")}
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white leading-tight tracking-tight mb-6">
@@ -80,7 +80,7 @@ export function ClarificationBlock() {
               <div
                 key={index}
                 data-card-index={index}
-                className={`group relative bg-white dark:bg-[#111827] rounded-2xl p-6 sm:p-7
+                className={`group relative bg-white dark:bg-bg-elevated rounded-2xl p-6 sm:p-7
                   border border-slate-200/60 dark:border-white/[0.08]
                   shadow-[0_1px_3px_rgba(0,0,0,0.04)]
                   hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)]

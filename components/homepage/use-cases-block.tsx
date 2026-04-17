@@ -47,7 +47,7 @@ export function UseCasesBlock() {
   }, [])
 
   return (
-    <section className="py-28 sm:py-36 px-6 sm:px-8 relative overflow-hidden bg-[#F8FAFC] dark:bg-[#0A0E1A]">
+    <section className="py-28 sm:py-36 px-6 sm:px-8 relative overflow-hidden bg-bg-page dark:bg-bg-page">
       {/* Dot grid overlay */}
       <div className="absolute inset-0 pointer-events-none dot-pattern" aria-hidden="true" />
 
@@ -56,7 +56,7 @@ export function UseCasesBlock() {
         <div className="text-center mb-14 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight">
             <span className="text-foreground">{t("title_plain")} </span>
-            <span className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-gradient-from to-gradient-to bg-clip-text text-transparent">
               {t("title_gradient")}
             </span>
           </h2>
@@ -73,7 +73,7 @@ export function UseCasesBlock() {
               <div
                 key={index}
                 data-card-index={index}
-                className={`group relative bg-white dark:bg-[#111827] rounded-2xl p-6 sm:p-7
+                className={`group relative bg-white dark:bg-bg-elevated rounded-2xl p-6 sm:p-7
                   border border-slate-200/60 dark:border-white/[0.08]
                   shadow-[0_1px_3px_rgba(0,0,0,0.04)]
                   hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)]
@@ -85,10 +85,10 @@ export function UseCasesBlock() {
                 style={{ transitionDelay: isVisible ? "0ms" : undefined }}
               >
                 {/* Icon with glow on hover */}
-                <div className="relative w-11 h-11 rounded-xl bg-[#EEF4FF] dark:bg-[#0F1B2E] flex items-center justify-center mb-4
-                  group-hover:bg-[#0078AA]/10 dark:group-hover:bg-[#38BDF8]/10 transition-colors duration-300 icon-glow">
+                <div className="relative w-11 h-11 rounded-xl bg-bg-subtle dark:bg-bg-subtle flex items-center justify-center mb-4
+                  group-hover:bg-brand-secondary/10 dark:group-hover:bg-accent-cyan/10 transition-colors duration-300 icon-glow">
                   <Icon
-                    className={`w-5 h-5 text-[#0078AA] dark:text-[#38BDF8] transition-all duration-700 ${
+                    className={`w-5 h-5 text-brand-secondary dark:text-accent-cyan transition-all duration-700 ${
                       isVisible ? "icon-draw-visible" : "icon-draw-hidden"
                     }`}
                   />
@@ -112,7 +112,7 @@ export function UseCasesBlock() {
         <div className="text-center mt-12 sm:mt-14">
           <Link
             href="/soluciones"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[#0078AA] dark:text-[#00D4FF] font-semibold text-sm transition-all duration-300 hover:bg-[#0078AA]/[0.06] dark:hover:bg-[#00D4FF]/[0.08] border border-[#0078AA]/15 dark:border-[#00D4FF]/15 group"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-brand-secondary dark:text-brand-secondary font-semibold text-sm transition-all duration-300 hover:bg-brand-secondary/[0.06] dark:hover:bg-brand-secondary/[0.08] border border-brand-secondary/15 dark:border-brand-secondary/15 group"
           >
             {t("cta")}
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" />

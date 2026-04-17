@@ -14,18 +14,18 @@ export function HeroBlock() {
 
         {/* A) Badge pill */}
         <div className="animate-hero-badge mt-0 mb-10 flex justify-center">
-          <span className="hero-badge-shimmer inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium tracking-wide bg-[#EEF4FF] border border-[#0062CC]/25 text-[#0062CC] dark:bg-[#0F1B2E] dark:border-[#38BDF8]/40 dark:text-[#7DD3FC]">
-            <span className="text-[#0062CC] dark:text-[#38BDF8]">&#10022;</span>
+          <span className="hero-badge-shimmer inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium tracking-wide bg-bg-subtle border border-brand-secondary-hover/25 text-brand-secondary-hover dark:bg-bg-subtle dark:border-accent-cyan/40 dark:text-accent-cyan">
+            <span className="text-brand-secondary-hover dark:text-accent-cyan">&#10022;</span>
             {t("badge")}
           </span>
         </div>
 
         {/* B) H1 — Main headline */}
         <h1 className="animate-hero-h1 mb-5 leading-[1.2] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-          <span className="block text-[#0F172A] dark:text-[#F8FAFC]">
+          <span className="block text-fg-primary dark:text-fg-primary">
             {t("h1_plain")}
           </span>
-          <span className="block bg-clip-text text-transparent bg-gradient-to-r from-[#0062CC] via-[#4F46E5] to-[#7C3AED] dark:from-[#38BDF8] dark:via-[#818CF8] dark:to-[#C084FC]">
+          <span className="block bg-clip-text text-transparent bg-gradient-to-r from-[#0062CC] via-gradient-via to-gradient-to dark:from-[#38BDF8] dark:via-gradient-via dark:to-[#C084FC]">
             {t("h1_gradient")}
           </span>
         </h1>
@@ -36,7 +36,7 @@ export function HeroBlock() {
         </h2>
 
         {/* D) Subtitle / Description */}
-        <p className="animate-hero-subtitle text-base md:text-lg font-normal leading-relaxed max-w-2xl mx-auto mb-8 text-[#64748B] dark:text-[#64748B]">
+        <p className="animate-hero-subtitle text-base md:text-lg font-normal leading-relaxed max-w-2xl mx-auto mb-8 text-fg-muted dark:text-fg-muted">
           {t("subtitle")}
         </p>
 
@@ -45,7 +45,7 @@ export function HeroBlock() {
           {/* Primary CTA */}
           <Link
             href="/demo"
-            className="inline-flex items-center justify-center rounded-full px-8 md:px-10 py-3.5 md:py-4 text-base md:text-lg font-semibold text-white bg-gradient-to-r from-[#0078AA] to-[#7C3AED] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_25px_rgba(0,120,170,0.35),0_0_50px_rgba(124,58,237,0.2)]"
+            className="inline-flex items-center justify-center rounded-full px-8 md:px-10 py-3.5 md:py-4 text-base md:text-lg font-semibold text-white bg-gradient-to-r from-gradient-from to-gradient-to transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_25px_rgba(0,120,170,0.35),0_0_50px_rgba(124,58,237,0.2)]"
           >
             {t("cta_primary")} &rarr;
           </Link>
@@ -53,7 +53,7 @@ export function HeroBlock() {
           {/* Secondary CTA — Solid button */}
           <a
             href="#how-it-works"
-            className="inline-flex items-center justify-center rounded-full px-8 md:px-10 py-3.5 md:py-4 text-base md:text-lg font-semibold transition-all duration-300 hover:scale-[1.03] hover:opacity-90 bg-[#0F172A] text-white dark:bg-white dark:text-[#0F172A]"
+            className="inline-flex items-center justify-center rounded-full px-8 md:px-10 py-3.5 md:py-4 text-base md:text-lg font-semibold transition-all duration-300 hover:scale-[1.03] hover:opacity-90 bg-[#0F172A] text-white dark:bg-white dark:text-fg-primary"
           >
             {t("cta_secondary")}
           </a>
@@ -61,18 +61,18 @@ export function HeroBlock() {
 
         {/* F) Trust indicators */}
         <div className="flex items-center justify-center gap-x-1.5 gap-y-1 flex-wrap text-sm font-medium animate-hero-trust mb-0">
-          <span className="inline-flex items-center gap-1.5 text-[#64748B]">
-            <span className="text-[#0062CC] dark:text-[#38BDF8]">&#10003;</span>
+          <span className="inline-flex items-center gap-1.5 text-fg-muted">
+            <span className="text-brand-secondary-hover dark:text-accent-cyan">&#10003;</span>
             {t("trust_1")}
           </span>
-          <span className="text-[#CBD5E1] dark:text-[#334155]">&middot;</span>
-          <span className="inline-flex items-center gap-1.5 text-[#64748B]">
-            <span className="text-[#0062CC] dark:text-[#38BDF8]">&#10003;</span>
+          <span className="text-fg-secondary dark:text-fg-secondary">&middot;</span>
+          <span className="inline-flex items-center gap-1.5 text-fg-muted">
+            <span className="text-brand-secondary-hover dark:text-accent-cyan">&#10003;</span>
             {t("trust_2")}
           </span>
-          <span className="text-[#CBD5E1] dark:text-[#334155]">&middot;</span>
-          <span className="inline-flex items-center gap-1.5 text-[#64748B]">
-            <span className="text-[#0062CC] dark:text-[#38BDF8]">&#10003;</span>
+          <span className="text-fg-secondary dark:text-fg-secondary">&middot;</span>
+          <span className="inline-flex items-center gap-1.5 text-fg-muted">
+            <span className="text-brand-secondary-hover dark:text-accent-cyan">&#10003;</span>
             {t("trust_3")}
           </span>
         </div>

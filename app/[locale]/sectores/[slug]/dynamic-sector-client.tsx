@@ -138,7 +138,7 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
       {/* Hero Section */}
       <section className="px-4 pt-8 pb-16 md:pb-24">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium mb-8 animate-fade-in-badge">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-foreground/10 backdrop-blur-md border border-foreground/20 text-foreground text-sm font-medium mb-8 animate-fade-in-badge">
             <span className="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse" />
             StaffDigital AI · {title.replace(/^Agentes IA para /i, "")}
           </div>
@@ -147,7 +147,7 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
             <MainIcon size={40} className="text-emerald-400" />
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight text-balance mb-4 animate-fade-in-heading"
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground leading-tight text-balance mb-4 animate-fade-in-heading"
             dangerouslySetInnerHTML={{ __html: title }}
           />
 
@@ -165,7 +165,7 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
             <Button
               size="lg"
               onClick={openContactForm}
-              className="bg-white text-black rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-gray-50 hover:scale-105 hover:shadow-lg group cursor-pointer w-full sm:w-auto"
+              className="bg-foreground text-background rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-foreground/90 hover:scale-105 hover:shadow-lg group cursor-pointer w-full sm:w-auto"
             >
               {t("cta_primary")}
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -174,7 +174,7 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
               size="lg"
               variant="outline"
               asChild
-              className="bg-transparent text-white border-2 border-white/30 rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-white/10 hover:border-white/50 hover:scale-105 cursor-pointer backdrop-blur-sm w-full sm:w-auto"
+              className="bg-transparent text-foreground border-2 border-foreground/30 rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-foreground/10 hover:border-foreground/50 hover:scale-105 cursor-pointer backdrop-blur-sm w-full sm:w-auto"
             >
               <a href="tel:+34931229129">
                 <Phone className="mr-2 h-5 w-5" />
@@ -190,13 +190,13 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
         <section ref={problemsRef} className="px-4 py-20 md:py-32">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-balance fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
                 {t("problems_title")} —{" "}
                 <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
                   {title}
                 </span>
               </h2>
-              <p className="text-white/60 text-lg max-w-2xl mx-auto fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
+              <p className="text-foreground/60 text-lg max-w-2xl mx-auto fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
                 {t("problems_subtitle")}
               </p>
             </div>
@@ -207,14 +207,14 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
                   key={index}
                   className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 group"
                 >
-                  <div className="h-full p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                  <div className="h-full p-6 rounded-2xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm hover:bg-foreground/10 hover:border-foreground/20 transition-all duration-300">
                     <div className="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-4 group-hover:bg-red-500/20 transition-colors">
                       <AlertTriangle size={24} className="text-red-400" />
                     </div>
-                    <h3 className="text-lg font-semibold text-white mb-2">
+                    <h3 className="text-lg font-semibold text-foreground mb-2">
                       {problema.problema}
                     </h3>
-                    <p className="text-white/60 leading-relaxed text-sm">
+                    <p className="text-foreground/60 leading-relaxed text-sm">
                       {problema.descripcion}
                     </p>
                   </div>
@@ -230,7 +230,7 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
         <section ref={solutionsRef} className="px-4 py-20 md:py-32">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-balance fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance fade-in-element opacity-0 translate-y-8 transition-all duration-1000">
                 Como StaffDigital AI transforma tu{" "}
                 <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
                   {title.toLowerCase()}
@@ -246,16 +246,16 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
                     key={index}
                     className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 group"
                   >
-                    <div className="h-full p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                    <div className="h-full p-8 rounded-2xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm hover:bg-foreground/10 hover:border-foreground/20 transition-all duration-300">
                       <div className="flex items-start gap-4">
                         <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500/20 to-teal-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                           <SolutionIcon size={24} className="text-emerald-400" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-semibold text-white mb-2">
+                          <h3 className="text-xl font-semibold text-foreground mb-2">
                             {solucion.titulo}
                           </h3>
-                          <p className="text-white/60 leading-relaxed">
+                          <p className="text-foreground/60 leading-relaxed">
                             {solucion.descripcion}
                           </p>
                         </div>
@@ -273,7 +273,7 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
       {metricas.length > 0 && (
         <section ref={statsRef} className="px-4 py-20 md:py-32">
           <div className="max-w-5xl mx-auto">
-            <div className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm p-8 md:p-12">
+            <div className="fade-in-element opacity-0 translate-y-8 transition-all duration-1000 rounded-3xl border border-foreground/10 bg-foreground/5 backdrop-blur-sm p-8 md:p-12">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
                 {metricas.map((metrica, index) => (
                   <div key={index} className="text-center">
@@ -282,7 +282,7 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
                         ? metrica.valor.replace(/\d+/, String(counter))
                         : metrica.valor}
                     </p>
-                    <p className="text-white/50 text-sm">{metrica.etiqueta}</p>
+                    <p className="text-foreground/50 text-sm">{metrica.etiqueta}</p>
                   </div>
                 ))}
               </div>
@@ -297,13 +297,13 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
           <div className="max-w-4xl mx-auto">
             <div
               className="prose prose-invert prose-lg max-w-none
-                prose-headings:text-white prose-headings:font-bold
+                prose-headings:text-foreground prose-headings:font-bold
                 prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
                 prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-                prose-p:text-white/70 prose-p:leading-relaxed
+                prose-p:text-foreground/70 prose-p:leading-relaxed
                 prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:underline
-                prose-strong:text-white
-                prose-ul:text-white/70 prose-li:marker:text-emerald-400"
+                prose-strong:text-foreground
+                prose-ul:text-foreground/70 prose-li:marker:text-emerald-400"
               dangerouslySetInnerHTML={{ __html: sector.content.rendered }}
             />
           </div>
@@ -313,7 +313,7 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
       {/* Technology Partners */}
       <section className="px-4 py-16">
         <div className="max-w-4xl mx-auto">
-          <p className="text-center text-white/40 text-sm mb-8">{t("tech_partners")}</p>
+          <p className="text-center text-foreground/40 text-sm mb-8">{t("tech_partners")}</p>
           <div className="flex flex-wrap items-center justify-center gap-8 opacity-60">
             {[
               { src: "/images/partners/openai.svg", alt: "OpenAI" },
@@ -337,12 +337,12 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
       {/* Client Logos Placeholder */}
       <section className="px-4 py-16">
         <div className="max-w-4xl mx-auto">
-          <p className="text-center text-white/40 text-sm mb-8">{t("client_logos")}</p>
+          <p className="text-center text-foreground/40 text-sm mb-8">{t("client_logos")}</p>
           <div className="flex flex-wrap items-center justify-center gap-10 opacity-40">
             {["Cliente 1", "Cliente 2", "Cliente 3", "Cliente 4", "Cliente 5"].map((name) => (
               <div
                 key={name}
-                className="w-24 h-10 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center text-white/30 text-xs"
+                className="w-24 h-10 rounded-lg border border-foreground/10 bg-foreground/5 flex items-center justify-center text-foreground/30 text-xs"
               >
                 {name}
               </div>
@@ -355,10 +355,10 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
       <section className="px-4 py-20 md:py-32">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
               {t("other_sectors")}
             </h2>
-            <p className="text-white/60">
+            <p className="text-foreground/60">
               {t("other_sectors_subtitle")}
             </p>
           </div>
@@ -380,7 +380,7 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
                 <Link
                   key={s.href}
                   href={s.href}
-                  className="px-5 py-2.5 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm hover:bg-white/10 hover:border-white/20 hover:text-white transition-all"
+                  className="px-5 py-2.5 rounded-full border border-foreground/10 bg-foreground/5 text-foreground/70 text-sm hover:bg-foreground/10 hover:border-foreground/20 hover:text-foreground transition-all"
                 >
                   {s.label}
                 </Link>

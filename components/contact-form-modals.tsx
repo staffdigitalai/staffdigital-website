@@ -88,20 +88,20 @@ function ContactFormModal({
   if (success) {
     return (
       <Dialog open={open} onOpenChange={handleClose}>
-        <DialogContent className="bg-slate-900 border-white/20 text-white sm:max-w-md">
+        <DialogContent className="bg-background border-foreground/20 text-foreground sm:max-w-md">
           <div className="flex flex-col items-center justify-center py-8 text-center">
             <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
               <Check className="w-8 h-8 text-green-400" />
             </div>
-            <DialogTitle className="text-xl font-semibold text-white mb-2">
+            <DialogTitle className="text-xl font-semibold text-foreground mb-2">
               Gracias por contactarnos
             </DialogTitle>
-            <DialogDescription className="text-white/60">
+            <DialogDescription className="text-foreground/60">
               Nuestro equipo te contactara en breve.
             </DialogDescription>
             <Button
               onClick={handleClose}
-              className="mt-6 bg-white text-black hover:bg-white/90 rounded-full px-6"
+              className="mt-6 bg-foreground text-background hover:bg-foreground/90 rounded-full px-6"
             >
               Cerrar
             </Button>
@@ -113,12 +113,12 @@ function ContactFormModal({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="bg-slate-900 border-white/20 text-white sm:max-w-lg max-h-[90vh] overflow-y-auto">
+      <DialogContent className="bg-background border-foreground/20 text-foreground sm:max-w-lg max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold text-white">
+          <DialogTitle className="text-xl font-semibold text-foreground">
             Habla con un Experto
           </DialogTitle>
-          <DialogDescription className="text-white/60">
+          <DialogDescription className="text-foreground/60">
             Completa el formulario y nuestro equipo te contactara.
           </DialogDescription>
         </DialogHeader>
@@ -126,7 +126,7 @@ function ContactFormModal({
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="contact-nombre" className="text-white/80">
+              <Label htmlFor="contact-nombre" className="text-foreground/80">
                 Nombre *
               </Label>
               <Input
@@ -136,12 +136,12 @@ function ContactFormModal({
                   setFormData({ ...formData, nombre: e.target.value })
                 }
                 required
-                className="bg-white/5 border-white/20 text-white placeholder:text-white/40 focus:border-white/40"
+                className="bg-foreground/5 border-foreground/20 text-foreground placeholder:text-foreground/40 focus:border-foreground/40"
                 placeholder="Tu nombre"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="contact-email" className="text-white/80">
+              <Label htmlFor="contact-email" className="text-foreground/80">
                 Email *
               </Label>
               <Input
@@ -152,7 +152,7 @@ function ContactFormModal({
                   setFormData({ ...formData, email: e.target.value })
                 }
                 required
-                className="bg-white/5 border-white/20 text-white placeholder:text-white/40 focus:border-white/40"
+                className="bg-foreground/5 border-foreground/20 text-foreground placeholder:text-foreground/40 focus:border-foreground/40"
                 placeholder="tu@email.com"
               />
             </div>
@@ -160,7 +160,7 @@ function ContactFormModal({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="contact-telefono" className="text-white/80">
+              <Label htmlFor="contact-telefono" className="text-foreground/80">
                 Telefono
               </Label>
               <Input
@@ -170,12 +170,12 @@ function ContactFormModal({
                 onChange={(e) =>
                   setFormData({ ...formData, telefono: e.target.value })
                 }
-                className="bg-white/5 border-white/20 text-white placeholder:text-white/40 focus:border-white/40"
+                className="bg-foreground/5 border-foreground/20 text-foreground placeholder:text-foreground/40 focus:border-foreground/40"
                 placeholder="+34 600 000 000"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="contact-empresa" className="text-white/80">
+              <Label htmlFor="contact-empresa" className="text-foreground/80">
                 Empresa
               </Label>
               <Input
@@ -184,14 +184,14 @@ function ContactFormModal({
                 onChange={(e) =>
                   setFormData({ ...formData, empresa: e.target.value })
                 }
-                className="bg-white/5 border-white/20 text-white placeholder:text-white/40 focus:border-white/40"
+                className="bg-foreground/5 border-foreground/20 text-foreground placeholder:text-foreground/40 focus:border-foreground/40"
                 placeholder="Nombre de tu empresa"
               />
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="contact-mensaje" className="text-white/80">
+            <Label htmlFor="contact-mensaje" className="text-foreground/80">
               Mensaje *
             </Label>
             <Textarea
@@ -201,7 +201,7 @@ function ContactFormModal({
                 setFormData({ ...formData, mensaje: e.target.value })
               }
               required
-              className="bg-white/5 border-white/20 text-white placeholder:text-white/40 focus:border-white/40 min-h-[100px]"
+              className="bg-foreground/5 border-foreground/20 text-foreground placeholder:text-foreground/40 focus:border-foreground/40 min-h-[100px]"
               placeholder="Cuentanos como podemos ayudarte..."
             />
           </div>
@@ -215,7 +215,7 @@ function ContactFormModal({
           <Button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-white text-black hover:bg-white/90 rounded-full py-6 text-base font-medium"
+            className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full py-6 text-base font-medium"
           >
             {isLoading ? (
               <>
@@ -274,20 +274,20 @@ function BudgetFormModal({
   if (success) {
     return (
       <Dialog open={open} onOpenChange={handleClose}>
-        <DialogContent className="bg-slate-900 border-white/20 text-white sm:max-w-md">
+        <DialogContent className="bg-background border-foreground/20 text-foreground sm:max-w-md">
           <div className="flex flex-col items-center justify-center py-8 text-center">
             <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
               <Check className="w-8 h-8 text-green-400" />
             </div>
-            <DialogTitle className="text-xl font-semibold text-white mb-2">
+            <DialogTitle className="text-xl font-semibold text-foreground mb-2">
               Solicitud Recibida
             </DialogTitle>
-            <DialogDescription className="text-white/60">
+            <DialogDescription className="text-foreground/60">
               Nuestro equipo te contactara en breve con tu presupuesto personalizado.
             </DialogDescription>
             <Button
               onClick={handleClose}
-              className="mt-6 bg-white text-black hover:bg-white/90 rounded-full px-6"
+              className="mt-6 bg-foreground text-background hover:bg-foreground/90 rounded-full px-6"
             >
               Cerrar
             </Button>
@@ -299,12 +299,12 @@ function BudgetFormModal({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="bg-slate-900 border-white/20 text-white sm:max-w-lg max-h-[90vh] overflow-y-auto">
+      <DialogContent className="bg-background border-foreground/20 text-foreground sm:max-w-lg max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold text-white">
+          <DialogTitle className="text-xl font-semibold text-foreground">
             Pedir Presupuesto
           </DialogTitle>
-          <DialogDescription className="text-white/60">
+          <DialogDescription className="text-foreground/60">
             Completa el formulario para recibir un presupuesto personalizado.
           </DialogDescription>
         </DialogHeader>
@@ -312,7 +312,7 @@ function BudgetFormModal({
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="budget-nombre" className="text-white/80">
+              <Label htmlFor="budget-nombre" className="text-foreground/80">
                 Nombre *
               </Label>
               <Input
@@ -322,12 +322,12 @@ function BudgetFormModal({
                   setFormData({ ...formData, nombre: e.target.value })
                 }
                 required
-                className="bg-white/5 border-white/20 text-white placeholder:text-white/40 focus:border-white/40"
+                className="bg-foreground/5 border-foreground/20 text-foreground placeholder:text-foreground/40 focus:border-foreground/40"
                 placeholder="Tu nombre"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="budget-email" className="text-white/80">
+              <Label htmlFor="budget-email" className="text-foreground/80">
                 Email *
               </Label>
               <Input
@@ -338,14 +338,14 @@ function BudgetFormModal({
                   setFormData({ ...formData, email: e.target.value })
                 }
                 required
-                className="bg-white/5 border-white/20 text-white placeholder:text-white/40 focus:border-white/40"
+                className="bg-foreground/5 border-foreground/20 text-foreground placeholder:text-foreground/40 focus:border-foreground/40"
                 placeholder="tu@email.com"
               />
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="budget-empresa" className="text-white/80">
+            <Label htmlFor="budget-empresa" className="text-foreground/80">
               Empresa
             </Label>
             <Input
@@ -354,14 +354,14 @@ function BudgetFormModal({
               onChange={(e) =>
                 setFormData({ ...formData, empresa: e.target.value })
               }
-              className="bg-white/5 border-white/20 text-white placeholder:text-white/40 focus:border-white/40"
+              className="bg-foreground/5 border-foreground/20 text-foreground placeholder:text-foreground/40 focus:border-foreground/40"
               placeholder="Nombre de tu empresa"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="budget-servicio" className="text-white/80">
+              <Label htmlFor="budget-servicio" className="text-foreground/80">
                 Servicio de interes *
               </Label>
               <select
@@ -371,20 +371,20 @@ function BudgetFormModal({
                   setFormData({ ...formData, servicio: e.target.value })
                 }
                 required
-                className="w-full h-9 rounded-md border border-white/20 bg-white/5 px-3 text-white text-sm focus:border-white/40 outline-none"
+                className="w-full h-9 rounded-md border border-foreground/20 bg-foreground/5 px-3 text-foreground text-sm focus:border-foreground/40 outline-none"
               >
-                <option value="" className="bg-slate-900">Selecciona un servicio</option>
-                <option value="atencion-telefonica-ia" className="bg-slate-900">Atención Telefónica IA</option>
-                <option value="agente-chat-web-ia" className="bg-slate-900">Agente Chat Web IA</option>
-                <option value="whatsapp-ia-empresas" className="bg-slate-900">WhatsApp IA</option>
-                <option value="agente-ventas-ia" className="bg-slate-900">Agente de Ventas IA</option>
-                <option value="ia-omnicanal" className="bg-slate-900">IA Omnicanal</option>
-                <option value="ia-call-center" className="bg-slate-900">IA Call Center</option>
-                <option value="otro" className="bg-slate-900">Otro</option>
+                <option value="" className="bg-background">Selecciona un servicio</option>
+                <option value="atencion-telefonica-ia" className="bg-background">Atención Telefónica IA</option>
+                <option value="agente-chat-web-ia" className="bg-background">Agente Chat Web IA</option>
+                <option value="whatsapp-ia-empresas" className="bg-background">WhatsApp IA</option>
+                <option value="agente-ventas-ia" className="bg-background">Agente de Ventas IA</option>
+                <option value="ia-omnicanal" className="bg-background">IA Omnicanal</option>
+                <option value="ia-call-center" className="bg-background">IA Call Center</option>
+                <option value="otro" className="bg-background">Otro</option>
               </select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="budget-presupuesto" className="text-white/80">
+              <Label htmlFor="budget-presupuesto" className="text-foreground/80">
                 Presupuesto estimado
               </Label>
               <select
@@ -393,20 +393,20 @@ function BudgetFormModal({
                 onChange={(e) =>
                   setFormData({ ...formData, presupuesto: e.target.value })
                 }
-                className="w-full h-9 rounded-md border border-white/20 bg-white/5 px-3 text-white text-sm focus:border-white/40 outline-none"
+                className="w-full h-9 rounded-md border border-foreground/20 bg-foreground/5 px-3 text-foreground text-sm focus:border-foreground/40 outline-none"
               >
-                <option value="" className="bg-slate-900">Selecciona un rango</option>
-                <option value="menos-500" className="bg-slate-900">Menos de 500 EUR/mes</option>
-                <option value="500-1000" className="bg-slate-900">500 - 1.000 EUR/mes</option>
-                <option value="1000-2500" className="bg-slate-900">1.000 - 2.500 EUR/mes</option>
-                <option value="2500-5000" className="bg-slate-900">2.500 - 5.000 EUR/mes</option>
-                <option value="mas-5000" className="bg-slate-900">Mas de 5.000 EUR/mes</option>
+                <option value="" className="bg-background">Selecciona un rango</option>
+                <option value="menos-500" className="bg-background">Menos de 500 EUR/mes</option>
+                <option value="500-1000" className="bg-background">500 - 1.000 EUR/mes</option>
+                <option value="1000-2500" className="bg-background">1.000 - 2.500 EUR/mes</option>
+                <option value="2500-5000" className="bg-background">2.500 - 5.000 EUR/mes</option>
+                <option value="mas-5000" className="bg-background">Mas de 5.000 EUR/mes</option>
               </select>
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="budget-descripción" className="text-white/80">
+            <Label htmlFor="budget-descripción" className="text-foreground/80">
               Descripcion del proyecto
             </Label>
             <Textarea
@@ -415,7 +415,7 @@ function BudgetFormModal({
               onChange={(e) =>
                 setFormData({ ...formData, descripcion: e.target.value })
               }
-              className="bg-white/5 border-white/20 text-white placeholder:text-white/40 focus:border-white/40 min-h-[100px]"
+              className="bg-foreground/5 border-foreground/20 text-foreground placeholder:text-foreground/40 focus:border-foreground/40 min-h-[100px]"
               placeholder="Describe brevemente tu proyecto o necesidades..."
             />
           </div>
@@ -429,7 +429,7 @@ function BudgetFormModal({
           <Button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-white text-black hover:bg-white/90 rounded-full py-6 text-base font-medium"
+            className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full py-6 text-base font-medium"
           >
             {isLoading ? (
               <>

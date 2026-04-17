@@ -50,7 +50,7 @@ export function SocialProofBlock() {
           {/* Testimonial Card */}
           <div className="card-premium p-8 sm:p-10 rounded-2xl">
             <div className="mb-6">
-              <Quote className="w-8 h-8 text-[#0078AA]/20 dark:text-[#00D4FF]/20" />
+              <Quote className="w-8 h-8 text-brand-secondary/20 dark:text-brand-secondary/20" />
             </div>
             
             <blockquote className="mb-8">
@@ -61,7 +61,7 @@ export function SocialProofBlock() {
             
             {/* Author */}
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0078AA] to-[#7C3AED] flex items-center justify-center shadow-sm">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gradient-from to-gradient-to flex items-center justify-center shadow-sm">
                 <span className="text-white text-sm font-bold">{t("quote_author_initials") || "MG"}</span>
               </div>
               <div>
@@ -80,7 +80,7 @@ export function SocialProofBlock() {
             {/* Case study label */}
             <div className="flex items-center gap-2 mb-6">
               <FeatureIcon icon={Building2} className="w-4 h-4" />
-              <span className="text-xs font-semibold tracking-widest text-[#0078AA] dark:text-[#00D4FF] uppercase">
+              <span className="text-xs font-semibold tracking-widest text-brand-secondary dark:text-brand-secondary uppercase">
                 {t("case_study_label") || "Caso de exito"}
               </span>
             </div>
@@ -125,7 +125,7 @@ export function SocialProofBlock() {
             <div className="mt-6 pt-5 border-t border-foreground/[0.05] dark:border-white/[0.06]">
               <Link
                 href="/casos-exito"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#0078AA] dark:text-[#00D4FF] hover:underline group"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-brand-secondary dark:text-brand-secondary hover:underline group"
               >
                 {t("case_study_cta") || "Ver casos de exito"}
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />

@@ -42,7 +42,7 @@ function WhatsAppMockup({
       </div>
 
       {/* Chat area */}
-      <div className="p-4 min-h-[320px] max-h-[360px] bg-[#0b141a] space-y-3 overflow-y-auto">
+      <div className="p-4 min-h-[320px] max-h-[360px] bg-whatsapp-bg-dark-chat space-y-3 overflow-y-auto">
         {simulation.messages.slice(0, visibleMessages).map((msg, i) => (
           <div
             key={i}

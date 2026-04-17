@@ -106,7 +106,7 @@ const ChatMockup = ({ active, m }: { active: boolean; m: MockupTexts }) => {
   const convo = conversations[scenarioIdx]
 
   return (
-    <div className="bg-[#F0F2F5] dark:bg-[#1A1D21] rounded-xl p-3 h-36 overflow-hidden">
+    <div className="bg-whatsapp-bg-chat dark:bg-bg-card rounded-xl p-3 h-36 overflow-hidden">
       {/* Top bar */}
       <div className="flex items-center gap-2 mb-2 pb-1.5 border-b border-slate-200/60 dark:border-white/[0.06]">
         <div className="w-1 h-3 rounded-full bg-green-500" />
@@ -125,8 +125,8 @@ const ChatMockup = ({ active, m }: { active: boolean; m: MockupTexts }) => {
           >
             <div className={`rounded-xl px-3 py-1.5 text-xs max-w-[80%] ${
               msg.from === "user"
-                ? "bg-[#DCF8C6] dark:bg-[#005C4B] text-slate-800 dark:text-white rounded-tr-sm"
-                : "bg-white dark:bg-[#1F2937] text-slate-700 dark:text-slate-200 rounded-tl-sm"
+                ? "bg-whatsapp-green-bubble dark:bg-whatsapp-bubble-dark text-slate-800 dark:text-white rounded-tr-sm"
+                : "bg-white dark:bg-bg-card-hover text-slate-700 dark:text-slate-200 rounded-tl-sm"
             }`}>
               {msg.text}
             </div>
@@ -135,7 +135,7 @@ const ChatMockup = ({ active, m }: { active: boolean; m: MockupTexts }) => {
         {/* Typing indicator */}
         {showTyping && (
           <div className="flex justify-start">
-            <div className="bg-white dark:bg-[#1F2937] rounded-xl rounded-tl-sm px-3 py-2 flex gap-1">
+            <div className="bg-white dark:bg-bg-card-hover rounded-xl rounded-tl-sm px-3 py-2 flex gap-1">
               <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
               <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
               <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
@@ -175,7 +175,7 @@ const PhoneMockup = ({ active, m }: { active: boolean; m: MockupTexts }) => {
   const waveHeights = [14, 22, 10, 28, 16]
 
   return (
-    <div className="bg-[#F0F2F5] dark:bg-[#1A1D21] rounded-xl p-3 h-36 overflow-hidden flex flex-col">
+    <div className="bg-whatsapp-bg-chat dark:bg-bg-card rounded-xl p-3 h-36 overflow-hidden flex flex-col">
       {/* Top label */}
       <div className="flex items-center gap-1.5 mb-3">
         <svg className={`w-3.5 h-3.5 ${state.color} transition-colors duration-500 ${state.status === "ringing" ? "animate-pulse" : ""}`} fill="currentColor" viewBox="0 0 24 24">
@@ -244,7 +244,7 @@ const CalendarMockup = ({ active, m }: { active: boolean; m: MockupTexts }) => {
   const booking = bookings[bookingIdx]
 
   return (
-    <div className="bg-[#F0F2F5] dark:bg-[#1A1D21] rounded-xl p-3 h-36 overflow-hidden flex flex-col">
+    <div className="bg-whatsapp-bg-chat dark:bg-bg-card rounded-xl p-3 h-36 overflow-hidden flex flex-col">
       {/* Mini calendar grid */}
       <div className="grid grid-cols-7 gap-1 mb-2">
         {days.map((d) => (
@@ -303,7 +303,7 @@ const EmailMockup = ({ active, m }: { active: boolean; m: MockupTexts }) => {
   }, [active])
 
   return (
-    <div className="bg-[#F0F2F5] dark:bg-[#1A1D21] rounded-xl p-3 h-36 overflow-hidden">
+    <div className="bg-whatsapp-bg-chat dark:bg-bg-card rounded-xl p-3 h-36 overflow-hidden">
       <div className="space-y-2">
         {emailRows.map((row, i) => {
           const isDone = i < processed
@@ -364,7 +364,7 @@ const IntegrationsMockup = ({ active }: { active: boolean; m: MockupTexts }) => 
   }, [active])
 
   return (
-    <div className="bg-[#F0F2F5] dark:bg-[#1A1D21] rounded-xl p-3 h-36 overflow-hidden">
+    <div className="bg-whatsapp-bg-chat dark:bg-bg-card rounded-xl p-3 h-36 overflow-hidden">
       <div className="relative w-full h-full">
         {/* Center hub */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-purple-600 flex items-center justify-center z-10 shadow-[0_0_12px_rgba(147,51,234,0.4)]"
@@ -427,14 +427,14 @@ const AnalyticsMockup = ({ active, m }: { active: boolean; m: MockupTexts }) => 
   const time = (progress * 2.3).toFixed(1)
 
   return (
-    <div className="bg-[#F0F2F5] dark:bg-[#1A1D21] rounded-xl p-3 h-36 overflow-hidden flex flex-col">
+    <div className="bg-whatsapp-bg-chat dark:bg-bg-card rounded-xl p-3 h-36 overflow-hidden flex flex-col">
       {/* Stat boxes */}
       <div className="grid grid-cols-2 gap-2 mb-3">
-        <div className="bg-white dark:bg-[#1F2937] rounded-lg px-2 py-1.5">
+        <div className="bg-white dark:bg-bg-card-hover rounded-lg px-2 py-1.5">
           <div className="text-[10px] text-slate-400 dark:text-slate-500">{m.analytics_resolved}</div>
           <div className="text-sm font-bold text-slate-800 dark:text-white">{resolved}%</div>
         </div>
-        <div className="bg-white dark:bg-[#1F2937] rounded-lg px-2 py-1.5">
+        <div className="bg-white dark:bg-bg-card-hover rounded-lg px-2 py-1.5">
           <div className="text-[10px] text-slate-400 dark:text-slate-500">{m.analytics_time}</div>
           <div className="text-sm font-bold text-slate-800 dark:text-white">{time}s</div>
         </div>
@@ -491,10 +491,10 @@ function AnimatedCard({ feature, index, t, m }: { feature: FeatureConfig; index:
       className={`group transition-all duration-700 ${feature.size === "large" ? "md:col-span-2" : ""}`}
       style={{ transitionDelay: inView ? `${index * 80}ms` : "0ms" }}
     >
-      <div className={`relative bg-white dark:bg-[#111827] rounded-2xl p-6 sm:p-7 h-full shadow-[0_1px_3px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_2px_8px_rgba(0,0,0,0.3)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.06),0_12px_40px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_4px_16px_rgba(0,0,0,0.5)] transition-all duration-400 hover:-translate-y-1 border border-slate-200/60 dark:border-white/[0.08] hover:border-[#0078AA]/20 dark:hover:border-[#00D4FF]/20 overflow-hidden ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      <div className={`relative bg-white dark:bg-bg-elevated rounded-2xl p-6 sm:p-7 h-full shadow-[0_1px_3px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_2px_8px_rgba(0,0,0,0.3)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.06),0_12px_40px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_4px_16px_rgba(0,0,0,0.5)] transition-all duration-400 hover:-translate-y-1 border border-slate-200/60 dark:border-white/[0.08] hover:border-brand-secondary/20 dark:hover:border-brand-secondary/20 overflow-hidden ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         {/* Micro-label */}
         <div className="relative mb-4">
-          <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-[#0078AA]/[0.06] dark:bg-[#00D4FF]/[0.08] text-[10px] font-bold uppercase tracking-[0.1em] text-[#0078AA] dark:text-[#00D4FF]">
+          <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-brand-secondary/[0.06] dark:bg-brand-secondary/[0.08] text-[10px] font-bold uppercase tracking-[0.1em] text-brand-secondary dark:text-brand-secondary">
             {t(`features.${feature.microLabelKey}.micro_label`)}
           </span>
         </div>
@@ -568,7 +568,7 @@ export function AIWorking247Block() {
   return (
     <section id="features" ref={sectionRef} className="relative z-10">
       {/* Transition overlay removed -- aurora flows through */}
-      <div className="bg-[#F8FAFC] dark:bg-[#0A0E1A] pt-24 sm:pt-32 pb-24 sm:pb-32 px-6 sm:px-8 relative overflow-hidden">
+      <div className="bg-bg-page dark:bg-bg-page pt-24 sm:pt-32 pb-24 sm:pb-32 px-6 sm:px-8 relative overflow-hidden">
         {/* Refined dot pattern */}
         <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
           <div className="absolute inset-0" style={{ backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 0.5px, transparent 0)`, backgroundSize: "32px 32px" }} />
@@ -577,15 +577,15 @@ export function AIWorking247Block() {
         <div className="max-w-6xl mx-auto relative">
           {/* Header */}
           <div className={`text-center mb-16 sm:mb-20 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#EEF4FF] dark:bg-[#0F1B2E] border border-[#0062CC]/25 dark:border-[#38BDF8]/40 mb-8">
-              <span className="text-[#0062CC] dark:text-[#7DD3FC] text-sm">{"\u2726"}</span>
-              <span className="text-xs font-semibold tracking-widest text-[#0062CC] dark:text-[#7DD3FC] uppercase">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bg-subtle dark:bg-bg-subtle border border-brand-secondary-hover/25 dark:border-accent-cyan/40 mb-8">
+              <span className="text-brand-secondary-hover dark:text-accent-cyan text-sm">{"\u2726"}</span>
+              <span className="text-xs font-semibold tracking-widest text-brand-secondary-hover dark:text-accent-cyan uppercase">
                 {t("badge")}
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white text-balance mb-6 leading-[1.1] tracking-tight">
               {t("title_1")}{" "}
-              <span className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-gradient-from to-gradient-to bg-clip-text text-transparent">
                 {t("title_2")}
               </span>
             </h2>

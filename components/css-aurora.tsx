@@ -2,7 +2,7 @@ export function CSSAurora() {
   return (
     <div className="aurora-bg" aria-hidden="true">
       {/* Base dark background only visible in dark mode */}
-      <div className="absolute inset-0 bg-transparent dark:bg-[#050A14]" />
+      <div className="absolute inset-0 bg-transparent dark:bg-bg-page" />
 
       {/* Blob 1 — Cyan/Teal, top-left, slow horizontal drift */}
       <div className="aurora-global-blob aurora-global-blob-1" />

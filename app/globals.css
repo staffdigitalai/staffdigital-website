@@ -56,6 +56,70 @@
   --glow-purple: 0 0 15px rgba(var(--purple-dark-rgb), 0.3), 0 0 30px rgba(var(--purple-dark-rgb), 0.15);
   --glow-lime: 0 0 15px rgba(var(--lime-green-rgb), 0.3), 0 0 30px rgba(var(--lime-green-rgb), 0.15);
 
+  /* ═══════════════════════════════════════════════════════════════
+     DESIGN TOKENS — Semantic color system (single source of truth)
+     Names are SEMANTIC (fg-muted, bg-card) not VISUAL (gray-400).
+     Changing palette in future = edit hex here, never class names.
+     Hex values consolidated from actual codebase usage (grep audit).
+     ═══════════════════════════════════════════════════════════════ */
+
+  /* BRAND */
+  --brand-primary:         #7C3AED;  /* main violet - CTAs, links (89 uses) */
+  --brand-primary-hover:   #5B21B6;  /* darker violet hover */
+  --brand-secondary:       #0078AA;  /* main blue - accents, gradient start (140 uses) */
+  --brand-secondary-hover: #0062CC;  /* darker blue hover */
+
+  /* SEMANTIC SURFACES */
+  --bg-page:       #F8FAFC;
+  --bg-subtle:     #EEF4FF;
+  --bg-card:       #FFFFFF;
+  --bg-card-hover: #F8FAFC;
+  --bg-elevated:   #FFFFFF;
+  --bg-nav:        rgba(255, 255, 255, 0.85);
+
+  /* SEMANTIC TEXT */
+  --fg-primary:    #0F172A;  /* near-black */
+  --fg-secondary:  #334155;
+  --fg-muted:      #64748B;
+  --fg-on-brand:   #FFFFFF;  /* text over brand colors */
+
+  /* SEMANTIC BORDERS */
+  --border-default: rgba(15, 23, 42, 0.08);
+  --border-strong:  rgba(15, 23, 42, 0.16);
+  --border-hover:   rgba(15, 23, 42, 0.24);
+
+  /* GRADIENT (brand gradient, 47 uses of from-[#0078AA] to-[#7C3AED]) */
+  --gradient-from: #0078AA;
+  --gradient-via:  #4F46E5;
+  --gradient-to:   #7C3AED;
+
+  /* CATEGORY ACCENTS (for badges: INTERACCION, ANALISIS, DECISION, etc.) */
+  --accent-cyan:   #38BDF8;  /* INTERACCION (21 uses) */
+  --accent-violet: #A855F7;  /* ANALISIS / INTELIGENCIA (9 uses) */
+  --accent-green:  #22C55E;  /* DECISION */
+  --accent-amber:  #F59E0B;  /* EJECUCION */
+  --accent-pink:   #EC4899;  /* CONECTIVIDAD (4 uses) */
+  --accent-blue:   #4F46E5;  /* alt accent (9 uses) */
+
+  /* SEMANTIC STATES */
+  --success: #16A34A;
+  --warning: #F59E0B;
+  --error:   #DC2626;
+  --info:    #0078AA;
+
+  /* SHADOWS (tokens for consistent elevation) */
+  --shadow-card:       0px 1px 2px rgba(0, 0, 0, 0.03), 0px 4px 16px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0px 4px 12px rgba(0, 0, 0, 0.06), 0px 12px 40px rgba(0, 0, 0, 0.06);
+
+  /* WHATSAPP BRAND (for chat mockups — real WA product UI colors) */
+  --whatsapp-green:         #25D366;
+  --whatsapp-green-dark:    #075E54;
+  --whatsapp-green-bubble:  #DCF8C6;
+  --whatsapp-bg-light:      #ECE5DD;
+  --whatsapp-bg-chat:       #F0F2F5;
+  --whatsapp-bg-dark-chat:  #0b141a;
+  --whatsapp-bg-dark-pane:  #1f2c34;
+  --whatsapp-bubble-dark:   #005c4b;
 }
 
 /* === Dark Theme === */
@@ -101,6 +165,59 @@
   --glow-purple: 0 0 20px rgba(var(--purple-dark-rgb), 0.5), 0 0 40px rgba(var(--purple-dark-rgb), 0.3);
   --glow-lime: 0 0 20px rgba(var(--lime-green-rgb), 0.5), 0 0 40px rgba(var(--lime-green-rgb), 0.3);
 
+  /* ═══════════════════════════════════════════════════════════════
+     DESIGN TOKENS — Dark mode overrides
+     Same token names, different hex. Tailwind classes (bg-bg-card,
+     text-fg-primary, etc.) stay the same; CSS vars swap via .dark.
+     ═══════════════════════════════════════════════════════════════ */
+
+  /* BRAND */
+  --brand-primary:         #8B5CF6;
+  --brand-primary-hover:   #7C3AED;
+  --brand-secondary:       #00D4FF;  /* 32 uses */
+  --brand-secondary-hover: #38BDF8;
+
+  /* SEMANTIC SURFACES */
+  --bg-page:       #0A0E1A;  /* 7 uses */
+  --bg-subtle:     #0F1B2E;  /* 7 uses */
+  --bg-card:       #1A1D21;  /* 6 uses */
+  --bg-card-hover: #1F2937;  /* 4 uses */
+  --bg-elevated:   #111827;  /* 4 uses */
+  --bg-nav:        rgba(10, 14, 26, 0.85);
+
+  /* SEMANTIC TEXT */
+  --fg-primary:    #F8FAFC;  /* 7 uses */
+  --fg-secondary:  #CBD5E1;
+  --fg-muted:      #94A3B8;
+  --fg-on-brand:   #FFFFFF;
+
+  /* SEMANTIC BORDERS */
+  --border-default: rgba(248, 250, 252, 0.08);
+  --border-strong:  rgba(248, 250, 252, 0.16);
+  --border-hover:   rgba(248, 250, 252, 0.24);
+
+  /* GRADIENT (darker variants for dark mode) */
+  --gradient-from: #00D4FF;
+  --gradient-via:  #4F46E5;
+  --gradient-to:   #8B5CF6;
+
+  /* CATEGORY ACCENTS (slightly brighter in dark for contrast) */
+  --accent-cyan:   #38BDF8;
+  --accent-violet: #A855F7;
+  --accent-green:  #22C55E;
+  --accent-amber:  #FBBF24;
+  --accent-pink:   #EC4899;
+  --accent-blue:   #4F46E5;
+
+  /* SEMANTIC STATES */
+  --success: #22C55E;
+  --warning: #FBBF24;
+  --error:   #EF4444;
+  --info:    #00D4FF;
+
+  /* SHADOWS (deeper in dark) */
+  --shadow-card:       0px 1px 3px rgba(0, 0, 0, 0.2), 0px 4px 16px rgba(0, 0, 0, 0.15);
+  --shadow-card-hover: 0px 4px 12px rgba(0, 0, 0, 0.3), 0px 12px 40px rgba(0, 0, 0, 0.2);
 }
 
 /* === Global Card Elevated Style === */
@@ -115,31 +232,19 @@
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-/* === Premium Card System === */
+/* === Premium Card System (token-driven, single definition) === */
 .card-premium {
-  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 4px 16px rgba(0, 0, 0, 0.04);
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-card);
 }
 
 .card-premium:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 12px 40px rgba(0, 0, 0, 0.06);
+  border-color: var(--border-hover);
   transform: translateY(-2px);
-  border-color: rgba(0, 120, 170, 0.15);
-}
-
-.dark .card-premium {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.15);
-}
-
-.dark .card-premium:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.14);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 12px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-card-hover);
 }
 
 /* === Section Divider === */
@@ -191,6 +296,69 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* ═══════════════════════════════════════════════════════════════
+     SEMANTIC TOKENS — exposed as Tailwind classes
+     Usage: bg-brand-primary, text-fg-muted, border-default, etc.
+     ═══════════════════════════════════════════════════════════════ */
+
+  /* BRAND */
+  --color-brand-primary:         var(--brand-primary);
+  --color-brand-primary-hover:   var(--brand-primary-hover);
+  --color-brand-secondary:       var(--brand-secondary);
+  --color-brand-secondary-hover: var(--brand-secondary-hover);
+
+  /* SURFACES */
+  --color-bg-page:       var(--bg-page);
+  --color-bg-subtle:     var(--bg-subtle);
+  --color-bg-card:       var(--bg-card);
+  --color-bg-card-hover: var(--bg-card-hover);
+  --color-bg-elevated:   var(--bg-elevated);
+  --color-bg-nav:        var(--bg-nav);
+
+  /* TEXT */
+  --color-fg-primary:    var(--fg-primary);
+  --color-fg-secondary:  var(--fg-secondary);
+  --color-fg-muted:      var(--fg-muted);
+  --color-fg-on-brand:   var(--fg-on-brand);
+
+  /* BORDERS (use border-default-border, border-strong-border, etc.) */
+  --color-border-default: var(--border-default);
+  --color-border-strong:  var(--border-strong);
+  --color-border-hover:   var(--border-hover);
+
+  /* CATEGORY ACCENTS */
+  --color-accent-cyan:   var(--accent-cyan);
+  --color-accent-violet: var(--accent-violet);
+  --color-accent-green:  var(--accent-green);
+  --color-accent-amber:  var(--accent-amber);
+  --color-accent-pink:   var(--accent-pink);
+  --color-accent-blue:   var(--accent-blue);
+
+  /* STATES */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error:   var(--error);
+  --color-info:    var(--info);
+
+  /* GRADIENT STOPS (exposed for from-/via-/to-) */
+  --color-gradient-from: var(--gradient-from);
+  --color-gradient-via:  var(--gradient-via);
+  --color-gradient-to:   var(--gradient-to);
+
+  /* SHADOWS (exposed as shadow-card, shadow-card-hover) */
+  --shadow-card:       var(--shadow-card);
+  --shadow-card-hover: var(--shadow-card-hover);
+
+  /* WHATSAPP BRAND (only for chat mockups) */
+  --color-whatsapp-green:        var(--whatsapp-green);
+  --color-whatsapp-green-dark:   var(--whatsapp-green-dark);
+  --color-whatsapp-green-bubble: var(--whatsapp-green-bubble);
+  --color-whatsapp-bg-light:     var(--whatsapp-bg-light);
+  --color-whatsapp-bg-chat:      var(--whatsapp-bg-chat);
+  --color-whatsapp-bg-dark-chat: var(--whatsapp-bg-dark-chat);
+  --color-whatsapp-bg-dark-pane: var(--whatsapp-bg-dark-pane);
+  --color-whatsapp-bubble-dark:  var(--whatsapp-bubble-dark);
 }
 
 @layer base {

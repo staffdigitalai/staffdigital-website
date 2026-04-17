@@ -134,14 +134,14 @@ export function VoiceBlock() {
   }
 
   return (
-    <section className="py-28 sm:py-36 px-6 sm:px-8 bg-[#F8FAFC] dark:bg-[#0A0E1A] animate-fade-in-section">
+    <section className="py-28 sm:py-36 px-6 sm:px-8 bg-bg-page dark:bg-bg-page animate-fade-in-section">
       <div className="max-w-5xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           {/* Left Column - Content */}
           <div className="relative">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#EEF4FF] dark:bg-[#0F1B2E] border border-[#0062CC]/25 dark:border-[#38BDF8]/40 mb-6">
-              <Volume2 className="w-3.5 h-3.5 text-[#0078AA] dark:text-[#38BDF8]" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bg-subtle dark:bg-bg-subtle border border-brand-secondary-hover/25 dark:border-accent-cyan/40 mb-6">
+              <Volume2 className="w-3.5 h-3.5 text-brand-secondary dark:text-accent-cyan" />
               <span className="text-xs font-semibold tracking-widest text-foreground/65 dark:text-white/55 uppercase">
                 {t("badge") || "Voz Humana HD"}
               </span>
@@ -150,7 +150,7 @@ export function VoiceBlock() {
             {/* Title */}
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-5">
               <span className="text-foreground">{t("title_plain")} </span>
-              <span className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-gradient-from to-gradient-to bg-clip-text text-transparent">
                 {t("title_gradient")}
               </span>
             </h2>
@@ -195,7 +195,7 @@ export function VoiceBlock() {
               <div className="relative">
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0078AA] to-[#7C3AED] flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-gradient-from to-gradient-to flex items-center justify-center">
                     <Volume2 className="w-5 h-5 text-white" />
                   </div>
                   <div>
@@ -218,7 +218,7 @@ export function VoiceBlock() {
                     {barHeights.map((h, i) => (
                       <div
                         key={i}
-                        className="w-1 rounded-full bg-gradient-to-t from-[#0078AA] to-[#7C3AED] transition-all duration-150"
+                        className="w-1 rounded-full bg-gradient-to-t from-gradient-from to-gradient-to transition-all duration-150"
                         style={{ height: `${h}px` }}
                       />
                     ))}
@@ -231,21 +231,21 @@ export function VoiceBlock() {
                   <div className="relative">
                     <button
                       onClick={() => setIsPlaying(!isPlaying)}
-                      className="relative w-11 h-11 rounded-full bg-gradient-to-br from-[#0078AA] to-[#7C3AED] flex items-center justify-center text-white hover:scale-105 transition-transform z-10"
+                      className="relative w-11 h-11 rounded-full bg-gradient-to-br from-gradient-from to-gradient-to flex items-center justify-center text-white hover:scale-105 transition-transform z-10"
                       style={{ boxShadow: "0 4px 12px rgba(0,120,170,0.25)" }}
                       aria-label={isPlaying ? "Pause" : "Play"}
                     >
                       {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
                     </button>
                     {isPlaying && (
-                      <span className="absolute inset-0 rounded-full border-2 border-[#0078AA]/40 animate-ping" style={{ animationDuration: "2s" }} />
+                      <span className="absolute inset-0 rounded-full border-2 border-brand-secondary/40 animate-ping" style={{ animationDuration: "2s" }} />
                     )}
                   </div>
                   
                   <div className="flex-1">
                     <div className="h-1.5 rounded-full bg-foreground/[0.06] dark:bg-white/[0.08] overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-gradient-to-r from-[#0078AA] to-[#7C3AED] transition-all duration-100"
+                        className="h-full rounded-full bg-gradient-to-r from-gradient-from to-gradient-to transition-all duration-100"
                         style={{ width: `${(currentSecond / CALL_DURATION) * 100}%` }}
                       />
                     </div>
@@ -265,7 +265,7 @@ export function VoiceBlock() {
                     <p className="text-sm text-foreground/60 italic leading-relaxed">
                       &ldquo;{transcriptWords.slice(0, visibleWords).join(" ")}
                       {visibleWords < transcriptWords.length && visibleWords > 0 && (
-                        <span className="inline-block w-[2px] h-4 bg-[#0078AA] dark:bg-[#00D4FF] ml-1 animate-pulse align-middle" />
+                        <span className="inline-block w-[2px] h-4 bg-brand-secondary dark:bg-brand-secondary ml-1 animate-pulse align-middle" />
                       )}
                       {visibleWords >= transcriptWords.length && <>&rdquo;</>}
                     </p>

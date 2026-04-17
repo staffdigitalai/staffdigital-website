@@ -10,13 +10,13 @@ export function DifferentiationBlock() {
   const genericItems = t.raw("comparison_generic_items") as string[]
 
   return (
-    <section className="py-28 sm:py-36 px-6 sm:px-8 animate-fade-in-section relative overflow-hidden bg-white dark:bg-[#111827]">
+    <section className="py-28 sm:py-36 px-6 sm:px-8 animate-fade-in-section relative overflow-hidden bg-white dark:bg-bg-elevated">
       <div className="max-w-5xl mx-auto relative">
         {/* HEADER — centered */}
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-6">
             <span className="text-foreground">{t("comparison_title_prefix")}</span>
-            <span className="bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-gradient-from to-gradient-to bg-clip-text text-transparent">
               {t("comparison_title_brand")}
             </span>
           </h2>
@@ -28,7 +28,7 @@ export function DifferentiationBlock() {
         {/* COMPARISON GRID */}
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
           {/* LEFT CARD — Herramientas genéricas */}
-          <div className="rounded-2xl p-8 sm:p-10 lg:p-12 bg-[#F1F5F9] dark:bg-white/[0.06] border border-slate-200 dark:border-white/[0.1]">
+          <div className="rounded-2xl p-8 sm:p-10 lg:p-12 bg-bg-subtle dark:bg-white/[0.06] border border-slate-200 dark:border-white/[0.1]">
             <h3 className="text-foreground/60 dark:text-foreground/50 font-semibold text-xl sm:text-2xl mb-8">
               {t("comparison_generic_title")}
             </h3>
@@ -48,23 +48,23 @@ export function DifferentiationBlock() {
           </div>
 
           {/* RIGHT CARD — StaffDigital AI */}
-          <div className="rounded-2xl p-8 sm:p-10 lg:p-12 bg-gradient-to-br from-[#0078AA]/[0.08] to-[#7C3AED]/[0.08] dark:from-[#0078AA]/[0.15] dark:to-[#7C3AED]/[0.12] border-2 border-[#0078AA]/25 dark:border-[#00D4FF]/20 shadow-xl shadow-[#0078AA]/[0.1] dark:shadow-[#0078AA]/[0.15]">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0078AA]/[0.1] dark:bg-[#00D4FF]/[0.12] border border-[#0078AA]/20 dark:border-[#00D4FF]/20 mb-4">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#0078AA] dark:bg-[#00D4FF]" />
-              <span className="text-xs font-semibold text-[#0078AA] dark:text-[#00D4FF] uppercase tracking-wider">{t("comparison_badge")}</span>
+          <div className="rounded-2xl p-8 sm:p-10 lg:p-12 bg-gradient-to-br from-gradient-from/[0.08] to-gradient-to/[0.08] dark:from-gradient-from/[0.15] dark:to-gradient-to/[0.12] border-2 border-brand-secondary/25 dark:border-brand-secondary/20 shadow-xl shadow-card dark:shadow-card-hover">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-secondary/[0.1] dark:bg-brand-secondary/[0.12] border border-brand-secondary/20 dark:border-brand-secondary/20 mb-4">
+              <div className="w-1.5 h-1.5 rounded-full bg-brand-secondary dark:bg-brand-secondary" />
+              <span className="text-xs font-semibold text-brand-secondary dark:text-brand-secondary uppercase tracking-wider">{t("comparison_badge")}</span>
             </div>
             <h3 className="text-foreground dark:text-white font-semibold text-xl sm:text-2xl mb-1">
               StaffDigital AI
             </h3>
-            <div className="w-12 h-[2px] bg-gradient-to-r from-[#0078AA] to-[#7C3AED] rounded-full mb-8" />
+            <div className="w-12 h-[2px] bg-gradient-to-r from-gradient-from to-gradient-to rounded-full mb-8" />
             <div>
               {points.map((point, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-3 py-3.5 border-b border-[#0078AA]/10 dark:border-[#0078AA]/[0.12] last:border-b-0"
+                  className="flex items-start gap-3 py-3.5 border-b border-brand-secondary/10 dark:border-brand-secondary/[0.12] last:border-b-0"
                 >
-                  <div className="w-5 h-5 rounded-full bg-[#0078AA]/20 dark:bg-[#00D4FF]/20 flex items-center justify-center shrink-0 mt-0.5">
-                    <Check className="w-3.5 h-3.5 text-[#0078AA] dark:text-[#00D4FF]" />
+                  <div className="w-5 h-5 rounded-full bg-brand-secondary/20 dark:bg-brand-secondary/20 flex items-center justify-center shrink-0 mt-0.5">
+                    <Check className="w-3.5 h-3.5 text-brand-secondary dark:text-brand-secondary" />
                   </div>
                   <span className="text-foreground/80 dark:text-foreground/70 text-sm sm:text-[15px] leading-relaxed font-medium">
                     {point}
@@ -82,7 +82,7 @@ export function DifferentiationBlock() {
           </p>
           <Link
             href="#contacto"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#0078AA] to-[#7C3AED] text-white font-semibold text-base shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-gradient-from to-gradient-to text-white font-semibold text-base shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
           >
             {t("comparison_cta_button")}
             <ArrowRight className="w-4 h-4" />

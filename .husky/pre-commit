@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+# Block commits that reintroduce hardcoded colors.
+# Allowed: semantic tokens (bg-bg-card, text-fg-primary, bg-brand-primary, etc.)
+# Forbidden: bg-[#...], text-[#...], from-[#...], bg-white, bg-gray-500, etc.
+if ! npm run -s lint:colors; then
+  echo ""
+  echo "❌ Hardcoded color detected. Use semantic tokens instead:"
+  echo "   bg-bg-card, text-fg-primary, border-default, bg-brand-primary"
+  echo "   bg-gradient-to-r from-gradient-from to-gradient-to"
+  echo ""
+  echo "See: app/globals.css for full token list."
+  exit 1
+fi

@@ -14,8 +14,8 @@ export function PhoneMockup({
   headerTitle,
   headerSubtitle,
   headerIcon,
-  headerBgColor = "bg-[#075E54]",
-  chatBgColor = "bg-[#ECE5DD]",
+  headerBgColor = "bg-whatsapp-green-dark",
+  chatBgColor = "bg-whatsapp-bg-light",
   children,
 }: PhoneMockupProps) {
   return (

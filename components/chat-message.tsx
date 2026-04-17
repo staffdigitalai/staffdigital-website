@@ -20,7 +20,7 @@ export function ChatMessage({
   highlight = false,
 }: ChatMessageProps) {
   const alignment = isUser ? "justify-end" : "justify-start"
-  const bgColor = isUser ? "bg-[#DCF8C6]" : "bg-white"
+  const bgColor = isUser ? "bg-whatsapp-green-bubble" : "bg-white"
   const borderClass = highlight ? "border-2 border-green-200" : ""
 
   return (

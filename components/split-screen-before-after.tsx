@@ -282,9 +282,9 @@ export function SplitScreenBeforeAfter() {
                           <div className="text-slate-400 text-[9px] sm:text-[10px] lg:text-xs">Cliente</div>
                         </div>
                       </div>
-                      <div className="bg-[#0d1418] rounded-b-xl sm:rounded-b-[1.25rem] p-2 sm:p-3 lg:p-4 h-[calc(100%-60px)] lg:h-[calc(100%-80px)] overflow-hidden">
+                      <div className="bg-bg-page rounded-b-xl sm:rounded-b-[1.25rem] p-2 sm:p-3 lg:p-4 h-[calc(100%-60px)] lg:h-[calc(100%-80px)] overflow-hidden">
                         <div className="mb-2">
-                          <div className="bg-[#1f2c34] rounded-lg rounded-tl-none p-2 inline-block max-w-[90%]">
+                          <div className="bg-whatsapp-bg-dark-pane rounded-lg rounded-tl-none p-2 inline-block max-w-[90%]">
                             <p className="text-white text-[9px] sm:text-[10px] lg:text-sm leading-snug">
                               Hola, me interesa el BMW X5 que teneis anunciado
                             </p>
@@ -293,7 +293,7 @@ export function SplitScreenBeforeAfter() {
                         </div>
 
                         <div className="mb-2 flex justify-end">
-                          <div className="bg-[#005c4b] rounded-lg rounded-tr-none p-2 inline-block max-w-[90%]">
+                          <div className="bg-whatsapp-bubble-dark rounded-lg rounded-tr-none p-2 inline-block max-w-[90%]">
                             <p className="text-white text-[9px] sm:text-[10px] lg:text-sm leading-snug">
                               Estamos cerrados. Horario comercial: 9:00 - 18:00. Responderemos manana!
                             </p>
@@ -302,14 +302,14 @@ export function SplitScreenBeforeAfter() {
                         </div>
 
                         <div className="mb-2">
-                          <div className="bg-[#1f2c34] rounded-lg rounded-tl-none p-2 inline-block max-w-[90%]">
+                          <div className="bg-whatsapp-bg-dark-pane rounded-lg rounded-tl-none p-2 inline-block max-w-[90%]">
                             <p className="text-white text-[9px] sm:text-[10px] lg:text-sm leading-snug">Hola?</p>
                             <p className="text-slate-400 text-[8px] lg:text-xs mt-0.5">19:10</p>
                           </div>
                         </div>
 
                         <div className="flex justify-end">
-                          <div className="bg-[#005c4b] rounded-lg rounded-tr-none p-2 inline-block max-w-[90%]">
+                          <div className="bg-whatsapp-bubble-dark rounded-lg rounded-tr-none p-2 inline-block max-w-[90%]">
                             <p className="text-white text-[9px] sm:text-[10px] lg:text-sm leading-snug">
                               Estamos cerrados. Horario comercial: 9:00 - 18:00.
                             </p>
@@ -327,7 +327,7 @@ export function SplitScreenBeforeAfter() {
                     }}
                   >
                     <div className="bg-slate-900 rounded-[2rem] sm:rounded-[2.5rem] p-2 sm:p-3 lg:p-4 shadow-2xl border-[6px] sm:border-8 border-slate-800 aspect-[9/19.5] lg:aspect-auto lg:h-[700px] overflow-hidden">
-                      <div className="bg-[#0a5c4a] rounded-t-xl sm:rounded-t-[1.25rem] px-3 py-2 lg:py-3 flex items-center gap-2">
+                      <div className="bg-whatsapp-bubble-dark rounded-t-xl sm:rounded-t-[1.25rem] px-3 py-2 lg:py-3 flex items-center gap-2">
                         <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full bg-slate-400 flex items-center justify-center text-slate-700 font-semibold text-[10px] sm:text-xs lg:text-sm">
                           JD
                         </div>
@@ -338,9 +338,9 @@ export function SplitScreenBeforeAfter() {
                           <div className="text-slate-300 text-[9px] sm:text-[10px] lg:text-xs">Cliente</div>
                         </div>
                       </div>
-                      <div className="bg-[#0d1418] rounded-b-xl sm:rounded-b-[1.25rem] p-2 sm:p-3 lg:p-4 h-[calc(100%-60px)] lg:h-[calc(100%-80px)] overflow-y-auto scrollbar-hide">
+                      <div className="bg-bg-page rounded-b-xl sm:rounded-b-[1.25rem] p-2 sm:p-3 lg:p-4 h-[calc(100%-60px)] lg:h-[calc(100%-80px)] overflow-y-auto scrollbar-hide">
                         <div className="mb-2 lg:mb-3">
-                          <div className="bg-[#1f2c34] rounded-lg rounded-tl-none p-2 inline-block max-w-[85%]">
+                          <div className="bg-whatsapp-bg-dark-pane rounded-lg rounded-tl-none p-2 inline-block max-w-[85%]">
                             <p className="text-white text-[9px] sm:text-[10px] lg:text-sm leading-snug">
                               Hola, me interesa el BMW X5 que teneis anunciado
                             </p>
@@ -349,7 +349,7 @@ export function SplitScreenBeforeAfter() {
                         </div>
 
                         <div className="mb-2 lg:mb-3 flex justify-end">
-                          <div className="bg-[#005c4b] rounded-lg rounded-tr-none p-2 inline-block max-w-[85%]">
+                          <div className="bg-whatsapp-bubble-dark rounded-lg rounded-tr-none p-2 inline-block max-w-[85%]">
                             <p className="text-white text-[9px] sm:text-[10px] lg:text-sm leading-snug">
                               Hola John! Gracias por tu interes en el BMW X5. Encantado de programar una prueba de conduccion. 🚗
                             </p>
@@ -358,7 +358,7 @@ export function SplitScreenBeforeAfter() {
                         </div>
 
                         <div className="mb-2 lg:mb-3">
-                          <div className="bg-[#1f2c34] rounded-lg rounded-tl-none p-2 inline-block max-w-[85%]">
+                          <div className="bg-whatsapp-bg-dark-pane rounded-lg rounded-tl-none p-2 inline-block max-w-[85%]">
                             <p className="text-white text-[9px] sm:text-[10px] lg:text-sm leading-snug">
                               Genial! Cuando teneis disponibilidad?
                             </p>
@@ -367,7 +367,7 @@ export function SplitScreenBeforeAfter() {
                         </div>
 
                         <div className="mb-2 lg:mb-3 flex justify-end">
-                          <div className="bg-[#005c4b] rounded-lg rounded-tr-none p-2 inline-block max-w-[85%]">
+                          <div className="bg-whatsapp-bubble-dark rounded-lg rounded-tr-none p-2 inline-block max-w-[85%]">
                             <p className="text-white text-[9px] sm:text-[10px] lg:text-sm leading-snug">
                               Tengo disponibilidad manana a las 10h, 14h o 16h. Cual te viene mejor?
                             </p>
@@ -376,7 +376,7 @@ export function SplitScreenBeforeAfter() {
                         </div>
 
                         <div className="mb-2 lg:mb-3">
-                          <div className="bg-[#1f2c34] rounded-lg rounded-tl-none p-2 inline-block max-w-[85%]">
+                          <div className="bg-whatsapp-bg-dark-pane rounded-lg rounded-tl-none p-2 inline-block max-w-[85%]">
                             <p className="text-white text-[9px] sm:text-[10px] lg:text-sm leading-snug">
                               A las 14h perfecto. Cual es el precio?
                             </p>
@@ -385,7 +385,7 @@ export function SplitScreenBeforeAfter() {
                         </div>
 
                         <div className="mb-2 lg:mb-3 flex justify-end">
-                          <div className="bg-[#005c4b] rounded-lg rounded-tr-none p-2 inline-block max-w-[85%]">
+                          <div className="bg-whatsapp-bubble-dark rounded-lg rounded-tr-none p-2 inline-block max-w-[85%]">
                             <p className="text-white text-[9px] sm:text-[10px] lg:text-sm leading-snug">
                               Perfecto! Te he reservado para las 14h de manana. El BMW X5 esta a 45.900 euros. Modelo 2023, 15.000km.
                               Opciones de financiacion?
@@ -395,7 +395,7 @@ export function SplitScreenBeforeAfter() {
                         </div>
 
                         <div className="mb-2 lg:mb-3">
-                          <div className="bg-[#1f2c34] rounded-lg rounded-tl-none p-2 inline-block max-w-[85%]">
+                          <div className="bg-whatsapp-bg-dark-pane rounded-lg rounded-tl-none p-2 inline-block max-w-[85%]">
                             <p className="text-white text-[9px] sm:text-[10px] lg:text-sm leading-snug">
                               Si, por favor! Aceptais permutas?
                             </p>
@@ -404,7 +404,7 @@ export function SplitScreenBeforeAfter() {
                         </div>
 
                         <div className="flex justify-end">
-                          <div className="bg-[#005c4b] rounded-lg rounded-tr-none p-2 inline-block max-w-[85%]">
+                          <div className="bg-whatsapp-bubble-dark rounded-lg rounded-tr-none p-2 inline-block max-w-[85%]">
                             <p className="text-white text-[9px] sm:text-[10px] lg:text-sm leading-snug">
                               Aceptamos permutas. Que vehiculo tienes? Puedo darte una estimacion al instante. 💰
                             </p>
@@ -562,7 +562,7 @@ export function SplitScreenBeforeAfter() {
                         </div>
                       </div>
 
-                      <div className="bg-[#0d1418] rounded-b-xl sm:rounded-b-[1.25rem] p-2 sm:p-3 lg:p-4 h-[calc(100%-140px)] lg:h-[calc(100%-200px)] overflow-y-auto scrollbar-hide space-y-2 lg:space-y-3">
+                      <div className="bg-bg-page rounded-b-xl sm:rounded-b-[1.25rem] p-2 sm:p-3 lg:p-4 h-[calc(100%-140px)] lg:h-[calc(100%-200px)] overflow-y-auto scrollbar-hide space-y-2 lg:space-y-3">
                         <div className="bg-gradient-to-br from-slate-800 to-slate-800/80 rounded-xl p-2 sm:p-3 lg:p-4 border border-slate-700">
                           <div className="flex items-center gap-2 mb-2">
                             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>

@@ -32,7 +32,7 @@ export default async function CasosPage() {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-foreground text-sm font-medium mb-6 animate-fade-in-badge">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-foreground/10 backdrop-blur-md border border-foreground/20 text-foreground text-sm font-medium mb-6 animate-fade-in-badge">
               <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse" />
               Casos de Exito
             </div>

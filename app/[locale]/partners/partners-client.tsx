@@ -66,7 +66,7 @@ export function PartnersClient({ page }: PartnersClientProps) {
     <div className="max-w-5xl mx-auto space-y-16">
       {/* Hero */}
       <div className="text-center space-y-6">
-        <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-sm font-medium">
+        <div className="inline-flex items-center px-4 py-2 rounded-full bg-foreground/10 border border-foreground/20 text-foreground text-sm font-medium">
           <Handshake className="w-4 h-4 mr-2" />
           Ecosistema de partners
         </div>

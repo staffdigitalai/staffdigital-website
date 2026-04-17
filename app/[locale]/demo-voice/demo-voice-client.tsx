@@ -112,8 +112,8 @@ export function DemoVoiceClient() {
               onClick={() => setActiveSample(i)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                 activeSample === i
-                  ? "bg-white text-black"
-                  : "bg-white/10 text-white/70 hover:bg-white/20"
+                  ? "bg-foreground text-background"
+                  : "bg-foreground/10 text-foreground/70 hover:bg-foreground/20"
               }`}
             >
               {s.label}
@@ -124,7 +124,7 @@ export function DemoVoiceClient() {
         {/* Scenario description */}
         <div className="text-center">
           <p className="text-muted-foreground">{samples[activeSample].description}</p>
-          <p className="text-sm text-white/50 mt-2 italic">
+          <p className="text-sm text-foreground/50 mt-2 italic">
             Cliente dice: {samples[activeSample].scenario}
           </p>
         </div>
@@ -179,7 +179,7 @@ export function DemoVoiceClient() {
         {audioPlaceholder && (
           <p className="text-center text-sm text-amber-400">
             Las muestras de audio estarán disponibles próximamente. Mientras tanto,{" "}
-            <Link href="/demo" className="underline hover:text-white">
+            <Link href="/demo" className="underline hover:text-foreground">
               solicita una demo en vivo
             </Link>{" "}
             para escuchar a nuestros agentes IA en acción.

@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
+import { useMotionFade, useMotionReveal } from "@/hooks/use-motion-reveal"
 import { 
   Phone, 
   MessageCircle, 
@@ -68,42 +69,47 @@ export interface OmnicanalShowcaseProps {
 
 // Typing indicator component
 function TypingIndicator() {
+  const shouldReduce = useReducedMotion()
+  // Reduced motion: render static dots (no infinite pulse loop)
+  const animate = shouldReduce ? undefined : { opacity: [0.4, 1, 0.4] }
+  const transition = shouldReduce
+    ? undefined
+    : { duration: 1, repeat: Infinity }
   return (
     <div className="flex items-center gap-1 px-4 py-3">
       <motion.span
         className="w-2 h-2 rounded-full bg-gray-400"
-        animate={{ opacity: [0.4, 1, 0.4] }}
-        transition={{ duration: 1, repeat: Infinity, delay: 0 }}
+        animate={animate}
+        transition={transition ? { ...transition, delay: 0 } : undefined}
       />
       <motion.span
         className="w-2 h-2 rounded-full bg-gray-400"
-        animate={{ opacity: [0.4, 1, 0.4] }}
-        transition={{ duration: 1, repeat: Infinity, delay: 0.2 }}
+        animate={animate}
+        transition={transition ? { ...transition, delay: 0.2 } : undefined}
       />
       <motion.span
         className="w-2 h-2 rounded-full bg-gray-400"
-        animate={{ opacity: [0.4, 1, 0.4] }}
-        transition={{ duration: 1, repeat: Infinity, delay: 0.4 }}
+        animate={animate}
+        transition={transition ? { ...transition, delay: 0.4 } : undefined}
       />
     </div>
   )
 }
 
 // Chat message component - Cliste style
-function ChatMessage({ 
-  message, 
-  isAgent, 
-  agentName 
-}: { 
+function ChatMessage({
+  message,
+  isAgent,
+  agentName
+}: {
   message: string
   isAgent: boolean
-  agentName: string 
+  agentName: string
 }) {
+  const chatMotion = useMotionFade({ y: 10, duration: 0.3 })
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
+      {...chatMotion}
       className={`flex ${isAgent ? 'justify-start' : 'justify-end'} gap-2`}
     >
       {isAgent && (
@@ -152,6 +158,13 @@ export function OmnicanalShowcase({
   const [visibleMessages, setVisibleMessages] = useState<number>(0)
   const [isTyping, setIsTyping] = useState(false)
 
+  // A11y-aware reveal/fade presets (skip initial hidden state when user
+  // has prefers-reduced-motion: reduce — content is visible immediately).
+  const headerReveal = useMotionReveal({ y: 20 })
+  const leftColReveal = useMotionReveal({ x: -20, delay: 0.2 })
+  const rightColReveal = useMotionReveal({ x: 20, delay: 0.3 })
+  const typingFade = useMotionFade({ duration: 0.2 })
+
   // Simulate conversation appearing progressively
   useEffect(() => {
     if (visibleMessages >= conversation.length) return
@@ -199,10 +212,7 @@ export function OmnicanalShowcase({
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          {...headerReveal}
           className="text-center mb-12"
         >
           {/* Badge - Cliste style pill */}
@@ -225,10 +235,7 @@ export function OmnicanalShowcase({
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left column: Text content */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            {...leftColReveal}
             className="space-y-8"
           >
             {/* Section title */}
@@ -275,10 +282,7 @@ export function OmnicanalShowcase({
 
           {/* Right column: Chat widget - DARK HEADER like Cliste */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            {...rightColReveal}
             className="relative"
           >
             {/* Chat widget container */}
@@ -331,8 +335,7 @@ export function OmnicanalShowcase({
                 {/* Typing indicator */}
                 {isTyping && (
                   <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    {...typingFade}
                     exit={{ opacity: 0 }}
                     className="flex items-center gap-2"
                   >

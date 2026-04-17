@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl"
 import Image from "next/image"
 import Link from "next/link"
 import { useRef, useState, useEffect } from "react"
+import { useMotionFade } from "@/hooks/use-motion-reveal"
 import { useTour } from "./tour-provider"
 
 // ─── Tooltip arrow — CSS rotated square with selective borders ───────
@@ -29,6 +30,14 @@ export function TourOverlay() {
   const { currentStep, totalSteps, step, isActive, start, next, prev, skip } = useTour()
   const containerRef = useRef<HTMLDivElement>(null)
   const [dims, setDims] = useState({ w: 0, h: 0 })
+
+  // A11y-aware motion presets. Each returns { initial: false } when
+  // prefers-reduced-motion is set, so the element renders at its natural
+  // visible state instead of getting stuck at opacity 0.
+  const startTitleMotion = useMotionFade({ y: 10 })
+  const crossfadeMotion = useMotionFade({ duration: 0.4 })
+  const beaconMotion = useMotionFade({ scale: 0, delay: 0.35 })
+  const tooltipMotion = useMotionFade({ y: 10, delay: 0.2, duration: 0.35 })
 
   const isLastStep = currentStep === totalSteps - 1
   const isFirstStep = currentStep === 0
@@ -136,8 +145,7 @@ export function TourOverlay() {
           {/* 20% overlay — lets the screenshot show through (Storylane) */}
           <div className="absolute inset-0 bg-black/20 flex items-center justify-center transition-colors group-hover:bg-black/25">
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
+              {...startTitleMotion}
               className="text-center max-w-md px-6"
             >
               <h3 className="text-2xl font-bold mb-2" style={{ color: "rgb(26, 19, 72)" }}>
@@ -187,10 +195,8 @@ export function TourOverlay() {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              {...crossfadeMotion}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
               style={getZoomTransform()}
             >
               <Image
@@ -248,9 +254,7 @@ export function TourOverlay() {
           {/* Beacon — blue dot with soft pulse */}
           <motion.div
             key={`beacon-${currentStep}`}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.35, type: "spring" }}
+            {...beaconMotion}
             className="absolute z-20 pointer-events-none"
             style={{ left: `${step.beacon.x}%`, top: `${step.beacon.y}%`, transform: "translate(-50%, -50%)" }}
           >
@@ -265,10 +269,8 @@ export function TourOverlay() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={`tooltip-${currentStep}`}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
+                {...tooltipMotion}
                 exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.35, delay: 0.2 }}
                 className="absolute z-30 w-72 sm:w-80"
                 style={getTooltipStyle()}
               >

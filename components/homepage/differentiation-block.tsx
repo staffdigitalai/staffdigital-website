@@ -28,7 +28,7 @@ export function DifferentiationBlock() {
         {/* COMPARISON GRID */}
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
           {/* LEFT CARD — Herramientas genéricas */}
-          <div className="rounded-2xl p-8 sm:p-10 lg:p-12 bg-[#F1F5F9] dark:bg-white/[0.06] border border-slate-200 dark:border-white/[0.1]">
+          <div className="rounded-2xl p-8 sm:p-10 lg:p-12 bg-bg-subtle dark:bg-white/[0.06] border border-slate-200 dark:border-white/[0.1]">
             <h3 className="text-foreground/60 dark:text-foreground/50 font-semibold text-xl sm:text-2xl mb-8">
               {t("comparison_generic_title")}
             </h3>
@@ -48,7 +48,7 @@ export function DifferentiationBlock() {
           </div>
 
           {/* RIGHT CARD — StaffDigital AI */}
-          <div className="rounded-2xl p-8 sm:p-10 lg:p-12 bg-gradient-to-br from-gradient-from/[0.08] to-gradient-to/[0.08] dark:from-gradient-from/[0.15] dark:to-gradient-to/[0.12] border-2 border-brand-secondary/25 dark:border-brand-secondary/20 shadow-xl shadow-[#0078AA]/[0.1] dark:shadow-[#0078AA]/[0.15]">
+          <div className="rounded-2xl p-8 sm:p-10 lg:p-12 bg-gradient-to-br from-gradient-from/[0.08] to-gradient-to/[0.08] dark:from-gradient-from/[0.15] dark:to-gradient-to/[0.12] border-2 border-brand-secondary/25 dark:border-brand-secondary/20 shadow-xl shadow-card dark:shadow-card-hover">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-secondary/[0.1] dark:bg-brand-secondary/[0.12] border border-brand-secondary/20 dark:border-brand-secondary/20 mb-4">
               <div className="w-1.5 h-1.5 rounded-full bg-brand-secondary dark:bg-brand-secondary" />
               <span className="text-xs font-semibold text-brand-secondary dark:text-brand-secondary uppercase tracking-wider">{t("comparison_badge")}</span>

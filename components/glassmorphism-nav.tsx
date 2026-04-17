@@ -286,7 +286,7 @@ export function GlassmorphismNav() {
                                     <Link
                                       key={service.name}
                                       href={service.href}
-                                      className="flex items-center gap-3 px-3 py-3 rounded-xl bg-gradient-to-r from-[rgb(0,120,170)]/10 to-[rgb(124,58,237)]/10 border border-[rgb(0,120,170)]/20 hover:border-[rgb(0,120,170)]/40 transition-all duration-200 group"
+                                      className="flex items-center gap-3 px-3 py-3 rounded-xl bg-gradient-to-r from-brand-secondary/10 to-brand-primary/10 border border-brand-secondary/20 hover:border-brand-secondary/40 transition-all duration-200 group"
                                       onClick={() => setIsServicesOpen(false)}
                                     >
                                       <div 
@@ -297,7 +297,7 @@ export function GlassmorphismNav() {
                                       </div>
                                       <div className="min-w-0 flex-1">
                                         <div className="flex items-center gap-2">
-                                          <p className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-[rgb(0,120,170)] dark:group-hover:text-white transition-colors">
+                                          <p className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-brand-secondary dark:group-hover:text-white transition-colors">
                                             {service.name}
                                           </p>
                                           <span className="text-[9px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded text-white" style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}>{t("featured") || "Destacado"}</span>
@@ -306,7 +306,7 @@ export function GlassmorphismNav() {
                                           {service.description}
                                         </p>
                                       </div>
-                                      <ArrowRight size={14} className="text-gray-400 dark:text-white/40 group-hover:text-[rgb(0,120,170)] group-hover:translate-x-0.5 transition-all" />
+                                      <ArrowRight size={14} className="text-gray-400 dark:text-white/40 group-hover:text-brand-secondary group-hover:translate-x-0.5 transition-all" />
                                     </Link>
                                   )
                                 })}
@@ -324,10 +324,10 @@ export function GlassmorphismNav() {
                                       onClick={() => setIsServicesOpen(false)}
                                     >
                                       <div className="w-9 h-9 rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center group-hover:bg-gray-200 dark:group-hover:bg-white/10 group-hover:border-gray-300 dark:group-hover:border-white/20 transition-all duration-200 flex-shrink-0">
-                                        <Icon size={16} className="text-gray-500 dark:text-white/60 group-hover:text-[rgb(0,120,170)] dark:group-hover:text-white transition-colors" />
+                                        <Icon size={16} className="text-gray-500 dark:text-white/60 group-hover:text-brand-secondary dark:group-hover:text-white transition-colors" />
                                       </div>
                                       <div className="min-w-0">
-                                        <p className="text-sm font-medium text-gray-900 dark:text-white/90 group-hover:text-[rgb(0,120,170)] dark:group-hover:text-white transition-colors truncate">
+                                        <p className="text-sm font-medium text-gray-900 dark:text-white/90 group-hover:text-brand-secondary dark:group-hover:text-white transition-colors truncate">
                                           {service.name}
                                         </p>
                                         <p className="text-[11px] text-gray-400 dark:text-white/35 group-hover:text-gray-600 dark:group-hover:text-white/55 transition-colors truncate">
@@ -426,10 +426,10 @@ export function GlassmorphismNav() {
                                       onClick={() => setIsSectorsOpen(false)}
                                     >
                                       <div className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center group-hover:bg-gray-200 dark:group-hover:bg-white/10 group-hover:border-gray-300 dark:group-hover:border-white/20 transition-all duration-200 flex-shrink-0">
-                                        <Icon size={15} className="text-gray-500 dark:text-white/60 group-hover:text-[rgb(0,120,170)] dark:group-hover:text-white transition-colors" />
+                                        <Icon size={15} className="text-gray-500 dark:text-white/60 group-hover:text-brand-secondary dark:group-hover:text-white transition-colors" />
                                       </div>
                                       <div className="min-w-0">
-                                        <p className="text-sm font-medium text-gray-900 dark:text-white/90 group-hover:text-[rgb(0,120,170)] dark:group-hover:text-white transition-colors truncate">
+                                        <p className="text-sm font-medium text-gray-900 dark:text-white/90 group-hover:text-brand-secondary dark:group-hover:text-white transition-colors truncate">
                                           {sector.name}
                                         </p>
                                         <p className="text-[11px] text-gray-400 dark:text-white/35 group-hover:text-gray-600 dark:group-hover:text-white/55 transition-colors truncate">

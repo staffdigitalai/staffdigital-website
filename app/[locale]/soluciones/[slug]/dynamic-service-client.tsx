@@ -262,7 +262,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
             <a href="/contacto" className="inline-flex items-center justify-center border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full px-8 py-3 text-sm font-medium transition-colors">
               Talk to Sales
             </a>
-            <a href="/demo" className="inline-flex items-center justify-center text-white rounded-full px-8 py-3 text-sm font-medium shadow-lg shadow-[#0078AA]/25" style={{ background: 'linear-gradient(135deg, #0078AA, #7C3AED)' }}>
+            <a href="/demo" className="inline-flex items-center justify-center text-white rounded-full px-8 py-3 text-sm font-medium shadow-lg shadow-card" style={{ background: 'linear-gradient(135deg, #0078AA, #7C3AED)' }}>
               Pide tu Demo
             </a>
           </div>
@@ -338,7 +338,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
               <div className="flex flex-col sm:flex-row items-center gap-3 mt-2">
                 <a
                   href="/demo"
-                  className="px-8 py-3.5 rounded-xl text-white font-semibold text-sm sm:text-base transition-all hover:scale-105 bg-gradient-to-r from-gradient-from to-gradient-to shadow-lg shadow-[#0078AA]/25"
+                  className="px-8 py-3.5 rounded-xl text-white font-semibold text-sm sm:text-base transition-all hover:scale-105 bg-gradient-to-r from-gradient-from to-gradient-to shadow-lg shadow-card"
                 >
                   Solicitar demo personalizada →
                 </a>
@@ -357,12 +357,12 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
       {/* ═══════════════════════════════════════
           SECCIÓN 2 — STATS BAR (3 métricas)
           ═════════════════════════════��═════════ */}
-      <section className="px-4 py-10 border-y border-gray-200 dark:border-[rgb(61,61,64)]">
+      <section className="px-4 py-10 border-y border-gray-200 dark:border-default">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-around items-center gap-8 md:gap-0">
           {stats.map((stat, i) => (
             <div key={i} className="flex items-center">
               {i > 0 && (
-                <div className="hidden md:block w-px h-12 bg-gray-200 dark:bg-[rgb(61,61,64)] mr-12" />
+                <div className="hidden md:block w-px h-12 bg-gray-200 dark:bg-bg-card mr-12" />
               )}
               <div className="text-center">
                 <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gradient-from to-gradient-to bg-clip-text text-transparent">
@@ -396,7 +396,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
               return (
                 <div 
                   key={i}
-                  className="p-6 rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] hover:border-brand-secondary/50 transition-colors"
+                  className="p-6 rounded-[20px] bg-white dark:bg-bg-card border border-gray-200 dark:border-default hover:border-brand-secondary/50 transition-colors"
                 >
                   <div 
                     className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
@@ -433,7 +433,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
               return (
                 <div 
                   key={i}
-                  className="p-6 rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)]"
+                  className="p-6 rounded-[20px] bg-white dark:bg-bg-card border border-gray-200 dark:border-default"
                 >
                   <div className="w-10 h-10 rounded-lg bg-brand-secondary/10 dark:bg-brand-secondary/20 flex items-center justify-center mb-4">
                     <Icon className="w-5 h-5 text-brand-secondary" />
@@ -476,15 +476,15 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
 
             {/* Panel derecho con mini-cards de stats */}
             <div className="space-y-4">
-              <div className="rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] p-5 flex items-center gap-4">
+              <div className="rounded-[20px] bg-white dark:bg-bg-card border border-gray-200 dark:border-default p-5 flex items-center gap-4">
                 <div className="text-3xl font-bold bg-gradient-to-r from-gradient-from to-gradient-to bg-clip-text text-transparent">80%</div>
                 <span className="text-sm text-gray-600 dark:text-gray-400">menos costes operativos</span>
               </div>
-              <div className="rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] p-5 flex items-center gap-4">
+              <div className="rounded-[20px] bg-white dark:bg-bg-card border border-gray-200 dark:border-default p-5 flex items-center gap-4">
                 <div className="text-3xl font-bold bg-gradient-to-r from-gradient-from to-gradient-to bg-clip-text text-transparent">24/7</div>
                 <span className="text-sm text-gray-600 dark:text-gray-400">atención sin interrupciones</span>
               </div>
-              <div className="rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] p-5 flex items-center gap-4">
+              <div className="rounded-[20px] bg-white dark:bg-bg-card border border-gray-200 dark:border-default p-5 flex items-center gap-4">
                 <div className="text-3xl font-bold bg-gradient-to-r from-gradient-from to-gradient-to bg-clip-text text-transparent">48h</div>
                 <span className="text-sm text-gray-600 dark:text-gray-400">implementación completa</span>
               </div>
@@ -499,7 +499,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
       {hasTestimonial && (
         <section className="px-4 py-20">
           <div className="max-w-4xl mx-auto">
-            <div className="p-8 md:p-12 rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)]">
+            <div className="p-8 md:p-12 rounded-[20px] bg-white dark:bg-bg-card border border-gray-200 dark:border-default">
               <blockquote className="text-xl md:text-2xl text-gray-900 dark:text-white font-medium text-center mb-8">
                 &ldquo;{testimonialQuote}&rdquo;
               </blockquote>
@@ -533,7 +533,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
               {faqItems.map((faq, i) => (
                 <div 
                   key={i}
-                  className="rounded-[20px] bg-white dark:bg-[rgba(101,101,106,0.16)] border border-gray-200 dark:border-[rgb(61,61,64)] overflow-hidden"
+                  className="rounded-[20px] bg-white dark:bg-bg-card border border-gray-200 dark:border-default overflow-hidden"
                 >
                   <button
                     onClick={() => setOpenFaqIndex(openFaqIndex === i ? null : i)}

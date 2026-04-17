@@ -119,7 +119,7 @@ function ChatMessage({
           className={`px-4 py-3 rounded-2xl text-sm leading-relaxed ${
             isAgent
               ? 'bg-gray-100 text-gray-800 rounded-tl-sm'
-              : 'bg-[#1a1f2e] text-white rounded-tr-sm'
+              : 'bg-bg-subtle text-white rounded-tr-sm'
           }`}
         >
           {message}
@@ -284,7 +284,7 @@ export function OmnicanalShowcase({
             {/* Chat widget container */}
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
               {/* Dark header - Cliste style */}
-              <div className="px-4 py-3 flex items-center justify-between bg-[#1a1f2e]">
+              <div className="px-4 py-3 flex items-center justify-between bg-bg-subtle">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-brand-secondary" />
                   <span className="text-white font-medium text-sm">{chatHeader}</span>

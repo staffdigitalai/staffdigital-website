@@ -106,7 +106,7 @@ const ChatMockup = ({ active, m }: { active: boolean; m: MockupTexts }) => {
   const convo = conversations[scenarioIdx]
 
   return (
-    <div className="bg-[#F0F2F5] dark:bg-bg-card rounded-xl p-3 h-36 overflow-hidden">
+    <div className="bg-whatsapp-bg-chat dark:bg-bg-card rounded-xl p-3 h-36 overflow-hidden">
       {/* Top bar */}
       <div className="flex items-center gap-2 mb-2 pb-1.5 border-b border-slate-200/60 dark:border-white/[0.06]">
         <div className="w-1 h-3 rounded-full bg-green-500" />
@@ -125,7 +125,7 @@ const ChatMockup = ({ active, m }: { active: boolean; m: MockupTexts }) => {
           >
             <div className={`rounded-xl px-3 py-1.5 text-xs max-w-[80%] ${
               msg.from === "user"
-                ? "bg-[#DCF8C6] dark:bg-[#005C4B] text-slate-800 dark:text-white rounded-tr-sm"
+                ? "bg-whatsapp-green-bubble dark:bg-whatsapp-bubble-dark text-slate-800 dark:text-white rounded-tr-sm"
                 : "bg-white dark:bg-bg-card-hover text-slate-700 dark:text-slate-200 rounded-tl-sm"
             }`}>
               {msg.text}
@@ -175,7 +175,7 @@ const PhoneMockup = ({ active, m }: { active: boolean; m: MockupTexts }) => {
   const waveHeights = [14, 22, 10, 28, 16]
 
   return (
-    <div className="bg-[#F0F2F5] dark:bg-bg-card rounded-xl p-3 h-36 overflow-hidden flex flex-col">
+    <div className="bg-whatsapp-bg-chat dark:bg-bg-card rounded-xl p-3 h-36 overflow-hidden flex flex-col">
       {/* Top label */}
       <div className="flex items-center gap-1.5 mb-3">
         <svg className={`w-3.5 h-3.5 ${state.color} transition-colors duration-500 ${state.status === "ringing" ? "animate-pulse" : ""}`} fill="currentColor" viewBox="0 0 24 24">
@@ -244,7 +244,7 @@ const CalendarMockup = ({ active, m }: { active: boolean; m: MockupTexts }) => {
   const booking = bookings[bookingIdx]
 
   return (
-    <div className="bg-[#F0F2F5] dark:bg-bg-card rounded-xl p-3 h-36 overflow-hidden flex flex-col">
+    <div className="bg-whatsapp-bg-chat dark:bg-bg-card rounded-xl p-3 h-36 overflow-hidden flex flex-col">
       {/* Mini calendar grid */}
       <div className="grid grid-cols-7 gap-1 mb-2">
         {days.map((d) => (
@@ -303,7 +303,7 @@ const EmailMockup = ({ active, m }: { active: boolean; m: MockupTexts }) => {
   }, [active])
 
   return (
-    <div className="bg-[#F0F2F5] dark:bg-bg-card rounded-xl p-3 h-36 overflow-hidden">
+    <div className="bg-whatsapp-bg-chat dark:bg-bg-card rounded-xl p-3 h-36 overflow-hidden">
       <div className="space-y-2">
         {emailRows.map((row, i) => {
           const isDone = i < processed
@@ -364,7 +364,7 @@ const IntegrationsMockup = ({ active }: { active: boolean; m: MockupTexts }) => 
   }, [active])
 
   return (
-    <div className="bg-[#F0F2F5] dark:bg-bg-card rounded-xl p-3 h-36 overflow-hidden">
+    <div className="bg-whatsapp-bg-chat dark:bg-bg-card rounded-xl p-3 h-36 overflow-hidden">
       <div className="relative w-full h-full">
         {/* Center hub */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-purple-600 flex items-center justify-center z-10 shadow-[0_0_12px_rgba(147,51,234,0.4)]"
@@ -427,7 +427,7 @@ const AnalyticsMockup = ({ active, m }: { active: boolean; m: MockupTexts }) => 
   const time = (progress * 2.3).toFixed(1)
 
   return (
-    <div className="bg-[#F0F2F5] dark:bg-bg-card rounded-xl p-3 h-36 overflow-hidden flex flex-col">
+    <div className="bg-whatsapp-bg-chat dark:bg-bg-card rounded-xl p-3 h-36 overflow-hidden flex flex-col">
       {/* Stat boxes */}
       <div className="grid grid-cols-2 gap-2 mb-3">
         <div className="bg-white dark:bg-bg-card-hover rounded-lg px-2 py-1.5">

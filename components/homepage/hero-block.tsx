@@ -25,13 +25,13 @@ export function HeroBlock() {
           <span className="block text-fg-primary dark:text-fg-primary">
             {t("h1_plain")}
           </span>
-          <span className="block bg-clip-text text-transparent bg-gradient-to-r from-[#0062CC] via-gradient-via to-gradient-to dark:from-[#38BDF8] dark:via-gradient-via dark:to-[#C084FC]">
+          <span className="block bg-clip-text text-transparent bg-gradient-to-r from-brand-secondary-hover via-gradient-via to-gradient-to dark:from-accent-cyan dark:via-gradient-via dark:to-accent-violet">
             {t("h1_gradient")}
           </span>
         </h1>
 
         {/* C) H2 — Supporting headline */}
-        <h2 className="animate-hero-h2 text-lg md:text-xl font-medium max-w-3xl mx-auto mb-5 text-[#475569] dark:text-[#94A3B8]">
+        <h2 className="animate-hero-h2 text-lg md:text-xl font-medium max-w-3xl mx-auto mb-5 text-fg-muted dark:text-fg-muted">
           {t("h2")}
         </h2>
 
@@ -53,7 +53,7 @@ export function HeroBlock() {
           {/* Secondary CTA — Solid button */}
           <a
             href="#how-it-works"
-            className="inline-flex items-center justify-center rounded-full px-8 md:px-10 py-3.5 md:py-4 text-base md:text-lg font-semibold transition-all duration-300 hover:scale-[1.03] hover:opacity-90 bg-[#0F172A] text-white dark:bg-white dark:text-fg-primary"
+            className="inline-flex items-center justify-center rounded-full px-8 md:px-10 py-3.5 md:py-4 text-base md:text-lg font-semibold transition-all duration-300 hover:scale-[1.03] hover:opacity-90 bg-bg-page text-white dark:bg-white dark:text-fg-primary"
           >
             {t("cta_secondary")}
           </a>

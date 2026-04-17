@@ -106,7 +106,7 @@ function WhatsAppMockup() {
       {/* Sidebar */}
       <div className="w-7 bg-gray-50 dark:bg-gray-800 border-r border-gray-100 dark:border-gray-700 flex flex-col items-center py-2 gap-2">
         <Phone className="w-3 h-3 text-gray-400" />
-        <div className="w-3 h-3 text-[#25D366] font-bold text-[8px]">W</div>
+        <div className="w-3 h-3 text-whatsapp-green font-bold text-[8px]">W</div>
         <Mail className="w-3 h-3 text-gray-400" />
       </div>
       {/* List */}
@@ -445,7 +445,7 @@ function OnboardingMockup() {
 function OmnicanalMockup() {
   const channels = [
     { icon: Phone, color: "text-brand-secondary", name: "Carlos M.", channel: "Llamada", time: "3m" },
-    { icon: MessageCircle, color: "text-[#25D366]", name: "Ana R.", channel: "WhatsApp", time: "5m" },
+    { icon: MessageCircle, color: "text-whatsapp-green", name: "Ana R.", channel: "WhatsApp", time: "5m" },
     { icon: Globe, color: "text-brand-primary", name: "Pedro S.", channel: "Chat Web", time: "1m" },
     { icon: Mail, color: "text-gray-500", name: "Laura V.", channel: "Email", time: "12m" },
   ]

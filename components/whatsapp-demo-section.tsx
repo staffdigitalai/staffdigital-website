@@ -98,7 +98,7 @@ export function WhatsAppDemoSection() {
             </div>
 
             {/* Chat area */}
-            <div className="p-4 min-h-[360px] bg-[#0b141a] space-y-3">
+            <div className="p-4 min-h-[360px] bg-whatsapp-bg-dark-chat space-y-3">
               {whatsappMessages.slice(0, visibleMessages).map((msg, i) => (
                 <div
                   key={i}

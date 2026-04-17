@@ -92,7 +92,7 @@ export function ProcessStepIcon({
         />
       </div>
       <div className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-brand-secondary dark:bg-accent-cyan flex items-center justify-center">
-        <span className="text-[10px] font-bold text-white dark:text-[#0A0E1A]">
+        <span className="text-[10px] font-bold text-white dark:text-fg-primary">
           {stepNumber}
         </span>
       </div>
@@ -120,7 +120,7 @@ export function AccentIcon({
     primary:
       "bg-gradient-to-br from-gradient-from/[0.15] to-brand-secondary/[0.06] dark:from-gradient-from/[0.3] dark:to-gradient-from/[0.12] border-brand-secondary/25 dark:border-brand-secondary/30 shadow-[0_6px_20px_rgba(0,120,170,0.12)] dark:shadow-[0_6px_20px_rgba(0,120,170,0.2)]",
     secondary:
-      "bg-gradient-to-br from-brand-primary/[0.12] to-gradient-to/[0.05] dark:from-brand-primary/[0.25] dark:to-[#A855F7]/[0.1] border-brand-primary/20 dark:border-accent-violet/25 shadow-[0_6px_20px_rgba(124,58,237,0.1)] dark:shadow-[0_6px_20px_rgba(124,58,237,0.18)]",
+      "bg-gradient-to-br from-brand-primary/[0.12] to-gradient-to/[0.05] dark:from-brand-primary/[0.25] dark:to-accent-violet/[0.1] border-brand-primary/20 dark:border-accent-violet/25 shadow-[0_6px_20px_rgba(124,58,237,0.1)] dark:shadow-[0_6px_20px_rgba(124,58,237,0.18)]",
     mixed:
       "bg-gradient-to-br from-gradient-from/[0.12] to-gradient-to/[0.08] dark:from-gradient-from/[0.25] dark:to-gradient-to/[0.15] border-accent-blue/20 dark:border-accent-violet/25 shadow-[0_6px_20px_rgba(79,70,229,0.1)] dark:shadow-[0_6px_20px_rgba(124,58,237,0.18)]",
   }

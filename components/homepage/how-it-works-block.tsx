@@ -42,7 +42,7 @@ const stepStyles = [
     exampleKey: "example3",
   },
   {
-    container: "bg-gradient-to-br from-brand-primary/[0.15] to-gradient-to/[0.06] dark:from-[#A855F7]/[0.3] dark:to-gradient-to/[0.12] border border-brand-primary/25 dark:border-accent-violet/30 shadow-[0_8px_24px_rgba(124,58,237,0.15)] dark:shadow-[0_8px_24px_rgba(168,85,247,0.25)] hover:shadow-[0_8px_30px_rgba(124,58,237,0.25)]",
+    container: "bg-gradient-to-br from-brand-primary/[0.15] to-gradient-to/[0.06] dark:from-accent-violet/[0.3] dark:to-gradient-to/[0.12] border border-brand-primary/25 dark:border-accent-violet/30 shadow-[0_8px_24px_rgba(124,58,237,0.15)] dark:shadow-[0_8px_24px_rgba(168,85,247,0.25)] hover:shadow-[0_8px_30px_rgba(124,58,237,0.25)]",
     icon: "text-brand-primary dark:text-accent-violet",
     badge: "bg-brand-primary",
     exampleKey: "example4",

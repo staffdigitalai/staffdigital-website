@@ -246,7 +246,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
             <a href="/demo" className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm hover:bg-gray-50 dark:hover:bg-gray-700/80 transition-colors">
               <span className="text-xs font-semibold px-2 py-0.5 rounded-full text-white" style={{ background: 'linear-gradient(135deg, #0078AA, #7C3AED)' }}>Nuevo</span>
               <span className="text-sm text-gray-600 dark:text-gray-300">Dashboard interactivo con tour guiado</span>
-              <svg className="w-3.5 h-3.5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              <svg className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
           </div>
 
@@ -368,7 +368,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
                 <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">
                   {stat.valor}
                 </div>
-                <div className="text-sm text-gray-500 mt-1">{stat.etiqueta}</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">{stat.etiqueta}</div>
               </div>
             </div>
           ))}
@@ -509,7 +509,7 @@ export function DynamicServiceClient({ service }: DynamicServiceClientProps) {
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900 dark:text-white">{testimonialNombre}</div>
-                  <div className="text-sm text-gray-500">{testimonialCargo}, {testimonialEmpresa}</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400">{testimonialCargo}, {testimonialEmpresa}</div>
                 </div>
               </div>
             </div>

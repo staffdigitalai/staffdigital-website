@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { AlertTriangle, Clock, Users, TrendingDown, PhoneOff, CalendarX, HelpCircle, type LucideIcon } from "lucide-react"
 import type { SectorProblem } from "@/lib/sector-fallback-content"
+import { useMotionReveal, useStaggerContainer, useStaggerItem } from "./use-motion-reveal"
 
 const iconMap: Record<string, LucideIcon> = {
   AlertTriangle, Clock, Users, TrendingDown, PhoneOff, CalendarX, HelpCircle,
@@ -15,34 +16,23 @@ interface ProblemsSectionProps {
   sectorName: string
 }
 
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
-}
-const item = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } },
-}
-
 export function SectorProblemsSection({
   problems,
   title,
   subtitle,
   sectorName,
 }: ProblemsSectionProps) {
+  const headerReveal = useMotionReveal()
+  const stagger = useStaggerContainer(0.08)
+  const staggerItem = useStaggerItem()
+
   return (
     <section
       aria-labelledby="sector-problems-title"
       className="px-4 sm:px-6 py-20 md:py-28"
     >
       <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-14 md:mb-16"
-        >
+        <motion.div {...headerReveal} className="text-center mb-14 md:mb-16">
           <h2
             id="sector-problems-title"
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance leading-tight tracking-tight"
@@ -60,10 +50,7 @@ export function SectorProblemsSection({
         </motion.div>
 
         <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
+          {...stagger}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
         >
           {problems.map((problem, i) => {
@@ -71,7 +58,7 @@ export function SectorProblemsSection({
             return (
               <motion.article
                 key={i}
-                variants={item}
+                {...staggerItem}
                 className="group h-full p-6 sm:p-7 rounded-2xl border border-foreground/10 bg-foreground/[0.02] hover:bg-foreground/[0.04] hover:border-foreground/15 transition-all duration-300"
               >
                 <div

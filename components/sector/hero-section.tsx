@@ -5,6 +5,7 @@ import Image from "next/image"
 import { ArrowRight, Phone } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useMotionReveal } from "./use-motion-reveal"
 
 interface HeroSectionProps {
   title: string
@@ -27,6 +28,9 @@ export function SectorHeroSection({
   ctaPrimary,
   ctaSecondary,
 }: HeroSectionProps) {
+  const textReveal = useMotionReveal()
+  const imageReveal = useMotionReveal({ delay: 0.1 })
+
   return (
     <section
       aria-labelledby="sector-hero-title"
@@ -45,14 +49,12 @@ export function SectorHeroSection({
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left column — text + CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            {...textReveal}
             className="text-center lg:text-left"
           >
             {/* Badge pill */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-foreground/5 border border-foreground/10 backdrop-blur-sm mb-6">
-              <HeroIcon size={14} className="text-[#0078AA] dark:text-[#00D4FF]" aria-hidden="true" />
+              <HeroIcon size={14} className="text-brand-secondary" aria-hidden="true" />
               <span className="text-xs font-medium text-foreground/70 tracking-wide">
                 StaffDigital AI · Sector
               </span>
@@ -67,7 +69,7 @@ export function SectorHeroSection({
 
             {/* Subtitle (from ACF) */}
             {subtitle && (
-              <p className="text-lg md:text-xl font-medium mb-4 bg-gradient-to-r from-[#0078AA] to-[#7C3AED] bg-clip-text text-transparent">
+              <p className="text-lg md:text-xl font-medium mb-4 bg-gradient-to-r from-brand-secondary to-brand-primary bg-clip-text text-transparent">
                 {subtitle}
               </p>
             )}
@@ -108,9 +110,7 @@ export function SectorHeroSection({
 
           {/* Right column — illustration */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+            {...imageReveal}
             className="relative aspect-[4/3] lg:aspect-[5/4] rounded-2xl overflow-hidden border border-foreground/10 shadow-2xl shadow-foreground/5"
           >
             <Image

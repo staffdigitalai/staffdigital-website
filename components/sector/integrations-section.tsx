@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
+import { useMotionReveal } from "./use-motion-reveal"
 
 interface IntegrationsSectionProps {
   integrations: string[] // partner slugs (openai, twilio, etc.)
@@ -27,6 +28,9 @@ export function SectorIntegrationsSection({
   title,
   subtitle,
 }: IntegrationsSectionProps) {
+  const headerReveal = useMotionReveal()
+  const gridReveal = useMotionReveal()
+
   return (
     <section
       aria-labelledby="sector-integrations-title"
@@ -34,10 +38,7 @@ export function SectorIntegrationsSection({
     >
       <div className="max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
+          {...headerReveal}
           className="text-center mb-10 md:mb-12"
         >
           <h2
@@ -54,10 +55,7 @@ export function SectorIntegrationsSection({
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6 }}
+          {...gridReveal}
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 sm:gap-6 items-center"
         >
           {integrations.map((slug) => {

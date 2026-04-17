@@ -5,6 +5,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { SolutionMockup } from "@/components/solution-mockups"
 import type { SectorUseCase } from "@/lib/sector-fallback-content"
+import { useMotionReveal, useStaggerContainer, useStaggerItem } from "./use-motion-reveal"
 
 interface UseCasesSectionProps {
   useCases: SectorUseCase[]
@@ -12,20 +13,15 @@ interface UseCasesSectionProps {
   subtitle?: string
 }
 
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
-}
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
-}
-
 export function SectorUseCasesSection({
   useCases,
   title,
   subtitle,
 }: UseCasesSectionProps) {
+  const headerReveal = useMotionReveal()
+  const stagger = useStaggerContainer(0.12)
+  const staggerItem = useStaggerItem()
+
   return (
     <section
       aria-labelledby="sector-usecases-title"
@@ -33,10 +29,7 @@ export function SectorUseCasesSection({
     >
       <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
+          {...headerReveal}
           className="text-center mb-12 md:mb-14"
         >
           <h2
@@ -53,16 +46,13 @@ export function SectorUseCasesSection({
         </motion.div>
 
         <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
+          {...stagger}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
         >
           {useCases.map((uc, i) => (
             <motion.article
               key={i}
-              variants={item}
+              {...staggerItem}
               className="group rounded-2xl border border-foreground/10 bg-foreground/[0.02] hover:bg-foreground/[0.04] hover:border-foreground/20 transition-all duration-300 overflow-hidden"
             >
               {/* Mockup preview */}
@@ -84,7 +74,7 @@ export function SectorUseCasesSection({
                 </p>
                 <Link
                   href={`/soluciones/${uc.mockupSlug}`}
-                  className="inline-flex items-center gap-1 text-sm text-foreground/60 hover:text-[#0078AA] dark:hover:text-[#00D4FF] transition-colors"
+                  className="inline-flex items-center gap-1 text-sm text-foreground/60 hover:text-brand-secondary transition-colors"
                 >
                   Ver solución
                   <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />

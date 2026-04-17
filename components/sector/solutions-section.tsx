@@ -7,6 +7,7 @@ import {
   type LucideIcon,
 } from "lucide-react"
 import type { SectorSolution } from "@/lib/sector-fallback-content"
+import { useMotionReveal, useStaggerContainer, useStaggerItem } from "./use-motion-reveal"
 
 const iconMap: Record<string, LucideIcon> = {
   Check, Phone, MessageSquare, Link2, Brain, Calendar, Zap, Target,
@@ -19,20 +20,15 @@ interface SolutionsSectionProps {
   sectorName: string
 }
 
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-}
-const item = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" as const } },
-}
-
 export function SectorSolutionsSection({
   solutions,
   title,
   sectorName,
 }: SolutionsSectionProps) {
+  const headerReveal = useMotionReveal()
+  const stagger = useStaggerContainer(0.1)
+  const staggerItem = useStaggerItem()
+
   return (
     <section
       aria-labelledby="sector-solutions-title"
@@ -50,10 +46,7 @@ export function SectorSolutionsSection({
 
       <div className="relative max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
+          {...headerReveal}
           className="text-center mb-14 md:mb-16"
         >
           <h2
@@ -61,17 +54,14 @@ export function SectorSolutionsSection({
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance leading-tight tracking-tight"
           >
             {title}{" "}
-            <span className="bg-gradient-to-r from-emerald-500 to-[#0078AA] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-emerald-500 to-brand-secondary bg-clip-text text-transparent">
               {sectorName.toLowerCase()}
             </span>
           </h2>
         </motion.div>
 
         <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
+          {...stagger}
           className="grid md:grid-cols-2 gap-5 sm:gap-6"
         >
           {solutions.map((solution, i) => {
@@ -79,7 +69,7 @@ export function SectorSolutionsSection({
             return (
               <motion.article
                 key={i}
-                variants={item}
+                {...staggerItem}
                 className="group relative h-full p-6 sm:p-8 rounded-2xl border border-foreground/10 bg-foreground/[0.02] hover:bg-foreground/[0.04] hover:border-emerald-500/20 transition-all duration-300"
               >
                 <div className="flex items-start gap-5">

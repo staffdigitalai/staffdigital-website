@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
+import { useMotionReveal, useStaggerContainer, useStaggerItem } from "./use-motion-reveal"
 
 interface CrossSellItem {
   slug: string
@@ -31,15 +32,6 @@ const ALL_SECTORS: CrossSellItem[] = [
   { slug: "servicios-tecnicos", name: "Servicios Técnicos", description: "Gestión de incidencias y citas", image: "/images/sectors/servicios-locales.jpg" },
 ]
 
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.06 } },
-}
-const item = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } },
-}
-
 export function SectorCrossSellSection({
   currentSlug,
   title,
@@ -47,6 +39,9 @@ export function SectorCrossSellSection({
   ctaAll,
 }: CrossSellSectionProps) {
   const others = ALL_SECTORS.filter((s) => s.slug !== currentSlug).slice(0, 6)
+  const headerReveal = useMotionReveal()
+  const stagger = useStaggerContainer(0.06)
+  const staggerItem = useStaggerItem()
 
   return (
     <section
@@ -55,10 +50,7 @@ export function SectorCrossSellSection({
     >
       <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
+          {...headerReveal}
           className="text-center mb-12 md:mb-14"
         >
           <h2
@@ -75,14 +67,11 @@ export function SectorCrossSellSection({
         </motion.div>
 
         <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
+          {...stagger}
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"
         >
           {others.map((s) => (
-            <motion.div key={s.slug} variants={item}>
+            <motion.div key={s.slug} {...staggerItem}>
               <Link
                 href={`/sectores/${s.slug}`}
                 className="group block rounded-2xl border border-foreground/10 bg-foreground/[0.02] hover:bg-foreground/[0.04] hover:border-foreground/20 transition-all duration-300 overflow-hidden"
@@ -103,7 +92,7 @@ export function SectorCrossSellSection({
                   />
                 </div>
                 <div className="p-4 sm:p-5">
-                  <h3 className="text-base font-semibold text-foreground mb-1 flex items-center gap-1.5 group-hover:text-[#0078AA] dark:group-hover:text-[#00D4FF] transition-colors">
+                  <h3 className="text-base font-semibold text-foreground mb-1 flex items-center gap-1.5 group-hover:text-brand-secondary transition-colors">
                     {s.name}
                     <ArrowRight size={14} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" aria-hidden="true" />
                   </h3>

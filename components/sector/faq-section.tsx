@@ -9,6 +9,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import type { SectorFaqItem } from "@/lib/sector-fallback-content"
+import { useMotionReveal } from "./use-motion-reveal"
 
 interface SectorFaqSectionProps {
   faqs: SectorFaqItem[]
@@ -17,6 +18,9 @@ interface SectorFaqSectionProps {
 }
 
 export function SectorFaqSection({ faqs, title, subtitle }: SectorFaqSectionProps) {
+  const headerReveal = useMotionReveal()
+  const contentReveal = useMotionReveal({ delay: 0.1 })
+
   if (!faqs.length) return null
 
   // Schema.org FAQPage structured data for SEO
@@ -44,14 +48,11 @@ export function SectorFaqSection({ faqs, title, subtitle }: SectorFaqSectionProp
       />
       <div className="max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
+          {...headerReveal}
           className="text-center mb-12 md:mb-14"
         >
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0078AA]/10 to-[#7C3AED]/10 border border-foreground/10 mb-5">
-            <HelpCircle size={26} className="text-[#0078AA] dark:text-[#00D4FF]" aria-hidden="true" />
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-secondary/10 to-brand-primary/10 border border-foreground/10 mb-5">
+            <HelpCircle size={26} className="text-brand-secondary" aria-hidden="true" />
           </div>
           <h2
             id="sector-faq-title"
@@ -67,10 +68,7 @@ export function SectorFaqSection({ faqs, title, subtitle }: SectorFaqSectionProp
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          {...contentReveal}
         >
           <Accordion type="single" collapsible className="space-y-3">
             {faqs.map((faq, i) => (

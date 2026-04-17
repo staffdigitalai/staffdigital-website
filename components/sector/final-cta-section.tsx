@@ -4,6 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight, Check } from "lucide-react"
 import { useFormModals } from "@/components/contact-form-modals"
+import { useMotionReveal } from "./use-motion-reveal"
 
 interface FinalCtaSectionProps {
   title: string
@@ -23,6 +24,7 @@ export function SectorFinalCtaSection({
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
   const { openContactForm } = useFormModals()
+  const reveal = useMotionReveal({ duration: 0.6 })
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -38,10 +40,7 @@ export function SectorFinalCtaSection({
       className="px-4 sm:px-6 py-20 md:py-24"
     >
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6 }}
+        {...reveal}
         className="max-w-5xl mx-auto"
       >
         <div
@@ -100,7 +99,7 @@ export function SectorFinalCtaSection({
                 />
                 <button
                   type="submit"
-                  className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold text-[#0078AA] bg-white hover:bg-white/95 hover:scale-[1.02] transition-all shrink-0"
+                  className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold text-brand-secondary bg-bg-page hover:bg-bg-page/95 hover:scale-[1.02] transition-all shrink-0"
                   aria-label={`${ctaLabel} para ${sectorName}`}
                 >
                   {ctaLabel}

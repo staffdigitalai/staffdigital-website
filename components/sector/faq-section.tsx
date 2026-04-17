@@ -9,7 +9,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import type { SectorFaqItem } from "@/lib/sector-fallback-content"
-import { useMotionReveal } from "./use-motion-reveal"
+import { useMotionReveal } from "@/hooks/use-motion-reveal"
 
 interface SectorFaqSectionProps {
   faqs: SectorFaqItem[]

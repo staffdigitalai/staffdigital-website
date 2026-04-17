@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { useMotionReveal } from "./use-motion-reveal"
+import { useMotionReveal } from "@/hooks/use-motion-reveal"
 
 interface IntegrationsSectionProps {
   integrations: string[] // partner slugs (openai, twilio, etc.)

@@ -4,7 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight, Check } from "lucide-react"
 import { useFormModals } from "@/components/contact-form-modals"
-import { useMotionReveal } from "./use-motion-reveal"
+import { useMotionReveal } from "@/hooks/use-motion-reveal"
 
 interface FinalCtaSectionProps {
   title: string

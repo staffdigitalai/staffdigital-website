@@ -5,7 +5,7 @@ import Image from "next/image"
 import { ArrowRight, Phone } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useMotionReveal } from "./use-motion-reveal"
+import { useMotionReveal } from "@/hooks/use-motion-reveal"
 
 interface HeroSectionProps {
   title: string

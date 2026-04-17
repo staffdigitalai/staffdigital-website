@@ -7,7 +7,7 @@ import {
   type LucideIcon,
 } from "lucide-react"
 import type { SectorSolution } from "@/lib/sector-fallback-content"
-import { useMotionReveal, useStaggerContainer, useStaggerItem } from "./use-motion-reveal"
+import { useMotionReveal, useStaggerContainer, useStaggerItem } from "@/hooks/use-motion-reveal"
 
 const iconMap: Record<string, LucideIcon> = {
   Check, Phone, MessageSquare, Link2, Brain, Calendar, Zap, Target,

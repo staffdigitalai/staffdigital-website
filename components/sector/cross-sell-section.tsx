@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
-import { useMotionReveal, useStaggerContainer, useStaggerItem } from "./use-motion-reveal"
+import { useMotionReveal, useStaggerContainer, useStaggerItem } from "@/hooks/use-motion-reveal"
 
 interface CrossSellItem {
   slug: string

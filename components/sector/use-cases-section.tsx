@@ -5,7 +5,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { SolutionMockup } from "@/components/solution-mockups"
 import type { SectorUseCase } from "@/lib/sector-fallback-content"
-import { useMotionReveal, useStaggerContainer, useStaggerItem } from "./use-motion-reveal"
+import { useMotionReveal, useStaggerContainer, useStaggerItem } from "@/hooks/use-motion-reveal"
 
 interface UseCasesSectionProps {
   useCases: SectorUseCase[]

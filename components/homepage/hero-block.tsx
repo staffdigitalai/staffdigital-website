@@ -53,7 +53,7 @@ export function HeroBlock() {
           {/* Secondary CTA — Solid button */}
           <a
             href="#how-it-works"
-            className="inline-flex items-center justify-center rounded-full px-8 md:px-10 py-3.5 md:py-4 text-base md:text-lg font-semibold transition-all duration-300 hover:scale-[1.03] hover:opacity-90 bg-bg-page text-white dark:bg-white dark:text-fg-primary"
+            className="inline-flex items-center justify-center rounded-full px-8 md:px-10 py-3.5 md:py-4 text-base md:text-lg font-semibold transition-all duration-300 hover:scale-[1.03] hover:opacity-90 bg-fg-primary text-bg-page"
           >
             {t("cta_secondary")}
           </a>

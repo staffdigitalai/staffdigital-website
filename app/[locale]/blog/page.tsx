@@ -4,7 +4,7 @@ import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
 import { BlogContent } from "./blog-content"
 import { getCategories, getContentTypes, getPosts } from "@/lib/wordpress"
-import type { WPPost } from "@/lib/wordpress"
+import type { WPPost, SupportedLang } from "@/lib/wordpress"
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -14,7 +14,21 @@ export const metadata: Metadata = {
 // Revalidate every 5 minutes for ISR
 export const revalidate = 300
 
-export default async function BlogPage() {
+// Next.js locale → WPML language code (ES master, EN and PT-PT translations).
+function toWpmlLang(locale: string): SupportedLang {
+  if (locale === "pt") return "pt-pt"
+  if (locale === "en") return "en"
+  return "es"
+}
+
+interface BlogPageProps {
+  params: Promise<{ locale: string }>
+}
+
+export default async function BlogPage({ params }: BlogPageProps) {
+  const { locale } = await params
+  const wpmlLang = toWpmlLang(locale)
+
   let categories: Awaited<ReturnType<typeof getCategories>> = []
   let contentTypes: Awaited<ReturnType<typeof getContentTypes>> = []
   let initialPosts: WPPost[] = []
@@ -22,9 +36,9 @@ export default async function BlogPage() {
 
   try {
     const [cats, types, postsResult] = await Promise.all([
-      getCategories("es"),
-      getContentTypes("es"),
-      getPosts({ page: 1, perPage: 9 }),
+      getCategories(wpmlLang),
+      getContentTypes(wpmlLang),
+      getPosts({ lang: wpmlLang, page: 1, perPage: 9 }),
     ])
     categories = cats
     contentTypes = types
@@ -73,6 +87,7 @@ export default async function BlogPage() {
             }
           >
             <BlogContent
+              locale={locale}
               initialCategories={categories}
               initialContentTypes={contentTypes}
               initialPosts={initialPosts}

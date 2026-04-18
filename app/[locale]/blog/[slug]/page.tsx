@@ -7,28 +7,47 @@ import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { getPost, getPosts, getFeaturedImageUrl, stripHtml, formatDate } from "@/lib/wordpress"
-import type { WPPost } from "@/lib/wordpress"
+import type { WPPost, SupportedLang } from "@/lib/wordpress"
 
 // ISR: revalidate every 5 minutes so new posts appear without redeploy
 export const revalidate = 300
 
-// Pre-generate known post slugs at build time
+// Next.js locale → WPML language code (ES master, EN and PT-PT translations).
+function toWpmlLang(locale: string): SupportedLang {
+  if (locale === "pt") return "pt-pt"
+  if (locale === "en") return "en"
+  return "es"
+}
+
+// Pre-generate known post slugs at build time — one entry per (locale, slug)
+// pair across all 3 locales, so /pt/blog/{pt-slug} and /en/blog/{en-slug}
+// prerender correctly instead of falling back to the ES default.
 export async function generateStaticParams() {
-  try {
-    const { posts } = await getPosts({ perPage: 100 })
-    return posts.map((post) => ({ slug: post.slug }))
-  } catch {
-    return []
+  const locales: Array<"es" | "en" | "pt"> = ["es", "en", "pt"]
+  const all: Array<{ locale: string; slug: string }> = []
+
+  for (const locale of locales) {
+    try {
+      const { posts } = await getPosts({ lang: toWpmlLang(locale), perPage: 100 })
+      for (const post of posts) {
+        all.push({ locale, slug: post.slug })
+      }
+    } catch {
+      // Non-fatal: just skip this locale if WP is unreachable at build time.
+      // ISR will fill the gap on first request.
+    }
   }
+
+  return all
 }
 
 interface BlogPostPageProps {
   params: Promise<{ locale: string; slug: string }>
 }
 
-async function getPostData(slug: string): Promise<WPPost | null> {
+async function getPostData(slug: string, locale: string): Promise<WPPost | null> {
   try {
-    return await getPost(slug)
+    return await getPost(slug, toWpmlLang(locale))
   } catch (error) {
     console.error("Error fetching post:", error)
     return null
@@ -36,8 +55,8 @@ async function getPostData(slug: string): Promise<WPPost | null> {
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const { slug } = await params
-  const post = await getPostData(slug)
+  const { slug, locale } = await params
+  const post = await getPostData(slug, locale)
 
   if (!post) {
     return { title: "Post no encontrado - StaffDigital AI" }
@@ -72,8 +91,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = await params
-  const post = await getPostData(slug)
+  const { slug, locale } = await params
+  const post = await getPostData(slug, locale)
 
   if (!post) {
     return (

@@ -11,10 +11,18 @@ import type { WPPost, WPCategory, WPContentType } from "@/lib/wordpress"
 import { formatDate, stripHtml, getFeaturedImageUrl } from "@/lib/wordpress"
 
 interface BlogContentProps {
+  locale: string
   initialCategories: WPCategory[]
   initialContentTypes?: WPContentType[]
   initialPosts?: WPPost[]
   initialTotalPages?: number
+}
+
+// Next.js locale → WPML language code (ES master, EN and PT-PT translations).
+function toWpmlLang(locale: string): string {
+  if (locale === "pt") return "pt-pt"
+  if (locale === "en") return "en"
+  return "es"
 }
 
 // Content type display configuration
@@ -27,7 +35,8 @@ const contentTypeConfig: Record<string, { label: string; icon: React.ComponentTy
   tutorial: { label: "Tutoriales", icon: BookOpen, color: "bg-cyan-500/20 text-cyan-400 border-cyan-500/30" },
 }
 
-export function BlogContent({ initialCategories, initialContentTypes = [], initialPosts = [], initialTotalPages = 1 }: BlogContentProps) {
+export function BlogContent({ locale, initialCategories, initialContentTypes = [], initialPosts = [], initialTotalPages = 1 }: BlogContentProps) {
+  const wpmlLang = toWpmlLang(locale)
   const hasInitialData = initialPosts.length > 0
   const [posts, setPosts] = useState<WPPost[]>(initialPosts)
   const [loading, setLoading] = useState(!hasInitialData)
@@ -58,6 +67,7 @@ export function BlogContent({ initialCategories, initialContentTypes = [], initi
     setError(null)
     try {
       const params = new URLSearchParams()
+      params.append("lang", wpmlLang)
       params.append("page", String(currentPage))
       params.append("per_page", "9")
       params.append("_embed", "1")
@@ -100,7 +110,7 @@ export function BlogContent({ initialCategories, initialContentTypes = [], initi
     } finally {
       setLoading(false)
     }
-  }, [currentPage, debouncedSearch, selectedContentType, contentTypes])
+  }, [wpmlLang, currentPage, debouncedSearch, selectedContentType, contentTypes])
 
   useEffect(() => {
     // Skip first fetch if we have SSR data and user hasn't interacted

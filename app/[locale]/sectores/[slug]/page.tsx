@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { getSectorPage, stripHtml, type WPSectorPage, type SupportedLang } from "@/lib/wordpress"
+import { getSectorPage, stripHtml, buildLocalizedAlternates, type WPSectorPage, type SupportedLang } from "@/lib/wordpress"
 import { DynamicSectorClient } from "./dynamic-sector-client"
 import { LocalizedSlugs } from "@/components/localized-slugs-provider"
 
@@ -36,9 +36,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const title = (yoast?.title as string)?.replace(/ \| StaffDigital AI$/i, "") || fallbackTitle
     const description = (yoast?.description as string) || fallbackDesc
 
+    // Override layout's naive prefix-swap alternates with real WPML
+    // translations (ES "clinicas" → EN "ai-clinics-medical-centers").
+    const alternates = buildLocalizedAlternates(
+      locale,
+      sector.slug,
+      "/sectores",
+      sector.wpml_translations,
+    )
+
     return {
       title,
       description,
+      alternates,
       openGraph: {
         title: (yoast?.og_title as string) || title,
         description: (yoast?.og_description as string) || description,

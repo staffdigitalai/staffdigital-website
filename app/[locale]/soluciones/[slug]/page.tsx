@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { getService, stripHtml, type WPService, type SupportedLang } from "@/lib/wordpress"
+import { getService, stripHtml, buildLocalizedAlternates, type WPService, type SupportedLang } from "@/lib/wordpress"
 import { DynamicServiceClient } from "./dynamic-service-client"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import Aurora from "@/components/Aurora"
@@ -42,9 +42,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const fallbackTitle = stripHtml(service.title.rendered)
     const fallbackDescription = stripHtml(service.excerpt.rendered).slice(0, 160)
 
+    // Override layout's naive prefix-swap alternates with real WPML
+    // translations (ES "ia-omnicanal" → EN "omnichannel-conversational-ai").
+    const alternates = buildLocalizedAlternates(
+      locale,
+      service.slug,
+      "/soluciones",
+      service.wpml_translations,
+    )
+
     return {
       title: cleanYoastTitle || fallbackTitle,
       description: yoast?.description || fallbackDescription,
+      alternates,
       openGraph: {
         title: yoast?.og_title || fallbackTitle,
         description: yoast?.og_description || fallbackDescription,

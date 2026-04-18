@@ -330,6 +330,58 @@ export interface WPMLTranslations {
   'pt-pt'?: { id: number; slug: string; locale: 'pt-pt' };
 }
 
+/**
+ * Build Next.js `alternates` metadata (canonical + hreflang `languages`)
+ * for a CPT entry whose slug may differ across locales (WPML).
+ *
+ * Without this, `app/[locale]/layout.tsx` falls back to a naive prefix
+ * swap (`/pagePath` → `/en/pagePath`) — which 404s for any translated
+ * WPML slug and breaks hreflang for SEO crawlers.
+ *
+ * @param currentLocale Next.js locale for the current page: 'es' | 'en' | 'pt'
+ * @param currentSlug   Slug in the current locale
+ * @param basePath      Route prefix, e.g. "/blog", "/sectores", "/soluciones"
+ * @param translations  `wpml_translations` from the WP response (optional)
+ */
+export function buildLocalizedAlternates(
+  currentLocale: string,
+  currentSlug: string,
+  basePath: '/blog' | '/sectores' | '/soluciones',
+  translations: WPMLTranslations | undefined,
+): { canonical: string; languages: Record<string, string> } {
+  // Resolve a slug per Next-locale, preferring the WPML translation and
+  // falling back to the current slug when no translation exists (graceful
+  // degrade — still a valid-shape URL for the crawler to follow).
+  const slugFor = (locale: 'es' | 'en' | 'pt'): string | null => {
+    if (locale === currentLocale) return currentSlug
+    const wpmlKey = locale === 'pt' ? 'pt-pt' : locale
+    const translated = translations?.[wpmlKey as keyof WPMLTranslations]?.slug
+    return translated ?? null
+  }
+
+  const urlFor = (locale: 'es' | 'en' | 'pt'): string | null => {
+    const slug = slugFor(locale)
+    if (!slug) return null
+    const prefix = locale === 'es' ? '' : `/${locale}`
+    return `${prefix}${basePath}/${slug}`
+  }
+
+  const languages: Record<string, string> = {}
+  const es = urlFor('es')
+  const en = urlFor('en')
+  const pt = urlFor('pt')
+  if (es) languages.es = es
+  if (en) languages.en = en
+  if (pt) languages.pt = pt
+  // x-default → ES master (standard WPML convention)
+  if (es) languages['x-default'] = es
+
+  const prefix = currentLocale === 'es' ? '' : `/${currentLocale}`
+  const canonical = `${prefix}${basePath}/${currentSlug}`
+
+  return { canonical, languages }
+}
+
 // Utility to build query string
 function buildQueryString(params: Record<string, string | number | undefined>): string {
   const searchParams = new URLSearchParams();

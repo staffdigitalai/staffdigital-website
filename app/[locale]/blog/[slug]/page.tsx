@@ -7,7 +7,7 @@ import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { LocalizedSlugs } from "@/components/localized-slugs-provider"
-import { getPost, getPosts, getFeaturedImageUrl, stripHtml, formatDate } from "@/lib/wordpress"
+import { getPost, getPosts, getFeaturedImageUrl, stripHtml, formatDate, buildLocalizedAlternates } from "@/lib/wordpress"
 import type { WPPost, SupportedLang } from "@/lib/wordpress"
 
 // ISR: revalidate every 5 minutes so new posts appear without redeploy
@@ -72,9 +72,21 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const title = (yoast?.title as string)?.replace(/ \| StaffDigital AI$/i, "") || post.acf?.meta_title || fallbackTitle
   const description = (yoast?.description as string) || fallbackDesc
 
+  // Override the layout's naive prefix-swap alternates with real WPML
+  // translations so hreflang points search engines at the correct EN/PT
+  // slugs (e.g. ES "agentes-ia-autonomos-vs-chatbots" → EN
+  // "ai-agents-vs-chatbots-2026"), not slug-identical 404s.
+  const alternates = buildLocalizedAlternates(
+    locale,
+    post.slug,
+    "/blog",
+    post.wpml_translations,
+  )
+
   return {
     title,
     description,
+    alternates,
     openGraph: {
       title: (yoast?.og_title as string) || fallbackTitle,
       description: (yoast?.og_description as string) || description,

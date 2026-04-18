@@ -6,19 +6,12 @@ interface StaffDigitalLogoProps {
   className?: string
 }
 
-// Animated gradient text component for .AI with glow effect
+// ".AI" — solid brand-primary; keep glow/flow classes per spec.
 function AnimatedAI({ className }: { className?: string }) {
   return (
     <span
-      className={`font-extrabold animate-gradient-flow animate-ai-glow ${className ?? ""}`}
-      style={{
-        letterSpacing: "-0.02em",
-        background: "linear-gradient(90deg, #0078AA, #7C3AED, #EC4899, #7C3AED, #0078AA)",
-        backgroundSize: "200% 100%",
-        WebkitBackgroundClip: "text",
-        WebkitTextFillColor: "transparent",
-        backgroundClip: "text",
-      }}
+      className={`font-extrabold text-brand-primary animate-gradient-flow animate-ai-glow ${className ?? ""}`}
+      style={{ letterSpacing: "-0.02em" }}
     >
       .AI
     </span>
@@ -87,7 +80,7 @@ export function StaffDigitalLogoDark({
   return (
     <div className={`flex items-center ${className ?? ""}`}>
       <span
-        className="font-extrabold text-xl sm:text-2xl text-slate-100"
+        className="font-extrabold text-xl sm:text-2xl text-fg-primary"
         style={{ letterSpacing: "-0.02em" }}
       >
         StaffDigital

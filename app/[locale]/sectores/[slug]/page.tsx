@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { getSectorPage, stripHtml, type WPSectorPage } from "@/lib/wordpress"
+import { getSectorPage, stripHtml, type WPSectorPage, type SupportedLang } from "@/lib/wordpress"
 import { DynamicSectorClient } from "./dynamic-sector-client"
+import { LocalizedSlugs } from "@/components/localized-slugs-provider"
 
 interface Props {
   params: Promise<{ locale: string; slug: string }>
@@ -12,13 +13,20 @@ const STATIC_SECTOR_SLUGS: string[] = []
 export const revalidate = 300
 export const dynamicParams = true
 
+// Next.js locale → WPML language code (ES master, EN and PT-PT translations).
+function toWpmlLang(locale: string): SupportedLang {
+  if (locale === "pt") return "pt-pt"
+  if (locale === "en") return "en"
+  return "es"
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
+  const { slug, locale } = await params
 
   if (STATIC_SECTOR_SLUGS.includes(slug)) return {}
 
   try {
-    const sector = await getSectorPage(slug)
+    const sector = await getSectorPage(slug, toWpmlLang(locale))
     if (!sector) return {}
 
     const yoast = (sector as Record<string, unknown>).yoast_head_json as Record<string, unknown> | undefined
@@ -50,7 +58,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function DynamicSectorPage({ params }: Props) {
-  const { slug } = await params
+  const { slug, locale } = await params
 
   if (STATIC_SECTOR_SLUGS.includes(slug)) {
     notFound()
@@ -59,7 +67,7 @@ export default async function DynamicSectorPage({ params }: Props) {
   let sector: WPSectorPage | null = null
 
   try {
-    sector = await getSectorPage(slug)
+    sector = await getSectorPage(slug, toWpmlLang(locale))
   } catch (error) {
     console.error("[sector page] fetch error:", slug, error)
   }
@@ -68,5 +76,18 @@ export default async function DynamicSectorPage({ params }: Props) {
     notFound()
   }
 
-  return <DynamicSectorClient sector={sector} />
+  // Publish per-locale slug map so the nav language switcher can navigate
+  // to the correct localized URL instead of 404'ing on a slug-prefix swap.
+  const localizedSlugMap = {
+    es: sector.wpml_translations?.es?.slug ?? (locale === "es" ? sector.slug : undefined),
+    en: sector.wpml_translations?.en?.slug ?? (locale === "en" ? sector.slug : undefined),
+    pt: sector.wpml_translations?.["pt-pt"]?.slug ?? (locale === "pt" ? sector.slug : undefined),
+  }
+
+  return (
+    <>
+      <LocalizedSlugs basePath="/sectores" slugs={localizedSlugMap} />
+      <DynamicSectorClient sector={sector} />
+    </>
+  )
 }

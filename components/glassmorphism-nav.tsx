@@ -8,6 +8,7 @@ import { useRouter as useIntlRouter, usePathname as useIntlPathname } from "@/i1
 import { useLocale, useTranslations } from "next-intl"
 import { StaffDigitalLogo } from "@/components/staffdigital-logo"
 import { ThemeSwitcher } from "@/components/theme-switcher"
+import { useLocalizedSlugs } from "@/components/localized-slugs-provider"
 
 import type { LucideIcon } from "lucide-react"
 
@@ -62,7 +63,33 @@ export function GlassmorphismNav() {
   const activeLocale = useLocale()
   const intlRouter = useIntlRouter()
   const intlPathname = useIntlPathname()
+  const localizedSlugs = useLocalizedSlugs()
   const [currentLang, setCurrentLang] = useState(activeLocale)
+
+  // Navigate to the current page in `target` locale. Per-page WPML slug map
+  // (registered via <LocalizedSlugs> in content pages) wins over a naive
+  // "swap the locale prefix on the current pathname" — that would 404 on
+  // blog / sector / service pages whose WPML translations use different
+  // slugs per locale (e.g. ES "telemedicina-ia-pacientes" vs EN
+  // "telemedicine-ai-patient-followup").
+  const switchLocale = (target: "es" | "pt" | "en") => {
+    const { slugs, basePath } = localizedSlugs
+    if (slugs && basePath) {
+      const translatedSlug = slugs[target]
+      if (translatedSlug) {
+        // Translation exists — navigate to the correct localized URL.
+        intlRouter.replace(`${basePath}/${translatedSlug}`, { locale: target })
+      } else {
+        // No translation in target locale — fall back to the section listing
+        // so the user doesn't land on a 404.
+        intlRouter.replace(basePath, { locale: target })
+      }
+      return
+    }
+    // Page has no localized slug map (static pages, home, etc.) — safe to
+    // just swap the locale prefix.
+    intlRouter.replace(intlPathname, { locale: target })
+  }
   const navItems = navItemsDef.map((item) => ({ ...item, label: t(item.key) }))
   const [isVisible, setIsVisible] = useState(true)
   const [hasLoaded, setHasLoaded] = useState(false)
@@ -549,7 +576,7 @@ export function GlassmorphismNav() {
                         <button
                           key={lang.code}
                           onClick={() => {
-                            intlRouter.replace(intlPathname, { locale: lang.code as "es" | "pt" | "en" })
+                            switchLocale(lang.code as "es" | "pt" | "en")
                             setCurrentLang(lang.code)
                             setIsLangOpen(false)
                           }}
@@ -803,6 +830,7 @@ export function GlassmorphismNav() {
                       <button
                         key={lang.code}
                         onClick={() => {
+                          switchLocale(lang.code as "es" | "pt" | "en")
                           setCurrentLang(lang.code)
                           setIsMobileLangOpen(false)
                         }}

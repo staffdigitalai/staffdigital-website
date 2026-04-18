@@ -5,6 +5,7 @@ import { headers } from "next/headers"
 import { NextIntlClientProvider, hasLocale } from "next-intl"
 import { getMessages, setRequestLocale } from "next-intl/server"
 import { locales, type Locale } from "@/i18n/config"
+import { LocalizedSlugsProvider } from "@/components/localized-slugs-provider"
 
 const BASE_URL = "https://www.staffdigital.ai"
 
@@ -88,7 +89,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      {children}
+      <LocalizedSlugsProvider>{children}</LocalizedSlugsProvider>
     </NextIntlClientProvider>
   )
 }

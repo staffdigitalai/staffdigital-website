@@ -181,17 +181,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           )}
 
           {/* Content */}
-          <div
-            className="prose prose-invert prose-lg max-w-none
-              prose-headings:text-foreground prose-headings:font-bold
-              prose-p:text-muted-foreground prose-p:leading-relaxed
-              prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-              prose-strong:text-foreground
-              prose-ul:text-muted-foreground prose-ol:text-muted-foreground
-              prose-li:marker:text-primary
-              prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground prose-blockquote:italic
-              prose-code:text-primary prose-code:bg-primary/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-              prose-pre:bg-card prose-pre:border prose-pre:border-border
+          <article
+            className="prose prose-lg dark:prose-invert max-w-3xl mx-auto
+              prose-headings:scroll-mt-20
+              prose-h2:mt-12 prose-h2:mb-4
+              prose-h3:mt-8 prose-h3:mb-3
+              prose-table:overflow-hidden prose-table:rounded-lg prose-table:border prose-table:border-default
+              prose-th:bg-bg-subtle prose-th:p-3
+              prose-td:p-3 prose-td:border-t prose-td:border-default
+              prose-blockquote:not-italic prose-blockquote:bg-bg-subtle prose-blockquote:rounded-lg prose-blockquote:p-6 prose-blockquote:border-l-4 prose-blockquote:border-brand-primary
+              prose-a:text-brand-primary prose-a:no-underline hover:prose-a:underline
+              prose-ul:my-4 prose-li:my-1
               prose-img:rounded-xl prose-img:shadow-lg"
             dangerouslySetInnerHTML={{ __html: post.content.rendered }}
           />

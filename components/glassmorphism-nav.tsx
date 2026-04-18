@@ -12,27 +12,76 @@ import { useLocalizedSlugs } from "@/components/localized-slugs-provider"
 
 import type { LucideIcon } from "lucide-react"
 
-const servicesMeta: { href: string; icon: LucideIcon; featured?: boolean }[] = [
-  { href: "/soluciones/agentes-ia-voz-humana", icon: MessageSquare, featured: true },
-  { href: "/soluciones/atencion-telefonica-ia", icon: MessageSquare, featured: true },
-  { href: "/soluciones/whatsapp-ia-empresas", icon: MessageSquare },
-  { href: "/soluciones/agente-chat-web-ia", icon: MessageSquare },
-  { href: "/soluciones/agente-ventas-ia", icon: BriefcaseMedical },
-  { href: "/soluciones/agente-soporte-ia", icon: Headphones },
-  { href: "/soluciones/agente-agendamientos-ia", icon: GraduationCap },
-  { href: "/soluciones/lead-generation-ia", icon: Layers },
-  { href: "/soluciones/ia-omnicanal", icon: Layers },
+// ES slug is the "master" (matches WPML master language). EN + PT slugs
+// come from SERVICE_SLUGS / SECTOR_SLUGS below and are resolved at render
+// time so the dropdown links navigate to the right localized URL instead
+// of 404'ing on /en/soluciones/ia-omnicanal (EN slug is
+// "omnichannel-conversational-ai").
+const servicesMeta: { slug: string; icon: LucideIcon; featured?: boolean }[] = [
+  { slug: "agentes-ia-voz-humana", icon: MessageSquare, featured: true },
+  { slug: "atencion-telefonica-ia", icon: MessageSquare, featured: true },
+  { slug: "whatsapp-ia-empresas", icon: MessageSquare },
+  { slug: "agente-chat-web-ia", icon: MessageSquare },
+  { slug: "agente-ventas-ia", icon: BriefcaseMedical },
+  { slug: "agente-soporte-ia", icon: Headphones },
+  { slug: "agente-agendamientos-ia", icon: GraduationCap },
+  { slug: "lead-generation-ia", icon: Layers },
+  { slug: "ia-omnicanal", icon: Layers },
 ]
 
 // Only show top 6 sectors in nav dropdown for cleaner UX - rest accessible via /sectores page
-const sectorsMeta: { href: string; icon: LucideIcon }[] = [
-  { href: "/sectores/concesionarios", icon: Car },
-  { href: "/sectores/clinicas", icon: BriefcaseMedical },
-  { href: "/sectores/restaurantes", icon: UtensilsCrossed },
-  { href: "/sectores/inmobiliarias", icon: Home },
-  { href: "/sectores/ecommerce", icon: ShoppingBag },
-  { href: "/sectores/turismo-hoteleria", icon: Globe },
+const sectorsMeta: { slug: string; icon: LucideIcon }[] = [
+  { slug: "concesionarios", icon: Car },
+  { slug: "clinicas", icon: BriefcaseMedical },
+  { slug: "restaurantes", icon: UtensilsCrossed },
+  { slug: "inmobiliarias", icon: Home },
+  { slug: "ecommerce", icon: ShoppingBag },
+  { slug: "turismo-hoteleria", icon: Globe },
 ]
+
+// Per-locale slug maps, keyed by ES slug (the master). Values come from
+// WPML `wpml_translations` field on each CPT; verified via REST. When
+// WP adds a new sector / service, add one row here with the 3 slugs.
+// (A future refactor could fetch this at build time from WP, but for a
+// short fixed list, a hardcoded map is simpler and doesn't add runtime
+// fetch failure modes.)
+const SERVICE_SLUGS: Record<string, { en: string; pt: string }> = {
+  "agentes-ia-voz-humana":   { en: "ai-agents-human-voice",        pt: "agentes-ia-voz-humana-2" },
+  "atencion-telefonica-ia":  { en: "ai-phone-support",             pt: "atendimento-telefonico-ia" },
+  "whatsapp-ia-empresas":    { en: "ai-whatsapp-business",         pt: "whatsapp-ia-empresas-2" },
+  "agente-chat-web-ia":      { en: "intelligent-website-chat",     pt: "chat-inteligente-websites" },
+  "agente-ventas-ia":        { en: "ai-sales-agent",               pt: "agente-vendas-ia" },
+  "agente-soporte-ia":       { en: "ai-support-agent",             pt: "agente-suporte-ia" },
+  "agente-agendamientos-ia": { en: "ai-scheduling-agent",          pt: "agente-agendamentos-ia" },
+  "lead-generation-ia":      { en: "ai-lead-generation",           pt: "lead-generation-ia-2" },
+  "ia-omnicanal":            { en: "omnichannel-conversational-ai", pt: "ia-conversacional-omnicanal" },
+}
+
+const SECTOR_SLUGS: Record<string, { en: string; pt: string }> = {
+  "concesionarios":    { en: "ai-car-dealerships",          pt: "ia-concessionarios-automoveis" },
+  "clinicas":          { en: "ai-clinics-medical-centers",  pt: "ia-clinicas-centros-medicos" },
+  "restaurantes":      { en: "ai-restaurants-hospitality",  pt: "ia-restaurantes-hotelaria" },
+  "inmobiliarias":     { en: "ai-real-estate",              pt: "ia-imobiliarias" },
+  "ecommerce":         { en: "ai-ecommerce",                pt: "ia-ecommerce" },
+  "turismo-hoteleria": { en: "ai-tourism-hospitality",      pt: "ia-turismo-hotelaria" },
+}
+
+// Build a locale-aware path like /en/soluciones/ai-sales-agent.
+// Falls back to the ES slug if a translation is missing so the link still
+// resolves to something (the landing page handles 404 gracefully).
+function cptPath(
+  base: "/soluciones" | "/sectores",
+  esSlug: string,
+  locale: string,
+  slugMap: Record<string, { en: string; pt: string }>,
+): string {
+  const targetSlug =
+    locale === "en" ? (slugMap[esSlug]?.en ?? esSlug) :
+    locale === "pt" ? (slugMap[esSlug]?.pt ?? esSlug) :
+    esSlug
+  const prefix = locale === "es" ? "" : `/${locale}`
+  return `${prefix}${base}/${targetSlug}`
+}
 
 const languages = [
   { code: "es", label: "Espanol" },
@@ -312,7 +361,7 @@ export function GlassmorphismNav() {
                                   return (
                                     <Link
                                       key={service.name}
-                                      href={service.href}
+                                      href={cptPath("/soluciones", service.slug, activeLocale, SERVICE_SLUGS)}
                                       className="flex items-center gap-3 px-3 py-3 rounded-xl bg-gradient-to-r from-brand-secondary/10 to-brand-primary/10 border border-brand-secondary/20 hover:border-brand-secondary/40 transition-all duration-200 group"
                                       onClick={() => setIsServicesOpen(false)}
                                     >
@@ -346,7 +395,7 @@ export function GlassmorphismNav() {
                                   return (
                                     <Link
                                       key={service.name}
-                                      href={service.href}
+                                      href={cptPath("/soluciones", service.slug, activeLocale, SERVICE_SLUGS)}
                                       className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-200 group"
                                       onClick={() => setIsServicesOpen(false)}
                                     >
@@ -448,7 +497,7 @@ export function GlassmorphismNav() {
                                   return (
                                     <Link
                                       key={sector.name}
-                                      href={sector.href}
+                                      href={cptPath("/sectores", sector.slug, activeLocale, SECTOR_SLUGS)}
                                       className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-200 group"
                                       onClick={() => setIsSectorsOpen(false)}
                                     >
@@ -691,7 +740,7 @@ export function GlassmorphismNav() {
                               return (
                                 <Link
                                   key={service.name}
-                                  href={service.href}
+                                  href={cptPath("/soluciones", service.slug, activeLocale, SERVICE_SLUGS)}
                                   className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-foreground/10 transition-all duration-200 group"
                                   onClick={() => {
                                     setIsOpen(false)
@@ -741,7 +790,7 @@ export function GlassmorphismNav() {
                               return (
                                 <Link
                                   key={sector.name}
-                                  href={sector.href}
+                                  href={cptPath("/sectores", sector.slug, activeLocale, SECTOR_SLUGS)}
                                   className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-foreground/10 transition-all duration-200 group"
                                   onClick={() => {
                                     setIsOpen(false)

@@ -6,6 +6,7 @@ import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { LocalizedSlugs } from "@/components/localized-slugs-provider"
 import { getPost, getPosts, getFeaturedImageUrl, stripHtml, formatDate } from "@/lib/wordpress"
 import type { WPPost, SupportedLang } from "@/lib/wordpress"
 
@@ -137,8 +138,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     description: stripHtml(post.excerpt.rendered).slice(0, 160),
   }
 
+  // Publish per-locale slug map so the nav's language switcher can navigate
+  // to the correct localized URL instead of 404'ing on a slug-prefix swap.
+  const localizedSlugMap = {
+    es: post.wpml_translations?.es?.slug ?? (locale === "es" ? post.slug : undefined),
+    en: post.wpml_translations?.en?.slug ?? (locale === "en" ? post.slug : undefined),
+    pt: post.wpml_translations?.["pt-pt"]?.slug ?? (locale === "pt" ? post.slug : undefined),
+  }
+
   return (
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <LocalizedSlugs basePath="/blog" slugs={localizedSlugMap} />
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[128px]" />
         <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-primary/3 rounded-full blur-[100px]" />

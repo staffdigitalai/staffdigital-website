@@ -1,11 +1,12 @@
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { getService, stripHtml, type WPService } from "@/lib/wordpress"
+import { getService, stripHtml, type WPService, type SupportedLang } from "@/lib/wordpress"
 import { DynamicServiceClient } from "./dynamic-service-client"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import Aurora from "@/components/Aurora"
 import { Footer } from "@/components/footer"
 import { BackgroundEffects } from "@/components/background-effects"
+import { LocalizedSlugs } from "@/components/localized-slugs-provider"
 
 interface Props {
   params: Promise<{ locale: string; slug: string }>
@@ -16,16 +17,23 @@ const STATIC_SERVICE_SLUGS = ["home-staging-ia"]
 export const revalidate = 300
 export const dynamicParams = true
 
+// Next.js locale → WPML language code (ES master, EN and PT-PT translations).
+function toWpmlLang(locale: string): SupportedLang {
+  if (locale === "pt") return "pt-pt"
+  if (locale === "en") return "en"
+  return "es"
+}
+
 // Dynamic SEO metadata from WordPress/Yoast
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
-  
+  const { slug, locale } = await params
+
   if (STATIC_SERVICE_SLUGS.includes(slug)) {
     return {}
   }
 
   try {
-    const service = await getService(slug)
+    const service = await getService(slug, toWpmlLang(locale))
     if (!service) return {}
 
     const yoast = service.yoast_head_json
@@ -56,7 +64,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function DynamicServicePage({ params }: Props) {
-  const { slug } = await params
+  const { slug, locale } = await params
 
   if (STATIC_SERVICE_SLUGS.includes(slug)) {
     notFound()
@@ -65,13 +73,21 @@ export default async function DynamicServicePage({ params }: Props) {
   let service: WPService | null = null
 
   try {
-    service = await getService(slug)
+    service = await getService(slug, toWpmlLang(locale))
   } catch (error) {
     console.error("[service page] fetch error:", slug, error)
   }
 
   if (!service) {
     notFound()
+  }
+
+  // Publish per-locale slug map so the nav language switcher can navigate
+  // to the correct localized URL instead of 404'ing on a slug-prefix swap.
+  const localizedSlugMap = {
+    es: service.wpml_translations?.es?.slug ?? (locale === "es" ? service.slug : undefined),
+    en: service.wpml_translations?.en?.slug ?? (locale === "en" ? service.slug : undefined),
+    pt: service.wpml_translations?.["pt-pt"]?.slug ?? (locale === "pt" ? service.slug : undefined),
   }
 
   const serviceJsonLd = {
@@ -88,6 +104,7 @@ export default async function DynamicServicePage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-background overflow-hidden transition-colors duration-300">
+      <LocalizedSlugs basePath="/soluciones" slugs={localizedSlugMap} />
       <main className="min-h-screen relative overflow-hidden">
         {/* Aurora background */}
         <div className="fixed inset-0 w-full h-full dark:opacity-100 opacity-30 transition-opacity duration-500">

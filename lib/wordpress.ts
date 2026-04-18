@@ -13,6 +13,7 @@ export interface WPPost {
   featured_media: number;
   categories: number[];
   content_types?: number[]; // Content type taxonomy (guia, comparativa, pregunta-seo)
+  wpml_translations?: WPMLTranslations;
   _embedded?: {
     'wp:featuredmedia'?: Array<{
       source_url: string;
@@ -71,6 +72,7 @@ export interface WPService {
   featured_media: number;
   menu_order: number;
   sectors?: number[]; // Sector taxonomy IDs
+  wpml_translations?: WPMLTranslations;
   acf: {
     icono?: string;
     subtitulo?: string;
@@ -164,6 +166,7 @@ export interface WPSectorPage {
   content: { rendered: string };
   featured_media: number;
   menu_order: number;
+  wpml_translations?: WPMLTranslations;
   acf: {
     subtitulo?: string;
     icono?: string;
@@ -317,6 +320,15 @@ export interface WPFaq {
 }
 
 export type SupportedLang = 'es' | 'pt-pt' | 'en';
+
+// WPML exposes translation relationships on every translatable post/CPT.
+// Keys are WPML locale codes: 'es' | 'en' | 'pt-pt'. Values are the
+// corresponding post ID + slug in that language (may be absent).
+export interface WPMLTranslations {
+  es?: { id: number; slug: string; locale: 'es' };
+  en?: { id: number; slug: string; locale: 'en' };
+  'pt-pt'?: { id: number; slug: string; locale: 'pt-pt' };
+}
 
 // Utility to build query string
 function buildQueryString(params: Record<string, string | number | undefined>): string {

@@ -41,43 +41,44 @@ export function ReducedMotionBaselineGuard() {
     if (!shouldReduce) return
 
     const reset = () => {
-      // Target every element that sits in the hidden pose under
-      // reduced motion. Either inline says opacity:0 (path 1 above)
-      // or the computed box disagrees with a stated opacity/transform
-      // baseline (path 2 — Framer MotionValue stuck).
-      const all = document.querySelectorAll<HTMLElement>("*")
-      for (const el of all) {
-        const cs = getComputedStyle(el)
-        const computedOpacity = parseFloat(cs.opacity)
-        const computedTransform = cs.transform
-        const hasTranslate =
-          computedTransform !== "none" &&
-          /matrix\([^)]*,\s*-?\d+(?:\.\d+)?\s*\)/.test(computedTransform) &&
-          // Only match simple translate-y matrices — avoid breaking
-          // rotations, scales, perspective transforms on unrelated
-          // elements (buttons, hover cards, icons, etc.).
-          /matrix\(1,\s*0,\s*0,\s*1,\s*0,\s*-?\d/.test(computedTransform)
+      // Chrome-MCP diagnostic proved the failure mode:
+      // inline style on the card reads `opacity: 1 !important` (my
+      // first guard pass wrote this) — yet computed opacity is still
+      // 0. That can only happen via the Web Animations API, which
+      // Framer uses internally: a WAAPI Animation with
+      // `fill: forwards` pinned to opacity: 0 wins over any CSS,
+      // including `!important`.
+      //
+      // Fix: find every element Framer touched (has inline style
+      // containing opacity/transform), cancel any running WAAPI
+      // animations on it, then stamp the visible baseline. Cancelling
+      // lets the inline !important CSS take over.
+      const candidates = document.querySelectorAll<HTMLElement>("[style]")
+      for (const el of candidates) {
+        const inline = el.getAttribute("style") || ""
+        if (!inline.includes("opacity") && !inline.includes("transform")) continue
 
-        if (computedOpacity < 0.99 || hasTranslate) {
-          // Only reset elements that have an existing inline `style`
-          // already touched by Framer (to avoid clobbering intentional
-          // decorative opacity like `/20`, `/40` overlays that are
-          // applied via Tailwind classes, not inline). Framer always
-          // writes inline style on its motion.div renders.
-          const inline = el.getAttribute("style") || ""
-          if (!inline.includes("opacity") && !inline.includes("transform")) continue
-
-          // Preserve non-opacity/transform declarations, append
-          // `!important` versions of our two baseline properties.
-          const preserved = inline
-            .split(";")
-            .map((d) => d.trim())
-            .filter((d) => d && !/^(opacity|transform)\s*:/.test(d))
-            .join("; ")
-          el.style.cssText =
-            (preserved ? preserved + "; " : "") +
-            "opacity: 1 !important; transform: none !important;"
+        // Cancel any animation Framer is driving on this element.
+        // This releases the WAAPI-pinned opacity/transform so the
+        // inline style takes effect.
+        try {
+          const anims = (el as HTMLElement & { getAnimations?: () => Animation[] }).getAnimations?.()
+          if (anims && anims.length > 0) {
+            for (const a of anims) a.cancel()
+          }
+        } catch {
+          /* getAnimations not supported — fall through */
         }
+
+        // Stamp visible baseline with !important.
+        const preserved = inline
+          .split(";")
+          .map((d) => d.trim())
+          .filter((d) => d && !/^(opacity|transform)\s*:/.test(d))
+          .join("; ")
+        el.style.cssText =
+          (preserved ? preserved + "; " : "") +
+          "opacity: 1 !important; transform: none !important;"
       }
     }
 

@@ -1110,5 +1110,28 @@
     "cta_secondary": "View more articles",
     "author_fallback_name": "StaffDigital AI Team",
     "author_fallback_bio": "A platform of AI agents that execute real processes in your business."
+  },
+  "solution_ui": {
+    "category_agente": "Agent",
+    "category_canal": "Channel",
+    "category_automatizacion": "Automation",
+    "features_title": "What it does",
+    "features_subtitle": "Concrete capabilities, executable from day one.",
+    "how_it_works_title": "How it works",
+    "how_it_works_subtitle": "Four steps — receive, understand, decide, execute.",
+    "modules_title": "Included modules",
+    "modules_subtitle": "Pre-configured pieces activated per your stack.",
+    "use_cases_title": "Use cases by industry",
+    "use_cases_subtitle": "Every industry has its own rules. This is where the agent steps in.",
+    "ideal_for": "Ideal for {sector}",
+    "metrics_title": "Key metrics",
+    "metrics_subtitle": "Measurable results, with context.",
+    "integrations_title": "Plugs into your stack",
+    "integrations_subtitle": "CRM, ERP, calendar and operational channels.",
+    "faq_title": "Frequently asked questions",
+    "cta_title": "Your agent live in 2–6 weeks",
+    "cta_subtitle": "No custom integrations, no lock-in. Turnkey deployment.",
+    "cta_label": "Request Demo",
+    "cta_secondary": "View all solutions"
   }
 }

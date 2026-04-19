@@ -1110,5 +1110,28 @@
     "cta_secondary": "Ver mais artigos",
     "author_fallback_name": "Equipa StaffDigital AI",
     "author_fallback_bio": "Plataforma de agentes IA que executam processos reais no seu negócio."
+  },
+  "solution_ui": {
+    "category_agente": "Agente",
+    "category_canal": "Canal",
+    "category_automatizacion": "Automatização",
+    "features_title": "O que faz",
+    "features_subtitle": "Capacidades concretas, executáveis desde o primeiro dia.",
+    "how_it_works_title": "Como funciona",
+    "how_it_works_subtitle": "Quatro passos — receber, compreender, decidir, executar.",
+    "modules_title": "Módulos incluídos",
+    "modules_subtitle": "Peças pré-configuradas que se ativam conforme o seu stack.",
+    "use_cases_title": "Casos de uso por setor",
+    "use_cases_subtitle": "Cada setor tem as suas regras. É aqui que o agente entra.",
+    "ideal_for": "Ideal para {sector}",
+    "metrics_title": "Métricas chave",
+    "metrics_subtitle": "Resultados mensuráveis, com contexto.",
+    "integrations_title": "Integra-se com o seu stack",
+    "integrations_subtitle": "CRM, ERP, agenda e canais operacionais.",
+    "faq_title": "Perguntas frequentes",
+    "cta_title": "O seu agente ativo em 2–6 semanas",
+    "cta_subtitle": "Sem integrações custom, sem permanência. Implementação chave-na-mão.",
+    "cta_label": "Pedir Demo",
+    "cta_secondary": "Ver todas as soluções"
   }
 }

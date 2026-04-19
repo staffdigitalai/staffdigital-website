@@ -9,6 +9,7 @@ import { useLocale, useTranslations } from "next-intl"
 import { StaffDigitalLogo } from "@/components/staffdigital-logo"
 import { ThemeSwitcher } from "@/components/theme-switcher"
 import { useLocalizedSlugs } from "@/components/localized-slugs-provider"
+import { SERVICE_SLUGS, SECTOR_SLUGS, cptPath } from "@/lib/cpt-slugs"
 
 import type { LucideIcon } from "lucide-react"
 
@@ -70,65 +71,9 @@ const sectorsMeta: { slug: string; icon: LucideIcon; featured?: boolean }[] = [
   { slug: "turismo-hoteleria",    icon: Globe },
 ]
 
-// Per-locale slug maps, keyed by ES slug (the master). Values come from
-// WPML `wpml_translations` field on each CPT; verified via REST. When
-// WP adds a new sector / service, add one row here with the 3 slugs.
-const SERVICE_SLUGS: Record<string, { en: string; pt: string }> = {
-  "agentes-ia-voz-humana":     { en: "ai-agents-human-voice",         pt: "agentes-ia-voz-humana-2" },
-  "agente-ventas-ia":          { en: "ai-sales-agent",                pt: "agente-vendas-ia" },
-  "agente-soporte-ia":         { en: "ai-support-agent",              pt: "agente-suporte-ia" },
-  "agente-agendamientos-ia":   { en: "ai-scheduling-agent",           pt: "agente-agendamentos-ia" },
-  "agente-chat-web-ia":        { en: "intelligent-website-chat",      pt: "chat-inteligente-websites" },
-  "agente-chat-productos-ia":  { en: "intelligent-product-chat",      pt: "chat-inteligente-produtos" },
-  "whatsapp-ia-empresas":      { en: "ai-whatsapp-business",          pt: "whatsapp-ia-empresas-2" },
-  "ia-omnicanal":              { en: "omnichannel-conversational-ai", pt: "ia-conversacional-omnicanal" },
-  "ia-call-center":            { en: "ai-call-center",                pt: "ia-call-center-2" },
-  "atencion-telefonica-ia":    { en: "ai-phone-support",              pt: "atendimento-telefonico-ia" },
-  "automacion-ventas-ia":      { en: "ai-sales-funnel",               pt: "funil-vendas-ia" },
-  "lead-generation-ia":        { en: "ai-lead-generation",            pt: "lead-generation-ia-2" },
-  "onboarding-automatico":     { en: "automated-ai-onboarding",       pt: "onboarding-automatico-ia" },
-}
-
-const SECTOR_SLUGS: Record<string, { en: string; pt: string }> = {
-  // Featured
-  "clinicas":             { en: "ai-clinics-medical-centers",  pt: "ia-clinicas-centros-medicos" },
-  "restaurantes":         { en: "ai-restaurants-hospitality",  pt: "ia-restaurantes-hotelaria" },
-  "inmobiliarias":        { en: "ai-real-estate",              pt: "ia-imobiliarias" },
-  "ecommerce":            { en: "ai-ecommerce",                pt: "ia-ecommerce" },
-  // All sectors
-  "centros-belleza":      { en: "ai-beauty-aesthetics",        pt: "ia-centros-beleza-estetica" },
-  "clubs-deportivos":     { en: "sports-clubs",                pt: "clubes-desportivos" },
-  "concesionarios":       { en: "ai-car-dealerships",          pt: "ia-concessionarios-automoveis" },
-  "crm-automation":       { en: "ai-crm-automation",           pt: "crm-automation-ia" },
-  "despachos-abogados":   { en: "law-firms",                   pt: "escritorios-advogados" },
-  "educacion":            { en: "ai-education-training",       pt: "ia-centros-educativos-formacao" },
-  "gimnasios":            { en: "ai-gyms-sports-centers",      pt: "ia-ginasios-centros-desportivos" },
-  "home-staging-virtual": { en: "virtual-home-staging-ai",     pt: "home-staging-virtual-ia" },
-  "lead-generation-pymes": { en: "ai-lead-generation-smbs",    pt: "lead-generation-ia-pmes" },
-  "logistica":            { en: "ai-logistics-transport",      pt: "ia-logistica-transporte" },
-  "oficinas":             { en: "ai-professional-offices",     pt: "ia-escritorios-gabinetes" },
-  "retail":               { en: "ai-retail-commerce",          pt: "ia-retalho-comercio" },
-  "saas-startups":        { en: "ai-saas-startups",            pt: "ia-saas-startups" },
-  "servicios-tecnicos":   { en: "ai-technical-services",       pt: "ia-servicos-tecnicos" },
-  "turismo-hoteleria":    { en: "ai-tourism-hospitality",      pt: "ia-turismo-hotelaria" },
-}
-
-// Build a locale-aware path like /en/soluciones/ai-sales-agent.
-// Falls back to the ES slug if a translation is missing so the link still
-// resolves to something (the landing page handles 404 gracefully).
-function cptPath(
-  base: "/soluciones" | "/sectores",
-  esSlug: string,
-  locale: string,
-  slugMap: Record<string, { en: string; pt: string }>,
-): string {
-  const targetSlug =
-    locale === "en" ? (slugMap[esSlug]?.en ?? esSlug) :
-    locale === "pt" ? (slugMap[esSlug]?.pt ?? esSlug) :
-    esSlug
-  const prefix = locale === "es" ? "" : `/${locale}`
-  return `${prefix}${base}/${targetSlug}`
-}
+// SERVICE_SLUGS / SECTOR_SLUGS / cptPath moved to @/lib/cpt-slugs so the
+// footer (and any future call-site) can share the exact same maps. The
+// nav imports them at the top of this file — behaviour unchanged.
 
 const languages = [
   { code: "es", label: "Espanol" },

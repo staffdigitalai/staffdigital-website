@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Menu, X, ArrowRight, ChevronDown, Stethoscope, Scissors, UtensilsCrossed, Car, ShoppingBag, Building2, Warehouse, Wrench, BriefcaseMedical, Globe, MessageSquare, Layers, Shield, Home, GraduationCap, Dumbbell, Headphones } from "lucide-react"
+import { Menu, X, ArrowRight, ChevronDown, Scissors, UtensilsCrossed, Car, ShoppingBag, Building2, Warehouse, Wrench, BriefcaseMedical, Globe, MessageSquare, Layers, Home, GraduationCap, Dumbbell, Headphones, Phone, UserPlus, TrendingUp, Database, Scale, Rocket, Zap, HeartPulse, Activity } from "lucide-react"
 import Link from "next/link"
 import { usePathname as useNextPathname } from "next/navigation"
 import { useRouter as useIntlRouter, usePathname as useIntlPathname } from "@/i18n/routing"
@@ -17,53 +17,100 @@ import type { LucideIcon } from "lucide-react"
 // time so the dropdown links navigate to the right localized URL instead
 // of 404'ing on /en/soluciones/ia-omnicanal (EN slug is
 // "omnichannel-conversational-ai").
-const servicesMeta: { slug: string; icon: LucideIcon; featured?: boolean }[] = [
-  { slug: "agentes-ia-voz-humana", icon: MessageSquare, featured: true },
-  { slug: "atencion-telefonica-ia", icon: MessageSquare, featured: true },
-  { slug: "whatsapp-ia-empresas", icon: MessageSquare },
-  { slug: "agente-chat-web-ia", icon: MessageSquare },
-  { slug: "agente-ventas-ia", icon: BriefcaseMedical },
-  { slug: "agente-soporte-ia", icon: Headphones },
-  { slug: "agente-agendamientos-ia", icon: GraduationCap },
-  { slug: "lead-generation-ia", icon: Layers },
-  { slug: "ia-omnicanal", icon: Layers },
+//
+// Services are grouped by functional category (agentes / canales /
+// automatizacion). The category drives which sub-section of the
+// dropdown the item renders into.
+type ServiceCategory = "agentes" | "canales" | "automatizacion"
+
+const servicesMeta: { slug: string; icon: LucideIcon; category: ServiceCategory }[] = [
+  // Agentes (6)
+  { slug: "agentes-ia-voz-humana",     icon: MessageSquare,    category: "agentes" },
+  { slug: "agente-ventas-ia",          icon: BriefcaseMedical, category: "agentes" },
+  { slug: "agente-soporte-ia",         icon: Headphones,       category: "agentes" },
+  { slug: "agente-agendamientos-ia",   icon: GraduationCap,    category: "agentes" },
+  { slug: "agente-chat-web-ia",        icon: MessageSquare,    category: "agentes" },
+  { slug: "agente-chat-productos-ia",  icon: ShoppingBag,      category: "agentes" },
+  // Canales (4)
+  { slug: "whatsapp-ia-empresas",      icon: MessageSquare,    category: "canales" },
+  { slug: "ia-omnicanal",              icon: Layers,           category: "canales" },
+  { slug: "ia-call-center",            icon: Phone,            category: "canales" },
+  { slug: "atencion-telefonica-ia",    icon: Phone,            category: "canales" },
+  // Automatización (3)
+  { slug: "automacion-ventas-ia",      icon: TrendingUp,       category: "automatizacion" },
+  { slug: "lead-generation-ia",        icon: Zap,              category: "automatizacion" },
+  { slug: "onboarding-automatico",     icon: UserPlus,         category: "automatizacion" },
 ]
 
-// Only show top 6 sectors in nav dropdown for cleaner UX - rest accessible via /sectores page
-const sectorsMeta: { slug: string; icon: LucideIcon }[] = [
-  { slug: "concesionarios", icon: Car },
-  { slug: "clinicas", icon: BriefcaseMedical },
-  { slug: "restaurantes", icon: UtensilsCrossed },
-  { slug: "inmobiliarias", icon: Home },
-  { slug: "ecommerce", icon: ShoppingBag },
-  { slug: "turismo-hoteleria", icon: Globe },
+// All 19 sectors live in the nav. The 4 featured ones render in a
+// prominent top strip; the other 15 render below alphabetically
+// (EN/PT display order mirrors the i18n file, which is alphabetical in
+// ES for the "all" group).
+const sectorsMeta: { slug: string; icon: LucideIcon; featured?: boolean }[] = [
+  // Featured (4) — order here must match the first 4 i18n sectors_items
+  { slug: "clinicas",             icon: HeartPulse,       featured: true },
+  { slug: "restaurantes",         icon: UtensilsCrossed,  featured: true },
+  { slug: "inmobiliarias",        icon: Home,             featured: true },
+  { slug: "ecommerce",            icon: ShoppingBag,      featured: true },
+  // All sectors (15) — alphabetical by ES name
+  { slug: "centros-belleza",      icon: Scissors },
+  { slug: "clubs-deportivos",     icon: Dumbbell },
+  { slug: "concesionarios",       icon: Car },
+  { slug: "crm-automation",       icon: Database },
+  { slug: "despachos-abogados",   icon: Scale },
+  { slug: "educacion",            icon: GraduationCap },
+  { slug: "gimnasios",            icon: Activity },
+  { slug: "home-staging-virtual", icon: Home },
+  { slug: "lead-generation-pymes", icon: Zap },
+  { slug: "logistica",            icon: Warehouse },
+  { slug: "oficinas",             icon: Building2 },
+  { slug: "retail",               icon: ShoppingBag },
+  { slug: "saas-startups",        icon: Rocket },
+  { slug: "servicios-tecnicos",   icon: Wrench },
+  { slug: "turismo-hoteleria",    icon: Globe },
 ]
 
 // Per-locale slug maps, keyed by ES slug (the master). Values come from
 // WPML `wpml_translations` field on each CPT; verified via REST. When
 // WP adds a new sector / service, add one row here with the 3 slugs.
-// (A future refactor could fetch this at build time from WP, but for a
-// short fixed list, a hardcoded map is simpler and doesn't add runtime
-// fetch failure modes.)
 const SERVICE_SLUGS: Record<string, { en: string; pt: string }> = {
-  "agentes-ia-voz-humana":   { en: "ai-agents-human-voice",        pt: "agentes-ia-voz-humana-2" },
-  "atencion-telefonica-ia":  { en: "ai-phone-support",             pt: "atendimento-telefonico-ia" },
-  "whatsapp-ia-empresas":    { en: "ai-whatsapp-business",         pt: "whatsapp-ia-empresas-2" },
-  "agente-chat-web-ia":      { en: "intelligent-website-chat",     pt: "chat-inteligente-websites" },
-  "agente-ventas-ia":        { en: "ai-sales-agent",               pt: "agente-vendas-ia" },
-  "agente-soporte-ia":       { en: "ai-support-agent",             pt: "agente-suporte-ia" },
-  "agente-agendamientos-ia": { en: "ai-scheduling-agent",          pt: "agente-agendamentos-ia" },
-  "lead-generation-ia":      { en: "ai-lead-generation",           pt: "lead-generation-ia-2" },
-  "ia-omnicanal":            { en: "omnichannel-conversational-ai", pt: "ia-conversacional-omnicanal" },
+  "agentes-ia-voz-humana":     { en: "ai-agents-human-voice",         pt: "agentes-ia-voz-humana-2" },
+  "agente-ventas-ia":          { en: "ai-sales-agent",                pt: "agente-vendas-ia" },
+  "agente-soporte-ia":         { en: "ai-support-agent",              pt: "agente-suporte-ia" },
+  "agente-agendamientos-ia":   { en: "ai-scheduling-agent",           pt: "agente-agendamentos-ia" },
+  "agente-chat-web-ia":        { en: "intelligent-website-chat",      pt: "chat-inteligente-websites" },
+  "agente-chat-productos-ia":  { en: "intelligent-product-chat",      pt: "chat-inteligente-produtos" },
+  "whatsapp-ia-empresas":      { en: "ai-whatsapp-business",          pt: "whatsapp-ia-empresas-2" },
+  "ia-omnicanal":              { en: "omnichannel-conversational-ai", pt: "ia-conversacional-omnicanal" },
+  "ia-call-center":            { en: "ai-call-center",                pt: "ia-call-center-2" },
+  "atencion-telefonica-ia":    { en: "ai-phone-support",              pt: "atendimento-telefonico-ia" },
+  "automacion-ventas-ia":      { en: "ai-sales-funnel",               pt: "funil-vendas-ia" },
+  "lead-generation-ia":        { en: "ai-lead-generation",            pt: "lead-generation-ia-2" },
+  "onboarding-automatico":     { en: "automated-ai-onboarding",       pt: "onboarding-automatico-ia" },
 }
 
 const SECTOR_SLUGS: Record<string, { en: string; pt: string }> = {
-  "concesionarios":    { en: "ai-car-dealerships",          pt: "ia-concessionarios-automoveis" },
-  "clinicas":          { en: "ai-clinics-medical-centers",  pt: "ia-clinicas-centros-medicos" },
-  "restaurantes":      { en: "ai-restaurants-hospitality",  pt: "ia-restaurantes-hotelaria" },
-  "inmobiliarias":     { en: "ai-real-estate",              pt: "ia-imobiliarias" },
-  "ecommerce":         { en: "ai-ecommerce",                pt: "ia-ecommerce" },
-  "turismo-hoteleria": { en: "ai-tourism-hospitality",      pt: "ia-turismo-hotelaria" },
+  // Featured
+  "clinicas":             { en: "ai-clinics-medical-centers",  pt: "ia-clinicas-centros-medicos" },
+  "restaurantes":         { en: "ai-restaurants-hospitality",  pt: "ia-restaurantes-hotelaria" },
+  "inmobiliarias":        { en: "ai-real-estate",              pt: "ia-imobiliarias" },
+  "ecommerce":            { en: "ai-ecommerce",                pt: "ia-ecommerce" },
+  // All sectors
+  "centros-belleza":      { en: "ai-beauty-aesthetics",        pt: "ia-centros-beleza-estetica" },
+  "clubs-deportivos":     { en: "sports-clubs",                pt: "clubes-desportivos" },
+  "concesionarios":       { en: "ai-car-dealerships",          pt: "ia-concessionarios-automoveis" },
+  "crm-automation":       { en: "ai-crm-automation",           pt: "crm-automation-ia" },
+  "despachos-abogados":   { en: "law-firms",                   pt: "escritorios-advogados" },
+  "educacion":            { en: "ai-education-training",       pt: "ia-centros-educativos-formacao" },
+  "gimnasios":            { en: "ai-gyms-sports-centers",      pt: "ia-ginasios-centros-desportivos" },
+  "home-staging-virtual": { en: "virtual-home-staging-ai",     pt: "home-staging-virtual-ia" },
+  "lead-generation-pymes": { en: "ai-lead-generation-smbs",    pt: "lead-generation-ia-pmes" },
+  "logistica":            { en: "ai-logistics-transport",      pt: "ia-logistica-transporte" },
+  "oficinas":             { en: "ai-professional-offices",     pt: "ia-escritorios-gabinetes" },
+  "retail":               { en: "ai-retail-commerce",          pt: "ia-retalho-comercio" },
+  "saas-startups":        { en: "ai-saas-startups",            pt: "ia-saas-startups" },
+  "servicios-tecnicos":   { en: "ai-technical-services",       pt: "ia-servicos-tecnicos" },
+  "turismo-hoteleria":    { en: "ai-tourism-hospitality",      pt: "ia-turismo-hotelaria" },
 }
 
 // Build a locale-aware path like /en/soluciones/ai-sales-agent.
@@ -346,105 +393,60 @@ export function GlassmorphismNav() {
                               : "opacity-0 -translate-y-2 pointer-events-none"
                           }`}
                         >
-                          <div 
-                            className="bg-white dark:bg-slate-900/95 dark:backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-[20px] shadow-2xl w-[720px] flex overflow-hidden"
+                          <div
+                            className="bg-white dark:bg-slate-900/95 dark:backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-[20px] shadow-2xl w-[760px] overflow-hidden"
                             style={{ boxShadow: "0 25px 60px -12px rgba(0, 0, 0, 0.25)" }}
                           >
-                            {/* Left Column - Services List (60%) */}
-                            <div className="flex-[0.6] p-6">
-                              <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-white/40 mb-4">{t("solutions")}</p>
-                              
-                              {/* Featured Services */}
-                              <div className="space-y-2 mb-4">
-                                {services.filter(s => s.featured).map((service) => {
-                                  const Icon = service.icon
-                                  return (
-                                    <Link
-                                      key={service.name}
-                                      href={cptPath("/soluciones", service.slug, activeLocale, SERVICE_SLUGS)}
-                                      className="flex items-center gap-3 px-3 py-3 rounded-xl bg-gradient-to-r from-brand-secondary/10 to-brand-primary/10 border border-brand-secondary/20 hover:border-brand-secondary/40 transition-all duration-200 group"
-                                      onClick={() => setIsServicesOpen(false)}
-                                    >
-                                      <div 
-                                        className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                                        style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}
-                                      >
-                                        <Icon size={18} className="text-white" />
-                                      </div>
-                                      <div className="min-w-0 flex-1">
-                                        <div className="flex items-center gap-2">
-                                          <p className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-brand-secondary dark:group-hover:text-white transition-colors">
-                                            {service.name}
-                                          </p>
-                                          <span className="text-[9px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded text-white" style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}>{t("featured") || "Destacado"}</span>
-                                        </div>
-                                        <p className="text-[12px] text-gray-500 dark:text-white/50 group-hover:text-gray-700 dark:group-hover:text-white/70 transition-colors">
-                                          {service.description}
-                                        </p>
-                                      </div>
-                                      <ArrowRight size={14} className="text-gray-400 dark:text-white/40 group-hover:text-brand-secondary group-hover:translate-x-0.5 transition-all" />
-                                    </Link>
-                                  )
-                                })}
-                              </div>
-                              
-                              {/* Other Services Grid */}
-                              <div className="grid grid-cols-2 gap-1">
-                                {services.filter(s => !s.featured).map((service) => {
-                                  const Icon = service.icon
-                                  return (
-                                    <Link
-                                      key={service.name}
-                                      href={cptPath("/soluciones", service.slug, activeLocale, SERVICE_SLUGS)}
-                                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-200 group"
-                                      onClick={() => setIsServicesOpen(false)}
-                                    >
-                                      <div className="w-9 h-9 rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center group-hover:bg-gray-200 dark:group-hover:bg-white/10 group-hover:border-gray-300 dark:group-hover:border-white/20 transition-all duration-200 flex-shrink-0">
-                                        <Icon size={16} className="text-gray-500 dark:text-white/60 group-hover:text-brand-secondary dark:group-hover:text-white transition-colors" />
-                                      </div>
-                                      <div className="min-w-0">
-                                        <p className="text-sm font-medium text-gray-900 dark:text-white/90 group-hover:text-brand-secondary dark:group-hover:text-white transition-colors truncate">
-                                          {service.name}
-                                        </p>
-                                        <p className="text-[11px] text-gray-400 dark:text-white/35 group-hover:text-gray-600 dark:group-hover:text-white/55 transition-colors truncate">
-                                          {service.description}
-                                        </p>
-                                      </div>
-                                    </Link>
-                                  )
-                                })}
-                              </div>
-                            </div>
-                            
-                            {/* Right Column - CTA (40%) */}
-                            <div 
-                              className="flex-[0.4] p-6 flex flex-col justify-between"
-                              style={{ background: "linear-gradient(180deg, rgba(0, 120, 170, 0.08), rgba(124, 58, 237, 0.12))" }}
-                            >
-                              <div>
-                                <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-white/50 mb-4">{t("services_cta_label")}</p>
-                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{t("services_cta_title")}</h3>
-                                <p className="text-sm text-gray-500 dark:text-white/60 mb-4">{t("services_cta_description")}</p>
-                              </div>
-                              <div className="space-y-3">
-                                <Link
-                                  href="/demo"
-                                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-white font-semibold text-sm transition-all duration-200 hover:scale-[1.02] hover:shadow-lg"
-                                  style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}
-                                  onClick={() => setIsServicesOpen(false)}
-                                >
-                                  {t("services_cta_demo")}
-                                  <ArrowRight size={14} />
-                                </Link>
-                                <Link
-                                  href="/soluciones"
-                                  className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-gray-300 dark:border-white/20 text-gray-700 dark:text-white/80 font-medium text-sm hover:bg-gray-100 dark:hover:bg-white/5 hover:border-gray-400 dark:hover:border-white/30 transition-all duration-200"
-                                  onClick={() => setIsServicesOpen(false)}
-                                >
-                                  {t("services_cta_view_all")}
-                                  <ArrowRight size={12} />
-                                </Link>
-                              </div>
+                            <div className="p-6">
+                              {/* Three functional categories: Agentes · Canales · Automatización.
+                                  Per PR #81: no "Request free demo" CTA in the dropdown; the
+                                  nav header already carries the single "Pedir Demo" button. */}
+                              {(["agentes", "canales", "automatizacion"] as const).map((cat) => {
+                                const groupLabel = t(`services_group_${cat}`)
+                                const items = services.filter(s => s.category === cat)
+                                return (
+                                  <div key={cat} className="mb-5 last:mb-0">
+                                    <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-white/40 mb-2">
+                                      {groupLabel}
+                                    </p>
+                                    <div className="grid grid-cols-2 gap-1">
+                                      {items.map((service) => {
+                                        const Icon = service.icon
+                                        return (
+                                          <Link
+                                            key={service.slug}
+                                            href={cptPath("/soluciones", service.slug, activeLocale, SERVICE_SLUGS)}
+                                            className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-200 group"
+                                            onClick={() => setIsServicesOpen(false)}
+                                          >
+                                            <div className="w-9 h-9 rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center group-hover:bg-gray-200 dark:group-hover:bg-white/10 group-hover:border-gray-300 dark:group-hover:border-white/20 transition-all duration-200 flex-shrink-0">
+                                              <Icon size={16} className="text-gray-500 dark:text-white/60 group-hover:text-brand-secondary dark:group-hover:text-white transition-colors" />
+                                            </div>
+                                            <div className="min-w-0">
+                                              <p className="text-sm font-medium text-gray-900 dark:text-white/90 group-hover:text-brand-secondary dark:group-hover:text-white transition-colors truncate">
+                                                {service.name}
+                                              </p>
+                                              <p className="text-[11px] text-gray-400 dark:text-white/35 group-hover:text-gray-600 dark:group-hover:text-white/55 transition-colors truncate">
+                                                {service.description}
+                                              </p>
+                                            </div>
+                                          </Link>
+                                        )
+                                      })}
+                                    </div>
+                                  </div>
+                                )
+                              })}
+
+                              {/* Footer link: "View all solutions" kept (not in the removed CTAs). */}
+                              <Link
+                                href="/soluciones"
+                                className="mt-4 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 dark:border-white/15 text-gray-700 dark:text-white/75 font-medium text-sm hover:bg-gray-100 dark:hover:bg-white/5 hover:border-gray-300 dark:hover:border-white/25 transition-all duration-200"
+                                onClick={() => setIsServicesOpen(false)}
+                              >
+                                {t("services_cta_view_all")}
+                                <ArrowRight size={12} />
+                              </Link>
                             </div>
                           </div>
                         </div>
@@ -484,68 +486,65 @@ export function GlassmorphismNav() {
                               : "opacity-0 -translate-y-2 pointer-events-none"
                           }`}
                         >
-                          <div 
-                            className="bg-white dark:bg-slate-900/95 dark:backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-[20px] shadow-2xl w-[680px] flex overflow-hidden"
+                          <div
+                            className="bg-white dark:bg-slate-900/95 dark:backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-[20px] shadow-2xl w-[760px] overflow-hidden"
                             style={{ boxShadow: "0 25px 60px -12px rgba(0, 0, 0, 0.25)" }}
                           >
-                            {/* Left Column - Sectors Grid (65%) */}
-                            <div className="flex-[0.65] p-6">
-                              <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-white/40 mb-4">{t("sectors")}</p>
-                              <div className="grid grid-cols-2 gap-1">
-                                {sectors.map((sector) => {
+                            <div className="p-6">
+                              {/* Featured sectors (4) — larger cards at the top. */}
+                              <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-white/40 mb-2">
+                                {t("sectors_group_featured")}
+                              </p>
+                              <div className="grid grid-cols-2 gap-2 mb-5">
+                                {sectors.filter(s => s.featured).map((sector) => {
                                   const Icon = sector.icon
                                   return (
                                     <Link
-                                      key={sector.name}
+                                      key={sector.slug}
                                       href={cptPath("/sectores", sector.slug, activeLocale, SECTOR_SLUGS)}
-                                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-200 group"
+                                      className="flex items-center gap-3 px-3 py-3 rounded-xl bg-gradient-to-r from-brand-secondary/10 to-brand-primary/10 border border-brand-secondary/20 hover:border-brand-secondary/40 transition-all duration-200 group"
                                       onClick={() => setIsSectorsOpen(false)}
                                     >
-                                      <div className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center group-hover:bg-gray-200 dark:group-hover:bg-white/10 group-hover:border-gray-300 dark:group-hover:border-white/20 transition-all duration-200 flex-shrink-0">
-                                        <Icon size={15} className="text-gray-500 dark:text-white/60 group-hover:text-brand-secondary dark:group-hover:text-white transition-colors" />
+                                      <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-gradient-to-br from-gradient-from to-brand-primary">
+                                        <Icon size={18} className="text-white" />
                                       </div>
-                                      <div className="min-w-0">
-                                        <p className="text-sm font-medium text-gray-900 dark:text-white/90 group-hover:text-brand-secondary dark:group-hover:text-white transition-colors truncate">
+                                      <div className="min-w-0 flex-1">
+                                        <p className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-brand-secondary dark:group-hover:text-white transition-colors truncate">
                                           {sector.name}
                                         </p>
-                                        <p className="text-[11px] text-gray-400 dark:text-white/35 group-hover:text-gray-600 dark:group-hover:text-white/55 transition-colors truncate">
+                                        <p className="text-[12px] text-gray-500 dark:text-white/50 group-hover:text-gray-700 dark:group-hover:text-white/70 transition-colors truncate">
                                           {sector.description}
                                         </p>
                                       </div>
+                                      <ArrowRight size={14} className="text-gray-400 dark:text-white/40 group-hover:text-brand-secondary group-hover:translate-x-0.5 transition-all" />
                                     </Link>
                                   )
                                 })}
                               </div>
-                            </div>
-                            
-                            {/* Right Column - CTA (35%) */}
-                            <div 
-                              className="flex-[0.35] p-6 flex flex-col justify-between"
-                              style={{ background: "linear-gradient(180deg, rgba(0, 120, 170, 0.08), rgba(124, 58, 237, 0.12))" }}
-                            >
-                              <div>
-                                <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-white/50 mb-4">{t("sectors_cta_label")}</p>
-                                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{t("sectors_cta_title")}</h3>
-                                <p className="text-sm text-gray-500 dark:text-white/60 mb-4">{t("sectors_cta_description")}</p>
-                              </div>
-                              <div className="space-y-3">
-                                <Link
-                                  href="/demo"
-                                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-white font-semibold text-sm transition-all duration-200 hover:scale-[1.02] hover:shadow-lg"
-                                  style={{ background: "linear-gradient(135deg, rgb(0, 120, 170), rgb(124, 58, 237))" }}
-                                  onClick={() => setIsSectorsOpen(false)}
-                                >
-                                  {t("sectors_cta_demo")}
-                                  <ArrowRight size={14} />
-                                </Link>
-                                <Link
-                                  href="/sectores"
-                                  className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-gray-300 dark:border-white/20 text-gray-700 dark:text-white/80 font-medium text-sm hover:bg-gray-100 dark:hover:bg-white/5 hover:border-gray-400 dark:hover:border-white/30 transition-all duration-200"
-                                  onClick={() => setIsSectorsOpen(false)}
-                                >
-                                  {t("sectors_cta_view_all")}
-                                  <ArrowRight size={12} />
-                                </Link>
+
+                              {/* All other sectors (15) — compact 3-col alphabetical grid. */}
+                              <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-white/40 mb-2">
+                                {t("sectors_group_all")}
+                              </p>
+                              <div className="grid grid-cols-3 gap-1">
+                                {sectors.filter(s => !s.featured).map((sector) => {
+                                  const Icon = sector.icon
+                                  return (
+                                    <Link
+                                      key={sector.slug}
+                                      href={cptPath("/sectores", sector.slug, activeLocale, SECTOR_SLUGS)}
+                                      className="flex items-center gap-2 px-2.5 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-200 group"
+                                      onClick={() => setIsSectorsOpen(false)}
+                                    >
+                                      <div className="w-7 h-7 rounded-md bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center group-hover:bg-gray-200 dark:group-hover:bg-white/10 flex-shrink-0">
+                                        <Icon size={13} className="text-gray-500 dark:text-white/60 group-hover:text-brand-secondary dark:group-hover:text-white transition-colors" />
+                                      </div>
+                                      <p className="text-xs font-medium text-gray-800 dark:text-white/85 group-hover:text-brand-secondary dark:group-hover:text-white transition-colors truncate">
+                                        {sector.name}
+                                      </p>
+                                    </Link>
+                                  )
+                                })}
                               </div>
                             </div>
                           </div>
@@ -731,29 +730,38 @@ export function GlassmorphismNav() {
 
                         <div
                           className={`overflow-hidden transition-all duration-300 ${
-                            isMobileServicesOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                            isMobileServicesOpen ? "max-h-[720px] opacity-100" : "max-h-0 opacity-0"
                           }`}
                         >
-                          <div className="pl-2 space-y-0.5 pb-2">
-                            {services.map((service) => {
-                              const Icon = service.icon
-                              return (
-                                <Link
-                                  key={service.name}
-                                  href={cptPath("/soluciones", service.slug, activeLocale, SERVICE_SLUGS)}
-                                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-foreground/10 transition-all duration-200 group"
-                                  onClick={() => {
-                                    setIsOpen(false)
-                                    setIsMobileServicesOpen(false)
-                                  }}
-                                >
-                                  <Icon size={16} className="text-foreground/50 group-hover:text-foreground/80 transition-colors flex-shrink-0" />
-                                  <span className="text-sm text-foreground/70 group-hover:text-foreground transition-colors">
-                                    {service.name}
-                                  </span>
-                                </Link>
-                              )
-                            })}
+                          <div className="pl-2 pb-2">
+                            {(["agentes", "canales", "automatizacion"] as const).map((cat) => (
+                              <div key={cat} className="mb-3 last:mb-0">
+                                <p className="px-3 pt-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-foreground/40">
+                                  {t(`services_group_${cat}`)}
+                                </p>
+                                <div className="space-y-0.5">
+                                  {services.filter(s => s.category === cat).map((service) => {
+                                    const Icon = service.icon
+                                    return (
+                                      <Link
+                                        key={service.slug}
+                                        href={cptPath("/soluciones", service.slug, activeLocale, SERVICE_SLUGS)}
+                                        className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-foreground/10 transition-all duration-200 group"
+                                        onClick={() => {
+                                          setIsOpen(false)
+                                          setIsMobileServicesOpen(false)
+                                        }}
+                                      >
+                                        <Icon size={16} className="text-foreground/50 group-hover:text-foreground/80 transition-colors flex-shrink-0" />
+                                        <span className="text-sm text-foreground/70 group-hover:text-foreground transition-colors">
+                                          {service.name}
+                                        </span>
+                                      </Link>
+                                    )
+                                  })}
+                                </div>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       </div>
@@ -781,27 +789,41 @@ export function GlassmorphismNav() {
 
                         <div
                           className={`overflow-hidden transition-all duration-300 ${
-                            isMobileSectorsOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                            isMobileSectorsOpen ? "max-h-[820px] opacity-100" : "max-h-0 opacity-0"
                           }`}
                         >
-                          <div className="pl-2 space-y-0.5 pb-2">
-                            {sectors.map((sector) => {
-                              const Icon = sector.icon
+                          <div className="pl-2 pb-2">
+                            {(["featured", "all"] as const).map((group) => {
+                              const items = group === "featured"
+                                ? sectors.filter(s => s.featured)
+                                : sectors.filter(s => !s.featured)
                               return (
-                                <Link
-                                  key={sector.name}
-                                  href={cptPath("/sectores", sector.slug, activeLocale, SECTOR_SLUGS)}
-                                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-foreground/10 transition-all duration-200 group"
-                                  onClick={() => {
-                                    setIsOpen(false)
-                                    setIsMobileSectorsOpen(false)
-                                  }}
-                                >
-                                  <Icon size={16} className="text-foreground/50 group-hover:text-foreground/80 transition-colors flex-shrink-0" />
-                                  <span className="text-sm text-foreground/70 group-hover:text-foreground transition-colors">
-                                    {sector.name}
-                                  </span>
-                                </Link>
+                                <div key={group} className="mb-3 last:mb-0">
+                                  <p className="px-3 pt-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-foreground/40">
+                                    {t(`sectors_group_${group}`)}
+                                  </p>
+                                  <div className="space-y-0.5">
+                                    {items.map((sector) => {
+                                      const Icon = sector.icon
+                                      return (
+                                        <Link
+                                          key={sector.slug}
+                                          href={cptPath("/sectores", sector.slug, activeLocale, SECTOR_SLUGS)}
+                                          className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-foreground/10 transition-all duration-200 group"
+                                          onClick={() => {
+                                            setIsOpen(false)
+                                            setIsMobileSectorsOpen(false)
+                                          }}
+                                        >
+                                          <Icon size={16} className="text-foreground/50 group-hover:text-foreground/80 transition-colors flex-shrink-0" />
+                                          <span className="text-sm text-foreground/70 group-hover:text-foreground transition-colors">
+                                            {sector.name}
+                                          </span>
+                                        </Link>
+                                      )
+                                    })}
+                                  </div>
+                                </div>
                               )
                             })}
                           </div>

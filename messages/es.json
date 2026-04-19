@@ -21,20 +21,8 @@
         "description": "Voces indistinguibles de personas reales"
       },
       {
-        "name": "Atención Telefónica IA",
-        "description": "Agentes de voz inteligentes 24/7"
-      },
-      {
-        "name": "WhatsApp IA Empresas",
-        "description": "Agentes IA para WhatsApp Business"
-      },
-      {
-        "name": "Agente Chat Web IA",
-        "description": "Agentes IA para tu sitio web"
-      },
-      {
         "name": "Agente de Ventas IA",
-        "description": "Cualificación y cierre automatizado"
+        "description": "Calificación y cierre automatizados"
       },
       {
         "name": "Agente de Soporte IA",
@@ -45,19 +33,43 @@
         "description": "Citas y reservas en piloto automático"
       },
       {
-        "name": "Lead Generation IA",
-        "description": "Prospección automática de empresas"
+        "name": "Agente Chat Web IA",
+        "description": "Agentes IA para tu web"
+      },
+      {
+        "name": "Agente Chat de Productos",
+        "description": "Responde preguntas y recomienda"
+      },
+      {
+        "name": "WhatsApp IA Empresas",
+        "description": "Agentes IA para WhatsApp Business"
       },
       {
         "name": "IA Omnicanal",
         "description": "Bandeja unificada y workflows"
+      },
+      {
+        "name": "IA Call Center",
+        "description": "Atención telefónica con IA realista"
+      },
+      {
+        "name": "Atención Telefónica IA",
+        "description": "Agentes de voz inteligentes 24/7"
+      },
+      {
+        "name": "Automatización de Ventas",
+        "description": "Pipeline operado por agentes"
+      },
+      {
+        "name": "Generación de Leads IA",
+        "description": "Prospección automática de empresas"
+      },
+      {
+        "name": "Onboarding Automático",
+        "description": "Activación de clientes sin fricción"
       }
     ],
     "sectors_items": [
-      {
-        "name": "Concesionarios",
-        "description": "Venta y posventa de vehículos"
-      },
       {
         "name": "Clínicas y Salud",
         "description": "Clínicas y centros médicos"
@@ -75,53 +87,79 @@
         "description": "Tiendas online y marketplaces"
       },
       {
-        "name": "Turismo y Hotelería",
-        "description": "Hoteles y agencias de viajes"
-      },
-      {
         "name": "Centros de Belleza",
         "description": "Belleza y estética"
-      },
-      {
-        "name": "Retail",
-        "description": "Comercio minorista"
-      },
-      {
-        "name": "Despachos de Abogados",
-        "description": "Bufetes y asesorías jurídicas"
       },
       {
         "name": "Clubs Deportivos",
         "description": "Socios, captación y gestión"
       },
       {
-        "name": "Oficinas",
-        "description": "Despachos profesionales"
+        "name": "Concesionarios",
+        "description": "Venta y postventa de vehículos"
+      },
+      {
+        "name": "CRM Automation",
+        "description": "Automatización de CRM"
+      },
+      {
+        "name": "Despachos de Abogados",
+        "description": "Despachos y consultorías jurídicas"
+      },
+      {
+        "name": "Educación",
+        "description": "Colegios y academias"
+      },
+      {
+        "name": "Gimnasios",
+        "description": "Centros deportivos"
+      },
+      {
+        "name": "Home Staging Virtual",
+        "description": "Home staging con IA"
+      },
+      {
+        "name": "Lead Generation PYMEs",
+        "description": "Generación de leads para PYMEs"
       },
       {
         "name": "Logística",
         "description": "Transporte y distribución"
       },
       {
+        "name": "Oficinas",
+        "description": "Oficinas y despachos profesionales"
+      },
+      {
+        "name": "Retail",
+        "description": "Comercio y retail"
+      },
+      {
+        "name": "SaaS y Startups",
+        "description": "SaaS y empresas emergentes"
+      },
+      {
         "name": "Servicios Técnicos",
         "description": "Asistencia técnica y SAT"
       },
       {
-        "name": "Educación",
-        "description": "Colegios y academias"
+        "name": "Turismo y Hostelería",
+        "description": "Hoteles y agencias de viajes"
       }
     ],
     "services_cta_label": "Empieza ahora",
     "services_cta_title": "Implementa agentes IA en tu negocio",
     "services_cta_description": "Configura tu primer agente en menos de 48h. Sin desarrollo, sin permanencia.",
-    "services_cta_demo": "Solicitar demo gratuita",
     "services_cta_view_all": "Ver todas las soluciones",
     "sectors_cta_label": "Tu sector",
     "sectors_cta_title": "IA entrenada para tu industria",
     "sectors_cta_description": "Agentes que conocen el vocabulario, procesos y necesidades de tu sector.",
-    "sectors_cta_demo": "Solicitar demo gratuita",
-    "sectors_cta_view_all": "Ver todos los sectores",
-    "featured": "Destacado"
+    "featured": "Destacado",
+    "services_group_agentes": "Agentes IA",
+    "services_group_canales": "Canales",
+    "services_group_automatizacion": "Automatización",
+    "sectors_group_featured": "Destacados",
+    "sectors_group_all": "Todos los sectores"
   },
   "hero": {
     "badge": "Plataforma de Agentes IA Operativos",

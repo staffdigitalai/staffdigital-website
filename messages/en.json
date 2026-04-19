@@ -21,18 +21,6 @@
         "description": "Voices indistinguishable from real people"
       },
       {
-        "name": "AI Phone Service",
-        "description": "Intelligent voice agents 24/7"
-      },
-      {
-        "name": "WhatsApp AI Business",
-        "description": "AI agents for WhatsApp Business"
-      },
-      {
-        "name": "AI Web Chat Agent",
-        "description": "AI agents for your website"
-      },
-      {
         "name": "AI Sales Agent",
         "description": "Automated qualification and closing"
       },
@@ -45,19 +33,43 @@
         "description": "Appointments and bookings on autopilot"
       },
       {
-        "name": "AI Lead Generation",
-        "description": "Automatic company prospecting"
+        "name": "AI Web Chat Agent",
+        "description": "AI agents for your website"
+      },
+      {
+        "name": "AI Product Chat Agent",
+        "description": "Answers questions and recommends"
+      },
+      {
+        "name": "WhatsApp AI Business",
+        "description": "AI agents for WhatsApp Business"
       },
       {
         "name": "Omnichannel AI",
         "description": "Unified inbox and workflows"
+      },
+      {
+        "name": "AI Call Center",
+        "description": "Phone support with realistic AI"
+      },
+      {
+        "name": "AI Phone Service",
+        "description": "Intelligent voice agents 24/7"
+      },
+      {
+        "name": "AI Sales Automation",
+        "description": "Pipeline run by agents"
+      },
+      {
+        "name": "AI Lead Generation",
+        "description": "Automatic company prospecting"
+      },
+      {
+        "name": "Automated Onboarding",
+        "description": "Frictionless customer activation"
       }
     ],
     "sectors_items": [
-      {
-        "name": "Car Dealers",
-        "description": "Vehicle sales and after-sales"
-      },
       {
         "name": "Healthcare",
         "description": "Clinics and medical centres"
@@ -75,53 +87,79 @@
         "description": "Online stores and marketplaces"
       },
       {
-        "name": "Hotels & Tourism",
-        "description": "Hotels and travel agencies"
-      },
-      {
         "name": "Beauty Centres",
         "description": "Beauty and aesthetics"
-      },
-      {
-        "name": "Retail",
-        "description": "Retail commerce"
-      },
-      {
-        "name": "Law Firms",
-        "description": "Law firms and legal consultancies"
       },
       {
         "name": "Sports Clubs",
         "description": "Members, acquisition and management"
       },
       {
-        "name": "Offices",
-        "description": "Professional offices"
+        "name": "Car Dealers",
+        "description": "Vehicle sales and after-sales"
+      },
+      {
+        "name": "CRM Automation",
+        "description": "CRM automation"
+      },
+      {
+        "name": "Law Firms",
+        "description": "Law firms and legal consultancies"
+      },
+      {
+        "name": "Education",
+        "description": "Schools and academies"
+      },
+      {
+        "name": "Gyms",
+        "description": "Sports and fitness centres"
+      },
+      {
+        "name": "Virtual Home Staging",
+        "description": "AI home staging"
+      },
+      {
+        "name": "Lead Generation SMBs",
+        "description": "Lead generation for SMBs"
       },
       {
         "name": "Logistics",
         "description": "Transport and distribution"
       },
       {
+        "name": "Professional Offices",
+        "description": "Offices and professional firms"
+      },
+      {
+        "name": "Retail",
+        "description": "Retail commerce"
+      },
+      {
+        "name": "SaaS & Startups",
+        "description": "SaaS and startups"
+      },
+      {
         "name": "Technical Services",
         "description": "Technical assistance and support"
       },
       {
-        "name": "Education",
-        "description": "Schools and academies"
+        "name": "Hotels & Tourism",
+        "description": "Hotels and travel agencies"
       }
     ],
     "services_cta_label": "Get started",
     "services_cta_title": "Implement AI agents in your business",
     "services_cta_description": "Set up your first agent in under 48h. No development, no commitment.",
-    "services_cta_demo": "Request free demo",
     "services_cta_view_all": "View all solutions",
     "sectors_cta_label": "Your industry",
     "sectors_cta_title": "AI trained for your industry",
     "sectors_cta_description": "Agents that know the vocabulary, processes and needs of your sector.",
-    "sectors_cta_demo": "Request free demo",
-    "sectors_cta_view_all": "View all industries",
-    "featured": "Featured"
+    "featured": "Featured",
+    "services_group_agentes": "AI Agents",
+    "services_group_canales": "Channels",
+    "services_group_automatizacion": "Automation",
+    "sectors_group_featured": "Featured",
+    "sectors_group_all": "All sectors"
   },
   "hero": {
     "badge": "Operational AI Agents Platform",

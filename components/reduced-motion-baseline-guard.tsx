@@ -6,32 +6,33 @@ import { useReducedMotion } from "framer-motion"
 /**
  * Runtime guard for users with `prefers-reduced-motion: reduce`.
  *
- * Background (long form, because the failure class is subtle):
- * our motion hooks emit `initial={{opacity:0,…}}` as their reveal
- * starting state. At SSR `useReducedMotion()` returns `null`, so the
- * hook takes the motion-enabled branch and Framer writes
- * `style="opacity:0; transform:translate(…)"` into the server HTML.
+ * Chrome-MCP diagnostics on PR #84 preview showed two related failure
+ * modes under reduced motion:
  *
- * On the client, reduced-motion users get back `{ initial: false,
- * animate: target, transition: { duration: 0 } }` from the updated
- * hook — which should snap to visible. That works for plain
- * `useMotionReveal` / `useMotionFade` call-sites. But anywhere the
- * old `variants`-based `useStaggerContainer` + `useStaggerItem`
- * pattern is in play, Framer's parent↔child variant orchestration
- * persists the "hidden" variant state into the child's MotionValue
- * across re-renders — the new config doesn't retroactively unstick
- * it, so those cards stay invisible. (Observed: inline style says
- * `opacity:1; transform:none`, computed says `opacity:0;
- * transform:matrix(…,16)`.)
+ *   1. SSR emitted `style="opacity:0; transform:translate(...,N)"` from
+ *      the motion hooks' `initial` state (because
+ *      `useReducedMotion()` returns `null` at SSR, so the hook took
+ *      the motion-enabled branch). Users with reduced motion never
+ *      got the reveal transition, so content stayed invisible.
  *
- * Rather than rewrite every call-site, this component runs one tiny
- * effect after hydration: when reduced-motion is active, it finds
- * any element with inline `opacity:0` (left by SSR or the variant
- * system) and forces it back to the visible baseline. No animation,
- * no flicker, no accessibility violation — just removes the stuck
- * state.
+ *   2. For call-sites using Framer's variant-based stagger
+ *      (`useStaggerContainer` + `useStaggerItem`), the updated hook
+ *      returns new non-variant props, BUT Framer's parent↔child
+ *      variant orchestration keeps a MotionValue in the "hidden"
+ *      state across re-renders. The inline style reads `opacity:1;
+ *      transform:none` (what the hook wrote) but the computed style
+ *      is `opacity:0; transform:matrix(...,16)` (what the persistent
+ *      MotionValue paints). Inline-style-based reset doesn't help
+ *      because the inline is already correct.
  *
- * Mount once at the locale layout level so every page benefits.
+ * Fix here: on mount (and on rAF, and once more ~200ms later for
+ * stagger delays), walk every element that Framer might have stuck
+ * and stamp it with an inline `!important` opacity/transform override
+ * via `cssText`. The important flag wins over Framer's MotionValue
+ * style writes.
+ *
+ * Touches nothing for users without reduced motion (the hook's own
+ * shouldReduce gate bails out).
  */
 export function ReducedMotionBaselineGuard() {
   const shouldReduce = useReducedMotion()
@@ -40,33 +41,55 @@ export function ReducedMotionBaselineGuard() {
     if (!shouldReduce) return
 
     const reset = () => {
-      const stuck = document.querySelectorAll<HTMLElement>(
-        '[style*="opacity: 0"], [style*="opacity:0"]',
-      )
-      for (const el of stuck) {
-        // Preserve any non-opacity/transform inline styles; only flip
-        // the two properties we know break reveal under reduced motion.
-        el.style.opacity = "1"
-        el.style.transform = "none"
+      // Target every element that sits in the hidden pose under
+      // reduced motion. Either inline says opacity:0 (path 1 above)
+      // or the computed box disagrees with a stated opacity/transform
+      // baseline (path 2 — Framer MotionValue stuck).
+      const all = document.querySelectorAll<HTMLElement>("*")
+      for (const el of all) {
+        const cs = getComputedStyle(el)
+        const computedOpacity = parseFloat(cs.opacity)
+        const computedTransform = cs.transform
+        const hasTranslate =
+          computedTransform !== "none" &&
+          /matrix\([^)]*,\s*-?\d+(?:\.\d+)?\s*\)/.test(computedTransform) &&
+          // Only match simple translate-y matrices — avoid breaking
+          // rotations, scales, perspective transforms on unrelated
+          // elements (buttons, hover cards, icons, etc.).
+          /matrix\(1,\s*0,\s*0,\s*1,\s*0,\s*-?\d/.test(computedTransform)
+
+        if (computedOpacity < 0.99 || hasTranslate) {
+          // Only reset elements that have an existing inline `style`
+          // already touched by Framer (to avoid clobbering intentional
+          // decorative opacity like `/20`, `/40` overlays that are
+          // applied via Tailwind classes, not inline). Framer always
+          // writes inline style on its motion.div renders.
+          const inline = el.getAttribute("style") || ""
+          if (!inline.includes("opacity") && !inline.includes("transform")) continue
+
+          // Preserve non-opacity/transform declarations, append
+          // `!important` versions of our two baseline properties.
+          const preserved = inline
+            .split(";")
+            .map((d) => d.trim())
+            .filter((d) => d && !/^(opacity|transform)\s*:/.test(d))
+            .join("; ")
+          el.style.cssText =
+            (preserved ? preserved + "; " : "") +
+            "opacity: 1 !important; transform: none !important;"
+        }
       }
     }
 
-    // First pass immediately after hydration.
     reset()
-
-    // Second pass on the next animation frame — some Framer updates
-    // happen in an rAF after the initial render, and without this
-    // follow-up the variant system would re-paint opacity:0 after
-    // we cleared it.
     const raf = requestAnimationFrame(reset)
-
-    // Third safety net ~200ms out for stagger orchestrations that
-    // schedule their own micro-delays.
-    const timer = window.setTimeout(reset, 200)
+    const t1 = window.setTimeout(reset, 200)
+    const t2 = window.setTimeout(reset, 600)
 
     return () => {
       cancelAnimationFrame(raf)
-      window.clearTimeout(timer)
+      window.clearTimeout(t1)
+      window.clearTimeout(t2)
     }
   }, [shouldReduce])
 

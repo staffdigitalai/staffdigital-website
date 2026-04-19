@@ -1083,5 +1083,31 @@
       "cta": "Hablar con un especialista"
     },
     "view_all": "Ver todos los sectores"
+  },
+  "blog_ui": {
+    "hero_title_plain": "Noticias y",
+    "hero_title_highlight": "Recursos",
+    "hero_intro": "Guías, comparativas y análisis sobre agentes IA que ejecutan procesos reales en tu negocio.",
+    "search_placeholder": "Buscar en el blog…",
+    "categories_label": "Categorías",
+    "all_categories": "Todas",
+    "no_results": "No se encontraron artículos.",
+    "back_to_blog": "Volver al blog",
+    "reading_time_min": "{minutes} min de lectura",
+    "toc_label": "En este artículo",
+    "share": "Compartir",
+    "share_on_twitter": "Compartir en X",
+    "share_on_linkedin": "Compartir en LinkedIn",
+    "share_on_whatsapp": "Compartir por WhatsApp",
+    "copy_link": "Copiar enlace",
+    "copied": "Copiado",
+    "related_articles": "Artículos relacionados",
+    "published_on": "Publicado el",
+    "cta_title": "¿Quieres ver cómo funcionaría en tu negocio?",
+    "cta_subtitle": "Configuramos el primer agente en 2–6 semanas. Sin integraciones custom, sin permanencia.",
+    "cta_primary": "Solicitar Demo",
+    "cta_secondary": "Ver más artículos",
+    "author_fallback_name": "Equipo StaffDigital AI",
+    "author_fallback_bio": "Plataforma de agentes IA que ejecutan procesos reales en tu negocio."
   }
 }

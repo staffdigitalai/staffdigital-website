@@ -503,6 +503,32 @@ export async function getPost(slug: string, lang: SupportedLang = 'es'): Promise
   return posts[0] || null;
 }
 
+/**
+ * Related posts: same category, excluding the current post, ordered by date.
+ * Used by `/blog/[slug]` to render up to 3 recommendations at the bottom.
+ */
+export async function getRelatedPosts(options: {
+  categoryId?: number;
+  excludeId: number;
+  lang?: SupportedLang;
+  perPage?: number;
+} = { excludeId: 0 }): Promise<WPPost[]> {
+  const { categoryId, excludeId, lang = 'es', perPage = 3 } = options;
+  try {
+    return await wpFetch<WPPost[]>('/posts', {
+      lang,
+      categories: categoryId,
+      exclude: excludeId || undefined,
+      per_page: perPage,
+      orderby: 'date',
+      order: 'desc',
+      _embed: 1,
+    });
+  } catch {
+    return [];
+  }
+}
+
 // Categories
 export async function getCategories(lang: SupportedLang = 'es'): Promise<WPCategory[]> {
   return wpFetch<WPCategory[]>('/categories', {

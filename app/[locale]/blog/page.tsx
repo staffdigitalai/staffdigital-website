@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
+import { getTranslations } from "next-intl/server"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
 import { BlogContent } from "./blog-content"
@@ -28,6 +29,7 @@ interface BlogPageProps {
 export default async function BlogPage({ params }: BlogPageProps) {
   const { locale } = await params
   const wpmlLang = toWpmlLang(locale)
+  const t = await getTranslations({ locale, namespace: "blog_ui" })
 
   let categories: Awaited<ReturnType<typeof getCategories>> = []
   let contentTypes: Awaited<ReturnType<typeof getContentTypes>> = []
@@ -59,20 +61,16 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
       <div className="relative z-10 pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-foreground/10 backdrop-blur-md border border-foreground/20 text-foreground text-sm font-medium mb-6 animate-fade-in-badge">
-              <span className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse" />
-              Blog
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground leading-tight text-balance mb-6 animate-fade-in-heading">
-              Noticias y{" "}
-              <span className="bg-gradient-to-r from-primary via-primary to-primary/80 bg-clip-text text-transparent">
-                Recursos
+          {/* Hero */}
+          <div className="text-center mb-14 sm:mb-16">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-fg-primary leading-tight text-balance mb-6">
+              {t("hero_title_plain")}{" "}
+              <span className="bg-gradient-to-r from-gradient-from to-gradient-to bg-clip-text text-transparent">
+                {t("hero_title_highlight")}
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-fade-in-subheading">
-              Mantente al dia con las ultimas tendencias en automatización e inteligencia artificial para empresas.
+            <p className="text-base sm:text-lg text-fg-muted max-w-2xl mx-auto leading-relaxed">
+              {t("hero_intro")}
             </p>
           </div>
 

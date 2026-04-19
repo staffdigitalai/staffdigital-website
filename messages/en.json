@@ -1084,5 +1084,31 @@
       "cta": "Talk to a specialist"
     },
     "view_all": "View all industries"
+  },
+  "blog_ui": {
+    "hero_title_plain": "News &",
+    "hero_title_highlight": "Resources",
+    "hero_intro": "Guides, comparisons and deep-dives on AI agents that execute real processes in your business.",
+    "search_placeholder": "Search the blog…",
+    "categories_label": "Categories",
+    "all_categories": "All",
+    "no_results": "No articles found.",
+    "back_to_blog": "Back to blog",
+    "reading_time_min": "{minutes} min read",
+    "toc_label": "In this article",
+    "share": "Share",
+    "share_on_twitter": "Share on X",
+    "share_on_linkedin": "Share on LinkedIn",
+    "share_on_whatsapp": "Share on WhatsApp",
+    "copy_link": "Copy link",
+    "copied": "Copied",
+    "related_articles": "Related articles",
+    "published_on": "Published",
+    "cta_title": "Want to see how this would run in your business?",
+    "cta_subtitle": "We deploy the first agent in 2–6 weeks. No custom integrations, no lock-in.",
+    "cta_primary": "Request Demo",
+    "cta_secondary": "View more articles",
+    "author_fallback_name": "StaffDigital AI Team",
+    "author_fallback_bio": "A platform of AI agents that execute real processes in your business."
   }
 }

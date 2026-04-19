@@ -2,18 +2,25 @@
 
 import { FacebookIcon, InstagramIcon, LinkedinIcon, YoutubeIcon, MapPin, Mail, Phone } from "lucide-react"
 import { StaffDigitalLogoDark } from "@/components/staffdigital-logo"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import Link from "next/link"
+import { SERVICE_SLUGS, cptPath } from "@/lib/cpt-slugs"
+
+// The 5 featured solutions rendered in the footer, in the order that
+// matches `footer.solutions_links` in each messages/*.json. These are
+// ES master slugs — the real href per active locale is computed at
+// render time via cptPath() so /en and /pt get their WPML-translated
+// slugs instead of the ES ones (the old hardcoded list 404'd on non-ES
+// locales).
+const FOOTER_SOLUTION_SLUGS = [
+  "agentes-ia-voz-humana",
+  "atencion-telefonica-ia",
+  "whatsapp-ia-empresas",
+  "lead-generation-ia",
+  "agente-soporte-ia",
+]
 
 const linkHrefs = {
-  solutions: [
-    "/soluciones/agentes-ia-voz-humana",
-    "/soluciones/atencion-telefonica-ia",
-    "/soluciones/whatsapp-ia-empresas",
-    "/soluciones/lead-generation-ia",
-    "/soluciones/agente-soporte-ia",
-    "/soluciones",
-  ],
   product: [
     "/tecnologia",
     "/integraciones",
@@ -45,6 +52,18 @@ const socialLinks = [
 
 export function Footer() {
   const t = useTranslations("footer")
+  const locale = useLocale()
+
+  // Locale-aware solutions hrefs: 5 specific services + a final
+  // "/soluciones" catch-all that needs its own locale prefix. Matches
+  // 1:1 with the 6-entry `footer.solutions_links` i18n array.
+  const localePrefix = locale === "es" ? "" : `/${locale}`
+  const solutionsHrefs = [
+    ...FOOTER_SOLUTION_SLUGS.map((esSlug) =>
+      cptPath("/soluciones", esSlug, locale, SERVICE_SLUGS),
+    ),
+    `${localePrefix}/soluciones`,
+  ]
 
   const solutionsTitles = t.raw("solutions_links") as string[]
   const productTitles = t.raw("product_links") as string[]
@@ -125,7 +144,7 @@ export function Footer() {
               {solutionsTitles.map((title, i) => (
                 <li key={i}>
                   <Link
-                    href={linkHrefs.solutions[i]}
+                    href={solutionsHrefs[i]}
                     className="text-foreground/45 hover:text-foreground/80 text-sm transition-colors duration-200"
                   >
                     {title}

@@ -1,138 +1,71 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import { TrendingUp, Clock, Users, Zap, Quote, ArrowRight, Building2 } from "lucide-react"
-import Link from "next/link"
-import { IconBadge, FeatureIcon } from "@/components/ui/icon-system"
+import { TrendingUp, Zap, Rocket } from "lucide-react"
+import { motion } from "framer-motion"
+import { IconBadge } from "@/components/ui/icon-system"
+import { useMotionReveal, useStaggerContainer, useStaggerItem } from "@/hooks/use-motion-reveal"
 
-const metricIcons = [TrendingUp, Clock, Users, Zap]
+// One icon per metric, in the same order as `social_proof.metrics` in i18n:
+//   [0] response-time reduction, [1] lead-conversion lift, [2] weeks to deploy.
+const METRIC_ICONS = [TrendingUp, Zap, Rocket]
+
+interface Metric {
+  value: string
+  label: string
+  context: string
+}
 
 export function SocialProofBlock() {
   const t = useTranslations("social_proof")
-
-  const metrics = t.raw("metrics") as { value: string; label: string }[]
+  const metrics = t.raw("metrics") as Metric[]
+  const header = useMotionReveal()
+  const stagger = useStaggerContainer()
+  const item = useStaggerItem()
 
   return (
-    <section className="py-28 sm:py-36 px-6 sm:px-8 animate-fade-in-section relative overflow-hidden">
+    <section
+      aria-labelledby="home-proof-title"
+      className="py-28 sm:py-36 px-6 sm:px-8 animate-fade-in-section relative overflow-hidden"
+    >
       <div className="max-w-5xl mx-auto relative">
-        {/* Section badge */}
-        <div className="text-center mb-6">
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-white/[0.06] border border-foreground/[0.1] dark:border-white/[0.1] text-xs font-semibold tracking-widest text-foreground/65 dark:text-white/55 uppercase backdrop-blur-sm">
-            {t("badge") || "Resultados reales"}
+        <motion.div {...header} className="text-center mb-14 sm:mb-16">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 dark:bg-white/[0.06] border border-foreground/[0.1] dark:border-white/[0.1] text-xs font-semibold tracking-widest text-foreground/65 dark:text-white/55 uppercase backdrop-blur-sm mb-6">
+            {t("badge")}
           </span>
-        </div>
-        
-        {/* Title */}
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-16 sm:mb-20 text-foreground leading-[1.1] tracking-tight">
-          {t("title")}
-        </h2>
+          <h2
+            id="home-proof-title"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground leading-[1.15] tracking-tight"
+          >
+            {t("title")}
+          </h2>
+        </motion.div>
 
-        {/* Metrics row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16 sm:mb-20">
-          {metrics.map((metric, index) => {
-            const Icon = metricIcons[index] || TrendingUp
+        {/* Three metric cards, each with a single line of context. No
+            case studies on the home — the brief is explicit about this. */}
+        <motion.div {...stagger} className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {metrics.map((m, i) => {
+            const Icon = METRIC_ICONS[i] ?? TrendingUp
             return (
-              <div key={index} className="card-premium p-6 sm:p-7 rounded-2xl text-center">
-                <IconBadge icon={Icon} size="md" className="mx-auto mb-4" />
-                <div className="text-3xl sm:text-4xl font-bold text-foreground mb-1.5 tracking-tight">
-                  {metric.value}
+              <motion.div
+                key={m.label}
+                {...item}
+                className="card-premium p-7 sm:p-8 rounded-2xl"
+              >
+                <IconBadge icon={Icon} size="md" className="mb-5" />
+                <div className="text-4xl sm:text-5xl font-bold text-foreground mb-2 tracking-tight">
+                  {m.value}
                 </div>
-                <p className="text-sm text-foreground/55 dark:text-foreground/45 leading-snug">
-                  {metric.label}
+                <p className="text-base font-medium text-foreground/75 dark:text-foreground/70 leading-snug mb-3">
+                  {m.label}
                 </p>
-              </div>
+                <p className="text-xs text-foreground/50 dark:text-foreground/45 leading-relaxed">
+                  {m.context}
+                </p>
+              </motion.div>
             )
           })}
-        </div>
-
-        {/* Two-part proof: Testimonial + Case Study side by side */}
-        <div className="grid lg:grid-cols-2 gap-5">
-          {/* Testimonial Card */}
-          <div className="card-premium p-8 sm:p-10 rounded-2xl">
-            <div className="mb-6">
-              <Quote className="w-8 h-8 text-brand-secondary/20 dark:text-brand-secondary/20" />
-            </div>
-            
-            <blockquote className="mb-8">
-              <p className="text-lg sm:text-xl text-foreground/75 dark:text-foreground/70 leading-[1.65] font-light italic">
-                {t("quote")}
-              </p>
-            </blockquote>
-            
-            {/* Author */}
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gradient-from to-gradient-to flex items-center justify-center shadow-sm">
-                <span className="text-white text-sm font-bold">{t("quote_author_initials") || "MG"}</span>
-              </div>
-              <div>
-                <p className="font-semibold text-foreground text-sm">
-                  {t("quote_author_name") || "Miguel Garcia"}
-                </p>
-                <p className="text-xs text-foreground/50 dark:text-foreground/45">
-                  {t("quote_author_role") || "Director de Operaciones"} &middot; {t("quote_company") || "Clinica Horizonte"}
-                </p>
-              </div>
-            </div>
-          </div>
-          
-          {/* Mini Case Study Card */}
-          <div className="card-premium p-8 sm:p-10 rounded-2xl relative overflow-hidden">
-            {/* Case study label */}
-            <div className="flex items-center gap-2 mb-6">
-              <FeatureIcon icon={Building2} className="w-4 h-4" />
-              <span className="text-xs font-semibold tracking-widest text-brand-secondary dark:text-brand-secondary uppercase">
-                {t("case_study_label") || "Caso de exito"}
-              </span>
-            </div>
-            
-            {/* Company */}
-            <h3 className="text-lg font-bold text-foreground mb-1">
-              {t("case_study_company") || "Clinica Horizonte"}
-            </h3>
-            <p className="text-xs text-foreground/45 dark:text-foreground/40 mb-6">
-              {t("case_study_type") || "Red de clinicas privadas -- 12 centros"}
-            </p>
-            
-            {/* Challenge / Solution / Result */}
-            <div className="space-y-4">
-              <div>
-                <p className="text-xs font-semibold text-foreground/45 dark:text-foreground/40 uppercase tracking-wide mb-1">
-                  {t("case_study_challenge_label") || "Desafio"}
-                </p>
-                <p className="text-sm text-foreground/60 dark:text-foreground/55 leading-relaxed">
-                  {t("case_study_challenge") || "Perdian el 40% de llamadas fuera de horario y los tiempos de espera superaban los 8 minutos."}
-                </p>
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-foreground/45 dark:text-foreground/40 uppercase tracking-wide mb-1">
-                  {t("case_study_solution_label") || "Solucion"}
-                </p>
-                <p className="text-sm text-foreground/60 dark:text-foreground/55 leading-relaxed">
-                  {t("case_study_solution") || "Agente IA con voz humana para atencion telefonica 24/7 integrado con su sistema de citas."}
-                </p>
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-foreground/45 dark:text-foreground/40 uppercase tracking-wide mb-1">
-                  {t("case_study_result_label") || "Resultado"}
-                </p>
-                <p className="text-sm text-foreground/85 dark:text-foreground/80 font-semibold leading-relaxed">
-                  {t("case_study_result") || "0 llamadas perdidas. Tiempo de respuesta reducido a 12 segundos. +35% en reservas confirmadas."}
-                </p>
-              </div>
-            </div>
-            
-            {/* CTA */}
-            <div className="mt-6 pt-5 border-t border-foreground/[0.05] dark:border-white/[0.06]">
-              <Link
-                href="/casos-exito"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-brand-secondary dark:text-brand-secondary hover:underline group"
-              >
-                {t("case_study_cta") || "Ver casos de exito"}
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-            </div>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

@@ -129,8 +129,8 @@
     "h1_gradient": "They act, decide and execute",
     "h2": "Your AI team working 24/7 on sales, support and operations.",
     "subtitle": "Transform conversations and inputs into real actions — analyzing context, making decisions and executing workflows across channels, systems and business operations.",
-    "cta_primary": "Book a demo",
-    "cta_secondary": "See how it works",
+    "cta_primary": "Request Demo",
+    "cta_secondary": "View Solutions",
     "trust_1": "No templates",
     "trust_2": "Fully customized",
     "trust_3": "Built around your business"
@@ -365,13 +365,24 @@
     ]
   },
   "social_proof": {
-    "badge": "Measurable results",
-    "title": "Real impact, not just promises",
+    "badge": "Real results",
+    "title": "Numbers with context, not generic promises.",
     "metrics": [
-      { "value": "87%", "label": "Reduction in response time" },
-      { "value": "24/7", "label": "Continuous availability without breaks" },
-      { "value": "+40%", "label": "Increase in lead conversion" },
-      { "value": "2-6", "label": "Weeks for full implementation" }
+      {
+        "value": "87%",
+        "label": "Reduction in response time",
+        "context": "Clinics, 3 months to deploy, ~500 interactions/day"
+      },
+      {
+        "value": "+40%",
+        "label": "Increase in lead conversion",
+        "context": "E-commerce, WhatsApp + web, versus manual handling"
+      },
+      {
+        "value": "2–6",
+        "label": "Weeks to go live",
+        "context": "Standard setup, no custom integrations; enterprise 2–4 months"
+      }
     ],
     "quote": "StaffDigital AI completely transformed our patient care. We went from missing calls to handling 100% of interactions with the same quality — even after hours.",
     "quote_author_initials": "MG",
@@ -422,14 +433,15 @@
   },
   "cta": {
     "badge": "Get started today",
-    "title_plain": "Ready to turn interactions into",
-    "title_gradient": "real execution?",
-    "subtitle": "Discover how StaffDigital AI can adapt to your business and start operating processes with intelligence and precision.",
+    "title_plain": "Ready to book, reply and execute",
+    "title_gradient": "without waiting for a person",
+    "subtitle": "We deploy your first agent in 2–6 weeks. No custom integrations, no lock-in.",
     "demo": "Request free demo",
     "trust_1": "No commitment",
     "trust_2": "Implementation included",
     "trust_3": "Dedicated support",
-    "microcopy": "Custom-built. Fully managed. Designed for real operations."
+    "microcopy": "Custom-built. Fully managed. Designed for real operations.",
+    "button": "Request Demo"
   },
   "templates": {
     "cta_primary": "Request implementation",
@@ -478,41 +490,41 @@
         "title": "Analysis and decision-making",
         "description": "Evaluates information, structures data and decides the next step within the operational or commercial process."
       },
-  "integrations": {
-  "micro_label": "Connectivity",
-  "title": "Connected execution across systems",
-  "description": "Acts directly on CRM, calendars and tools to keep processes running continuously."
-  }
-  },
-  "mockup": {
-    "chat_question": "Can I book for this Friday?",
-    "chat_response": "Of course! I've checked availability.",
-    "chat_confirmation": "\u26a1 Booking confirmed: Friday 16:30 \u2713",
-    "chat_info_question": "I need information about prices",
-    "chat_info_response": "I'll send you our updated catalog.",
-    "chat_info_confirmation": "\ud83d\udcce Document sent \u2713",
-    "chat_agent_question": "I want to speak to an agent",
-    "chat_agent_response": "Analyzing your inquiry...",
-    "chat_agent_confirmation": "\u2713 Routed to the right specialist",
-    "call_incoming": "Incoming call",
-    "call_in_progress": "In progress",
-    "call_completed": "Completed \u2713",
-    "call_finished": "Finished",
-    "call_connecting": "Connecting...",
-    "call_listening": "Listening",
-    "call_label": "Calls",
-    "calendar_confirmed": "\u2713 Appointment confirmed: day {day}, {time}",
-    "inbox_request": "Request received",
-    "inbox_query": "Client inquiry",
-    "inbox_document": "Attached document",
-    "inbox_classified": "Classified",
-    "inbox_responded": "Responded",
-    "inbox_processed": "Processed",
-    "inbox_pending": "pending",
-    "analytics_resolved": "Resolved",
-    "analytics_time": "Time",
-    "analytics_insight": "Continuous improvement based on data"
-  }
+      "integrations": {
+        "micro_label": "Connectivity",
+        "title": "Connected execution across systems",
+        "description": "Acts directly on CRM, calendars and tools to keep processes running continuously."
+      }
+    },
+    "mockup": {
+      "chat_question": "Can I book for this Friday?",
+      "chat_response": "Of course! I've checked availability.",
+      "chat_confirmation": "⚡ Booking confirmed: Friday 16:30 ✓",
+      "chat_info_question": "I need information about prices",
+      "chat_info_response": "I'll send you our updated catalog.",
+      "chat_info_confirmation": "📎 Document sent ✓",
+      "chat_agent_question": "I want to speak to an agent",
+      "chat_agent_response": "Analyzing your inquiry...",
+      "chat_agent_confirmation": "✓ Routed to the right specialist",
+      "call_incoming": "Incoming call",
+      "call_in_progress": "In progress",
+      "call_completed": "Completed ✓",
+      "call_finished": "Finished",
+      "call_connecting": "Connecting...",
+      "call_listening": "Listening",
+      "call_label": "Calls",
+      "calendar_confirmed": "✓ Appointment confirmed: day {day}, {time}",
+      "inbox_request": "Request received",
+      "inbox_query": "Client inquiry",
+      "inbox_document": "Attached document",
+      "inbox_classified": "Classified",
+      "inbox_responded": "Responded",
+      "inbox_processed": "Processed",
+      "inbox_pending": "pending",
+      "analytics_resolved": "Resolved",
+      "analytics_time": "Time",
+      "analytics_insight": "Continuous improvement based on data"
+    }
   },
   "crm": {
     "badge": "Native integration",
@@ -817,10 +829,10 @@
       }
     ],
     "closing": "It doesn't respond like an isolated system. It turns every interaction into an action connected to the business.",
-    "example1": "Call \u2192 transcribed \u2192 data extracted \u2192 flow started",
-    "example2": "Intent: reschedule \u2192 context: appointment #4521",
-    "example3": "If availability > 0 \u2192 reschedule \u2192 confirm",
-    "example4": "SMS sent \u2192 CRM updated \u2192 case closed"
+    "example1": "Call → transcribed → data extracted → flow started",
+    "example2": "Intent: reschedule → context: appointment #4521",
+    "example3": "If availability > 0 → reschedule → confirm",
+    "example4": "SMS sent → CRM updated → case closed"
   },
   "differentiation": {
     "title_plain": "Built around your business.",
@@ -848,23 +860,23 @@
     "comparison_cta_text": "No commitments. No lock-in. Implementation included.",
     "comparison_cta_button": "Request demo"
   },
-"voice": {
-  "badge": "Human Voice HD",
-  "title_plain": "Natural voice,",
-  "title_gradient": "when it matters",
-  "text": "Our AI agents communicate with real human voice — impossible to distinguish from a person. Ideal for scenarios where trust and clarity are critical.",
-  "use_cases": [
-    "Medical appointment confirmation calls",
-    "Extended hours customer service",
-    "Restaurant reservations and confirmations",
-    "After-sales follow-up and reminders"
-  ],
-  "demo_title": "Human Voice Demo",
-  "demo_subtitle": "AI agent handling a call",
-  "transcript_label": "Transcript",
-  "transcript_preview": "Good morning, thank you for calling Horizonte Clinic. I'm Laura, your virtual assistant. I see you have an appointment scheduled for tomorrow at 10. Would you like to confirm it or need to reschedule?",
-  "cta": "Listen to full demo",
-  "microcopy": "Voice is not the core. It's the multiplier."
+  "voice": {
+    "badge": "Human Voice HD",
+    "title_plain": "Natural voice,",
+    "title_gradient": "when it matters",
+    "text": "Our AI agents communicate with real human voice — impossible to distinguish from a person. Ideal for scenarios where trust and clarity are critical.",
+    "use_cases": [
+      "Medical appointment confirmation calls",
+      "Extended hours customer service",
+      "Restaurant reservations and confirmations",
+      "After-sales follow-up and reminders"
+    ],
+    "demo_title": "Human Voice Demo",
+    "demo_subtitle": "AI agent handling a call",
+    "transcript_label": "Transcript",
+    "transcript_preview": "Good morning, thank you for calling Horizonte Clinic. I'm Laura, your virtual assistant. I see you have an appointment scheduled for tomorrow at 10. Would you like to confirm it or need to reschedule?",
+    "cta": "Listen to full demo",
+    "microcopy": "Voice is not the core. It's the multiplier."
   },
   "solutions_explore": {
     "title": "Explore specific applications",
@@ -934,5 +946,104 @@
       }
     ],
     "cta": "Explore all solutions"
+  },
+  "home_channels": {
+    "badge": "Channels",
+    "title_plain": "One customer, every channel,",
+    "title_gradient": "the same conversation",
+    "subtitle": "A customer asks on Instagram, continues on WhatsApp and closes on the web without repeating information.",
+    "items": [
+      {
+        "icon": "whatsapp",
+        "name": "WhatsApp",
+        "description": "Replies, qualifies and books appointments without manual intervention."
+      },
+      {
+        "icon": "web-chat",
+        "name": "Web Chat",
+        "description": "Captures leads and answers questions 24/7 on your site."
+      },
+      {
+        "icon": "phone",
+        "name": "Phone",
+        "description": "Realistic voices answer calls with no IVR, no queues."
+      },
+      {
+        "icon": "email",
+        "name": "Email",
+        "description": "Answers enquiries and updates tickets automatically."
+      }
+    ]
+  },
+  "home_integrations": {
+    "badge": "Integrations",
+    "title_plain": "Plugs into",
+    "title_gradient": "your existing systems",
+    "subtitle": "Syncs data, updates statuses and executes actions directly in your operational stack.",
+    "items": [
+      {
+        "category": "CRM",
+        "tools": "HubSpot · Salesforce · Pipedrive · Zoho"
+      },
+      {
+        "category": "ERP",
+        "tools": "SAP · Odoo · Holded · Sage"
+      },
+      {
+        "category": "Calendar",
+        "tools": "Google Calendar · Outlook · Calendly"
+      },
+      {
+        "category": "Communication",
+        "tools": "WhatsApp Business · Twilio · Aircall"
+      },
+      {
+        "category": "Data",
+        "tools": "Airtable · Notion · Google Sheets"
+      },
+      {
+        "category": "Automation",
+        "tools": "Zapier · Make · n8n"
+      }
+    ]
+  },
+  "home_sectors": {
+    "badge": "Industries",
+    "title_plain": "Built for industries with",
+    "title_gradient": "high operational demand",
+    "subtitle": "Each deployment is tuned to the vocabulary, processes and systems of the industry.",
+    "items": [
+      {
+        "slug": "clinicas",
+        "name": "Clinics",
+        "tagline": "Books appointments, confirms patients, sends reminders, creates records.",
+        "proof": "87% response-time reduction · 3 months · ~500 interactions/day"
+      },
+      {
+        "slug": "restaurantes",
+        "name": "Restaurants",
+        "tagline": "Handles WhatsApp reservations, cancellations and confirmations automatically.",
+        "proof": "Works with CoverManager, Glovo and Uber Eats"
+      },
+      {
+        "slug": "inmobiliarias",
+        "name": "Real Estate",
+        "tagline": "Qualifies leads, books viewings and updates status in your CRM.",
+        "proof": "Syncs with Idealista, Fotocasa and your existing CRM"
+      },
+      {
+        "slug": "ecommerce",
+        "name": "E-commerce",
+        "tagline": "Answers product questions, recovers carts, manages returns.",
+        "proof": "+40% lead conversion · WhatsApp + web vs manual handling"
+      }
+    ],
+    "transversal": {
+      "badge": "Beyond any single industry",
+      "title": "Operations · Multichannel support · Process automation",
+      "description": "If your business has a CRM, a calendar and multiple inbound channels, we can run it.",
+      "cta": "Talk to a specialist"
+    },
+    "view_all": "View all industries"
   }
 }

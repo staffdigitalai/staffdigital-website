@@ -40,7 +40,7 @@ export function HeroBlock() {
           {t("subtitle")}
         </p>
 
-        {/* E) CTA Buttons */}
+        {/* E) CTA Buttons — single primary ("Solicitar Demo") + secondary to solutions. */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-10 animate-hero-ctas">
           {/* Primary CTA */}
           <Link
@@ -50,13 +50,13 @@ export function HeroBlock() {
             {t("cta_primary")} &rarr;
           </Link>
 
-          {/* Secondary CTA — Solid button */}
-          <a
-            href="#how-it-works"
+          {/* Secondary CTA — takes the user to the solutions listing */}
+          <Link
+            href="/soluciones"
             className="inline-flex items-center justify-center rounded-full px-8 md:px-10 py-3.5 md:py-4 text-base md:text-lg font-semibold transition-all duration-300 hover:scale-[1.03] hover:opacity-90 bg-fg-primary text-bg-page"
           >
             {t("cta_secondary")}
-          </a>
+          </Link>
         </div>
 
         {/* F) Trust indicators */}

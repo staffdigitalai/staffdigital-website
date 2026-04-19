@@ -132,7 +132,7 @@ export default async function DynamicServicePage({ params }: Props) {
             dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
           />
           
-          <DynamicServiceClient service={service} />
+          <DynamicServiceClient service={service} locale={locale} />
           
           <Footer />
         </div>

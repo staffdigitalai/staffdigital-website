@@ -129,8 +129,8 @@
     "h1_gradient": "Actúan, deciden y ejecutan",
     "h2": "Tu equipo de IA trabajando 24/7 en ventas, soporte y operaciones.",
     "subtitle": "Transforma conversaciones e inputs en acciones reales — analizando contexto, tomando decisiones y ejecutando workflows en canales, sistemas y operaciones de negocio.",
-    "cta_primary": "Solicitar demo",
-    "cta_secondary": "Ver cómo funciona",
+    "cta_primary": "Solicitar Demo",
+    "cta_secondary": "Ver Soluciones",
     "trust_1": "Sin plantillas",
     "trust_2": "Totalmente personalizado",
     "trust_3": "Diseñado para tu negocio"
@@ -365,13 +365,24 @@
     ]
   },
   "social_proof": {
-    "badge": "Resultados medibles",
-    "title": "Impacto real, no solo promesas",
+    "badge": "Resultados reales",
+    "title": "Números con contexto, no promesas genéricas.",
     "metrics": [
-      { "value": "87%", "label": "Reduccion en tiempo de respuesta" },
-      { "value": "24/7", "label": "Disponibilidad continua sin pausas" },
-      { "value": "+40%", "label": "Aumento en conversion de leads" },
-      { "value": "2-6", "label": "Semanas de implementacion completa" }
+      {
+        "value": "87%",
+        "label": "Reducción en tiempo de respuesta",
+        "context": "Clínicas, 3 meses de implementación, ~500 interacciones/día"
+      },
+      {
+        "value": "+40%",
+        "label": "Aumento en conversión de leads",
+        "context": "E-commerce, WhatsApp + web, comparado con atención manual"
+      },
+      {
+        "value": "2–6",
+        "label": "Semanas de implementación",
+        "context": "Setup estándar sin integraciones custom; enterprise 2–4 meses"
+      }
     ],
     "quote": "StaffDigital AI transformo por completo nuestra atencion al paciente. Pasamos de perder llamadas a gestionar el 100% de las interacciones con la misma calidad — incluso fuera de horario.",
     "quote_author_initials": "MG",
@@ -422,14 +433,15 @@
   },
   "cta": {
     "badge": "Empieza hoy",
-    "title_plain": "Listo para convertir interacciones en",
-    "title_gradient": "ejecucion real?",
-    "subtitle": "Descubre como StaffDigital AI puede adaptarse a tu negocio y empezar a operar procesos con inteligencia y precision.",
+    "title_plain": "Lista para agendar, responder y ejecutar",
+    "title_gradient": "sin esperar a una persona",
+    "subtitle": "Configuramos el primer agente en 2–6 semanas. Sin integraciones custom, sin permanencia.",
     "demo": "Solicitar demo gratuita",
     "trust_1": "Sin permanencia",
     "trust_2": "Implementacion incluida",
     "trust_3": "Soporte dedicado",
-    "microcopy": "Disenado a medida. Totalmente gestionado. Para operaciones reales."
+    "microcopy": "Disenado a medida. Totalmente gestionado. Para operaciones reales.",
+    "button": "Solicitar Demo"
   },
   "templates": {
     "cta_primary": "Pedir Demo",
@@ -478,41 +490,41 @@
         "title": "Analisis y toma de decisiones",
         "description": "Evalua informacion, estructura datos y decide el siguiente paso dentro del proceso operativo o comercial."
       },
-  "integrations": {
-  "micro_label": "Conectividad",
-  "title": "Ejecucion conectada entre sistemas",
-  "description": "Actua directamente sobre CRM, calendarios y herramientas para mantener los procesos en funcionamiento continuo."
-  }
-  },
-  "mockup": {
-    "chat_question": "\u00bfPuedo reservar para este viernes?",
-    "chat_response": "\u00a1Claro! He verificado disponibilidad.",
-    "chat_confirmation": "\u26a1 Reserva confirmada: Viernes 16:30 \u2713",
-    "chat_info_question": "Necesito informaci\u00f3n sobre precios",
-    "chat_info_response": "Te env\u00edo nuestro cat\u00e1logo actualizado.",
-    "chat_info_confirmation": "\ud83d\udcce Documento enviado \u2713",
-    "chat_agent_question": "Quiero hablar con un agente",
-    "chat_agent_response": "Analizando tu consulta...",
-    "chat_agent_confirmation": "\u2713 Derivado al especialista indicado",
-    "call_incoming": "Llamada entrante",
-    "call_in_progress": "En curso",
-    "call_completed": "Completada \u2713",
-    "call_finished": "Finalizada",
-    "call_connecting": "Conectando...",
-    "call_listening": "Escuchando",
-    "call_label": "Llamadas",
-    "calendar_confirmed": "\u2713 Cita confirmada: d\u00eda {day}, {time}",
-    "inbox_request": "Solicitud recibida",
-    "inbox_query": "Consulta cliente",
-    "inbox_document": "Documento adjunto",
-    "inbox_classified": "Clasificada",
-    "inbox_responded": "Respondida",
-    "inbox_processed": "Procesado",
-    "inbox_pending": "pendiente",
-    "analytics_resolved": "Resueltos",
-    "analytics_time": "Tiempo",
-    "analytics_insight": "Mejora continua basada en datos"
-  }
+      "integrations": {
+        "micro_label": "Conectividad",
+        "title": "Ejecucion conectada entre sistemas",
+        "description": "Actua directamente sobre CRM, calendarios y herramientas para mantener los procesos en funcionamiento continuo."
+      }
+    },
+    "mockup": {
+      "chat_question": "¿Puedo reservar para este viernes?",
+      "chat_response": "¡Claro! He verificado disponibilidad.",
+      "chat_confirmation": "⚡ Reserva confirmada: Viernes 16:30 ✓",
+      "chat_info_question": "Necesito información sobre precios",
+      "chat_info_response": "Te envío nuestro catálogo actualizado.",
+      "chat_info_confirmation": "📎 Documento enviado ✓",
+      "chat_agent_question": "Quiero hablar con un agente",
+      "chat_agent_response": "Analizando tu consulta...",
+      "chat_agent_confirmation": "✓ Derivado al especialista indicado",
+      "call_incoming": "Llamada entrante",
+      "call_in_progress": "En curso",
+      "call_completed": "Completada ✓",
+      "call_finished": "Finalizada",
+      "call_connecting": "Conectando...",
+      "call_listening": "Escuchando",
+      "call_label": "Llamadas",
+      "calendar_confirmed": "✓ Cita confirmada: día {day}, {time}",
+      "inbox_request": "Solicitud recibida",
+      "inbox_query": "Consulta cliente",
+      "inbox_document": "Documento adjunto",
+      "inbox_classified": "Clasificada",
+      "inbox_responded": "Respondida",
+      "inbox_processed": "Procesado",
+      "inbox_pending": "pendiente",
+      "analytics_resolved": "Resueltos",
+      "analytics_time": "Tiempo",
+      "analytics_insight": "Mejora continua basada en datos"
+    }
   },
   "crm": {
     "badge": "Integración nativa",
@@ -817,10 +829,10 @@
       }
     ],
     "closing": "No responde como un sistema aislado. Convierte cada interacción en una acción conectada al negocio.",
-    "example1": "Llamada \u2192 transcrita \u2192 datos extraídos \u2192 flujo iniciado",
-    "example2": "Intención: reagendar \u2192 contexto: cita #4521",
-    "example3": "Si disponibilidad > 0 \u2192 reagendar \u2192 confirmar",
-    "example4": "SMS enviado \u2192 CRM actualizado \u2192 caso cerrado"
+    "example1": "Llamada → transcrita → datos extraídos → flujo iniciado",
+    "example2": "Intención: reagendar → contexto: cita #4521",
+    "example3": "Si disponibilidad > 0 → reagendar → confirmar",
+    "example4": "SMS enviado → CRM actualizado → caso cerrado"
   },
   "differentiation": {
     "title_plain": "Construido alrededor de tu negocio.",
@@ -848,23 +860,23 @@
     "comparison_cta_text": "Sin compromisos. Sin permanencia. Implementación incluida.",
     "comparison_cta_button": "Solicitar demo"
   },
-"voice": {
-  "badge": "Voz Humana HD",
-  "title_plain": "Voz natural,",
-  "title_gradient": "cuando importa",
-  "text": "Nuestros agentes IA se comunican con voz humana real — imposible de distinguir de una persona. Ideal para escenarios donde la confianza y la claridad son criticas.",
-  "use_cases": [
-    "Llamadas de confirmacion de citas medicas",
-    "Atencion al cliente en horario extendido",
-    "Reservas y confirmaciones de restaurantes",
-    "Seguimiento posventa y recordatorios"
-  ],
-  "demo_title": "Demo de Voz Humana",
-  "demo_subtitle": "Agente IA atendiendo llamada",
-  "transcript_label": "Transcripcion",
-  "transcript_preview": "Buenos dias, gracias por llamar a Clinica Horizonte. Soy Laura, tu asistente virtual. Veo que tienes una cita programada para manana a las 10. Quieres confirmarla o necesitas reprogramar?",
-  "cta": "Escuchar demo completo",
-  "microcopy": "La voz no es el centro. Es el multiplicador."
+  "voice": {
+    "badge": "Voz Humana HD",
+    "title_plain": "Voz natural,",
+    "title_gradient": "cuando importa",
+    "text": "Nuestros agentes IA se comunican con voz humana real — imposible de distinguir de una persona. Ideal para escenarios donde la confianza y la claridad son criticas.",
+    "use_cases": [
+      "Llamadas de confirmacion de citas medicas",
+      "Atencion al cliente en horario extendido",
+      "Reservas y confirmaciones de restaurantes",
+      "Seguimiento posventa y recordatorios"
+    ],
+    "demo_title": "Demo de Voz Humana",
+    "demo_subtitle": "Agente IA atendiendo llamada",
+    "transcript_label": "Transcripcion",
+    "transcript_preview": "Buenos dias, gracias por llamar a Clinica Horizonte. Soy Laura, tu asistente virtual. Veo que tienes una cita programada para manana a las 10. Quieres confirmarla o necesitas reprogramar?",
+    "cta": "Escuchar demo completo",
+    "microcopy": "La voz no es el centro. Es el multiplicador."
   },
   "solutions_explore": {
     "title": "Explora aplicaciones específicas",
@@ -934,5 +946,104 @@
       }
     ],
     "cta": "Explorar todas las soluciones"
+  },
+  "home_channels": {
+    "badge": "Canales",
+    "title_plain": "Un cliente, todos los canales,",
+    "title_gradient": "la misma conversación",
+    "subtitle": "Un cliente pregunta en Instagram, continúa en WhatsApp y cierra en la web sin repetir información.",
+    "items": [
+      {
+        "icon": "whatsapp",
+        "name": "WhatsApp",
+        "description": "Responde, califica y agenda citas sin intervención manual."
+      },
+      {
+        "icon": "web-chat",
+        "name": "Web Chat",
+        "description": "Captura leads y responde preguntas 24/7 en tu sitio."
+      },
+      {
+        "icon": "phone",
+        "name": "Teléfono",
+        "description": "Voces realistas atienden llamadas sin IVR, sin colas."
+      },
+      {
+        "icon": "email",
+        "name": "Email",
+        "description": "Responde consultas y actualiza tickets automáticamente."
+      }
+    ]
+  },
+  "home_integrations": {
+    "badge": "Integraciones",
+    "title_plain": "Se conecta con",
+    "title_gradient": "tus sistemas existentes",
+    "subtitle": "Sincroniza datos, actualiza estados y ejecuta acciones directamente en tu stack operativo.",
+    "items": [
+      {
+        "category": "CRM",
+        "tools": "HubSpot · Salesforce · Pipedrive · Zoho"
+      },
+      {
+        "category": "ERP",
+        "tools": "SAP · Odoo · Holded · Sage"
+      },
+      {
+        "category": "Agenda",
+        "tools": "Google Calendar · Outlook · Calendly"
+      },
+      {
+        "category": "Comunicación",
+        "tools": "WhatsApp Business · Twilio · Aircall"
+      },
+      {
+        "category": "Datos",
+        "tools": "Airtable · Notion · Google Sheets"
+      },
+      {
+        "category": "Automatización",
+        "tools": "Zapier · Make · n8n"
+      }
+    ]
+  },
+  "home_sectors": {
+    "badge": "Sectores",
+    "title_plain": "Diseñado para sectores con",
+    "title_gradient": "alta demanda operativa",
+    "subtitle": "Cada despliegue se adapta al vocabulario, procesos y sistemas del sector.",
+    "items": [
+      {
+        "slug": "clinicas",
+        "name": "Clínicas",
+        "tagline": "Agenda citas, confirma pacientes, envía recordatorios, crea historiales.",
+        "proof": "87% reducción en tiempo de respuesta · 3 meses · ~500 interacciones/día"
+      },
+      {
+        "slug": "restaurantes",
+        "name": "Restaurantes",
+        "tagline": "Gestiona reservas por WhatsApp, cancelaciones y confirmaciones automáticas.",
+        "proof": "Integración con CoverManager, Glovo y Uber Eats"
+      },
+      {
+        "slug": "inmobiliarias",
+        "name": "Inmobiliarias",
+        "tagline": "Califica leads, agenda visitas y actualiza el estado en tu CRM.",
+        "proof": "Sync con Idealista, Fotocasa y tu CRM existente"
+      },
+      {
+        "slug": "ecommerce",
+        "name": "E-commerce",
+        "tagline": "Responde preguntas de producto, recupera carritos, gestiona devoluciones.",
+        "proof": "+40% conversión de leads · WhatsApp + web vs atención manual"
+      }
+    ],
+    "transversal": {
+      "badge": "Más allá del sector",
+      "title": "Operaciones · Atención multicanal · Automatización de procesos",
+      "description": "Si tu negocio tiene un CRM, un calendario y varios canales de entrada, podemos operarlo.",
+      "cta": "Hablar con un especialista"
+    },
+    "view_all": "Ver todos los sectores"
   }
 }

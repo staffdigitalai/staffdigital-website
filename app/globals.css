@@ -1638,3 +1638,40 @@ html.light body {
   --tw-prose-th-borders: var(--border-default);
   --tw-prose-td-borders: var(--border-default);
 }
+
+/* ============================================================
+ * Reduced-motion a11y override (WCAG 2.3.3)
+ *
+ * Several CSS utilities in this file set `opacity: 0` as a rule-level
+ * starting state and rely on an `animation: ... forwards` to fade the
+ * element in. When the user's OS has `prefers-reduced-motion: reduce`,
+ * Chrome (and other browsers) skip the animation, which leaves those
+ * elements stuck at opacity 0 — invisible to users who asked for less
+ * motion. That's the same class of bug PR #72 fixed for Framer Motion;
+ * this is the CSS-side equivalent.
+ *
+ * Rule: under reduced-motion, reset every "mount-reveal" utility to
+ * its FINAL visible state (opacity 1, no translate) and disable the
+ * animation outright. Decorative loop animations (pulse, float,
+ * gradient) are left alone — they don't affect content visibility.
+ * ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-section,
+  .animate-fade-in-hero,
+  .animate-fade-in-badge,
+  .animate-fade-in-heading,
+  .animate-fade-in-subheading,
+  .animate-fade-in-buttons,
+  .animate-fade-in-trust,
+  .animate-hero-badge,
+  .animate-hero-h1,
+  .animate-hero-h2,
+  .animate-hero-subtitle,
+  .animate-hero-ctas,
+  .animate-hero-trust,
+  .animate-mobile-menu-item {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

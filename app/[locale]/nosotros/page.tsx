@@ -1,6 +1,4 @@
 import type { Metadata } from "next"
-import { GlassmorphismNav } from "@/components/glassmorphism-nav"
-import { Footer } from "@/components/footer"
 import { PageWrapper } from "@/components/page-wrapper"
 import { buildPageMetadata, getPage } from "@/lib/wordpress"
 import { NosotrosContent } from "./nosotros-content"
@@ -29,19 +27,13 @@ export default async function NosotrosPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <GlassmorphismNav />
-      <main className="flex-1 pt-20">
-        <PageWrapper
-          breadcrumbs={[
-            { label: "Inicio", href: "/" },
-            { label: "Nosotros" },
-          ]}
-        >
-          <NosotrosContent page={page} />
-        </PageWrapper>
-      </main>
-      <Footer />
-    </div>
+    <PageWrapper
+      breadcrumbs={[
+        { label: "Inicio", href: "/" },
+        { label: "Nosotros" },
+      ]}
+    >
+      <NosotrosContent page={page} />
+    </PageWrapper>
   )
 }

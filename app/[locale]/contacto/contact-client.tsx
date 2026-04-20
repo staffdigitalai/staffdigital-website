@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { useChatwoot } from "@/lib/use-chatwoot"
+import { ConsentCheckbox } from "@/components/form/consent-checkbox"
 import Link from "next/link"
 
 const offices = [
@@ -56,10 +57,12 @@ const contactMethods = [
 
 export function ContactClient() {
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [consent, setConsent] = useState(false)
   const { submit, isLoading, error } = useChatwoot()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (!consent) return // native `required` also blocks; double-guard in JS.
     const form = new FormData(e.currentTarget)
 
     await submit("consulta", {
@@ -154,7 +157,17 @@ export function ContactClient() {
                     rows={4}
                   />
                 </div>
-                <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
+                <ConsentCheckbox
+                  id="contact-consent"
+                  checked={consent}
+                  onChange={setConsent}
+                />
+                <Button
+                  type="submit"
+                  className="w-full"
+                  size="lg"
+                  disabled={isLoading || !consent}
+                >
                   {isLoading ? "Enviando..." : (
                     <>
                       Enviar mensaje
@@ -167,12 +180,6 @@ export function ContactClient() {
                     Error: {error}. Intenta de nuevo o llámanos directamente.
                   </p>
                 )}
-                <p className="text-xs text-muted-foreground text-center">
-                  Al enviar, aceptas nuestra{" "}
-                  <Link href="/privacidad" className="underline hover:text-foreground">
-                    política de privacidad
-                  </Link>.
-                </p>
               </form>
             </>
           )}

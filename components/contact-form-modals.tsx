@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { useChatwoot } from "@/lib/use-chatwoot"
+import { ConsentCheckbox } from "@/components/form/consent-checkbox"
 
 // Context for modal control
 interface FormModalContextType {
@@ -64,9 +65,11 @@ function ContactFormModal({
     empresa: "",
     mensaje: "",
   })
+  const [consent, setConsent] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!consent) return
     await submit("consulta", formData)
   }
 
@@ -82,6 +85,7 @@ function ContactFormModal({
         empresa: "",
         mensaje: "",
       })
+      setConsent(false)
     }, 300)
   }
 
@@ -212,9 +216,14 @@ function ContactFormModal({
             </p>
           )}
 
+          <ConsentCheckbox
+            id="contact-modal-consent"
+            checked={consent}
+            onChange={setConsent}
+          />
           <Button
             type="submit"
-            disabled={isLoading}
+            disabled={isLoading || !consent}
             className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full py-6 text-base font-medium"
           >
             {isLoading ? (
@@ -249,9 +258,11 @@ function BudgetFormModal({
     presupuesto: "",
     descripcion: "",
   })
+  const [consent, setConsent] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!consent) return
     await submit("presupuesto", formData)
   }
 
@@ -268,6 +279,7 @@ function BudgetFormModal({
         presupuesto: "",
         descripcion: "",
       })
+      setConsent(false)
     }, 300)
   }
 
@@ -426,9 +438,14 @@ function BudgetFormModal({
             </p>
           )}
 
+          <ConsentCheckbox
+            id="budget-modal-consent"
+            checked={consent}
+            onChange={setConsent}
+          />
           <Button
             type="submit"
-            disabled={isLoading}
+            disabled={isLoading || !consent}
             className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full py-6 text-base font-medium"
           >
             {isLoading ? (

@@ -1133,5 +1133,11 @@
     "cta_subtitle": "Sem integrações custom, sem permanência. Implementação chave-na-mão.",
     "cta_label": "Pedir Demo",
     "cta_secondary": "Ver todas as soluções"
+  },
+  "form_consent": {
+    "label_prefix": "Li e aceito a ",
+    "label_link": "política de privacidade",
+    "label_suffix": ".",
+    "error_required": "Deve aceitar a política de privacidade."
   }
 }

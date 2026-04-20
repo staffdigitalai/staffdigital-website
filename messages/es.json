@@ -1157,7 +1157,9 @@
     "cross_sell_cta_all": "Ver todos los sectores",
     "final_cta_title": "¿Listo para transformar tu negocio?",
     "final_cta_subtitle": "Implementación llave en mano en 2-6 semanas. Sin permanencia.",
-    "final_cta_label": "Pedir Demo"
+    "final_cta_label": "Pedir Demo",
+    "see_solution": "Ver solución",
+    "see_sector": "Ver sector"
   },
   "listings_ui": {
     "soluciones_badge": "Soluciones de IA para Empresas",

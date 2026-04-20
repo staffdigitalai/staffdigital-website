@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback } from "react"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale} from "next-intl"
 import { Volume2, Play, Pause, Phone, MessageSquare, Calendar, HeartPulse } from "lucide-react"
 import Link from "next/link"
 import { IconBadge } from "@/components/ui/icon-system"
@@ -14,6 +14,8 @@ const CALL_DURATION = 32
 const LOOP_PAUSE_MS = 2000
 
 export function VoiceBlock() {
+  const locale = useLocale()
+  const prefix = locale === "es" ? "" : `/${locale}`
   const t = useTranslations("voice")
 
   // Animation state
@@ -177,7 +179,7 @@ export function VoiceBlock() {
             
             {/* CTA Link */}
             <Link
-              href="/demo-voice"
+              href={`${prefix}/demo-voice`}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold text-sm transition-all duration-300 hover:scale-[1.02]"
               style={{ 
                 background: "linear-gradient(135deg, #0078AA, #7C3AED)",

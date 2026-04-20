@@ -1,5 +1,7 @@
 "use client"
 
+
+import { useLocale } from "next-intl"
 import { Handshake, Globe, Shield, Cpu, Phone, MessageSquare, BarChart3, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -62,6 +64,8 @@ const partnerCategories = [
 ]
 
 export function PartnersClient({ page }: PartnersClientProps) {
+  const locale = useLocale()
+  const prefix = locale === "es" ? "" : `/${locale}`
   return (
     <div className="max-w-5xl mx-auto space-y-16">
       {/* Hero */}
@@ -129,7 +133,7 @@ export function PartnersClient({ page }: PartnersClientProps) {
           agentes IA con voz humana a tus clientes, hablemos.
         </p>
         <Button asChild size="lg" className="rounded-full px-8">
-          <Link href="/demo">
+          <Link href={`${prefix}/demo`}>
             Contactar como partner
             <ArrowRight className="w-4 h-4 ml-2" />
           </Link>

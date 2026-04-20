@@ -1,5 +1,7 @@
 "use client"
 
+
+import { useLocale } from "next-intl"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Check, Shield, Cpu, Users, Zap, Globe, Lock, Settings, Layers } from "lucide-react"
@@ -40,6 +42,8 @@ export function WordPressPageTemplate({
   fallbackContent,
   showCta = true,
 }: WordPressPageTemplateProps) {
+  const locale = useLocale()
+  const prefix = locale === "es" ? "" : `/${locale}`
   const title = page?.title?.rendered || fallbackTitle
   const subtitle = page?.acf?.subtitulo || fallbackSubtitle
   const featuredImage = page ? getPageFeaturedImageUrl(page) : null
@@ -140,13 +144,13 @@ export function WordPressPageTemplate({
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg">
-              <Link href="/demo">
+              <Link href={`${prefix}/demo`}>
                 Solicitar demo gratuita
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg">
-              <Link href="/precios">Ver precios</Link>
+              <Link href={`${prefix}/precios`}>Ver precios</Link>
             </Button>
           </div>
         </div>

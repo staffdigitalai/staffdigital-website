@@ -2,7 +2,7 @@
 
 import { TourProvider } from "./tour-provider"
 import { TourOverlay } from "./tour-overlay"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale} from "next-intl"
 import Link from "next/link"
 import { Monitor } from "lucide-react"
 
@@ -15,7 +15,7 @@ function MobileGate() {
       </div>
       <h3 className="text-xl font-bold text-foreground mb-2">{t("mobile_title")}</h3>
       <p className="text-sm text-foreground/60 mb-6 max-w-sm">{t("mobile_description")}</p>
-      <Link href="/demo" className="px-6 py-3 rounded-xl text-white font-semibold text-sm bg-gradient-to-r from-blue-500 to-purple-600">
+      <Link href={`${prefix}/demo`} className="px-6 py-3 rounded-xl text-white font-semibold text-sm bg-gradient-to-r from-blue-500 to-purple-600">
         {t("cta_button")}
       </Link>
     </div>
@@ -23,6 +23,8 @@ function MobileGate() {
 }
 
 export function TourClient() {
+  const locale = useLocale()
+  const prefix = locale === "es" ? "" : `/${locale}`
   return (
     <TourProvider>
       <div className="hidden md:block py-8 px-4">

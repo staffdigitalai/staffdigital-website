@@ -3,8 +3,10 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import { useLocale, useTranslations } from "next-intl"
 import { SolutionMockup } from "@/components/solution-mockups"
 import type { SectorUseCase } from "@/lib/sector-fallback-content"
+import { SERVICE_SLUGS, cptPath } from "@/lib/cpt-slugs"
 import { useMotionReveal, useStaggerContainer, useStaggerItem } from "@/hooks/use-motion-reveal"
 
 interface UseCasesSectionProps {
@@ -18,6 +20,8 @@ export function SectorUseCasesSection({
   title,
   subtitle,
 }: UseCasesSectionProps) {
+  const locale = useLocale()
+  const t = useTranslations("sector_ui")
   const headerReveal = useMotionReveal()
   const stagger = useStaggerContainer(0.12)
   const staggerItem = useStaggerItem()
@@ -73,10 +77,10 @@ export function SectorUseCasesSection({
                   {uc.descripcion}
                 </p>
                 <Link
-                  href={`/soluciones/${uc.mockupSlug}`}
+                  href={cptPath("/soluciones", uc.mockupSlug, locale, SERVICE_SLUGS)}
                   className="inline-flex items-center gap-1 text-sm text-foreground/60 hover:text-brand-secondary transition-colors"
                 >
-                  Ver solución
+                  {t("see_solution")}
                   <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
                 </Link>
               </div>

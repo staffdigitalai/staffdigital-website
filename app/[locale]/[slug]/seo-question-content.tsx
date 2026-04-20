@@ -1,5 +1,7 @@
 "use client"
 
+
+import { useLocale } from "next-intl"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Calendar, Clock, ArrowLeft } from "lucide-react"
@@ -19,6 +21,8 @@ export function SeoQuestionContent({
   imageUrl, 
   formattedDate 
 }: SeoQuestionContentProps) {
+  const locale = useLocale()
+  const prefix = locale === "es" ? "" : `/${locale}`
   const readingTime = post.acf?.reading_time || Math.ceil(post.content.rendered.split(" ").length / 200)
 
   return (
@@ -27,7 +31,7 @@ export function SeoQuestionContent({
       <header className="space-y-6">
         <div className="flex items-center gap-4 text-sm text-muted-foreground">
           <Link 
-            href="/faq" 
+            href={`${prefix}/faq`} 
             className="flex items-center gap-1 hover:text-foreground transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -87,13 +91,13 @@ export function SeoQuestionContent({
         </p>
         <div className="flex flex-wrap gap-4">
           <Button asChild>
-            <Link href="/faq">
+            <Link href={`${prefix}/faq`}>
               Ver todas las FAQs
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href="/demo">Solicitar demo</Link>
+            <Link href={`${prefix}/demo`}>Solicitar demo</Link>
           </Button>
         </div>
       </div>
@@ -109,13 +113,13 @@ export function SeoQuestionContent({
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button asChild size="lg">
-            <Link href="/demo">
+            <Link href={`${prefix}/demo`}>
               Solicitar demo gratuita
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg">
-            <Link href="/precios">Ver precios</Link>
+            <Link href={`${prefix}/precios`}>Ver precios</Link>
           </Button>
         </div>
       </div>

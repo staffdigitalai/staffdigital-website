@@ -20,6 +20,10 @@ const FOOTER_SOLUTION_SLUGS = [
   "agente-soporte-ia",
 ]
 
+// Path fragments (no locale prefix). Prefixed at render time with
+// the active locale via `localePrefix` so that /en and /pt footer
+// links navigate within the current locale instead of dropping the
+// visitor back to the ES root.
 const linkHrefs = {
   product: [
     "/tecnologia",
@@ -41,6 +45,12 @@ const linkHrefs = {
     "/demo",
     "/sectores",
   ],
+  legal: {
+    privacy: "/privacidad",
+    legal: "/aviso-legal",
+    cookies: "/cookies",
+    terms: "/terminos",
+  },
 }
 
 const socialLinks = [
@@ -64,6 +74,19 @@ export function Footer() {
     ),
     `${localePrefix}/soluciones`,
   ]
+
+  // Prepend locale to the static hrefs so /en and /pt footer links
+  // navigate inside the active locale instead of jumping back to
+  // the ES root (the old behaviour 404'd visually by dropping EN/PT
+  // users onto /tecnologia, /nosotros, etc. in Spanish).
+  const productHrefs = linkHrefs.product.map((p) => `${localePrefix}${p}`)
+  const companyHrefs = linkHrefs.company.map((p) => `${localePrefix}${p}`)
+  const legalHrefs = {
+    privacy: `${localePrefix}${linkHrefs.legal.privacy}`,
+    legal: `${localePrefix}${linkHrefs.legal.legal}`,
+    cookies: `${localePrefix}${linkHrefs.legal.cookies}`,
+    terms: `${localePrefix}${linkHrefs.legal.terms}`,
+  }
 
   const solutionsTitles = t.raw("solutions_links") as string[]
   const productTitles = t.raw("product_links") as string[]
@@ -161,7 +184,7 @@ export function Footer() {
               {productTitles.map((title, i) => (
                 <li key={i}>
                   <Link
-                    href={linkHrefs.product[i]}
+                    href={productHrefs[i]}
                     className="text-foreground/45 hover:text-foreground/80 text-sm transition-colors duration-200"
                   >
                     {title}
@@ -178,7 +201,7 @@ export function Footer() {
               {companyTitles.map((title, i) => (
                 <li key={i}>
                   <Link
-                    href={linkHrefs.company[i]}
+                    href={companyHrefs[i]}
                     className="text-foreground/45 hover:text-foreground/80 text-sm transition-colors duration-200"
                   >
                     {title}
@@ -224,16 +247,16 @@ export function Footer() {
             
             {/* Legal Links */}
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-              <Link href="/privacidad" className="text-foreground/35 hover:text-foreground/60 text-sm transition-colors">
+              <Link href={legalHrefs.privacy} className="text-foreground/35 hover:text-foreground/60 text-sm transition-colors">
                 {t("privacy")}
               </Link>
-              <Link href="/aviso-legal" className="text-foreground/35 hover:text-foreground/60 text-sm transition-colors">
+              <Link href={legalHrefs.legal} className="text-foreground/35 hover:text-foreground/60 text-sm transition-colors">
                 {t("legal")}
               </Link>
-              <Link href="/cookies" className="text-foreground/35 hover:text-foreground/60 text-sm transition-colors">
+              <Link href={legalHrefs.cookies} className="text-foreground/35 hover:text-foreground/60 text-sm transition-colors">
                 {t("cookies")}
               </Link>
-              <Link href="/terminos" className="text-foreground/35 hover:text-foreground/60 text-sm transition-colors">
+              <Link href={legalHrefs.terms} className="text-foreground/35 hover:text-foreground/60 text-sm transition-colors">
                 {t("terms")}
               </Link>
             </div>

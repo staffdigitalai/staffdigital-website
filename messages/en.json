@@ -1133,5 +1133,11 @@
     "cta_subtitle": "No custom integrations, no lock-in. Turnkey deployment.",
     "cta_label": "Request Demo",
     "cta_secondary": "View all solutions"
+  },
+  "form_consent": {
+    "label_prefix": "I have read and accept the ",
+    "label_link": "privacy policy",
+    "label_suffix": ".",
+    "error_required": "You must accept the privacy policy."
   }
 }

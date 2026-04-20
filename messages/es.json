@@ -1132,5 +1132,11 @@
     "cta_subtitle": "Sin integraciones custom, sin permanencia. Implementación llave en mano.",
     "cta_label": "Solicitar Demo",
     "cta_secondary": "Ver todas las soluciones"
+  },
+  "form_consent": {
+    "label_prefix": "He leído y acepto la ",
+    "label_link": "política de privacidad",
+    "label_suffix": ".",
+    "error_required": "Debes aceptar la política de privacidad."
   }
 }

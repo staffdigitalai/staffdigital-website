@@ -54,12 +54,19 @@ export function NosotrosContent({ page }: NosotrosContentProps) {
     <div className="space-y-16">
       {/* Hero */}
       <div className="text-center max-w-3xl mx-auto space-y-6">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance">
-          <span className="text-foreground">Transformamos empresas con </span>
-          <span className="bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
-            Inteligencia Artificial
-          </span>
-        </h1>
+        {page?.title?.rendered ? (
+          <h1
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance"
+            dangerouslySetInnerHTML={{ __html: page.title.rendered }}
+          />
+        ) : (
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance">
+            <span className="text-foreground">Transformamos empresas con </span>
+            <span className="bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
+              Inteligencia Artificial
+            </span>
+          </h1>
+        )}
         <p className="text-lg md:text-xl text-muted-foreground text-pretty">
           {page?.acf?.subtitulo ||
             "Somos un equipo de expertos en IA dedicados a hacer que la automatización sea accesible para todas las empresas."}

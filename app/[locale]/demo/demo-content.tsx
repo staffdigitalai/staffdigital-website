@@ -97,12 +97,19 @@ export function DemoContent({ page }: DemoContentProps) {
     <div className="space-y-16">
       {/* Hero */}
       <div className="text-center max-w-3xl mx-auto space-y-6">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance">
-          <span className="text-foreground">Solicita tu </span>
-          <span className="bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
-            Demo Gratuita
-          </span>
-        </h1>
+        {page?.title?.rendered ? (
+          <h1
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance"
+            dangerouslySetInnerHTML={{ __html: page.title.rendered }}
+          />
+        ) : (
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance">
+            <span className="text-foreground">Solicita tu </span>
+            <span className="bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
+              Demo Gratuita
+            </span>
+          </h1>
+        )}
         <p className="text-lg md:text-xl text-muted-foreground text-pretty">
           {page?.acf?.subtitulo ||
             "Descubre en 30 minutos como StaffDigital AI puede transformar la atención al cliente de tu negocio."}

@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
+import { useLocale } from "next-intl"
+import { SECTOR_SLUGS, cptPath } from "@/lib/cpt-slugs"
 import { useMotionReveal, useStaggerContainer, useStaggerItem } from "@/hooks/use-motion-reveal"
 
 interface CrossSellItem {
@@ -38,6 +40,8 @@ export function SectorCrossSellSection({
   subtitle,
   ctaAll,
 }: CrossSellSectionProps) {
+  const locale = useLocale()
+  const localePrefix = locale === "es" ? "" : `/${locale}`
   const others = ALL_SECTORS.filter((s) => s.slug !== currentSlug).slice(0, 6)
   const headerReveal = useMotionReveal()
   const stagger = useStaggerContainer(0.06)
@@ -73,7 +77,7 @@ export function SectorCrossSellSection({
           {others.map((s) => (
             <motion.div key={s.slug} {...staggerItem}>
               <Link
-                href={`/sectores/${s.slug}`}
+                href={cptPath("/sectores", s.slug, locale, SECTOR_SLUGS)}
                 className="group block rounded-2xl border border-foreground/10 bg-foreground/[0.02] hover:bg-foreground/[0.04] hover:border-foreground/20 transition-all duration-300 overflow-hidden"
               >
                 <div className="relative w-full h-32 sm:h-36 overflow-hidden">
@@ -107,7 +111,7 @@ export function SectorCrossSellSection({
 
         <div className="text-center mt-10 sm:mt-12">
           <Link
-            href="/sectores"
+            href={`${localePrefix}/sectores`}
             className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground/60 hover:text-foreground underline underline-offset-4 decoration-foreground/30 hover:decoration-foreground/60 transition-all"
           >
             {ctaAll}

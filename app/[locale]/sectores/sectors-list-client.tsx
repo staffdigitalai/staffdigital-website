@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react"
 import Link from "next/link"
 import { ArrowRight, Stethoscope, Smile, Scissors, UtensilsCrossed, Home, Car, Dumbbell, ShoppingBag, Building2, Wrench, GraduationCap, Warehouse, Building, Briefcase, Heart, Hotel } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale} from "next-intl"
 import { PageWrapper } from "@/components/page-wrapper"
 import { CTASection } from "@/components/cta-section"
 
@@ -47,6 +47,8 @@ interface SectorsListClientProps {
 }
 
 export function SectorsListClient({ sectors }: SectorsListClientProps) {
+  const locale = useLocale()
+  const prefix = locale === "es" ? "" : `/${locale}`
   const t = useTranslations("listings_ui")
   const gridRef = useRef<HTMLDivElement>(null)
 
@@ -172,7 +174,7 @@ export function SectorsListClient({ sectors }: SectorsListClientProps) {
               Nuestras soluciones de IA se adaptan a cualquier industria. Contactanos para una solucion personalizada.
             </p>
             <Link
-              href="/demo"
+              href={`${prefix}/demo`}
               className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black rounded-full font-medium hover:bg-gray-100 transition-all hover:scale-105"
             >
               Solicitar Demo Personalizada

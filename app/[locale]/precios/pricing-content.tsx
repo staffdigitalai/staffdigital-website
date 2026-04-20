@@ -1,5 +1,7 @@
 "use client"
 
+
+import { useLocale } from "next-intl"
 import { Check, Star, Zap, Building2, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -74,6 +76,8 @@ const fallbackPlans = [
 ]
 
 export function PricingContent({ page }: PricingContentProps) {
+  const locale = useLocale()
+  const prefix = locale === "es" ? "" : `/${locale}`
   // Use WordPress data if available, otherwise fallback
   const plans = page?.acf?.planes?.length ? page.acf.planes : fallbackPlans
 
@@ -231,13 +235,13 @@ export function PricingContent({ page }: PricingContentProps) {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button asChild size="lg">
-            <Link href="/demo">
+            <Link href={`${prefix}/demo`}>
               Solicitar demo gratuita
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg">
-            <Link href="/faq">Ver todas las FAQs</Link>
+            <Link href={`${prefix}/faq`}>Ver todas las FAQs</Link>
           </Button>
         </div>
       </div>

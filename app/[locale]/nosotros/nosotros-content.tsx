@@ -1,5 +1,7 @@
 "use client"
 
+
+import { useLocale } from "next-intl"
 import Link from "next/link"
 import { ArrowRight, Users, Target, Lightbulb, Award, Globe, Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -50,6 +52,8 @@ const stats = [
 ]
 
 export function NosotrosContent({ page }: NosotrosContentProps) {
+  const locale = useLocale()
+  const prefix = locale === "es" ? "" : `/${locale}`
   return (
     <div className="space-y-16">
       {/* Hero */}
@@ -129,13 +133,13 @@ export function NosotrosContent({ page }: NosotrosContentProps) {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button asChild size="lg">
-            <Link href="/demo">
+            <Link href={`${prefix}/demo`}>
               Solicitar demo gratuita
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg">
-            <Link href="/casos-exito">Ver casos de exito</Link>
+            <Link href={`${prefix}/casos-exito`}>Ver casos de exito</Link>
           </Button>
         </div>
       </div>

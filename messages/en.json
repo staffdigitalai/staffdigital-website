@@ -1158,7 +1158,9 @@
     "cross_sell_cta_all": "View all industries",
     "final_cta_title": "Ready to transform your business?",
     "final_cta_subtitle": "Turnkey deployment in 2-6 weeks. No lock-in.",
-    "final_cta_label": "Request Demo"
+    "final_cta_label": "Request Demo",
+    "see_solution": "See solution",
+    "see_sector": "See industry"
   },
   "listings_ui": {
     "soluciones_badge": "AI Solutions for Business",

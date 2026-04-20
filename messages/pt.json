@@ -1158,7 +1158,9 @@
     "cross_sell_cta_all": "Ver todos os setores",
     "final_cta_title": "Pronto para transformar o seu negócio?",
     "final_cta_subtitle": "Implementação chave-na-mão em 2-6 semanas. Sem permanência.",
-    "final_cta_label": "Pedir Demo"
+    "final_cta_label": "Pedir Demo",
+    "see_solution": "Ver solução",
+    "see_sector": "Ver setor"
   },
   "listings_ui": {
     "soluciones_badge": "Soluções de IA para Empresas",

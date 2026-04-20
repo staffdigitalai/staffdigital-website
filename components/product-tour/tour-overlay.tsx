@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion"
 import { ArrowLeft, ArrowRight, X } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale} from "next-intl"
 import Image from "next/image"
 import Link from "next/link"
 import { useRef, useState, useEffect } from "react"
@@ -26,6 +26,8 @@ function TooltipArrow({ side }: { side: string }) {
 }
 
 export function TourOverlay() {
+  const locale = useLocale()
+  const prefix = locale === "es" ? "" : `/${locale}`
   const t = useTranslations("tour")
   const { currentStep, totalSteps, step, isActive, start, next, prev, skip } = useTour()
   const containerRef = useRef<HTMLDivElement>(null)
@@ -298,7 +300,7 @@ export function TourOverlay() {
                   {/* CTA or nav */}
                   {isCTA ? (
                     <div className="space-y-2">
-                      <Link href="/demo" className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl text-white font-semibold text-sm hover:scale-[1.02] transition-all bg-black hover:bg-gray-800">
+                      <Link href={`${prefix}/demo`} className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl text-white font-semibold text-sm hover:scale-[1.02] transition-all bg-black hover:bg-gray-800">
                         {t("cta_button")}
                       </Link>
                       <button onClick={skip} className="w-full text-xs text-gray-400 hover:text-gray-600 py-1">
@@ -329,7 +331,7 @@ export function TourOverlay() {
 
           {/* Fixed CTA bottom-right */}
           <div className="absolute bottom-4 right-4 z-30">
-            <Link href="/demo" className="flex items-center gap-2 px-4 py-2.5 rounded-full text-white text-sm font-semibold shadow-lg transition-all hover:scale-105 bg-black hover:bg-gray-800">
+            <Link href={`${prefix}/demo`} className="flex items-center gap-2 px-4 py-2.5 rounded-full text-white text-sm font-semibold shadow-lg transition-all hover:scale-105 bg-black hover:bg-gray-800">
               👉 {t("cta_button")}
             </Link>
           </div>

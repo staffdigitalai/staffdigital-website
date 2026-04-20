@@ -1,5 +1,7 @@
 "use client"
 
+
+import { useLocale } from "next-intl"
 import { useState, useRef } from "react"
 import { Phone, Volume2, VolumeX, Play, Pause, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -79,6 +81,8 @@ function ComparisonCard({
 }
 
 export function DemoVoiceClient() {
+  const locale = useLocale()
+  const prefix = locale === "es" ? "" : `/${locale}`
   const [activeSample, setActiveSample] = useState(0)
   const [audioPlaceholder, setAudioPlaceholder] = useState(false)
 
@@ -179,7 +183,7 @@ export function DemoVoiceClient() {
         {audioPlaceholder && (
           <p className="text-center text-sm text-amber-400">
             Las muestras de audio estarán disponibles próximamente. Mientras tanto,{" "}
-            <Link href="/demo" className="underline hover:text-foreground">
+            <Link href={`${prefix}/demo`} className="underline hover:text-foreground">
               solicita una demo en vivo
             </Link>{" "}
             para escuchar a nuestros agentes IA en acción.
@@ -235,7 +239,7 @@ export function DemoVoiceClient() {
             </a>
           </Button>
           <Button asChild variant="outline" size="lg" className="rounded-full px-8">
-            <Link href="/demo">
+            <Link href={`${prefix}/demo`}>
               Solicitar demo personalizada
               <ArrowRight className="w-4 h-4 ml-2" />
             </Link>

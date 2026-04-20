@@ -729,13 +729,50 @@ export async function getSectorPage(slug: string, lang: SupportedLang = 'es'): P
 // ============================================
 
 export async function getPage(slug: string, lang: SupportedLang = 'es'): Promise<WPPage | null> {
-  const pages = await wpFetch<WPPage[]>('/pages', {
+  // ES is the master — direct slug lookup works.
+  if (lang === 'es') {
+    const pages = await wpFetch<WPPage[]>('/pages', {
+      slug,
+      lang,
+      _embed: 1,
+    });
+    return pages[0] ?? null;
+  }
+
+  // Non-ES locales need a two-stage lookup because WPML translations
+  // of institutional / legal pages have *different slugs* per locale
+  // (e.g. ES "tecnologia" → EN "technology" → PT "tecnologia-2").
+  // Calling `/pages?slug=tecnologia&lang=en` returns 0 posts because
+  // there is no EN-language page whose slug is "tecnologia".
+  //
+  // Resolution pattern: fetch the ES master first to read its
+  // `wpml_translations[lang].id`, then fetch the translated post by
+  // ID. If no translation exists, fall back to the ES master so the
+  // page still renders (instead of a hard null that would force the
+  // client to 404 or render a blank shell).
+  const esPages = await wpFetch<WPPage[]>('/pages', {
     slug,
-    lang,
+    lang: 'es',
     _embed: 1,
   });
+  const esMaster = esPages[0];
+  if (!esMaster) return null;
 
-  return pages[0] || null;
+  const translation = esMaster.wpml_translations?.[lang];
+  if (!translation) {
+    // WPML has no translation for this slug in the requested locale.
+    // Fall back to the ES master — better than null.
+    return esMaster;
+  }
+
+  try {
+    const translatedPage = await wpFetch<WPPage>(`/pages/${translation.id}`, {
+      _embed: 1,
+    });
+    return translatedPage ?? esMaster;
+  } catch {
+    return esMaster;
+  }
 }
 
 export async function getPages(options: {

@@ -597,11 +597,35 @@ export const solutionFallbacks: Record<string, SolutionFallback> = {
   },
 }
 
+// Locale-override maps. The override files only type-import from here
+// (erased at compile time), so there's no runtime circular import.
+import { solutionFallbacksEn } from "./solution-fallback-content-en"
+import { solutionFallbacksPt } from "./solution-fallback-content-pt"
+
 /**
- * Resolve fallback content for a given ES slug.
- * Returns `null` if the slug is unknown — the page then renders only
- * whatever ACF data is present (or its 404 state).
+ * Resolve fallback content for a given ES master slug + locale.
+ *
+ * Lookup order (locale override → ES master):
+ *   1. `locale === "en"` → `solutionFallbacksEn[esSlug]` if present
+ *   2. `locale === "pt"` → `solutionFallbacksPt[esSlug]` if present
+ *   3. `solutionFallbacks[esSlug]` (ES master — always present for the 13 curated slugs)
+ *
+ * Returns `null` only when the slug is unknown (not in the ES master map).
+ * The page then renders whatever ACF data is present (or its 404 state).
+ *
+ * Until PR #89 / #90 populate the EN and PT override maps, every locale
+ * falls back to ES content — same behaviour as before this refactor.
  */
-export function getSolutionFallback(esSlug: string): SolutionFallback | null {
+export function getSolutionFallback(
+  esSlug: string,
+  locale: string = "es",
+): SolutionFallback | null {
+  if (locale === "en") {
+    const override = solutionFallbacksEn[esSlug]
+    if (override) return override
+  } else if (locale === "pt") {
+    const override = solutionFallbacksPt[esSlug]
+    if (override) return override
+  }
   return solutionFallbacks[esSlug] ?? null
 }

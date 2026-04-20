@@ -50,7 +50,7 @@ export function DynamicServiceClient({
   // Fallback to the current post's slug when translations map is absent
   // (on /es/ the current slug IS the ES master).
   const esMasterSlug = service.wpml_translations?.es?.slug ?? service.slug
-  const fallback = getSolutionFallback(esMasterSlug)
+  const fallback = getSolutionFallback(esMasterSlug, locale)
 
   if (!fallback) {
     // Unknown slug — render a minimal safe shell so the page doesn't

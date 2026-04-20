@@ -931,10 +931,33 @@ export const sectorFallbacks: Record<string, SectorFallback> = {
   },
 }
 
+// Locale-override maps. The override files only type-import from here
+// (erased at compile time), so there's no runtime circular import.
+import { sectorFallbacksEn } from "./sector-fallback-content-en"
+import { sectorFallbacksPt } from "./sector-fallback-content-pt"
+
 /**
- * Get fallback content for a sector slug.
- * Returns sector-specific content if mapped, otherwise generic.
+ * Get fallback content for a sector slug + locale.
+ *
+ * Lookup order (locale override → ES master → generic):
+ *   1. `locale === "en"` → `sectorFallbacksEn[slug]` if present
+ *   2. `locale === "pt"` → `sectorFallbacksPt[slug]` if present
+ *   3. `sectorFallbacks[slug]` (ES master — mapped sector content)
+ *   4. `genericFallback` (catch-all when slug is unknown)
+ *
+ * Until PR #89 / #90 populate the EN and PT override maps, every locale
+ * falls back to ES content — same behaviour as before this refactor.
  */
-export function getSectorFallback(slug: string): SectorFallback {
+export function getSectorFallback(
+  slug: string,
+  locale: string = "es",
+): SectorFallback {
+  if (locale === "en") {
+    const override = sectorFallbacksEn[slug]
+    if (override) return override
+  } else if (locale === "pt") {
+    const override = sectorFallbacksPt[slug]
+    if (override) return override
+  }
   return sectorFallbacks[slug] ?? genericFallback
 }

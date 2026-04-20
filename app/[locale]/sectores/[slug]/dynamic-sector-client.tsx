@@ -2,6 +2,7 @@
 
 import * as Icons from "lucide-react"
 import type { LucideIcon } from "lucide-react"
+import { useTranslations } from "next-intl"
 import { PageWrapper } from "@/components/page-wrapper"
 import { useFormModals } from "@/components/contact-form-modals"
 import type { WPSectorPage } from "@/lib/wordpress"
@@ -18,18 +19,25 @@ import { SectorFinalCtaSection } from "@/components/sector/final-cta-section"
 
 interface DynamicSectorClientProps {
   sector: WPSectorPage
+  locale: string
 }
 
-export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
+export function DynamicSectorClient({ sector, locale }: DynamicSectorClientProps) {
   const { openContactForm } = useFormModals()
+  const t = useTranslations("sector_ui")
+  const tNav = useTranslations("nav")
 
   const slug = sector.slug
   const title = stripHtml(sector.title.rendered)
   const subtitle = sector.acf?.subtitulo
   const excerpt = stripHtml(sector.excerpt?.rendered ?? "")
 
-  // ─── Data fallback chain: ACF → sector map → generic ──────────
-  const fallback = getSectorFallback(slug)
+  // ─── Data fallback chain: ACF → sector map (locale-aware) → generic ──
+  // The ES master slug drives fallback lookup even on /en or /pt, because
+  // WPML translations carry the ES slug via wpml_translations.es.slug.
+  // Fallback to the current post's slug when translations map is absent.
+  const esMasterSlug = sector.wpml_translations?.es?.slug ?? slug
+  const fallback = getSectorFallback(esMasterSlug, locale)
 
   const heroIconName = sector.acf?.icono || fallback.heroIcon
   const HeroIconComponent = (Icons[heroIconName as keyof typeof Icons] as LucideIcon) || Icons.Building2
@@ -80,65 +88,73 @@ export function DynamicSectorClient({ sector }: DynamicSectorClientProps) {
     : fallback.faq
 
   const breadcrumbs = [
-    { label: "Sectores", href: "/sectores" },
+    { label: tNav("sectors"), href: "/sectores" },
     { label: title },
   ]
+
+  // Strip common ES prefixes so "Agentes IA para Clínicas" → "Clínicas"
+  // when passed as a templated name inside section headings. For EN/PT
+  // the WP title won't carry these prefixes, so the regex is a no-op
+  // and the full title is used verbatim.
+  const sectorName = title
+    .replace(/^Agentes IA para /i, "")
+    .replace(/^IA para /i, "")
 
   return (
     <PageWrapper breadcrumbs={breadcrumbs}>
       <SectorHeroSection
         title={title}
         subtitle={subtitle}
-        excerpt={excerpt || `Agentes IA especializados para ${title.toLowerCase()}.`}
+        excerpt={excerpt || t("hero_excerpt_fallback", { sector: title.toLowerCase() })}
         heroImage={fallback.heroImage}
         heroIcon={HeroIconComponent}
         onContactClick={openContactForm}
-        ctaPrimary="Pedir Demo"
-        ctaSecondary="Hablar con ventas"
+        ctaPrimary={t("cta_primary")}
+        ctaSecondary={t("cta_secondary_hero")}
       />
 
       <SectorProblemsSection
         problems={problems}
-        title="Problemas que enfrentan"
-        subtitle="Los desafíos diarios que frenan el crecimiento de tu negocio."
-        sectorName={title.replace(/^Agentes IA para /i, "").replace(/^IA para /i, "")}
+        title={t("problems_title")}
+        subtitle={t("problems_subtitle")}
+        sectorName={sectorName}
       />
 
       <SectorSolutionsSection
         solutions={solutions}
-        title="Cómo StaffDigital AI transforma"
-        sectorName={title.replace(/^Agentes IA para /i, "").replace(/^IA para /i, "")}
+        title={t("solutions_title")}
+        sectorName={sectorName}
       />
 
       <SectorUseCasesSection
         useCases={useCases}
-        title="Casos de uso reales"
-        subtitle="Escenarios concretos donde nuestros agentes IA ya están operando."
+        title={t("use_cases_title")}
+        subtitle={t("use_cases_subtitle")}
       />
 
       <SectorIntegrationsSection
         integrations={integrations}
-        title="Integrado con tu stack"
-        subtitle="Conectamos con las herramientas que ya usas. Sin migraciones, sin dolor."
+        title={t("integrations_title")}
+        subtitle={t("integrations_subtitle")}
       />
 
       <SectorFaqSection
         faqs={faqs}
-        title="Preguntas frecuentes"
-        subtitle="Las dudas más comunes antes de implementar agentes IA en tu sector."
+        title={t("faq_title")}
+        subtitle={t("faq_subtitle")}
       />
 
       <SectorCrossSellSection
         currentSlug={slug}
-        title="Otros sectores que atendemos"
-        subtitle="Descubre cómo ayudamos a otros negocios con agentes IA especializados."
-        ctaAll="Ver todos los sectores"
+        title={t("cross_sell_title")}
+        subtitle={t("cross_sell_subtitle")}
+        ctaAll={t("cross_sell_cta_all")}
       />
 
       <SectorFinalCtaSection
-        title="¿Listo para transformar tu negocio?"
-        subtitle="Implementación llave en mano en 2-6 semanas. Sin permanencia."
-        ctaLabel="Pedir Demo"
+        title={t("final_cta_title")}
+        subtitle={t("final_cta_subtitle")}
+        ctaLabel={t("final_cta_label")}
         sectorName={title}
       />
     </PageWrapper>

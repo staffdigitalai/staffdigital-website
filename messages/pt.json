@@ -1139,5 +1139,25 @@
     "label_link": "política de privacidade",
     "label_suffix": ".",
     "error_required": "Deve aceitar a política de privacidade."
+  },
+  "sector_ui": {
+    "cta_primary": "Pedir Demo",
+    "cta_secondary_hero": "Falar com vendas",
+    "hero_excerpt_fallback": "Agentes IA especializados para {sector}.",
+    "problems_title": "Problemas que enfrentam",
+    "problems_subtitle": "Os desafios diários que travam o crescimento do seu negócio.",
+    "solutions_title": "Como a StaffDigital AI transforma",
+    "use_cases_title": "Casos de uso reais",
+    "use_cases_subtitle": "Cenários concretos onde os nossos agentes IA já estão a operar.",
+    "integrations_title": "Integrado no seu stack",
+    "integrations_subtitle": "Ligamo-nos às ferramentas que já usa. Sem migrações, sem dor.",
+    "faq_title": "Perguntas frequentes",
+    "faq_subtitle": "As dúvidas mais comuns antes de implementar agentes IA no seu setor.",
+    "cross_sell_title": "Outros setores que servimos",
+    "cross_sell_subtitle": "Descubra como ajudamos outros negócios com agentes IA especializados.",
+    "cross_sell_cta_all": "Ver todos os setores",
+    "final_cta_title": "Pronto para transformar o seu negócio?",
+    "final_cta_subtitle": "Implementação chave-na-mão em 2-6 semanas. Sem permanência.",
+    "final_cta_label": "Pedir Demo"
   }
 }

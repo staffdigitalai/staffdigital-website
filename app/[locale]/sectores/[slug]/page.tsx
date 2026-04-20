@@ -97,7 +97,7 @@ export default async function DynamicSectorPage({ params }: Props) {
   return (
     <>
       <LocalizedSlugs basePath="/sectores" slugs={localizedSlugMap} />
-      <DynamicSectorClient sector={sector} />
+      <DynamicSectorClient sector={sector} locale={locale} />
     </>
   )
 }

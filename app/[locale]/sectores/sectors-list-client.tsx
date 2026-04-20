@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react"
 import Link from "next/link"
 import { ArrowRight, Stethoscope, Smile, Scissors, UtensilsCrossed, Home, Car, Dumbbell, ShoppingBag, Building2, Wrench, GraduationCap, Warehouse, Building, Briefcase, Heart, Hotel } from "lucide-react"
+import { useTranslations } from "next-intl"
 import { PageWrapper } from "@/components/page-wrapper"
 import { CTASection } from "@/components/cta-section"
 
@@ -46,6 +47,7 @@ interface SectorsListClientProps {
 }
 
 export function SectorsListClient({ sectors }: SectorsListClientProps) {
+  const t = useTranslations("listings_ui")
   const gridRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -79,18 +81,18 @@ export function SectorsListClient({ sectors }: SectorsListClientProps) {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-foreground/10 backdrop-blur-md border border-foreground/20 text-foreground text-sm font-medium mb-8 animate-fade-in-badge">
             <span className="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse" />
-            IA para cada Industria
+            {t("sectores_badge")}
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground leading-tight text-balance mb-6 animate-fade-in-heading">
-            Soluciones de IA para{" "}
+            {t("sectores_h1_prefix")}{" "}
             <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">
-              tu Sector
+              {t("sectores_h1_gradient")}
             </span>
           </h1>
 
           <p className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto leading-relaxed animate-fade-in-subheading">
-            Cada industria tiene sus desafios unicos. Descubre como nuestras soluciones de IA estan disenadas especificamente para resolver los problemas de tu sector.
+            {t("sectores_subtitle")}
           </p>
         </div>
       </section>

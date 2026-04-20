@@ -131,7 +131,16 @@ export function GlassmorphismNav() {
     // just swap the locale prefix.
     intlRouter.replace(intlPathname, { locale: target })
   }
-  const navItems = navItemsDef.map((item) => ({ ...item, label: t(item.key) }))
+  // Prefix every nav item's href with the active locale so /en and /pt
+  // desktop nav links don't drop visitors back onto the ES root. Static
+  // pages ("/", "/nosotros") use the simple prefix rule; per-CPT slug
+  // maps for /soluciones and /sectores are handled separately.
+  const navPrefix = activeLocale === "es" ? "" : `/${activeLocale}`
+  const navItems = navItemsDef.map((item) => ({
+    ...item,
+    label: t(item.key),
+    href: item.href === "/" ? (navPrefix || "/") : `${navPrefix}${item.href}`,
+  }))
   const [isVisible, setIsVisible] = useState(true)
   const [hasLoaded, setHasLoaded] = useState(false)
   const [activeSection, setActiveSection] = useState<string>("#inicio")

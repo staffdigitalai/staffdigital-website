@@ -562,7 +562,19 @@
       "analytics_resolved": "Resolvidos",
       "analytics_time": "Tempo",
       "analytics_insight": "Melhoria contínua baseada em dados"
-    }
+    },
+    "title_whatsapp": "WhatsApp IA a trabalhar 24/7",
+    "subtitle_whatsapp": "Conversas reais resolvidas por IA — reservas, informação, suporte — com a voz da sua marca.",
+    "title_voice": "Chamadas atendidas 24/7",
+    "subtitle_voice": "Voz humana que atende ao primeiro toque, compreende o cliente e resolve ou encaminha com contexto.",
+    "title_calendar": "Agenda gerida 24/7",
+    "subtitle_calendar": "Reservas e marcações confirmadas num calendário real, com lembretes e remarcação automática.",
+    "title_email": "Inbox processada 24/7",
+    "subtitle_email": "Cada email classificado, respondido ou encaminhado à equipa certa — sem backlog.",
+    "title_integrations": "Integrado no seu stack 24/7",
+    "subtitle_integrations": "Dados a fluir entre canais e sistemas sem intervenção humana.",
+    "title_analytics": "Analítica operacional 24/7",
+    "subtitle_analytics": "Resolução, tempos e volume visíveis em tempo real para operar com evidência."
   },
   "crm": {
     "badge": "Integração nativa",

@@ -18,15 +18,16 @@ export async function generateMetadata({
   })
 }
 
-// Homepage blocks — post-refresh narrative (see PR #80 brief):
-//   Hero → How it works → Channels → Integrations → Sectors → Proof → CTA.
+// Homepage blocks — post-refresh narrative (see PR #80 brief), now with
+// AIWorking247 restored between Channels and Integrations:
+//   Hero → How it works → Channels → AIWorking247 → Integrations → Sectors → Proof → CTA.
 // Voice is intentionally NOT a standalone block anymore — it's one of
-// the four channels below. AIWorking247 / Clarification / Differentiation
-// / Solutions / Voice blocks still exist in this directory for reuse
-// elsewhere, but are no longer imported on the home.
+// the four channels. Channels gives the 2x2 overview; AIWorking247
+// shows the same four demos in-motion, complementary not redundant.
 import { HeroBlock } from "@/components/homepage/hero-block"
 import { HowItWorksBlock } from "@/components/homepage/how-it-works-block"
 import { ChannelsBlock } from "@/components/homepage/channels-block"
+import { AIWorking247Block } from "@/components/homepage/ai-working-247-block"
 import { IntegrationsBlock } from "@/components/homepage/integrations-block"
 import { SectorsBlock } from "@/components/homepage/sectors-block"
 import { SocialProofBlock } from "@/components/homepage/social-proof-block"
@@ -59,6 +60,9 @@ export default function HomePage() {
 
             {/* 3 — Channels: WhatsApp · Web · Phone · Email (voice is one channel, not the headline) */}
             <ChannelsBlock />
+
+            {/* 3b — AI working 24/7: same four channels shown as live demos */}
+            <AIWorking247Block />
 
             {/* 4 — Integrations: CRM / ERP / calendar / comms */}
             <IntegrationsBlock />

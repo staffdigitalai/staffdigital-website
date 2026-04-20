@@ -562,7 +562,19 @@
       "analytics_resolved": "Resolved",
       "analytics_time": "Time",
       "analytics_insight": "Continuous improvement based on data"
-    }
+    },
+    "title_whatsapp": "WhatsApp AI working 24/7",
+    "subtitle_whatsapp": "Real conversations resolved by AI — bookings, information, support — in your brand voice.",
+    "title_voice": "Calls answered 24/7",
+    "subtitle_voice": "A human-sounding voice that picks up on the first ring, understands the caller, and resolves or hands off with context.",
+    "title_calendar": "Calendar run 24/7",
+    "subtitle_calendar": "Bookings confirmed against a live calendar, with reminders and auto-rescheduling.",
+    "title_email": "Inbox processed 24/7",
+    "subtitle_email": "Every email classified, replied to, or routed to the right team — no backlog.",
+    "title_integrations": "Plugged into your stack 24/7",
+    "subtitle_integrations": "Data moving between channels and systems without human touch.",
+    "title_analytics": "Operational analytics 24/7",
+    "subtitle_analytics": "Resolution, time-to-answer and volume visible in real time so you can run on evidence."
   },
   "crm": {
     "badge": "Native integration",

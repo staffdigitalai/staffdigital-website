@@ -11,6 +11,8 @@ import { SolutionHowItWorksSection }  from "@/components/solution/how-it-works-s
 import { SolutionModulesSection }     from "@/components/solution/modules-section"
 import { SolutionUseCasesSection }    from "@/components/solution/use-cases-section"
 import { SolutionMetricsSection }     from "@/components/solution/metrics-section"
+import { AIWorking247Block }          from "@/components/homepage/ai-working-247-block"
+import { getShowcaseMode }            from "@/lib/showcase-modes"
 
 // Reused from the sector template (PR #68) — same shape, different data.
 import { SectorIntegrationsSection }  from "@/components/sector/integrations-section"
@@ -98,6 +100,12 @@ export function DynamicServiceClient({
 
       {/* 4 — Included modules */}
       <SolutionModulesSection modules={fallback.modules} />
+
+      {/* 4b — Live demo matching this solution's surface (WhatsApp /
+          voice / calendar / email / integrations / analytics). Slug →
+          mode map in lib/showcase-modes.ts; defaults to the full grid
+          for unmapped slugs. */}
+      <AIWorking247Block mode={getShowcaseMode(esMasterSlug)} />
 
       {/* 5 — Use cases by industry (cross-sell to /sectores) */}
       <SolutionUseCasesSection useCases={fallback.useCases} locale={locale} />

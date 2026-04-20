@@ -3,18 +3,23 @@ import { Suspense } from "react"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
 import { CasesContent } from "./cases-content"
-import { getSectors } from "@/lib/wordpress"
+import { getSectors, toWpmlLang } from "@/lib/wordpress"
 
 export const metadata: Metadata = {
   title: "Casos de Exito - StaffDigital AI",
   description: "Descubre como hemos ayudado a empresas a transformar sus operaciones con automatización IA.",
 }
 
-export default async function CasosPage() {
+export default async function CasosPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
   let sectors: Awaited<ReturnType<typeof getSectors>> = []
-  
+
   try {
-    sectors = await getSectors()
+    sectors = await getSectors(toWpmlLang(locale))
   } catch (error) {
     console.error("Error fetching sectors:", error)
   }

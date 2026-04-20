@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 
 interface SolutionItem {
   label: string
@@ -16,6 +16,8 @@ interface Category {
 
 export function SolutionsBlock() {
   const t = useTranslations("solutions_explore")
+  const locale = useLocale()
+  const prefix = locale === "es" ? "" : `/${locale}`
 
   const categories = t.raw("categories") as Category[]
 
@@ -59,7 +61,7 @@ export function SolutionsBlock() {
         {/* CTA */}
         <div className="text-center mt-12 sm:mt-14">
           <Link
-            href="/soluciones"
+            href={`${prefix}/soluciones`}
             className="group relative inline-flex items-center gap-2 rounded-full px-8 py-4 text-sm font-semibold text-white transition-all duration-400 hover:scale-[1.02] overflow-hidden"
             style={{
               background: "linear-gradient(135deg, #0078AA 0%, #5B21B6 100%)",

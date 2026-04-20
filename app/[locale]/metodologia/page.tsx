@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { PageWrapper } from "@/components/page-wrapper"
-import { buildPageMetadata, getPage } from "@/lib/wordpress"
+import { buildPageMetadata, getPage , toWpmlLang} from "@/lib/wordpress"
 import { MetodologiaContent } from "./metodologia-content"
 
 export const revalidate = 300
@@ -18,10 +18,15 @@ export async function generateMetadata({
   })
 }
 
-export default async function MetodologiaPage() {
+export default async function MetodologiaPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
   let page = null
   try {
-    page = await getPage("metodologia")
+    page = await getPage("metodologia", toWpmlLang(locale))
   } catch (error) {
     console.error("Error fetching metodologia page:", error)
   }

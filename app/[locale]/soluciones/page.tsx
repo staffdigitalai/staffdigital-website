@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { getServices, WPService, stripHtml } from "@/lib/wordpress"
+import { getServices, WPService, stripHtml, toWpmlLang, type SupportedLang } from "@/lib/wordpress"
 import { ServicesListClient } from "./services-list-client"
 
 export const metadata: Metadata = {
@@ -170,9 +170,9 @@ const fallbackServices: WPService[] = [
   },
 ]
 
-async function getServicesData(): Promise<WPService[]> {
+async function getServicesData(lang: SupportedLang): Promise<WPService[]> {
   try {
-    const services = await getServices()
+    const services = await getServices({ lang })
     if (services && services.length > 0) {
       return services
     }
@@ -183,8 +183,13 @@ async function getServicesData(): Promise<WPService[]> {
   }
 }
 
-export default async function SolucionesPage() {
-  const services = await getServicesData()
+export default async function SolucionesPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const services = await getServicesData(toWpmlLang(locale))
 
   // Transform services for client component
   const servicesData = services.map((service) => ({

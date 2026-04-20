@@ -70,12 +70,19 @@ export function PartnersClient({ page }: PartnersClientProps) {
           <Handshake className="w-4 h-4 mr-2" />
           Ecosistema de partners
         </div>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-          <span className="text-foreground">Partners </span>
-          <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
-            Tecnológicos
-          </span>
-        </h1>
+        {page?.title?.rendered ? (
+          <h1
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight"
+            dangerouslySetInnerHTML={{ __html: page.title.rendered }}
+          />
+        ) : (
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            <span className="text-foreground">Partners </span>
+            <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+              Tecnológicos
+            </span>
+          </h1>
+        )}
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
           {page?.acf?.subtitulo ||
             "Trabajamos con los mejores proveedores de IA, telecomunicaciones y CRM para garantizar resultados excepcionales."}

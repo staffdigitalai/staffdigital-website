@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
-import { buildPageMetadata } from "@/lib/wordpress"
+import { buildPageMetadata, getPage, toWpmlLang } from "@/lib/wordpress"
 
 export async function generateMetadata({
   params,
@@ -15,7 +15,19 @@ export async function generateMetadata({
   })
 }
 
-export default function CookiesPage() {
+export default async function CookiesPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  let page = null
+  try {
+    page = await getPage("cookies", toWpmlLang(locale))
+  } catch (error) {
+    console.error("Error fetching cookies page:", error)
+  }
+
   return (
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
@@ -24,8 +36,29 @@ export default function CookiesPage() {
       <GlassmorphismNav />
       <div className="relative z-10 pt-32 pb-20">
         <article className="max-w-3xl mx-auto px-6 sm:px-8 prose prose-invert prose-sm">
-          <h1 className="text-3xl font-bold mb-2">Política de Cookies</h1>
-          <p className="text-muted-foreground text-sm mb-8">Ultima actualizacion: 24 de marzo de 2026</p>
+          {page?.content?.rendered ? (
+            <>
+              <h1
+                className="text-3xl font-bold mb-6"
+                dangerouslySetInnerHTML={{ __html: page.title?.rendered ?? "Política de Cookies" }}
+              />
+              <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
+            </>
+          ) : (
+            <CookiesFallbackEs />
+          )}
+        </article>
+      </div>
+      <Footer />
+    </main>
+  )
+}
+
+function CookiesFallbackEs() {
+  return (
+    <>
+      <h1 className="text-3xl font-bold mb-2">Política de Cookies</h1>
+      <p className="text-muted-foreground text-sm mb-8">Ultima actualizacion: 24 de marzo de 2026</p>
 
           <h2>1. Que son las Cookies</h2>
           <p>Las cookies son pequenos archivos de texto que los sitios web almacenan en tu navegador. Permiten recordar preferencias, analizar el uso del sitio y ofrecer una mejor experiencia de navegacion.</p>
@@ -92,9 +125,6 @@ export default function CookiesPage() {
 
           <h2>6. Actualizaciones</h2>
           <p>Esta politica puede actualizarse en funcion de cambios normativos o de la incorporacion de nuevas herramientas. La fecha de ultima actualizacion se indica al inicio del documento.</p>
-        </article>
-      </div>
-      <Footer />
-    </main>
+    </>
   )
 }

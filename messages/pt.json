@@ -1159,5 +1159,15 @@
     "final_cta_title": "Pronto para transformar o seu negócio?",
     "final_cta_subtitle": "Implementação chave-na-mão em 2-6 semanas. Sem permanência.",
     "final_cta_label": "Pedir Demo"
+  },
+  "listings_ui": {
+    "soluciones_badge": "Soluções de IA para Empresas",
+    "soluciones_h1_prefix": "Transforme o seu negócio com",
+    "soluciones_h1_gradient": "Inteligência Artificial",
+    "soluciones_subtitle": "Descubra as nossas soluções de IA desenhadas para automatizar processos, melhorar o atendimento ao cliente e escalar o seu negócio sem aumentar custos.",
+    "sectores_badge": "IA para cada Indústria",
+    "sectores_h1_prefix": "Soluções de IA para",
+    "sectores_h1_gradient": "o seu Setor",
+    "sectores_subtitle": "Cada indústria tem os seus desafios únicos. Descubra como as nossas soluções de IA estão desenhadas especificamente para resolver os problemas do seu setor."
   }
 }

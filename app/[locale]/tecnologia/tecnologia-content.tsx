@@ -71,12 +71,19 @@ export function TecnologiaContent({ page }: TecnologiaContentProps) {
     <div className="space-y-16">
       {/* Hero */}
       <div className="text-center max-w-3xl mx-auto space-y-6">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance">
-          <span className="text-foreground">Tecnologia de </span>
-          <span className="bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
-            Vanguardia
-          </span>
-        </h1>
+        {page?.title?.rendered ? (
+          <h1
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance"
+            dangerouslySetInnerHTML={{ __html: page.title.rendered }}
+          />
+        ) : (
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance">
+            <span className="text-foreground">Tecnologia de </span>
+            <span className="bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
+              Vanguardia
+            </span>
+          </h1>
+        )}
         <p className="text-lg md:text-xl text-muted-foreground text-pretty">
           {page?.acf?.subtitulo ||
             "Combinamos los ultimos avances en IA con una arquitectura robusta para ofrecer soluciones que realmente funcionan."}

@@ -1158,5 +1158,15 @@
     "final_cta_title": "¿Listo para transformar tu negocio?",
     "final_cta_subtitle": "Implementación llave en mano en 2-6 semanas. Sin permanencia.",
     "final_cta_label": "Pedir Demo"
+  },
+  "listings_ui": {
+    "soluciones_badge": "Soluciones de IA para Empresas",
+    "soluciones_h1_prefix": "Transforma tu negocio con",
+    "soluciones_h1_gradient": "Inteligencia Artificial",
+    "soluciones_subtitle": "Descubre nuestras soluciones de IA diseñadas para automatizar procesos, mejorar la atención al cliente y escalar tu negocio sin aumentar costes.",
+    "sectores_badge": "IA para cada Industria",
+    "sectores_h1_prefix": "Soluciones de IA para",
+    "sectores_h1_gradient": "tu Sector",
+    "sectores_subtitle": "Cada industria tiene sus desafíos únicos. Descubre cómo nuestras soluciones de IA están diseñadas específicamente para resolver los problemas de tu sector."
   }
 }

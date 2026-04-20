@@ -1159,5 +1159,15 @@
     "final_cta_title": "Ready to transform your business?",
     "final_cta_subtitle": "Turnkey deployment in 2-6 weeks. No lock-in.",
     "final_cta_label": "Request Demo"
+  },
+  "listings_ui": {
+    "soluciones_badge": "AI Solutions for Business",
+    "soluciones_h1_prefix": "Transform your business with",
+    "soluciones_h1_gradient": "Artificial Intelligence",
+    "soluciones_subtitle": "Discover our AI solutions designed to automate processes, improve customer service and scale your business without scaling costs.",
+    "sectores_badge": "AI for Every Industry",
+    "sectores_h1_prefix": "AI Solutions for",
+    "sectores_h1_gradient": "Your Industry",
+    "sectores_subtitle": "Every industry has its own unique challenges. Discover how our AI solutions are purpose-built to solve the problems that matter in your sector."
   }
 }

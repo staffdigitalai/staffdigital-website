@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react"
 import Link from "next/link"
 import { ArrowRight, Star, Phone, MessageSquare, Globe, Shield, Home, BarChart3, FileText, Megaphone, Zap, Bot, Users, Headphones, Calendar, Mail, Database, Settings, Cpu, Sparkles } from "lucide-react"
+import { useTranslations } from "next-intl"
 import { PageWrapper } from "@/components/page-wrapper"
 import { CTASection } from "@/components/cta-section"
 
@@ -45,6 +46,7 @@ interface ServicesListClientProps {
 }
 
 export function ServicesListClient({ services }: ServicesListClientProps) {
+  const t = useTranslations("listings_ui")
   const gridRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -85,18 +87,18 @@ export function ServicesListClient({ services }: ServicesListClientProps) {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-foreground/10 backdrop-blur-md border border-foreground/20 text-foreground text-sm font-medium mb-8 animate-fade-in-badge">
             <span className="w-2 h-2 bg-orange-400 rounded-full mr-2 animate-pulse" />
-            Soluciones de IA para Empresas
+            {t("soluciones_badge")}
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground leading-tight text-balance mb-6 animate-fade-in-heading">
-            Transforma tu negocio con{" "}
+            {t("soluciones_h1_prefix")}{" "}
             <span className="bg-gradient-to-r from-orange-400 via-amber-300 to-orange-400 bg-clip-text text-transparent">
-              Inteligencia Artificial
+              {t("soluciones_h1_gradient")}
             </span>
           </h1>
 
           <p className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto leading-relaxed animate-fade-in-subheading">
-            Descubre nuestras soluciones de IA disenadas para automatizar procesos, mejorar la atención al cliente y escalar tu negocio sin aumentar costes.
+            {t("soluciones_subtitle")}
           </p>
         </div>
       </section>

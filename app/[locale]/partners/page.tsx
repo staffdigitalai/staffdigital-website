@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { buildPageMetadata, getPage, stripHtml } from "@/lib/wordpress"
+import { buildPageMetadata, getPage, stripHtml , toWpmlLang} from "@/lib/wordpress"
 import { PartnersClient } from "./partners-client"
 
 export async function generateMetadata({
@@ -17,10 +17,15 @@ export async function generateMetadata({
 
 export const revalidate = 3600
 
-export default async function PartnersPage() {
+export default async function PartnersPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
   let page = null
   try {
-    page = await getPage("partners")
+    page = await getPage("partners", toWpmlLang(locale))
   } catch (error) {
     console.error("Error fetching partners page:", error)
   }

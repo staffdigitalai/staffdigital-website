@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
-import { buildPageMetadata } from "@/lib/wordpress"
+import { buildPageMetadata, getPage, toWpmlLang } from "@/lib/wordpress"
 
 export async function generateMetadata({
   params,
@@ -15,7 +15,19 @@ export async function generateMetadata({
   })
 }
 
-export default function PrivacidadPage() {
+export default async function PrivacidadPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  let page = null
+  try {
+    page = await getPage("privacidad", toWpmlLang(locale))
+  } catch (error) {
+    console.error("Error fetching privacidad page:", error)
+  }
+
   return (
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
@@ -24,8 +36,29 @@ export default function PrivacidadPage() {
       <GlassmorphismNav />
       <div className="relative z-10 pt-32 pb-20">
         <article className="max-w-3xl mx-auto px-6 sm:px-8 prose prose-invert prose-sm">
-          <h1 className="text-3xl font-bold mb-2">Politica de Privacidad</h1>
-          <p className="text-muted-foreground text-sm mb-8">Ultima actualizacion: 24 de marzo de 2026</p>
+          {page?.content?.rendered ? (
+            <>
+              <h1
+                className="text-3xl font-bold mb-6"
+                dangerouslySetInnerHTML={{ __html: page.title?.rendered ?? "Politica de Privacidad" }}
+              />
+              <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
+            </>
+          ) : (
+            <PrivacidadFallbackEs />
+          )}
+        </article>
+      </div>
+      <Footer />
+    </main>
+  )
+}
+
+function PrivacidadFallbackEs() {
+  return (
+    <>
+      <h1 className="text-3xl font-bold mb-2">Politica de Privacidad</h1>
+      <p className="text-muted-foreground text-sm mb-8">Ultima actualizacion: 24 de marzo de 2026</p>
 
           <h2>1. Responsable del Tratamiento</h2>
           <ul>
@@ -117,9 +150,6 @@ export default function PrivacidadPage() {
 
           <h2>9. Modificaciones</h2>
           <p>Nos reservamos el derecho de actualizar esta politica. La fecha de ultima actualizacion se indica al inicio del documento. Te recomendamos revisarla periodicamente.</p>
-        </article>
-      </div>
-      <Footer />
-    </main>
+    </>
   )
 }

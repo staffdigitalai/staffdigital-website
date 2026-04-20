@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
-import { buildPageMetadata } from "@/lib/wordpress"
+import { buildPageMetadata, getPage, toWpmlLang } from "@/lib/wordpress"
 
 export async function generateMetadata({
   params,
@@ -15,7 +15,19 @@ export async function generateMetadata({
   })
 }
 
-export default function TerminosPage() {
+export default async function TerminosPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  let page = null
+  try {
+    page = await getPage("terminos", toWpmlLang(locale))
+  } catch (error) {
+    console.error("Error fetching terminos page:", error)
+  }
+
   return (
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
@@ -24,8 +36,29 @@ export default function TerminosPage() {
       <GlassmorphismNav />
       <div className="relative z-10 pt-32 pb-20">
         <article className="max-w-3xl mx-auto px-6 sm:px-8 prose prose-invert prose-sm">
-          <h1 className="text-3xl font-bold mb-2">Terminos y Condiciones</h1>
-          <p className="text-muted-foreground text-sm mb-8">Ultima actualizacion: 24 de marzo de 2026</p>
+          {page?.content?.rendered ? (
+            <>
+              <h1
+                className="text-3xl font-bold mb-6"
+                dangerouslySetInnerHTML={{ __html: page.title?.rendered ?? "Terminos y Condiciones" }}
+              />
+              <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
+            </>
+          ) : (
+            <TerminosFallbackEs />
+          )}
+        </article>
+      </div>
+      <Footer />
+    </main>
+  )
+}
+
+function TerminosFallbackEs() {
+  return (
+    <>
+      <h1 className="text-3xl font-bold mb-2">Terminos y Condiciones</h1>
+      <p className="text-muted-foreground text-sm mb-8">Ultima actualizacion: 24 de marzo de 2026</p>
 
           <h2>1. Objeto</h2>
           <p>Los presentes Terminos y Condiciones regulan el acceso y uso del sitio web www.staffdigital.ai, asi como la contratacion de los servicios de automatizacion con inteligencia artificial ofrecidos por Web Design VIP Unipessoal Lda. (en adelante, &quot;StaffDigital AI&quot;).</p>
@@ -105,9 +138,6 @@ export default function TerminosPage() {
             <li><strong>Telefono:</strong> +34 931 229 129</li>
             <li><strong>Direccion:</strong> Carrer d&apos;Arago, 308, 1o 2a, 08009 Barcelona</li>
           </ul>
-        </article>
-      </div>
-      <Footer />
-    </main>
+    </>
   )
 }

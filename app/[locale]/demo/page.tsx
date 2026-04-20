@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { PageWrapper } from "@/components/page-wrapper"
-import { buildPageMetadata, getPage } from "@/lib/wordpress"
+import { buildPageMetadata, getPage , toWpmlLang} from "@/lib/wordpress"
 import { DemoContent } from "./demo-content"
 
 export const revalidate = 300
@@ -18,10 +18,15 @@ export async function generateMetadata({
   })
 }
 
-export default async function DemoPage() {
+export default async function DemoPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
   let page = null
   try {
-    page = await getPage("demo")
+    page = await getPage("demo", toWpmlLang(locale))
   } catch (error) {
     console.error("Error fetching demo page:", error)
   }

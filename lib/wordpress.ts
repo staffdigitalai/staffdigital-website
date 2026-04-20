@@ -321,6 +321,20 @@ export interface WPFaq {
 
 export type SupportedLang = 'es' | 'pt-pt' | 'en';
 
+/**
+ * Map a Next.js locale (`es` | `en` | `pt`) to the WPML language code
+ * used by the WP REST API (`es` | `en` | `pt-pt`). PT is the only locale
+ * that differs — WPML stores European Portuguese as `pt-pt`.
+ *
+ * Centralised here so every call-site passing a locale to a WP fetcher
+ * uses the same mapping rule (previously duplicated in blog/*).
+ */
+export function toWpmlLang(locale: string): SupportedLang {
+  if (locale === 'pt') return 'pt-pt';
+  if (locale === 'en') return 'en';
+  return 'es';
+}
+
 // WPML exposes translation relationships on every translatable post/CPT.
 // Keys are WPML locale codes: 'es' | 'en' | 'pt-pt'. Values are the
 // corresponding post ID + slug in that language (may be absent).
@@ -539,9 +553,10 @@ export async function getCategories(lang: SupportedLang = 'es'): Promise<WPCateg
 }
 
 // Sectors
-export async function getSectors(): Promise<WPSector[]> {
+export async function getSectors(lang: SupportedLang = 'es'): Promise<WPSector[]> {
   return wpFetch<WPSector[]>('/sectors', {
     per_page: 100,
+    lang,
   });
 }
 

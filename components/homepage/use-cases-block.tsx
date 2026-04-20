@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { ArrowRight, Shield, HeartPulse, Building2, GraduationCap, Users, Zap, Receipt, Sprout } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 
 const ICONS = [Shield, HeartPulse, Building2, GraduationCap, Users, Zap, Receipt, Sprout] as const
 
@@ -17,6 +17,8 @@ interface CardItem {
 
 export function UseCasesBlock() {
   const t = useTranslations("use_cases")
+  const locale = useLocale()
+  const prefix = locale === "es" ? "" : `/${locale}`
   const items = t.raw("items") as CardItem[]
   const sectionRef = useRef<HTMLDivElement>(null)
   const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set())
@@ -111,7 +113,7 @@ export function UseCasesBlock() {
         {/* CTA */}
         <div className="text-center mt-12 sm:mt-14">
           <Link
-            href="/soluciones"
+            href={`${prefix}/soluciones`}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-brand-secondary dark:text-brand-secondary font-semibold text-sm transition-all duration-300 hover:bg-brand-secondary/[0.06] dark:hover:bg-brand-secondary/[0.08] border border-brand-secondary/15 dark:border-brand-secondary/15 group"
           >
             {t("cta")}

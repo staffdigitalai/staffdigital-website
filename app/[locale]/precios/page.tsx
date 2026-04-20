@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
 import { PageWrapper } from "@/components/page-wrapper"
-import { buildPageMetadata, getPage } from "@/lib/wordpress"
+import { buildPageMetadata, getPage , toWpmlLang} from "@/lib/wordpress"
 import { PricingContent } from "./pricing-content"
 
 export const revalidate = 300 // 5 minutes
@@ -19,10 +19,15 @@ export async function generateMetadata({
   })
 }
 
-export default async function PreciosPage() {
+export default async function PreciosPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
   let page = null
   try {
-    page = await getPage("precios")
+    page = await getPage("precios", toWpmlLang(locale))
   } catch (error) {
     console.error("Error fetching pricing page:", error)
   }

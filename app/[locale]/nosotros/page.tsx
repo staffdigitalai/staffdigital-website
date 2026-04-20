@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { PageWrapper } from "@/components/page-wrapper"
-import { buildPageMetadata, getPage } from "@/lib/wordpress"
+import { buildPageMetadata, getPage , toWpmlLang} from "@/lib/wordpress"
 import { NosotrosContent } from "./nosotros-content"
 
 export const revalidate = 300
@@ -18,10 +18,15 @@ export async function generateMetadata({
   })
 }
 
-export default async function NosotrosPage() {
+export default async function NosotrosPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
   let page = null
   try {
-    page = await getPage("nosotros")
+    page = await getPage("nosotros", toWpmlLang(locale))
   } catch (error) {
     console.error("Error fetching nosotros page:", error)
   }

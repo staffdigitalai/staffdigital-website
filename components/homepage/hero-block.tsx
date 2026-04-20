@@ -1,10 +1,12 @@
 "use client"
 
 import Link from "next/link"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 
 export function HeroBlock() {
   const t = useTranslations("hero")
+  const locale = useLocale()
+  const prefix = locale === "es" ? "" : `/${locale}`
 
   return (
     <section className="min-h-[90vh] max-h-screen flex items-center justify-center relative overflow-hidden px-6 pt-28 pb-16 bg-transparent">
@@ -44,7 +46,7 @@ export function HeroBlock() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-10 animate-hero-ctas">
           {/* Primary CTA */}
           <Link
-            href="/demo"
+            href={`${prefix}/demo`}
             className="inline-flex items-center justify-center rounded-full px-8 md:px-10 py-3.5 md:py-4 text-base md:text-lg font-semibold text-white bg-gradient-to-r from-gradient-from to-gradient-to transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_25px_rgba(0,120,170,0.35),0_0_50px_rgba(124,58,237,0.2)]"
           >
             {t("cta_primary")} &rarr;
@@ -52,7 +54,7 @@ export function HeroBlock() {
 
           {/* Secondary CTA — takes the user to the solutions listing */}
           <Link
-            href="/soluciones"
+            href={`${prefix}/soluciones`}
             className="inline-flex items-center justify-center rounded-full px-8 md:px-10 py-3.5 md:py-4 text-base md:text-lg font-semibold transition-all duration-300 hover:scale-[1.03] hover:opacity-90 bg-fg-primary text-bg-page"
           >
             {t("cta_secondary")}

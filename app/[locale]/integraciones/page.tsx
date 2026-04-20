@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { PageWrapper } from "@/components/page-wrapper"
-import { buildPageMetadata, getPage } from "@/lib/wordpress"
+import { buildPageMetadata, getPage , toWpmlLang} from "@/lib/wordpress"
 import { IntegracionesContent } from "./integraciones-content"
 
 export const revalidate = 300
@@ -18,10 +18,15 @@ export async function generateMetadata({
   })
 }
 
-export default async function IntegraciónesPage() {
+export default async function IntegraciónesPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
   let page = null
   try {
-    page = await getPage("integraciones")
+    page = await getPage("integraciones", toWpmlLang(locale))
   } catch (error) {
     console.error("Error fetching integraciones page:", error)
   }

@@ -385,7 +385,7 @@ export function GlassmorphismNav() {
 
                               {/* Footer link: "View all solutions" kept (not in the removed CTAs). */}
                               <Link
-                                href="/soluciones"
+                                href={activeLocale === "es" ? "/soluciones" : `/${activeLocale}/soluciones`}
                                 className="mt-4 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-gray-200 dark:border-white/15 text-gray-700 dark:text-white/75 font-medium text-sm hover:bg-gray-100 dark:hover:bg-white/5 hover:border-gray-300 dark:hover:border-white/25 transition-all duration-200"
                                 onClick={() => setIsServicesOpen(false)}
                               >

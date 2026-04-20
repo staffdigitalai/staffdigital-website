@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { getSectorPages, WPSectorPage, stripHtml } from "@/lib/wordpress"
+import { getSectorPages, WPSectorPage, stripHtml, toWpmlLang, type SupportedLang } from "@/lib/wordpress"
 import { SectorsListClient } from "./sectors-list-client"
 
 export const metadata: Metadata = {
@@ -189,9 +189,9 @@ const fallbackSectors: WPSectorPage[] = [
   },
 ]
 
-async function getSectorsData(): Promise<WPSectorPage[]> {
+async function getSectorsData(lang: SupportedLang): Promise<WPSectorPage[]> {
   try {
-    const sectors = await getSectorPages()
+    const sectors = await getSectorPages({ lang })
     if (sectors && sectors.length > 0) {
       return sectors
     }
@@ -202,8 +202,13 @@ async function getSectorsData(): Promise<WPSectorPage[]> {
   }
 }
 
-export default async function SectoresPage() {
-  const sectors = await getSectorsData()
+export default async function SectoresPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const sectors = await getSectorsData(toWpmlLang(locale))
 
   // Transform sectors for client component
   const sectorsData = sectors.map((sector) => ({

@@ -132,7 +132,7 @@ export function SectorsBlock() {
                 </p>
               </div>
               <Link
-                href="/demo"
+                href={locale === "es" ? "/demo" : `/${locale}/demo`}
                 className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold bg-fg-primary text-bg-page hover:opacity-90 transition-opacity whitespace-nowrap"
               >
                 {transversal.cta}

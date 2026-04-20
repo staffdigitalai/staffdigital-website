@@ -2,12 +2,14 @@
 
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { motion } from "framer-motion"
 import { useMotionReveal } from "@/hooks/use-motion-reveal"
 
 export function CTABlock() {
   const t = useTranslations("cta")
+  const locale = useLocale()
+  const prefix = locale === "es" ? "" : `/${locale}`
   const reveal = useMotionReveal()
 
   return (
@@ -36,7 +38,7 @@ export function CTABlock() {
             Soluciones"). No competing CTAs here. */}
         <div>
           <Link
-            href="/demo"
+            href={`${prefix}/demo`}
             className="group inline-flex items-center justify-center rounded-full px-10 sm:px-14 py-5 text-base sm:text-lg font-bold text-white bg-gradient-to-br from-gradient-from to-brand-primary-hover transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_8px_32px_rgba(0,120,170,0.3),0_12px_40px_rgba(91,33,182,0.2)]"
           >
             <span>{t("button")}</span>

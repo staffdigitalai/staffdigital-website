@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { getCaseStudy, getCaseStudies, stripHtml, WPCaseStudy } from "@/lib/wordpress"
+import { getCaseStudy, getCaseStudies, stripHtml, toWpmlLang, WPCaseStudy } from "@/lib/wordpress"
 import { CaseStudyClient } from "./case-study-client"
 
 interface Props {
@@ -19,10 +19,10 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
+  const { slug, locale } = await params
 
   try {
-    const caseStudy = await getCaseStudy(slug)
+    const caseStudy = await getCaseStudy(slug, toWpmlLang(locale))
     if (!caseStudy) {
       return {
         title: "Caso no encontrado | StaffDigital AI",
@@ -133,12 +133,12 @@ const fallbackCaseStudies: Record<string, WPCaseStudy> = {
 }
 
 export default async function CaseStudyPage({ params }: Props) {
-  const { slug } = await params
+  const { slug, locale } = await params
 
   let caseStudy: WPCaseStudy | null = null
 
   try {
-    caseStudy = await getCaseStudy(slug)
+    caseStudy = await getCaseStudy(slug, toWpmlLang(locale))
   } catch (error) {
     console.error("Error fetching case study from WordPress:", error)
   }

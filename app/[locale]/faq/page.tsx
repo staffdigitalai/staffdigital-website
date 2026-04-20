@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
 import { DynamicFaqSection } from "@/components/dynamic-faq-section"
-import { buildPageMetadata, getFaqs } from "@/lib/wordpress"
+import { buildPageMetadata, getFaqs, toWpmlLang } from "@/lib/wordpress"
 
 export async function generateMetadata({
   params,
@@ -18,11 +18,16 @@ export async function generateMetadata({
 
 export const revalidate = 300
 
-export default async function FaqPage() {
+export default async function FaqPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
   // Fetch FAQs server-side for JSON-LD structured data
   let faqJsonLd: object | null = null
   try {
-    const faqs = await getFaqs("es")
+    const faqs = await getFaqs(toWpmlLang(locale))
     if (faqs.length > 0) {
       faqJsonLd = {
         "@context": "https://schema.org",

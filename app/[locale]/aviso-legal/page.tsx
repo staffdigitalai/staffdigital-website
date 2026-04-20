@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { GlassmorphismNav } from "@/components/glassmorphism-nav"
 import { Footer } from "@/components/footer"
-import { buildPageMetadata } from "@/lib/wordpress"
+import { buildPageMetadata, getPage, toWpmlLang } from "@/lib/wordpress"
 
 export async function generateMetadata({
   params,
@@ -15,7 +15,19 @@ export async function generateMetadata({
   })
 }
 
-export default function AvisoLegalPage() {
+export default async function AvisoLegalPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  let page = null
+  try {
+    page = await getPage("aviso-legal", toWpmlLang(locale))
+  } catch (error) {
+    console.error("Error fetching aviso-legal page:", error)
+  }
+
   return (
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
@@ -24,8 +36,29 @@ export default function AvisoLegalPage() {
       <GlassmorphismNav />
       <div className="relative z-10 pt-32 pb-20">
         <article className="max-w-3xl mx-auto px-6 sm:px-8 prose prose-invert prose-sm">
-          <h1 className="text-3xl font-bold mb-2">Aviso Legal</h1>
-          <p className="text-muted-foreground text-sm mb-8">Ultima actualizacion: 24 de marzo de 2026</p>
+          {page?.content?.rendered ? (
+            <>
+              <h1
+                className="text-3xl font-bold mb-6"
+                dangerouslySetInnerHTML={{ __html: page.title?.rendered ?? "Aviso Legal" }}
+              />
+              <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
+            </>
+          ) : (
+            <AvisoLegalFallbackEs />
+          )}
+        </article>
+      </div>
+      <Footer />
+    </main>
+  )
+}
+
+function AvisoLegalFallbackEs() {
+  return (
+    <>
+      <h1 className="text-3xl font-bold mb-2">Aviso Legal</h1>
+      <p className="text-muted-foreground text-sm mb-8">Ultima actualizacion: 24 de marzo de 2026</p>
 
           <h2>1. Datos Identificativos (LSSI-CE, Art. 10)</h2>
           <p>En cumplimiento del articulo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Informacion y de Comercio Electronico (LSSI-CE), se informa:</p>
@@ -84,9 +117,6 @@ export default function AvisoLegalPage() {
           <p>Este Aviso Legal se rige por la legislacion espanola. Para la resolucion de cualquier controversia, las partes se someten a los Juzgados y Tribunales de Barcelona (Espana), salvo que la ley imponga otro fuero.</p>
           <p>Para consumidores y usuarios, seran competentes los juzgados del domicilio del consumidor conforme a la legislacion vigente.</p>
           <p>Puedes acceder a la plataforma de resolucion de litigios en linea de la UE en: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-primary">https://ec.europa.eu/consumers/odr</a></p>
-        </article>
-      </div>
-      <Footer />
-    </main>
+    </>
   )
 }

@@ -88,7 +88,7 @@ export function DynamicSectorClient({ sector, locale }: DynamicSectorClientProps
     : fallback.faq
 
   const breadcrumbs = [
-    { label: tNav("sectors"), href: "/sectores" },
+    { label: tNav("sectors"), href: `${locale === "es" ? "" : `/${locale}`}/sectores` },
     { label: title },
   ]
 

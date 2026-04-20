@@ -1139,5 +1139,25 @@
     "label_link": "privacy policy",
     "label_suffix": ".",
     "error_required": "You must accept the privacy policy."
+  },
+  "sector_ui": {
+    "cta_primary": "Request Demo",
+    "cta_secondary_hero": "Talk to sales",
+    "hero_excerpt_fallback": "Specialised AI agents for {sector}.",
+    "problems_title": "Problems they face",
+    "problems_subtitle": "The daily challenges holding your business back.",
+    "solutions_title": "How StaffDigital AI transforms",
+    "use_cases_title": "Real use cases",
+    "use_cases_subtitle": "Concrete scenarios where our AI agents are already operating.",
+    "integrations_title": "Plugs into your stack",
+    "integrations_subtitle": "We connect with the tools you already use. No migrations, no pain.",
+    "faq_title": "Frequently asked questions",
+    "faq_subtitle": "The most common questions before deploying AI agents in your industry.",
+    "cross_sell_title": "Other industries we serve",
+    "cross_sell_subtitle": "Discover how we help other businesses with specialised AI agents.",
+    "cross_sell_cta_all": "View all industries",
+    "final_cta_title": "Ready to transform your business?",
+    "final_cta_subtitle": "Turnkey deployment in 2-6 weeks. No lock-in.",
+    "final_cta_label": "Request Demo"
   }
 }

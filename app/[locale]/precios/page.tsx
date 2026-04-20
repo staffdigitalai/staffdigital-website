@@ -1,7 +1,5 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
-import { GlassmorphismNav } from "@/components/glassmorphism-nav"
-import { Footer } from "@/components/footer"
 import { PageWrapper } from "@/components/page-wrapper"
 import { buildPageMetadata, getPage } from "@/lib/wordpress"
 import { PricingContent } from "./pricing-content"
@@ -30,22 +28,16 @@ export default async function PreciosPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <GlassmorphismNav />
-      <main className="flex-1 pt-20">
-        <PageWrapper
-          breadcrumbs={[
-            { label: "Inicio", href: "/" },
-            { label: "Precios" },
-          ]}
-        >
-          <Suspense fallback={<PricingPageSkeleton />}>
-            <PricingContent page={page} />
-          </Suspense>
-        </PageWrapper>
-      </main>
-      <Footer />
-    </div>
+    <PageWrapper
+      breadcrumbs={[
+        { label: "Inicio", href: "/" },
+        { label: "Precios" },
+      ]}
+    >
+      <Suspense fallback={<PricingPageSkeleton />}>
+        <PricingContent page={page} />
+      </Suspense>
+    </PageWrapper>
   )
 }
 

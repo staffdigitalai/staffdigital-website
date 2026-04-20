@@ -1,7 +1,5 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { GlassmorphismNav } from "@/components/glassmorphism-nav"
-import { Footer } from "@/components/footer"
 import { PageWrapper } from "@/components/page-wrapper"
 import { getSeoQuestionPost, getAllSeoQuestionSlugs, formatDate, stripHtml, getFeaturedImageUrl } from "@/lib/wordpress"
 import { SeoQuestionContent } from "./seo-question-content"
@@ -114,25 +112,19 @@ export default async function SeoQuestionPage({ params }: PageProps) {
   const formattedDate = formatDate(post.date)
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <GlassmorphismNav />
-      <main className="flex-1 pt-20">
-        <PageWrapper
-          breadcrumbs={[
-            { label: "Inicio", href: "/" },
-            { label: "Preguntas frecuentes", href: "/faq" },
-            { label: title },
-          ]}
-        >
-          <SeoQuestionContent 
-            post={post} 
-            title={title}
-            imageUrl={imageUrl}
-            formattedDate={formattedDate}
-          />
-        </PageWrapper>
-      </main>
-      <Footer />
-    </div>
+    <PageWrapper
+      breadcrumbs={[
+        { label: "Inicio", href: "/" },
+        { label: "Preguntas frecuentes", href: "/faq" },
+        { label: title },
+      ]}
+    >
+      <SeoQuestionContent
+        post={post}
+        title={title}
+        imageUrl={imageUrl}
+        formattedDate={formattedDate}
+      />
+    </PageWrapper>
   )
 }

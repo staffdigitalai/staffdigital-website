@@ -45,24 +45,24 @@ import { useTranslations } from "next-intl"
  * "Mike R.") and their percentages.
  */
 
-// ============================================
-// HOOK: IntersectionObserver trigger
-// ============================================
-function useInView(options?: IntersectionObserverInit) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [inView, setInView] = useState(false)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect() } },
-      { threshold: 0.25, ...options },
-    )
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-  return { ref, inView }
-}
+// NOTE: an earlier version of this file gated every mockup behind a
+// per-card `useInView` hook (IntersectionObserver with threshold 0.25)
+// so the cycling timers only started once the card scrolled into view.
+// Runtime probing on the Vercel preview showed IntersectionObserver
+// silently NOT firing at all in several Chromium contexts (confirmed
+// against `document.body` and `<h1>` controls — a known flakiness in
+// automation sandboxes and some privacy-hardening browser extensions).
+// The consequence: `inView` stayed `false`, card chrome never faded in,
+// and the state-cycling timers never started — every mockup looked
+// static.
+//
+// Fix: drop the per-card IO gate entirely. Cards render visible on
+// mount, timers fire immediately. Trade-off is marginal (the homepage
+// places this section above the fold on most viewports; the six
+// cheap setTimeout / setInterval cycles have no measurable cost).
+// The section-level `isVisible` remains (it controls the heading fade),
+// and it's tolerant of IO not firing because the heading already has
+// `opacity-100` as its base state.
 
 // ============================================
 // Showcase mode — controls which mockup(s) render
@@ -551,26 +551,20 @@ const CARDS: CardMeta[] = [
 // ============================================
 function AnimatedCard({
   card,
-  index,
   t,
   m,
   expanded = false,
 }: {
   card: CardMeta
-  index: number
   t: ReturnType<typeof useTranslations>
   m: MockupTexts
   expanded?: boolean
 }) {
-  const { ref, inView } = useInView()
-
   return (
     <div
-      ref={ref}
-      className={`group transition-all duration-700 ${!expanded && card.size === "large" ? "md:col-span-2" : ""} ${expanded ? "md:col-span-full max-w-3xl mx-auto w-full" : ""}`}
-      style={{ transitionDelay: inView ? `${index * 80}ms` : "0ms" }}
+      className={`group ${!expanded && card.size === "large" ? "md:col-span-2" : ""} ${expanded ? "md:col-span-full max-w-3xl mx-auto w-full" : ""}`}
     >
-      <div className={`relative bg-bg-card dark:bg-bg-elevated rounded-2xl p-6 sm:p-7 h-full shadow-[0_1px_3px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_2px_8px_rgba(0,0,0,0.3)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.06),0_12px_40px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_4px_16px_rgba(0,0,0,0.5)] transition-all duration-400 hover:-translate-y-1 border border-foreground/10 dark:border-white/[0.08] hover:border-brand-secondary/20 dark:hover:border-brand-secondary/20 overflow-hidden ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+      <div className="relative bg-bg-card dark:bg-bg-elevated rounded-2xl p-6 sm:p-7 h-full shadow-[0_1px_3px_rgba(0,0,0,0.04),0_4px_16px_rgba(0,0,0,0.03)] dark:shadow-[0_2px_8px_rgba(0,0,0,0.3)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.06),0_12px_40px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_4px_16px_rgba(0,0,0,0.5)] transition-all duration-400 hover:-translate-y-1 border border-foreground/10 dark:border-white/[0.08] hover:border-brand-secondary/20 dark:hover:border-brand-secondary/20 overflow-hidden">
         {/* 24/7 badge (chat_support only) */}
         {card.has24Badge && (
           <div className="absolute top-4 right-4">
@@ -580,9 +574,9 @@ function AnimatedCard({
           </div>
         )}
 
-        {/* Mockup area */}
+        {/* Mockup area — always `active` on mount (no IO gate; see note at top) */}
         <div className="relative mb-5 rounded-xl overflow-hidden ring-1 ring-foreground/10 dark:ring-white/[0.06]">
-          <card.MockupComponent active={inView} m={m} />
+          <card.MockupComponent active={true} m={m} />
         </div>
 
         {/* Title */}
@@ -622,7 +616,12 @@ export function AIWorking247Block({
 }: AIWorking247BlockProps = {}) {
   const t = useTranslations("ai_working_247")
   const sectionRef = useRef<HTMLElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
+  // Heading defaults to visible. IntersectionObserver is flaky in some
+  // browser contexts (see note at top of file); a visibility-on-mount
+  // default means the heading + cards always render correctly even if
+  // the observer never fires. When IO does work, this still lets the
+  // heading fade in smoothly on scroll.
+  const [isVisible, setIsVisible] = useState(true)
 
   // Pull mockup strings from the nested cards.* keys
   const m: MockupTexts = {
@@ -679,11 +678,10 @@ export function AIWorking247Block({
 
           {/* Cards grid */}
           <div className={`grid gap-4 lg:gap-5 ${isSingle ? "grid-cols-1" : "grid-cols-1 md:grid-cols-2 xl:grid-cols-4"}`}>
-            {shownCards.map((card, index) => (
+            {shownCards.map((card) => (
               <AnimatedCard
                 key={card.cardKey}
                 card={card}
-                index={index}
                 t={t}
                 m={m}
                 expanded={isSingle}

@@ -374,42 +374,35 @@ const LEADS = [
 ] as const
 
 const LeadQualificationMockup = ({ active }: { active: boolean; m: MockupTexts }) => {
-  // Progress 0 → 1 drives all three bars. Loops every 4s.
+  // Progress 0 → 1 drives all three bars, then holds, then resets.
+  //
+  // Uses setInterval instead of requestAnimationFrame because rAF is
+  // throttled or paused in background/automation tabs (confirmed on the
+  // Vercel preview via Chrome MCP — rAF never fired, bars stuck at 0%).
+  // setInterval survives throttling and keeps the demo alive.
   const [progress, setProgress] = useState(0)
-  const cycleKey = useRef(0)
 
   useEffect(() => {
     if (!active) return
-    let rafId: number
-    let cancelled = false
-    const tween = () => {
-      let start: number | null = null
-      const duration = 1800
-      const step = (ts: number) => {
-        if (cancelled) return
-        if (start === null) start = ts
-        const p = Math.min((ts - start) / duration, 1)
-        setProgress(p)
-        if (p < 1) {
-          rafId = requestAnimationFrame(step)
-        } else {
-          // Hold, then restart
-          setTimeout(() => {
-            if (!cancelled) {
-              cycleKey.current += 1
-              setProgress(0)
-              tween()
-            }
-          }, 2000)
-        }
+    // 60 ticks over 1800ms → 33% smoother than rAF on low-refresh
+    // displays without being CPU-heavy. Hold at 100% for 6 ticks
+    // (~180ms) before looping.
+    const TICKS_UP = 60
+    const TICKS_HOLD = 12
+    const INTERVAL_MS = 30
+    let tick = 0
+    setProgress(0)
+    const iv = setInterval(() => {
+      tick++
+      if (tick <= TICKS_UP) {
+        setProgress(tick / TICKS_UP)
+      } else if (tick >= TICKS_UP + TICKS_HOLD) {
+        // Reset and loop
+        tick = 0
+        setProgress(0)
       }
-      rafId = requestAnimationFrame(step)
-    }
-    tween()
-    return () => {
-      cancelled = true
-      if (rafId) cancelAnimationFrame(rafId)
-    }
+    }, INTERVAL_MS)
+    return () => clearInterval(iv)
   }, [active])
 
   return (

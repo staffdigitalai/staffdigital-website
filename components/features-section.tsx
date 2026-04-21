@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { useTranslations } from "next-intl"
 
 const AnimatedChatDemo = ({ isActive }: { isActive: boolean }) => {
   const [messages, setMessages] = useState([
@@ -360,52 +361,50 @@ const AnimatedIntegrationsDemo = ({ isActive }: { isActive: boolean }) => {
   )
 }
 
+// Feature card config — hardcoded text was removed; `titleKey` and
+// `descriptionKey` reference the `ai_working_247.cards.*` i18n
+// namespace, resolved at render time via `t()` in FeaturesSection.
 const features = [
   {
-    title: "Soporte Chat IA 24/7",
-    description:
-      "Agentes IA con voz humana que gestionan consultas de clientes, responden preguntas y captan leads en tu web y canales sociales.",
+    titleKey: "cards.chat_support.title",
+    descriptionKey: "cards.chat_support.description",
     demo: AnimatedChatDemo,
     size: "large",
   },
   {
-    title: "Recepcionista Telefónica IA",
-    description:
-      "Asistente de voz IA profesional que responde llamadas, toma mensajes y agenda citas cuando estas ocupado o cerrado.",
+    titleKey: "cards.phone_receptionist.title",
+    descriptionKey: "cards.phone_receptionist.description",
     demo: AnimatedPhoneDemo,
     size: "medium",
   },
   {
-    title: "Reserva Inteligente de Citas",
-    description:
-      "Sistema de programacion automatizado que comprueba disponibilidad, reserva citas y envia confirmaciones sin intervencion humana.",
+    titleKey: "cards.appointment_booking.title",
+    descriptionKey: "cards.appointment_booking.description",
     demo: AnimatedCalendarDemo,
     size: "medium",
   },
   {
-    title: "Automatización de Respuesta por Email",
-    description:
-      "Asistente de email con IA que responde consultas, proporciona información y redirige consultas complejas a tu equipo.",
+    titleKey: "cards.email_automation.title",
+    descriptionKey: "cards.email_automation.description",
     demo: AnimatedEmailDemo,
     size: "large",
   },
   {
-    title: "Cualificacion y Traspaso de Leads",
-    description:
-      "Sistema inteligente que cualifica prospectos, recopila información clave y traspasa leads calientes a tu equipo comercial de forma fluida.",
+    titleKey: "cards.lead_qualification.title",
+    descriptionKey: "cards.lead_qualification.description",
     demo: AnimatedLeadsDemo,
     size: "medium",
   },
   {
-    title: "Integración Multiplataforma",
-    description:
-      "Conecta con tus herramientas existentes incluyendo CRM, calendario, WhatsApp, SMS ymás para una experiencia de cliente unificada.",
+    titleKey: "cards.platform_integration.title",
+    descriptionKey: "cards.platform_integration.description",
     demo: AnimatedIntegrationsDemo,
     size: "medium",
   },
 ]
 
 export function FeaturesSection() {
+  const t = useTranslations("ai_working_247")
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const [activeDemo, setActiveDemo] = useState<number | null>(null)
@@ -472,17 +471,15 @@ export function FeaturesSection() {
               <svg className="w-4 h-4 mr-2 text-slate-600" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.89 1 3 1.89 3 3V7H1V9H3V15H1V17H3V21C3 22.11 3.89 23 5 23H19C20.11 23 21 22.11 21 21V17H23V15H21V9H23ZM19 9V15H5V9H19ZM7.5 11.5C7.5 10.67 8.17 10 9 10S10.5 10.67 10.5 11.5 9.83 13 9 13 7.5 12.33 7.5 11.5ZM13.5 11.5C13.5 10.67 14.17 10 15 10S16.5 10.67 16.5 11.5 15.83 13 15 13 13.5 12.33 13.5 11.5ZM12 16C13.11 16 14.08 16.59 14.71 17.5H9.29C9.92 16.59 10.89 16 12 16Z" />
               </svg>
-              IA Trabajando 24/7 - Nunca Pierdas un Lead
+              {t("eyebrow")}
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 text-balance mb-4 sm:mb-6">
-              Tu Equipo IA{" "}
               <span className="bg-gradient-to-r from-slate-600 to-slate-400 bg-clip-text text-transparent">
-                Nunca Duerme
+                {t("title")}
               </span>
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto font-light leading-relaxed">
-              Observa como nuestra IA gestiona interacciones reales con clientes las 24 horas, cualificando leads automaticamente y
-              agendando citas mientras te centras en hacer crecer tu negocio.
+              {t("description")}
             </p>
           </div>
 
@@ -507,10 +504,10 @@ export function FeaturesSection() {
                   </div>
 
                   <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-4 group-hover:text-slate-700 transition-colors duration-300">
-                    {feature.title}
+                    {t(feature.titleKey)}
                   </h3>
 
-                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed">{feature.description}</p>
+                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed">{t(feature.descriptionKey)}</p>
                 </div>
               </div>
             ))}

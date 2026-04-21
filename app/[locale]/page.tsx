@@ -18,12 +18,20 @@ export async function generateMetadata({
   })
 }
 
-// Homepage blocks — post-refresh narrative (see PR #80 brief), now with
-// AIWorking247 restored between Channels and Integrations:
-//   Hero → How it works → Channels → AIWorking247 → Integrations → Sectors → Proof → CTA.
-// Voice is intentionally NOT a standalone block anymore — it's one of
-// the four channels. Channels gives the 2x2 overview; AIWorking247
-// shows the same four demos in-motion, complementary not redundant.
+// Homepage blocks — AIWorking247 promoted to the hero-adjacent slot.
+// Order:
+//   Hero
+//   → [TrustedByCarousel — placeholder, future PR]
+//   → AIWorking247  (live demos show the product working in seconds)
+//   → How it works  (Receive / Understand / Decide / Execute)
+//   → Channels      (4 static cards — WhatsApp, Web, Phone, Email)
+//   → Integrations
+//   → Sectors
+//   → SocialProof
+//   → CTA
+// Voice is intentionally NOT a standalone block — it's one of the four
+// channels. Channels gives the 2x2 overview; AIWorking247 shows the
+// same four surfaces in-motion. Complementary, not redundant.
 import { HeroBlock } from "@/components/homepage/hero-block"
 import { HowItWorksBlock } from "@/components/homepage/how-it-works-block"
 import { ChannelsBlock } from "@/components/homepage/channels-block"
@@ -53,29 +61,33 @@ export default function HomePage() {
 
           {/* Solid background zone — rounded top creates premium transition over aurora */}
           <div className="bg-bg-page dark:bg-bg-page rounded-t-[3rem] relative z-10">
-            {/* 2 — How it works: Receive / Understand / Decide / Execute */}
+            {/* Placeholder: TrustedByCarousel will slot here in a future PR,
+                between Hero and AIWorking247Block. */}
+
+            {/* 2 — AI working 24/7: six live demos (WhatsApp, phone, calendar,
+                email, integrations hub, analytics) — the product in action. */}
+            <AIWorking247Block />
+
+            {/* 3 — How it works: Receive / Understand / Decide / Execute */}
             <HowItWorksBlock />
 
             <div className="section-divider max-w-3xl mx-auto" />
 
-            {/* 3 — Channels: WhatsApp · Web · Phone · Email (voice is one channel, not the headline) */}
+            {/* 4 — Channels: WhatsApp · Web · Phone · Email (voice is one channel, not the headline) */}
             <ChannelsBlock />
 
-            {/* 3b — AI working 24/7: same four channels shown as live demos */}
-            <AIWorking247Block />
-
-            {/* 4 — Integrations: CRM / ERP / calendar / comms */}
+            {/* 5 — Integrations: CRM / ERP / calendar / comms */}
             <IntegrationsBlock />
 
-            {/* 5 — Sectors: 4 featured + transversal pillar (operations · multichannel · automation) */}
+            {/* 6 — Sectors: 4 featured + transversal pillar (operations · multichannel · automation) */}
             <SectorsBlock />
 
             <div className="section-divider max-w-3xl mx-auto" />
 
-            {/* 6 — Proof: 3 metrics, each with a one-line context */}
+            {/* 7 — Proof: 3 metrics, each with a one-line context */}
             <SocialProofBlock />
 
-            {/* 7 — Final CTA: single "Solicitar Demo" */}
+            {/* 8 — Final CTA: single "Solicitar Demo" */}
             <CTABlock />
 
             <Footer />

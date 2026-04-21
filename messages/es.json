@@ -498,70 +498,34 @@
     "featured": "Solución Destacada"
   },
   "ai_working_247": {
-    "badge": "Plataforma IA operando en tiempo real",
-    "title_1": "Tu plataforma de IA ejecutando procesos,",
-    "title_2": "24/7",
-    "subtitle": "Observa cómo los agentes IA entienden, analizan y actúan en tiempo real — gestionando conversaciones, tomando decisiones y ejecutando tareas sin intervención humana.",
-    "features": {
-      "chat": {
-        "micro_label": "Interaccion",
-        "title": "Interaccion y ejecucion en tiempo real",
-        "description": "Agentes IA que no solo responden — entienden el contexto, toman decisiones y ejecutan acciones directamente desde la conversacion."
+    "eyebrow": "IA Trabajando 24/7 — No Pierdas Ningún Lead",
+    "title": "Tu Equipo IA Nunca Descansa",
+    "description": "Mira cómo nuestra IA gestiona interacciones reales de clientes a todas horas, cualifica leads y reserva citas automáticamente mientras tú te concentras en hacer crecer tu negocio.",
+    "cards": {
+      "chat_support": {
+        "title": "Soporte de Chat IA 24/7",
+        "description": "Chatbots inteligentes que gestionan consultas, responden preguntas y capturan leads en tu web y canales sociales."
       },
-      "phone": {
-        "micro_label": "Analisis",
-        "title": "Gestion inteligente de interacciones por voz",
-        "description": "Interpreta solicitudes, accede a informacion y ejecuta acciones como registrar, derivar o programar — todo en una sola interaccion."
+      "phone_receptionist": {
+        "title": "Recepcionista Telefónica IA",
+        "description": "Asistente de voz IA profesional que atiende llamadas, toma mensajes y agenda citas cuando estás ocupado o cerrado."
       },
-      "calendar": {
-        "micro_label": "Decision",
-        "title": "Coordinacion y gestion automatica",
-        "description": "Verifica disponibilidad, toma decisiones y gestiona agendas en tiempo real sin intervencion humana."
+      "appointment_booking": {
+        "title": "Reservas Inteligentes",
+        "description": "Sistema de agenda automatizado que verifica disponibilidad, reserva citas y envía confirmaciones sin intervención humana."
       },
-      "email": {
-        "micro_label": "Ejecucion",
-        "title": "Procesamiento y gestion de solicitudes",
-        "description": "Analiza, clasifica y ejecuta acciones sobre cada solicitud, conectando la informacion con los procesos internos."
+      "email_automation": {
+        "title": "Automatización de Emails",
+        "description": "Asistente de email con IA que responde consultas, proporciona información y deriva preguntas complejas a tu equipo."
       },
-      "leads": {
-        "micro_label": "Inteligencia",
-        "title": "Analisis y toma de decisiones",
-        "description": "Evalua informacion, estructura datos y decide el siguiente paso dentro del proceso operativo o comercial."
+      "lead_qualification": {
+        "title": "Cualificación y Derivación de Leads",
+        "description": "Sistema inteligente que cualifica prospectos, recoge información clave y deriva leads calientes a tu equipo comercial sin fricción."
       },
-      "integrations": {
-        "micro_label": "Conectividad",
-        "title": "Ejecucion conectada entre sistemas",
-        "description": "Actua directamente sobre CRM, calendarios y herramientas para mantener los procesos en funcionamiento continuo."
+      "platform_integration": {
+        "title": "Integración Multi-Plataforma",
+        "description": "Conecta con tus herramientas existentes: CRM, calendario, WhatsApp, SMS y más para una experiencia de cliente unificada."
       }
-    },
-    "mockup": {
-      "chat_question": "¿Puedo reservar para este viernes?",
-      "chat_response": "¡Claro! He verificado disponibilidad.",
-      "chat_confirmation": "⚡ Reserva confirmada: Viernes 16:30 ✓",
-      "chat_info_question": "Necesito información sobre precios",
-      "chat_info_response": "Te envío nuestro catálogo actualizado.",
-      "chat_info_confirmation": "📎 Documento enviado ✓",
-      "chat_agent_question": "Quiero hablar con un agente",
-      "chat_agent_response": "Analizando tu consulta...",
-      "chat_agent_confirmation": "✓ Derivado al especialista indicado",
-      "call_incoming": "Llamada entrante",
-      "call_in_progress": "En curso",
-      "call_completed": "Completada ✓",
-      "call_finished": "Finalizada",
-      "call_connecting": "Conectando...",
-      "call_listening": "Escuchando",
-      "call_label": "Llamadas",
-      "calendar_confirmed": "✓ Cita confirmada: día {day}, {time}",
-      "inbox_request": "Solicitud recibida",
-      "inbox_query": "Consulta cliente",
-      "inbox_document": "Documento adjunto",
-      "inbox_classified": "Clasificada",
-      "inbox_responded": "Respondida",
-      "inbox_processed": "Procesado",
-      "inbox_pending": "pendiente",
-      "analytics_resolved": "Resueltos",
-      "analytics_time": "Tiempo",
-      "analytics_insight": "Mejora continua basada en datos"
     }
   },
   "crm": {

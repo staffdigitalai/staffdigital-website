@@ -18,13 +18,15 @@ export async function generateMetadata({
   })
 }
 
-// Homepage blocks — post-refresh narrative (see PR #80 brief):
-//   Hero → How it works → Channels → Integrations → Sectors → Proof → CTA.
-// Voice is intentionally NOT a standalone block anymore — it's one of
-// the four channels below. AIWorking247 / Clarification / Differentiation
-// / Solutions / Voice blocks still exist in this directory for reuse
-// elsewhere, but are no longer imported on the home.
+// Homepage blocks. The "AI Working 24/7" showcase is provided by
+// `components/features-section.tsx` — the original component from the
+// cliste-website-navigation v0 template, kept intentionally un-touched
+// apart from having its 15 user-facing strings wrapped in
+// `useTranslations("ai_working_247")`. The earlier
+// `components/homepage/ai-working-247-block.tsx` variant is preserved
+// as `.old.tsx` for reference but no longer imported.
 import { HeroBlock } from "@/components/homepage/hero-block"
+import { FeaturesSection } from "@/components/features-section"
 import { HowItWorksBlock } from "@/components/homepage/how-it-works-block"
 import { ChannelsBlock } from "@/components/homepage/channels-block"
 import { IntegrationsBlock } from "@/components/homepage/integrations-block"
@@ -52,7 +54,10 @@ export default function HomePage() {
 
           {/* Solid background zone — rounded top creates premium transition over aurora */}
           <div className="bg-bg-page dark:bg-bg-page rounded-t-[3rem] relative z-10">
-            {/* 2 — How it works: Receive / Understand / Decide / Execute */}
+            {/* 2 — AI Working 24/7 — hero-adjacent showcase (original v0 template) */}
+            <FeaturesSection />
+
+            {/* 3 — How it works: Receive / Understand / Decide / Execute */}
             <HowItWorksBlock />
 
             <div className="section-divider max-w-3xl mx-auto" />

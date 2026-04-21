@@ -498,83 +498,45 @@
     "featured": "Solução em Destaque"
   },
   "ai_working_247": {
-    "badge": "Plataforma IA a operar em tempo real",
-    "title_1": "A sua plataforma de IA a executar processos,",
-    "title_2": "24/7",
-    "subtitle": "Veja como os agentes IA entendem, analisam e atuam em tempo real — gerindo conversas, tomando decisões e executando tarefas sem intervenção humana.",
-    "features": {
-      "chat": {
-        "title": "Interação e execução em tempo real",
-        "description": "Agentes IA que não só respondem — entendem o contexto, tomam decisões e executam ações diretamente a partir da conversa.",
-        "micro_label": "Interação"
+    "eyebrow": "IA a Trabalhar 24/7 — Não Percas Nenhum Lead",
+    "title": "A Tua Equipa IA Nunca Descansa",
+    "description": "Vê como a nossa IA gere interações reais de clientes 24 horas por dia, qualifica leads e marca consultas automaticamente enquanto te focas em fazer crescer o teu negócio.",
+    "cards": {
+      "chat_support": {
+        "badge": "24/7",
+        "title": "Suporte de Chat IA 24/7",
+        "description": "Chatbots inteligentes que gerem consultas, respondem perguntas e capturam leads no teu site e canais sociais.",
+        "mockup_greeting": "Boa noite! Em que posso ajudar?",
+        "mockup_user_reply": "Preciso de ajuda com preços"
       },
-      "phone": {
-        "title": "Gestão inteligente de interações por voz",
-        "description": "Interpreta pedidos, acede a informação e executa ações como registar, encaminhar ou agendar — tudo numa só interação.",
-        "micro_label": "Análise"
+      "phone_receptionist": {
+        "title": "Rececionista Telefónico IA",
+        "description": "Assistente de voz IA profissional que atende chamadas, regista mensagens e marca consultas quando estás ocupado ou fechado.",
+        "mockup_calls_counter": "Chamadas: 24",
+        "mockup_call_status": "Chamada atendida"
       },
-      "calendar": {
-        "title": "Coordenação e gestão automática",
-        "description": "Verifica disponibilidade, toma decisões e gere agendas em tempo real sem intervenção humana.",
-        "micro_label": "Decisão"
+      "appointment_booking": {
+        "title": "Agendamento Inteligente",
+        "description": "Sistema de agendamento automatizado que verifica disponibilidade, marca consultas e envia confirmações sem intervenção humana.",
+        "mockup_confirmation": "Marcação reservada para o dia 15"
       },
-      "email": {
-        "title": "Processamento e gestão de pedidos",
-        "description": "Analisa, classifica e executa ações sobre cada pedido, conectando a informação com os processos internos.",
-        "micro_label": "Execução"
+      "email_automation": {
+        "title": "Automatização de Emails",
+        "description": "Assistente de email com IA que responde a consultas, fornece informação e encaminha perguntas complexas para a tua equipa.",
+        "mockup_label_service": "Consulta de serviço",
+        "mockup_label_appointment": "Pedido de marcação",
+        "mockup_label_quote": "Orçamento necessário"
       },
-      "leads": {
-        "title": "Análise e tomada de decisão",
-        "description": "Avalia informação, estrutura dados e decide o próximo passo dentro do processo operacional ou comercial.",
-        "micro_label": "Inteligência"
+      "lead_qualification": {
+        "title": "Qualificação e Encaminhamento de Leads",
+        "description": "Sistema inteligente que qualifica prospetos, recolhe informação chave e encaminha leads quentes para a tua equipa comercial sem fricção."
       },
-      "integrations": {
-        "title": "Execução conectada entre sistemas",
-        "description": "Atua diretamente sobre CRM, calendários e ferramentas para manter os processos em funcionamento contínuo.",
-        "micro_label": "Conectividade"
+      "platform_integration": {
+        "title": "Integração Multi-Plataforma",
+        "description": "Conecta com as tuas ferramentas existentes: CRM, calendário, WhatsApp, SMS e mais para uma experiência de cliente unificada.",
+        "mockup_connected_status": "4/4 ligados"
       }
-    },
-    "mockup": {
-      "chat_question": "Posso reservar para esta sexta-feira?",
-      "chat_response": "Claro! Verifiquei a disponibilidade.",
-      "chat_confirmation": "⚡ Reserva confirmada: Sexta 16:30 ✓",
-      "chat_info_question": "Preciso de informação sobre preços",
-      "chat_info_response": "Envio-lhe o nosso catálogo atualizado.",
-      "chat_info_confirmation": "📎 Documento enviado ✓",
-      "chat_agent_question": "Quero falar com um agente",
-      "chat_agent_response": "A analisar a sua questão...",
-      "chat_agent_confirmation": "✓ Encaminhado para o especialista indicado",
-      "call_incoming": "Chamada recebida",
-      "call_in_progress": "Em curso",
-      "call_completed": "Concluída ✓",
-      "call_finished": "Finalizada",
-      "call_connecting": "A ligar...",
-      "call_listening": "A ouvir",
-      "call_label": "Chamadas",
-      "calendar_confirmed": "✓ Consulta confirmada: dia {day}, {time}",
-      "inbox_request": "Pedido recebido",
-      "inbox_query": "Consulta de cliente",
-      "inbox_document": "Documento anexo",
-      "inbox_classified": "Classificado",
-      "inbox_responded": "Respondido",
-      "inbox_processed": "Processado",
-      "inbox_pending": "pendente",
-      "analytics_resolved": "Resolvidos",
-      "analytics_time": "Tempo",
-      "analytics_insight": "Melhoria contínua baseada em dados"
-    },
-    "title_whatsapp": "WhatsApp IA a trabalhar 24/7",
-    "subtitle_whatsapp": "Conversas reais resolvidas por IA — reservas, informação, suporte — com a voz da sua marca.",
-    "title_voice": "Chamadas atendidas 24/7",
-    "subtitle_voice": "Voz humana que atende ao primeiro toque, compreende o cliente e resolve ou encaminha com contexto.",
-    "title_calendar": "Agenda gerida 24/7",
-    "subtitle_calendar": "Reservas e marcações confirmadas num calendário real, com lembretes e remarcação automática.",
-    "title_email": "Inbox processada 24/7",
-    "subtitle_email": "Cada email classificado, respondido ou encaminhado à equipa certa — sem backlog.",
-    "title_integrations": "Integrado no seu stack 24/7",
-    "subtitle_integrations": "Dados a fluir entre canais e sistemas sem intervenção humana.",
-    "title_analytics": "Analítica operacional 24/7",
-    "subtitle_analytics": "Resolução, tempos e volume visíveis em tempo real para operar com evidência."
+    }
   },
   "crm": {
     "badge": "Integração nativa",

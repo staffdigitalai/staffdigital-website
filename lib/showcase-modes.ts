@@ -22,8 +22,8 @@ export const SOLUTION_SHOWCASE_MODE: Record<string, ShowcaseMode> = {
   "agentes-ia-voz-humana":    "voice",
   "agente-chat-web-ia":       "whatsapp",      // conversational chat — chat mockup is closest
   "agente-chat-productos-ia": "whatsapp",
-  "agente-ventas-ia":         "analytics",     // pipeline / lead analytics
-  "lead-generation-ia":       "analytics",
+  "agente-ventas-ia":         "leads",         // lead qualification progress bars
+  "lead-generation-ia":       "leads",
   "agente-agendamientos-ia":  "calendar",
   "agente-soporte-ia":        "email",         // inbox ticket triage
   "onboarding-automatico":    "integrations",

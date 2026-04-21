@@ -498,83 +498,45 @@
     "featured": "Featured Solution"
   },
   "ai_working_247": {
-    "badge": "AI platform operating in real time",
-    "title_1": "Your AI platform executing processes,",
-    "title_2": "24/7",
-    "subtitle": "Watch how AI agents understand, analyze and act in real time — managing conversations, making decisions and executing tasks without human intervention.",
-    "features": {
-      "chat": {
-        "micro_label": "Interaction",
-        "title": "Real-time interaction and execution",
-        "description": "AI agents that don't just respond — they understand context, make decisions and execute actions directly from the conversation."
+    "eyebrow": "AI Working 24/7 — Never Miss a Lead",
+    "title": "Your AI Team Never Sleeps",
+    "description": "Watch our AI handle real customer interactions around the clock, automatically qualifying leads and booking appointments while you focus on growing your business.",
+    "cards": {
+      "chat_support": {
+        "badge": "24/7",
+        "title": "24/7 AI Chat Support",
+        "description": "Intelligent chatbots that handle customer inquiries, answer questions, and capture leads across your website and social channels.",
+        "mockup_greeting": "Good evening! How may I assist you?",
+        "mockup_user_reply": "I need help with pricing"
       },
-      "phone": {
-        "micro_label": "Analysis",
-        "title": "Intelligent voice interaction management",
-        "description": "Interprets requests, accesses information and executes actions like recording, routing or scheduling — all in a single interaction."
+      "phone_receptionist": {
+        "title": "AI Phone Receptionist",
+        "description": "Professional AI voice assistant that answers calls, takes messages, and books appointments when you're busy or closed.",
+        "mockup_calls_counter": "Calls: 24",
+        "mockup_call_status": "Call answered"
       },
-      "calendar": {
-        "micro_label": "Decision",
-        "title": "Automatic coordination and management",
-        "description": "Checks availability, makes decisions and manages schedules in real time without human intervention."
+      "appointment_booking": {
+        "title": "Smart Appointment Booking",
+        "description": "Automated scheduling system that checks availability, books appointments, and sends confirmations without human intervention.",
+        "mockup_confirmation": "Appointment booked for the 15th"
       },
-      "email": {
-        "micro_label": "Execution",
-        "title": "Request processing and management",
-        "description": "Analyzes, classifies and executes actions on each request, connecting information with internal processes."
+      "email_automation": {
+        "title": "Email Response Automation",
+        "description": "AI-powered email assistant that responds to inquiries, provides information, and forwards complex queries to your team.",
+        "mockup_label_service": "Service inquiry",
+        "mockup_label_appointment": "Appointment request",
+        "mockup_label_quote": "Quote needed"
       },
-      "leads": {
-        "micro_label": "Intelligence",
-        "title": "Analysis and decision-making",
-        "description": "Evaluates information, structures data and decides the next step within the operational or commercial process."
+      "lead_qualification": {
+        "title": "Lead Qualification & Handoff",
+        "description": "Intelligent system that qualifies prospects, gathers key information, and seamlessly hands off hot leads to your sales team."
       },
-      "integrations": {
-        "micro_label": "Connectivity",
-        "title": "Connected execution across systems",
-        "description": "Acts directly on CRM, calendars and tools to keep processes running continuously."
+      "platform_integration": {
+        "title": "Multi-Platform Integration",
+        "description": "Connect with your existing tools including CRM, calendar, WhatsApp, SMS, and more for a unified customer experience.",
+        "mockup_connected_status": "4/4 connected"
       }
-    },
-    "mockup": {
-      "chat_question": "Can I book for this Friday?",
-      "chat_response": "Of course! I've checked availability.",
-      "chat_confirmation": "⚡ Booking confirmed: Friday 16:30 ✓",
-      "chat_info_question": "I need information about prices",
-      "chat_info_response": "I'll send you our updated catalog.",
-      "chat_info_confirmation": "📎 Document sent ✓",
-      "chat_agent_question": "I want to speak to an agent",
-      "chat_agent_response": "Analyzing your inquiry...",
-      "chat_agent_confirmation": "✓ Routed to the right specialist",
-      "call_incoming": "Incoming call",
-      "call_in_progress": "In progress",
-      "call_completed": "Completed ✓",
-      "call_finished": "Finished",
-      "call_connecting": "Connecting...",
-      "call_listening": "Listening",
-      "call_label": "Calls",
-      "calendar_confirmed": "✓ Appointment confirmed: day {day}, {time}",
-      "inbox_request": "Request received",
-      "inbox_query": "Client inquiry",
-      "inbox_document": "Attached document",
-      "inbox_classified": "Classified",
-      "inbox_responded": "Responded",
-      "inbox_processed": "Processed",
-      "inbox_pending": "pending",
-      "analytics_resolved": "Resolved",
-      "analytics_time": "Time",
-      "analytics_insight": "Continuous improvement based on data"
-    },
-    "title_whatsapp": "WhatsApp AI working 24/7",
-    "subtitle_whatsapp": "Real conversations resolved by AI — bookings, information, support — in your brand voice.",
-    "title_voice": "Calls answered 24/7",
-    "subtitle_voice": "A human-sounding voice that picks up on the first ring, understands the caller, and resolves or hands off with context.",
-    "title_calendar": "Calendar run 24/7",
-    "subtitle_calendar": "Bookings confirmed against a live calendar, with reminders and auto-rescheduling.",
-    "title_email": "Inbox processed 24/7",
-    "subtitle_email": "Every email classified, replied to, or routed to the right team — no backlog.",
-    "title_integrations": "Plugged into your stack 24/7",
-    "subtitle_integrations": "Data moving between channels and systems without human touch.",
-    "title_analytics": "Operational analytics 24/7",
-    "subtitle_analytics": "Resolution, time-to-answer and volume visible in real time so you can run on evidence."
+    }
   },
   "crm": {
     "badge": "Native integration",
